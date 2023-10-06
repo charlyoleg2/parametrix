@@ -36,6 +36,10 @@
 		<li>{@html math('i')} : electric current in one wire loops (unit: {@html math('A')})</li>
 		<li>{@html math('L')} : length of the magnetic circuit (unit: {@html math('m')})</li>
 		<li>{@html math('S')} : area of a section of the magnetic circuit (unit: {@html math('m^2')})</li>
+		<li>{@html math('H')} : magnetizing field (unit: {@html math('A.m^{-1}')})</li>
+		<li>{@html math('B')} : magnetic flux density (unit: {@html math('T')} or {@html math('kg.s^{-2}.A^{-1}')})</li>
+		<li>{@html math('\\mu')} : magnetic permeability (unit: {@html math('H.m^{-1}')} or {@html math('kg.m.s^{-2}.A^{-2}')})</li>
+		<li>{@html math('\\mu_0')} : vacuum magnetic permeability : {@html math('\\mu_0 = 1.256 \\times 10^{-6} H.m^{-1}')}</li>
 	</ul>
 	Laws at macroscopic scale (from integral equations):
 	<ul>
@@ -63,7 +67,7 @@
 	</ul>
 	Energy:
 	<ul>
-		<li>{@html math('u_m')} : energy density (unit: {@html math('J.m^{-3}')} or {@html math('kg.m^{-1}.s^{-2}')}})</li>
+		<li>{@html math('u_m')} : magnetic energy density (unit: {@html math('J.m^{-3}')} or {@html math('kg.m^{-1}.s^{-2}')}})</li>
 		<li>{@html math('u_m = \\frac{B H}{2} = \\frac{B^2}{2 \\mu} = \\frac{B^2}{2 \\mu_r \\mu_0}')}</li>
 		<li>{@html math('E_m')} : energy of a magnetic circuit (unit: {@html math('J')} or {@html math('kg.m^2.s^{-2}')}})</li>
 		<li>{@html math('E_m = \\int_V u_m')}</li>
@@ -100,8 +104,10 @@
 		</li>
 		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu S_1 S_2 N i}{L_1 S_2 + L_2 S_1}')}</li>
 		<li>
-			{@html math('B_1 = \\frac{\\varPhi}{S_1} = \\frac{\\mu S_2 N i}{L_1 S_2 + L_2 S_1}')}
-			{@html math('B_2 = \\frac{\\varPhi}{S_2} = \\frac{\\mu S_1 N i}{L_1 S_2 + L_2 S_1}')}
+			<ul>
+				<li>{@html math('B_1 = \\frac{\\varPhi}{S_1} = \\frac{\\mu S_2 N i}{L_1 S_2 + L_2 S_1}')}</li>
+				<li>{@html math('B_2 = \\frac{\\varPhi}{S_2} = \\frac{\\mu S_1 N i}{L_1 S_2 + L_2 S_1}')}</li>
+			</ul>
 		</li>
 		<li>
 			{@html math('E_m')}
