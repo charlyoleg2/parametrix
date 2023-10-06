@@ -6,8 +6,8 @@
 	<Garland />
 	<ul>
 		<li class="footer-title">Parametrix</li>
-		<li><a href="https://github.com/charlyoleg/parametrix">Github repo</a></li>
-		<li><a href="https://charlyoleg.github.io/parametrix/">Github page</a></li>
+		<li><a href="https://github.com/charlyoleg2/parametrix">Github repo</a></li>
+		<li><a href="https://charlyoleg2.github.io/parametrix/">Github page</a></li>
 	</ul>
 	<Garland />
 	<ul>
