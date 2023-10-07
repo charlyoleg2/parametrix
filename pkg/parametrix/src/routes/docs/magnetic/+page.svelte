@@ -11,6 +11,8 @@
 	let sectionArea = 100; // mm2
 	let turnNb = 100;
 	let current = 1.5; // A
+	let percentL2 = 30;
+	let percentS2 = 200;
 	// outputs
 	let torusLength = 10;
 	let torusLengthStr = "10.0";
@@ -26,6 +28,26 @@
 	let torusMagneticEnergyStr = "10.0";
 	let torusInductance = 10;
 	let torusInductanceStr = "10.0";
+	let swellingL1 = 10;
+	let swellingL1Str = "10.0";
+	let swellingS1 = 10;
+	let swellingS1Str = "10.0";
+	let swellingL2 = 10;
+	let swellingL2Str = "10.0";
+	let swellingS2 = 10;
+	let swellingS2Str = "10.0";
+	let swellingReluctance = 10;
+	let swellingReluctanceStr = "10.0";
+	let swellingMagneticFlux = 10;
+	let swellingMagneticFluxStr = "10.0";
+	let swellingMagneticField1 = 10;
+	let swellingMagneticField1Str = "10.0";
+	let swellingMagneticField2 = 10;
+	let swellingMagneticField2Str = "10.0";
+	let swellingMagneticEnergy = 10;
+	let swellingMagneticEnergyStr = "10.0";
+	let swellingInductance = 10;
+	let swellingInductanceStr = "10.0";
 	// calculations
 	$: {
 		torusLength = 2 * Math.PI * torusRadius;
@@ -44,7 +66,7 @@
 		torusMagneticFluxStr = torusMagneticFlux.toExponential(3);
 	}
 	$: {
-		torusMagneticField = 1000 * torusMagneticFlux / sectionArea;
+		torusMagneticField = torusMagneticFlux / sectionArea * 10**6;
 		torusMagneticFieldStr = torusMagneticField.toExponential(3);
 	}
 	$: {
@@ -54,6 +76,42 @@
 	$: {
 		torusInductance = turnNb**2 / torusReluctance;
 		torusInductanceStr = torusInductance.toExponential(3);
+	}
+	$: {
+		swellingL2 = torusLength * percentL2 / 100;
+		swellingL1 = torusLength - swellingL2;
+		swellingL1Str = swellingL1.toFixed(1);
+		swellingL2Str = swellingL2.toFixed(1);
+	}
+	$: {
+		swellingS1 = sectionArea;
+		swellingS2 = swellingS1 * percentS2 / 100;
+		swellingS1Str = swellingS1.toFixed(1);
+		swellingS2Str = swellingS2.toFixed(1);
+	}
+	$: {
+		swellingReluctance = (swellingL1 * swellingS2 + swellingL2 * swellingS1) / (permeability * mu0 * swellingS1 * swellingS2) * 1000;
+		swellingReluctanceStr = swellingReluctance.toExponential(3);
+	}
+	$: {
+		swellingMagneticFlux = magnetomotive / swellingReluctance;
+		swellingMagneticFluxStr = swellingMagneticFlux.toExponential(3);
+	}
+	$: {
+		swellingMagneticField1 = swellingMagneticFlux / swellingS1 * 10**6;
+		swellingMagneticField1Str = swellingMagneticField1.toExponential(3);
+	}
+	$: {
+		swellingMagneticField2 = swellingMagneticFlux / swellingS2 * 10**6;
+		swellingMagneticField2Str = swellingMagneticField2.toExponential(3);
+	}
+	$: {
+		swellingMagneticEnergy = (swellingMagneticField1 * swellingL1 * swellingS1 + swellingMagneticField2 * swellingL2 * swellingS2) * 10**-9;
+		swellingMagneticEnergyStr = swellingMagneticEnergy.toExponential(3);
+	}
+	$: {
+		swellingInductance = permeability * mu0 * turnNb**2 * swellingS1 * swellingS2 / (swellingL1 * swellingS2 + swellingL2 * swellingS1) * 10**-3;
+		swellingInductanceStr = swellingInductance.toExponential(3);
 	}
 </script>
 
@@ -296,6 +354,90 @@
 		</li>
 		<li>{@html math('\\mathcal{L} = \\frac{\\mu N^2 S_1 S_2}{L_1 S_2 + L_2 S_1}')}</li>
 	</ul>
+	<table>
+		<tr>
+			<th>Symbol</th>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+		<tr>
+			<td>{@html math('L_2')}</td>
+			<td>Percentage of torus with L2 (%)</td>
+			<td>
+				<input type="number" bind:value={percentL2} min="0" max="100" step="1">
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('S_2')}</td>
+			<td>Percentage of S2 compare to S1 (%)</td>
+			<td>
+				<input type="number" bind:value={percentS2} min="1" max="400" step="1">
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('L_1')}</td>
+			<td>Length of L1 ({@html math('mm')})</td>
+			<td>
+				{swellingL1Str}
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('S_1')}</td>
+			<td>Area of S1 ({@html math('mm^2')})</td>
+			<td>
+				{swellingS1Str}
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('L_2')}</td>
+			<td>Length of L2 ({@html math('mm')})</td>
+			<td>
+				{swellingL2Str}
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('S_2')}</td>
+			<td>Area of S2 ({@html math('mm^2')})</td>
+			<td>
+				{swellingS2Str}
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{F}')}</td>
+			<td>Magnetomotive force (A)</td>
+			<td>{magnetomotiveStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{R}')}</td>
+			<td>Reluctance ({@html math('H^{-1}')})</td>
+			<td>{swellingReluctanceStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\varPhi')}</td>
+			<td>Magnetic flux ({@html math('H.A')})</td>
+			<td>{swellingMagneticFluxStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_1')}</td>
+			<td>Magnetic field ({@html math('T')})</td>
+			<td>{swellingMagneticField1Str}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_2')}</td>
+			<td>Magnetic field ({@html math('T')})</td>
+			<td>{swellingMagneticField2Str}</td>
+		</tr>
+		<tr>
+			<td>{@html math('E_m')}</td>
+			<td>Magnetic energy ({@html math('J')})</td>
+			<td>{swellingMagneticEnergyStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{L}')}</td>
+			<td>Inductance ({@html math('H')})</td>
+			<td>{swellingInductanceStr}</td>
+		</tr>
+	</table>
 </article>
 <h3>Torus with air gap</h3>
 <article class="splitable">
