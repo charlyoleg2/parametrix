@@ -72,7 +72,7 @@
 			<ul class="formula">
 				<li>{@html math('u = -\\frac{N^2}{\\mathcal{R}} \\frac{d i}{d t}')}</li>
 				<li>Let's define {@html math('\\mathcal{L} = \\frac{N^2}{\\mathcal{R}}')}</li>
-				<li>{@html math('\\mathcal{L} = \\frac{N \\varPhi}{i} = \\frac{N^2}{\\mathcal{R}} = \\frac{\\mu N^2 S}{L}')}</li>
+				<li>{@html math('\\mathcal{L} = \\frac{N^2}{\\mathcal{R}} = \\frac{N \\varPhi}{i} = \\frac{\\mu N^2 S}{L}')}</li>
 				<li>{@html math('u = -\\mathcal{L} \\frac{d i}{d t}')}</li>
 				<li>{@html math('N \\varPhi = \\mathcal{L} i')}</li>
 				<li>{@html math('E_m = \\int_{Time} i u = \\int_{Time} i \\mathcal{L} \\frac{d i}{d t} = \\frac{\\mathcal{L} i^2}{2}')}</li>
@@ -131,7 +131,7 @@
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
-			{@html math('\\mathcal{R} = \\mathcal{R}_1 + \\mathcal{R}_2 = \\frac{L}{\\mu_r \\mu_0 S} + \\frac{G}{\\mu_0 S}')}
+			{@html math('\\mathcal{R} = \\mathcal{R}_L + \\mathcal{R}_G = \\frac{L}{\\mu_r \\mu_0 S} + \\frac{G}{\\mu_0 S}')}
 			{@html math('= \\frac{L + \\mu_r G}{\\mu_r \\mu_0 S}')}
 		</li>
 		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu_r \\mu_0 S N i}{L + \\mu_r G}')}</li>
@@ -151,6 +151,34 @@
 <article class="splitable">
 	<img src="{base}/torus_with_shuttle.svg" alt="torus with shuttle" />
 	<img src="{base}/top_view_of_air_gap_and_shuttle.svg" alt="top view of air gap and shuttle" />
+	<ul class="formula">
+		<li>{@html math('\\mathcal{F} = N i')}</li>
+		<li>
+			<ul class="formula">
+				<li>{@html math('\\mathcal{R} = \\mathcal{R}_L + \\frac{1}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}')}</li>
+				<li>{@html math('\\mathcal{R}_L = \\frac{L}{\\mu_r \\mu_0 A B}')}</li>
+				<li>{@html math('\\mathcal{R}_{G1} = \\frac{G}{\\mu_0 x B}')}</li>
+				<li>{@html math('\\mathcal{R}_{G2} = \\frac{G}{\\mu_r \\mu_0 (A - x) B}')}</li>
+				<li>
+					{@html math('\\mathcal{R} = \\frac{x L (1 - \\mu_r) + \\mu_r A (L + G)}{\\mu_r \\mu_0 A B (x (1 - \\mu_r) + \\mu_r A)}')}
+					{@html math('\\simeq \\frac{L (A - x)}{\\mu_r \\mu_0 A B (A - x)}')}
+				</li>
+				<li>{@html math('\\mathcal{R}_{x=0} = \\frac{L + G}{\\mu_r \\mu_0 A B}')}</li>
+				<li>{@html math('\\mathcal{R}_{x=A} = \\frac{L (1 + \\mu_r  G)}{\\mu_r \\mu_0 A B} > \\mathcal{R}_{x=0}')}</li>
+			</ul>
+		</li>
+		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu_r \\mu_0 S N i}{L + \\mu_r G}')}</li>
+		<li>{@html math('B = \\frac{\\varPhi}{S} = \\frac{\\mu_r \\mu_0 N i}{L + \\mu_r G}')}</li>
+		<li>
+			{@html math('E_m')}
+			{@html math('= \\int_V \\frac{B^2}{2 \\mu}')}
+			{@html math('= \\int_{V_1} \\frac{B^2}{2 \\mu_r \\mu_0} + \\int_{V_2} \\frac{B^2}{2 \\mu_0}')}
+			{@html math('= \\frac{B^2}{2 \\mu_r \\mu_0} L S + \\frac{B^2}{2 \\mu_0} G S')}
+			{@html math('= \\frac{B^2 S}{2 \\mu_r \\mu0}(L + \\mu_r G)')}
+			{@html math('= \\frac{\\mu_r \\mu_0 S N^2 i^2}{2 (L + \\mu_r G)}')}
+		</li>
+		<li>{@html math('\\mathcal{L} = \\frac{\\mu_r \\mu_0 S N^2}{L + \\mu_r G}')}</li>
+	</ul>
 </article>
 <h3>Torus with realistic shuttle</h3>
 <article class="splitable">
