@@ -2,6 +2,59 @@
 	/* eslint-disable svelte/no-at-html-tags */
 	import { base } from '$app/paths';
 	import { math } from 'mathlifier';
+
+	// constants
+	const mu0 = 1.25663706212 * 10**-6;
+	// inputs
+	let permeability = 5000;
+	let torusRadius = 15; // mm
+	let sectionArea = 100; // mm2
+	let turnNb = 100;
+	let current = 1.5; // A
+	// outputs
+	let torusLength = 10;
+	let torusLengthStr = "10.0";
+	let magnetomotive = 10;
+	let magnetomotiveStr = "10.0";
+	let torusReluctance = 10;
+	let torusReluctanceStr = "10.0";
+	let torusMagneticFlux = 10;
+	let torusMagneticFluxStr = "10.0";
+	let torusMagneticField = 10;
+	let torusMagneticFieldStr = "10.0";
+	let torusMagneticEnergy = 10;
+	let torusMagneticEnergyStr = "10.0";
+	let torusInductance = 10;
+	let torusInductanceStr = "10.0";
+	// calculations
+	$: {
+		torusLength = 2 * Math.PI * torusRadius;
+		torusLengthStr = torusLength.toFixed(1);
+	}
+	$: {
+		magnetomotive = turnNb * current;
+		magnetomotiveStr = magnetomotive.toFixed(1);
+	}
+	$: {
+		torusReluctance = 1000 * torusLength / (permeability * mu0 * sectionArea);
+		torusReluctanceStr = torusReluctance.toExponential(3);
+	}
+	$: {
+		torusMagneticFlux = magnetomotive / torusReluctance;
+		torusMagneticFluxStr = torusMagneticFlux.toExponential(3);
+	}
+	$: {
+		torusMagneticField = 1000 * torusMagneticFlux / sectionArea;
+		torusMagneticFieldStr = torusMagneticField.toExponential(3);
+	}
+	$: {
+		torusMagneticEnergy = permeability * mu0 * sectionArea * turnNb**2 * current**2 / (2 * torusLength) * 10**-9;
+		torusMagneticEnergyStr = torusMagneticEnergy.toExponential(3);
+	}
+	$: {
+		torusInductance = turnNb**2 / torusReluctance;
+		torusInductanceStr = torusInductance.toExponential(3);
+	}
 </script>
 
 <h1>Magnetic circuit</h1>
@@ -98,6 +151,125 @@
 		</li>
 		<li>{@html math('\\mathcal{L} = \\frac{\\mu S N^2}{L} = \\frac{\\mu_r \\mu_0 S N^2}{L}')}</li>
 	</ul>
+	<table>
+		<tr>
+			<th>Material</th>
+			<th>Relative permeability</th>
+		</tr>
+		<tr>
+			<td>Air</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>Iron 99.95</td>
+			<td>200 000</td>
+		</tr>
+		<tr>
+			<td>Iron 99.8</td>
+			<td>5000</td>
+		</tr>
+		<tr>
+			<td>Soft iron</td>
+			<td>5000</td>
+		</tr>
+		<tr>
+			<td>Cobalt</td>
+			<td>250</td>
+		</tr>
+		<tr>
+			<td>Nickel</td>
+			<td>600</td>
+		</tr>
+		<tr>
+			<td>Cobalt-iron</td>
+			<td>18000</td>
+		</tr>
+		<tr>
+			<td>Mu-matierial</td>
+			<td>50 000</td>
+		</tr>
+		<tr>
+			<td>Permalloy (nickel-iron)</td>
+			<td>1000 000</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<th>Symbol</th>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+		<tr>
+			<td>{@html math('\\mu_r')}</td>
+			<td>Relative permeability</td>
+			<td>
+				<input type="number" bind:value={permeability} min="1" max="1000000" step="1">
+			</td>
+		</tr>
+		<tr>
+			<td>R</td>
+			<td>Torus radius (mm)</td>
+			<td>
+				<input type="number" bind:value={torusRadius} min="3" max="100" step="0.5">
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('S')}</td>
+			<td>Torus section area ({@html math('mm^2')})</td>
+			<td>
+				<input type="number" bind:value={sectionArea} min="1" max="1000" step="0.1">
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('N')}</td>
+			<td>Number of turns</td>
+			<td>
+				<input type="number" bind:value={turnNb} min="1" max="10000" step="1">
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('i')}</td>
+			<td>Current in the winding (A)</td>
+			<td>
+				<input type="number" bind:value={current} min="0.01" max="20" step="0.01">
+			</td>
+		</tr>
+		<tr>
+			<td>{@html math('L')}</td>
+			<td>Torus length (mm)</td>
+			<td>{torusLengthStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{F}')}</td>
+			<td>Magnetomotive force (A)</td>
+			<td>{magnetomotiveStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{R}')}</td>
+			<td>Reluctance ({@html math('H^{-1}')})</td>
+			<td>{torusReluctanceStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\varPhi')}</td>
+			<td>Magnetic flux ({@html math('H.A')})</td>
+			<td>{torusMagneticFluxStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B')}</td>
+			<td>Magnetic field ({@html math('T')})</td>
+			<td>{torusMagneticFieldStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('E_m')}</td>
+			<td>Magnetic energy ({@html math('J')})</td>
+			<td>{torusMagneticEnergyStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{L}')}</td>
+			<td>Inductance ({@html math('H')})</td>
+			<td>{torusInductanceStr}</td>
+		</tr>
+	</table>
 </article>
 <h3>Torus with swelling</h3>
 <article class="splitable">
@@ -250,5 +422,9 @@
 	ul.formula > li {
 		padding-top: 0.3rem;
 		padding-bottom: 0.3rem;
+	}
+	table {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 </style>
