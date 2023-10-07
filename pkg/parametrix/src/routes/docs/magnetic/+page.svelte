@@ -161,28 +161,60 @@
 				<li>{@html math('\\mathcal{R}_{G2} = \\frac{G}{\\mu_r \\mu_0 (A - x) B}')}</li>
 				<li>
 					{@html math('\\mathcal{R} = \\frac{x L (1 - \\mu_r) + \\mu_r A (L + G)}{\\mu_r \\mu_0 A B (x (1 - \\mu_r) + \\mu_r A)}')}
-					{@html math('\\simeq \\frac{L (A - x)}{\\mu_r \\mu_0 A B (A - x)}')}
 				</li>
 				<li>{@html math('\\mathcal{R}_{x=0} = \\frac{L + G}{\\mu_r \\mu_0 A B}')}</li>
 				<li>{@html math('\\mathcal{R}_{x=A} = \\frac{L (1 + \\mu_r  G)}{\\mu_r \\mu_0 A B} > \\mathcal{R}_{x=0}')}</li>
 			</ul>
 		</li>
-		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu_r \\mu_0 S N i}{L + \\mu_r G}')}</li>
-		<li>{@html math('B = \\frac{\\varPhi}{S} = \\frac{\\mu_r \\mu_0 N i}{L + \\mu_r G}')}</li>
+		<li>
+			{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}}')}
+			{@html math('= \\frac{\\mu_r \\mu_0 A B N i (x (1 - \\mu_r) + \\mu_r A)}{x L (1 - \\mu_r) + \\mu_r A (L + G)}')}
+		</li>
+		<li>
+			<ul class="formula">
+				<li>
+					{@html math('B_L = \\frac{\\varPhi}{A B}')}
+					{@html math('= \\frac{\\mu_r \\mu_0 N i (x (1 - \\mu_r) + \\mu_r A)}{x L (1 - \\mu_r) + \\mu_r A (L + G)}')}
+				</li>
+				<li>
+					{@html math('B_{G1} = \\frac{\\varPhi}{x B}')}
+					{@html math('\\frac{\\frac{1}{\\mathcal{R}_{G1}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}')}
+					{@html math('= \\frac{\\varPhi}{x B} \\frac{\\mathcal{R}_{G2}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}')}
+				</li>
+				<li>
+					{@html math('B_{G2} = \\frac{\\varPhi}{(A - x) B}')}
+					{@html math('\\frac{\\frac{1}{\\mathcal{R}_{G2}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}')}
+					{@html math('= \\frac{\\varPhi}{(A - x) B} \\frac{\\mathcal{R}_{G1}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}')}
+				</li>
+			</ul>
+		</li>
 		<li>
 			{@html math('E_m')}
-			{@html math('= \\int_V \\frac{B^2}{2 \\mu}')}
-			{@html math('= \\int_{V_1} \\frac{B^2}{2 \\mu_r \\mu_0} + \\int_{V_2} \\frac{B^2}{2 \\mu_0}')}
-			{@html math('= \\frac{B^2}{2 \\mu_r \\mu_0} L S + \\frac{B^2}{2 \\mu_0} G S')}
-			{@html math('= \\frac{B^2 S}{2 \\mu_r \\mu0}(L + \\mu_r G)')}
-			{@html math('= \\frac{\\mu_r \\mu_0 S N^2 i^2}{2 (L + \\mu_r G)}')}
+			{@html math('= \\int_{V_L} \\frac{B_L^2}{2 \\mu_r \\mu_0}')}
+			{@html math('+ \\int_{V_{G1}} \\frac{B_{G1}^2}{2 \\mu_0}')}
+			{@html math('+ \\int_{V_{G2}} \\frac{B_{G2}^2}{2 \\mu_r \\mu_0}')}
 		</li>
-		<li>{@html math('\\mathcal{L} = \\frac{\\mu_r \\mu_0 S N^2}{L + \\mu_r G}')}</li>
+		<li>{@html math('\\mathcal{L} =')}</li>
 	</ul>
 </article>
 <h3>Torus with realistic shuttle</h3>
 <article class="splitable">
 	<img src="{base}/torus_with_realistic_shuttle.svg" alt="torus with a realistic shuttle" />
+	<ul class="formula">
+		<li>{@html math('\\mathcal{F} = N i')}</li>
+		<li>
+			<ul class="formula">
+				<li>{@html math('\\mathcal{R} = \\mathcal{R}_L + \\mathcal{R}_H + \\frac{1}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}')}</li>
+				<li>{@html math('\\mathcal{R}_L = \\frac{L}{\\mu_r \\mu_0 A B}')}</li>
+				<li>{@html math('\\mathcal{R}_{G1} = \\frac{G}{\\mu_0 x B}')}</li>
+				<li>{@html math('\\mathcal{R}_{G2} = \\frac{G}{\\mu_r \\mu_0 (A - x) B}')}</li>
+				<li>{@html math('\\mathcal{R}_H = \\frac{H}{ \\mu_0 A B}')}</li>
+			</ul>
+		</li>
+		<li>
+			{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}}')}
+		</li>
+	</ul>
 </article>
 
 <style lang="scss">
