@@ -209,7 +209,7 @@
 		</li>
 		<li>{@html math('\\mathcal{L} = \\frac{\\mu S N^2}{L} = \\frac{\\mu_r \\mu_0 S N^2}{L}')}</li>
 	</ul>
-	<table>
+	<table class="jump">
 		<tr>
 			<th>Material</th>
 			<th>Relative permeability</th>
@@ -354,7 +354,7 @@
 		</li>
 		<li>{@html math('\\mathcal{L} = \\frac{\\mu N^2 S_1 S_2}{L_1 S_2 + L_2 S_1}')}</li>
 	</ul>
-	<table>
+	<table class="jump">
 		<tr>
 			<th>Symbol</th>
 			<th>Parameter</th>
@@ -557,7 +557,7 @@
 	}
 	ul {
 		margin-top: 0.2rem;
-		margin-bottom: 0.2rem;
+		margin-bottom: 2rem;
 		margin-left: 0.2rem;
 		padding-left: 1rem;
 	}
@@ -566,7 +566,10 @@
 		padding-bottom: 0.3rem;
 	}
 	table {
-		margin-top: 1rem;
-		margin-bottom: 1rem;
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+	}
+	table.jump {
+		margin-top: 10rem;
 	}
 </style>
