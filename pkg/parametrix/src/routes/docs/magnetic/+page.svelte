@@ -54,6 +54,18 @@
 	let swellingMagneticEnergyStr = '10.0';
 	let swellingInductance = 10;
 	let swellingInductanceStr = '10.0';
+	let airgap = 10;
+	let airgapM = 10;
+	let airgapReluctance = 10;
+	let airgapReluctanceStr = '10.0';
+	let airgapMagneticFlux = 10;
+	let airgapMagneticFluxStr = '10.0';
+	let airgapMagneticField = 10;
+	let airgapMagneticFieldStr = '10.0';
+	let airgapMagneticEnergy = 10;
+	let airgapMagneticEnergyStr = '10.0';
+	let airgapInductance = 10;
+	let airgapInductanceStr = '10.0';
 	// calculations
 	$: {
 		torusLength = 2 * Math.PI * torusRadius;
@@ -132,6 +144,31 @@
 			(swellingL1M * swellingS2M + swellingL2M * swellingS1M);
 		swellingInductanceStr = swellingInductance.toExponential(3);
 	}
+	$: airgapM = airgap / 1000;
+	$: {
+		airgapReluctance = (torusLengthM + permeability * airgapM)
+			/ (permeability * mu0 * sectionAreaM);
+		airgapReluctanceStr = airgapReluctance.toExponential(3);
+	}
+	$: {
+		airgapMagneticFlux = magnetomotive / airgapReluctance;
+		airgapMagneticFluxStr = airgapMagneticFlux.toExponential(3);
+	}
+	$: {
+		airgapMagneticField = airgapMagneticFlux / sectionAreaM;
+		airgapMagneticFieldStr = airgapMagneticField.toExponential(3);
+	}
+	$: {
+		airgapMagneticEnergy =
+			(airgapMagneticField ** 2 * torusLengthM * sectionAreaM) / (2 * permeability * mu0) +
+			(airgapMagneticField ** 2 * airgapM * sectionAreaM) / (2 * mu0);
+		airgapMagneticEnergyStr = airgapMagneticEnergy.toExponential(3);
+	}
+	$: {
+		airgapInductance = turnNb ** 2 * airgapReluctance;
+		airgapInductanceStr = airgapInductance.toExponential(3);
+	}
+
 </script>
 
 <h1>Magnetic circuit</h1>
@@ -552,6 +589,55 @@
 		</li>
 		<li>{@html math('\\mathcal{L} = \\frac{\\mu_r \\mu_0 S N^2}{L + \\mu_r G}')}</li>
 	</ul>
+	<table class="jump">
+		<tr>
+			<th>Symbol</th>
+			<th>Parameter</th>
+			<th>Value</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>{@html math('G')}</td>
+			<td>The thickness of air gap ({@html math('m')})</td>
+			<td><input type="number" bind:value={airgap} min="0" max="20" step="0.01" /></td>
+			<td><input type="range" bind:value={airgap} min="0" max="20" step="0.01" /></td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{F}')}</td>
+			<td>Magnetomotive force (A)</td>
+			<td>{magnetomotiveStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{R}')}</td>
+			<td>Reluctance ({@html math('H^{-1}')})</td>
+			<td>{airgapReluctanceStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\varPhi')}</td>
+			<td>Magnetic flux ({@html math('H.A')})</td>
+			<td>{airgapMagneticFluxStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_L')}</td>
+			<td>Magnetic field ({@html math('T')})</td>
+			<td>{airgapMagneticFieldStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_G')}</td>
+			<td>Magnetic field ({@html math('T')})</td>
+			<td>{airgapMagneticFieldStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('E_m')}</td>
+			<td>Magnetic energy ({@html math('J')})</td>
+			<td>{airgapMagneticEnergyStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{L}')}</td>
+			<td>Inductance ({@html math('H')})</td>
+			<td>{airgapInductanceStr}</td>
+		</tr>
+	</table>
 </article>
 <h3>Torus with shuttle</h3>
 <article class="splitable">
