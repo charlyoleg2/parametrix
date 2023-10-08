@@ -14,7 +14,7 @@
 	let percentL2 = 30;
 	let percentS2 = 200;
 	let airgapG = 1;
-	let permeabilityG = 5000;
+	let permeaG = 5000;
 	let airgapA = 10; // mm
 	let airgapB = 10; // mm
 	let shuttleX = 50; // percentage
@@ -72,11 +72,11 @@
 	let airgapInductance = 10;
 	let airgapInductanceStr = '10.0';
 	let sectionAreaL = 10;
-	let sectionAreaLStr = "10";
+	let sectionAreaLStr = '10';
 	let sectionAreaAir = 10;
-	let sectionAreaAirStr = "10";
+	let sectionAreaAirStr = '10';
 	let sectionAreaShuttle = 10;
-	let sectionAreaShuttleStr = "10";
+	let sectionAreaShuttleStr = '10';
 	let shuttleReluctance = 10;
 	let shuttleReluctanceStr = '10.0';
 	let shuttleMagneticFlux = 10;
@@ -747,8 +747,8 @@
 		<tr>
 			<td>{@html math('\\mu_r')}</td>
 			<td>Relative permeability of the shuttle</td>
-			<td><input type="number" bind:value={permeabilityG} min="1" max="1000000" step="1" /></td>
-			<td><input type="range" bind:value={permeabilityG} min="1" max="1000000" step="1" /></td>
+			<td><input type="number" bind:value={permeaG} min="1" max="1000000" step="1" /></td>
+			<td><input type="range" bind:value={permeaG} min="1" max="1000000" step="1" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('A')}</td>
