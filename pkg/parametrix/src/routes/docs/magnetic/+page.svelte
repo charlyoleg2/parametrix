@@ -146,8 +146,8 @@
 	}
 	$: airgapM = airgap / 1000;
 	$: {
-		airgapReluctance = (torusLengthM + permeability * airgapM)
-			/ (permeability * mu0 * sectionAreaM);
+		airgapReluctance =
+			(torusLengthM + permeability * airgapM) / (permeability * mu0 * sectionAreaM);
 		airgapReluctanceStr = airgapReluctance.toExponential(3);
 	}
 	$: {
@@ -168,7 +168,6 @@
 		airgapInductance = turnNb ** 2 * airgapReluctance;
 		airgapInductanceStr = airgapInductance.toExponential(3);
 	}
-
 </script>
 
 <h1>Magnetic circuit</h1>
