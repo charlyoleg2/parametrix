@@ -13,6 +13,12 @@
 	let current = 1.5; // A
 	let percentL2 = 30;
 	let percentS2 = 200;
+	let airgapG = 1;
+	let permeabilityG = 5000;
+	let airgapA = 10; // mm
+	let airgapB = 10; // mm
+	let shuttleX = 50; // percentage
+	let airgapH = 0.2; // mm
 	// outputs
 	let sectionAreaM = 10; // m2
 	let torusLength = 10; // mm
@@ -54,8 +60,7 @@
 	let swellingMagneticEnergyStr = '10.0';
 	let swellingInductance = 10;
 	let swellingInductanceStr = '10.0';
-	let airgap = 10;
-	let airgapM = 10;
+	let airgapGM = 10;
 	let airgapReluctance = 10;
 	let airgapReluctanceStr = '10.0';
 	let airgapMagneticFlux = 10;
@@ -66,6 +71,28 @@
 	let airgapMagneticEnergyStr = '10.0';
 	let airgapInductance = 10;
 	let airgapInductanceStr = '10.0';
+	let sectionAreaL = 10;
+	let sectionAreaLStr = "10";
+	let sectionAreaAir = 10;
+	let sectionAreaAirStr = "10";
+	let sectionAreaShuttle = 10;
+	let sectionAreaShuttleStr = "10";
+	let shuttleReluctance = 10;
+	let shuttleReluctanceStr = '10.0';
+	let shuttleMagneticFlux = 10;
+	let shuttleMagneticFluxStr = '10.0';
+	let shuttleMagneticFieldL = 10;
+	let shuttleMagneticFieldLStr = '10.0';
+	let shuttleMagneticFieldG1 = 10;
+	let shuttleMagneticFieldG1Str = '10.0';
+	let shuttleMagneticFieldG2 = 10;
+	let shuttleMagneticFieldG2Str = '10.0';
+	let shuttleMagneticEnergy = 10;
+	let shuttleMagneticEnergyStr = '10.0';
+	let shuttleInductance = 10;
+	let shuttleInductanceStr = '10.0';
+	let shuttleForce = 10;
+	let shuttleForceStr = '10.0';
 	// calculations
 	$: {
 		torusLength = 2 * Math.PI * torusRadius;
@@ -144,10 +171,10 @@
 			(swellingL1M * swellingS2M + swellingL2M * swellingS1M);
 		swellingInductanceStr = swellingInductance.toExponential(3);
 	}
-	$: airgapM = airgap / 1000;
+	$: airgapGM = airgapG / 1000;
 	$: {
 		airgapReluctance =
-			(torusLengthM + permeability * airgapM) / (permeability * mu0 * sectionAreaM);
+			(torusLengthM + permeability * airgapGM) / (permeability * mu0 * sectionAreaM);
 		airgapReluctanceStr = airgapReluctance.toExponential(3);
 	}
 	$: {
@@ -161,11 +188,11 @@
 	$: {
 		airgapMagneticEnergy =
 			(airgapMagneticField ** 2 * torusLengthM * sectionAreaM) / (2 * permeability * mu0) +
-			(airgapMagneticField ** 2 * airgapM * sectionAreaM) / (2 * mu0);
+			(airgapMagneticField ** 2 * airgapGM * sectionAreaM) / (2 * mu0);
 		airgapMagneticEnergyStr = airgapMagneticEnergy.toExponential(3);
 	}
 	$: {
-		airgapInductance = turnNb ** 2 * airgapReluctance;
+		airgapInductance = turnNb ** 2 / airgapReluctance;
 		airgapInductanceStr = airgapInductance.toExponential(3);
 	}
 </script>
@@ -597,9 +624,9 @@
 		</tr>
 		<tr>
 			<td>{@html math('G')}</td>
-			<td>The thickness of air gap ({@html math('m')})</td>
-			<td><input type="number" bind:value={airgap} min="0" max="20" step="0.01" /></td>
-			<td><input type="range" bind:value={airgap} min="0" max="20" step="0.01" /></td>
+			<td>The thickness of air-gap ({@html math('m')})</td>
+			<td><input type="number" bind:value={airgapG} min="0" max="20" step="0.01" /></td>
+			<td><input type="range" bind:value={airgapG} min="0" max="20" step="0.01" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{F}')}</td>
@@ -707,8 +734,101 @@
 			{@html math('+ \\int_{V_{G1}} \\frac{B_{G1}^2}{2 \\mu_0}')}
 			{@html math('+ \\int_{V_{G2}} \\frac{B_{G2}^2}{2 \\mu_r \\mu_0}')}
 		</li>
-		<li>{@html math('\\mathcal{L} =')}</li>
+		<li>{@html math('\\mathcal{L} = \\frac{N^2}{\\mathcal{R}}')}</li>
+		<li>{@html math('F_x = \\frac{\\partial E_m}{\\partial x}')}</li>
 	</ul>
+	<table class="jump">
+		<tr>
+			<th>Symbol</th>
+			<th>Parameter</th>
+			<th>Value</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>{@html math('\\mu_r')}</td>
+			<td>Relative permeability of the shuttle</td>
+			<td><input type="number" bind:value={permeabilityG} min="1" max="1000000" step="1" /></td>
+			<td><input type="range" bind:value={permeabilityG} min="1" max="1000000" step="1" /></td>
+		</tr>
+		<tr>
+			<td>{@html math('A')}</td>
+			<td>Length of the air-gap ({@html math('mm')})</td>
+			<td><input type="number" bind:value={airgapA} min="0.1" max="100" step="0.1" /></td>
+			<td><input type="range" bind:value={airgapA} min="0.1" max="100" step="0.1" /></td>
+		</tr>
+		<tr>
+			<td>{@html math('B')}</td>
+			<td>Width of the air-gap ({@html math('mm')})</td>
+			<td><input type="number" bind:value={airgapB} min="0.1" max="100" step="0.1" /></td>
+			<td><input type="range" bind:value={airgapB} min="0.1" max="100" step="0.1" /></td>
+		</tr>
+		<tr>
+			<td>{@html math('x')}</td>
+			<td>Shuttle position (%)</td>
+			<td><input type="number" bind:value={shuttleX} min="0.1" max="100" step="0.1" /></td>
+			<td><input type="range" bind:value={shuttleX} min="0.1" max="100" step="0.1" /></td>
+		</tr>
+		<tr>
+			<td>{@html math('S')}</td>
+			<td>Torus section area ({@html math('mm^2')})</td>
+			<td>{sectionAreaLStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('S_{air}')}</td>
+			<td>Air area ({@html math('mm^2')})</td>
+			<td>{sectionAreaAirStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('S_{shuttle}')}</td>
+			<td>Shuttle area ({@html math('mm^2')})</td>
+			<td>{sectionAreaShuttleStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{F}')}</td>
+			<td>Magnetomotive force (A)</td>
+			<td>{magnetomotiveStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{R}')}</td>
+			<td>Reluctance ({@html math('H^{-1}')})</td>
+			<td>{shuttleReluctanceStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\varPhi')}</td>
+			<td>Magnetic flux ({@html math('H.A')})</td>
+			<td>{shuttleMagneticFluxStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_L')}</td>
+			<td>Magnetic field in torus ({@html math('T')})</td>
+			<td>{shuttleMagneticFieldLStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_{Gair}')}</td>
+			<td>Magnetic field in air-gap ({@html math('T')})</td>
+			<td>{shuttleMagneticFieldG1Str}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_{Gshuttle}')}</td>
+			<td>Magnetic field in shuttle ({@html math('T')})</td>
+			<td>{shuttleMagneticFieldG2Str}</td>
+		</tr>
+		<tr>
+			<td>{@html math('E_m')}</td>
+			<td>Magnetic energy ({@html math('J')})</td>
+			<td>{shuttleMagneticEnergyStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{L}')}</td>
+			<td>Inductance ({@html math('H')})</td>
+			<td>{shuttleInductanceStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('F_x')}</td>
+			<td>Force ({@html math('N')})</td>
+			<td>{shuttleForceStr}</td>
+		</tr>
+	</table>
 </article>
 <h3>Torus with realistic shuttle</h3>
 <article class="splitable">
@@ -731,7 +851,115 @@
 		<li>
 			{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}}')}
 		</li>
+		<li>
+			<ul class="formula">
+				<li>
+					{@html math('B_L = B_H = \\frac{\\varPhi}{A B}')}
+				</li>
+				<li>
+					{@html math('B_{G1} = \\frac{\\varPhi}{x B}')}
+					{@html math(
+						'\\frac{\\frac{1}{\\mathcal{R}_{G1}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
+					)}
+					{@html math(
+						'= \\frac{\\varPhi}{x B} \\frac{\\mathcal{R}_{G2}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}'
+					)}
+				</li>
+				<li>
+					{@html math('B_{G2} = \\frac{\\varPhi}{(A - x) B}')}
+					{@html math(
+						'\\frac{\\frac{1}{\\mathcal{R}_{G2}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
+					)}
+					{@html math(
+						'= \\frac{\\varPhi}{(A - x) B} \\frac{\\mathcal{R}_{G1}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}'
+					)}
+				</li>
+			</ul>
+		</li>
+		<li>
+			{@html math('E_m')}
+			{@html math('= \\int_{V_L} \\frac{B_L^2}{2 \\mu_r \\mu_0}')}
+			{@html math('+ \\int_{V_{G1}} \\frac{B_{G1}^2}{2 \\mu_0}')}
+			{@html math('+ \\int_{V_{G2}} \\frac{B_{G2}^2}{2 \\mu_r \\mu_0}')}
+			{@html math('+ \\int_{V_H} \\frac{B_H^2}{2 \\mu_0}')}
+		</li>
+		<li>{@html math('\\mathcal{L} = \\frac{N^2}{\\mathcal{R}}')}</li>
+		<li>{@html math('F_x = \\frac{\\partial E_m}{\\partial x}')}</li>
 	</ul>
+	<table class="jump">
+		<tr>
+			<th>Symbol</th>
+			<th>Parameter</th>
+			<th>Value</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>{@html math('H')}</td>
+			<td>Thickness of slack ({@html math('mm')})</td>
+			<td><input type="number" bind:value={airgapH} min="0" max="1" step="0.01" /></td>
+			<td><input type="range" bind:value={airgapH} min="0" max="1" step="0.01" /></td>
+		</tr>
+		<tr>
+			<td>{@html math('S')}</td>
+			<td>Torus section area ({@html math('mm^2')})</td>
+			<td>{sectionAreaLStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('S_{air}')}</td>
+			<td>Air area ({@html math('mm^2')})</td>
+			<td>{sectionAreaAirStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('S_{shuttle}')}</td>
+			<td>Shuttle area ({@html math('mm^2')})</td>
+			<td>{sectionAreaShuttleStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{F}')}</td>
+			<td>Magnetomotive force (A)</td>
+			<td>{magnetomotiveStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{R}')}</td>
+			<td>Reluctance ({@html math('H^{-1}')})</td>
+			<td>{shuttleReluctanceStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\varPhi')}</td>
+			<td>Magnetic flux ({@html math('H.A')})</td>
+			<td>{shuttleMagneticFluxStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_L')}</td>
+			<td>Magnetic field in torus ({@html math('T')})</td>
+			<td>{shuttleMagneticFieldLStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_{Gair}')}</td>
+			<td>Magnetic field in air-gap ({@html math('T')})</td>
+			<td>{shuttleMagneticFieldG1Str}</td>
+		</tr>
+		<tr>
+			<td>{@html math('B_{Gshuttle}')}</td>
+			<td>Magnetic field in shuttle ({@html math('T')})</td>
+			<td>{shuttleMagneticFieldG2Str}</td>
+		</tr>
+		<tr>
+			<td>{@html math('E_m')}</td>
+			<td>Magnetic energy ({@html math('J')})</td>
+			<td>{shuttleMagneticEnergyStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('\\mathcal{L}')}</td>
+			<td>Inductance ({@html math('H')})</td>
+			<td>{shuttleInductanceStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('F_x')}</td>
+			<td>Force ({@html math('N')})</td>
+			<td>{shuttleForceStr}</td>
+		</tr>
+	</table>
 </article>
 
 <style lang="scss">
