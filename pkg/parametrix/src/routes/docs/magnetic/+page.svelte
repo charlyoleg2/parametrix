@@ -14,7 +14,9 @@
 	let percentL2 = 30;
 	let percentS2 = 200;
 	// outputs
-	let torusLength = 10;
+	let sectionAreaM = 10; // m2
+	let torusLength = 10; // mm
+	let torusLengthM = 10; // m
 	let torusLengthStr = "10.0";
 	let magnetomotive = 10;
 	let magnetomotiveStr = "10.0";
@@ -29,12 +31,16 @@
 	let torusInductance = 10;
 	let torusInductanceStr = "10.0";
 	let swellingL1 = 10;
+	let swellingL1M = 10;
 	let swellingL1Str = "10.0";
 	let swellingS1 = 10;
+	let swellingS1M = 10;
 	let swellingS1Str = "10.0";
 	let swellingL2 = 10;
+	let swellingL2M = 10;
 	let swellingL2Str = "10.0";
 	let swellingS2 = 10;
+	let swellingS2M = 10;
 	let swellingS2Str = "10.0";
 	let swellingReluctance = 10;
 	let swellingReluctanceStr = "10.0";
@@ -53,12 +59,14 @@
 		torusLength = 2 * Math.PI * torusRadius;
 		torusLengthStr = torusLength.toFixed(1);
 	}
+	$: torusLengthM = torusLength / 1000;
+	$: sectionAreaM = sectionArea / 1000000;
 	$: {
 		magnetomotive = turnNb * current;
 		magnetomotiveStr = magnetomotive.toFixed(1);
 	}
 	$: {
-		torusReluctance = 1000 * torusLength / (permeability * mu0 * sectionArea);
+		torusReluctance = torusLengthM / (permeability * mu0 * sectionAreaM);
 		torusReluctanceStr = torusReluctance.toExponential(3);
 	}
 	$: {
@@ -66,11 +74,11 @@
 		torusMagneticFluxStr = torusMagneticFlux.toExponential(3);
 	}
 	$: {
-		torusMagneticField = torusMagneticFlux / sectionArea * 10**6;
+		torusMagneticField = torusMagneticFlux / sectionAreaM;
 		torusMagneticFieldStr = torusMagneticField.toExponential(3);
 	}
 	$: {
-		torusMagneticEnergy = permeability * mu0 * sectionArea * turnNb**2 * current**2 / (2 * torusLength) * 10**-9;
+		torusMagneticEnergy = permeability * mu0 * sectionAreaM * turnNb**2 * current**2 / (2 * torusLengthM);
 		torusMagneticEnergyStr = torusMagneticEnergy.toExponential(3);
 	}
 	$: {
@@ -89,8 +97,12 @@
 		swellingS1Str = swellingS1.toFixed(1);
 		swellingS2Str = swellingS2.toFixed(1);
 	}
+	$: swellingL1M = swellingL1 / 1000;
+	$: swellingS1M = swellingS1 / 1000000;
+	$: swellingL2M = swellingL2 / 1000;
+	$: swellingS2M = swellingS2 / 1000000;
 	$: {
-		swellingReluctance = (swellingL1 * swellingS2 + swellingL2 * swellingS1) / (permeability * mu0 * swellingS1 * swellingS2) * 1000;
+		swellingReluctance = (swellingL1M * swellingS2M + swellingL2M * swellingS1M) / (permeability * mu0 * swellingS1M * swellingS2M);
 		swellingReluctanceStr = swellingReluctance.toExponential(3);
 	}
 	$: {
@@ -98,19 +110,20 @@
 		swellingMagneticFluxStr = swellingMagneticFlux.toExponential(3);
 	}
 	$: {
-		swellingMagneticField1 = swellingMagneticFlux / swellingS1 * 10**6;
+		swellingMagneticField1 = swellingMagneticFlux / swellingS1M;
 		swellingMagneticField1Str = swellingMagneticField1.toExponential(3);
 	}
 	$: {
-		swellingMagneticField2 = swellingMagneticFlux / swellingS2 * 10**6;
+		swellingMagneticField2 = swellingMagneticFlux / swellingS2M;
 		swellingMagneticField2Str = swellingMagneticField2.toExponential(3);
 	}
 	$: {
-		swellingMagneticEnergy = (swellingMagneticField1 * swellingL1 * swellingS1 + swellingMagneticField2 * swellingL2 * swellingS2) * 10**-9;
+		swellingMagneticEnergy = (swellingMagneticField1**2 * swellingL1M * swellingS1M) / (2 * permeability * mu0)
+								+ (swellingMagneticField2**2 * swellingL2M * swellingS2M) / (2 * permeability * mu0);
 		swellingMagneticEnergyStr = swellingMagneticEnergy.toExponential(3);
 	}
 	$: {
-		swellingInductance = permeability * mu0 * turnNb**2 * swellingS1 * swellingS2 / (swellingL1 * swellingS2 + swellingL2 * swellingS1) * 10**-3;
+		swellingInductance = permeability * mu0 * turnNb**2 * swellingS1M * swellingS2M / (swellingL1M * swellingS2M + swellingL2M * swellingS1M);
 		swellingInductanceStr = swellingInductance.toExponential(3);
 	}
 </script>
@@ -256,41 +269,37 @@
 			<th>Symbol</th>
 			<th>Parameter</th>
 			<th>Value</th>
+			<th></th>
 		</tr>
 		<tr>
 			<td>{@html math('\\mu_r')}</td>
 			<td>Relative permeability</td>
-			<td>
-				<input type="number" bind:value={permeability} min="1" max="1000000" step="1">
-			</td>
+			<td><input type="number" bind:value={permeability} min="1" max="1000000" step="1"></td>
+			<td><input type="range" bind:value={permeability} min="1" max="1000000" step="1"></td>
 		</tr>
 		<tr>
 			<td>R</td>
 			<td>Torus radius (mm)</td>
-			<td>
-				<input type="number" bind:value={torusRadius} min="3" max="100" step="0.5">
-			</td>
+			<td><input type="number" bind:value={torusRadius} min="3" max="100" step="0.5"></td>
+			<td><input type="range" bind:value={torusRadius} min="3" max="100" step="0.5"></td>
 		</tr>
 		<tr>
 			<td>{@html math('S')}</td>
 			<td>Torus section area ({@html math('mm^2')})</td>
-			<td>
-				<input type="number" bind:value={sectionArea} min="1" max="1000" step="0.1">
-			</td>
+			<td><input type="number" bind:value={sectionArea} min="1" max="1000" step="0.1"></td>
+			<td><input type="range" bind:value={sectionArea} min="1" max="1000" step="0.1"></td>
 		</tr>
 		<tr>
 			<td>{@html math('N')}</td>
 			<td>Number of turns</td>
-			<td>
-				<input type="number" bind:value={turnNb} min="1" max="10000" step="1">
-			</td>
+			<td><input type="number" bind:value={turnNb} min="1" max="10000" step="1"></td>
+			<td><input type="range" bind:value={turnNb} min="1" max="10000" step="1"></td>
 		</tr>
 		<tr>
 			<td>{@html math('i')}</td>
 			<td>Current in the winding (A)</td>
-			<td>
-				<input type="number" bind:value={current} min="0.01" max="20" step="0.01">
-			</td>
+			<td><input type="number" bind:value={current} min="0.01" max="20" step="0.01"></td>
+			<td><input type="range" bind:value={current} min="0.01" max="20" step="0.01"></td>
 		</tr>
 		<tr>
 			<td>{@html math('L')}</td>
@@ -359,48 +368,39 @@
 			<th>Symbol</th>
 			<th>Parameter</th>
 			<th>Value</th>
+			<th></th>
 		</tr>
 		<tr>
 			<td>{@html math('L_2')}</td>
 			<td>Percentage of torus with L2 (%)</td>
-			<td>
-				<input type="number" bind:value={percentL2} min="0" max="100" step="1">
-			</td>
+			<td><input type="number" bind:value={percentL2} min="0" max="100" step="1"></td>
+			<td><input type="range" bind:value={percentL2} min="0" max="100" step="1"></td>
 		</tr>
 		<tr>
 			<td>{@html math('S_2')}</td>
 			<td>Percentage of S2 compare to S1 (%)</td>
-			<td>
-				<input type="number" bind:value={percentS2} min="1" max="400" step="1">
-			</td>
+			<td><input type="number" bind:value={percentS2} min="1" max="400" step="1"></td>
+			<td><input type="range" bind:value={percentS2} min="1" max="400" step="1"></td>
 		</tr>
 		<tr>
 			<td>{@html math('L_1')}</td>
 			<td>Length of L1 ({@html math('mm')})</td>
-			<td>
-				{swellingL1Str}
-			</td>
+			<td>{swellingL1Str}</td>
 		</tr>
 		<tr>
 			<td>{@html math('S_1')}</td>
 			<td>Area of S1 ({@html math('mm^2')})</td>
-			<td>
-				{swellingS1Str}
-			</td>
+			<td>{swellingS1Str}</td>
 		</tr>
 		<tr>
 			<td>{@html math('L_2')}</td>
 			<td>Length of L2 ({@html math('mm')})</td>
-			<td>
-				{swellingL2Str}
-			</td>
+			<td>{swellingL2Str}</td>
 		</tr>
 		<tr>
 			<td>{@html math('S_2')}</td>
 			<td>Area of S2 ({@html math('mm^2')})</td>
-			<td>
-				{swellingS2Str}
-			</td>
+			<td>{swellingS2Str}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{F}')}</td>
