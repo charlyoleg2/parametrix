@@ -23,118 +23,116 @@
 		<span>(Number of sub-instances: {subInsts.length})</span>
 	</h2>
 	<ol>
-	{#each subInsts as subInst}
-		<li>
-			<input type="checkbox" id=cb_{subInst} class="toggle" checked={false} />
-			<label for=cb_{subInst} class="label">
+		{#each subInsts as subInst}
+			<li>
+				<input type="checkbox" id="cb_{subInst}" class="toggle" checked={false} />
+				<label for="cb_{subInst}" class="label">
 					<div class="arrow" />
 					{subInst}
-			</label>
-			<a href="{base}/gear/{subD[subInst].partName}">Go to {subD[subInst].partName}</a>
-			<button on:click={downloadConstraints}>Export Constraints</button>
-			<div class="nested">
-				<article>
-					<input type="checkbox" id=cb1_{subInst} class="toggle" checked={false} />
-					<label for=cb1_{subInst} class="label">
-						<div class="arrow" />
-						Mandatory
-					</label>
-					<span>( {Object.keys(subD[subInst].mandatories).length} parameters)</span>
-					<div class="nested">
-						<table>
-							<thead>
-								<tr>
-									<td>Num</td>
-									<td>Name</td>
-									<td>Value</td>
-								</tr>
-							</thead>
-							<tbody>
-								{#each Object.keys(subD[subInst].mandatories) as param, pIdx}
+				</label>
+				<a href="{base}/gear/{subD[subInst].partName}">Go to {subD[subInst].partName}</a>
+				<button on:click={downloadConstraints}>Export Constraints</button>
+				<div class="nested">
+					<article>
+						<input type="checkbox" id="cb1_{subInst}" class="toggle" checked={false} />
+						<label for="cb1_{subInst}" class="label">
+							<div class="arrow" />
+							Mandatory
+						</label>
+						<span>( {Object.keys(subD[subInst].mandatories).length} parameters)</span>
+						<div class="nested">
+							<table>
+								<thead>
 									<tr>
-										<td>{pIdx + 1}</td>
-										<td>{param}</td>
-										<td>{subD[subInst].mandatories[param]}</td>
+										<td>Num</td>
+										<td>Name</td>
+										<td>Value</td>
 									</tr>
-								{/each}
-							</tbody>
-						</table>
-					</div>
-				</article>
-				<article>
-					<input type="checkbox" id=cb2_{subInst} class="toggle" checked={false} />
-					<label for=cb2_{subInst} class="label">
-						<div class="arrow" />
-						Recommended
-					</label>
-					<span>( {Object.keys(subD[subInst].recommended).length} parameters)</span>
-					<div class="nested">
-						<table>
-							<thead>
-								<tr>
-									<td>Num</td>
-									<td>Name</td>
-									<td>Value</td>
-								</tr>
-							</thead>
-							<tbody>
-								{#each Object.keys(subD[subInst].recommended) as param, pIdx}
+								</thead>
+								<tbody>
+									{#each Object.keys(subD[subInst].mandatories) as param, pIdx}
+										<tr>
+											<td>{pIdx + 1}</td>
+											<td>{param}</td>
+											<td>{subD[subInst].mandatories[param]}</td>
+										</tr>
+									{/each}
+								</tbody>
+							</table>
+						</div>
+					</article>
+					<article>
+						<input type="checkbox" id="cb2_{subInst}" class="toggle" checked={false} />
+						<label for="cb2_{subInst}" class="label">
+							<div class="arrow" />
+							Recommended
+						</label>
+						<span>( {Object.keys(subD[subInst].recommended).length} parameters)</span>
+						<div class="nested">
+							<table>
+								<thead>
 									<tr>
-										<td>{pIdx + 1}</td>
-										<td>{param}</td>
-										<td>{subD[subInst].recommended[param]}</td>
+										<td>Num</td>
+										<td>Name</td>
+										<td>Value</td>
 									</tr>
-								{/each}
-							</tbody>
-						</table>
-					</div>
-				</article>
-				<article>
-					<input type="checkbox" id=cb3_{subInst} class="toggle" checked={false} />
-					<label for=cb3_{subInst} class="label">
-						<div class="arrow" />
-						Restricted
-					</label>
-					<span>( {Object.keys(subD[subInst].restricted).length} parameters)</span>
-					<div class="nested">
-						<table>
-							<thead>
-								<tr>
-									<td>Num</td>
-									<td>Name</td>
-									<td>Min</td>
-									<td>Max</td>
-									<td>Step</td>
-								</tr>
-							</thead>
-							<tbody>
-								{#each Object.keys(subD[subInst].restricted) as param, pIdx}
+								</thead>
+								<tbody>
+									{#each Object.keys(subD[subInst].recommended) as param, pIdx}
+										<tr>
+											<td>{pIdx + 1}</td>
+											<td>{param}</td>
+											<td>{subD[subInst].recommended[param]}</td>
+										</tr>
+									{/each}
+								</tbody>
+							</table>
+						</div>
+					</article>
+					<article>
+						<input type="checkbox" id="cb3_{subInst}" class="toggle" checked={false} />
+						<label for="cb3_{subInst}" class="label">
+							<div class="arrow" />
+							Restricted
+						</label>
+						<span>( {Object.keys(subD[subInst].restricted).length} parameters)</span>
+						<div class="nested">
+							<table>
+								<thead>
 									<tr>
-										<td>{pIdx + 1}</td>
-										<td>{param}</td>
-										<td>{subD[subInst].restricted[param].min}</td>
-										<td>{subD[subInst].restricted[param].max}</td>
-										<td>{subD[subInst].restricted[param].step}</td>
+										<td>Num</td>
+										<td>Name</td>
+										<td>Min</td>
+										<td>Max</td>
+										<td>Step</td>
 									</tr>
-								{/each}
-							</tbody>
-						</table>
-					</div>
-				</article>
-				<article>
-					<input type="checkbox" id=cb4_{subInst} class="toggle" checked={false} />
-					<label for=cb4_{subInst} class="label">
-						<div class="arrow" />
-						Summary
-					</label>
-					<span>( {Object.keys(subD[subInst].restricted).length} parameters)</span>
-					<div class="nested">
-						aaa
-					</div>
-				</article>
-			</div>
-		</li>
-	{/each}
+								</thead>
+								<tbody>
+									{#each Object.keys(subD[subInst].restricted) as param, pIdx}
+										<tr>
+											<td>{pIdx + 1}</td>
+											<td>{param}</td>
+											<td>{subD[subInst].restricted[param].min}</td>
+											<td>{subD[subInst].restricted[param].max}</td>
+											<td>{subD[subInst].restricted[param].step}</td>
+										</tr>
+									{/each}
+								</tbody>
+							</table>
+						</div>
+					</article>
+					<article>
+						<input type="checkbox" id="cb4_{subInst}" class="toggle" checked={false} />
+						<label for="cb4_{subInst}" class="label">
+							<div class="arrow" />
+							Summary
+						</label>
+						<span>( {Object.keys(subD[subInst].restricted).length} parameters)</span>
+						<div class="nested">aaa</div>
+					</article>
+				</div>
+			</li>
+		{/each}
 	</ol>
 </section>
 

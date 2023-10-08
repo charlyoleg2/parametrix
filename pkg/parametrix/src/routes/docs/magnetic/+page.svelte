@@ -4,7 +4,7 @@
 	import { math } from 'mathlifier';
 
 	// constants
-	const mu0 = 1.25663706212 * 10**-6;
+	const mu0 = 1.25663706212 * 10 ** -6;
 	// inputs
 	let permeability = 5000;
 	let torusRadius = 15; // mm
@@ -17,43 +17,43 @@
 	let sectionAreaM = 10; // m2
 	let torusLength = 10; // mm
 	let torusLengthM = 10; // m
-	let torusLengthStr = "10.0";
+	let torusLengthStr = '10.0';
 	let magnetomotive = 10;
-	let magnetomotiveStr = "10.0";
+	let magnetomotiveStr = '10.0';
 	let torusReluctance = 10;
-	let torusReluctanceStr = "10.0";
+	let torusReluctanceStr = '10.0';
 	let torusMagneticFlux = 10;
-	let torusMagneticFluxStr = "10.0";
+	let torusMagneticFluxStr = '10.0';
 	let torusMagneticField = 10;
-	let torusMagneticFieldStr = "10.0";
+	let torusMagneticFieldStr = '10.0';
 	let torusMagneticEnergy = 10;
-	let torusMagneticEnergyStr = "10.0";
+	let torusMagneticEnergyStr = '10.0';
 	let torusInductance = 10;
-	let torusInductanceStr = "10.0";
+	let torusInductanceStr = '10.0';
 	let swellingL1 = 10;
 	let swellingL1M = 10;
-	let swellingL1Str = "10.0";
+	let swellingL1Str = '10.0';
 	let swellingS1 = 10;
 	let swellingS1M = 10;
-	let swellingS1Str = "10.0";
+	let swellingS1Str = '10.0';
 	let swellingL2 = 10;
 	let swellingL2M = 10;
-	let swellingL2Str = "10.0";
+	let swellingL2Str = '10.0';
 	let swellingS2 = 10;
 	let swellingS2M = 10;
-	let swellingS2Str = "10.0";
+	let swellingS2Str = '10.0';
 	let swellingReluctance = 10;
-	let swellingReluctanceStr = "10.0";
+	let swellingReluctanceStr = '10.0';
 	let swellingMagneticFlux = 10;
-	let swellingMagneticFluxStr = "10.0";
+	let swellingMagneticFluxStr = '10.0';
 	let swellingMagneticField1 = 10;
-	let swellingMagneticField1Str = "10.0";
+	let swellingMagneticField1Str = '10.0';
 	let swellingMagneticField2 = 10;
-	let swellingMagneticField2Str = "10.0";
+	let swellingMagneticField2Str = '10.0';
 	let swellingMagneticEnergy = 10;
-	let swellingMagneticEnergyStr = "10.0";
+	let swellingMagneticEnergyStr = '10.0';
 	let swellingInductance = 10;
-	let swellingInductanceStr = "10.0";
+	let swellingInductanceStr = '10.0';
 	// calculations
 	$: {
 		torusLength = 2 * Math.PI * torusRadius;
@@ -78,22 +78,23 @@
 		torusMagneticFieldStr = torusMagneticField.toExponential(3);
 	}
 	$: {
-		torusMagneticEnergy = permeability * mu0 * sectionAreaM * turnNb**2 * current**2 / (2 * torusLengthM);
+		torusMagneticEnergy =
+			(permeability * mu0 * sectionAreaM * turnNb ** 2 * current ** 2) / (2 * torusLengthM);
 		torusMagneticEnergyStr = torusMagneticEnergy.toExponential(3);
 	}
 	$: {
-		torusInductance = turnNb**2 / torusReluctance;
+		torusInductance = turnNb ** 2 / torusReluctance;
 		torusInductanceStr = torusInductance.toExponential(3);
 	}
 	$: {
-		swellingL2 = torusLength * percentL2 / 100;
+		swellingL2 = (torusLength * percentL2) / 100;
 		swellingL1 = torusLength - swellingL2;
 		swellingL1Str = swellingL1.toFixed(1);
 		swellingL2Str = swellingL2.toFixed(1);
 	}
 	$: {
 		swellingS1 = sectionArea;
-		swellingS2 = swellingS1 * percentS2 / 100;
+		swellingS2 = (swellingS1 * percentS2) / 100;
 		swellingS1Str = swellingS1.toFixed(1);
 		swellingS2Str = swellingS2.toFixed(1);
 	}
@@ -102,7 +103,9 @@
 	$: swellingL2M = swellingL2 / 1000;
 	$: swellingS2M = swellingS2 / 1000000;
 	$: {
-		swellingReluctance = (swellingL1M * swellingS2M + swellingL2M * swellingS1M) / (permeability * mu0 * swellingS1M * swellingS2M);
+		swellingReluctance =
+			(swellingL1M * swellingS2M + swellingL2M * swellingS1M) /
+			(permeability * mu0 * swellingS1M * swellingS2M);
 		swellingReluctanceStr = swellingReluctance.toExponential(3);
 	}
 	$: {
@@ -118,12 +121,15 @@
 		swellingMagneticField2Str = swellingMagneticField2.toExponential(3);
 	}
 	$: {
-		swellingMagneticEnergy = (swellingMagneticField1**2 * swellingL1M * swellingS1M) / (2 * permeability * mu0)
-								+ (swellingMagneticField2**2 * swellingL2M * swellingS2M) / (2 * permeability * mu0);
+		swellingMagneticEnergy =
+			(swellingMagneticField1 ** 2 * swellingL1M * swellingS1M) / (2 * permeability * mu0) +
+			(swellingMagneticField2 ** 2 * swellingL2M * swellingS2M) / (2 * permeability * mu0);
 		swellingMagneticEnergyStr = swellingMagneticEnergy.toExponential(3);
 	}
 	$: {
-		swellingInductance = permeability * mu0 * turnNb**2 * swellingS1M * swellingS2M / (swellingL1M * swellingS2M + swellingL2M * swellingS1M);
+		swellingInductance =
+			(permeability * mu0 * turnNb ** 2 * swellingS1M * swellingS2M) /
+			(swellingL1M * swellingS2M + swellingL2M * swellingS1M);
 		swellingInductanceStr = swellingInductance.toExponential(3);
 	}
 </script>
@@ -134,7 +140,8 @@
 </article>
 <h2>The reluctance motor</h2>
 <article>
-	The force exercised by a electrical reluctance motor is due to the minimization of the magnetic energy of the magnetic circuit.
+	The force exercised by a electrical reluctance motor is due to the minimization of the magnetic
+	energy of the magnetic circuit.
 	<h4>Advantages of the reluctance motor:</h4>
 	<ul>
 		<li>no permanent magnet</li>
@@ -155,16 +162,40 @@
 	<h4>Definitions:</h4>
 	<ul>
 		<li>{@html math('\\mathcal{F}')} : magnetomotive force (unit: {@html math('A')})</li>
-		<li>{@html math('\\varPhi')} : magnetic flux (unit: {@html math('Wb')} or {@html math('H.A')} or {@html math('kg.m^2.s^{-2}.A^{-1}')})</li>
-		<li>{@html math('\\mathcal{R}')} : reluctance (unit: {@html math('H^{-1}')} or {@html math('kg^{-1}.m^{-2}.s^2.A^2')})</li>
+		<li>
+			{@html math('\\varPhi')} : magnetic flux (unit: {@html math('Wb')} or {@html math(
+				'H.A'
+			)} or {@html math('kg.m^2.s^{-2}.A^{-1}')})
+		</li>
+		<li>
+			{@html math('\\mathcal{R}')} : reluctance (unit: {@html math('H^{-1}')} or {@html math(
+				'kg^{-1}.m^{-2}.s^2.A^2'
+			)})
+		</li>
 		<li>{@html math('N')} : number of wire loops</li>
 		<li>{@html math('i')} : electric current in one wire loops (unit: {@html math('A')})</li>
 		<li>{@html math('L')} : length of the magnetic circuit (unit: {@html math('m')})</li>
-		<li>{@html math('S')} : area of a section of the magnetic circuit (unit: {@html math('m^2')})</li>
+		<li>
+			{@html math('S')} : area of a section of the magnetic circuit (unit: {@html math(
+				'm^2'
+			)})
+		</li>
 		<li>{@html math('H')} : magnetizing field (unit: {@html math('A.m^{-1}')})</li>
-		<li>{@html math('B')} : magnetic flux density (unit: {@html math('T')} or {@html math('kg.s^{-2}.A^{-1}')})</li>
-		<li>{@html math('\\mu')} : magnetic permeability (unit: {@html math('H.m^{-1}')} or {@html math('kg.m.s^{-2}.A^{-2}')})</li>
-		<li>{@html math('\\mu_0')} : vacuum magnetic permeability : {@html math('\\mu_0 = 1.256 \\times 10^{-6} H.m^{-1}')}</li>
+		<li>
+			{@html math('B')} : magnetic flux density (unit: {@html math('T')} or {@html math(
+				'kg.s^{-2}.A^{-1}'
+			)})
+		</li>
+		<li>
+			{@html math('\\mu')} : magnetic permeability (unit: {@html math('H.m^{-1}')} or {@html math(
+				'kg.m.s^{-2}.A^{-2}'
+			)})
+		</li>
+		<li>
+			{@html math('\\mu_0')} : vacuum magnetic permeability : {@html math(
+				'\\mu_0 = 1.256 \\times 10^{-6} H.m^{-1}'
+			)}
+		</li>
 	</ul>
 	<h4>Laws at macroscopic scale (from integral equations):</h4>
 	<ul class="formula">
@@ -180,27 +211,61 @@
 	</ul>
 	<h4>Energy:</h4>
 	<ul class="formula">
-		<li>{@html math('u_m')} : magnetic energy density (unit: {@html math('J.m^{-3}')} or {@html math('kg.m^{-1}.s^{-2}')})</li>
-		<li>{@html math('u_m = \\frac{B H}{2} = \\frac{B^2}{2 \\mu} = \\frac{B^2}{2 \\mu_r \\mu_0}')}</li>
-		<li>{@html math('E_m')} : energy of a magnetic circuit (unit: {@html math('J')} or {@html math('kg.m^2.s^{-2}')})</li>
+		<li>
+			{@html math('u_m')} : magnetic energy density (unit: {@html math('J.m^{-3}')} or {@html math(
+				'kg.m^{-1}.s^{-2}'
+			)})
+		</li>
+		<li>
+			{@html math(
+				'u_m = \\frac{B H}{2} = \\frac{B^2}{2 \\mu} = \\frac{B^2}{2 \\mu_r \\mu_0}'
+			)}
+		</li>
+		<li>
+			{@html math('E_m')} : energy of a magnetic circuit (unit: {@html math('J')} or {@html math(
+				'kg.m^2.s^{-2}'
+			)})
+		</li>
 		<li>{@html math('E_m = \\int_V u_m')}</li>
 	</ul>
 	<h4>Electrical circuit:</h4>
 	<ul class="formula">
-		<li>{@html math('e')} : electromotive force of a turn (unit: {@html math('V')} or {@html math('kg.m^2.s^{-3}.A^{-1}')})</li>
-		<li>{@html math('u')} : electromotive force of the winding (unit: {@html math('V')} or {@html math('kg.m^2.s^{-3}.A^{-1}')})</li>
-		<li>{@html math('\\mathcal{L}')} : inductance of a solenoid (unit: {@html math('H')} or {@html math('kg.m^2.s^{-2}.A^{-2}')})</li>
+		<li>
+			{@html math('e')} : electromotive force of a turn (unit: {@html math('V')} or {@html math(
+				'kg.m^2.s^{-3}.A^{-1}'
+			)})
+		</li>
+		<li>
+			{@html math('u')} : electromotive force of the winding (unit: {@html math('V')} or {@html math(
+				'kg.m^2.s^{-3}.A^{-1}'
+			)})
+		</li>
+		<li>
+			{@html math('\\mathcal{L}')} : inductance of a solenoid (unit: {@html math('H')} or {@html math(
+				'kg.m^2.s^{-2}.A^{-2}'
+			)})
+		</li>
 		<li>{@html math('e = -\\frac{d \\varPhi}{d t}')}</li>
 		<li>{@html math('u = N e = -N \\frac{d \\varPhi}{d t}')}</li>
-		<li>if {@html math('\\mathcal{R}')} constant over time
+		<li>
+			if {@html math('\\mathcal{R}')} constant over time
 			<ul class="formula">
 				<li>{@html math('u = -\\frac{N^2}{\\mathcal{R}} \\frac{d i}{d t}')}</li>
 				<li>Let's define {@html math('\\mathcal{L} = \\frac{N^2}{\\mathcal{R}}')}</li>
-				<li>{@html math('\\mathcal{L} = \\frac{N^2}{\\mathcal{R}} = \\frac{N \\varPhi}{i} = \\frac{\\mu N^2 S}{L}')}</li>
+				<li>
+					{@html math(
+						'\\mathcal{L} = \\frac{N^2}{\\mathcal{R}} = \\frac{N \\varPhi}{i} = \\frac{\\mu N^2 S}{L}'
+					)}
+				</li>
 				<li>{@html math('u = -\\mathcal{L} \\frac{d i}{d t}')}</li>
 				<li>{@html math('N \\varPhi = \\mathcal{L} i')}</li>
-				<li>{@html math('E_m = \\int_{Time} i u = \\int_{Time} i \\mathcal{L} \\frac{d i}{d t} = \\frac{\\mathcal{L} i^2}{2}')}</li>
-		</ul>
+				<li>
+					{@html math(
+						'E_m = \\int_{Time} i u = \\int_{Time} i \\mathcal{L} \\frac{d i}{d t} = \\frac{\\mathcal{L} i^2}{2}'
+					)}
+				</li>
+			</ul>
+		</li>
 	</ul>
 </article>
 <h3>Regular torus</h3>
@@ -210,7 +275,9 @@
 		<li>{@html math('L = 2 \\pi R')} (length of the torus)</li>
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>{@html math('\\mathcal{R} = \\frac{L}{\\mu S}')}</li>
-		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu S N i}{L}')}</li>
+		<li>
+			{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu S N i}{L}')}
+		</li>
 		<li>{@html math('B = \\frac{\\varPhi}{S} = \\frac{\\mu N i}{L}')}</li>
 		<li>
 			{@html math('E_m')}
@@ -220,7 +287,9 @@
 			{@html math('= \\frac{\\mu S N^2 i^2}{2 L}')}
 			{@html math('= \\frac{\\mathcal{L} i^2}{2}')}
 		</li>
-		<li>{@html math('\\mathcal{L} = \\frac{\\mu S N^2}{L} = \\frac{\\mu_r \\mu_0 S N^2}{L}')}</li>
+		<li>
+			{@html math('\\mathcal{L} = \\frac{\\mu S N^2}{L} = \\frac{\\mu_r \\mu_0 S N^2}{L}')}
+		</li>
 	</ul>
 	<table class="jump">
 		<tr>
@@ -274,32 +343,33 @@
 		<tr>
 			<td>{@html math('\\mu_r')}</td>
 			<td>Relative permeability</td>
-			<td><input type="number" bind:value={permeability} min="1" max="1000000" step="1"></td>
-			<td><input type="range" bind:value={permeability} min="1" max="1000000" step="1"></td>
+			<td><input type="number" bind:value={permeability} min="1" max="1000000" step="1" /></td
+			>
+			<td><input type="range" bind:value={permeability} min="1" max="1000000" step="1" /></td>
 		</tr>
 		<tr>
 			<td>R</td>
 			<td>Torus radius (mm)</td>
-			<td><input type="number" bind:value={torusRadius} min="3" max="100" step="0.5"></td>
-			<td><input type="range" bind:value={torusRadius} min="3" max="100" step="0.5"></td>
+			<td><input type="number" bind:value={torusRadius} min="3" max="100" step="0.5" /></td>
+			<td><input type="range" bind:value={torusRadius} min="3" max="100" step="0.5" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('S')}</td>
 			<td>Torus section area ({@html math('mm^2')})</td>
-			<td><input type="number" bind:value={sectionArea} min="1" max="1000" step="0.1"></td>
-			<td><input type="range" bind:value={sectionArea} min="1" max="1000" step="0.1"></td>
+			<td><input type="number" bind:value={sectionArea} min="1" max="1000" step="0.1" /></td>
+			<td><input type="range" bind:value={sectionArea} min="1" max="1000" step="0.1" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('N')}</td>
 			<td>Number of turns</td>
-			<td><input type="number" bind:value={turnNb} min="1" max="10000" step="1"></td>
-			<td><input type="range" bind:value={turnNb} min="1" max="10000" step="1"></td>
+			<td><input type="number" bind:value={turnNb} min="1" max="10000" step="1" /></td>
+			<td><input type="range" bind:value={turnNb} min="1" max="10000" step="1" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('i')}</td>
 			<td>Current in the winding (A)</td>
-			<td><input type="number" bind:value={current} min="0.01" max="20" step="0.01"></td>
-			<td><input type="range" bind:value={current} min="0.01" max="20" step="0.01"></td>
+			<td><input type="number" bind:value={current} min="0.01" max="20" step="0.01" /></td>
+			<td><input type="range" bind:value={current} min="0.01" max="20" step="0.01" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('L')}</td>
@@ -344,14 +414,28 @@
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
-			{@html math('\\mathcal{R} = \\mathcal{R}_1 + \\mathcal{R}_2 = \\frac{L_1}{\\mu S_1} + \\frac{L_2}{\\mu S_2}')}
+			{@html math(
+				'\\mathcal{R} = \\mathcal{R}_1 + \\mathcal{R}_2 = \\frac{L_1}{\\mu S_1} + \\frac{L_2}{\\mu S_2}'
+			)}
 			{@html math('= \\frac{L_1 S_2 + L_2 S_1}{\\mu S_1 S_2}')}
 		</li>
-		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu S_1 S_2 N i}{L_1 S_2 + L_2 S_1}')}</li>
+		<li>
+			{@html math(
+				'\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu S_1 S_2 N i}{L_1 S_2 + L_2 S_1}'
+			)}
+		</li>
 		<li>
 			<ul class="formula">
-				<li>{@html math('B_1 = \\frac{\\varPhi}{S_1} = \\frac{\\mu S_2 N i}{L_1 S_2 + L_2 S_1}')}</li>
-				<li>{@html math('B_2 = \\frac{\\varPhi}{S_2} = \\frac{\\mu S_1 N i}{L_1 S_2 + L_2 S_1}')}</li>
+				<li>
+					{@html math(
+						'B_1 = \\frac{\\varPhi}{S_1} = \\frac{\\mu S_2 N i}{L_1 S_2 + L_2 S_1}'
+					)}
+				</li>
+				<li>
+					{@html math(
+						'B_2 = \\frac{\\varPhi}{S_2} = \\frac{\\mu S_1 N i}{L_1 S_2 + L_2 S_1}'
+					)}
+				</li>
 			</ul>
 		</li>
 		<li>
@@ -373,14 +457,14 @@
 		<tr>
 			<td>{@html math('L_2')}</td>
 			<td>Percentage of torus with L2 (%)</td>
-			<td><input type="number" bind:value={percentL2} min="0" max="100" step="1"></td>
-			<td><input type="range" bind:value={percentL2} min="0" max="100" step="1"></td>
+			<td><input type="number" bind:value={percentL2} min="0" max="100" step="1" /></td>
+			<td><input type="range" bind:value={percentL2} min="0" max="100" step="1" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('S_2')}</td>
 			<td>Percentage of S2 compare to S1 (%)</td>
-			<td><input type="number" bind:value={percentS2} min="1" max="400" step="1"></td>
-			<td><input type="range" bind:value={percentS2} min="1" max="400" step="1"></td>
+			<td><input type="number" bind:value={percentS2} min="1" max="400" step="1" /></td>
+			<td><input type="range" bind:value={percentS2} min="1" max="400" step="1" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('L_1')}</td>
@@ -445,15 +529,23 @@
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
-			{@html math('\\mathcal{R} = \\mathcal{R}_L + \\mathcal{R}_G = \\frac{L}{\\mu_r \\mu_0 S} + \\frac{G}{\\mu_0 S}')}
+			{@html math(
+				'\\mathcal{R} = \\mathcal{R}_L + \\mathcal{R}_G = \\frac{L}{\\mu_r \\mu_0 S} + \\frac{G}{\\mu_0 S}'
+			)}
 			{@html math('= \\frac{L + \\mu_r G}{\\mu_r \\mu_0 S}')}
 		</li>
-		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu_r \\mu_0 S N i}{L + \\mu_r G}')}</li>
+		<li>
+			{@html math(
+				'\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}} = \\frac{\\mu_r \\mu_0 S N i}{L + \\mu_r G}'
+			)}
+		</li>
 		<li>{@html math('B = \\frac{\\varPhi}{S} = \\frac{\\mu_r \\mu_0 N i}{L + \\mu_r G}')}</li>
 		<li>
 			{@html math('E_m')}
 			{@html math('= \\int_V \\frac{B^2}{2 \\mu}')}
-			{@html math('= \\int_{V_1} \\frac{B^2}{2 \\mu_r \\mu_0} + \\int_{V_2} \\frac{B^2}{2 \\mu_0}')}
+			{@html math(
+				'= \\int_{V_1} \\frac{B^2}{2 \\mu_r \\mu_0} + \\int_{V_2} \\frac{B^2}{2 \\mu_0}'
+			)}
 			{@html math('= \\frac{B^2}{2 \\mu_r \\mu_0} L S + \\frac{B^2}{2 \\mu_0} G S')}
 			{@html math('= \\frac{B^2 S}{2 \\mu_r \\mu0}(L + \\mu_r G)')}
 			{@html math('= \\frac{\\mu_r \\mu_0 S N^2 i^2}{2 (L + \\mu_r G)}')}
@@ -469,36 +561,58 @@
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
 			<ul class="formula">
-				<li>{@html math('\\mathcal{R} = \\mathcal{R}_L + \\frac{1}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}')}</li>
+				<li>
+					{@html math(
+						'\\mathcal{R} = \\mathcal{R}_L + \\frac{1}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
+					)}
+				</li>
 				<li>{@html math('\\mathcal{R}_L = \\frac{L}{\\mu_r \\mu_0 A B}')}</li>
 				<li>{@html math('\\mathcal{R}_{G1} = \\frac{G}{\\mu_0 x B}')}</li>
 				<li>{@html math('\\mathcal{R}_{G2} = \\frac{G}{\\mu_r \\mu_0 (A - x) B}')}</li>
 				<li>
-					{@html math('\\mathcal{R} = \\frac{x L (1 - \\mu_r) + \\mu_r A (L + G)}{\\mu_r \\mu_0 A B (x (1 - \\mu_r) + \\mu_r A)}')}
+					{@html math(
+						'\\mathcal{R} = \\frac{x L (1 - \\mu_r) + \\mu_r A (L + G)}{\\mu_r \\mu_0 A B (x (1 - \\mu_r) + \\mu_r A)}'
+					)}
 				</li>
 				<li>{@html math('\\mathcal{R}_{x=0} = \\frac{L + G}{\\mu_r \\mu_0 A B}')}</li>
-				<li>{@html math('\\mathcal{R}_{x=A} = \\frac{L (1 + \\mu_r  G)}{\\mu_r \\mu_0 A B} > \\mathcal{R}_{x=0}')}</li>
+				<li>
+					{@html math(
+						'\\mathcal{R}_{x=A} = \\frac{L (1 + \\mu_r  G)}{\\mu_r \\mu_0 A B} > \\mathcal{R}_{x=0}'
+					)}
+				</li>
 			</ul>
 		</li>
 		<li>
 			{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}}')}
-			{@html math('= \\frac{\\mu_r \\mu_0 A B N i (x (1 - \\mu_r) + \\mu_r A)}{x L (1 - \\mu_r) + \\mu_r A (L + G)}')}
+			{@html math(
+				'= \\frac{\\mu_r \\mu_0 A B N i (x (1 - \\mu_r) + \\mu_r A)}{x L (1 - \\mu_r) + \\mu_r A (L + G)}'
+			)}
 		</li>
 		<li>
 			<ul class="formula">
 				<li>
 					{@html math('B_L = \\frac{\\varPhi}{A B}')}
-					{@html math('= \\frac{\\mu_r \\mu_0 N i (x (1 - \\mu_r) + \\mu_r A)}{x L (1 - \\mu_r) + \\mu_r A (L + G)}')}
+					{@html math(
+						'= \\frac{\\mu_r \\mu_0 N i (x (1 - \\mu_r) + \\mu_r A)}{x L (1 - \\mu_r) + \\mu_r A (L + G)}'
+					)}
 				</li>
 				<li>
 					{@html math('B_{G1} = \\frac{\\varPhi}{x B}')}
-					{@html math('\\frac{\\frac{1}{\\mathcal{R}_{G1}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}')}
-					{@html math('= \\frac{\\varPhi}{x B} \\frac{\\mathcal{R}_{G2}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}')}
+					{@html math(
+						'\\frac{\\frac{1}{\\mathcal{R}_{G1}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
+					)}
+					{@html math(
+						'= \\frac{\\varPhi}{x B} \\frac{\\mathcal{R}_{G2}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}'
+					)}
 				</li>
 				<li>
 					{@html math('B_{G2} = \\frac{\\varPhi}{(A - x) B}')}
-					{@html math('\\frac{\\frac{1}{\\mathcal{R}_{G2}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}')}
-					{@html math('= \\frac{\\varPhi}{(A - x) B} \\frac{\\mathcal{R}_{G1}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}')}
+					{@html math(
+						'\\frac{\\frac{1}{\\mathcal{R}_{G2}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
+					)}
+					{@html math(
+						'= \\frac{\\varPhi}{(A - x) B} \\frac{\\mathcal{R}_{G1}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}'
+					)}
 				</li>
 			</ul>
 		</li>
@@ -518,7 +632,11 @@
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
 			<ul class="formula">
-				<li>{@html math('\\mathcal{R} = \\mathcal{R}_L + \\mathcal{R}_H + \\frac{1}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}')}</li>
+				<li>
+					{@html math(
+						'\\mathcal{R} = \\mathcal{R}_L + \\mathcal{R}_H + \\frac{1}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
+					)}
+				</li>
 				<li>{@html math('\\mathcal{R}_L = \\frac{L}{\\mu_r \\mu_0 A B}')}</li>
 				<li>{@html math('\\mathcal{R}_{G1} = \\frac{G}{\\mu_0 x B}')}</li>
 				<li>{@html math('\\mathcal{R}_{G2} = \\frac{G}{\\mu_r \\mu_0 (A - x) B}')}</li>
@@ -538,7 +656,8 @@
 		margin: 1rem;
 		margin-bottom: 0.2rem;
 	}
-	h2, h3 {
+	h2,
+	h3 {
 		margin: 1rem;
 		margin-top: 2rem;
 		margin-bottom: 0.2rem;
