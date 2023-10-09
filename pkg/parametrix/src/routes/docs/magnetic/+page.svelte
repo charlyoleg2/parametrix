@@ -275,10 +275,11 @@
 		const magFieldL = magFlux / areaLM;
 		const tRG1 = airgapGM / (mu0 * areaAirM);
 		const tRG2 = airgapGM / (permeaG * mu0 * areaShuttleM);
-		const magFieldG1 = ((magFlux / areaAirM) * tRG2) / (tRG1 + tRG2);
-		const magFieldG2 = ((magFlux / areaShuttleM) * tRG1) / (tRG1 + tRG2);
-		//const magFieldG1 = magFieldL;
-		//const magFieldG2 = magFieldL;
+		const magFieldG1a = ((magFlux / areaAirM) * tRG2) / (tRG1 + tRG2);
+		const magFieldG2a = ((magFlux / areaShuttleM) * tRG1) / (tRG1 + tRG2);
+		const magmod = 0.0; // 0.5
+		const magFieldG1 = magmod * magFieldL + (1 - magmod) * magFieldG1a;
+		const magFieldG2 = magmod * magFieldL + (1 - magmod) * magFieldG2a;
 		const magEm =
 			(magFieldL ** 2 * torusLengthM * areaLM) / (2 * permeability * mu0) +
 			(magFieldL ** 2 * pHM * areaLM) / (2 * mu0) +
