@@ -72,7 +72,7 @@
 	let airgapInductance = 10;
 	let airgapInductanceStr = '10.0';
 	let airgapAM = 10; // m
-	let airgapBM = 10;  // m
+	let airgapBM = 10; // m
 	let sectionAreaL = 10; // mm2
 	let sectionAreaLM = 10; // m2
 	let sectionAreaLStr = '10';
@@ -210,18 +210,19 @@
 		sectionAreaLStr = sectionAreaL.toFixed(1);
 	}
 	$: {
-		sectionAreaAirM = shuttleX * sectionAreaL / 100; // m2
+		sectionAreaAirM = (shuttleX * sectionAreaL) / 100; // m2
 		sectionAreaAir = sectionAreaAirM * 1000000; // mm2
 		sectionAreaAirStr = sectionAreaAir.toFixed(1);
 	}
 	$: {
-		sectionAreaShuttleM = (100 - shuttleX) * sectionAreaL / 100; // m2
+		sectionAreaShuttleM = ((100 - shuttleX) * sectionAreaL) / 100; // m2
 		sectionAreaShuttle = sectionAreaShuttleM * 1000000; // mm2
 		sectionAreaShuttleStr = sectionAreaShuttle.toFixed(1);
 	}
 	$: {
-		shuttleReluctance = torusLengthM / (permeability * mu0 * airgapAM * airgapBM)
-			+ airgapGM / ((mu0 * sectionAreaAirM) + (permeaG * mu0 * sectionAreaShuttleM));
+		shuttleReluctance =
+			torusLengthM / (permeability * mu0 * airgapAM * airgapBM) +
+			airgapGM / (mu0 * sectionAreaAirM + permeaG * mu0 * sectionAreaShuttleM);
 		shuttleReluctanceStr = shuttleReluctance.toExponential(3);
 	}
 	$: {
@@ -235,24 +236,24 @@
 	$: RG1 = airgapGM / (mu0 * sectionAreaAirM);
 	$: RG2 = airgapGM / (permeaG * mu0 * sectionAreaShuttleM);
 	$: {
-		shuttleMagneticFieldG1 = shuttleMagneticFlux / sectionAreaAirM * RG2 / (RG1 + RG2);
+		shuttleMagneticFieldG1 = ((shuttleMagneticFlux / sectionAreaAirM) * RG2) / (RG1 + RG2);
 		shuttleMagneticFieldG1Str = shuttleMagneticFieldG1.toExponential(3);
 	}
 	$: {
-		shuttleMagneticFieldG2 = shuttleMagneticFlux / sectionAreaShuttleM * RG1 / (RG1 + RG2);
+		shuttleMagneticFieldG2 = ((shuttleMagneticFlux / sectionAreaShuttleM) * RG1) / (RG1 + RG2);
 		shuttleMagneticFieldG2Str = shuttleMagneticFieldG2.toExponential(3);
 	}
 	$: {
-		shuttleMagneticEnergy = (shuttleMagneticFieldL**2 * torusLengthM * sectionAreaLM) / (2 * permeability * mu0)
-			+ (shuttleMagneticFieldG1**2 * airgapGM * sectionAreaAirM) / (2 * mu0)
-			+ (shuttleMagneticFieldG2**2 * airgapGM * sectionAreaShuttleM) / (2 * permeaG * mu0)
+		shuttleMagneticEnergy =
+			(shuttleMagneticFieldL ** 2 * torusLengthM * sectionAreaLM) / (2 * permeability * mu0) +
+			(shuttleMagneticFieldG1 ** 2 * airgapGM * sectionAreaAirM) / (2 * mu0) +
+			(shuttleMagneticFieldG2 ** 2 * airgapGM * sectionAreaShuttleM) / (2 * permeaG * mu0);
 		shuttleMagneticEnergyStr = shuttleMagneticEnergy.toExponential(3);
 	}
 	$: {
-		shuttleInductance = turnNb**2 / shuttleReluctance;
+		shuttleInductance = turnNb ** 2 / shuttleReluctance;
 		shuttleInductanceStr = shuttleInductance.toExponential(3);
 	}
-
 </script>
 
 <h1>Magnetic circuit</h1>
