@@ -96,10 +96,19 @@
 	let shuttleMagneticFieldG2Str = '10.0';
 	let shuttleMagneticEnergy = 10;
 	let shuttleMagneticEnergyStr = '10.0';
+	let shuttleEm = 10;
+	let shuttleEmStr = '10.0';
 	let shuttleInductance = 10;
 	let shuttleInductanceStr = '10.0';
 	let shuttleForce = 10;
 	let shuttleForceStr = '10.0';
+	let airgapHM = 10; // m
+	let shuttlerEm = 10;
+	let shuttlerEmStr = '10.0';
+	let shuttlerInductance = 10;
+	let shuttlerInductanceStr = '10.0';
+	let shuttlerForce = 10;
+	let shuttlerForceStr = '10.0';
 	// calculations
 	$: {
 		torusLength = 2 * Math.PI * torusRadius;
@@ -210,12 +219,12 @@
 		sectionAreaLStr = sectionAreaL.toFixed(1);
 	}
 	$: {
-		sectionAreaAirM = (shuttleX * sectionAreaL) / 100; // m2
+		sectionAreaAirM = (shuttleX * sectionAreaLM) / 100; // m2
 		sectionAreaAir = sectionAreaAirM * 1000000; // mm2
 		sectionAreaAirStr = sectionAreaAir.toFixed(1);
 	}
 	$: {
-		sectionAreaShuttleM = ((100 - shuttleX) * sectionAreaL) / 100; // m2
+		sectionAreaShuttleM = ((100 - shuttleX) * sectionAreaLM) / 100; // m2
 		sectionAreaShuttle = sectionAreaShuttleM * 1000000; // mm2
 		sectionAreaShuttleStr = sectionAreaShuttle.toFixed(1);
 	}
@@ -253,6 +262,58 @@
 	$: {
 		shuttleInductance = turnNb ** 2 / shuttleReluctance;
 		shuttleInductanceStr = shuttleInductance.toExponential(3);
+	}
+	function fShuttleEm(posX: number, pHM: number): number {
+		const areaLM = airgapAM * airgapBM; // m2
+		const areaAirM = (posX * areaLM) / 100; // m2
+		const areaShuttleM = ((100 - posX) * areaLM) / 100; // m2
+		const reluct =
+			torusLengthM / (permeability * mu0 * areaLM) +
+			pHM / (mu0 * areaLM) +
+			airgapGM / (mu0 * areaAirM + permeaG * mu0 * areaShuttleM);
+		const magFlux = magnetomotive / reluct;
+		const magFieldL = magFlux / areaLM;
+		const tRG1 = airgapGM / (mu0 * areaAirM);
+		const tRG2 = airgapGM / (permeaG * mu0 * areaShuttleM);
+		const magFieldG1 = ((magFlux / areaAirM) * tRG2) / (tRG1 + tRG2);
+		const magFieldG2 = ((magFlux / areaShuttleM) * tRG1) / (tRG1 + tRG2);
+		//const magFieldG1 = magFieldL;
+		//const magFieldG2 = magFieldL;
+		const magEm =
+			(magFieldL ** 2 * torusLengthM * areaLM) / (2 * permeability * mu0) +
+			(magFieldL ** 2 * pHM * areaLM) / (2 * mu0) +
+			(magFieldG1 ** 2 * airgapGM * areaAirM) / (2 * mu0) +
+			(magFieldG2 ** 2 * airgapGM * areaShuttleM) / (2 * permeaG * mu0);
+		return magEm;
+	}
+	$: {
+		shuttleEm = fShuttleEm(shuttleX, 0);
+		shuttleEmStr = shuttleEm.toExponential(3);
+	}
+	function fShuttleForce(posX: number, pHM: number): number {
+		const step = 0.1;
+		let rF = 0;
+		if (posX > 2 * step && posX < 100 - 2 * step) {
+			rF = (fShuttleEm(posX + step, pHM) - fShuttleEm(posX - step, pHM)) / (2 * step);
+		}
+		return rF;
+	}
+	$: {
+		shuttleForce = fShuttleForce(shuttleX, 0);
+		shuttleForceStr = shuttleForce.toExponential(3);
+	}
+	$: airgapHM = airgapH / 1000;
+	$: {
+		shuttlerEm = fShuttleEm(shuttleX, airgapHM);
+		shuttlerEmStr = shuttlerEm.toExponential(3);
+	}
+	$: {
+		shuttlerInductance = (2 * shuttlerEm) / current ** 2;
+		shuttlerInductanceStr = shuttlerInductance.toExponential(3);
+	}
+	$: {
+		shuttlerForce = fShuttleForce(shuttleX, airgapHM);
+		shuttlerForceStr = shuttlerForce.toExponential(3);
 	}
 </script>
 
@@ -824,8 +885,8 @@
 		<tr>
 			<td>{@html math('x')}</td>
 			<td>Shuttle position (%)</td>
-			<td><input type="number" bind:value={shuttleX} min="0.1" max="100" step="0.1" /></td>
-			<td><input type="range" bind:value={shuttleX} min="0.1" max="100" step="0.1" /></td>
+			<td><input type="number" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
+			<td><input type="range" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('S')}</td>
@@ -876,6 +937,11 @@
 			<td>{@html math('E_m')}</td>
 			<td>Magnetic energy ({@html math('J')})</td>
 			<td>{shuttleMagneticEnergyStr}</td>
+		</tr>
+		<tr>
+			<td>{@html math('E_m')}</td>
+			<td>Magnetic energy check ({@html math('J')})</td>
+			<td>{shuttleEmStr}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{L}')}</td>
@@ -959,64 +1025,25 @@
 			<td><input type="range" bind:value={airgapH} min="0" max="1" step="0.01" /></td>
 		</tr>
 		<tr>
-			<td>{@html math('S')}</td>
-			<td>Torus section area ({@html math('mm^2')})</td>
-			<td>{sectionAreaLStr}</td>
-		</tr>
-		<tr>
-			<td>{@html math('S_{air}')}</td>
-			<td>Air area ({@html math('mm^2')})</td>
-			<td>{sectionAreaAirStr}</td>
-		</tr>
-		<tr>
-			<td>{@html math('S_{shuttle}')}</td>
-			<td>Shuttle area ({@html math('mm^2')})</td>
-			<td>{sectionAreaShuttleStr}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{F}')}</td>
-			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotiveStr}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{R}')}</td>
-			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{shuttleReluctanceStr}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\varPhi')}</td>
-			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{shuttleMagneticFluxStr}</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_L')}</td>
-			<td>Magnetic field in torus ({@html math('T')})</td>
-			<td>{shuttleMagneticFieldLStr}</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_{Gair}')}</td>
-			<td>Magnetic field in air-gap ({@html math('T')})</td>
-			<td>{shuttleMagneticFieldG1Str}</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_{Gshuttle}')}</td>
-			<td>Magnetic field in shuttle ({@html math('T')})</td>
-			<td>{shuttleMagneticFieldG2Str}</td>
+			<td>{@html math('x')}</td>
+			<td>Shuttle position (%)</td>
+			<td><input type="number" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
+			<td><input type="range" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
 		</tr>
 		<tr>
 			<td>{@html math('E_m')}</td>
 			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{shuttleMagneticEnergyStr}</td>
+			<td>{shuttlerEmStr}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{L}')}</td>
 			<td>Inductance ({@html math('H')})</td>
-			<td>{shuttleInductanceStr}</td>
+			<td>{shuttlerInductanceStr}</td>
 		</tr>
 		<tr>
 			<td>{@html math('F_x')}</td>
 			<td>Force ({@html math('N')})</td>
-			<td>{shuttleForceStr}</td>
+			<td>{shuttlerForceStr}</td>
 		</tr>
 	</table>
 </article>
@@ -1048,7 +1075,7 @@
 	}
 	ul {
 		margin-top: 0.2rem;
-		margin-bottom: 2rem;
+		margin-bottom: 0.2rem;
 		margin-left: 0.2rem;
 		padding-left: 1rem;
 	}
@@ -1061,6 +1088,6 @@
 		margin-bottom: 3rem;
 	}
 	table.jump {
-		margin-top: 10rem;
+		margin-top: 5rem;
 	}
 </style>
