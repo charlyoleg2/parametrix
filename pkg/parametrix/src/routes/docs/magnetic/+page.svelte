@@ -342,6 +342,7 @@
 		return rF;
 	}
 	$: {
+		permeaG = permeaG; // to force the reactivity
 		shuttleForce = fShuttleForce(shuttleX, 0);
 		shuttleForceStr = shuttleForce.toExponential(3);
 	}
