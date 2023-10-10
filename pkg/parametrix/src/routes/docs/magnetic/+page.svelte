@@ -293,12 +293,13 @@
 		const areaLM = airgapAM * airgapBM; // m2
 		const areaAirM = (posX * areaLM) / 100; // m2
 		const areaShuttleM = ((100 - posX) * areaLM) / 100; // m2
-		const reluct =
-			torusLengthM / (permeability * mu0 * areaLM) +
-			pHM / (mu0 * areaLM) +
-			airgapGM / (mu0 * areaAirM + permeaG * mu0 * areaShuttleM);
-		const magFlux = magnetomotive / reluct;
-		const magFieldL = magFlux / areaLM;
+		//const reluct =
+		//	torusLengthM / (permeability * mu0 * areaLM) +
+		//	pHM / (mu0 * areaLM) +
+		//	airgapGM / (mu0 * areaAirM + permeaG * mu0 * areaShuttleM);
+		//const magFlux = magnetomotive / reluct;
+		//const magFieldL = magFlux / areaLM;
+		const magFieldL = fShuttleMagField(posX, pHM);
 		//const tRG1 = airgapGM / (mu0 * areaAirM);
 		//const tRG2 = airgapGM / (permeaG * mu0 * areaShuttleM);
 		//const magFieldG1a = ((magFlux / areaAirM) * tRG2) / (tRG1 + tRG2);
