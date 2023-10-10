@@ -88,8 +88,8 @@
 	let shuttleMagneticFluxStr = '10.0';
 	let shuttleMagneticFieldL = 10;
 	let shuttleMagneticFieldLStr = '10.0';
-	let RG1 = 10;
-	let RG2 = 10;
+	//let RG1 = 10;
+	//let RG2 = 10;
 	let shuttleMagneticFieldG1 = 10;
 	let shuttleMagneticFieldG1Str = '10.0';
 	let shuttleMagneticFieldG2 = 10;
@@ -242,14 +242,16 @@
 		shuttleMagneticFieldL = shuttleMagneticFlux / sectionAreaLM;
 		shuttleMagneticFieldLStr = shuttleMagneticFieldL.toExponential(3);
 	}
-	$: RG1 = airgapGM / (mu0 * sectionAreaAirM);
-	$: RG2 = airgapGM / (permeaG * mu0 * sectionAreaShuttleM);
+	//$: RG1 = airgapGM / (mu0 * sectionAreaAirM);
+	//$: RG2 = airgapGM / (permeaG * mu0 * sectionAreaShuttleM);
 	$: {
-		shuttleMagneticFieldG1 = ((shuttleMagneticFlux / sectionAreaAirM) * RG2) / (RG1 + RG2);
+		//shuttleMagneticFieldG1 = ((shuttleMagneticFlux / sectionAreaAirM) * RG2) / (RG1 + RG2);
+		shuttleMagneticFieldG1 = shuttleMagneticFieldL;
 		shuttleMagneticFieldG1Str = shuttleMagneticFieldG1.toExponential(3);
 	}
 	$: {
-		shuttleMagneticFieldG2 = ((shuttleMagneticFlux / sectionAreaShuttleM) * RG1) / (RG1 + RG2);
+		//shuttleMagneticFieldG2 = ((shuttleMagneticFlux / sectionAreaShuttleM) * RG1) / (RG1 + RG2);
+		shuttleMagneticFieldG2 = shuttleMagneticFieldL;
 		shuttleMagneticFieldG2Str = shuttleMagneticFieldG2.toExponential(3);
 	}
 	$: {
@@ -273,13 +275,15 @@
 			airgapGM / (mu0 * areaAirM + permeaG * mu0 * areaShuttleM);
 		const magFlux = magnetomotive / reluct;
 		const magFieldL = magFlux / areaLM;
-		const tRG1 = airgapGM / (mu0 * areaAirM);
-		const tRG2 = airgapGM / (permeaG * mu0 * areaShuttleM);
-		const magFieldG1a = ((magFlux / areaAirM) * tRG2) / (tRG1 + tRG2);
-		const magFieldG2a = ((magFlux / areaShuttleM) * tRG1) / (tRG1 + tRG2);
-		const magmod = 0.0; // 0.5
-		const magFieldG1 = magmod * magFieldL + (1 - magmod) * magFieldG1a;
-		const magFieldG2 = magmod * magFieldL + (1 - magmod) * magFieldG2a;
+		//const tRG1 = airgapGM / (mu0 * areaAirM);
+		//const tRG2 = airgapGM / (permeaG * mu0 * areaShuttleM);
+		//const magFieldG1a = ((magFlux / areaAirM) * tRG2) / (tRG1 + tRG2);
+		//const magFieldG2a = ((magFlux / areaShuttleM) * tRG1) / (tRG1 + tRG2);
+		//const magmod = 0.0; // 0.5
+		//const magFieldG1 = magmod * magFieldL + (1 - magmod) * magFieldG1a;
+		//const magFieldG2 = magmod * magFieldL + (1 - magmod) * magFieldG2a;
+		const magFieldG1 = magFieldL;
+		const magFieldG2 = magFieldL;
 		const magEm =
 			(magFieldL ** 2 * torusLengthM * areaLM) / (2 * permeability * mu0) +
 			(magFieldL ** 2 * pHM * areaLM) / (2 * mu0) +
@@ -293,10 +297,14 @@
 	}
 	function fShuttleForce(posX: number, pHM: number): number {
 		const step = 0.1;
-		let rF = 0;
-		if (posX > 2 * step && posX < 100 - 2 * step) {
-			rF = (fShuttleEm(posX + step, pHM) - fShuttleEm(posX - step, pHM)) / (2 * step);
+		let posX2 = posX;
+		if (posX2 < 2 * step) {
+			posX2 = 2 * step;
 		}
+		if (posX2 > 100 - 2 * step) {
+			posX2 = 100 - 2 * step;
+		}
+		const rF = (fShuttleEm(posX2 + step, pHM) - fShuttleEm(posX2 - step, pHM)) / (2 * step);
 		return rF;
 	}
 	$: {
@@ -830,6 +838,7 @@
 					)}
 				</li>
 				<li>
+					<!--
 					{@html math('B_{G1} = \\frac{\\varPhi}{x B}')}
 					{@html math(
 						'\\frac{\\frac{1}{\\mathcal{R}_{G1}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
@@ -837,8 +846,11 @@
 					{@html math(
 						'= \\frac{\\varPhi}{x B} \\frac{\\mathcal{R}_{G2}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}'
 					)}
+					-->
+					{@html math('B_{G1} \\simeq B_L')}
 				</li>
 				<li>
+					<!--
 					{@html math('B_{G2} = \\frac{\\varPhi}{(A - x) B}')}
 					{@html math(
 						'\\frac{\\frac{1}{\\mathcal{R}_{G2}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
@@ -846,6 +858,8 @@
 					{@html math(
 						'= \\frac{\\varPhi}{(A - x) B} \\frac{\\mathcal{R}_{G1}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}'
 					)}
+					-->
+					{@html math('B_{G2} \\simeq B_L')}
 				</li>
 			</ul>
 		</li>
@@ -983,6 +997,7 @@
 					{@html math('B_L = B_H = \\frac{\\varPhi}{A B}')}
 				</li>
 				<li>
+					<!--
 					{@html math('B_{G1} = \\frac{\\varPhi}{x B}')}
 					{@html math(
 						'\\frac{\\frac{1}{\\mathcal{R}_{G1}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
@@ -990,8 +1005,11 @@
 					{@html math(
 						'= \\frac{\\varPhi}{x B} \\frac{\\mathcal{R}_{G2}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}'
 					)}
+					-->
+					{@html math('B_{G1} \\simeq B_L')}
 				</li>
 				<li>
+					<!--
 					{@html math('B_{G2} = \\frac{\\varPhi}{(A - x) B}')}
 					{@html math(
 						'\\frac{\\frac{1}{\\mathcal{R}_{G2}}}{\\frac{1}{\\mathcal{R}_{G1}} + \\frac{1}{\\mathcal{R}_{G2}}}'
@@ -999,6 +1017,8 @@
 					{@html math(
 						'= \\frac{\\varPhi}{(A - x) B} \\frac{\\mathcal{R}_{G1}}{\\mathcal{R}_{G2} + \\mathcal{R}_{G1}}'
 					)}
+					-->
+					{@html math('B_{G2} \\simeq B_L')}
 				</li>
 			</ul>
 		</li>
