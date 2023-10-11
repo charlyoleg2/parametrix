@@ -11,16 +11,17 @@
 	let wheelModule = 15;
 	let wheelZ = 23;
 	let wheelMargin = 10; // %
-	let gearEfficiency = 20; // %
+	let gearEfficiency = 80; // %
 	let planet1Nb = 8;
 	let epicyclic1Module = 2;
 	let planet1Z = 23;
 	let stage1Nb = 6;
-	// calculations
+	// outputs
 	let torque1 = 10;
 	let torque2 = 10;
 	let torque3 = 10;
 	let torque4 = 10;
+	let speed3 = 10;
 	let speed4 = 10;
 	let oneTurn = 10;
 	let wheelDiameter = 10;
@@ -33,7 +34,32 @@
 	let sun1Z = 10;
 	let ratio1One = 10;
 	let ratio1All = 10;
-
+	// calculations
+	$: torque1 = d1 * load_mass * 9.81;
+	$: torque2 = torque1 * securityFactor;
+	$: oneTurn = 2 * halfTurn;
+	$: wheelDiameter = wheelModule * (wheelZ + 2);
+	function fRingZ(nb: number, wheelZ: number, margin: number): number {
+		const angle = Math.PI / nb; //2 * Math.PI / (2 * nb);
+		const tModule = 1; // not relevant for computing Zring
+		const length = tModule * (wheelZ / 2 + 1) * (1 + margin / 100);
+		const positionRadius = length / Math.sin(angle);
+		const ringZ = Math.ceil(2 * positionRadius + wheelZ);
+		return ringZ;
+	}
+	$: ringZ = fRingZ(wheelNb, wheelZ, wheelMargin);
+	$: ringDiameter = wheelModule * (ringZ + 4);
+	$: ratioRW = ringZ / wheelZ;
+	$: torque3 = torque2 / (ringNb * ratioRW * (gearEfficiency / 100));
+	$: speed3 = oneTurn / ratioRW; // s
+	$: planet1Diameter = epicyclic1Module * (planet1Z + 2);
+	$: ring1Z = fRingZ(planet1Nb, planet1Z, wheelMargin);
+	$: sun1Z = ring1Z - 2 * planet1Z;
+	$: ring1Diameter = epicyclic1Module * (ring1Z + 4);
+	$: ratio1One = (sun1Z + ring1Z) / sun1Z;
+	$: ratio1All = ratio1One ** stage1Nb;
+	$: torque4 = torque3 / (ratio1All * (gearEfficiency / 100) ** stage1Nb);
+	$: speed4 = ratio1All / speed3; // Hz
 </script>
 
 <h1>Motorized axis</h1>
@@ -124,7 +150,7 @@
 		</tr>
 		<tr>
 			<td>Dw</td>
-			<td>Diameter of gear-wheel (m)</td>
+			<td>Diameter of gear-wheel (mm)</td>
 			<td>{wheelDiameter}</td>
 		</tr>
 		<tr>
@@ -135,12 +161,12 @@
 		</tr>
 		<tr>
 			<td>Dr</td>
-			<td>Diameter of gear-ring (m)</td>
+			<td>Diameter of gear-ring (mm)</td>
 			<td>{ringDiameter}</td>
 		</tr>
 		<tr>
 			<td>Zr</td>
-			<td>Number of teeth of gear-ring (m)</td>
+			<td>Number of teeth of gear-ring</td>
 			<td>{ringZ}</td>
 		</tr>
 		<tr>
@@ -151,13 +177,19 @@
 		<tr>
 			<td></td>
 			<td>Gear efficiency (%)</td>
-			<td><input type="number" bind:value={gearEfficiency} min="1" max="100" step="0.5" /></td>
+			<td><input type="number" bind:value={gearEfficiency} min="1" max="100" step="0.5" /></td
+			>
 			<td><input type="range" bind:value={gearEfficiency} min="1" max="100" step="0.5" /></td>
 		</tr>
 		<tr>
 			<td>Tw</td>
 			<td>Torque of gear-wheel (N.m)</td>
 			<td>{torque3}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Gear-wheel rotation time (s)</td>
+			<td>{speed3}</td>
 		</tr>
 		<tr>
 			<td>Nr1</td>
@@ -168,8 +200,24 @@
 		<tr>
 			<td>mr1</td>
 			<td>Module of epicyclic of reductor-1 (mm)</td>
-			<td><input type="number" bind:value={epicyclic1Module} min="1" max="100" step="0.1" /></td>
-			<td><input type="range" bind:value={epicyclic1Module} min="1" max="100" step="0.1" /></td>
+			<td
+				><input
+					type="number"
+					bind:value={epicyclic1Module}
+					min="1"
+					max="100"
+					step="0.1"
+				/></td
+			>
+			<td
+				><input
+					type="range"
+					bind:value={epicyclic1Module}
+					min="1"
+					max="100"
+					step="0.1"
+				/></td
+			>
 		</tr>
 		<tr>
 			<td>Zr1</td>
@@ -179,12 +227,12 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Diameter of planet-1 (m)</td>
+			<td>Diameter of planet-1 (mm)</td>
 			<td>{planet1Diameter}</td>
 		</tr>
 		<tr>
 			<td>Dr1</td>
-			<td>Diameter of ring of reductor-1 (m)</td>
+			<td>Diameter of ring of reductor-1 (mm)</td>
 			<td>{ring1Diameter}</td>
 		</tr>
 		<tr>
@@ -215,12 +263,12 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Reductor-1 torque (N.m)</td>
+			<td>Reductor-1 input torque (N.m)</td>
 			<td>{torque4}</td>
 		</tr>
 		<tr>
 			<td></td>
-			<td>Reductor-1 speed (Hz)</td>
+			<td>Reductor-1 input speed (Hz)</td>
 			<td>{speed4}</td>
 		</tr>
 	</table>
