@@ -375,7 +375,7 @@
 
 <h1>Magnetic circuit</h1>
 <article>
-	In this page, we study several magnetic circuits in order to modelize the reluctance motor.
+	This page provides an overview of magnetic circuits for modelizing the reluctance motor.
 </article>
 <h2>The reluctance motor</h2>
 <article>
