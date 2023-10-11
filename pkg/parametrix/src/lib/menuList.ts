@@ -76,6 +76,7 @@ const mLabel = [
 			'docs/gears',
 			'docs/involute',
 			'docs/magnetic',
+			'docs/axis',
 			'docs/cad_ecosystem'
 		]
 	}
@@ -104,6 +105,7 @@ const mIcon: tIcon = {
 	gears: 'page_gears.svg',
 	involute: 'page_gears.svg',
 	magnetic: 'page_magnetic.svg',
+	axis: 'page_axis.svg',
 	cad_ecosystem: 'page_concept.svg',
 	readme: 'page_readme.svg',
 	about: 'page_about.svg'

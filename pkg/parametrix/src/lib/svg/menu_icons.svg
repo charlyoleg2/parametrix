@@ -29,7 +29,7 @@
      showgrid="false"
      inkscape:zoom="1.5729487"
      inkscape:cx="288.94776"
-     inkscape:cy="658.63559"
+     inkscape:cy="709.49548"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -142,7 +142,7 @@
        style="font-style:normal;font-weight:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect113);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="7.9628906"
          y="18.576202"
-         id="tspan1">menu_icons.svg</tspan></text>
+         id="tspan8">menu_icons.svg</tspan></text>
     <rect
        style="fill:none;stroke:none;stroke-width:0.264583;fill-opacity:1"
        id="rect111"
@@ -170,22 +170,22 @@
        style="font-style:normal;font-weight:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect481);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="399.25586"
          y="45.830108"
-         id="tspan2">index&#10;</tspan><tspan
+         id="tspan9">index&#10;</tspan><tspan
          x="399.25586"
          y="64.163482"
-         id="tspan3">rough&#10;</tspan><tspan
+         id="tspan10">rough&#10;</tspan><tspan
          x="399.25586"
          y="82.496856"
-         id="tspan4">circle&#10;</tspan><tspan
+         id="tspan11">circle&#10;</tspan><tspan
          x="399.25586"
          y="100.83023"
-         id="tspan5">docs&#10;</tspan><tspan
+         id="tspan12">docs&#10;</tspan><tspan
          x="399.25586"
          y="119.1636"
-         id="tspan6">readme&#10;</tspan><tspan
+         id="tspan13">readme&#10;</tspan><tspan
          x="399.25586"
          y="137.49698"
-         id="tspan7">about</tspan></text>
+         id="tspan14">about</tspan></text>
     <rect
        style="fill:none;stroke:#e6e6e6;stroke-width:0.264583"
        id="rect111-3"
@@ -550,5 +550,31 @@
        d="m 37.624305,192.4857 c 0,0 2.147464,0.30015 2.845089,1.0283 0.802275,0.83738 0.842,2.17709 1.041446,3.31949 0.281175,1.61052 0.219298,3.26557 0.204351,4.90039 -0.0115,1.2572 0.09577,2.5496 -0.226031,3.76497 -0.278336,1.05123 -0.564031,2.28436 -1.441599,2.92657 -0.751358,0.54985 -2.761641,0.41855 -2.761641,0.41855"
        id="path1-9-0"
        sodipodi:nodetypes="caaaaac" />
+    <rect
+       style="fill:none;stroke:#e6e6e6;stroke-width:0.264583"
+       id="rect111-3-3-3-36-3"
+       width="21.166666"
+       height="21.166666"
+       x="59.74538"
+       y="189.77715"
+       inkscape:export-filename="../24168d4b/page_index.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:#6495ed;stroke:#6495ed;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
+       d="m 60.476867,192.88455 v 10.40987 h 2.911452 v -4.52323 h 12.383693 v 4.19733 h 3.094773 v -11.56828 h -3.449587 v 3.82477 H 63.262819 v -4.70392 H 60.25675 Z"
+       id="path4"
+       inkscape:export-filename="./page_axis.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <path
+       style="fill:#6495ed;fill-opacity:1;stroke:#6495ed;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 64.448821,191.96837 v 1.99419 h 9.200873 v -2.15583 z"
+       id="path5" />
+    <path
+       style="fill:#6495ed;fill-opacity:1;stroke:#6495ed;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 64.477074,199.90223 h 9.433475 v 2.35206 h -3.848854 v 4.44372 h 7.219595 v 2.48305 H 61.018287 v -2.50099 h 6.700973 v -4.41767 h -3.001468 z"
+       id="path6"
+       sodipodi:nodetypes="ccccccccccccc" />
   </g>
 </svg>
