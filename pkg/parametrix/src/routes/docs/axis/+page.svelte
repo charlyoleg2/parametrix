@@ -87,7 +87,7 @@
 	$: ratio2One = (sun2Z + ring2Z) / sun2Z;
 	$: ratio2All = ratio2One ** stage2Nb;
 	$: torque5 = torque4 / (ratio2All * (gearEffi / 100) ** stage2Nb);
-	$: speed5 = ratio2All / speed4; // Hz
+	$: speed5 = ratio2All * speed4; // Hz
 	$: power5 = torque5 * 2 * Math.PI * speed5; // W
 </script>
 
@@ -222,7 +222,7 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Ration ring / gear-wheel</td>
+			<td>Ratio ring / gear-wheel</td>
 			<td>1 : {ratioRW.toFixed(2)}</td>
 		</tr>
 		<tr>
@@ -297,7 +297,7 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Ration of one stage of reductor-1</td>
+			<td>Ratio of one stage of reductor-1</td>
 			<td>1 : {ratio1One.toFixed(2)}</td>
 		</tr>
 		<tr>
@@ -308,8 +308,13 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Ration of reductor-1</td>
+			<td>Ratio of reductor-1</td>
 			<td>1 : {ratio1All.toFixed(2)}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Efficiency of reductor-1</td>
+			<td>{(100 * (gearEffi / 100) ** stage1Nb).toFixed(2)} %</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -339,7 +344,7 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Ration from reductor-1 input to axis</td>
+			<td>Ratio from reductor-1 input to axis</td>
 			<td>1 : {(ratioRW * ratio1All).toFixed(2)}</td>
 		</tr>
 		<tr>
@@ -393,7 +398,7 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Ration of one stage of reductor-2</td>
+			<td>Ratio of one stage of reductor-2</td>
 			<td>1 : {ratio2One.toFixed(2)}</td>
 		</tr>
 		<tr>
@@ -404,8 +409,13 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Ration of reductor-2</td>
+			<td>Ratio of reductor-2</td>
 			<td>1 : {ratio2All.toFixed(2)}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Efficiency of reductor-2</td>
+			<td>{(100 * (gearEffi / 100) ** stage2Nb).toFixed(2)} %</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -435,7 +445,7 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Ration from reductor-2 input to axis</td>
+			<td>Ratio from reductor-2 input to axis</td>
 			<td>1 : {(ratioRW * ratio1All * ratio2All).toFixed(2)}</td>
 		</tr>
 		<tr>
