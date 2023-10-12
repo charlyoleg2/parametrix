@@ -8,7 +8,7 @@
 	let halfTurn = 120; // s
 	let ringNb = 2;
 	let wheelNb = 8;
-	let wheelModule = 15;
+	let wheelModule = 10;
 	let wheelZ = 23;
 	let wheelMargin = 10; // %
 	let gearEfficiency = 80; // %
@@ -23,6 +23,9 @@
 	let torque4 = 10;
 	let speed3 = 10;
 	let speed4 = 10;
+	let power2 = 10;
+	let power3 = 10;
+	let power4 = 10;
 	let oneTurn = 10;
 	let wheelDiameter = 10;
 	let ringDiameter = 10;
@@ -38,6 +41,7 @@
 	$: torque1 = d1 * load_mass * 9.81;
 	$: torque2 = torque1 * securityFactor;
 	$: oneTurn = 2 * halfTurn;
+	$: power2 = (torque2 * 2 * Math.PI) / oneTurn; // W
 	$: wheelDiameter = wheelModule * (wheelZ + 2);
 	function fRingZ(nb: number, wheelZ: number, margin: number): number {
 		const angle = Math.PI / nb; //2 * Math.PI / (2 * nb);
@@ -50,8 +54,9 @@
 	$: ringZ = fRingZ(wheelNb, wheelZ, wheelMargin);
 	$: ringDiameter = wheelModule * (ringZ + 4);
 	$: ratioRW = ringZ / wheelZ;
-	$: torque3 = torque2 / (ringNb * ratioRW * (gearEfficiency / 100));
+	$: torque3 = torque2 / (ringNb * wheelNb * ratioRW * (gearEfficiency / 100));
 	$: speed3 = oneTurn / ratioRW; // s
+	$: power3 = (torque3 * 2 * Math.PI) / speed3; // W
 	$: planet1Diameter = epicyclic1Module * (planet1Z + 2);
 	$: ring1Z = fRingZ(planet1Nb, planet1Z, wheelMargin);
 	$: sun1Z = ring1Z - 2 * planet1Z;
@@ -60,6 +65,7 @@
 	$: ratio1All = ratio1One ** stage1Nb;
 	$: torque4 = torque3 / (ratio1All * (gearEfficiency / 100) ** stage1Nb);
 	$: speed4 = ratio1All / speed3; // Hz
+	$: power4 = torque4 * 2 * Math.PI * speed4; // W
 </script>
 
 <h1>Motorized axis</h1>
@@ -84,6 +90,12 @@
 			<th>Parameter</th>
 			<th>Value</th>
 			<th></th>
+		</tr>
+		<tr class="subtitle">
+			<td></td>
+			<td>Motorized axis requirements</td>
+			<td></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>M</td>
@@ -123,6 +135,17 @@
 			<td></td>
 			<td>Time for one turn (s)</td>
 			<td>{oneTurn}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Power at axis (W)</td>
+			<td>{power2}</td>
+		</tr>
+		<tr class="subtitle">
+			<td></td>
+			<td>Axis gear-rings and gear-wheels</td>
+			<td></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>N1</td>
@@ -190,6 +213,17 @@
 			<td></td>
 			<td>Gear-wheel rotation time (s)</td>
 			<td>{speed3}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Power at gearwheel (W)</td>
+			<td>{power3}</td>
+		</tr>
+		<tr class="subtitle">
+			<td></td>
+			<td>Reductor-1</td>
+			<td></td>
+			<td></td>
 		</tr>
 		<tr>
 			<td>Nr1</td>
@@ -271,6 +305,11 @@
 			<td>Reductor-1 input speed (Hz)</td>
 			<td>{speed4}</td>
 		</tr>
+		<tr>
+			<td></td>
+			<td>Power at reductor-1 input (W)</td>
+			<td>{power4}</td>
+		</tr>
 	</table>
 </article>
 
@@ -289,5 +328,8 @@
 	article {
 		margin: 1rem;
 		margin-top: 0.2rem;
+	}
+	article > table > tr.subtitle {
+		background-color: colors.$table-head;
 	}
 </style>
