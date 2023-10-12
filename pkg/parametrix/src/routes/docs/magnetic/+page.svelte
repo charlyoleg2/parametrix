@@ -23,217 +23,106 @@
 	let sectionAreaM = 10; // m2
 	let torusLength = 10; // mm
 	let torusLengthM = 10; // m
-	let torusLengthStr = '10.0';
 	let magnetomotive = 10;
-	let magnetomotiveStr = '10.0';
 	let torusReluctance = 10;
-	let torusReluctanceStr = '10.0';
 	let torusMagneticFlux = 10;
-	let torusMagneticFluxStr = '10.0';
 	let torusMagneticField = 10;
-	let torusMagneticFieldStr = '10.0';
 	let torusMagneticEnergy = 10;
-	let torusMagneticEnergyStr = '10.0';
 	let torusInductance = 10;
-	let torusInductanceStr = '10.0';
 	let swellingL1 = 10;
 	let swellingL1M = 10;
-	let swellingL1Str = '10.0';
 	let swellingS1 = 10;
 	let swellingS1M = 10;
-	let swellingS1Str = '10.0';
 	let swellingL2 = 10;
 	let swellingL2M = 10;
-	let swellingL2Str = '10.0';
 	let swellingS2 = 10;
 	let swellingS2M = 10;
-	let swellingS2Str = '10.0';
 	let swellingReluctance = 10;
-	let swellingReluctanceStr = '10.0';
 	let swellingMagneticFlux = 10;
-	let swellingMagneticFluxStr = '10.0';
 	let swellingMagneticField1 = 10;
-	let swellingMagneticField1Str = '10.0';
 	let swellingMagneticField2 = 10;
-	let swellingMagneticField2Str = '10.0';
 	let swellingMagneticEnergy = 10;
-	let swellingMagneticEnergyStr = '10.0';
 	let swellingInductance = 10;
-	let swellingInductanceStr = '10.0';
 	let airgapGM = 10;
 	let airgapReluctance = 10;
-	let airgapReluctanceStr = '10.0';
 	let airgapMagneticFlux = 10;
-	let airgapMagneticFluxStr = '10.0';
 	let airgapMagneticField = 10;
-	let airgapMagneticFieldStr = '10.0';
 	let airgapMagneticEnergy = 10;
-	let airgapMagneticEnergyStr = '10.0';
 	let airgapInductance = 10;
-	let airgapInductanceStr = '10.0';
 	let airgapAM = 10; // m
 	let airgapBM = 10; // m
 	let sectionAreaL = 10; // mm2
 	let sectionAreaLM = 10; // m2
-	let sectionAreaLStr = '10';
 	let sectionAreaAir = 10; // mm2
 	let sectionAreaAirM = 10; // m2
-	let sectionAreaAirStr = '10';
 	let sectionAreaShuttle = 10; // mm2
 	let sectionAreaShuttleM = 10; // m2
-	let sectionAreaShuttleStr = '10';
 	let shuttleReluctance = 10;
-	let shuttleReluctanceStr = '10.0';
 	let shuttleMagneticFlux = 10;
-	let shuttleMagneticFluxStr = '10.0';
 	let shuttleMagneticFieldL = 10;
-	let shuttleMagneticFieldLStr = '10.0';
 	//let RG1 = 10;
 	//let RG2 = 10;
 	let shuttleMagneticFieldG1 = 10;
-	let shuttleMagneticFieldG1Str = '10.0';
 	let shuttleMagneticFieldG2 = 10;
-	let shuttleMagneticFieldG2Str = '10.0';
 	let shuttleMagneticEnergy = 10;
-	let shuttleMagneticEnergyStr = '10.0';
 	//let shuttleEm = 10;
-	//let shuttleEmStr = '10.0';
 	let shuttleInductance = 10;
-	let shuttleInductanceStr = '10.0';
 	let shuttleForce = 10;
-	let shuttleForceStr = '10.0';
 	let airgapHM = 10; // m
 	let shuttlerReluctance = 10;
-	let shuttlerReluctanceStr = '10.0';
 	let shuttlerMagneticFlux = 10;
-	let shuttlerMagneticFluxStr = '10.0';
 	let shuttlerMagneticFieldL = 10;
-	let shuttlerMagneticFieldLStr = '10.0';
 	let shuttlerEm = 10;
-	let shuttlerEmStr = '10.0';
 	let shuttlerInductance = 10;
-	let shuttlerInductanceStr = '10.0';
 	let shuttlerForce = 10;
-	let shuttlerForceStr = '10.0';
 	// calculations
-	$: {
-		torusLength = 2 * Math.PI * torusRadius;
-		torusLengthStr = torusLength.toFixed(1);
-	}
+	$: torusLength = 2 * Math.PI * torusRadius;
 	$: torusLengthM = torusLength / 1000;
 	$: sectionAreaM = sectionArea / 1000000;
-	$: {
-		magnetomotive = turnNb * current;
-		magnetomotiveStr = magnetomotive.toFixed(1);
-	}
-	$: {
-		torusReluctance = torusLengthM / (permeability * mu0 * sectionAreaM);
-		torusReluctanceStr = torusReluctance.toExponential(3);
-	}
-	$: {
-		torusMagneticFlux = magnetomotive / torusReluctance;
-		torusMagneticFluxStr = torusMagneticFlux.toExponential(3);
-	}
-	$: {
-		torusMagneticField = torusMagneticFlux / sectionAreaM;
-		torusMagneticFieldStr = torusMagneticField.toExponential(3);
-	}
-	$: {
-		torusMagneticEnergy =
-			(permeability * mu0 * sectionAreaM * turnNb ** 2 * current ** 2) / (2 * torusLengthM);
-		torusMagneticEnergyStr = torusMagneticEnergy.toExponential(3);
-	}
-	$: {
-		torusInductance = turnNb ** 2 / torusReluctance;
-		torusInductanceStr = torusInductance.toExponential(3);
-	}
-	$: {
-		swellingL2 = (torusLength * percentL2) / 100;
-		swellingL1 = torusLength - swellingL2;
-		swellingL1Str = swellingL1.toFixed(1);
-		swellingL2Str = swellingL2.toFixed(1);
-	}
-	$: {
-		swellingS1 = sectionArea;
-		swellingS2 = (swellingS1 * percentS2) / 100;
-		swellingS1Str = swellingS1.toFixed(1);
-		swellingS2Str = swellingS2.toFixed(1);
-	}
+	$: magnetomotive = turnNb * current;
+	$: torusReluctance = torusLengthM / (permeability * mu0 * sectionAreaM);
+	$: torusMagneticFlux = magnetomotive / torusReluctance;
+	$: torusMagneticField = torusMagneticFlux / sectionAreaM;
+	$: torusMagneticEnergy =
+		(permeability * mu0 * sectionAreaM * turnNb ** 2 * current ** 2) / (2 * torusLengthM);
+	$: torusInductance = turnNb ** 2 / torusReluctance;
+	$: swellingL2 = (torusLength * percentL2) / 100;
+	$: swellingL1 = torusLength - swellingL2;
+	$: swellingS1 = sectionArea;
+	$: swellingS2 = (swellingS1 * percentS2) / 100;
 	$: swellingL1M = swellingL1 / 1000;
 	$: swellingS1M = swellingS1 / 1000000;
 	$: swellingL2M = swellingL2 / 1000;
 	$: swellingS2M = swellingS2 / 1000000;
-	$: {
-		swellingReluctance =
-			(swellingL1M * swellingS2M + swellingL2M * swellingS1M) /
-			(permeability * mu0 * swellingS1M * swellingS2M);
-		swellingReluctanceStr = swellingReluctance.toExponential(3);
-	}
-	$: {
-		swellingMagneticFlux = magnetomotive / swellingReluctance;
-		swellingMagneticFluxStr = swellingMagneticFlux.toExponential(3);
-	}
-	$: {
-		swellingMagneticField1 = swellingMagneticFlux / swellingS1M;
-		swellingMagneticField1Str = swellingMagneticField1.toExponential(3);
-	}
-	$: {
-		swellingMagneticField2 = swellingMagneticFlux / swellingS2M;
-		swellingMagneticField2Str = swellingMagneticField2.toExponential(3);
-	}
-	$: {
-		swellingMagneticEnergy =
-			(swellingMagneticField1 ** 2 * swellingL1M * swellingS1M) / (2 * permeability * mu0) +
-			(swellingMagneticField2 ** 2 * swellingL2M * swellingS2M) / (2 * permeability * mu0);
-		swellingMagneticEnergyStr = swellingMagneticEnergy.toExponential(3);
-	}
-	$: {
-		swellingInductance =
-			(permeability * mu0 * turnNb ** 2 * swellingS1M * swellingS2M) /
-			(swellingL1M * swellingS2M + swellingL2M * swellingS1M);
-		swellingInductanceStr = swellingInductance.toExponential(3);
-	}
+	$: swellingReluctance =
+		(swellingL1M * swellingS2M + swellingL2M * swellingS1M) /
+		(permeability * mu0 * swellingS1M * swellingS2M);
+	$: swellingMagneticFlux = magnetomotive / swellingReluctance;
+	$: swellingMagneticField1 = swellingMagneticFlux / swellingS1M;
+	$: swellingMagneticField2 = swellingMagneticFlux / swellingS2M;
+	$: swellingMagneticEnergy =
+		(swellingMagneticField1 ** 2 * swellingL1M * swellingS1M) / (2 * permeability * mu0) +
+		(swellingMagneticField2 ** 2 * swellingL2M * swellingS2M) / (2 * permeability * mu0);
+	$: swellingInductance =
+		(permeability * mu0 * turnNb ** 2 * swellingS1M * swellingS2M) /
+		(swellingL1M * swellingS2M + swellingL2M * swellingS1M);
 	$: airgapGM = airgapG / 1000;
-	$: {
-		airgapReluctance =
-			(torusLengthM + permeability * airgapGM) / (permeability * mu0 * sectionAreaM);
-		airgapReluctanceStr = airgapReluctance.toExponential(3);
-	}
-	$: {
-		airgapMagneticFlux = magnetomotive / airgapReluctance;
-		airgapMagneticFluxStr = airgapMagneticFlux.toExponential(3);
-	}
-	$: {
-		airgapMagneticField = airgapMagneticFlux / sectionAreaM;
-		airgapMagneticFieldStr = airgapMagneticField.toExponential(3);
-	}
-	$: {
-		airgapMagneticEnergy =
-			(airgapMagneticField ** 2 * torusLengthM * sectionAreaM) / (2 * permeability * mu0) +
-			(airgapMagneticField ** 2 * airgapGM * sectionAreaM) / (2 * mu0);
-		airgapMagneticEnergyStr = airgapMagneticEnergy.toExponential(3);
-	}
-	$: {
-		airgapInductance = turnNb ** 2 / airgapReluctance;
-		airgapInductanceStr = airgapInductance.toExponential(3);
-	}
+	$: airgapReluctance =
+		(torusLengthM + permeability * airgapGM) / (permeability * mu0 * sectionAreaM);
+	$: airgapMagneticFlux = magnetomotive / airgapReluctance;
+	$: airgapMagneticField = airgapMagneticFlux / sectionAreaM;
+	$: airgapMagneticEnergy =
+		(airgapMagneticField ** 2 * torusLengthM * sectionAreaM) / (2 * permeability * mu0) +
+		(airgapMagneticField ** 2 * airgapGM * sectionAreaM) / (2 * mu0);
+	$: airgapInductance = turnNb ** 2 / airgapReluctance;
 	$: airgapAM = airgapA / 1000; // m
 	$: airgapBM = airgapB / 1000; // m
 	$: sectionAreaLM = airgapAM * airgapBM;
-	$: {
-		sectionAreaL = sectionAreaLM * 1000000; // mm2
-		sectionAreaLStr = sectionAreaL.toFixed(1);
-	}
-	$: {
-		sectionAreaAirM = (shuttleX * sectionAreaLM) / 100; // m2
-		sectionAreaAir = sectionAreaAirM * 1000000; // mm2
-		sectionAreaAirStr = sectionAreaAir.toFixed(1);
-	}
-	$: {
-		sectionAreaShuttleM = ((100 - shuttleX) * sectionAreaLM) / 100; // m2
-		sectionAreaShuttle = sectionAreaShuttleM * 1000000; // mm2
-		sectionAreaShuttleStr = sectionAreaShuttle.toFixed(1);
-	}
+	$: sectionAreaL = sectionAreaLM * 1000000; // mm2
+	$: sectionAreaAirM = (shuttleX * sectionAreaLM) / 100; // m2
+	$: sectionAreaAir = sectionAreaAirM * 1000000; // mm2
+	$: sectionAreaShuttleM = ((100 - shuttleX) * sectionAreaLM) / 100; // m2
+	$: sectionAreaShuttle = sectionAreaShuttleM * 1000000; // mm2
 	function fShuttleReluctance(posX: number, pHM: number): number {
 		const areaLM = airgapAM * airgapBM; // m2
 		const areaAirM = (posX * areaLM) / 100; // m2
@@ -244,50 +133,34 @@
 			airgapGM / (mu0 * areaAirM + permeaG * mu0 * areaShuttleM);
 		return reluct;
 	}
-	$: {
-		//shuttleReluctance =
-		//	torusLengthM / (permeability * mu0 * airgapAM * airgapBM) +
-		//	airgapGM / (mu0 * sectionAreaAirM + permeaG * mu0 * sectionAreaShuttleM);
-		shuttleReluctance = fShuttleReluctance(shuttleX, 0);
-		shuttleReluctanceStr = shuttleReluctance.toExponential(3);
-	}
+	//shuttleReluctance =
+	//	torusLengthM / (permeability * mu0 * airgapAM * airgapBM) +
+	//	airgapGM / (mu0 * sectionAreaAirM + permeaG * mu0 * sectionAreaShuttleM);
+	$: shuttleReluctance = fShuttleReluctance(shuttleX, 0);
 	function fShuttleMagFlux(posX: number, pHM: number): number {
 		const magFlux = magnetomotive / fShuttleReluctance(posX, pHM);
 		return magFlux;
 	}
-	$: {
-		//shuttleMagneticFlux = magnetomotive / shuttleReluctance;
-		shuttleMagneticFlux = fShuttleMagFlux(shuttleX, 0);
-		shuttleMagneticFluxStr = shuttleMagneticFlux.toExponential(3);
-	}
+	//shuttleMagneticFlux = magnetomotive / shuttleReluctance;
+	$: shuttleMagneticFlux = fShuttleMagFlux(shuttleX, 0);
 	function fShuttleMagField(posX: number, pHM: number): number {
 		const areaLM = airgapAM * airgapBM; // m2
 		const magField = fShuttleMagFlux(posX, pHM) / areaLM;
 		return magField;
 	}
-	$: {
-		//shuttleMagneticFieldL = shuttleMagneticFlux / sectionAreaLM;
-		shuttleMagneticFieldL = fShuttleMagField(shuttleX, 0);
-		shuttleMagneticFieldLStr = shuttleMagneticFieldL.toExponential(3);
-	}
+	//shuttleMagneticFieldL = shuttleMagneticFlux / sectionAreaLM;
+	$: shuttleMagneticFieldL = fShuttleMagField(shuttleX, 0);
 	//$: RG1 = airgapGM / (mu0 * sectionAreaAirM);
 	//$: RG2 = airgapGM / (permeaG * mu0 * sectionAreaShuttleM);
-	$: {
-		//shuttleMagneticFieldG1 = ((shuttleMagneticFlux / sectionAreaAirM) * RG2) / (RG1 + RG2);
-		shuttleMagneticFieldG1 = shuttleMagneticFieldL;
-		shuttleMagneticFieldG1Str = shuttleMagneticFieldG1.toExponential(3);
-	}
-	$: {
-		//shuttleMagneticFieldG2 = ((shuttleMagneticFlux / sectionAreaShuttleM) * RG1) / (RG1 + RG2);
-		shuttleMagneticFieldG2 = shuttleMagneticFieldL;
-		shuttleMagneticFieldG2Str = shuttleMagneticFieldG2.toExponential(3);
-	}
+	//shuttleMagneticFieldG1 = ((shuttleMagneticFlux / sectionAreaAirM) * RG2) / (RG1 + RG2);
+	$: shuttleMagneticFieldG1 = shuttleMagneticFieldL;
+	//shuttleMagneticFieldG2 = ((shuttleMagneticFlux / sectionAreaShuttleM) * RG1) / (RG1 + RG2);
+	$: shuttleMagneticFieldG2 = shuttleMagneticFieldL;
 	//$: {
 	//	shuttleMagneticEnergy =
 	//		(shuttleMagneticFieldL ** 2 * torusLengthM * sectionAreaLM) / (2 * permeability * mu0) +
 	//		(shuttleMagneticFieldG1 ** 2 * airgapGM * sectionAreaAirM) / (2 * mu0) +
 	//		(shuttleMagneticFieldG2 ** 2 * airgapGM * sectionAreaShuttleM) / (2 * permeaG * mu0);
-	//	shuttleMagneticEnergyStr = shuttleMagneticEnergy.toExponential(3);
 	//}
 	function fShuttleEm(posX: number, pHM: number): number {
 		const areaLM = airgapAM * airgapBM; // m2
@@ -316,19 +189,13 @@
 			(magFieldG2 ** 2 * airgapGM * areaShuttleM) / (2 * permeaG * mu0);
 		return magEm;
 	}
-	$: {
-		shuttleMagneticEnergy = fShuttleEm(shuttleX, 0);
-		shuttleMagneticEnergyStr = shuttleMagneticEnergy.toExponential(3);
-	}
+	$: shuttleMagneticEnergy = fShuttleEm(shuttleX, 0);
 	function fShuttleInductance(posX: number, pHM: number): number {
 		const induct = turnNb ** 2 / fShuttleReluctance(posX, pHM);
 		return induct;
 	}
-	$: {
-		//shuttleInductance = turnNb ** 2 / shuttleReluctance;
-		shuttleInductance = fShuttleInductance(shuttleX, 0);
-		shuttleInductanceStr = shuttleInductance.toExponential(3);
-	}
+	//shuttleInductance = turnNb ** 2 / shuttleReluctance;
+	$: shuttleInductance = fShuttleInductance(shuttleX, 0);
 	function fShuttleForce(posX: number, pHM: number): number {
 		const step = 0.1;
 		let posX2 = posX;
@@ -344,33 +211,14 @@
 	$: {
 		permeaG = permeaG; // to force the reactivity
 		shuttleForce = fShuttleForce(shuttleX, 0);
-		shuttleForceStr = shuttleForce.toExponential(3);
 	}
 	$: airgapHM = airgapH / 1000;
-	$: {
-		shuttlerReluctance = fShuttleReluctance(shuttleX, airgapHM);
-		shuttlerReluctanceStr = shuttlerReluctance.toExponential(3);
-	}
-	$: {
-		shuttlerMagneticFlux = fShuttleMagFlux(shuttleX, airgapHM);
-		shuttlerMagneticFluxStr = shuttlerMagneticFlux.toExponential(3);
-	}
-	$: {
-		shuttlerMagneticFieldL = fShuttleMagField(shuttleX, airgapHM);
-		shuttlerMagneticFieldLStr = shuttlerMagneticFieldL.toExponential(3);
-	}
-	$: {
-		shuttlerEm = fShuttleEm(shuttleX, airgapHM);
-		shuttlerEmStr = shuttlerEm.toExponential(3);
-	}
-	$: {
-		shuttlerInductance = (2 * shuttlerEm) / current ** 2;
-		shuttlerInductanceStr = shuttlerInductance.toExponential(3);
-	}
-	$: {
-		shuttlerForce = fShuttleForce(shuttleX, airgapHM);
-		shuttlerForceStr = shuttlerForce.toExponential(3);
-	}
+	$: shuttlerReluctance = fShuttleReluctance(shuttleX, airgapHM);
+	$: shuttlerMagneticFlux = fShuttleMagFlux(shuttleX, airgapHM);
+	$: shuttlerMagneticFieldL = fShuttleMagField(shuttleX, airgapHM);
+	$: shuttlerEm = fShuttleEm(shuttleX, airgapHM);
+	$: shuttlerInductance = (2 * shuttlerEm) / current ** 2;
+	$: shuttlerForce = fShuttleForce(shuttleX, airgapHM);
 </script>
 
 <h1>Magnetic circuit</h1>
@@ -613,37 +461,37 @@
 		<tr>
 			<td>{@html math('L')}</td>
 			<td>Torus length (mm)</td>
-			<td>{torusLengthStr}</td>
+			<td>{torusLength.toFixed(1)} mm</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{F}')}</td>
 			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotiveStr}</td>
+			<td>{magnetomotive.toExponential(3)} A</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{R}')}</td>
 			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{torusReluctanceStr}</td>
+			<td>{torusReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\varPhi')}</td>
 			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{torusMagneticFluxStr}</td>
+			<td>{torusMagneticFlux.toExponential(3)} H.A</td>
 		</tr>
 		<tr>
 			<td>{@html math('B')}</td>
 			<td>Magnetic field ({@html math('T')})</td>
-			<td>{torusMagneticFieldStr}</td>
+			<td>{torusMagneticField.toExponential(3)} T</td>
 		</tr>
 		<tr>
 			<td>{@html math('E_m')}</td>
 			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{torusMagneticEnergyStr}</td>
+			<td>{torusMagneticEnergy.toExponential(3)} J</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{L}')}</td>
 			<td>Inductance ({@html math('H')})</td>
-			<td>{torusInductanceStr}</td>
+			<td>{torusInductance.toExponential(3)} H</td>
 		</tr>
 	</table>
 </article>
@@ -708,57 +556,57 @@
 		<tr>
 			<td>{@html math('L_1')}</td>
 			<td>Length of L1 ({@html math('mm')})</td>
-			<td>{swellingL1Str}</td>
+			<td>{swellingL1.toFixed(1)} mm</td>
 		</tr>
 		<tr>
 			<td>{@html math('S_1')}</td>
 			<td>Area of S1 ({@html math('mm^2')})</td>
-			<td>{swellingS1Str}</td>
+			<td>{swellingS1.toFixed(1)} {@html math('mm^2')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('L_2')}</td>
 			<td>Length of L2 ({@html math('mm')})</td>
-			<td>{swellingL2Str}</td>
+			<td>{swellingL2.toFixed(1)} mm</td>
 		</tr>
 		<tr>
 			<td>{@html math('S_2')}</td>
 			<td>Area of S2 ({@html math('mm^2')})</td>
-			<td>{swellingS2Str}</td>
+			<td>{swellingS2.toFixed(1)} {@html math('mm^2')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{F}')}</td>
 			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotiveStr}</td>
+			<td>{magnetomotive.toExponential(3)} A</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{R}')}</td>
 			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{swellingReluctanceStr}</td>
+			<td>{swellingReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\varPhi')}</td>
 			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{swellingMagneticFluxStr}</td>
+			<td>{swellingMagneticFlux.toExponential(3)} H.A</td>
 		</tr>
 		<tr>
 			<td>{@html math('B_1')}</td>
 			<td>Magnetic field ({@html math('T')})</td>
-			<td>{swellingMagneticField1Str}</td>
+			<td>{swellingMagneticField1.toExponential(3)} T</td>
 		</tr>
 		<tr>
 			<td>{@html math('B_2')}</td>
 			<td>Magnetic field ({@html math('T')})</td>
-			<td>{swellingMagneticField2Str}</td>
+			<td>{swellingMagneticField2.toExponential(3)} T</td>
 		</tr>
 		<tr>
 			<td>{@html math('E_m')}</td>
 			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{swellingMagneticEnergyStr}</td>
+			<td>{swellingMagneticEnergy.toExponential(3)} J</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{L}')}</td>
 			<td>Inductance ({@html math('H')})</td>
-			<td>{swellingInductanceStr}</td>
+			<td>{swellingInductance.toExponential(3)} H</td>
 		</tr>
 	</table>
 </article>
@@ -807,37 +655,37 @@
 		<tr>
 			<td>{@html math('\\mathcal{F}')}</td>
 			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotiveStr}</td>
+			<td>{magnetomotive.toExponential(3)} A</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{R}')}</td>
 			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{airgapReluctanceStr}</td>
+			<td>{airgapReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\varPhi')}</td>
 			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{airgapMagneticFluxStr}</td>
+			<td>{airgapMagneticFlux.toExponential(3)} H.A</td>
 		</tr>
 		<tr>
 			<td>{@html math('B_L')}</td>
 			<td>Magnetic field ({@html math('T')})</td>
-			<td>{airgapMagneticFieldStr}</td>
+			<td>{airgapMagneticField.toExponential(3)} T</td>
 		</tr>
 		<tr>
 			<td>{@html math('B_G')}</td>
 			<td>Magnetic field ({@html math('T')})</td>
-			<td>{airgapMagneticFieldStr}</td>
+			<td>{airgapMagneticField.toExponential(3)} T</td>
 		</tr>
 		<tr>
 			<td>{@html math('E_m')}</td>
 			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{airgapMagneticEnergyStr}</td>
+			<td>{airgapMagneticEnergy.toExponential(3)} J</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{L}')}</td>
 			<td>Inductance ({@html math('H')})</td>
-			<td>{airgapInductanceStr}</td>
+			<td>{airgapInductance.toExponential(3)} H</td>
 		</tr>
 	</table>
 </article>
@@ -953,62 +801,62 @@
 		<tr>
 			<td>{@html math('S')}</td>
 			<td>Torus section area ({@html math('mm^2')})</td>
-			<td>{sectionAreaLStr}</td>
+			<td>{sectionAreaL.toFixed(1)} {@html math('mm^2')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('S_{air}')}</td>
 			<td>Air area ({@html math('mm^2')})</td>
-			<td>{sectionAreaAirStr}</td>
+			<td>{sectionAreaAir.toFixed(1)} {@html math('mm^2')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('S_{shuttle}')}</td>
 			<td>Shuttle area ({@html math('mm^2')})</td>
-			<td>{sectionAreaShuttleStr}</td>
+			<td>{sectionAreaShuttle.toFixed(1)} {@html math('mm^2')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{F}')}</td>
 			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotiveStr}</td>
+			<td>{magnetomotive.toExponential(3)} A</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{R}')}</td>
 			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{shuttleReluctanceStr}</td>
+			<td>{shuttleReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\varPhi')}</td>
 			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{shuttleMagneticFluxStr}</td>
+			<td>{shuttleMagneticFlux.toExponential(3)} H.A</td>
 		</tr>
 		<tr>
 			<td>{@html math('B_L')}</td>
 			<td>Magnetic field in torus ({@html math('T')})</td>
-			<td>{shuttleMagneticFieldLStr}</td>
+			<td>{shuttleMagneticFieldL.toExponential(3)} T</td>
 		</tr>
 		<tr>
 			<td>{@html math('B_{Gair}')}</td>
 			<td>Magnetic field in air-gap ({@html math('T')})</td>
-			<td>{shuttleMagneticFieldG1Str}</td>
+			<td>{shuttleMagneticFieldG1.toExponential(3)} T</td>
 		</tr>
 		<tr>
 			<td>{@html math('B_{Gshuttle}')}</td>
 			<td>Magnetic field in shuttle ({@html math('T')})</td>
-			<td>{shuttleMagneticFieldG2Str}</td>
+			<td>{shuttleMagneticFieldG2.toExponential(3)} T</td>
 		</tr>
 		<tr>
 			<td>{@html math('E_m')}</td>
 			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{shuttleMagneticEnergyStr}</td>
+			<td>{shuttleMagneticEnergy.toExponential(3)} J</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{L}')}</td>
 			<td>Inductance ({@html math('H')})</td>
-			<td>{shuttleInductanceStr}</td>
+			<td>{shuttleInductance.toExponential(3)} H</td>
 		</tr>
 		<tr>
 			<td>{@html math('F_x')}</td>
 			<td>Force ({@html math('N')})</td>
-			<td>{shuttleForceStr}</td>
+			<td>{shuttleForce.toExponential(3)} N</td>
 		</tr>
 	</table>
 </article>
@@ -1096,37 +944,37 @@
 		<tr>
 			<td>{@html math('\\mathcal{F}')}</td>
 			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotiveStr}</td>
+			<td>{magnetomotive.toExponential(3)} A</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{R}')}</td>
 			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{shuttlerReluctanceStr}</td>
+			<td>{shuttlerReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\varPhi')}</td>
 			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{shuttlerMagneticFluxStr}</td>
+			<td>{shuttlerMagneticFlux.toExponential(3)} H.A</td>
 		</tr>
 		<tr>
 			<td>{@html math('B_L')}</td>
 			<td>Magnetic field in torus ({@html math('T')})</td>
-			<td>{shuttlerMagneticFieldLStr}</td>
+			<td>{shuttlerMagneticFieldL.toExponential(3)} T</td>
 		</tr>
 		<tr>
 			<td>{@html math('E_m')}</td>
 			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{shuttlerEmStr}</td>
+			<td>{shuttlerEm.toExponential(3)} J</td>
 		</tr>
 		<tr>
 			<td>{@html math('\\mathcal{L}')}</td>
 			<td>Inductance ({@html math('H')})</td>
-			<td>{shuttlerInductanceStr}</td>
+			<td>{shuttlerInductance.toExponential(3)} H</td>
 		</tr>
 		<tr>
 			<td>{@html math('F_x')}</td>
 			<td>Force ({@html math('N')})</td>
-			<td>{shuttlerForceStr}</td>
+			<td>{shuttlerForce.toExponential(3)} N</td>
 		</tr>
 	</table>
 </article>
