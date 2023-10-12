@@ -190,7 +190,7 @@
 		<tr>
 			<td>Zr</td>
 			<td>Number of teeth of gear-ring</td>
-			<td>{ringZ.toFixed(2)}</td>
+			<td>{ringZ}</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -211,7 +211,7 @@
 		<tr>
 			<td></td>
 			<td>Gear-wheel rotation time (s)</td>
-			<td>{speed3.toFixed(2)} </td>
+			<td>{speed3.toFixed(2)} s</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -255,12 +255,12 @@
 		<tr>
 			<td></td>
 			<td>Number of teeth of ring-1</td>
-			<td>{ring1Z.toFixed(2)}</td>
+			<td>{ring1Z}</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Number of teeth of sun-1</td>
-			<td>{sun1Z.toFixed(2)}</td>
+			<td>{sun1Z}</td>
 		</tr>
 		<tr>
 			<td></td>
