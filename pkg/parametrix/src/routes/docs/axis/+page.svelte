@@ -54,7 +54,7 @@
 	$: ringZ = fRingZ(wheelNb, wheelZ, wheelMargin);
 	$: ringDiameter = wheelModule * (ringZ + 4);
 	$: ratioRW = ringZ / wheelZ;
-	$: torque3 = torque2 / (ringNb * wheelNb * ratioRW * (gearEffi/ 100));
+	$: torque3 = torque2 / (ringNb * wheelNb * ratioRW * (gearEffi / 100));
 	$: speed3 = oneTurn / ratioRW; // s
 	$: power3 = (torque3 * 2 * Math.PI) / speed3; // W
 	$: planet1Diameter = epic1Module * (planet1Z + 2);
@@ -63,7 +63,7 @@
 	$: ring1Diameter = epic1Module * (ring1Z + 4);
 	$: ratio1One = (sun1Z + ring1Z) / sun1Z;
 	$: ratio1All = ratio1One ** stage1Nb;
-	$: torque4 = torque3 / (ratio1All * (gearEffi/ 100) ** stage1Nb);
+	$: torque4 = torque3 / (ratio1All * (gearEffi / 100) ** stage1Nb);
 	$: speed4 = ratio1All / speed3; // Hz
 	$: power4 = torque4 * 2 * Math.PI * speed4; // W
 </script>
