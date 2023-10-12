@@ -16,16 +16,24 @@
 	let epic1Module = 2;
 	let planet1Z = 23;
 	let stage1Nb = 6;
+	let planet2Nb = 8;
+	let epic2Module = 1;
+	let planet2Z = 23;
+	let stage2Nb = 6;
+	let shuttleForce = 0.0003; // N
 	// outputs
 	let torque1 = 10;
 	let torque2 = 10;
 	let torque3 = 10;
 	let torque4 = 10;
+	let torque5 = 10;
 	let speed3 = 10;
 	let speed4 = 10;
+	let speed5 = 10;
 	let power2 = 10;
 	let power3 = 10;
 	let power4 = 10;
+	let power5 = 10;
 	let oneTurn = 10;
 	let wheelDiameter = 10;
 	let ringDiameter = 10;
@@ -37,6 +45,12 @@
 	let sun1Z = 10;
 	let ratio1One = 10;
 	let ratio1All = 10;
+	let planet2Diameter = 10;
+	let ring2Diameter = 10;
+	let ring2Z = 10;
+	let sun2Z = 10;
+	let ratio2One = 10;
+	let ratio2All = 10;
 	// calculations
 	$: torque1 = d1 * load_mass * 9.81;
 	$: torque2 = torque1 * securityFactor;
@@ -66,6 +80,15 @@
 	$: torque4 = torque3 / (ratio1All * (gearEffi / 100) ** stage1Nb);
 	$: speed4 = ratio1All / speed3; // Hz
 	$: power4 = torque4 * 2 * Math.PI * speed4; // W
+	$: planet2Diameter = epic2Module * (planet2Z + 2);
+	$: ring2Z = fRingZ(planet2Nb, planet2Z, wheelMargin);
+	$: sun2Z = ring2Z - 2 * planet2Z;
+	$: ring2Diameter = epic2Module * (ring2Z + 4);
+	$: ratio2One = (sun2Z + ring2Z) / sun2Z;
+	$: ratio2All = ratio2One ** stage2Nb;
+	$: torque5 = torque4 / (ratio2All * (gearEffi / 100) ** stage2Nb);
+	$: speed5 = ratio2All / speed4; // Hz
+	$: power5 = torque5 * 2 * Math.PI * speed5; // W
 </script>
 
 <h1>Motorized axis</h1>
@@ -307,6 +330,135 @@
 			<td></td>
 			<td>Power at reductor-1 input (W)</td>
 			<td>{power4.toFixed(2)} W</td>
+		</tr>
+		<tr class="subtitle">
+			<td></td>
+			<td>From Reductor-1 input to axis</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Ration from reductor-1 input to axis</td>
+			<td>1 : {(ratioRW * ratio1All).toFixed(2)}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Efficiency from reductor-1 input to axis</td>
+			<td>{(100 * (gearEffi / 100) ** (1 + stage1Nb)).toFixed(2)} %</td>
+		</tr>
+		<tr class="subtitle">
+			<td></td>
+			<td>Reductor-2</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Nr2</td>
+			<td>Number of planets of reductor-2</td>
+			<td><input type="number" bind:value={planet2Nb} min="1" max="24" step="1" /></td>
+			<td><input type="range" bind:value={planet2Nb} min="1" max="24" step="1" /></td>
+		</tr>
+		<tr>
+			<td>mr2</td>
+			<td>Module of epicyclic of reductor-2 (mm)</td>
+			<td><input type="number" bind:value={epic2Module} min="1" max="100" step="0.1" /></td>
+			<td><input type="range" bind:value={epic2Module} min="1" max="100" step="0.1" /></td>
+		</tr>
+		<tr>
+			<td>Zr2</td>
+			<td>Number of teeth of planet-2</td>
+			<td><input type="number" bind:value={planet2Z} min="17" max="40" step="1" /></td>
+			<td><input type="range" bind:value={planet2Z} min="17" max="40" step="1" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Diameter of planet-2 (mm)</td>
+			<td>{planet2Diameter.toFixed(2)} mm</td>
+		</tr>
+		<tr>
+			<td>Dr2</td>
+			<td>Diameter of ring of reductor-2 (mm)</td>
+			<td>{ring2Diameter.toFixed(2)} mm</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Number of teeth of ring-2</td>
+			<td>{ring2Z}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Number of teeth of sun-2</td>
+			<td>{sun2Z}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Ration of one stage of reductor-2</td>
+			<td>1 : {ratio2One.toFixed(2)}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Number of stages of reductor-2</td>
+			<td><input type="number" bind:value={stage2Nb} min="1" max="10" step="1" /></td>
+			<td><input type="range" bind:value={stage2Nb} min="1" max="10" step="1" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Ration of reductor-2</td>
+			<td>1 : {ratio2All.toFixed(2)}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Reductor-2 input torque (N.m)</td>
+			<td>{torque5.toFixed(2)} N.m</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Reductor-2 input rotation speed (Hz)</td>
+			<td>{speed5.toFixed(2)} Hz</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Reductor-2 input rotation speed (rpm)</td>
+			<td>{(60 * speed5).toFixed(2)} rpm</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Power at reductor-2 input (W)</td>
+			<td>{power5.toFixed(2)} W</td>
+		</tr>
+		<tr class="subtitle">
+			<td></td>
+			<td>From Reductor-2 input to axis</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Ration from reductor-2 input to axis</td>
+			<td>1 : {(ratioRW * ratio1All * ratio2All).toFixed(2)}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Efficiency from reductor-2 input to axis</td>
+			<td>{(100 * (gearEffi / 100) ** (1 + stage1Nb + stage2Nb)).toFixed(2)} %</td>
+		</tr>
+		<tr class="subtitle">
+			<td></td>
+			<td>Electrical reluctance motor</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Force on one shuttle (N)</td>
+			<td><input type="number" bind:value={shuttleForce} min="0.0001" max="2" step="0.0001" /></td>
+			<td><input type="range" bind:value={shuttleForce} min="0.0001" max="2" step="0.0001" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Shuttle diameter (mm)</td>
+			<td>{(1000 * torque5 / shuttleForce).toFixed(2)} mm</td>
 		</tr>
 	</table>
 </article>
