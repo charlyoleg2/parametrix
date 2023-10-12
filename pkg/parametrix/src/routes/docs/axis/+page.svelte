@@ -20,7 +20,7 @@
 	let epic2Module = 1;
 	let planet2Z = 23;
 	let stage2Nb = 6;
-	let shuttleForce = 0.0003; // N
+	let shutFor = 0.0003; // N
 	// outputs
 	let torque1 = 10;
 	let torque2 = 10;
@@ -452,13 +452,13 @@
 		<tr>
 			<td></td>
 			<td>Force on one shuttle (N)</td>
-			<td><input type="number" bind:value={shuttleForce} min="0.0001" max="2" step="0.0001" /></td>
-			<td><input type="range" bind:value={shuttleForce} min="0.0001" max="2" step="0.0001" /></td>
+			<td><input type="number" bind:value={shutFor} min="0.0001" max="2" step="0.0001" /></td>
+			<td><input type="range" bind:value={shutFor} min="0.0001" max="2" step="0.0001" /></td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Shuttle diameter (mm)</td>
-			<td>{(1000 * torque5 / shuttleForce).toFixed(2)} mm</td>
+			<td>{((1000 * torque5) / shutFor).toFixed(2)} mm</td>
 		</tr>
 	</table>
 </article>
