@@ -3,7 +3,7 @@
 
 	// inputs
 	let load_mass = 600; // kg
-	let d1 = 1.5; //m
+	let d1 = 0.5; //m
 	let securityFactor = 4;
 	let halfTurn = 120; // s
 	let ringNb = 2;
@@ -15,12 +15,12 @@
 	let planet1Nb = 8;
 	let epic1Module = 2;
 	let planet1Z = 23;
-	let stage1Nb = 6;
+	let stage1Nb = 3;
 	let planet2Nb = 8;
 	let epic2Module = 1;
 	let planet2Z = 23;
 	let stage2Nb = 6;
-	let shutFor = 0.0003; // N
+	let shutFor = 0.3; //0.0003; // N
 	// outputs
 	let torque1 = 10;
 	let torque2 = 10;
