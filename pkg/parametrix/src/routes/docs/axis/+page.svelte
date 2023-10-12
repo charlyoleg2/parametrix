@@ -138,6 +138,11 @@
 		</tr>
 		<tr>
 			<td></td>
+			<td>Axis rotation speed (rpm)</td>
+			<td>{(60 / oneTurn).toFixed(2)} rpm</td>
+		</tr>
+		<tr>
+			<td></td>
 			<td>Power at axis (W)</td>
 			<td>{power2.toFixed(2)} W</td>
 		</tr>
@@ -215,6 +220,11 @@
 		</tr>
 		<tr>
 			<td></td>
+			<td>Gear-wheel rotation speed (rpm)</td>
+			<td>{(60 / speed3).toFixed(2)} rpm</td>
+		</tr>
+		<tr>
+			<td></td>
 			<td>Power at gearwheel (W)</td>
 			<td>{power3.toFixed(2)} W</td>
 		</tr>
@@ -285,8 +295,13 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td>Reductor-1 input speed (Hz)</td>
+			<td>Reductor-1 input rotation speed (Hz)</td>
 			<td>{speed4.toFixed(2)} Hz</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>Reductor-1 input rotation speed (rpm)</td>
+			<td>{(60 * speed4).toFixed(2)} rpm</td>
 		</tr>
 		<tr>
 			<td></td>
