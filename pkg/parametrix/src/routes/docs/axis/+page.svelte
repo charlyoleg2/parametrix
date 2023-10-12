@@ -11,9 +11,9 @@
 	let wheelModule = 10;
 	let wheelZ = 23;
 	let wheelMargin = 10; // %
-	let gearEfficiency = 80; // %
+	let gearEffi = 80; // %
 	let planet1Nb = 8;
-	let epicyclic1Module = 2;
+	let epic1Module = 2;
 	let planet1Z = 23;
 	let stage1Nb = 6;
 	// outputs
@@ -54,16 +54,16 @@
 	$: ringZ = fRingZ(wheelNb, wheelZ, wheelMargin);
 	$: ringDiameter = wheelModule * (ringZ + 4);
 	$: ratioRW = ringZ / wheelZ;
-	$: torque3 = torque2 / (ringNb * wheelNb * ratioRW * (gearEfficiency / 100));
+	$: torque3 = torque2 / (ringNb * wheelNb * ratioRW * (gearEffi/ 100));
 	$: speed3 = oneTurn / ratioRW; // s
 	$: power3 = (torque3 * 2 * Math.PI) / speed3; // W
-	$: planet1Diameter = epicyclic1Module * (planet1Z + 2);
+	$: planet1Diameter = epic1Module * (planet1Z + 2);
 	$: ring1Z = fRingZ(planet1Nb, planet1Z, wheelMargin);
 	$: sun1Z = ring1Z - 2 * planet1Z;
-	$: ring1Diameter = epicyclic1Module * (ring1Z + 4);
+	$: ring1Diameter = epic1Module * (ring1Z + 4);
 	$: ratio1One = (sun1Z + ring1Z) / sun1Z;
 	$: ratio1All = ratio1One ** stage1Nb;
-	$: torque4 = torque3 / (ratio1All * (gearEfficiency / 100) ** stage1Nb);
+	$: torque4 = torque3 / (ratio1All * (gearEffi/ 100) ** stage1Nb);
 	$: speed4 = ratio1All / speed3; // Hz
 	$: power4 = torque4 * 2 * Math.PI * speed4; // W
 </script>
@@ -112,7 +112,7 @@
 		<tr>
 			<td>T</td>
 			<td>Load torque (N.m)</td>
-			<td>{torque1}</td>
+			<td>{torque1.toFixed(2)} N.m</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -123,7 +123,7 @@
 		<tr>
 			<td>T</td>
 			<td>Given torque (N.m)</td>
-			<td>{torque2}</td>
+			<td>{torque2.toFixed(2)} N.m</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -134,12 +134,12 @@
 		<tr>
 			<td></td>
 			<td>Time for one turn (s)</td>
-			<td>{oneTurn}</td>
+			<td>{oneTurn.toFixed(2)} s</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Power at axis (W)</td>
-			<td>{power2}</td>
+			<td>{power2.toFixed(2)} W</td>
 		</tr>
 		<tr class="subtitle">
 			<td></td>
@@ -174,7 +174,7 @@
 		<tr>
 			<td>Dw</td>
 			<td>Diameter of gear-wheel (mm)</td>
-			<td>{wheelDiameter}</td>
+			<td>{wheelDiameter.toFixed(2)} mm</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -185,39 +185,38 @@
 		<tr>
 			<td>Dr</td>
 			<td>Diameter of gear-ring (mm)</td>
-			<td>{ringDiameter}</td>
+			<td>{ringDiameter.toFixed(2)} mm</td>
 		</tr>
 		<tr>
 			<td>Zr</td>
 			<td>Number of teeth of gear-ring</td>
-			<td>{ringZ}</td>
+			<td>{ringZ.toFixed(2)}</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Ration ring / gear-wheel</td>
-			<td>1 : {ratioRW}</td>
+			<td>1 : {ratioRW.toFixed(2)}</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Gear efficiency (%)</td>
-			<td><input type="number" bind:value={gearEfficiency} min="1" max="100" step="0.5" /></td
-			>
-			<td><input type="range" bind:value={gearEfficiency} min="1" max="100" step="0.5" /></td>
+			<td><input type="number" bind:value={gearEffi} min="1" max="100" step="0.5" /></td>
+			<td><input type="range" bind:value={gearEffi} min="1" max="100" step="0.5" /></td>
 		</tr>
 		<tr>
 			<td>Tw</td>
 			<td>Torque of gear-wheel (N.m)</td>
-			<td>{torque3}</td>
+			<td>{torque3.toFixed(2)} N.m</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Gear-wheel rotation time (s)</td>
-			<td>{speed3}</td>
+			<td>{speed3.toFixed(2)} </td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Power at gearwheel (W)</td>
-			<td>{power3}</td>
+			<td>{power3.toFixed(2)} W</td>
 		</tr>
 		<tr class="subtitle">
 			<td></td>
@@ -234,24 +233,8 @@
 		<tr>
 			<td>mr1</td>
 			<td>Module of epicyclic of reductor-1 (mm)</td>
-			<td
-				><input
-					type="number"
-					bind:value={epicyclic1Module}
-					min="1"
-					max="100"
-					step="0.1"
-				/></td
-			>
-			<td
-				><input
-					type="range"
-					bind:value={epicyclic1Module}
-					min="1"
-					max="100"
-					step="0.1"
-				/></td
-			>
+			<td><input type="number" bind:value={epic1Module} min="1" max="100" step="0.1" /></td>
+			<td><input type="range" bind:value={epic1Module} min="1" max="100" step="0.1" /></td>
 		</tr>
 		<tr>
 			<td>Zr1</td>
@@ -262,27 +245,27 @@
 		<tr>
 			<td></td>
 			<td>Diameter of planet-1 (mm)</td>
-			<td>{planet1Diameter}</td>
+			<td>{planet1Diameter.toFixed(2)} mm</td>
 		</tr>
 		<tr>
 			<td>Dr1</td>
 			<td>Diameter of ring of reductor-1 (mm)</td>
-			<td>{ring1Diameter}</td>
+			<td>{ring1Diameter.toFixed(2)} mm</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Number of teeth of ring-1</td>
-			<td>{ring1Z}</td>
+			<td>{ring1Z.toFixed(2)}</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Number of teeth of sun-1</td>
-			<td>{sun1Z}</td>
+			<td>{sun1Z.toFixed(2)}</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Ration of one stage of reductor-1</td>
-			<td>1 : {ratio1One}</td>
+			<td>1 : {ratio1One.toFixed(2)}</td>
 		</tr>
 		<tr>
 			<td></td>
@@ -293,22 +276,22 @@
 		<tr>
 			<td></td>
 			<td>Ration of reductor-1</td>
-			<td>1 : {ratio1All}</td>
+			<td>1 : {ratio1All.toFixed(2)}</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Reductor-1 input torque (N.m)</td>
-			<td>{torque4}</td>
+			<td>{torque4.toFixed(2)} N.m</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Reductor-1 input speed (Hz)</td>
-			<td>{speed4}</td>
+			<td>{speed4.toFixed(2)} Hz</td>
 		</tr>
 		<tr>
 			<td></td>
 			<td>Power at reductor-1 input (W)</td>
-			<td>{power4}</td>
+			<td>{power4.toFixed(2)} W</td>
 		</tr>
 	</table>
 </article>
