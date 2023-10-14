@@ -113,6 +113,26 @@
 		<li>{@html math('t_{ot} = 2 * t_{ht}')}</li>
 		<li>{@html math('\\omega_{axis} = \\frac{60}{t_{ot}}')}</li>
 		<li>{@html math('P_{axis} = \\frac{T_2 * 2 * \\pi}{t_{ot}}')}</li>
+		<li>{@html math('D_w = (Z_w + 2) * m_w')}</li>
+		<li>{@html math('Z_r = f(N_w, Z_w, Margin_w)')}</li>
+		<li>{@html math('D_r = (Z_r + 4) * m_w')}</li>
+		<li>{@html math('R_{r/w} = \\frac{Z_w}{Z_r}')}</li>
+		<li>{@html math('T_3 = \\frac{T_2 * R_{r/w}}{N_r * N_w * E}')}</li>
+		<li>{@html math('t_3 = t_{ot} * R_{r/w}')}</li>
+		<li>{@html math('s_w = \\frac{60}{t_3}')}</li>
+		<li>{@html math('P_w = \\frac{T_3 * 2 * \\pi}{t_3}')}</li>
+		<li>{@html math('D_{r1p} = (Z_{r1p} + 2) * m_{r1}')}</li>
+		<li>{@html math('Z_{r1r} = f(N_{r1p}, Z_{r1p}, Margin_w)')}</li>
+		<li>{@html math('D_{r1r} = (Z_{r1r} + 4) * m_{r1}')}</li>
+		<li>{@html math('Z_{r1s} = Z_{r1r} - 2 * Z_{r1p}')}</li>
+		<li>{@html math('R_{r1-1} = \\frac{Z_{r1s}}{Z_{r1s} * Z_{r1r}}')}</li>
+		<li>{@html math('R_{r1} = {R_{r1-1}}^{N_{r1}}')}</li>
+		<li>{@html math('E_{r1} = E^{N_{r1}}')}</li>
+		<li>{@html math('T_4 = T_3 * R_{r1} * E_{r1}')}</li>
+		<li>{@html math('f_4 = \\frac{1}{t_3 * R_{r1}}')}</li>
+		<li>{@html math('s_4 = 60 * f_4')}</li>
+		<li>{@html math('P_4 = T_4 * 2 * \\pi * f_4')}</li>
+		<li>{@html math('D_s = \\frac{T_5}{F_s}')}</li>
 	</ul>
 </article>
 <h2>Numerical application</h2>
