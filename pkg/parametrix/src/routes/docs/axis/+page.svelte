@@ -105,36 +105,6 @@
 	<img src="{base}/gear_module.svg" alt="gear module" />
 	<img src="{base}/epicyclic_gearing.svg" alt="epicyclic gearing" />
 </article>
-<h2>Theory</h2>
-<article>
-	<ul class="formula">
-		<li>{@html math('T_1 = 9.81 * M * D_1')}</li>
-		<li>{@html math('T_2 = T_1 * F_s')}</li>
-		<li>{@html math('t_{ot} = 2 * t_{ht}')}</li>
-		<li>{@html math('\\omega_{axis} = \\frac{60}{t_{ot}}')}</li>
-		<li>{@html math('P_{axis} = \\frac{T_2 * 2 * \\pi}{t_{ot}}')}</li>
-		<li>{@html math('D_w = (Z_w + 2) * m_w')}</li>
-		<li>{@html math('Z_r = f(N_w, Z_w, Margin_w)')}</li>
-		<li>{@html math('D_r = (Z_r + 4) * m_w')}</li>
-		<li>{@html math('R_{r/w} = \\frac{Z_w}{Z_r}')}</li>
-		<li>{@html math('T_3 = \\frac{T_2 * R_{r/w}}{N_r * N_w * E}')}</li>
-		<li>{@html math('t_3 = t_{ot} * R_{r/w}')}</li>
-		<li>{@html math('s_w = \\frac{60}{t_3}')}</li>
-		<li>{@html math('P_w = \\frac{T_3 * 2 * \\pi}{t_3}')}</li>
-		<li>{@html math('D_{r1p} = (Z_{r1p} + 2) * m_{r1}')}</li>
-		<li>{@html math('Z_{r1r} = f(N_{r1p}, Z_{r1p}, Margin_w)')}</li>
-		<li>{@html math('D_{r1r} = (Z_{r1r} + 4) * m_{r1}')}</li>
-		<li>{@html math('Z_{r1s} = Z_{r1r} - 2 * Z_{r1p}')}</li>
-		<li>{@html math('R_{r1-1} = \\frac{Z_{r1s}}{Z_{r1s} * Z_{r1r}}')}</li>
-		<li>{@html math('R_{r1} = {R_{r1-1}}^{N_{r1}}')}</li>
-		<li>{@html math('E_{r1} = E^{N_{r1}}')}</li>
-		<li>{@html math('T_4 = T_3 * R_{r1} * E_{r1}')}</li>
-		<li>{@html math('f_4 = \\frac{1}{t_3 * R_{r1}}')}</li>
-		<li>{@html math('s_4 = 60 * f_4')}</li>
-		<li>{@html math('P_4 = T_4 * 2 * \\pi * f_4')}</li>
-		<li>{@html math('D_s = \\frac{T_5}{F_s}')}</li>
-	</ul>
-</article>
 <h2>Numerical application</h2>
 <article>
 	<table>
@@ -166,6 +136,7 @@
 			<td>{@html math('T_1')}</td>
 			<td>Load torque (N.m)</td>
 			<td>{torque1.toFixed(2)} N.m</td>
+			<td>{@html math('T_1 = 9.81 * M * D_1')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('F_s')}</td>
@@ -177,6 +148,7 @@
 			<td>{@html math('T_2')}</td>
 			<td>Given torque (N.m)</td>
 			<td>{torque2.toFixed(2)} N.m</td>
+			<td>{@html math('T_2 = T_1 * F_s')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('t_{ht}')}</td>
@@ -188,16 +160,19 @@
 			<td>{@html math('t_{ot}')}</td>
 			<td>Time for one turn (s)</td>
 			<td>{oneTurn.toFixed(2)} s</td>
+			<td>{@html math('t_{ot} = 2 * t_{ht}')}</td>
 		</tr>
 		<tr>
-			<td>{@html math('\\omega_{axis}')}</td>
+			<td>{@html math('s_2')}</td>
 			<td>Axis rotation speed (rpm)</td>
 			<td>{(60 / oneTurn).toFixed(2)} rpm</td>
+			<td>{@html math('s_2 = \\frac{60}{t_{ot}}')}</td>
 		</tr>
 		<tr>
-			<td>{@html math('P_{axis}')}</td>
+			<td>{@html math('P_2')}</td>
 			<td>Power at axis (W)</td>
 			<td>{power2.toFixed(2)} W</td>
+			<td>{@html math('P_2 = \\frac{T_2 * 2 * \\pi}{t_{ot}}')}</td>
 		</tr>
 		<tr class="subtitle">
 			<td></td>
@@ -233,6 +208,7 @@
 			<td>{@html math('D_w')}</td>
 			<td>Diameter of gear-wheel (mm)</td>
 			<td>{wheelDiameter.toFixed(2)} mm</td>
+			<td>{@html math('D_w = (Z_w + 2) * m_w')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('Margin_w')}</td>
@@ -244,16 +220,19 @@
 			<td>{@html math('D_r')}</td>
 			<td>Diameter of gear-ring (mm)</td>
 			<td>{ringDiameter.toFixed(2)} mm</td>
+			<td>{@html math('D_r = (Z_r + 4) * m_w')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('Z_r')}</td>
 			<td>Number of teeth of gear-ring</td>
 			<td>{ringZ}</td>
+			<td>{@html math('Z_r = f(N_w, Z_w, Margin_w)')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('R_{r/w}')}</td>
 			<td>Ratio ring / gear-wheel</td>
 			<td>1 : {ratioRW.toFixed(2)}</td>
+			<td>{@html math('R_{r/w} = \\frac{Z_w}{Z_r}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('E')}</td>
@@ -265,21 +244,25 @@
 			<td>{@html math('T_3')}</td>
 			<td>Torque of gear-wheel (N.m)</td>
 			<td>{torque3.toFixed(2)} N.m</td>
+			<td>{@html math('T_3 = \\frac{T_2 * R_{r/w}}{N_r * N_w * E}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('t_3')}</td>
 			<td>Gear-wheel rotation time (s)</td>
 			<td>{speed3.toFixed(2)} s</td>
+			<td>{@html math('t_3 = t_{ot} * R_{r/w}')}</td>
 		</tr>
 		<tr>
-			<td>{@html math('s_w')}</td>
+			<td>{@html math('s_3')}</td>
 			<td>Gear-wheel rotation speed (rpm)</td>
 			<td>{(60 / speed3).toFixed(2)} rpm</td>
+			<td>{@html math('s_3 = \\frac{60}{t_3}')}</td>
 		</tr>
 		<tr>
-			<td>{@html math('P_w')}</td>
+			<td>{@html math('P_3')}</td>
 			<td>Power at gear-wheel (W)</td>
 			<td>{power3.toFixed(2)} W</td>
+			<td>{@html math('P_3 = \\frac{T_3 * 2 * \\pi}{t_3}')}</td>
 		</tr>
 		<tr class="subtitle">
 			<td></td>
@@ -309,26 +292,31 @@
 			<td>{@html math('D_{r1p}')}</td>
 			<td>Diameter of planet-1 (mm)</td>
 			<td>{planet1Diameter.toFixed(2)} mm</td>
+			<td>{@html math('D_{r1p} = (Z_{r1p} + 2) * m_{r1}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('D_{r1r}')}</td>
 			<td>Diameter of ring of reductor-1 (mm)</td>
 			<td>{ring1Diameter.toFixed(2)} mm</td>
+			<td>{@html math('D_{r1r} = (Z_{r1r} + 4) * m_{r1}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('Z_{r1r}')}</td>
 			<td>Number of teeth of ring-1</td>
 			<td>{ring1Z}</td>
+			<td>{@html math('Z_{r1r} = f(N_{r1p}, Z_{r1p}, Margin_w)')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('Z_{r1s}')}</td>
 			<td>Number of teeth of sun-1</td>
 			<td>{sun1Z}</td>
+			<td>{@html math('Z_{r1s} = Z_{r1r} - 2 * Z_{r1p}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('R_{r1-1}')}</td>
 			<td>Ratio of one stage of reductor-1</td>
 			<td>1 : {ratio1One.toFixed(2)}</td>
+			<td>{@html math('R_{r1-1} = \\frac{Z_{r1s}}{Z_{r1s} * Z_{r1r}}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('N_{r1}')}</td>
@@ -340,31 +328,37 @@
 			<td>{@html math('R_{r1}')}</td>
 			<td>Ratio of reductor-1</td>
 			<td>1 : {ratio1All.toFixed(2)}</td>
+			<td>{@html math('R_{r1} = {R_{r1-1}}^{N_{r1}}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('E_{r1}')}</td>
 			<td>Efficiency of reductor-1</td>
 			<td>{(100 * (gearEffi / 100) ** stage1Nb).toFixed(2)} %</td>
+			<td>{@html math('E_{r1} = E^{N_{r1}}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('T_4')}</td>
 			<td>Reductor-1 input torque (N.m)</td>
 			<td>{torque4.toFixed(2)} N.m</td>
+			<td>{@html math('T_4 = T_3 * R_{r1} * E_{r1}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('f_4')}</td>
 			<td>Reductor-1 input rotation speed (Hz)</td>
 			<td>{speed4.toFixed(2)} Hz</td>
+			<td>{@html math('f_4 = \\frac{1}{t_3 * R_{r1}}')}</td>
 		</tr>
 		<tr>
 			<td>{@html math('s_4')}</td>
 			<td>Reductor-1 input rotation speed (rpm)</td>
 			<td>{(60 * speed4).toFixed(2)} rpm</td>
+			<td>{@html math('s_4 = 60 * f_4')}</td>
 		</tr>
 		<tr>
-			<td>{@html math('P_{r1}')}</td>
+			<td>{@html math('P_4')}</td>
 			<td>Power at reductor-1 input (W)</td>
 			<td>{power4.toFixed(2)} W</td>
+			<td>{@html math('P_4 = T_4 * 2 * \\pi * f_4')}</td>
 		</tr>
 		<tr class="subtitle">
 			<td></td>
@@ -453,12 +447,12 @@
 			<td>{torque5.toFixed(2)} N.m</td>
 		</tr>
 		<tr>
-			<td>{@html math('f_{r2i}')}</td>
+			<td>{@html math('f_5')}</td>
 			<td>Reductor-2 input rotation speed (Hz)</td>
 			<td>{speed5.toFixed(2)} Hz</td>
 		</tr>
 		<tr>
-			<td>{@html math('s_{r2i}')}</td>
+			<td>{@html math('s_5')}</td>
 			<td>Reductor-2 input rotation speed (rpm)</td>
 			<td>{(60 * speed5).toFixed(2)} rpm</td>
 		</tr>
@@ -499,6 +493,7 @@
 			<td>{@html math('D_s')}</td>
 			<td>Shuttle diameter (mm)</td>
 			<td>{((1000 * torque5) / shutFor).toFixed(2)} mm</td>
+			<td>{@html math('D_s = \\frac{T_5}{F_s}')}</td>
 		</tr>
 	</table>
 </article>
@@ -518,16 +513,6 @@
 	article {
 		margin: 1rem;
 		margin-top: 0.2rem;
-	}
-	ul {
-		margin-top: 0.2rem;
-		margin-bottom: 0.2rem;
-		margin-left: 0.2rem;
-		padding-left: 1rem;
-	}
-	ul.formula > li {
-		padding-top: 0.3rem;
-		padding-bottom: 0.3rem;
 	}
 	article > table > tr.subtitle {
 		background-color: colors.$table-head;
