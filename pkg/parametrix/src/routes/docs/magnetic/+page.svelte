@@ -4,7 +4,26 @@
 	import { math } from 'mathlifier';
 	import { onMount, onDestroy } from 'svelte';
 	//import type { ChartTypeRegistry } from 'chart.js';
-	import { Chart as ChartJS } from 'chart.js/auto';
+	import {
+		Chart as ChartJS,
+		LineController,
+		LineElement,
+		PointElement,
+		CategoryScale,
+		LinearScale,
+		Colors,
+		Legend
+	} from 'chart.js';
+
+	ChartJS.register(
+		LineController,
+		LineElement,
+		PointElement,
+		CategoryScale,
+		LinearScale,
+		Colors,
+		Legend
+	);
 
 	// constants
 	const mu0 = 1.25663706212 * 10 ** -6;
@@ -248,6 +267,7 @@
 			chartData.magnetic_field[i] = fShuttleMagField(posX, airgapHM);
 			chartData.magnetic_energy[i] = fShuttleEm(posX, airgapHM);
 			chartData.inductance[i] = (2 * fShuttleEm(posX, airgapHM)) / current ** 2;
+			//chartData.inductance[i] = turnNb ** 2 / fShuttleReluctance(posX, airgapHM);
 			chartData.force_x[i] = fShuttleForce(posX, airgapHM);
 		}
 	}
