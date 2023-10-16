@@ -2,6 +2,9 @@
 	/* eslint-disable svelte/no-at-html-tags */
 	import { base } from '$app/paths';
 	import { math } from 'mathlifier';
+	import { onMount, onDestroy } from 'svelte';
+	//import type { ChartTypeRegistry } from 'chart.js';
+	import { Chart as ChartJS } from 'chart.js/auto';
 
 	// constants
 	const mu0 = 1.25663706212 * 10 ** -6;
@@ -219,6 +222,134 @@
 	$: shuttlerEm = fShuttleEm(shuttleX, airgapHM);
 	$: shuttlerInductance = (2 * shuttlerEm) / current ** 2;
 	$: shuttlerForce = fShuttleForce(shuttleX, airgapHM);
+	// charts
+	let chartReluctance: ChartJS | null = null;
+	let chartMagFlux: ChartJS | null = null;
+	let chartMagField: ChartJS | null = null;
+	let chartMagEnergy: ChartJS | null = null;
+	let chartInductance: ChartJS | null = null;
+	let chartForce: ChartJS | null = null;
+	const stepNb = 20;
+	const chartData = {
+		shuttle_position: [...Array(stepNb).keys()],
+		reluctance: [...Array(stepNb).keys()],
+		magnetic_flux: [...Array(stepNb).keys()],
+		magnetic_field: [...Array(stepNb).keys()],
+		magnetic_energy: [...Array(stepNb).keys()],
+		inductance: [...Array(stepNb).keys()],
+		force_x: [...Array(stepNb).keys()]
+	};
+	function upChartData() {
+		for (let i = 0; i < stepNb; i++) {
+			const posX = (i * 100) / stepNb;
+			chartData.shuttle_position[i] = posX;
+			chartData.reluctance[i] = fShuttleReluctance(posX, airgapHM);
+			chartData.magnetic_flux[i] = fShuttleMagFlux(posX, airgapHM);
+			chartData.magnetic_field[i] = fShuttleMagField(posX, airgapHM);
+			chartData.magnetic_energy[i] = fShuttleEm(posX, airgapHM);
+			chartData.inductance[i] = (2 * fShuttleEm(posX, airgapHM)) / current ** 2;
+			chartData.force_x[i] = fShuttleForce(posX, airgapHM);
+		}
+	}
+	function updateCharts() {
+		upChartData();
+		if (chartReluctance) {
+			chartReluctance.data.datasets[0].data = chartData.reluctance;
+			chartReluctance.update();
+		}
+		if (chartMagFlux) {
+			chartMagFlux.data.datasets[0].data = chartData.magnetic_flux;
+			chartMagFlux.update();
+		}
+		if (chartMagField) {
+			chartMagField.data.datasets[0].data = chartData.magnetic_field;
+			chartMagField.update();
+		}
+		if (chartMagEnergy) {
+			chartMagEnergy.data.datasets[0].data = chartData.magnetic_energy;
+			chartMagEnergy.update();
+		}
+		if (chartInductance) {
+			chartInductance.data.datasets[0].data = chartData.inductance;
+			chartInductance.update();
+		}
+		if (chartForce) {
+			chartForce.data.datasets[0].data = chartData.force_x;
+			chartForce.update();
+		}
+	}
+	onMount(() => {
+		upChartData();
+		chartReluctance = new ChartJS(document.getElementById('cReluctance') as HTMLCanvasElement, {
+			type: 'line',
+			data: {
+				labels: chartData.shuttle_position,
+				datasets: [{ label: 'reluctance', data: chartData.reluctance }]
+			}
+		});
+		chartMagFlux = new ChartJS(document.getElementById('cMagFlux') as HTMLCanvasElement, {
+			type: 'line',
+			data: {
+				labels: chartData.shuttle_position,
+				datasets: [{ label: 'magnetic flux', data: chartData.magnetic_flux }]
+			}
+		});
+		chartMagField = new ChartJS(document.getElementById('cMagField') as HTMLCanvasElement, {
+			type: 'line',
+			data: {
+				labels: chartData.shuttle_position,
+				datasets: [{ label: 'magnetic field', data: chartData.magnetic_field }]
+			}
+		});
+		chartMagEnergy = new ChartJS(document.getElementById('cMagEnergie') as HTMLCanvasElement, {
+			type: 'line',
+			data: {
+				labels: chartData.shuttle_position,
+				datasets: [{ label: 'magnetic energy', data: chartData.magnetic_energy }]
+			}
+		});
+		chartInductance = new ChartJS(document.getElementById('cInductance') as HTMLCanvasElement, {
+			type: 'line',
+			data: {
+				labels: chartData.shuttle_position,
+				datasets: [{ label: 'inductance', data: chartData.inductance }]
+			}
+		});
+		chartForce = new ChartJS(document.getElementById('cForce') as HTMLCanvasElement, {
+			type: 'line',
+			data: {
+				labels: chartData.shuttle_position,
+				datasets: [{ label: 'Force Fx', data: chartData.force_x }]
+			}
+		});
+	});
+	onDestroy(() => {
+		if (chartReluctance) {
+			chartReluctance.destroy();
+			chartReluctance = null;
+			//delete chartReluctance;
+		}
+		if (chartMagFlux) {
+			chartMagFlux.destroy();
+			chartMagFlux = null;
+		}
+		if (chartMagField) {
+			chartMagField.destroy();
+			chartMagField = null;
+		}
+		if (chartMagEnergy) {
+			chartMagEnergy.destroy();
+			chartMagEnergy = null;
+		}
+		if (chartInductance) {
+			chartInductance.destroy();
+			chartInductance = null;
+		}
+		if (chartForce) {
+			chartForce.destroy();
+			chartForce = null;
+		}
+	});
 </script>
 
 <h1>Magnetic circuit</h1>
@@ -978,6 +1109,18 @@
 		</tr>
 	</table>
 </article>
+<h3>Torus with realistic shuttle in charts</h3>
+<article>
+	<button on:click={updateCharts}>Update charts</button>
+	<div class="flexy">
+		<div class="charty"><canvas id="cReluctance"></canvas></div>
+		<div class="charty"><canvas id="cMagFlux"></canvas></div>
+		<div class="charty"><canvas id="cMagField"></canvas></div>
+		<div class="charty"><canvas id="cMagEnergie"></canvas></div>
+		<div class="charty"><canvas id="cInductance"></canvas></div>
+		<div class="charty"><canvas id="cForce"></canvas></div>
+	</div>
+</article>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
@@ -1020,5 +1163,13 @@
 	}
 	table.jump {
 		margin-top: 5rem;
+	}
+	article > div > div.charty {
+		width: 30%;
+	}
+	article > div.flexy {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 3rem 3rem;
 	}
 </style>
