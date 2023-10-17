@@ -31,7 +31,7 @@
 	let permeability = 5000;
 	let torusRadius = 15; // mm
 	let sectionArea = 100; // mm2
-	let turnNb = 100;
+	let turnNb = 4000;
 	let current = 1.5; // A
 	let percentL2 = 30;
 	let percentS2 = 200;
