@@ -1,6 +1,7 @@
 // pole_static.ts
 
 import type {
+	tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -65,7 +66,10 @@ const pDef: tParamDef = {
 	}
 };
 
+type tCtr = (orient: number) => tContour;
+
 function pGeom(t: number, param: tParamVal): tGeom {
+	let ctrPoleProfile: tCtr;
 	const rGeome = initGeom();
 	const figCut = figure();
 	//const figFace = figure();
@@ -82,16 +86,23 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const H1bminus = param.E2 * Math.tan(coneAngle / 2);
 		const H1b = param.H1 - H1bminus;
 		// figCut
-		const poleProfile = contour(R3, 0)
-			.addSegStrokeA(R1, 0)
-			.addSegStrokeA(R1, param.H1)
-			.addSegStrokeA(R2, poleHeight)
-			.addSegStrokeR(-param.E2 * Math.cos(coneAngle), -param.E2 * Math.sin(coneAngle))
-			.addSegStrokeA(R1 - param.E2, H1b)
-			.addSegStrokeA(R1 - param.E2, param.E1)
-			.addSegStrokeA(R3, param.E1)
-			.closeSegStroke();
-		figCut.addMain(poleProfile);
+		ctrPoleProfile = function (orient: number): tContour {
+			const rPoleProfile = contour(orient * R3, 0)
+				.addSegStrokeA(orient * R1, 0)
+				.addSegStrokeA(orient * R1, param.H1)
+				.addSegStrokeA(orient * R2, poleHeight)
+				.addSegStrokeR(
+					-orient * param.E2 * Math.cos(coneAngle),
+					-param.E2 * Math.sin(coneAngle)
+				)
+				.addSegStrokeA(orient * (R1 - param.E2), H1b)
+				.addSegStrokeA(orient * (R1 - param.E2), param.E1)
+				.addSegStrokeA(orient * R3, param.E1)
+				.closeSegStroke();
+			return rPoleProfile;
+		};
+		figCut.addMain(ctrPoleProfile(1));
+		figCut.addSecond(ctrPoleProfile(-1));
 		// figFace
 		// figBottom
 		// final figure list
