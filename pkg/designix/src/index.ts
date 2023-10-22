@@ -3,6 +3,8 @@
 export * from './gear_wheel_wheel';
 export * from './simplified_gear_wheel';
 
+export * from './pole_static';
+
 export * from './circles';
 export * from './rectangle';
 

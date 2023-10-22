@@ -3,6 +3,7 @@
 import {
 	gearWheelWheelDef,
 	simplifiedGearWheelDef,
+	poleStaticDef,
 	circlesDef,
 	rectangleDef,
 	verifyPoint1Def,
@@ -27,6 +28,7 @@ type tIcon = Record<string, string>;
 const designDefs: tAllPageDef = {
 	gear_wheel_wheel: gearWheelWheelDef,
 	simplified_gear_wheel: simplifiedGearWheelDef,
+	pole_static: poleStaticDef,
 	circles: circlesDef,
 	rectangle: rectangleDef,
 	verify_point: verifyPoint1Def,
@@ -48,6 +50,7 @@ const mAbout = ['about'];
 // to be updated when new pages are created
 const mLabel = [
 	{ category: 'Gears', pages: ['gear/gear_wheel_wheel', 'gear/simplified_gear_wheel'] },
+	{ category: 'Heliostat', pages: ['heliostat/pole_static'] },
 	{ category: 'Junk designs', pages: ['junk/circles', 'junk/rectangle'] },
 	{
 		category: 'Geometrix verification',
@@ -85,6 +88,7 @@ const mIcon: tIcon = {
 	index: 'page_index.svg',
 	gear_wheel_wheel: 'page_gears.svg',
 	simplified_gear_wheel: 'page_gears.svg',
+	pole_static: 'page_pole_static.svg',
 	circles: 'page_circles.svg',
 	rectangle: 'page_rectangle.svg',
 	verify_point: 'page_verify_point.svg',
