@@ -16,7 +16,7 @@ import {
 	figure,
 	//degToRad,
 	radToDeg,
-	//ffix,
+	ffix,
 	pNumber,
 	//pCheckbox,
 	//pDropdown,
@@ -75,16 +75,18 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const R1 = param.D1 / 2;
 		const R2 = param.D2 / 2;
 		const R3 = param.D3 / 2;
+		const poleHeight = param.H1 + param.H2;
+		rGeome.logstr += `pole-height: ${ffix(poleHeight)}\n`;
 		const angleCone = Math.atan2(R1 - R2, param.H2);
-		rGeome.logstr += `angleCone: ${radToDeg(angleCone)}\n`;
+		rGeome.logstr += `angleCone: ${ffix(radToDeg(angleCone))} degree\n`;
 		const H1bminus = param.E2 * Math.tan(angleCone / 2);
 		const H1b = param.H1 - H1bminus;
 		// figCut
 		const poleProfile = contour(R3, 0)
 			.addSegStrokeA(R1, 0)
 			.addSegStrokeA(R1, param.H1)
-			.addSegStrokeR(R2 - R1, param.H2)
-			.addSegStrokeRP(Math.PI / 2, param.E2)
+			.addSegStrokeA(R2, poleHeight)
+			.addSegStrokeR(-param.E2 * Math.cos(angleCone), -param.E2 * Math.sin(angleCone))
 			.addSegStrokeA(R1 - param.E2, H1b)
 			.addSegStrokeA(R1 - param.E2, param.E1)
 			.addSegStrokeA(R3, param.E1)
