@@ -113,7 +113,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			extrudes: [
 				{
 					outName: `subpax_${designName}_pole`,
-					face: `${designName}_poleCute`,
+					face: `${designName}_poleCut`,
 					extrudeMethod: EExtrude.eRotate,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
