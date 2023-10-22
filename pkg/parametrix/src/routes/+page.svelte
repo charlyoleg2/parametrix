@@ -70,6 +70,7 @@
 		margin-left: 1rem;
 		margin-right: 3rem;
 		width: 1.5rem;
+		height: 1.5rem;
 		position: relative;
 		bottom: 0.5rem;
 	}
