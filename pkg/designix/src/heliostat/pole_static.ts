@@ -13,7 +13,7 @@ import type {
 } from 'geometrix';
 import {
 	contour,
-	//contourCircle,
+	contourCircle,
 	figure,
 	//degToRad,
 	radToDeg,
@@ -73,14 +73,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome = initGeom();
 	const figCut = figure();
 	//const figFace = figure();
-	//const figBottom = figure();
+	const figBottom = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
 		const R2 = param.D2 / 2;
 		const R3 = param.D3 / 2;
 		const poleHeight = param.H1 + param.H2;
-		rGeome.logstr += `pole-height: ${ffix(poleHeight)}\n`;
+		rGeome.logstr += `pole-height: ${ffix(poleHeight)} mm\n`;
 		const coneAngle = Math.atan2(R1 - R2, param.H2);
 		rGeome.logstr += `cone-half-angle: ${ffix(radToDeg(coneAngle))} degree\n`;
 		const H1bminus = param.E2 * Math.tan(coneAngle / 2);
@@ -105,9 +105,20 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figCut.addSecond(ctrPoleProfile(-1));
 		// figFace
 		// figBottom
+		figBottom.addMain(contourCircle(0, 0, R1));
+		figBottom.addMain(contourCircle(0, 0, R3));
+		const posR = R3 + param.L1;
+		const posA = (2 * Math.PI) / param.N1;
+		for (let i = 0; i < param.N1; i++) {
+			const posX = posR * Math.cos(i * posA);
+			const posY = posR * Math.sin(i * posA);
+			figBottom.addMain(contourCircle(posX, posY, param.D5 / 2));
+		}
+		figBottom.addSecond(contourCircle(0, 0, R2));
+		figBottom.addSecond(contourCircle(0, 0, R1 - param.E2));
 		// final figure list
 		//rGeome.fig = { poleCut: figCut, poleFace: figFace, poleBottom: figBottom };
-		rGeome.fig = { poleCut: figCut };
+		rGeome.fig = { poleCut: figCut, poleBottom: figBottom };
 		const designName = pDef.partName;
 		rGeome.vol = {
 			extrudes: [
