@@ -37,7 +37,12 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"ci": "run-s check build pretty lint test:unit:once",
-		"svgo": "svgo -f svg -o ../parametrix/static",
+		"svgo1": "svgo -f src/svg -o ../parametrix/static",
+		"svgo2": "svgo -f src/dummies/svg -o ../parametrix/static",
+		"svgo3": "svgo -f src/gears/svg -o ../parametrix/static",
+		"svgo4": "svgo -f src/geometrix_verification/svg -o ../parametrix/static",
+		"svgo5": "svgo -f src/heliostat/svg -o ../parametrix/static",
+		"svgo": "run-s svgo1 svgo2 svgo3 svgo4 svgo5",
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
