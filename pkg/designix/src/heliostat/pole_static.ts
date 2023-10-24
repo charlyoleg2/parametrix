@@ -42,7 +42,9 @@ const pDef: tParamDef = {
 		pNumber('L1', 'mm', 45, 1, 300, 1),
 		pNumber('D4', 'mm', 600, 200, 1200, 1),
 		pNumber('H3', 'mm', 300, 50, 1200, 1),
-		pNumber('H4', 'mm', 1800, 200, 2500, 1)
+		pNumber('H4', 'mm', 1800, 200, 2500, 1),
+		pNumber('L2', 'mm', 30, 1, 100, 1),
+		pNumber('E3', 'mm', 40, 1, 100, 1)
 	],
 	paramSvg: {
 		D1: 'pole_stator_cut.svg',
@@ -51,13 +53,15 @@ const pDef: tParamDef = {
 		H1: 'pole_stator_cut.svg',
 		H2: 'pole_stator_cut.svg',
 		E1: 'pole_stator_cut.svg',
-		E2: 'pole_stator_cut.svg',
+		E2: 'pole_stator_E2.svg',
 		N1: 'pole_stator_bottom.svg',
 		D5: 'pole_stator_bottom.svg',
 		L1: 'pole_stator_bottom.svg',
 		D4: 'pole_stator_face.svg',
 		H3: 'pole_stator_face.svg',
-		H4: 'pole_stator_face.svg'
+		H4: 'pole_stator_face.svg',
+		L2: 'pole_stator_face.svg',
+		E3: 'pole_stator_right.svg'
 	},
 	sim: {
 		tMax: 180,
