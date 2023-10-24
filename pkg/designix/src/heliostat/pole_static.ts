@@ -70,7 +70,7 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr = (orient: number) => tContour;
+type tCtr = (orient: number, withR3: boolean) => tContour;
 
 function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrPoleProfile: tCtr;
@@ -90,23 +90,29 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const H1bminus = param.E2 * Math.tan(coneAngle / 2);
 		const H1b = param.H1 - H1bminus;
 		// figCut
-		ctrPoleProfile = function (orient: number): tContour {
-			const rPoleProfile = contour(orient * R3, 0)
-				.addSegStrokeA(orient * R1, 0)
+		ctrPoleProfile = function (orient: number, withR3: boolean): tContour {
+			const rPoleProfile = contour(orient * R1, 0)
 				.addSegStrokeA(orient * R1, param.H1)
 				.addSegStrokeA(orient * R2, poleHeight)
 				.addSegStrokeR(
 					-orient * param.E2 * Math.cos(coneAngle),
 					-param.E2 * Math.sin(coneAngle)
 				)
-				.addSegStrokeA(orient * (R1 - param.E2), H1b)
-				.addSegStrokeA(orient * (R1 - param.E2), param.E1)
-				.addSegStrokeA(orient * R3, param.E1)
-				.closeSegStroke();
+				.addSegStrokeA(orient * (R1 - param.E2), H1b);
+			if (withR3) {
+				rPoleProfile
+					.addSegStrokeA(orient * (R1 - param.E2), param.E1)
+					.addSegStrokeA(orient * R3, param.E1)
+					.addSegStrokeA(orient * R3, 0);
+			} else {
+				rPoleProfile.addSegStrokeA(orient * (R1 - param.E2), 0);
+			}
+			rPoleProfile.closeSegStroke();
 			return rPoleProfile;
 		};
-		figCut.addMain(ctrPoleProfile(1));
-		figCut.addSecond(ctrPoleProfile(-1));
+		figCut.addMain(ctrPoleProfile(1, false));
+		figCut.addSecond(ctrPoleProfile(1, true));
+		figCut.addSecond(ctrPoleProfile(-1, true));
 		// figFace
 		// figBottom
 		figBottom.addMain(contourCircle(0, 0, R1));
@@ -132,13 +138,21 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					extrudeMethod: EExtrude.eRotate,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_bottom`,
+					face: `${designName}_poleBottom`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: param.E1,
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
 				}
 			],
 			volumes: [
 				{
 					outName: `pax_${designName}`,
-					boolMethod: EBVolume.eIdentity,
-					inList: [`subpax_${designName}_pole`]
+					boolMethod: EBVolume.eUnion,
+					inList: [`subpax_${designName}_pole`, `subpax_${designName}_bottom`]
 				}
 			]
 		};
