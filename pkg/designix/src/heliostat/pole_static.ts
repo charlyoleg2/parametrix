@@ -80,6 +80,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figCut = figure();
 	const figFace = figure();
 	const figBottom = figure();
+	const figEmptyPole = figure();
+	const figEmptyDoor = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
@@ -168,8 +170,18 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		figBottom.addSecond(contourCircle(0, 0, R2));
 		figBottom.addSecond(contourCircle(0, 0, R1 - param.E2));
+		// figEmptyPole
+		figEmptyPole.addMain(contourCircle(0, 0, R1 - param.E2));
+		// figEmptyDoor
+		figEmptyDoor.addMain(ctrDoorFace(param.L2));
 		// final figure list
-		rGeome.fig = { poleCut: figCut, poleFace: figFace, poleBottom: figBottom };
+		rGeome.fig = {
+			poleCut: figCut,
+			poleFace: figFace,
+			poleBottom: figBottom,
+			emptyPole: figEmptyPole,
+			emptyDoor: figEmptyDoor
+		};
 		const designName = pDef.partName;
 		rGeome.vol = {
 			extrudes: [
@@ -187,13 +199,51 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					length: param.E1,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_door`,
+					face: `${designName}_poleFace`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: R1 + param.E3,
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_emptyPole`,
+					face: `${designName}_emptyPole`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: param.H1,
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_emptyDoor`,
+					face: `${designName}_emptyDoor`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: R1 + param.E3 + 10,
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, 0, 0]
 				}
 			],
 			volumes: [
 				{
+					outName: `ipax_${designName}_door`,
+					boolMethod: EBVolume.eSubstraction,
+					inList: [`subpax_${designName}_door`, `subpax_${designName}_emptyPole`]
+				},
+				{
+					outName: `ipax_${designName}_pole`,
+					boolMethod: EBVolume.eSubstraction,
+					inList: [`subpax_${designName}_pole`, `subpax_${designName}_emptyDoor`]
+				},
+				{
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eUnion,
-					inList: [`subpax_${designName}_pole`, `subpax_${designName}_bottom`]
+					inList: [
+						`ipax_${designName}_pole`,
+						`subpax_${designName}_bottom`,
+						`ipax_${designName}_door`
+					]
 				}
 			]
 		};
