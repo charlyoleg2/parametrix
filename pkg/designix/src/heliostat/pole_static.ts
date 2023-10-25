@@ -70,13 +70,15 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr = (orient: number, withR3: boolean) => tContour;
+type tCtr1 = (orient: number, withR3: boolean) => tContour;
+type tCtr2 = (pL2: number) => tContour;
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	let ctrPoleProfile: tCtr;
+	let ctrPoleProfile: tCtr1;
+	let ctrDoorFace: tCtr2;
 	const rGeome = initGeom();
 	const figCut = figure();
-	//const figFace = figure();
+	const figFace = figure();
 	const figBottom = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
@@ -114,6 +116,46 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figCut.addSecond(ctrPoleProfile(1, true));
 		figCut.addSecond(ctrPoleProfile(-1, true));
 		// figFace
+		const R4 = param.D4 / 2;
+		const doorStraightLenght = param.H4 - 2 * R4;
+		if (doorStraightLenght < 0) {
+			throw `err121: H4 ${param.H4} is too small compare to D4 ${param.D4}`;
+		}
+		if (R4 - param.L2 < 0) {
+			throw `err121: D4 ${param.D4} is too small compare to L2 ${param.L2}`;
+		}
+		ctrDoorFace = function (pL2: number): tContour {
+			const R4b = R4 - pL2;
+			const H3b = param.H3 + R4;
+			const rCtrDoorFace = contour(R4b, H3b + doorStraightLenght)
+				.addPointR(-R4b, R4b)
+				.addSegArc(R4b, false, true)
+				.addPointR(-R4b, -R4b)
+				.addSegArc(R4b, false, true)
+				.addSegStrokeR(0, -doorStraightLenght)
+				.addPointR(R4b, -R4b)
+				.addSegArc(R4b, false, true)
+				.addPointR(R4b, R4b)
+				.addSegArc(R4b, false, true)
+				.closeSegStroke();
+			return rCtrDoorFace;
+		};
+		figFace.addMain(ctrDoorFace(0));
+		figFace.addMain(ctrDoorFace(param.L2));
+		const ctrPoleFace = contour(R1, 0)
+			.addSegStrokeA(R1, param.H1)
+			.addSegStrokeA(R2, poleHeight)
+			.addSegStrokeA(-R2, poleHeight)
+			.addSegStrokeA(-R1, param.H1)
+			.addSegStrokeA(-R1, 0)
+			.closeSegStroke();
+		figFace.addSecond(ctrPoleFace);
+		const ctrDoorSide = contour(-R1, param.H3)
+			.addSegStrokeR(0, param.H4)
+			.addSegStrokeR(-param.E3, 0)
+			.addSegStrokeR(0, -param.H4)
+			.closeSegStroke();
+		figFace.addSecond(ctrDoorSide);
 		// figBottom
 		figBottom.addMain(contourCircle(0, 0, R1));
 		figBottom.addMain(contourCircle(0, 0, R3));
@@ -127,8 +169,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figBottom.addSecond(contourCircle(0, 0, R2));
 		figBottom.addSecond(contourCircle(0, 0, R1 - param.E2));
 		// final figure list
-		//rGeome.fig = { poleCut: figCut, poleFace: figFace, poleBottom: figBottom };
-		rGeome.fig = { poleCut: figCut, poleBottom: figBottom };
+		rGeome.fig = { poleCut: figCut, poleFace: figFace, poleBottom: figBottom };
 		const designName = pDef.partName;
 		rGeome.vol = {
 			extrudes: [
