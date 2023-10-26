@@ -1,11 +1,11 @@
 {
-	"name": "parametrix_root",
+	"name": "parametrix",
 	"version": "1.0.0",
 	"description": "The root directory of the parametrix packages",
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/charlyoleg/parametrix.git"
+		"url": "git+https://github.com/charlyoleg2/parametrix.git"
 	},
 	"keywords": [
 		"cad",
@@ -16,7 +16,7 @@
 		"arc",
 		"gear"
 	],
-	"author": "charlyoleg",
+	"author": "charlyoleg2",
 	"scripts": {
 		"geometrix:dev": "npm -w geometrix run dev",
 		"geometrix:ci": "npm -w geometrix run ci",
@@ -26,17 +26,17 @@
 		"designix:ci": "npm -w designix run ci",
 		"designix:svgo": "npm -w designix run svgo",
 		"designix:clean": "npm -w designix run clean",
-		"parametrix:dev": "npm -w parametrix run dev",
-		"parametrix:ci": "npm -w parametrix run ci",
-		"parametrix:svgo": "npm -w parametrix run svgo",
-		"parametrix:clean": "npm -w parametrix run clean",
-		"parametrix:preview": "npm -w parametrix run preview",
-		"dev": "run-p geometrix:dev designix:dev parametrix:dev",
-		"ci": "run-s geometrix:ci designix:ci parametrix:ci",
-		"svgo": "run-s geometrix:svgo designix:svgo parametrix:svgo",
-		"clean": "run-s geometrix:clean designix:clean parametrix:clean",
-		"preview": "run-s parametrix:preview",
-		"ls-pkg": "ls -ltra pkg/geometrix pkg/designix pkg/parametrix"
+		"paramui:dev": "npm -w paramui run dev",
+		"paramui:ci": "npm -w paramui run ci",
+		"paramui:svgo": "npm -w paramui run svgo",
+		"paramui:clean": "npm -w paramui run clean",
+		"paramui:preview": "npm -w paramui run preview",
+		"dev": "run-p geometrix:dev designix:dev paramui:dev",
+		"ci": "run-s geometrix:ci designix:ci paramui:ci",
+		"svgo": "run-s geometrix:svgo designix:svgo paramui:svgo",
+		"clean": "run-s geometrix:clean designix:clean paramui:clean",
+		"preview": "run-s paramui:preview",
+		"ls-pkg": "ls -ltra pkg/geometrix pkg/designix pkg/paramui"
 	},
 	"workspaces": [
 		"pkg/*"

@@ -14,7 +14,7 @@ Getting started
 ---------------
 
 ```bash
-git clone https://github.com/charlyoleg/parametrix
+git clone https://github.com/charlyoleg2/parametrix
 cd parametrix
 npm -w geometrix install
 npm -w geometrix ci

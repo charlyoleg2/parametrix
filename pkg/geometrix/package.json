@@ -4,9 +4,9 @@
 	"description": "The 2D geometry engine of the parametrix",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/charlyoleg/parametrix.git"
+		"url": "git+https://github.com/charlyoleg2/parametrix.git"
 	},
-	"homepage": "https://github.com/charlyoleg/parametrix#readme",
+	"homepage": "https://github.com/charlyoleg2/parametrix#readme",
 	"keywords": [
 		"cad",
 		"programmatic",
@@ -37,7 +37,7 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"ci": "run-s check build pretty lint test:unit:once",
-		"svgo": "svgo -f svg -o ../parametrix/static",
+		"svgo": "svgo -f svg -o ../paramui/static",
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {

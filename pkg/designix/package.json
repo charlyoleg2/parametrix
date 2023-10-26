@@ -4,9 +4,9 @@
 	"description": "The first designs made with parametrix",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/charlyoleg/parametrix.git"
+		"url": "git+https://github.com/charlyoleg2/parametrix.git"
 	},
-	"homepage": "https://github.com/charlyoleg/parametrix#readme",
+	"homepage": "https://github.com/charlyoleg2/parametrix#readme",
 	"keywords": [
 		"cad",
 		"programmatic",
@@ -37,11 +37,11 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"ci": "run-s check build pretty lint test:unit:once",
-		"svgo1": "svgo -f src/svg -o ../parametrix/static",
-		"svgo2": "svgo -f src/dummies/svg -o ../parametrix/static",
-		"svgo3": "svgo -f src/gears/svg -o ../parametrix/static",
-		"svgo4": "svgo -f src/geometrix_verification/svg -o ../parametrix/static",
-		"svgo5": "svgo -f src/heliostat/svg -o ../parametrix/static",
+		"svgo1": "svgo -f src/svg -o ../paramui/static",
+		"svgo2": "svgo -f src/dummies/svg -o ../paramui/static",
+		"svgo3": "svgo -f src/gears/svg -o ../paramui/static",
+		"svgo4": "svgo -f src/geometrix_verification/svg -o ../paramui/static",
+		"svgo5": "svgo -f src/heliostat/svg -o ../paramui/static",
 		"svgo": "run-s svgo1 svgo2 svgo3 svgo4 svgo5",
 		"clean": "shx rm -fr dist node_modules"
 	},

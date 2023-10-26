@@ -1,5 +1,5 @@
-Parametrix root
-===============
+Parametrix
+==========
 
 
 Presentation
@@ -8,10 +8,10 @@ Presentation
 This is the monorepo that contains the following *javascript* packages:
 - geometrix
 - designix
-- parametrix
+- paramui
 
-A public instance of *Parametrix* is available on that [github-page](https://charlyoleg.github.io/parametrix/).
-The *code source* is available on [github](https://github.com/charlyoleg/parametrix).
+A public instance of *Parametrix* is available on that [github-page](https://charlyoleg2.github.io/parametrix/).
+The *code source* is available on [github](https://github.com/charlyoleg2/parametrix).
 
 
 Prerequisite
@@ -25,7 +25,7 @@ Getting started
 ---------------
 
 ```bash
-git clone https://github.com/charlyoleg/parametrix
+git clone https://github.com/charlyoleg2/parametrix
 cd parametrix
 npm i
 npm run ci
@@ -38,7 +38,7 @@ npm run clean
 npm run ls-pkg
 npm -w geometrix run check
 npm -w designix run build
-npm -w parametrix run dev
+npm -w paramui run dev
 ```
 
 

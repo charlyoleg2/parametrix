@@ -7,8 +7,8 @@ Presentation
 
 A static website to run some parametric - generic - generative 2D designs.
 
-This static website is deployed on [github-pages](https://charlyoleg.github.io/parametrix).
-The sources are available on [github](https://github.com/charlyoleg/parametrix).
+This static website is deployed on [github-pages](https://charlyoleg2.github.io/parametrix).
+The sources are available on [github](https://github.com/charlyoleg2/parametrix).
 
 
 Prerequisite
@@ -22,7 +22,7 @@ Developing
 ----------
 
 ```bash
-git clone https://github.com/charlyoleg/parametrix
+git clone https://github.com/charlyoleg2/parametrix
 cd parametrix
 npm i
 npm run dev -- --open
