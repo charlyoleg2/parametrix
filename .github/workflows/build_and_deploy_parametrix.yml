@@ -21,7 +21,7 @@ jobs:
 
             - run: npm -w geometrix run ci
             - run: npm -w designix run ci
-            - run: npm -w parametrix run ci
+            - run: npm -w paramui run ci
 
             - name: Build and check Parametrix
               env:
@@ -29,16 +29,16 @@ jobs:
               run: |
                   npm -w geometrix run build
                   npm -w designix run build
-                  npm -w parametrix run build
-                  npm -w parametrix run github-pages-fix
-                  npm -w parametrix run check
-                  npm -w parametrix run test:unit
-                  npm -w parametrix run lint
+                  npm -w paramui run build
+                  npm -w paramui run github-pages-fix
+                  npm -w paramui run check
+                  npm -w paramui run test:unit
+                  npm -w paramui run lint
 
             - name: Deploy Parametrix to GitHub pages
               uses: crazy-max/ghaction-github-pages@v4
               with:
                   target_branch: gh-pages
-                  build_dir: pkg/parametrix/build
+                  build_dir: pkg/paramui/build
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
