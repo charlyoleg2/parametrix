@@ -171,6 +171,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figBottom.addSecond(contourCircle(0, 0, R2));
 		figBottom.addSecond(contourCircle(0, 0, R1 - param.E2));
 		// figEmptyPole
+		figEmptyPole.addMain(contourCircle(0, 0, R1 + param.E3));
 		figEmptyPole.addMain(contourCircle(0, 0, R1 - param.E2));
 		// figEmptyDoor
 		figEmptyDoor.addMain(ctrDoorFace(param.L2));
@@ -228,7 +229,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			volumes: [
 				{
 					outName: `ipax_${designName}_door`,
-					boolMethod: EBVolume.eSubstraction,
+					//boolMethod: EBVolume.eSubstraction,
+					boolMethod: EBVolume.eIntersection,
 					inList: [`subpax_${designName}_door`, `subpax_${designName}_emptyPole`]
 				},
 				{
