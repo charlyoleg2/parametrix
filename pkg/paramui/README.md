@@ -1,5 +1,5 @@
-Parametrix
-==========
+ParamUI
+=======
 
 
 Presentation
@@ -25,19 +25,14 @@ Developing
 git clone https://github.com/charlyoleg2/parametrix
 cd parametrix
 npm i
-npm run dev -- --open
-```
-
-Other useful commands:
-```bash
-npm run format
-npm run lint
-npm run check
-npm run test:unit -- --run
-npm run build
+npm run ci
 npm run preview
-npm run clean
 ```
 
+
+Dependencies
+------------
+
+*Paramui* is a [svelte-kit](https://kit.svelte.dev/) website. It also depends on *Geometrix* and *Designix*.
 
 
