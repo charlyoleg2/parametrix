@@ -123,13 +123,25 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					length: param.E2,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_top`,
+					face: `${designName}_faceBottom`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: param.E2,
+					rotate: [0, 0, 0],
+					translate: [0, 0, param.H1 - param.E2]
 				}
 			],
 			volumes: [
 				{
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eUnion,
-					inList: [`subpax_${designName}_pole`, `subpax_${designName}_bottom`]
+					inList: [
+						`subpax_${designName}_pole`,
+						`subpax_${designName}_bottom`,
+						`subpax_${designName}_top`
+					]
 				}
 			]
 		};
