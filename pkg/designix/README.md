@@ -23,5 +23,5 @@ npm -w designix ci
 Dependencies
 ------------
 
-*Designix* runtime depends only on *Geometrix*. Use *Paramui* WebUI or *Paramecli* CLI to visualize and export the designs in different formats like dxf, svg and others.
+*Designix* runtime depends only on *Geometrix*. Use *Paramui* WebUI or *Paramec* CLI to visualize and export the designs in different formats like dxf, svg and others.
 
