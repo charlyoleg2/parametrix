@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="171.29808"
+   height="190.59302"
+   viewBox="0 0 45.322617 50.427736"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <rect
+       x="181.37184"
+       y="1204.5748"
+       width="110.60723"
+       height="33.983406"
+       id="rect35" />
+    <rect
+       x="179.61539"
+       y="1157.2288"
+       width="115.52427"
+       height="29.327358"
+       id="rect34" />
+    <rect
+       x="182.17308"
+       y="1110.209"
+       width="105.33264"
+       height="31.540546"
+       id="rect33" />
+    <rect
+       x="181.37184"
+       y="1204.5748"
+       width="110.60723"
+       height="33.983406"
+       id="rect35-6" />
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-22.307301,-290.71368)">
+    <rect
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583"
+       id="rect36"
+       width="45.058033"
+       height="50.163151"
+       x="22.439592"
+       y="290.84598" />
+    <path
+       style="fill:none;stroke:#ff8080;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 25.606601,297.55007 c 0,0 1.53718,3.42507 2.893125,3.33698 1.340011,-0.0871 1.879395,-2.27931 2.525673,-3.64762 0.853531,-1.80711 1.719934,-4.04917 3.344998,-4.13348 1.570919,-0.0815 2.582943,1.72454 3.526496,3.64502 0.787587,1.60303 1.659281,4.06655 3.246443,4.05214 1.596653,-0.0145 3.210739,-4.1352 3.210739,-4.1352"
+       id="path15-9" />
+    <path
+       style="fill:none;stroke:#ff8080;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 25.457225,308.73152 3.942949,4.11281 5.053327,-6.96195 5.255437,7.06713 4.233882,-4.95549"
+       id="path32" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-2.5073288,0.87697813)"
+       id="text32"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect33)"><tspan
+         x="182.17383"
+         y="1123.1856"
+         id="tspan2">sinusoid</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-1.8237002,0.71539319)"
+       id="text33"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect34)"><tspan
+         x="179.61523"
+         y="1170.2051"
+         id="tspan3">triangle</tspan></text>
+    <path
+       style="fill:none;stroke:#ff8080;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 25.168582,319.99274 5.984166,-4.12731 -0.02693,9.7006 10.547906,-9.1903"
+       id="path34" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-2.1392742,-0.29831067)"
+       id="text34"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect35)"><tspan
+         x="181.37109"
+         y="1217.5508"
+         id="tspan4">sawUp</tspan></text>
+    <path
+       style="fill:none;stroke:#ff8080;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 25.296697,334.40744 5.984166,4.12731 -0.02693,-9.7006 10.547906,9.1903"
+       id="path34-5" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-1.6570456,11.511953)"
+       id="text34-0"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect35-6);display:inline"><tspan
+         x="181.37109"
+         y="1217.5508"
+         id="tspan5">sawDown</tspan></text>
+  </g>
+</svg>
