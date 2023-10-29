@@ -108,6 +108,27 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += `max panel number: ${max_panel_nb}\n`;
 		rGeome.logstr += `max panel surface: ${ffix(max_panel_nb * panel_surface)} m2\n`;
 		rGeome.logstr += `max panel power: ${ffix(max_panel_nb * panel_power)} W\n`;
+		const lenMain = param.main_direction === 1 ? param.ny : param.nx;
+		const lenLateral = param.main_direction === 1 ? param.nx : param.ny;
+		const lenRow: number[] = [];
+		for (let i = 0; i < lenMain; i++) {
+			const iEven = (i + 1) % 2; // 0 or 1
+			const elemNb = param.crenel ? lenLateral - iEven : lenLateral;
+			lenRow.push(elemNb);
+		}
+		lenRow[0] = param.first_row;
+		lenRow[lenRow.length - 1] = param.first_row;
+		if (lenMain > 2) {
+			lenRow[1] = param.second_row;
+			lenRow[lenRow.length - 2] = param.second_row;
+		}
+		let panelNb = 0;
+		lenRow.forEach((oneRow) => {
+			panelNb += oneRow;
+		});
+		rGeome.logstr += `actual panel number: ${panelNb}\n`;
+		rGeome.logstr += `actual panel surface: ${ffix(panelNb * panel_surface)} m2\n`;
+		rGeome.logstr += `actual panel power: ${ffix(panelNb * panel_power)} W\n`;
 		ctrPanelProfile = function (px: number, py: number): tContour {
 			const rPanelProfile = contour(px, py)
 				.addSegStrokeA(px + param.LH, py)
@@ -118,13 +139,23 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		};
 		// figSurface
 		const panelPositions: tPositions = [];
-		for (let ix = 0; ix < param.nx; ix++) {
-			for (let iy = 0; iy < param.ny; iy++) {
-				const dx = ox + ix * (param.LH + param.EH);
-				const dy = oy + iy * (param.LV + param.EV);
+		lenRow.forEach((oneRow, rowIdx) => {
+			for (let pIdx = 0; pIdx < oneRow; pIdx++) {
+				let dx = 0;
+				let dy = 0;
+				const offset = (lenLateral - oneRow) / 2;
+				if (param.main_direction === 0) {
+					// horizontal
+					dx = ox + rowIdx * (param.LH + param.EH);
+					dy = oy + pIdx * (param.LV + param.EV) + offset * param.LV;
+				} else {
+					// vertical
+					dx = ox + pIdx * (param.LH + param.EH) + offset * param.LH;
+					dy = oy + rowIdx * (param.LV + param.EV);
+				}
 				panelPositions.push([dx, dy]);
 			}
-		}
+		});
 		for (const pos of panelPositions) {
 			figSurface.addMain(ctrPanelProfile(pos[0], pos[1]));
 		}
