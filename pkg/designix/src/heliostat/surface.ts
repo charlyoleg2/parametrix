@@ -314,7 +314,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 
 const surfaceDef: tPageDef = {
 	pTitle: 'Heliostat panel-surface',
-	pDescription: 'The surface collecting the solar power made of solar-panels',
+	pDescription: 'The surface collecting the solar power',
 	pDef: pDef,
 	pGeom: pGeom
 };
