@@ -30,13 +30,13 @@ const pDef: tParamDef = {
 	partName: 'surface',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('LH', 'mm', 1000, 100, 4000, 1),
-		pNumber('LV', 'mm', 1600, 100, 4000, 1),
+		pNumber('LH', 'mm', 1600, 100, 4000, 1),
+		pNumber('LV', 'mm', 1000, 100, 4000, 1),
 		pNumber('LZ', 'mm', 40, 0, 100, 1),
 		pNumber('EH', 'mm', 10, 0, 1000, 1),
 		pNumber('EV', 'mm', 10, 0, 1000, 1),
-		pNumber('nx', '', 11, 1, 40, 1),
-		pNumber('ny', '', 7, 1, 40, 1),
+		pNumber('nx', '', 9, 1, 40, 1),
+		pNumber('ny', '', 9, 1, 40, 1),
 		pDropdown('main_direction', ['horizontal', 'vertical']),
 		pCheckbox('crenel', true),
 		pNumber('first_row', '', 5, 1, 40, 1),
@@ -98,9 +98,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ox = 0;
 		const oy = 0;
 		const panel_surface = (param.LH * param.LV) / 10 ** 6;
-		const panel_power = param.solar_power * panel_surface * param.power_efficiency / 100;
+		const panel_power = (param.solar_power * panel_surface * param.power_efficiency) / 100;
 		rGeome.logstr += `panel surface: ${ffix(panel_surface)} m2\n`;
 		rGeome.logstr += `panel power: ${ffix(panel_power)} W\n`;
+		const max_panel_nb = param.nx * param.ny;
+		rGeome.logstr += `max panel number: ${max_panel_nb}\n`;
+		rGeome.logstr += `max panel surface: ${ffix(max_panel_nb * panel_surface)} m2\n`;
+		rGeome.logstr += `max panel power: ${ffix(max_panel_nb * panel_power)} W\n`;
 		ctrPanelProfile = function (px: number, py: number): tContour {
 			const rPanelProfile = contour(px, py)
 				.addSegStrokeA(px + param.LH, py)
@@ -110,7 +114,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			return rPanelProfile;
 		};
 		// figSurface
-		figSurface.addMain(ctrPanelProfile(ox, oy));
+		for (let ix = 0; ix < param.nx; ix++) {
+			for (let iy = 0; iy < param.ny; iy++) {
+				const dx = ix * (param.LH + param.EH);
+				const dy = iy * (param.LV + param.EV);
+				figSurface.addMain(ctrPanelProfile(ox + dx, oy + dy));
+			}
+		}
 		// final figure list
 		rGeome.fig = {
 			faceSurface: figSurface
