@@ -154,7 +154,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					//boolMethod: EBVolume.eIdentity,
 					boolMethod: EBVolume.eUnion,
 					inList: panelPositions.map((elem, idx) => {
-						const subElem: string = `subpax_${designName}_panel_${idx}`;
+						const subElem = `subpax_${designName}_panel_${idx}`;
 						return subElem;
 					})
 				}
