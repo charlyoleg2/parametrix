@@ -34,21 +34,21 @@ const pDef: tParamDef = {
 		pNumber('LH', 'mm', 1600, 100, 4000, 1),
 		pNumber('LV', 'mm', 1000, 100, 4000, 1),
 		pNumber('LZ', 'mm', 40, 0, 100, 1),
-		pNumber('EH', 'mm', 10, 0, 1000, 1),
-		pNumber('EV', 'mm', 10, 0, 1000, 1),
 		pNumber('nx', '', 9, 1, 40, 1),
 		pNumber('ny', '', 9, 1, 40, 1),
 		pDropdown('main_direction', ['horizontal', 'vertical']),
 		pCheckbox('crenel', false),
 		pNumber('first_row', '', 9, 1, 40, 1),
 		pNumber('second_row', '', 9, 1, 40, 1),
+		pNumber('EH', 'mm', 10, 0, 1000, 1),
 		pCheckbox('EH_gradient', false),
-		pNumber('EH_sup', 'mm', 100, 0, 1000, 1),
+		pNumber('EH_sup', 'mm', 500, 0, 1000, 1),
 		pNumber('EH_cycle', '', 1, 0, 3, 0.05),
 		pNumber('EH_start', '', 0, 0, 1, 0.05),
 		pDropdown('EH_shape', ['sinusoid', 'triangle', 'sawUp', 'sawDown']),
+		pNumber('EV', 'mm', 10, 0, 1000, 1),
 		pCheckbox('EV_gradient', false),
-		pNumber('EV_sup', 'mm', 100, 0, 1000, 1),
+		pNumber('EV_sup', 'mm', 500, 0, 1000, 1),
 		pNumber('EV_cycle', '', 1, 0, 3, 0.05),
 		pNumber('EV_start', '', 0, 0, 1, 0.05),
 		pDropdown('EV_shape', ['sinusoid', 'triangle', 'sawUp', 'sawDown']),
@@ -59,19 +59,19 @@ const pDef: tParamDef = {
 		LH: 'surface_main.svg',
 		LV: 'surface_main.svg',
 		LZ: 'surface_lz.svg',
-		EH: 'surface_main.svg',
-		EV: 'surface_main.svg',
 		nx: 'surface_main.svg',
 		ny: 'surface_main.svg',
 		main_direction: 'surface_crenel.svg',
 		crenel: 'surface_crenel.svg',
 		first_row: 'surface_extremities.svg',
 		second_row: 'surface_extremities.svg',
+		EH: 'surface_main.svg',
 		EH_gradient: 'surface_space_evolution.svg',
 		EH_sup: 'surface_space_evolution.svg',
 		EH_cycle: 'surface_space_evolution.svg',
 		EH_start: 'surface_space_evolution.svg',
 		EH_shape: 'surface_space_shape.svg',
+		EV: 'surface_main.svg',
 		EV_gradient: 'surface_space_evolution.svg',
 		EV_sup: 'surface_space_evolution.svg',
 		EV_cycle: 'surface_space_evolution.svg',
@@ -145,7 +145,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		for (let i = 0; i < lenMain - 1; i++) {
 			let eSpace = EMain;
 			if (EMainGradient === 1) {
-				const gapNb = lenMain > 1 ? lenMain - 1 : 1;
+				const gapNb = lenMain > 2 ? lenMain - 2 : 1; // -2 to get a complete cycle
 				const phase = (EMainStart + (i * EMainCycle) / gapNb) % 1;
 				switch (EMainShape) {
 					case 0: // sinusoid
@@ -177,7 +177,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		for (let i = 0; i < lenLateral - 1; i++) {
 			let eSpace = ELateral;
 			if (ELateralGradient === 1) {
-				const gapNb = lenLateral > 1 ? lenLateral - 1 : 1;
+				const gapNb = lenLateral > 2 ? lenLateral - 2 : 1; // -2 to get a complete cycle
 				const phase = (ELateralStart + (i * ELateralCycle) / gapNb) % 1;
 				switch (ELateralShape) {
 					case 0: // sinusoid
@@ -244,14 +244,22 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					dx = ox + rowIdx * param.LH + eMainCumul[rowIdx];
 					dy = oy + (offset + pIdx) * param.LV + eLateralCumul[offset + pIdx];
 					if (half === 1) {
-						dy += (param.LV + eLateralCumul[offset + pIdx + 1]) / 2;
+						dy +=
+							(param.LV +
+								eLateralCumul[offset + pIdx + 1] -
+								eLateralCumul[offset + pIdx]) /
+							2;
 					}
 				} else {
 					// vertical
 					dy = oy + rowIdx * param.LV + eMainCumul[rowIdx];
 					dx = ox + (offset + pIdx) * param.LH + eLateralCumul[offset + pIdx];
 					if (half === 1) {
-						dx += (param.LH + eLateralCumul[offset + pIdx + 1]) / 2;
+						dx +=
+							(param.LH +
+								eLateralCumul[offset + pIdx + 1] -
+								eLateralCumul[offset + pIdx]) /
+							2;
 					}
 				}
 				panelPositions.push([dx, dy]);
