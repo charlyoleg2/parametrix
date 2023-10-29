@@ -75,6 +75,7 @@ const pDef: tParamDef = {
 		EV_sup: 'surface_space_evolution.svg',
 		EV_cycle: 'surface_space_evolution.svg',
 		EV_start: 'surface_space_evolution.svg',
+		EV_shape: 'surface_space_shape.svg',
 		power_efficiency: 'surface_power.svg',
 		solar_power: 'surface_power.svg'
 	},
@@ -97,7 +98,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ox = 0;
 		const oy = 0;
 		const panel_surface = (param.LH * param.LV) / 10 ** 6;
-		const panel_power = param.solar_power * panel_surface * param.power_efficiency;
+		const panel_power = param.solar_power * panel_surface * param.power_efficiency / 100;
 		rGeome.logstr += `panel surface: ${ffix(panel_surface)} m2\n`;
 		rGeome.logstr += `panel power: ${ffix(panel_power)} W\n`;
 		ctrPanelProfile = function (px: number, py: number): tContour {
