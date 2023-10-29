@@ -5,6 +5,7 @@ import type {
 	tParamDef,
 	tParamVal,
 	tGeom,
+	tExtrude,
 	tPageDef
 	//tMParams,
 	//tRParams,
@@ -88,15 +89,17 @@ const pDef: tParamDef = {
 
 // (px, py) coordinates of bottom-left of the panel in mm
 type tCtr1 = (px: number, py: number) => tContour;
+type tPositions = [number, number][];
 
 function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrPanelProfile: tCtr1;
 	const rGeome = initGeom();
 	const figSurface = figure();
+	const figOnePanel = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		const ox = 0;
-		const oy = 0;
+		const ox = -50;
+		const oy = -50;
 		const panel_surface = (param.LH * param.LV) / 10 ** 6;
 		const panel_power = (param.solar_power * panel_surface * param.power_efficiency) / 100;
 		rGeome.logstr += `panel surface: ${ffix(panel_surface)} m2\n`;
@@ -114,34 +117,46 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			return rPanelProfile;
 		};
 		// figSurface
+		const panelPositions: tPositions = [];
 		for (let ix = 0; ix < param.nx; ix++) {
 			for (let iy = 0; iy < param.ny; iy++) {
-				const dx = ix * (param.LH + param.EH);
-				const dy = iy * (param.LV + param.EV);
-				figSurface.addMain(ctrPanelProfile(ox + dx, oy + dy));
+				const dx = ox + ix * (param.LH + param.EH);
+				const dy = oy + iy * (param.LV + param.EV);
+				panelPositions.push([dx, dy]);
 			}
 		}
+		for (const pos of panelPositions) {
+			figSurface.addMain(ctrPanelProfile(pos[0], pos[1]));
+		}
+		// figOnePanel
+		figOnePanel.addMain(ctrPanelProfile(0, 0));
 		// final figure list
 		rGeome.fig = {
-			faceSurface: figSurface
+			faceSurface: figSurface,
+			faceOnePanel: figOnePanel
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
-			extrudes: [
-				{
-					outName: `subpax_${designName}_surface`,
-					face: `${designName}_faceSurface`,
+			extrudes: panelPositions.map((elem, idx) => {
+				const rElem: tExtrude = {
+					outName: `subpax_${designName}_panel_${idx}`,
+					face: `${designName}_faceOnePanel`,
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: param.LZ,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
-				}
-			],
+					translate: [elem[0], elem[1], 0]
+				};
+				return rElem;
+			}),
 			volumes: [
 				{
 					outName: `pax_${designName}`,
-					boolMethod: EBVolume.eIdentity,
-					inList: [`subpax_${designName}_surface`]
+					//boolMethod: EBVolume.eIdentity,
+					boolMethod: EBVolume.eUnion,
+					inList: panelPositions.map((elem, idx) => {
+						const subElem: string = `subpax_${designName}_panel_${idx}`;
+						return subElem;
+					})
 				}
 			]
 		};
