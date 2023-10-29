@@ -39,18 +39,18 @@ const pDef: tParamDef = {
 		pNumber('nx', '', 9, 1, 40, 1),
 		pNumber('ny', '', 9, 1, 40, 1),
 		pDropdown('main_direction', ['horizontal', 'vertical']),
-		pCheckbox('crenel', true),
-		pNumber('first_row', '', 5, 1, 40, 1),
-		pNumber('second_row', '', 6, 1, 40, 1),
+		pCheckbox('crenel', false),
+		pNumber('first_row', '', 9, 1, 40, 1),
+		pNumber('second_row', '', 9, 1, 40, 1),
 		pCheckbox('EH_gradient', false),
 		pNumber('EH_sup', 'mm', 100, 0, 1000, 1),
 		pNumber('EH_cycle', '', 1, 0, 3, 0.05),
-		pNumber('EH_start', '', 1, 0, 3, 0.05),
+		pNumber('EH_start', '', 0, 0, 1, 0.05),
 		pDropdown('EH_shape', ['sinusoid', 'triangle', 'sawUp', 'sawDown']),
 		pCheckbox('EV_gradient', false),
 		pNumber('EV_sup', 'mm', 100, 0, 1000, 1),
 		pNumber('EV_cycle', '', 1, 0, 3, 0.05),
-		pNumber('EV_start', '', 1, 0, 3, 0.05),
+		pNumber('EV_start', '', 0, 0, 1, 0.05),
 		pDropdown('EV_shape', ['sinusoid', 'triangle', 'sawUp', 'sawDown']),
 		pNumber('power_efficiency', '%', 16, 0, 100, 0.1),
 		pNumber('solar_power', 'W/m2', 816, 100, 2000, 1) // 1361*0.6=816 W/m2
@@ -98,8 +98,6 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figOnePanel = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		const ox = -50;
-		const oy = -50;
 		const panel_surface = (param.LH * param.LV) / 10 ** 6;
 		const panel_power = (param.solar_power * panel_surface * param.power_efficiency) / 100;
 		rGeome.logstr += `panel surface: ${ffix(panel_surface)} m2\n`;
@@ -110,6 +108,18 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += `max panel power: ${ffix(max_panel_nb * panel_power)} W\n`;
 		const lenMain = param.main_direction === 1 ? param.ny : param.nx;
 		const lenLateral = param.main_direction === 1 ? param.nx : param.ny;
+		const EMain = param.main_direction === 1 ? param.EV : param.EH;
+		const EMainGradient = param.main_direction === 1 ? param.EV_gradient : param.EH_gradient;
+		const EMainSup = param.main_direction === 1 ? param.EV_sup : param.EH_sup;
+		const EMainCycle = param.main_direction === 1 ? param.EV_cycle : param.EH_cycle;
+		const EMainStart = param.main_direction === 1 ? param.EV_start : param.EH_start;
+		const EMainShape = param.main_direction === 1 ? param.EV_shape : param.EH_shape;
+		const ELateral = param.main_direction === 0 ? param.EV : param.EH;
+		const ELateralGradient = param.main_direction === 0 ? param.EV_gradient : param.EH_gradient;
+		const ELateralSup = param.main_direction === 0 ? param.EV_sup : param.EH_sup;
+		const ELateralCycle = param.main_direction === 0 ? param.EV_cycle : param.EH_cycle;
+		const ELateralStart = param.main_direction === 0 ? param.EV_start : param.EH_start;
+		const ELateralShape = param.main_direction === 0 ? param.EV_shape : param.EH_shape;
 		const lenRow: number[] = [];
 		for (let i = 0; i < lenMain; i++) {
 			const iEven = (i + 1) % 2; // 0 or 1
@@ -126,9 +136,93 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		lenRow.forEach((oneRow) => {
 			panelNb += oneRow;
 		});
-		rGeome.logstr += `actual panel number: ${panelNb}\n`;
+		rGeome.logstr += `actual panel number: ${panelNb} (${ffix(
+			(100 * panelNb) / max_panel_nb
+		)} %)\n`;
 		rGeome.logstr += `actual panel surface: ${ffix(panelNb * panel_surface)} m2\n`;
 		rGeome.logstr += `actual panel power: ${ffix(panelNb * panel_power)} W\n`;
+		const eMain: number[] = [];
+		for (let i = 0; i < lenMain - 1; i++) {
+			let eSpace = EMain;
+			if (EMainGradient === 1) {
+				const gapNb = lenMain > 1 ? lenMain - 1 : 1;
+				const phase = (EMainStart + (i * EMainCycle) / gapNb) % 1;
+				switch (EMainShape) {
+					case 0: // sinusoid
+						eSpace += (EMainSup * (1 - Math.cos(phase * 2 * Math.PI))) / 2;
+						break;
+					case 1: // triangle
+						eSpace += EMainSup * (1 - 2 * Math.abs(phase - 0.5));
+						break;
+					case 2: // sawUp
+						eSpace += EMainSup * phase;
+						break;
+					case 3: // sawDown
+						eSpace += EMainSup * (1 - phase);
+						break;
+					default:
+						eSpace += EMainSup;
+				}
+			}
+			eMain.push(eSpace);
+		}
+		let eMainTotal = 0;
+		const eMainCumul: number[] = [];
+		eMainCumul.push(0);
+		eMain.forEach((eSpace) => {
+			eMainTotal += eSpace;
+			eMainCumul.push(eMainTotal);
+		});
+		const eLateral: number[] = [];
+		for (let i = 0; i < lenLateral - 1; i++) {
+			let eSpace = ELateral;
+			if (ELateralGradient === 1) {
+				const gapNb = lenLateral > 1 ? lenLateral - 1 : 1;
+				const phase = (ELateralStart + (i * ELateralCycle) / gapNb) % 1;
+				switch (ELateralShape) {
+					case 0: // sinusoid
+						eSpace += (ELateralSup * (1 - Math.cos(phase * 2 * Math.PI))) / 2;
+						break;
+					case 1: // triangle
+						eSpace += ELateralSup * (1 - 2 * Math.abs(phase - 0.5));
+						break;
+					case 2: // sawUp
+						eSpace += ELateralSup * phase;
+						break;
+					case 3: // sawDown
+						eSpace += ELateralSup * (1 - phase);
+						break;
+					default:
+						eSpace += ELateralSup;
+				}
+			}
+			eLateral.push(eSpace);
+		}
+		let eLateralTotal = 0;
+		const eLateralCumul: number[] = [];
+		eLateralCumul.push(0);
+		eLateral.forEach((eSpace) => {
+			eLateralTotal += eSpace;
+			eLateralCumul.push(eLateralTotal);
+		});
+		let gLenHorizontal = 0; // mm
+		let gLenVertical = 0; // mm
+		if (param.main_direction === 0) {
+			// horizontal
+			gLenHorizontal = lenMain * param.LH + eMainTotal;
+			gLenVertical = lenLateral * param.LV + eLateralTotal;
+		} else {
+			// vertical
+			gLenHorizontal = lenLateral * param.LH + eLateralTotal;
+			gLenVertical = lenMain * param.LV + eMainTotal;
+		}
+		const gArea = (gLenHorizontal * gLenVertical) / 10 ** 6; // m2
+		rGeome.logstr += `global horizontal width: ${ffix(gLenHorizontal / 1000)} m\n`;
+		rGeome.logstr += `global vertical height: ${ffix(gLenVertical / 1000)} m\n`;
+		rGeome.logstr += `global area: ${ffix(gArea)} m2\n`;
+		rGeome.logstr += `area efficiency: ${ffix((100 * panelNb * panel_surface) / gArea)} %\n`;
+		const ox = -gLenHorizontal / 2;
+		const oy = -gLenVertical / 2;
 		ctrPanelProfile = function (px: number, py: number): tContour {
 			const rPanelProfile = contour(px, py)
 				.addSegStrokeA(px + param.LH, py)
@@ -140,18 +234,25 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// figSurface
 		const panelPositions: tPositions = [];
 		lenRow.forEach((oneRow, rowIdx) => {
+			const half = (lenLateral - oneRow) % 2;
+			const offset = Math.floor((lenLateral - oneRow) / 2);
 			for (let pIdx = 0; pIdx < oneRow; pIdx++) {
 				let dx = 0;
 				let dy = 0;
-				const offset = (lenLateral - oneRow) / 2;
 				if (param.main_direction === 0) {
 					// horizontal
-					dx = ox + rowIdx * (param.LH + param.EH);
-					dy = oy + pIdx * (param.LV + param.EV) + offset * param.LV;
+					dx = ox + rowIdx * param.LH + eMainCumul[rowIdx];
+					dy = oy + (offset + pIdx) * param.LV + eLateralCumul[offset + pIdx];
+					if (half === 1) {
+						dy += (param.LV + eLateralCumul[offset + pIdx + 1]) / 2;
+					}
 				} else {
 					// vertical
-					dx = ox + pIdx * (param.LH + param.EH) + offset * param.LH;
-					dy = oy + rowIdx * (param.LV + param.EV);
+					dy = oy + rowIdx * param.LV + eMainCumul[rowIdx];
+					dx = ox + (offset + pIdx) * param.LH + eLateralCumul[offset + pIdx];
+					if (half === 1) {
+						dx += (param.LH + eLateralCumul[offset + pIdx + 1]) / 2;
+					}
 				}
 				panelPositions.push([dx, dy]);
 			}
