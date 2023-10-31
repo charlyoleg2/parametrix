@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="600"
+   height="3000"
+   viewBox="0 0 158.75 793.75"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
+   sodipodi:docname="heliostat.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.74835468"
+     inkscape:cx="219.81556"
+     inkscape:cy="530.49712"
+     inkscape:window-width="1370"
+     inkscape:window-height="836"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="RoundedArrow"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="m -0.21114562,-4.1055728 6.42229122,3.21114561 a 1,1 90 0 1 0,1.78885438 L -0.21114562,4.1055728 A 1.236068,1.236068 31.717474 0 1 -2,3 v -6 a 1.236068,1.236068 148.28253 0 1 1.78885438,-1.1055728 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path8" />
+    </marker>
+    <rect
+       x="421.01228"
+       y="630.71698"
+       width="117.96177"
+       height="37.466318"
+       id="rect4" />
+    <rect
+       x="8.2308071"
+       y="9.9950787"
+       width="342.81127"
+       height="58.021654"
+       id="rect1" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#d4aa00;stroke:#d4aa00;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 32.442181,185.95179 h 93.862309 l -1.55762,13.35855 -11.75156,22.63638 -16.272045,-4.8055 -23.911943,5.89334 -15.544737,-4.2235 -13.980652,1.84557 -8.679689,-11.63339 z"
+       id="path2"
+       sodipodi:nodetypes="cccccccccc" />
+    <rect
+       style="fill:#e3dedb;stroke:#e3dedb;stroke-width:0.264583"
+       id="rect3"
+       width="69.186523"
+       height="24.378906"
+       x="43.661518"
+       y="185.75014" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text1"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1);display:inline"><tspan
+         x="8.2304688"
+         y="22.970733"
+         id="tspan2">heliostat.svg</tspan></text>
+    <rect
+       style="fill:#0088aa;stroke:#0088aa;stroke-width:0.264583"
+       id="rect2"
+       width="18.05868"
+       height="1.3229166"
+       x="46.628258"
+       y="195.24571" />
+    <rect
+       style="fill:#0088aa;stroke:#0088aa;stroke-width:0.264583"
+       id="rect2-5"
+       width="18.05868"
+       height="1.3229166"
+       x="91.674469"
+       y="195.24571" />
+    <rect
+       style="fill:#0088aa;stroke:#0088aa;stroke-width:0.264583"
+       id="rect2-2"
+       width="18.05868"
+       height="1.3229166"
+       x="-194.98112"
+       y="54.99614"
+       transform="rotate(-90)" />
+    <rect
+       style="fill:#0088aa;stroke:#0088aa;stroke-width:0.264583"
+       id="rect2-2-7"
+       width="18.05868"
+       height="1.3229166"
+       x="-194.98112"
+       y="100.04235"
+       transform="rotate(-90)" />
+    <rect
+       style="fill:#0088aa;stroke:#0088aa;stroke-width:0.264582"
+       id="rect2-6"
+       width="3.8240576"
+       height="1.3229166"
+       x="54.99614"
+       y="176.92245" />
+    <rect
+       style="fill:#0088aa;stroke:#0088aa;stroke-width:0.264582"
+       id="rect2-6-9"
+       width="3.8240576"
+       height="1.3229166"
+       x="97.541214"
+       y="176.92245" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-1.0606602,6.424674)"
+       id="text3"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4);display:inline"><tspan
+         x="421.01172"
+         y="643.69339"
+         id="tspan3">socle</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow)"
+       d="m 103.42196,180.20174 7.65388,-2.95962"
+       id="path4" />
+  </g>
+</svg>
