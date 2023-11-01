@@ -82,12 +82,16 @@ const pDef: tParamDef = {
 	}
 };
 
+type tCtr1 = (px: number, py: number, angle: number) => tContour;
+
 function pGeom(t: number, param: tParamVal): tGeom {
+	let ctrRodFootprint: tCtr1;
+	let ctrRod: tCtr1;
 	const rGeome = initGeom();
 	const figFrame = figure();
 	const figPlate = figure();
-	//const figRod = figure();
-	//const figRodHollow = figure();
+	const figRod = figure();
+	const figRodHollow = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		if (param.L3 > param.L1 - param.L5) {
@@ -99,17 +103,45 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		if (param.H1 - param.H2 - param.H3 < 4 * param.D3) {
 			throw `err597: H1 ${param.H1} too small compare to H2 ${param.H2}, H3 ${param.H3} and D3 ${param.D3}`;
 		}
-		const rod_x = (param.L2 - param.L4) / 2;
-		const rod_y = (param.L1 - param.L3) / 2;
+		const pad1 = param.R1 * (1 - 1 / Math.sqrt(2));
+		const pad3 = param.R3 * (1 - 1 / Math.sqrt(2));
+		const rod_x = (param.L2 - pad1 - (param.L4 - pad3)) / 2;
+		const rod_y = (param.L1 - pad1 - (param.L3 - pad3)) / 2;
 		const rod_xy = Math.sqrt(rod_x ** 2 + rod_y ** 2);
 		const rod_z = param.H1 - param.H2 - param.H3;
 		const rod_slope_length = Math.sqrt(rod_xy ** 2 + rod_z ** 2);
 		const rod_slope_angle = Math.atan2(rod_z, rod_xy);
-		const rod_xy_angle = Math.atan2(rod_x, rod_y);
+		const rod_xy_angle = Math.atan2(rod_y, rod_x);
 		rGeome.logstr += `rod-slope:  length: ${ffix(rod_slope_length)} mm,  angle: ${ffix(
 			radToDeg(rod_slope_angle)
 		)} degree\n`;
 		rGeome.logstr += `rod-xy-angle: ${ffix(radToDeg(rod_xy_angle))} degree\n`;
+		const rodFootprintLength = param.D3 / Math.cos(Math.PI / 2 - rod_slope_angle);
+		rGeome.logstr += `rod-footprint-length: ${ffix(rodFootprintLength)} mm\n`;
+		const rodFPl = Math.sqrt((rodFootprintLength / 2) ** 2 + (param.D3 / 2) ** 2);
+		const rodFPa = Math.atan2(param.D3, rodFootprintLength);
+		ctrRodFootprint = function (px: number, py: number, angle: number): tContour {
+			const rCtr = contour(px, py)
+				.addPointRP(angle + Math.PI - rodFPa, rodFPl)
+				.addSeg2Arcs(angle + Math.PI / 2, angle)
+				.addPointRP(angle + Math.PI + rodFPa, rodFPl)
+				.addSeg2Arcs(angle + Math.PI, angle + Math.PI / 2)
+				.addPointRP(angle - rodFPa, rodFPl)
+				.addSeg2Arcs(angle + (3 * Math.PI) / 2, angle + Math.PI)
+				.addPointRP(angle + rodFPa, rodFPl)
+				.addSeg2Arcs(angle, angle - Math.PI / 2);
+			return rCtr;
+		};
+		ctrRod = function (px: number, py: number, angle: number): tContour {
+			const px0 = px + rodFPl * Math.cos(angle + Math.PI - rodFPa);
+			const py0 = py + rodFPl * Math.sin(angle + Math.PI - rodFPa);
+			const rCtr = contour(px0, py0)
+				.addSegStrokeRP(angle + Math.PI, rod_xy)
+				.addSegStrokeRP(angle - Math.PI / 2, param.D3)
+				.addSegStrokeRP(angle, rod_xy)
+				.closeSegStroke();
+			return rCtr;
+		};
 		// figFrame
 		if (param.R1 > param.L1 / 4 || param.R1 > param.L2 / 4) {
 			throw `err614: R1 ${param.R1} too large compare to L1 ${param.L1} or L2 ${param.L2}`;
@@ -203,6 +235,34 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		lPlateHole.forEach((ctr) => {
 			figFrame.addSecond(ctr);
 		});
+		const lRodFP: tContour[] = [];
+		lRodFP.push(ctrRodFootprint(param.L2 / 2 - pad1, param.L1 / 2 - pad1, rod_xy_angle));
+		lRodFP.push(ctrRodFootprint(param.L4 / 2 - pad3, param.L3 / 2 - pad3, rod_xy_angle));
+		lRodFP.push(
+			ctrRodFootprint(-param.L2 / 2 + pad1, param.L1 / 2 - pad1, Math.PI - rod_xy_angle)
+		);
+		lRodFP.push(
+			ctrRodFootprint(-param.L4 / 2 + pad3, param.L3 / 2 - pad3, Math.PI - rod_xy_angle)
+		);
+		lRodFP.push(
+			ctrRodFootprint(-param.L2 / 2 + pad1, -param.L1 / 2 + pad1, Math.PI + rod_xy_angle)
+		);
+		lRodFP.push(
+			ctrRodFootprint(-param.L4 / 2 + pad3, -param.L3 / 2 + pad3, Math.PI + rod_xy_angle)
+		);
+		lRodFP.push(ctrRodFootprint(param.L2 / 2 - pad1, -param.L1 / 2 + pad1, -rod_xy_angle));
+		lRodFP.push(ctrRodFootprint(param.L4 / 2 - pad3, -param.L3 / 2 + pad3, -rod_xy_angle));
+		const lRod: tContour[] = [];
+		lRod.push(ctrRod(param.L2 / 2 - pad1, param.L1 / 2 - pad1, rod_xy_angle));
+		lRod.push(ctrRod(-param.L2 / 2 + pad1, param.L1 / 2 - pad1, Math.PI - rod_xy_angle));
+		lRod.push(ctrRod(-param.L2 / 2 + pad1, -param.L1 / 2 + pad1, Math.PI + rod_xy_angle));
+		lRod.push(ctrRod(param.L2 / 2 - pad1, -param.L1 / 2 + pad1, -rod_xy_angle));
+		lRodFP.forEach((ctr) => {
+			figFrame.addSecond(ctr);
+		});
+		lRod.forEach((ctr) => {
+			figFrame.addSecond(ctr);
+		});
 		// figPlate
 		figPlate.addMain(ctrPlate);
 		lPlateHole.forEach((ctr) => {
@@ -213,10 +273,27 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		lFrameHole.forEach((ctr) => {
 			figPlate.addSecond(ctr);
 		});
+		lRodFP.forEach((ctr) => {
+			figPlate.addSecond(ctr);
+		});
+		lRod.forEach((ctr) => {
+			figPlate.addSecond(ctr);
+		});
+		// figRod
+		if (param.D4 >= param.D3) {
+			throw `err218: D4 ${param.D4} larger than D3 ${param.D3}`;
+		}
+		figRod.addMain(contourCircle(0, 0, param.D3));
+		figRod.addSecond(contourCircle(0, 0, param.D4));
+		// figRodHollow
+		figRodHollow.addMain(contourCircle(0, 0, param.D4));
+		figRodHollow.addSecond(contourCircle(0, 0, param.D3));
 		// final figure list
 		rGeome.fig = {
 			faceFrame: figFrame,
-			facePlate: figPlate
+			facePlate: figPlate,
+			faceRod: figRod,
+			faceRodHollow: figRodHollow
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
