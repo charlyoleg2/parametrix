@@ -5,6 +5,7 @@ import {
 	simplifiedGearWheelDef,
 	poleStaticDef,
 	poleRotorDef,
+	trapezeDef,
 	surfaceDef,
 	circlesDef,
 	rectangleDef,
@@ -32,6 +33,7 @@ const designDefs: tAllPageDef = {
 	simplified_gear_wheel: simplifiedGearWheelDef,
 	pole_static: poleStaticDef,
 	pole_rotor: poleRotorDef,
+	trapeze: trapezeDef,
 	surface: surfaceDef,
 	circles: circlesDef,
 	rectangle: rectangleDef,
@@ -56,7 +58,12 @@ const mLabel = [
 	{ category: 'Gears', pages: ['gear/gear_wheel_wheel', 'gear/simplified_gear_wheel'] },
 	{
 		category: 'Heliostat',
-		pages: ['heliostat/pole_static', 'heliostat/pole_rotor', 'heliostat/surface']
+		pages: [
+			'heliostat/pole_static',
+			'heliostat/pole_rotor',
+			'heliostat/trapeze',
+			'heliostat/surface'
+		]
 	},
 	{ category: 'Junk designs', pages: ['junk/circles', 'junk/rectangle'] },
 	{
@@ -97,6 +104,7 @@ const mIcon: tIcon = {
 	simplified_gear_wheel: 'page_gears.svg',
 	pole_static: 'page_pole_static.svg',
 	pole_rotor: 'page_pole_rotor.svg',
+	trapeze: 'page_trapeze.svg',
 	surface: 'page_surface.svg',
 	circles: 'page_circles.svg',
 	rectangle: 'page_rectangle.svg',
