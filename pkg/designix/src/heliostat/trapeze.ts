@@ -379,6 +379,54 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					]
 				},
 				{
+					outName: `subpax_${designName}_rodH1`,
+					face: `${designName}_faceRodHollow`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: rodExtrudeLength,
+					rotate: [0, Math.PI / 2 - rod_slope_angle, rod_xy_angle],
+					translate: [
+						param.L4 / 2 - pad3x,
+						param.L3 / 2 - pad3y,
+						param.H3 - rodFootprintHeight
+					]
+				},
+				{
+					outName: `subpax_${designName}_rodH2`,
+					face: `${designName}_faceRodHollow`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: rodExtrudeLength,
+					rotate: [0, Math.PI / 2 - rod_slope_angle, Math.PI - rod_xy_angle],
+					translate: [
+						-param.L4 / 2 + pad3x,
+						param.L3 / 2 - pad3y,
+						param.H3 - rodFootprintHeight
+					]
+				},
+				{
+					outName: `subpax_${designName}_rodH3`,
+					face: `${designName}_faceRodHollow`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: rodExtrudeLength,
+					rotate: [0, Math.PI / 2 - rod_slope_angle, Math.PI + rod_xy_angle],
+					translate: [
+						-param.L4 / 2 + pad3x,
+						-param.L3 / 2 + pad3y,
+						param.H3 - rodFootprintHeight
+					]
+				},
+				{
+					outName: `subpax_${designName}_rodH4`,
+					face: `${designName}_faceRodHollow`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: rodExtrudeLength,
+					rotate: [0, Math.PI / 2 - rod_slope_angle, -rod_xy_angle],
+					translate: [
+						param.L4 / 2 - pad3x,
+						-param.L3 / 2 + pad3y,
+						param.H3 - rodFootprintHeight
+					]
+				},
+				{
 					outName: `subpax_${designName}_cut1`,
 					face: `${designName}_faceCutRod`,
 					extrudeMethod: EExtrude.eLinearOrtho,
@@ -407,6 +455,16 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					]
 				},
 				{
+					outName: `ipax_${designName}_rodHollow`,
+					boolMethod: EBVolume.eUnion,
+					inList: [
+						`subpax_${designName}_rodH1`,
+						`subpax_${designName}_rodH2`,
+						`subpax_${designName}_rodH3`,
+						`subpax_${designName}_rodH4`
+					]
+				},
+				{
 					outName: `ipax_${designName}_halfRods`,
 					boolMethod: EBVolume.eSubstraction,
 					inList: [`ipax_${designName}_rawRod`, `subpax_${designName}_cut1`]
@@ -417,13 +475,18 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					inList: [`ipax_${designName}_halfRods`, `subpax_${designName}_cut2`]
 				},
 				{
-					outName: `pax_${designName}`,
+					outName: `ipax_${designName}_plus`,
 					boolMethod: EBVolume.eUnion,
 					inList: [
 						`subpax_${designName}_frame`,
 						`subpax_${designName}_plate`,
 						`ipax_${designName}_rods`
 					]
+				},
+				{
+					outName: `pax_${designName}`,
+					boolMethod: EBVolume.eSubstraction,
+					inList: [`ipax_${designName}_plus`, `ipax_${designName}_rodHollow`]
 				}
 			]
 		};
