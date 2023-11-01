@@ -37,7 +37,7 @@ const pDef: tParamDef = {
 		pNumber('N1', '', 7, 1, 20, 1),
 		pNumber('N2', '', 4, 1, 20, 1),
 		pNumber('N3', '', 2, 1, 20, 1),
-		pNumber('N4', '', 1, 1, 20, 1),
+		pNumber('N4', '', 2, 1, 20, 1),
 		pNumber('L5', 'mm', 100, 1, 400, 1),
 		pNumber('L6', 'mm', 50, 1, 400, 1),
 		pNumber('L7', 'mm', 50, 1, 400, 1),
@@ -158,10 +158,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			throw `err658: L5 ${param.L5} too small compare to D1 ${param.D1} or L6 ${param.L6}`;
 		}
 		if (step3 < param.D2 + param.L7) {
-			throw `err661: D2 ${param.D2} or L7 ${param.L7} too larege compare to L3 ${param.l3}`;
+			throw `err661: D2 ${param.D2} or L7 ${param.L7} too large compare to L3 ${param.l3}`;
 		}
 		if (step4 < param.D2 + param.L7) {
-			throw `err664: D2 ${param.D2} or L7 ${param.L7} too larege compare to L4 ${param.l4}`;
+			throw `err664: D2 ${param.D2} or L7 ${param.L7} too large compare to L4 ${param.l4}`;
 		}
 		const lFrameHole: tContour[] = [];
 		for (let i = 1; i < param.N1 + 1; i++) {
@@ -174,10 +174,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		for (let i = 1; i < param.N2 + 1; i++) {
 			lFrameHole.push(
-				contourCircle(param.L1 / 2 - param.L6, -param.L2 / 2 + i * step2, param.D1)
+				contourCircle(-param.L2 / 2 + i * step2, param.L1 / 2 - param.L6, param.D1)
 			);
 			lFrameHole.push(
-				contourCircle(-param.L1 / 2 + param.L6, -param.L2 / 2 + i * step2, param.D1)
+				contourCircle(-param.L2 / 2 + i * step2, -param.L1 / 2 + param.L6, param.D1)
 			);
 		}
 		const lPlateHole: tContour[] = [];
@@ -191,10 +191,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		for (let i = 1; i < param.N4 + 1; i++) {
 			lPlateHole.push(
-				contourCircle(param.L3 / 2 - param.L7, -param.L4 / 2 + i * step4, param.D2)
+				contourCircle(-param.L4 / 2 + i * step4, param.L3 / 2 - param.L7, param.D2)
 			);
 			lPlateHole.push(
-				contourCircle(-param.L3 / 2 + param.L7, -param.L4 / 2 + i * step4, param.D2)
+				contourCircle(-param.L4 / 2 + i * step4, -param.L3 / 2 + param.L7, param.D2)
 			);
 		}
 		lFrameHole.forEach((ctr) => {
@@ -206,12 +206,12 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// figPlate
 		figPlate.addMain(ctrPlate);
 		lPlateHole.forEach((ctr) => {
-			figPlate.addSecond(ctr);
+			figPlate.addMain(ctr);
 		});
 		figPlate.addSecond(ctrFrameExt);
 		figPlate.addSecond(ctrFrameInt);
 		lFrameHole.forEach((ctr) => {
-			figPlate.addMain(ctr);
+			figPlate.addSecond(ctr);
 		});
 		// final figure list
 		rGeome.fig = {
@@ -227,7 +227,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: param.H2,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					translate: [0, 0, param.H1 - param.H2]
 				},
 				{
 					outName: `subpax_${designName}_plate`,
