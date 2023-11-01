@@ -1,7 +1,7 @@
 // trapeze.ts
 
 import type {
-	//tContour,
+	tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -123,20 +123,96 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(param.R1)
 			.closeSegStroke()
 			.addCornerRounded(param.R1);
+		if (param.R2 > (param.L1 - 2 * param.L5) / 4 || param.R2 > (param.L2 - 2 * param.L5) / 4) {
+			throw `err627: R2 ${param.R2} too large compare to L1 ${param.L1}, L2 ${param.L2} and L5 ${param.L5}`;
+		}
+		const ctrFrameInt = contour(param.L2 / 2 - param.L5, param.L1 / 2 - param.L5)
+			.addSegStrokeA(-param.L2 / 2 + param.L5, param.L1 / 2 - param.L5)
+			.addCornerRounded(param.R2)
+			.addSegStrokeA(-param.L2 / 2 + param.L5, -param.L1 / 2 + param.L5)
+			.addCornerRounded(param.R2)
+			.addSegStrokeA(param.L2 / 2 - param.L5, -param.L1 / 2 + param.L5)
+			.addCornerRounded(param.R2)
+			.closeSegStroke()
+			.addCornerRounded(param.R2);
+		if (param.R3 > param.L3 / 4 || param.R3 > param.L4 / 4) {
+			throw `err639: R3 ${param.R3} too large compare to L3 ${param.L3} or L4 ${param.L4}`;
+		}
+		const ctrPlate = contour(param.L4 / 2, param.L3 / 2)
+			.addSegStrokeA(-param.L4 / 2, param.L3 / 2)
+			.addCornerRounded(param.R3)
+			.addSegStrokeA(-param.L4 / 2, -param.L3 / 2)
+			.addCornerRounded(param.R3)
+			.addSegStrokeA(param.L4 / 2, -param.L3 / 2)
+			.addCornerRounded(param.R3)
+			.closeSegStroke()
+			.addCornerRounded(param.R3);
 		figFrame.addMain(ctrFrameExt);
-		//figFrame.addSecond(ctrPoleProfile(1));
-		//figFrame.addSecond(ctrPoleProfile(-1));
+		figFrame.addMain(ctrFrameInt);
+		figFrame.addSecond(ctrPlate);
+		const step1 = param.L1 / (param.N1 + 1);
+		const step2 = param.L2 / (param.N2 + 1);
+		const step3 = param.L3 / (param.N3 + 1);
+		const step4 = param.L4 / (param.N4 + 1);
+		if (param.L5 < param.D1 + param.L6) {
+			throw `err658: L5 ${param.L5} too small compare to D1 ${param.D1} or L6 ${param.L6}`;
+		}
+		if (step3 < param.D2 + param.L7) {
+			throw `err661: D2 ${param.D2} or L7 ${param.L7} too larege compare to L3 ${param.l3}`;
+		}
+		if (step4 < param.D2 + param.L7) {
+			throw `err664: D2 ${param.D2} or L7 ${param.L7} too larege compare to L4 ${param.l4}`;
+		}
+		const lFrameHole: tContour[] = [];
+		for (let i = 1; i < param.N1 + 1; i++) {
+			lFrameHole.push(
+				contourCircle(param.L2 / 2 - param.L6, -param.L1 / 2 + i * step1, param.D1)
+			);
+			lFrameHole.push(
+				contourCircle(-param.L2 / 2 + param.L6, -param.L1 / 2 + i * step1, param.D1)
+			);
+		}
+		for (let i = 1; i < param.N2 + 1; i++) {
+			lFrameHole.push(
+				contourCircle(param.L1 / 2 - param.L6, -param.L2 / 2 + i * step2, param.D1)
+			);
+			lFrameHole.push(
+				contourCircle(-param.L1 / 2 + param.L6, -param.L2 / 2 + i * step2, param.D1)
+			);
+		}
+		const lPlateHole: tContour[] = [];
+		for (let i = 1; i < param.N3 + 1; i++) {
+			lPlateHole.push(
+				contourCircle(param.L4 / 2 - param.L7, -param.L3 / 2 + i * step3, param.D2)
+			);
+			lPlateHole.push(
+				contourCircle(-param.L4 / 2 + param.L7, -param.L3 / 2 + i * step3, param.D2)
+			);
+		}
+		for (let i = 1; i < param.N4 + 1; i++) {
+			lPlateHole.push(
+				contourCircle(param.L3 / 2 - param.L7, -param.L4 / 2 + i * step4, param.D2)
+			);
+			lPlateHole.push(
+				contourCircle(-param.L3 / 2 + param.L7, -param.L4 / 2 + i * step4, param.D2)
+			);
+		}
+		lFrameHole.forEach((ctr) => {
+			figFrame.addMain(ctr);
+		});
+		lPlateHole.forEach((ctr) => {
+			figFrame.addSecond(ctr);
+		});
 		// figPlate
-		figPlate.addMain(contourCircle(0, 0, param.D3));
-		figPlate.addMain(contourCircle(0, 0, param.D4));
-		//const posR = R2 + param.L1;
-		//const posA = (2 * Math.PI) / param.N1;
-		//for (let i = 0; i < param.N1; i++) {
-		//	const posX = posR * Math.cos(i * posA);
-		//	const posY = posR * Math.sin(i * posA);
-		//	figPlate.addMain(contourCircle(posX, posY, R3));
-		//}
-		//figPlate.addSecond(contourCircle(0, 0, R1 - param.E1));
+		figPlate.addMain(ctrPlate);
+		lPlateHole.forEach((ctr) => {
+			figPlate.addSecond(ctr);
+		});
+		figPlate.addSecond(ctrFrameExt);
+		figPlate.addSecond(ctrFrameInt);
+		lFrameHole.forEach((ctr) => {
+			figPlate.addMain(ctr);
+		});
 		// final figure list
 		rGeome.fig = {
 			faceFrame: figFrame,
