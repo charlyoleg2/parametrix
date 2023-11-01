@@ -105,8 +105,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		const pad1 = param.R1 * (1 - 1 / Math.sqrt(2));
 		const pad3 = param.R3 * (1 - 1 / Math.sqrt(2));
-		const rod_x = (param.L2 - pad1 - (param.L4 - pad3)) / 2;
-		const rod_y = (param.L1 - pad1 - (param.L3 - pad3)) / 2;
+		const rod_x = param.L2 / 2 - pad1 - (param.L4 / 2 - pad3);
+		const rod_y = param.L1 / 2 - pad1 - (param.L3 / 2 - pad3);
 		const rod_xy = Math.sqrt(rod_x ** 2 + rod_y ** 2);
 		const rod_z = param.H1 - param.H2 - param.H3;
 		const rod_slope_length = Math.sqrt(rod_xy ** 2 + rod_z ** 2);
