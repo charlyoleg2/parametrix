@@ -3,8 +3,12 @@
 import {
 	gearWheelWheelDef,
 	simplifiedGearWheelDef,
+	baseDef,
 	poleStaticDef,
 	poleRotorDef,
+	coneDef,
+	swingDef,
+	rodDef,
 	trapezeDef,
 	surfaceDef,
 	circlesDef,
@@ -31,8 +35,12 @@ type tIcon = Record<string, string>;
 const designDefs: tAllPageDef = {
 	gear_wheel_wheel: gearWheelWheelDef,
 	simplified_gear_wheel: simplifiedGearWheelDef,
+	base: baseDef,
 	pole_static: poleStaticDef,
 	pole_rotor: poleRotorDef,
+	cone: coneDef,
+	swing: swingDef,
+	rod: rodDef,
 	trapeze: trapezeDef,
 	surface: surfaceDef,
 	circles: circlesDef,
@@ -59,8 +67,12 @@ const mLabel = [
 	{
 		category: 'Heliostat',
 		pages: [
+			'heliostat/base',
 			'heliostat/pole_static',
 			'heliostat/pole_rotor',
+			'heliostat/cone',
+			'heliostat/swing',
+			'heliostat/rod',
 			'heliostat/trapeze',
 			'heliostat/surface'
 		]
@@ -102,8 +114,12 @@ const mIcon: tIcon = {
 	index: 'page_index.svg',
 	gear_wheel_wheel: 'page_gears.svg',
 	simplified_gear_wheel: 'page_gears.svg',
+	base: 'page_base.svg',
 	pole_static: 'page_pole_static.svg',
 	pole_rotor: 'page_pole_rotor.svg',
+	cone: 'page_cone.svg',
+	swing: 'page_swing.svg',
+	rod: 'page_rod.svg',
 	trapeze: 'page_trapeze.svg',
 	surface: 'page_surface.svg',
 	circles: 'page_circles.svg',

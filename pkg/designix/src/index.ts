@@ -3,8 +3,12 @@
 export * from './gears/gear_wheel_wheel';
 export * from './gears/simplified_gear_wheel';
 
+export * from './heliostat/base';
 export * from './heliostat/pole_static';
 export * from './heliostat/pole_rotor';
+export * from './heliostat/cone';
+export * from './heliostat/swing';
+export * from './heliostat/rod';
 export * from './heliostat/trapeze';
 export * from './heliostat/surface';
 
