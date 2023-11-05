@@ -26,6 +26,7 @@
 		return rWarn;
 	}
 	let optFaces: string[] = [];
+	let exportFace: string;
 	let face: string;
 	let simTime = 0;
 	// log and paramChange
@@ -41,6 +42,7 @@
 		calcErr = geome.calcErr;
 		calcWarn = checkWarn(geome.logstr);
 		optFaces = Object.keys(geome.fig);
+		exportFace = 'zip';
 		//geomRedraw(simTime);
 		subD = geome.sub;
 	}
@@ -49,7 +51,6 @@
 	}
 	$: paramChange2(pDef.partName); // for reactivity on page change
 	// export drawings
-	let exportFace: string;
 	function download_binFile(fName: string, fContent: Blob) {
 		//create temporary an invisible element
 		const elem_a_download = document.createElement('a');
