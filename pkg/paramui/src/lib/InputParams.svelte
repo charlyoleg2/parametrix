@@ -1,6 +1,7 @@
 <script lang="ts">
 	//import type { tOkFunc } from '$lib/ModalDiag.svelte';
 	import ModalDiag from '$lib/ModalDiag.svelte';
+	import ModalImg from '$lib/ModalImg.svelte';
 	import LocStorWrite from '$lib/LocStorWrite.svelte';
 	import LocStorRead from '$lib/LocStorRead.svelte';
 	import SimpleDrawing from '$lib/SimpleDrawing.svelte';
@@ -227,8 +228,10 @@
 		}
 	}
 	$: paramPict2(0, pDef.partName);
-	function showSvg(svgPath: string) {
-		console.log(`dbg231: svgPath: ${svgPath}`);
+	let modalImg = false;
+	function showSvg() {
+		//console.log(`dbg231: svgPath: ${svgPath}`);
+		modalImg = true;
 	}
 </script>
 
@@ -342,7 +345,8 @@
 			><LocStorWrite pageName={pDef.partName} bind:storeName={locStorWname} /></ModalDiag
 		>
 	</main>
-	<button on:click={() => showSvg(paramSvg)} class="side-img">
+	<ModalImg bind:modalOpen={modalImg} svgPath={paramSvg} />
+	<button on:click={showSvg} class="side-img">
 		<img src={paramSvg} alt={paramSvg} />
 	</button>
 	<div class="mini-canvas">
