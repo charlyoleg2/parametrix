@@ -31,7 +31,7 @@ const pDef: tParamDef = {
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('D1', 'mm', 600, 100, 4000, 10),
-		pNumber('D2', 'mm', 800, 100, 4000, 10),
+		pNumber('D2', 'mm', 700, 100, 4000, 10),
 		pNumber('D3', 'mm', 400, 100, 4000, 10),
 		pNumber('D4', 'mm', 500, 100, 4000, 10),
 		pNumber('E1', 'mm', 30, 1, 80, 1),
@@ -42,7 +42,7 @@ const pDef: tParamDef = {
 		pNumber('H3', 'mm', 400, 10, 4000, 10),
 		pNumber('N1', '', 24, 3, 100, 1),
 		pNumber('D5', 'mm', 40, 1, 100, 1),
-		pNumber('L1', 'mm', 45, 1, 300, 1),
+		pNumber('L1', 'mm', 34, 1, 300, 1),
 		pNumber('L2', 'mm', 100, 1, 400, 1)
 	],
 	paramSvg: {
@@ -112,8 +112,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				.addSegStrokeA(orient * R2, param.E3)
 				.addSegStrokeA(orient * R1, param.E3)
 				.addSegStrokeA(orient * R1, param.H1)
-				.addSegStrokeA(orient * R2, param.H1)
-				.addSegStrokeA(orient * R2, param.H1 - param.E1)
+				.addSegStrokeA(orient * R3, param.H1)
+				.addSegStrokeA(orient * R3, param.H1 - param.E1)
 				.addSegStrokeA(orient * (R1 - param.E2), param.H1 - param.E1)
 				.addSegStrokeA(orient * (R1 - param.E2), param.E3)
 				.addSegStrokeA(orient * R4, param.E3)
@@ -135,10 +135,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		ctrHollow = function (orient: number): tContour {
 			const rHollow = contour(orient * RL2, hollowH)
 				.addSegStrokeA(orient * RL2, hollowH + param.H3 - param.L2)
-				.addPointA(-orient * RL2, hollowH + param.H3 - RL2)
+				.addPointA(-orient * RL2, hollowH + param.H3 - param.L2)
 				.addSegArc(RL2, false, true)
 				.addSegStrokeA(-orient * RL2, hollowH)
-				.addPointA(orient * RL2, hollowH)
+				//.addPointA(orient * RL2, hollowH)
 				.closeSegArc(RL2, false, true);
 			return rHollow;
 		};
@@ -147,8 +147,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figCut.addSecond(ctrBaseCut2(-1));
 		figCut.addSecond(ctrHollow(1));
 		// figTop
-		if (R2 + param.L1 + R5 > R1 - param.E2) {
-			throw `err127: D2 ${param.D2} too large compare to D1 ${param.D1}, E2 ${param.E2}, L1 ${param.L1}, R5 ${param.D5}`;
+		if (R3 + param.L1 + R5 > R1 - param.E2) {
+			throw `err127: D3 ${param.D3} too large compare to D1 ${param.D1}, E2 ${param.E2}, L1 ${param.L1}, R5 ${param.D5}`;
 		}
 		if (R5 > param.L1) {
 			throw `err130: D5 ${param.D5} too large compare to L1 ${param.L1}`;
@@ -158,8 +158,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			throw `err134: N1 ${param.N1} too large compare to D5 ${param.D5}, L1 ${param.L1}, D2 ${param.D2}`;
 		}
 		figTop.addMain(contourCircle(0, 0, R1));
-		figTop.addMain(contourCircle(0, 0, R2));
-		const posR = R2 + param.L1;
+		figTop.addMain(contourCircle(0, 0, R3));
+		const posR = R3 + param.L1;
 		const posA = (2 * Math.PI) / param.N1;
 		for (let i = 0; i < param.N1; i++) {
 			const posX = posR * Math.cos(i * posA);
@@ -167,7 +167,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			figTop.addMain(contourCircle(posX, posY, R5));
 		}
 		figTop.addSecond(contourCircle(0, 0, R1 - param.E1));
-		figTop.addSecond(contourCircle(0, 0, R3));
+		figTop.addSecond(contourCircle(0, 0, R2));
 		figTop.addSecond(contourCircle(0, 0, R4));
 		// figHollow
 		figHollow.addMain(ctrHollow(1));
