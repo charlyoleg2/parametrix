@@ -5,6 +5,7 @@ import type {
 	tParamDef,
 	tParamVal,
 	tGeom,
+	tExtrude,
 	tPageDef
 	//tMParams,
 	//tRParams,
@@ -40,10 +41,11 @@ const pDef: tParamDef = {
 		pNumber('H1', 'mm', 800, 10, 4000, 10),
 		pNumber('H2', 'mm', 50, 10, 4000, 10),
 		pNumber('H3', 'mm', 400, 10, 4000, 10),
+		pNumber('N2', '', 12, 1, 100, 1),
+		pNumber('L2', 'mm', 100, 1, 400, 1),
 		pNumber('N1', '', 24, 3, 100, 1),
 		pNumber('D5', 'mm', 40, 1, 100, 1),
-		pNumber('L1', 'mm', 34, 1, 300, 1),
-		pNumber('L2', 'mm', 100, 1, 400, 1)
+		pNumber('L1', 'mm', 34, 1, 300, 1)
 	],
 	paramSvg: {
 		D1: 'base_cut.svg',
@@ -56,10 +58,11 @@ const pDef: tParamDef = {
 		H1: 'base_cut.svg',
 		H2: 'base_hollow.svg',
 		H3: 'base_hollow.svg',
+		N2: 'base_hollow.svg',
+		L2: 'base_hollow.svg',
 		N1: 'base_top.svg',
 		D5: 'base_top.svg',
-		L1: 'base_top.svg',
-		L2: 'base_hollow.svg'
+		L1: 'base_top.svg'
 	},
 	sim: {
 		tMax: 180,
@@ -180,6 +183,20 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceHollow: figHollow
 		};
 		const designName = pDef.partName;
+		const hollowStep = (2 * Math.PI) / param.N2;
+		const lHollow = [...Array(param.N2).keys()];
+		const preExtrude = lHollow.map((idx) => {
+			const rHollow: tExtrude = {
+				outName: `subpax_${designName}_hollow_${idx}`,
+				face: `${designName}_faceHollow`,
+				extrudeMethod: EExtrude.eLinearOrtho,
+				length: R2 + param.E2,
+				rotate: [Math.PI / 2, 0, idx * hollowStep],
+				translate: [0, 0, 0]
+			};
+			return rHollow;
+		});
+		const lVolHollow = lHollow.map((idx) => `subpax_${designName}_hollow_${idx}`);
 		rGeome.vol = {
 			extrudes: [
 				{
@@ -187,7 +204,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					face: `${designName}_faceCut`,
 					extrudeMethod: EExtrude.eRotate,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					translate: [Math.PI / 2, 0, 0]
 				},
 				{
 					outName: `subpax_${designName}_top`,
@@ -197,24 +214,23 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					rotate: [0, 0, 0],
 					translate: [0, 0, param.H1 - param.E1]
 				},
-				{
-					outName: `subpax_${designName}_hollow`,
-					face: `${designName}_faceBottom`,
-					extrudeMethod: EExtrude.eLinearOrtho,
-					length: R2 + param.E2,
-					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
-				}
+				...preExtrude
 			],
 			volumes: [
 				{
+					outName: `ipax_${designName}_hollows`,
+					boolMethod: EBVolume.eUnion,
+					inList: [...lVolHollow]
+				},
+				{
+					outName: `ipax_${designName}_cylinder`,
+					boolMethod: EBVolume.eSubstraction,
+					inList: [`subpax_${designName}_cut`, `ipax_${designName}_hollows`]
+				},
+				{
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eUnion,
-					inList: [
-						`subpax_${designName}_cut`,
-						`subpax_${designName}_top`,
-						`subpax_${designName}_hollow`
-					]
+					inList: [`ipax_${designName}_cylinder`, `subpax_${designName}_top`]
 				}
 			]
 		};
