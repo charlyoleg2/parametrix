@@ -227,6 +227,9 @@
 		}
 	}
 	$: paramPict2(0, pDef.partName);
+	function showSvg(svgPath: string) {
+		console.log(`dbg231: svgPath: ${svgPath}`);
+	}
 </script>
 
 <section>
@@ -339,7 +342,9 @@
 			><LocStorWrite pageName={pDef.partName} bind:storeName={locStorWname} /></ModalDiag
 		>
 	</main>
-	<img src={paramSvg} alt={paramSvg} />
+	<button on:click={() => showSvg(paramSvg)} class="side-img">
+		<img src={paramSvg} alt={paramSvg} />
+	</button>
 	<div class="mini-canvas">
 		<SimpleDrawing pageName={pDef.partName} {geom} {face} {simTime} />
 	</div>
@@ -416,16 +421,20 @@
 	p.cUrl {
 		margin: 0 1rem 0;
 	}
-	section > img {
-		max-width: 200px;
-		max-height: 200px;
+	section > button.side-img {
 		margin: 0.2rem;
+		border: none;
+		padding: 0;
 		font-size: 0.6rem;
 		background-color: colors.$mini-picture;
 		vertical-align: top;
 		position: sticky;
 		z-index: 1;
 		top: 0.5rem;
+	}
+	section > button.side-img > img {
+		max-width: 200px;
+		max-height: 200px;
 	}
 	section > div.mini-canvas {
 		display: inline-block;
