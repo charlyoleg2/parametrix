@@ -33,8 +33,6 @@
 		background-color: rgba(0, 0, 0, 0.4);
 	}
 	aside > div.dialog {
-		width: 40rem;
-		height: 20rem;
 		max-width: 80vw;
 		max-height: 80vh;
 		background-color: colors.$modal;

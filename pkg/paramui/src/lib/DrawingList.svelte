@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { tParamDef } from 'geometrix';
+	import ModalImg from '$lib/ModalImg.svelte';
 	//import { onMount } from 'svelte';
 	//import { browser } from '$app/environment';
 	import { base } from '$app/paths';
@@ -32,11 +33,22 @@
 	let lSvg: string[] = [];
 	// reactivity
 	$: lSvg = getSvgList2(pDef.partName);
+	// modalImg
+	let modalImg = false;
+	let svgPath: string;
+	function showSvg(iSvgPath: string) {
+		svgPath = iSvgPath;
+		//console.log(`dbg231: svgPath: ${svgPath}`);
+		modalImg = true;
+	}
 </script>
 
 <section>
+	<ModalImg bind:modalOpen={modalImg} {svgPath} />
 	{#each lSvg as iSvg}
-		<img src={iSvg} alt={iSvg} />
+		<button on:click={() => showSvg(iSvg)}>
+			<img src={iSvg} alt={iSvg} />
+		</button>
 	{/each}
 </section>
 
@@ -47,11 +59,15 @@
 	section {
 		margin: 1rem;
 	}
-	section > img {
-		max-width: 200px;
-		max-height: 200px;
+	section > button {
 		margin: 0.2rem;
+		border: none;
+		padding: 0;
 		font-size: 0.6rem;
 		background-color: colors.$mini-picture;
+	}
+	section > button > img {
+		max-width: 200px;
+		max-height: 200px;
 	}
 </style>
