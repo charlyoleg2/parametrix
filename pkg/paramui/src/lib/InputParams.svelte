@@ -417,6 +417,8 @@
 		margin: 0 1rem 0;
 	}
 	section > img {
+		max-width: 200px;
+		max-height: 200px;
 		margin: 0.2rem;
 		font-size: 0.6rem;
 		background-color: colors.$mini-picture;
