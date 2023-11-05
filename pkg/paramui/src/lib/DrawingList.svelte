@@ -19,7 +19,7 @@
 	function getSvgList2(partName: string): string[] {
 		// fake using partName. partName is needed for the reactivity
 		if (partName === 'impossible_part_name') {
-			console.log(`dummy022: partName ${partName}`);
+			//console.log(`dummy022: partName ${partName}`);
 		}
 		const lList = getSvgList(pDef);
 		const rList2: string[] = [];
