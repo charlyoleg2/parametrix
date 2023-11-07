@@ -30,7 +30,7 @@ const pDef: tParamDef = {
 	partName: 'swing',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('L1', 'mm', 12000, 1000, 40000, 10),
+		pNumber('L1', 'mm', 12500, 1000, 40000, 10),
 		pNumber('L2', 'mm', 6000, 1000, 40000, 10),
 		pNumber('L3', 'mm', 500, 100, 4000, 10),
 		pNumber('L4', 'mm', 600, 100, 4000, 10),
@@ -43,7 +43,11 @@ const pDef: tParamDef = {
 		pNumber('H4', 'mm', 100, 10, 400, 1),
 		pNumber('E1', 'mm', 5, 1, 80, 1),
 		pNumber('E2', 'mm', 3, 1, 80, 1),
-		pNumber('E3', 'mm', 3, 1, 80, 1)
+		pNumber('E3', 'mm', 3, 1, 80, 1),
+		pNumber('rod1', '', 10, 1, 40, 1),
+		pNumber('rod2', 'mm', 1300, 100, 4000, 10),
+		pNumber('rod3', 'mm', 400, 50, 1000, 10),
+		pNumber('rod4', 'mm', 100, 50, 400, 10)
 	],
 	paramSvg: {
 		L1: 'swing_top.svg',
@@ -59,7 +63,11 @@ const pDef: tParamDef = {
 		H4: 'swing_side.svg',
 		E1: 'swing_side.svg',
 		E2: 'swing_side.svg',
-		E3: 'swing_face.svg'
+		E3: 'swing_face.svg',
+		rod1: 'swing_with_rod.svg',
+		rod2: 'swing_with_rod.svg',
+		rod3: 'swing_with_rod.svg',
+		rod4: 'swing_with_rod.svg'
 	},
 	sim: {
 		tMax: 180,
@@ -69,22 +77,43 @@ const pDef: tParamDef = {
 };
 
 type tCtr1 = (px: number, py: number, lx: number, ly: number) => tContour;
+type tCtr2 = (px: number, py: number, lx: number, ly: number, round: number) => tContour;
 
 function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrRectangle: tCtr1;
+	let ctrRectRound: tCtr2;
 	const rGeome = initGeom();
 	const figSide = figure();
 	const figFace = figure();
 	const figTop = figure();
+	const figTopWithRod = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
-		rGeome.logstr += `swing size: L1 ${ffix(param.L1)} x L2 ${ffix(param.L1)} mm\n`;
+		rGeome.logstr += `swing size: L1 ${ffix(param.L1)} x L2 ${ffix(param.L2)} mm\n`;
 		ctrRectangle = function (px: number, py: number, lx: number, ly: number): tContour {
 			const rRect = contour(px, py)
 				.addSegStrokeA(px + lx, py)
 				.addSegStrokeA(px + lx, py + ly)
 				.addSegStrokeA(px, py + ly)
+				.closeSegStroke();
+			return rRect;
+		};
+		ctrRectRound = function (
+			px: number,
+			py: number,
+			lx: number,
+			ly: number,
+			round: number
+		): tContour {
+			const rRect = contour(px, py)
+				.addCornerRounded(round)
+				.addSegStrokeA(px + lx, py)
+				.addCornerRounded(round)
+				.addSegStrokeA(px + lx, py + ly)
+				.addCornerRounded(round)
+				.addSegStrokeA(px, py + ly)
+				.addCornerRounded(round)
 				.closeSegStroke();
 			return rRect;
 		};
@@ -116,7 +145,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		for (const px of [
 			-param.L5 / 2 - 2 * param.L4 - param.L6,
 			-param.L5 / 2 - param.L4,
-			param.L5 / 3,
+			param.L5 / 2,
 			param.L5 / 2 + param.L4 + param.L6
 		]) {
 			for (const pxp of [0, param.L4 - param.H1]) {
@@ -144,11 +173,35 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			figTop.addSecond(ctrRectangle(-param.L1 / 2, py, param.L1, param.H2));
 		}
 		figTop.addSecond(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
+		// figTopWithRod
+		for (const px of facePx) {
+			figTopWithRod.addMain(ctrRectangle(px, -param.L2 / 2, param.H1, param.L2));
+		}
+		for (const py of sidePx) {
+			figTopWithRod.addMain(ctrRectangle(-param.L1 / 2, py, param.L1, param.H2));
+		}
+		figTopWithRod.addMain(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
+		const rodPx0 = -((param.rod1 - 1) * param.rod2 + param.rod3) / 2;
+		const rodOffset = (param.rod3 - param.rod4) / 2;
+		const rodPlateH = param.rod3 / 2;
+		const rodLength = 1.2 * param.L2;
+		const rodPyStep = (rodLength - rodPlateH) / (4 - 1);
+		const rodPy0 = -rodLength / 2;
+		for (let i = 0; i < param.rod1; i++) {
+			const px = rodPx0 + i * param.rod2;
+			figTopWithRod.addSecond(ctrRectangle(px + rodOffset, rodPy0, param.rod4, rodLength));
+			for (let j = 0; j < 4; j++) {
+				figTopWithRod.addSecond(
+					ctrRectRound(px, rodPy0 + j * rodPyStep, param.rod3, rodPlateH, rodPlateH / 4)
+				);
+			}
+		}
 		// final figure list
 		rGeome.fig = {
 			faceSide: figSide,
 			faceFace: figFace,
-			faceTop: figTop
+			faceTop: figTop,
+			faceTopWithRods: figTopWithRod
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
