@@ -30,21 +30,20 @@ const pDef: tParamDef = {
 	partName: 'swing',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('L1', 'mm', 600, 100, 4000, 10),
-		pNumber('L2', 'mm', 600, 100, 4000, 10),
-		pNumber('L3', 'mm', 600, 100, 4000, 10),
+		pNumber('L1', 'mm', 12000, 1000, 40000, 10),
+		pNumber('L2', 'mm', 6000, 1000, 40000, 10),
+		pNumber('L3', 'mm', 500, 100, 4000, 10),
 		pNumber('L4', 'mm', 600, 100, 4000, 10),
-		pNumber('L5', 'mm', 600, 100, 4000, 10),
-		pNumber('L6', 'mm', 600, 100, 4000, 10),
-		pNumber('L7', 'mm', 600, 100, 4000, 10),
-		pNumber('D1', 'mm', 400, 100, 4000, 10),
-		pNumber('H1', 'mm', 8000, 100, 40000, 10),
-		pNumber('H2', 'mm', 8000, 100, 40000, 10),
-		pNumber('H3', 'mm', 8000, 100, 40000, 10),
-		pNumber('H4', 'mm', 8000, 100, 40000, 10),
+		pNumber('L5', 'mm', 2000, 100, 10000, 10),
+		pNumber('L6', 'mm', 2000, 100, 10000, 10),
+		pNumber('D1', 'mm', 400, 50, 1000, 1),
+		pNumber('H1', 'mm', 100, 10, 400, 1),
+		pNumber('H2', 'mm', 100, 10, 400, 1),
+		pNumber('H3', 'mm', 100, 10, 400, 1),
+		pNumber('H4', 'mm', 100, 10, 400, 1),
 		pNumber('E1', 'mm', 5, 1, 80, 1),
-		pNumber('E2', 'mm', 30, 1, 80, 1),
-		pNumber('E3', 'mm', 30, 1, 80, 1)
+		pNumber('E2', 'mm', 3, 1, 80, 1),
+		pNumber('E3', 'mm', 3, 1, 80, 1)
 	],
 	paramSvg: {
 		L1: 'swing_top.svg',
@@ -53,7 +52,6 @@ const pDef: tParamDef = {
 		L4: 'swing_top.svg',
 		L5: 'swing_top.svg',
 		L6: 'swing_top.svg',
-		L7: 'swing_top.svg',
 		D1: 'swing_top.svg',
 		H1: 'swing_top.svg',
 		H2: 'swing_top.svg',
@@ -70,92 +68,113 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr1 = (orient: number) => tContour;
+type tCtr1 = (px: number, py: number, lx: number, ly: number) => tContour;
 
 function pGeom(t: number, param: tParamVal): tGeom {
-	let ctrPoleProfile: tCtr1;
+	let ctrRectangle: tCtr1;
 	const rGeome = initGeom();
-	const figCut = figure();
-	const figBottom = figure();
+	const figSide = figure();
+	const figFace = figure();
+	const figTop = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
-		const R2 = param.D2 / 2;
-		const R3 = param.D3 / 2;
-		rGeome.logstr += `pole-height: ${ffix(param.H1)} mm\n`;
-		// figCut
-		const ctrCylinder = contour(R1, 0)
-			.addSegStrokeA(R1, param.H1)
-			.addSegStrokeA(R1 - param.E1, param.H1)
-			.addSegStrokeA(R1 - param.E1, 0)
-			.closeSegStroke();
-		figCut.addMain(ctrCylinder);
-		ctrPoleProfile = function (orient: number): tContour {
-			const rPoleProfile = contour(orient * R1, 0)
-				.addSegStrokeA(orient * R1, param.H1)
-				.addSegStrokeA(orient * R2, param.H1)
-				.addSegStrokeA(orient * R2, param.H1 - param.E2)
-				.addSegStrokeA(orient * (R1 - param.E1), param.H1 - param.E2)
-				.addSegStrokeA(orient * (R1 - param.E1), param.E2)
-				.addSegStrokeA(orient * R2, param.E2)
-				.addSegStrokeA(orient * R2, 0)
+		rGeome.logstr += `swing size: L1 ${ffix(param.L1)} x L2 ${ffix(param.L1)} mm\n`;
+		ctrRectangle = function (px: number, py: number, lx: number, ly: number): tContour {
+			const rRect = contour(px, py)
+				.addSegStrokeA(px + lx, py)
+				.addSegStrokeA(px + lx, py + ly)
+				.addSegStrokeA(px, py + ly)
 				.closeSegStroke();
-			return rPoleProfile;
+			return rRect;
 		};
-		figCut.addSecond(ctrPoleProfile(1));
-		figCut.addSecond(ctrPoleProfile(-1));
-		// figBottom
-		figBottom.addMain(contourCircle(0, 0, R1));
-		figBottom.addMain(contourCircle(0, 0, R2));
-		const posR = R2 + param.L1;
-		const posA = (2 * Math.PI) / param.N1;
-		for (let i = 0; i < param.N1; i++) {
-			const posX = posR * Math.cos(i * posA);
-			const posY = posR * Math.sin(i * posA);
-			figBottom.addMain(contourCircle(posX, posY, R3));
+		// figSide
+		figSide.addMain(contourCircle(0, 0, R1));
+		figSide.addMain(contourCircle(0, 0, R1 - param.E1));
+		const sidePx = [
+			-param.L2 / 2,
+			-param.L3 / 2 - param.H2,
+			param.L3 / 2,
+			param.L2 / 2 - param.H2
+		];
+		for (const px of sidePx) {
+			figSide.addMain(ctrRectangle(px, R1 - param.H1, param.H2, param.H4));
+			figSide.addMain(
+				ctrRectangle(
+					px + param.E2,
+					R1 - param.H1 + param.E2,
+					param.H2 - 2 * param.E2,
+					param.H4 - 2 * param.E2
+				)
+			);
 		}
-		figBottom.addSecond(contourCircle(0, 0, R1 - param.E1));
+		figSide.addSecond(ctrRectangle(-param.L2 / 2, R1, param.L2, param.H3));
+		// figFace
+		const facePx: number[] = [];
+		facePx.push(-param.L1 / 2);
+		facePx.push(param.L1 / 2 - param.H1);
+		for (const px of [
+			-param.L5 / 2 - 2 * param.L4 - param.L6,
+			-param.L5 / 2 - param.L4,
+			param.L5 / 3,
+			param.L5 / 2 + param.L4 + param.L6
+		]) {
+			for (const pxp of [0, param.L4 - param.H1]) {
+				facePx.push(px + pxp);
+			}
+		}
+		for (const px of facePx) {
+			figFace.addMain(ctrRectangle(px, R1, param.H1, param.H3));
+			figFace.addMain(
+				ctrRectangle(
+					px + param.E3,
+					R1 + param.E3,
+					param.H1 - 2 * param.E3,
+					param.H3 - 2 * param.E3
+				)
+			);
+		}
+		figFace.addSecond(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
+		figFace.addSecond(ctrRectangle(-param.L1 / 2, R1 - param.H4, param.L1, param.H4));
+		// figTop
+		for (const px of facePx) {
+			figTop.addSecond(ctrRectangle(px, -param.L2 / 2, param.H1, param.L2));
+		}
+		for (const py of sidePx) {
+			figTop.addSecond(ctrRectangle(-param.L1 / 2, py, param.L1, param.H2));
+		}
+		figTop.addSecond(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
 		// final figure list
 		rGeome.fig = {
-			faceCut: figCut,
-			faceBottom: figBottom
+			faceSide: figSide,
+			faceFace: figFace,
+			faceTop: figTop
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
 			extrudes: [
 				{
-					outName: `subpax_${designName}_pole`,
-					face: `${designName}_faceCut`,
-					extrudeMethod: EExtrude.eRotate,
+					outName: `subpax_${designName}_side`,
+					face: `${designName}_faceSide`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: param.L1,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					translate: [0, 0, -param.L1 / 2]
 				},
 				{
-					outName: `subpax_${designName}_bottom`,
-					face: `${designName}_faceBottom`,
+					outName: `subpax_${designName}_face`,
+					face: `${designName}_faceFace`,
 					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.E2,
-					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
-				},
-				{
-					outName: `subpax_${designName}_top`,
-					face: `${designName}_faceBottom`,
-					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.E2,
-					rotate: [0, 0, 0],
-					translate: [0, 0, param.H1 - param.E2]
+					length: param.L2,
+					rotate: [0, Math.PI / 2, 0],
+					translate: [-param.L2 / 2, 0, 0]
 				}
 			],
 			volumes: [
 				{
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eUnion,
-					inList: [
-						`subpax_${designName}_pole`,
-						`subpax_${designName}_bottom`,
-						`subpax_${designName}_top`
-					]
+					inList: [`subpax_${designName}_side`, `subpax_${designName}_face`]
 				}
 			]
 		};
