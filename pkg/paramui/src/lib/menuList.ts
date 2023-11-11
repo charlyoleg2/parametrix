@@ -3,6 +3,7 @@
 import {
 	gearWheelWheelDef,
 	simplifiedGearWheelDef,
+	heliostatDef,
 	baseDef,
 	poleStaticDef,
 	poleRotorDef,
@@ -35,6 +36,7 @@ type tIcon = Record<string, string>;
 const designDefs: tAllPageDef = {
 	gear_wheel_wheel: gearWheelWheelDef,
 	simplified_gear_wheel: simplifiedGearWheelDef,
+	heliostat: heliostatDef,
 	base: baseDef,
 	pole_static: poleStaticDef,
 	pole_rotor: poleRotorDef,
@@ -67,6 +69,7 @@ const mLabel = [
 	{
 		category: 'Heliostat',
 		pages: [
+			'heliostat/heliostat',
 			'heliostat/base',
 			'heliostat/pole_static',
 			'heliostat/pole_rotor',
@@ -114,6 +117,7 @@ const mIcon: tIcon = {
 	index: 'page_index.svg',
 	gear_wheel_wheel: 'page_gears.svg',
 	simplified_gear_wheel: 'page_gears.svg',
+	heliostat: 'page_heliostat.svg',
 	base: 'page_base.svg',
 	pole_static: 'page_pole_static.svg',
 	pole_rotor: 'page_pole_rotor.svg',
