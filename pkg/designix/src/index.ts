@@ -8,6 +8,7 @@ export * from './heliostat/base';
 export * from './heliostat/pole_static';
 export * from './heliostat/pole_rotor';
 export * from './heliostat/cone';
+export * from './heliostat/spider';
 export * from './heliostat/swing';
 export * from './heliostat/rod';
 export * from './heliostat/trapeze';
