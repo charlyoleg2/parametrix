@@ -60,7 +60,6 @@ const pDef: tParamDef = {
 		H1: 'cone_face.svg',
 		H2: 'cone_face.svg',
 		E1: 'cone_face.svg',
-		E2: 'cone_face.svg',
 		E3: 'cone_face.svg',
 		H4: 'cone_side.svg',
 		D4: 'cone_side.svg',
