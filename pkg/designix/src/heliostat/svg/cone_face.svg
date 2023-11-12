@@ -12,6 +12,12 @@
   <defs
      id="defs1">
     <rect
+       x="59.521198"
+       y="718.41455"
+       width="47.202511"
+       height="34.643707"
+       id="rect4" />
+    <rect
        x="81.723557"
        y="653.98413"
        width="42.509922"
@@ -896,7 +902,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect19-8);display:inline"><tspan
          x="90.341797"
          y="1247.4512"
-         id="tspan6">E2</tspan></text>
+         id="tspan6">E1</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#marker15-8-9)"
        d="m 62.247414,180.76359 v 7.6739"
@@ -1193,5 +1199,13 @@
          x="81.722656"
          y="666.96097"
          id="tspan24">D6</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,13.686383,-30.625872)"
+       id="text3"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4);display:inline"><tspan
+         x="59.521484"
+         y="731.39065"
+         id="tspan25">E6</tspan></text>
   </g>
 </svg>

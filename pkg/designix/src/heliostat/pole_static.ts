@@ -87,6 +87,12 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const R1 = param.D1 / 2;
 		const R2 = param.D2 / 2;
 		const R3 = param.D3 / 2;
+		if (R2 > R1) {
+			throw `err091: D2 ${param.D2} is larger than D1 ${param.D1}`;
+		}
+		if (R3 + param.E2 > R1) {
+			throw `err095: D3 ${param.D3} and E2 ${param.E2} are too large compare to D1 ${param.D1}`;
+		}
 		const poleHeight = param.H1 + param.H2;
 		rGeome.logstr += `pole-height: ${ffix(poleHeight)} mm\n`;
 		const coneAngle = Math.atan2(R1 - R2, param.H2);
