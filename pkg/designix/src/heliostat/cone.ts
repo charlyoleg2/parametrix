@@ -87,12 +87,12 @@ const pDef: tParamDef = {
 };
 
 type tCtr1 = (orient: number) => tContour;
+type tCtr2 = (width: number, height: number, xpos: number, ypos: number, angle: number) => tContour;
 
 function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrCone: tCtr1;
 	let ctrConePlus: tCtr1;
-	let ctrBeamExt: tCtr1;
-	let ctrBeamInt: tCtr1;
+	let ctrRect: tCtr2;
 	const rGeome = initGeom();
 	const figCone = figure();
 	const figBeam = figure();
@@ -156,19 +156,21 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				.closeSegStroke();
 			return rCtr;
 		};
-		ctrBeamExt = function (Hpos: number): tContour {
-			const rCtr = contour(beamL / 2, Hpos - R4)
-				.addSegStrokeA(beamL / 2, Hpos + R4)
-				.addSegStrokeA(-beamL / 2, Hpos + R4)
-				.addSegStrokeA(-beamL / 2, Hpos - R4)
-				.closeSegStroke();
-			return rCtr;
-		};
-		ctrBeamInt = function (Hpos: number): tContour {
-			const rCtr = contour(beamL / 2, Hpos - R4 + param.E4)
-				.addSegStrokeA(beamL / 2, Hpos + R4 - param.E4)
-				.addSegStrokeA(-beamL / 2, Hpos + R4 - param.E4)
-				.addSegStrokeA(-beamL / 2, Hpos - R4 + param.E4)
+		ctrRect = function (
+			width: number,
+			height: number,
+			xpos: number,
+			ypos: number,
+			angle: number
+		): tContour {
+			const xWidth = width * Math.cos(angle);
+			const yWidth = width * Math.sin(angle);
+			const xHeight = -height * Math.sin(angle);
+			const yHeight = height * Math.cos(angle);
+			const rCtr = contour(xpos, ypos)
+				.addSegStrokeA(xpos + xWidth, ypos + yWidth)
+				.addSegStrokeA(xpos + xWidth + xHeight, ypos + yWidth + yHeight)
+				.addSegStrokeA(xpos + xHeight, ypos + yHeight)
 				.closeSegStroke();
 			return rCtr;
 		};
@@ -177,8 +179,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figCone.addSecond(ctrConePlus(-1));
 		//figcone.addSecond(contourCircle(0, beamH, R4));
 		//figcone.addSecond(contourCircle(0, beamH, R4 - param.E4));
-		figCone.addSecond(ctrBeamExt(beamH));
-		figCone.addSecond(ctrBeamInt(beamH));
+		figCone.addSecond(ctrRect(beamL, param.D4, -beamL / 2, beamH - R4, 0)); // beam-ext
+		figCone.addSecond(
+			ctrRect(beamL, param.D4 - 2 * param.E4, -beamL / 2, beamH - R4 + param.E4, 0)
+		); // beam-int
 		// figBeam
 		figBeam.addMain(contourCircle(0, beamH, R4));
 		figBeam.addMain(contourCircle(0, beamH, R4 - param.E4));
@@ -196,8 +200,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		figDisc.addSecond(contourCircle(0, 0, R1 - param.E1));
 		figDisc.addSecond(contourCircle(0, 0, R2));
-		figDisc.addSecond(ctrBeamExt(0));
-		figDisc.addSecond(ctrBeamInt(0));
+		figDisc.addSecond(ctrRect(beamL, param.D4, -beamL / 2, -R4, 0)); // beam-ext
+		figDisc.addSecond(ctrRect(beamL, param.D4 - 2 * param.E4, -beamL / 2, -R4 + param.E4, 0)); // beam-int
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
