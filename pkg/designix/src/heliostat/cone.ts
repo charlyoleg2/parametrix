@@ -212,27 +212,27 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.vol = {
 			extrudes: [
 				{
-					outName: `subpax_${designName}_pole`,
-					face: `${designName}_faceCut`,
+					outName: `subpax_${designName}_cone`,
+					face: `${designName}_faceCone`,
 					extrudeMethod: EExtrude.eRotate,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
 				},
 				{
-					outName: `subpax_${designName}_bottom`,
-					face: `${designName}_faceBottom`,
+					outName: `subpax_${designName}_beam`,
+					face: `${designName}_faceBeam`,
 					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.E2,
-					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					length: beamL,
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, beamL / 2, 0]
 				},
 				{
-					outName: `subpax_${designName}_top`,
-					face: `${designName}_faceBottom`,
+					outName: `subpax_${designName}_disc`,
+					face: `${designName}_faceDisc`,
 					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.E2,
+					length: param.E3,
 					rotate: [0, 0, 0],
-					translate: [0, 0, param.H1 - param.E2]
+					translate: [0, 0, param.H1 - param.H3 - param.E3]
 				}
 			],
 			volumes: [
@@ -240,9 +240,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eUnion,
 					inList: [
-						`subpax_${designName}_pole`,
-						`subpax_${designName}_bottom`,
-						`subpax_${designName}_top`
+						`subpax_${designName}_cone`,
+						`subpax_${designName}_beam`,
+						`subpax_${designName}_disc`
 					]
 				}
 			]
