@@ -5,6 +5,7 @@ import type {
 	tParamDef,
 	tParamVal,
 	tGeom,
+	tExtrude,
 	tPageDef
 	//tMParams,
 	//tRParams,
@@ -42,7 +43,7 @@ const pDef: tParamDef = {
 		pNumber('D4', 'mm', 300, 100, 1000, 10),
 		pNumber('E4', 'mm', 20, 1, 80, 1),
 		pNumber('H5', 'mm', 1000, 100, 2000, 10),
-		pNumber('D5', 'mm', 300, 10, 1000, 10),
+		pNumber('D5', 'mm', 200, 10, 1000, 10),
 		pNumber('L4', 'mm', 300, 10, 1000, 10),
 		pNumber('L5', 'mm', 2000, 100, 4000, 10),
 		pNumber('L6', 'mm', 2000, 100, 4000, 10),
@@ -97,13 +98,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figCone = figure();
 	const figBeam = figure();
 	const figDisc = figure();
+	const figHand = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
 		const R2 = param.D2 / 2;
 		const R3 = param.D3 / 2;
 		const R4 = param.D4 / 2;
-		//const R5 = param.D5 / 2;
+		const R5 = param.D5 / 2;
 		//const R6 = param.D6 / 2;
 		const R7 = param.D7 / 2;
 		const H1H2 = param.H1 + param.H2;
@@ -127,6 +129,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		const beamL = 3 * param.L4 + param.L5 + 2 * param.L6;
 		const beamH = param.H1 + param.H2 - param.H4;
+		const handLowX = R4 * Math.cos(Math.PI / 6);
+		const handLowY = R4 * Math.sin(Math.PI / 6);
+		const handHighX = R5 * Math.cos(Math.PI / 6);
+		const handHighY = R5 * Math.sin(Math.PI / 6);
+		const handPos = [-beamL / 2, -param.L5 / 2 - param.L4, param.L5 / 2, beamL / 2 - param.L4];
 		// figCone
 		const coneAngle = Math.atan2(R1 - R2, param.H2);
 		const coneSlopeX = param.E1 * Math.cos(coneAngle);
@@ -183,11 +190,24 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figCone.addSecond(
 			ctrRect(beamL, param.D4 - 2 * param.E4, -beamL / 2, beamH - R4 + param.E4, 0)
 		); // beam-int
+		for (const posX of handPos) {
+			figCone.addSecond(
+				ctrRect(param.L4, param.H5 - handLowY - handHighY, posX, beamH + handLowY, 0)
+			);
+		}
 		// figBeam
+		const ctrHand = contour(handLowX, beamH + handLowY)
+			.addSegStrokeA(handHighX, beamH + param.H5 - handHighY)
+			.addPointA(-handHighX, beamH + param.H5 - handHighY)
+			.addSegArc(R5, false, false)
+			.addSegStrokeA(-handLowX, beamH + handLowY)
+			.closeSegArc(R4, false, false);
 		figBeam.addMain(contourCircle(0, beamH, R4));
 		figBeam.addMain(contourCircle(0, beamH, R4 - param.E4));
 		figBeam.addSecond(ctrConePlus(1));
 		figBeam.addSecond(ctrConePlus(-1));
+		figBeam.addSecond(ctrHand);
+		figBeam.addSecond(contourCircle(0, beamH + param.H5, R5));
 		// figDisc
 		figDisc.addMain(contourCircle(0, 0, R1));
 		figDisc.addMain(contourCircle(0, 0, R3));
@@ -202,13 +222,34 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figDisc.addSecond(contourCircle(0, 0, R2));
 		figDisc.addSecond(ctrRect(beamL, param.D4, -beamL / 2, -R4, 0)); // beam-ext
 		figDisc.addSecond(ctrRect(beamL, param.D4 - 2 * param.E4, -beamL / 2, -R4 + param.E4, 0)); // beam-int
+		for (const posX of handPos) {
+			figDisc.addSecond(ctrRect(param.L4, 2 * handLowX, posX, -handLowX, 0));
+			figDisc.addSecond(ctrRect(param.L4, 2 * handHighX, posX, -handHighX, 0));
+		}
+		// figHand
+		figHand.addMain(ctrHand);
+		figHand.addSecond(contourCircle(0, beamH, R4));
+		figHand.addSecond(contourCircle(0, beamH, R4 - param.E4));
+		figHand.addSecond(contourCircle(0, beamH + param.H5, R5));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
 			faceBeam: figBeam,
-			faceDisc: figDisc
+			faceDisc: figDisc,
+			faceHand: figHand
 		};
 		const designName = pDef.partName;
+		const preExtrude = handPos.map((posX, idx) => {
+			const rHand: tExtrude = {
+				outName: `subpax_${designName}_hand_${idx}`,
+				face: `${designName}_faceHand`,
+				extrudeMethod: EExtrude.eLinearOrtho,
+				length: param.L4,
+				rotate: [Math.PI / 2, 0, 0],
+				translate: [0, -posX, 0]
+			};
+			return rHand;
+		});
 		rGeome.vol = {
 			extrudes: [
 				{
@@ -233,7 +274,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					length: param.E3,
 					rotate: [0, 0, 0],
 					translate: [0, 0, param.H1 - param.H3 - param.E3]
-				}
+				},
+				...preExtrude
 			],
 			volumes: [
 				{
@@ -242,7 +284,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					inList: [
 						`subpax_${designName}_cone`,
 						`subpax_${designName}_beam`,
-						`subpax_${designName}_disc`
+						`subpax_${designName}_disc`,
+						`subpax_${designName}_hand_0`,
+						`subpax_${designName}_hand_1`,
+						`subpax_${designName}_hand_2`,
+						`subpax_${designName}_hand_3`
 					]
 				}
 			]
