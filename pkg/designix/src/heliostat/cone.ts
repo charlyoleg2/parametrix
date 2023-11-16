@@ -97,6 +97,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome = initGeom();
 	const figCone = figure();
 	const figBeam = figure();
+	const figBeamHollow = figure();
 	const figDisc = figure();
 	const figHand = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
@@ -208,6 +209,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figBeam.addSecond(ctrConePlus(-1));
 		figBeam.addSecond(ctrHand);
 		figBeam.addSecond(contourCircle(0, beamH + param.H5, R5));
+		// figBeamHollow
+		figBeamHollow.addMain(contourCircle(0, beamH, R4 - param.E4));
+		figBeamHollow.addSecond(contourCircle(0, beamH, R4));
+		figBeamHollow.addSecond(ctrHand);
 		// figDisc
 		figDisc.addMain(contourCircle(0, 0, R1));
 		figDisc.addMain(contourCircle(0, 0, R3));
@@ -235,6 +240,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.fig = {
 			faceCone: figCone,
 			faceBeam: figBeam,
+			faceBeamHollow: figBeamHollow,
 			faceDisc: figDisc,
 			faceHand: figHand
 		};
@@ -268,6 +274,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					translate: [0, beamL / 2, 0]
 				},
 				{
+					outName: `subpax_${designName}_beamHollow`,
+					face: `${designName}_faceBeamHollow`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: beamL,
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, beamL / 2, 0]
+				},
+				{
 					outName: `subpax_${designName}_disc`,
 					face: `${designName}_faceDisc`,
 					extrudeMethod: EExtrude.eLinearOrtho,
@@ -279,7 +293,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			],
 			volumes: [
 				{
-					outName: `pax_${designName}`,
+					outName: `ipax_${designName}_plus`,
 					boolMethod: EBVolume.eUnion,
 					inList: [
 						`subpax_${designName}_cone`,
@@ -290,6 +304,16 @@ function pGeom(t: number, param: tParamVal): tGeom {
 						`subpax_${designName}_hand_2`,
 						`subpax_${designName}_hand_3`
 					]
+				},
+				{
+					outName: `ipax_${designName}_hollow`,
+					boolMethod: EBVolume.eUnion,
+					inList: [`subpax_${designName}_beamHollow`]
+				},
+				{
+					outName: `pax_${designName}`,
+					boolMethod: EBVolume.eSubstraction,
+					inList: [`ipax_${designName}_plus`, `ipax_${designName}_hollow`]
 				}
 			]
 		};
