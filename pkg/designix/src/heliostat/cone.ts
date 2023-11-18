@@ -100,6 +100,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figBeamHollow = figure();
 	const figDisc = figure();
 	const figHand = figure();
+	const figWing = figure();
+	const figWingHollow = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
@@ -149,8 +151,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const wingL2 = wingL + param.E4 / Math.cos(wingAngle) + wingLPre;
 		const wingPosX = R1 - param.L8 * Math.tan(coneAngle) - wingLPre * Math.sin(wingAngle);
 		const wingPosY = param.H1 + param.L8 - wingLPre * Math.cos(wingAngle);
-		//const wingCPosX = wingPosX - R6 * Math.cos(wingAngle);
-		//const wingCPosY = wingPosY + R6 * Math.sin(wingAngle);
+		const wingCPosX = wingPosX - R6 * Math.cos(wingAngle);
+		const wingCPosY = wingPosY + R6 * Math.sin(wingAngle);
 		const wingHR = R6 - param.E6;
 		const wingHPosX = wingPosX - param.E6 * Math.cos(wingAngle);
 		const wingHPosY = wingPosY + param.E6 * Math.sin(wingAngle);
@@ -271,13 +273,21 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figHand.addSecond(contourCircle(0, beamH, R4));
 		figHand.addSecond(contourCircle(0, beamH, R4 - param.E4));
 		figHand.addSecond(contourCircle(0, beamH + param.H5, R5));
+		// figWing
+		figWing.addMain(contourCircle(0, 0, R6));
+		figWing.addMain(contourCircle(0, 0, wingHR));
+		// figWingHollow
+		figWingHollow.addSecond(contourCircle(0, 0, R6));
+		figWingHollow.addMain(contourCircle(0, 0, wingHR));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
 			faceBeam: figBeam,
 			faceBeamHollow: figBeamHollow,
 			faceDisc: figDisc,
-			faceHand: figHand
+			faceHand: figHand,
+			faceWing: figWing,
+			faceWingHollow: figWingHollow
 		};
 		const designName = pDef.partName;
 		const preExtrude = handPos.map((posX, idx) => {
@@ -324,6 +334,38 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					rotate: [0, 0, 0],
 					translate: [0, 0, param.H1 - param.H3 - param.E3]
 				},
+				{
+					outName: `subpax_${designName}_wing_right`,
+					face: `${designName}_faceWing`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: wingL2,
+					rotate: [-wingAngle, 0, 0],
+					translate: [0, wingCPosX, wingCPosY]
+				},
+				{
+					outName: `subpax_${designName}_wing_left`,
+					face: `${designName}_faceWing`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: wingL2,
+					rotate: [wingAngle, 0, 0],
+					translate: [0, -wingCPosX, wingCPosY]
+				},
+				{
+					outName: `subpax_${designName}_wing_hollow_right`,
+					face: `${designName}_faceWingHollow`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: wingL2,
+					rotate: [-wingAngle, 0, 0],
+					translate: [0, wingCPosX, wingCPosY]
+				},
+				{
+					outName: `subpax_${designName}_wing_hollow_left`,
+					face: `${designName}_faceWingHollow`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: wingL2,
+					rotate: [wingAngle, 0, 0],
+					translate: [0, -wingCPosX, wingCPosY]
+				},
 				...preExtrude
 			],
 			volumes: [
@@ -337,13 +379,19 @@ function pGeom(t: number, param: tParamVal): tGeom {
 						`subpax_${designName}_hand_0`,
 						`subpax_${designName}_hand_1`,
 						`subpax_${designName}_hand_2`,
-						`subpax_${designName}_hand_3`
+						`subpax_${designName}_hand_3`,
+						`subpax_${designName}_wing_right`,
+						`subpax_${designName}_wing_left`
 					]
 				},
 				{
 					outName: `ipax_${designName}_hollow`,
 					boolMethod: EBVolume.eUnion,
-					inList: [`subpax_${designName}_beamHollow`]
+					inList: [
+						`subpax_${designName}_beamHollow`,
+						`subpax_${designName}_wing_hollow_right`,
+						`subpax_${designName}_wing_hollow_left`
+					]
 				},
 				{
 					outName: `pax_${designName}`,
