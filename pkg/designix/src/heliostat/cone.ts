@@ -17,7 +17,7 @@ import {
 	contourCircle,
 	figure,
 	//degToRad,
-	//radToDeg,
+	radToDeg,
 	ffix,
 	pNumber,
 	//pCheckbox,
@@ -107,7 +107,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const R3 = param.D3 / 2;
 		const R4 = param.D4 / 2;
 		const R5 = param.D5 / 2;
-		//const R6 = param.D6 / 2;
+		const R6 = param.D6 / 2;
 		const R7 = param.D7 / 2;
 		const H1H2 = param.H1 + param.H2;
 		const H1H5 = H1H2 - param.H4 + param.H5;
@@ -135,8 +135,27 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const handHighX = R5 * Math.cos(Math.PI / 6);
 		const handHighY = R5 * Math.sin(Math.PI / 6);
 		const handPos = [-beamL / 2, -param.L5 / 2 - param.L4, param.L5 / 2, beamL / 2 - param.L4];
-		// figCone
+		const wingLy = param.H2 - param.L8 - param.H4 - R4;
+		if (wingLy < 0) {
+			throw `err140: H2 ${param.H2} too small compare to L8 ${param.L8}, H4 ${param.H4} and D4 ${param.D4}`;
+		}
 		const coneAngle = Math.atan2(R1 - R2, param.H2);
+		rGeome.logstr += `cone-angle: ${ffix(radToDeg(coneAngle))} degree\n`;
+		const wingLx = beamL / 2 - param.L7 - R1 + param.L8 * Math.tan(coneAngle);
+		const wingL = Math.sqrt(wingLx ** 2 + wingLy ** 2);
+		const wingAngle = Math.atan2(wingLx, wingLy);
+		rGeome.logstr += `wing-angle: ${ffix(radToDeg(wingAngle))} degree\n`;
+		const wingLPre = param.E1 / Math.sin(wingAngle + coneAngle);
+		const wingL2 = wingL + param.E4 / Math.cos(wingAngle) + wingLPre;
+		const wingPosX = R1 - param.L8 * Math.tan(coneAngle) - wingLPre * Math.sin(wingAngle);
+		const wingPosY = param.H1 + param.L8 - wingLPre * Math.cos(wingAngle);
+		//const wingCPosX = wingPosX - R6 * Math.cos(wingAngle);
+		//const wingCPosY = wingPosY + R6 * Math.sin(wingAngle);
+		const wingHR = R6 - param.E6;
+		const wingHPosX = wingPosX - param.E6 * Math.cos(wingAngle);
+		const wingHPosY = wingPosY + param.E6 * Math.sin(wingAngle);
+		const wingAngleC = Math.PI / 2 - wingAngle;
+		// figCone
 		const coneSlopeX = param.E1 * Math.cos(coneAngle);
 		const coneSlopeY = param.E1 * Math.sin(coneAngle);
 		const coneFC = param.E1 * Math.tan(coneAngle / 2);
@@ -196,6 +215,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				ctrRect(param.L4, param.H5 - handLowY - handHighY, posX, beamH + handLowY, 0)
 			);
 		}
+		figCone.addSecond(ctrRect(wingL2, 2 * R6, wingPosX, wingPosY, wingAngleC)); // wing-right
+		figCone.addSecond(ctrRect(wingL2, 2 * wingHR, wingHPosX, wingHPosY, wingAngleC));
+		figCone.addSecond(ctrRect(2 * R6, wingL2, -wingPosX, wingPosY, wingAngle)); // wing-left
+		figCone.addSecond(ctrRect(2 * wingHR, wingL2, -wingHPosX, wingHPosY, wingAngle));
 		// figBeam
 		const ctrHand = contour(handLowX, beamH + handLowY)
 			.addSegStrokeA(handHighX, beamH + param.H5 - handHighY)
@@ -209,6 +232,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figBeam.addSecond(ctrConePlus(-1));
 		figBeam.addSecond(ctrHand);
 		figBeam.addSecond(contourCircle(0, beamH + param.H5, R5));
+		figBeam.addSecond(ctrRect(2 * R6, wingLy, -R6, param.H1 + param.L8, 0)); // wing
+		figBeam.addSecond(ctrRect(2 * wingHR, wingLy, -wingHR, param.H1 + param.L8, 0));
 		// figBeamHollow
 		figBeamHollow.addMain(contourCircle(0, beamH, R4 - param.E4));
 		figBeamHollow.addSecond(contourCircle(0, beamH, R4));
@@ -231,6 +256,16 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			figDisc.addSecond(ctrRect(param.L4, 2 * handLowX, posX, -handLowX, 0));
 			figDisc.addSecond(ctrRect(param.L4, 2 * handHighX, posX, -handHighX, 0));
 		}
+		figDisc.addSecond(ctrRect(wingLx, 2 * R6, R1 - param.L8 * Math.tan(coneAngle), -R6, 0)); // wing-right
+		figDisc.addSecond(
+			ctrRect(wingLx, 2 * wingHR, R1 - param.L8 * Math.tan(coneAngle), -wingHR, 0)
+		);
+		figDisc.addSecond(
+			ctrRect(wingLx, 2 * R6, -R1 + param.L8 * Math.tan(coneAngle) - wingLx, -R6, 0)
+		); // wing-left
+		figDisc.addSecond(
+			ctrRect(wingLx, 2 * wingHR, -R1 + param.L8 * Math.tan(coneAngle) - wingLx, -wingHR, 0)
+		);
 		// figHand
 		figHand.addMain(ctrHand);
 		figHand.addSecond(contourCircle(0, beamH, R4));

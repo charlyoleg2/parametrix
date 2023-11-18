@@ -33,6 +33,7 @@
 		"paramui:preview": "npm -w paramui run preview",
 		"dev": "run-p geometrix:dev designix:dev paramui:dev",
 		"ci": "run-s geometrix:ci designix:ci paramui:ci",
+		"ci2": "run-s designix:ci paramui:ci",
 		"svgo": "run-s geometrix:svgo designix:svgo paramui:svgo",
 		"clean": "run-s geometrix:clean designix:clean paramui:clean",
 		"preview": "run-s paramui:preview",
