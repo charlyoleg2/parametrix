@@ -28,8 +28,8 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="4.4489708"
-     inkscape:cx="307.82401"
-     inkscape:cy="1093.7361"
+     inkscape:cx="193.64029"
+     inkscape:cy="1003.8277"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -152,7 +152,7 @@
        style="font-style:normal;font-weight:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect113);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="7.9628906"
          y="18.576202"
-         id="tspan1">menu_icons.svg</tspan></text>
+         id="tspan8">menu_icons.svg</tspan></text>
     <rect
        style="fill:none;stroke:none;stroke-width:0.264583;fill-opacity:1"
        id="rect111"
@@ -180,22 +180,22 @@
        style="font-style:normal;font-weight:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect481);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="399.25586"
          y="45.830108"
-         id="tspan2">index&#10;</tspan><tspan
+         id="tspan9">index&#10;</tspan><tspan
          x="399.25586"
          y="64.163482"
-         id="tspan3">rough&#10;</tspan><tspan
+         id="tspan10">rough&#10;</tspan><tspan
          x="399.25586"
          y="82.496856"
-         id="tspan4">circle&#10;</tspan><tspan
+         id="tspan11">circle&#10;</tspan><tspan
          x="399.25586"
          y="100.83023"
-         id="tspan5">docs&#10;</tspan><tspan
+         id="tspan12">docs&#10;</tspan><tspan
          x="399.25586"
          y="119.1636"
-         id="tspan6">readme&#10;</tspan><tspan
+         id="tspan13">readme&#10;</tspan><tspan
          x="399.25586"
          y="137.49698"
-         id="tspan7">about</tspan></text>
+         id="tspan14">about</tspan></text>
     <rect
        style="fill:none;stroke:#e6e6e6;stroke-width:0.264583"
        id="rect111-3"
@@ -887,7 +887,7 @@
        height="1.0143641"
        x="49.961014"
        y="261.95316"
-       inkscape:export-filename="./page_cone.svg"
+       inkscape:export-filename="./page_rake.svg"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <rect
