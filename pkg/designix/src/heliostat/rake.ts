@@ -1,4 +1,4 @@
-// cone.ts
+// rake.ts
 
 import type {
 	tContour,
@@ -28,7 +28,7 @@ import {
 } from 'geometrix';
 
 const pDef: tParamDef = {
-	partName: 'cone',
+	partName: 'rake',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('D1', 'mm', 600, 100, 4000, 10),
@@ -56,29 +56,29 @@ const pDef: tParamDef = {
 		pNumber('L1', 'mm', 30, 1, 300, 1)
 	],
 	paramSvg: {
-		D1: 'cone_face.svg',
-		D2: 'cone_face.svg',
-		D3: 'cone_face.svg',
-		H1: 'cone_face.svg',
-		H2: 'cone_face.svg',
-		H3: 'cone_face.svg',
-		E1: 'cone_face.svg',
-		E3: 'cone_face.svg',
-		H4: 'cone_side.svg',
-		D4: 'cone_side.svg',
-		E4: 'cone_side.svg',
-		H5: 'cone_side.svg',
-		D5: 'cone_side.svg',
-		L4: 'cone_face.svg',
-		L5: 'cone_face.svg',
-		L6: 'cone_face.svg',
-		D6: 'cone_face.svg',
-		E6: 'cone_face.svg',
-		L7: 'cone_face.svg',
-		L8: 'cone_face.svg',
-		N1: 'cone_top.svg',
-		D7: 'cone_top.svg',
-		L1: 'cone_top.svg'
+		D1: 'rake_face.svg',
+		D2: 'rake_face.svg',
+		D3: 'rake_face.svg',
+		H1: 'rake_face.svg',
+		H2: 'rake_face.svg',
+		H3: 'rake_face.svg',
+		E1: 'rake_face.svg',
+		E3: 'rake_face.svg',
+		H4: 'rake_side.svg',
+		D4: 'rake_side.svg',
+		E4: 'rake_side.svg',
+		H5: 'rake_side.svg',
+		D5: 'rake_side.svg',
+		L4: 'rake_face.svg',
+		L5: 'rake_face.svg',
+		L6: 'rake_face.svg',
+		D6: 'rake_face.svg',
+		E6: 'rake_face.svg',
+		L7: 'rake_face.svg',
+		L8: 'rake_face.svg',
+		N1: 'rake_top.svg',
+		D7: 'rake_top.svg',
+		L1: 'rake_top.svg'
 	},
 	sim: {
 		tMax: 180,
@@ -206,8 +206,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figCone.addMain(ctrCone(1));
 		figCone.addSecond(ctrConePlus(1));
 		figCone.addSecond(ctrConePlus(-1));
-		//figcone.addSecond(contourCircle(0, beamH, R4));
-		//figcone.addSecond(contourCircle(0, beamH, R4 - param.E4));
+		//figCone.addSecond(contourCircle(0, beamH, R4));
+		//figCone.addSecond(contourCircle(0, beamH, R4 - param.E4));
 		figCone.addSecond(ctrRect(beamL, param.D4, -beamL / 2, beamH - R4, 0)); // beam-ext
 		figCone.addSecond(
 			ctrRect(beamL, param.D4 - 2 * param.E4, -beamL / 2, beamH - R4 + param.E4, 0)
@@ -403,7 +403,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// sub-design
 		rGeome.sub = {};
 		// finalize
-		rGeome.logstr += 'heliostat-cone draw successfully!\n';
+		rGeome.logstr += 'heliostat-rake draw successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;
@@ -412,11 +412,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const coneDef: tPageDef = {
-	pTitle: 'Heliostat cone',
-	pDescription: 'The cone on top of the pole-rotor of the heliostat',
+const rakeDef: tPageDef = {
+	pTitle: 'Heliostat rake',
+	pDescription: 'The rake on top of the pole-rotor of the heliostat',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { coneDef };
+export { rakeDef };
