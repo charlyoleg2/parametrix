@@ -53,7 +53,12 @@ const pDef: tParamDef = {
 		pNumber('L8', 'mm', 200, 10, 1000, 1),
 		pNumber('N1', '', 24, 3, 100, 1),
 		pNumber('D7', 'mm', 40, 1, 100, 1),
-		pNumber('L1', 'mm', 30, 1, 300, 1)
+		pNumber('L1', 'mm', 30, 1, 300, 1),
+		pNumber('D8', 'mm', 400, 100, 1000, 10),
+		pNumber('H6', 'mm', 100, 50, 1000, 10),
+		pNumber('H7', 'mm', 600, 100, 2000, 10),
+		pNumber('L9', 'mm', 300, 100, 1000, 10),
+		pNumber('R9', 'mm', 50, 0, 300, 1)
 	],
 	paramSvg: {
 		D1: 'rake_face.svg',
@@ -78,7 +83,12 @@ const pDef: tParamDef = {
 		L8: 'rake_face.svg',
 		N1: 'rake_top.svg',
 		D7: 'rake_top.svg',
-		L1: 'rake_top.svg'
+		L1: 'rake_top.svg',
+		D8: 'rake_side.svg',
+		H6: 'rake_door.svg',
+		H7: 'rake_door.svg',
+		L9: 'rake_door.svg',
+		R9: 'rake_door.svg'
 	},
 	sim: {
 		tMax: 180,
