@@ -112,6 +112,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figHand = figure();
 	const figWing = figure();
 	const figWingHollow = figure();
+	const figDoor = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
@@ -121,6 +122,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const R5 = param.D5 / 2;
 		const R6 = param.D6 / 2;
 		const R7 = param.D7 / 2;
+		const R8 = param.D8 / 2;
 		const H1H2 = param.H1 + param.H2;
 		const H1H5 = H1H2 - param.H4 + param.H5;
 		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
@@ -144,8 +146,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const beamH = param.H1 + param.H2 - param.H4;
 		const handLowX = R4 * Math.cos(Math.PI / 6);
 		const handLowY = R4 * Math.sin(Math.PI / 6);
-		const handHighX = R5 * Math.cos(Math.PI / 6);
-		const handHighY = R5 * Math.sin(Math.PI / 6);
+		const handHighXint = R5 * Math.cos(Math.PI / 6);
+		const handHighYint = R5 * Math.sin(Math.PI / 6);
+		const handHighXext = R8 * Math.cos(Math.PI / 6);
+		const handHighYext = R8 * Math.sin(Math.PI / 6);
 		const handPos = [-beamL / 2, -param.L5 / 2 - param.L4, param.L5 / 2, beamL / 2 - param.L4];
 		const wingLy = param.H2 - param.L8 - param.H4 - R4;
 		if (wingLy < 0) {
@@ -167,6 +171,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const wingHPosX = wingPosX - param.E6 * Math.cos(wingAngle);
 		const wingHPosY = wingPosY + param.E6 * Math.sin(wingAngle);
 		const wingAngleC = Math.PI / 2 - wingAngle;
+		const doorLowX = param.L9 / 2;
+		const doorHighX = param.L9 / 2 - param.H7 * Math.sin(coneAngle);
 		// figCone
 		const coneSlopeX = param.E1 * Math.cos(coneAngle);
 		const coneSlopeY = param.E1 * Math.sin(coneAngle);
@@ -213,6 +219,15 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				.closeSegStroke();
 			return rCtr;
 		};
+		const ctrDoor = contour(doorLowX, param.H1 + param.H6)
+			.addCornerRounded(param.R9)
+			.addSegStrokeA(doorHighX, param.H1 + param.H6 + param.H7)
+			.addCornerRounded(param.R9)
+			.addSegStrokeA(-doorHighX, param.H1 + param.H6 + param.H7)
+			.addCornerRounded(param.R9)
+			.addSegStrokeA(-doorLowX, param.H1 + param.H6)
+			.addCornerRounded(param.R9)
+			.closeSegStroke();
 		figCone.addMain(ctrCone(1));
 		figCone.addSecond(ctrConePlus(1));
 		figCone.addSecond(ctrConePlus(-1));
@@ -224,18 +239,21 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		); // beam-int
 		for (const posX of handPos) {
 			figCone.addSecond(
-				ctrRect(param.L4, param.H5 - handLowY - handHighY, posX, beamH + handLowY, 0)
+				ctrRect(param.L4, param.H5 - handLowY - handHighYint, posX, beamH + handLowY, 0)
 			);
 		}
 		figCone.addSecond(ctrRect(wingL2, 2 * R6, wingPosX, wingPosY, wingAngleC)); // wing-right
 		figCone.addSecond(ctrRect(wingL2, 2 * wingHR, wingHPosX, wingHPosY, wingAngleC));
 		figCone.addSecond(ctrRect(2 * R6, wingL2, -wingPosX, wingPosY, wingAngle)); // wing-left
 		figCone.addSecond(ctrRect(2 * wingHR, wingL2, -wingHPosX, wingHPosY, wingAngle));
+		figCone.addSecond(ctrDoor);
 		// figBeam
 		const ctrHand = contour(handLowX, beamH + handLowY)
-			.addSegStrokeA(handHighX, beamH + param.H5 - handHighY)
-			.addPointA(-handHighX, beamH + param.H5 - handHighY)
+			.addSegStrokeA(handHighXext, beamH + param.H5 - handHighYext)
+			.addSegStrokeA(handHighXint, beamH + param.H5 - handHighYint)
+			.addPointA(-handHighXint, beamH + param.H5 - handHighYint)
 			.addSegArc(R5, false, false)
+			.addSegStrokeA(-handHighXext, beamH + param.H5 - handHighYext)
 			.addSegStrokeA(-handLowX, beamH + handLowY)
 			.closeSegArc(R4, false, false);
 		figBeam.addMain(contourCircle(0, beamH, R4));
@@ -246,6 +264,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figBeam.addSecond(contourCircle(0, beamH + param.H5, R5));
 		figBeam.addSecond(ctrRect(2 * R6, wingLy, -R6, param.H1 + param.L8, 0)); // wing
 		figBeam.addSecond(ctrRect(2 * wingHR, wingLy, -wingHR, param.H1 + param.L8, 0));
+		figBeam.addSecond(ctrDoor);
 		// figBeamHollow
 		figBeamHollow.addMain(contourCircle(0, beamH, R4 - param.E4));
 		figBeamHollow.addSecond(contourCircle(0, beamH, R4));
@@ -266,7 +285,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figDisc.addSecond(ctrRect(beamL, param.D4 - 2 * param.E4, -beamL / 2, -R4 + param.E4, 0)); // beam-int
 		for (const posX of handPos) {
 			figDisc.addSecond(ctrRect(param.L4, 2 * handLowX, posX, -handLowX, 0));
-			figDisc.addSecond(ctrRect(param.L4, 2 * handHighX, posX, -handHighX, 0));
+			figDisc.addSecond(ctrRect(param.L4, 2 * handHighXint, posX, -handHighXint, 0));
+			figDisc.addSecond(ctrRect(param.L4, 2 * handHighXext, posX, -handHighXext, 0));
 		}
 		figDisc.addSecond(ctrRect(wingLx, 2 * R6, R1 - param.L8 * Math.tan(coneAngle), -R6, 0)); // wing-right
 		figDisc.addSecond(
@@ -289,6 +309,23 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// figWingHollow
 		figWingHollow.addSecond(contourCircle(0, 0, R6));
 		figWingHollow.addMain(contourCircle(0, 0, wingHR));
+		// figDoor
+		figDoor.addMain(ctrDoor);
+		figDoor.addSecond(ctrConePlus(1));
+		figDoor.addSecond(ctrConePlus(-1));
+		figDoor.addSecond(ctrRect(beamL, param.D4, -beamL / 2, beamH - R4, 0)); // beam-ext
+		figDoor.addSecond(
+			ctrRect(beamL, param.D4 - 2 * param.E4, -beamL / 2, beamH - R4 + param.E4, 0)
+		); // beam-int
+		for (const posX of handPos) {
+			figDoor.addSecond(
+				ctrRect(param.L4, param.H5 - handLowY - handHighYint, posX, beamH + handLowY, 0)
+			);
+		}
+		figDoor.addSecond(ctrRect(wingL2, 2 * R6, wingPosX, wingPosY, wingAngleC)); // wing-right
+		figDoor.addSecond(ctrRect(wingL2, 2 * wingHR, wingHPosX, wingHPosY, wingAngleC));
+		figDoor.addSecond(ctrRect(2 * R6, wingL2, -wingPosX, wingPosY, wingAngle)); // wing-left
+		figDoor.addSecond(ctrRect(2 * wingHR, wingL2, -wingHPosX, wingHPosY, wingAngle));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
@@ -297,7 +334,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceDisc: figDisc,
 			faceHand: figHand,
 			faceWing: figWing,
-			faceWingHollow: figWingHollow
+			faceWingHollow: figWingHollow,
+			faceDoor: figDoor
 		};
 		const designName = pDef.partName;
 		const preExtrude = handPos.map((posX, idx) => {
@@ -376,6 +414,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					rotate: [wingAngle, 0, 0],
 					translate: [0, -wingCPosX, wingCPosY]
 				},
+				{
+					outName: `subpax_${designName}_door`,
+					face: `${designName}_faceDoor`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: param.D1,
+					rotate: [Math.PI / 2, 0, Math.PI / 2],
+					translate: [0, 0, 0]
+				},
 				...preExtrude
 			],
 			volumes: [
@@ -400,7 +446,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					inList: [
 						`subpax_${designName}_beamHollow`,
 						`subpax_${designName}_wing_hollow_right`,
-						`subpax_${designName}_wing_hollow_left`
+						`subpax_${designName}_wing_hollow_left`,
+						`subpax_${designName}_door`
 					]
 				},
 				{
