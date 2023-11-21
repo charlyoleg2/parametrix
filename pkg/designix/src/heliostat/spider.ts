@@ -1,7 +1,7 @@
 // spider.ts
 
 import type {
-	tContour,
+	//tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -17,7 +17,7 @@ import {
 	figure,
 	//degToRad,
 	//radToDeg,
-	ffix,
+	//ffix,
 	pNumber,
 	//pCheckbox,
 	//pDropdown,
@@ -64,55 +64,63 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr1 = (orient: number) => tContour;
-
 function pGeom(t: number, param: tParamVal): tGeom {
-	let ctrPoleProfile: tCtr1;
 	const rGeome = initGeom();
-	const figCut = figure();
-	const figBottom = figure();
+	const figLegs = figure();
+	const figTube = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
-		const R2 = param.D2 / 2;
-		const R3 = param.D3 / 2;
-		rGeome.logstr += `pole-height: ${ffix(param.H1)} mm\n`;
-		// figCut
-		const ctrCylinder = contour(R1, 0)
-			.addSegStrokeA(R1, param.H1)
-			.addSegStrokeA(R1 - param.E1, param.H1)
-			.addSegStrokeA(R1 - param.E1, 0)
-			.closeSegStroke();
-		figCut.addMain(ctrCylinder);
-		ctrPoleProfile = function (orient: number): tContour {
-			const rPoleProfile = contour(orient * R1, 0)
-				.addSegStrokeA(orient * R1, param.H1)
-				.addSegStrokeA(orient * R2, param.H1)
-				.addSegStrokeA(orient * R2, param.H1 - param.E2)
-				.addSegStrokeA(orient * (R1 - param.E1), param.H1 - param.E2)
-				.addSegStrokeA(orient * (R1 - param.E1), param.E2)
-				.addSegStrokeA(orient * R2, param.E2)
-				.addSegStrokeA(orient * R2, 0)
-				.closeSegStroke();
-			return rPoleProfile;
-		};
-		figCut.addSecond(ctrPoleProfile(1));
-		figCut.addSecond(ctrPoleProfile(-1));
-		// figBottom
-		figBottom.addMain(contourCircle(0, 0, R1));
-		figBottom.addMain(contourCircle(0, 0, R2));
-		const posR = R2 + param.L1;
-		const posA = (2 * Math.PI) / param.N1;
-		for (let i = 0; i < param.N1; i++) {
-			const posX = posR * Math.cos(i * posA);
-			const posY = posR * Math.sin(i * posA);
-			figBottom.addMain(contourCircle(posX, posY, R3));
+		if (param.D1 < param.E2) {
+			throw `err476: D1 ${param.D1} smaller then E2 ${param.E2}`;
 		}
-		figBottom.addSecond(contourCircle(0, 0, R1 - param.E1));
+		const legE2 = param.E2 / 2;
+		const legStartY = Math.sqrt(R1 ** 2 - legE2 ** 2);
+		const legL2 = param.L1 + param.L2 * Math.sqrt(2);
+		const legL3 = param.L2 + param.L1 * Math.sqrt(2);
+		const legL4 = param.L4 - legL3;
+		if (legL4 < param.R2) {
+			throw `err984: L4 ${param.L4} too small compare to R2 ${param.R2}`;
+		}
+		const legL4x = legL4 * Math.cos(Math.PI / 4);
+		const legL4y = legL4 * Math.sin(Math.PI / 4);
+		const E2x = param.E2 * Math.cos(Math.PI / 4);
+		const E2y = param.E2 * Math.sin(Math.PI / 4);
+		const elbowx = param.E2 * Math.tan(Math.PI / 8);
+		if (R1 < param.E1) {
+			throw `err092: D1 ${param.D1} too small compare to E1 ${param.E1}`;
+		}
+		rGeome.logstr += `spide leg number: ${param.N1}\n`;
+		// figLegs
+		const ctrLeg = contour(legE2, -legStartY)
+			.addCornerRounded(param.R2)
+			.addSegStrokeA(legE2, -param.L1)
+			.addCornerRounded(param.R2)
+			.addSegStrokeA(legL2, -param.L1)
+			.addCornerRounded(param.R2 + param.E2)
+			.addSegStrokeA(legL2 + legL4x, -param.L1 - legL4y)
+			.addSegStrokeA(legL2 + legL4x - E2x, -param.L1 - legL4y - E2y)
+			.addSegStrokeA(legL2 - elbowx, -param.L1 - param.E2)
+			.addCornerRounded(param.R2)
+			.addSegStrokeA(-legL2 + elbowx, -param.L1 - param.E2)
+			.addCornerRounded(param.R2)
+			.addSegStrokeA(-legL2 - legL4x + E2x, -param.L1 - legL4y - E2y)
+			.addSegStrokeA(-legL2 - legL4x, -param.L1 - legL4y)
+			.addSegStrokeA(-legL2, -param.L1)
+			.addCornerRounded(param.R2 + param.E2)
+			.addSegStrokeA(-legE2, -param.L1)
+			.addCornerRounded(param.R2)
+			.addSegStrokeA(-legE2, -legStartY)
+			.addCornerRounded(param.R2)
+			.closeSegArc(R1, true, false);
+		figLegs.addMain(ctrLeg);
+		// figTube
+		figTube.addMain(contourCircle(0, 0, R1));
+		figTube.addMain(contourCircle(0, 0, R1 - param.E1));
 		// final figure list
 		rGeome.fig = {
-			faceCut: figCut,
-			faceBottom: figBottom
+			faceLegs: figLegs,
+			faceTube: figTube
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
