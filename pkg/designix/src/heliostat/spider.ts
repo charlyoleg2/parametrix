@@ -65,12 +65,15 @@ const pDef: tParamDef = {
 };
 
 type tCtr1 = (sx: number, sy: number, sl: number) => tContour;
+type tCtr2 = (width: number, height: number, xpos: number, ypos: number) => tContour;
 
 function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrSquare: tCtr1;
+	let ctrRect: tCtr2;
 	const rGeome = initGeom();
 	const figLegs = figure();
 	const figTube = figure();
+	const figBody = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
@@ -103,11 +106,27 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const squareX = legL2 + legL4x + squareD;
 		const squareY = -param.L1 - legL4y + squareD;
 		const squareY2 = squareY - param.E3 * Math.sqrt(2);
+		if (param.L5 < param.N1 * param.L6) {
+			throw `err110: L5 ${param.L5} too small compare to N1 ${param.N1} and L6 ${param.L6}`;
+		}
+		let legStep = 1;
+		if (param.N1 > 1) {
+			legStep = (param.L5 - param.L6) / (param.N1 - 1);
+		}
+		const ledPos = [...Array(param.N1).keys()].map((i) => i * legStep);
 		ctrSquare = function (sx: number, sy: number, sl: number): tContour {
 			const rCtr = contour(sx, sy)
 				.addSegStrokeA(sx + sl * Math.cos(Math.PI / 4), sy - sl * Math.sin(Math.PI / 4))
 				.addSegStrokeA(sx, sy - 2 * sl * Math.sin(Math.PI / 4))
 				.addSegStrokeA(sx - sl * Math.cos(Math.PI / 4), sy - sl * Math.sin(Math.PI / 4))
+				.closeSegStroke();
+			return rCtr;
+		};
+		ctrRect = function (width: number, height: number, xpos: number, ypos: number): tContour {
+			const rCtr = contour(xpos, ypos)
+				.addSegStrokeA(xpos + width, ypos)
+				.addSegStrokeA(xpos + width, ypos + height)
+				.addSegStrokeA(xpos, ypos + height)
 				.closeSegStroke();
 			return rCtr;
 		};
@@ -148,10 +167,17 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figTube.addMain(ctrSquare(-squareX, squareY, param.L3));
 		figTube.addMain(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
 		figTube.addSecond(ctrLeg);
+		// figBody
+		figBody.addSecond(ctrRect(param.L5, param.D1, 0, -param.D1 / 2));
+		figBody.addSecond(ctrRect(param.L5, param.L3, 0, -param.L4 - param.L3));
+		for (const posx of ledPos) {
+			figBody.addSecond(ctrRect(param.L6, param.L4, posx, -param.L4));
+		}
 		// final figure list
 		rGeome.fig = {
 			faceLegs: figLegs,
-			faceTube: figTube
+			faceTube: figTube,
+			faceBody: figBody
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
