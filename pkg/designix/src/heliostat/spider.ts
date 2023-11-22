@@ -5,6 +5,7 @@ import type {
 	tParamDef,
 	tParamVal,
 	tGeom,
+	tExtrude,
 	tPageDef
 	//tMParams,
 	//tRParams,
@@ -113,7 +114,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		if (param.N1 > 1) {
 			legStep = (param.L5 - param.L6) / (param.N1 - 1);
 		}
-		const ledPos = [...Array(param.N1).keys()].map((i) => i * legStep);
+		const legPos = [...Array(param.N1).keys()].map((i) => i * legStep);
 		ctrSquare = function (sx: number, sy: number, sl: number): tContour {
 			const rCtr = contour(sx, sy)
 				.addSegStrokeA(sx + sl * Math.cos(Math.PI / 4), sy - sl * Math.sin(Math.PI / 4))
@@ -154,7 +155,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(param.R2)
 			.closeSegArc(R1, true, false);
 		figLegs.addMain(ctrLeg);
-		figLegs.addSecond(contourCircle(0, 0, R1 - param.E1));
+		figLegs.addMain(contourCircle(0, 0, R1 - param.E1));
 		figLegs.addSecond(ctrSquare(squareX, squareY, param.L3));
 		figLegs.addSecond(ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3));
 		figLegs.addSecond(ctrSquare(-squareX, squareY, param.L3));
@@ -170,7 +171,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// figBody
 		figBody.addSecond(ctrRect(param.L5, param.D1, 0, -param.D1 / 2));
 		figBody.addSecond(ctrRect(param.L5, param.L3, 0, -param.L4 - param.L3));
-		for (const posx of ledPos) {
+		for (const posx of legPos) {
 			figBody.addSecond(ctrRect(param.L6, param.L4, posx, -param.L4));
 		}
 		// final figure list
@@ -180,41 +181,38 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceBody: figBody
 		};
 		const designName = pDef.partName;
+		const preExtrude = legPos.map((posX, idx) => {
+			const rElem: tExtrude = {
+				outName: `subpax_${designName}_leg_${idx}`,
+				face: `${designName}_faceLegs`,
+				extrudeMethod: EExtrude.eLinearOrtho,
+				length: param.L6,
+				rotate: [0, 0, 0],
+				translate: [0, 0, posX]
+			};
+			return rElem;
+		});
+		const legList = legPos.map((elem, idx) => {
+			const subElem = `subpax_${designName}_leg_${idx}`;
+			return subElem;
+		});
 		rGeome.vol = {
 			extrudes: [
 				{
-					outName: `subpax_${designName}_pole`,
-					face: `${designName}_faceCut`,
-					extrudeMethod: EExtrude.eRotate,
+					outName: `subpax_${designName}_tube`,
+					face: `${designName}_faceTube`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: param.L5,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
 				},
-				{
-					outName: `subpax_${designName}_bottom`,
-					face: `${designName}_faceBottom`,
-					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.E2,
-					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
-				},
-				{
-					outName: `subpax_${designName}_top`,
-					face: `${designName}_faceBottom`,
-					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.E2,
-					rotate: [0, 0, 0],
-					translate: [0, 0, param.H1 - param.E2]
-				}
+				...preExtrude
 			],
 			volumes: [
 				{
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eUnion,
-					inList: [
-						`subpax_${designName}_pole`,
-						`subpax_${designName}_bottom`,
-						`subpax_${designName}_top`
-					]
+					inList: [`subpax_${designName}_tube`, ...legList]
 				}
 			]
 		};
