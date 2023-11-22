@@ -1,7 +1,7 @@
 // spider.ts
 
 import type {
-	//tContour,
+	tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -64,7 +64,10 @@ const pDef: tParamDef = {
 	}
 };
 
+type tCtr1 = (sx: number, sy: number, sl: number) => tContour;
+
 function pGeom(t: number, param: tParamVal): tGeom {
+	let ctrSquare: tCtr1;
 	const rGeome = initGeom();
 	const figLegs = figure();
 	const figTube = figure();
@@ -90,6 +93,24 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		if (R1 < param.E1) {
 			throw `err092: D1 ${param.D1} too small compare to E1 ${param.E1}`;
 		}
+		if (param.L3 < param.E2) {
+			throw `err994: L3 ${param.L3} smaller than E2 ${param.E2}`;
+		}
+		if (param.L3 < 2 * param.E3) {
+			throw `err997: L3 ${param.L3} too small compare to E3 ${param.E3}`;
+		}
+		const squareD = ((param.L3 - param.E2) / 2) * Math.cos(Math.PI / 4);
+		const squareX = legL2 + legL4x + squareD;
+		const squareY = -param.L1 - legL4y + squareD;
+		const squareY2 = squareY - param.E3 * Math.sqrt(2);
+		ctrSquare = function (sx: number, sy: number, sl: number): tContour {
+			const rCtr = contour(sx, sy)
+				.addSegStrokeA(sx + sl * Math.cos(Math.PI / 4), sy - sl * Math.sin(Math.PI / 4))
+				.addSegStrokeA(sx, sy - 2 * sl * Math.sin(Math.PI / 4))
+				.addSegStrokeA(sx - sl * Math.cos(Math.PI / 4), sy - sl * Math.sin(Math.PI / 4))
+				.closeSegStroke();
+			return rCtr;
+		};
 		rGeome.logstr += `spide leg number: ${param.N1}\n`;
 		// figLegs
 		const ctrLeg = contour(legE2, -legStartY)
@@ -114,9 +135,19 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addCornerRounded(param.R2)
 			.closeSegArc(R1, true, false);
 		figLegs.addMain(ctrLeg);
+		figLegs.addSecond(contourCircle(0, 0, R1 - param.E1));
+		figLegs.addSecond(ctrSquare(squareX, squareY, param.L3));
+		figLegs.addSecond(ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3));
+		figLegs.addSecond(ctrSquare(-squareX, squareY, param.L3));
+		figLegs.addSecond(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
 		// figTube
 		figTube.addMain(contourCircle(0, 0, R1));
 		figTube.addMain(contourCircle(0, 0, R1 - param.E1));
+		figTube.addMain(ctrSquare(squareX, squareY, param.L3));
+		figTube.addMain(ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3));
+		figTube.addMain(ctrSquare(-squareX, squareY, param.L3));
+		figTube.addMain(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
+		figTube.addSecond(ctrLeg);
 		// final figure list
 		rGeome.fig = {
 			faceLegs: figLegs,
