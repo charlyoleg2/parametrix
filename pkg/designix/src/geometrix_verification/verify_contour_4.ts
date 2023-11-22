@@ -1,7 +1,7 @@
 // verify_contour_4.ts
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
-import { point, contour, figure, pNumber, initGeom } from 'geometrix';
+import { contour, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
 	partName: 'verify_contour_4',
@@ -33,7 +33,6 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const r1 = param.r1;
 		const l1 = 50 + t;
 		const as = (2 * Math.PI) / (n2 * 3);
-		const p0 = point(0, 0);
 		const ctr2b = contour(l1, 0)
 			.addSegStrokeAP(as, 1.5 * l1)
 			.addCornerRounded(r1)
@@ -44,7 +43,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ctr1 = contour(l1, 0);
 		const ctr1b = ctr2b.clone().addCornerRounded(r1);
 		for (let i = 0; i < n1; i++) {
-			const ctr1c = ctr1b.rotate(p0, i * 3 * as).scale(p0, 1 + i * 0.2, true);
+			const ctr1c = ctr1b.rotate(0, 0, i * 3 * as).scale(0, 0, 1 + i * 0.2, true);
 			ctr1.addPartial(ctr1c);
 		}
 		ctr1.closeSegStroke();
@@ -55,7 +54,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figOne.addMain(ctr1);
 		const ctr5 = contour(l1, 0);
 		for (let i = 0; i < n1; i++) {
-			ctr5.addPartial(ctr1b.rotate(p0, i * 3 * as).scale(p0, 1 + i * 0.2, false));
+			ctr5.addPartial(ctr1b.rotate(0, 0, i * 3 * as).scale(0, 0, 1 + i * 0.2, false));
 		}
 		ctr5.closeSegStroke();
 		rGeome.logstr += ctr5.check();
@@ -63,7 +62,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ctr2c = ctr2b.generateContour();
 		const ctr2 = ctr2c.clone();
 		for (let i = 1; i < n1; i++) {
-			ctr2.addPartial(ctr2c.rotate(p0, i * 3 * as).scale(p0, 1 + i * 0.2));
+			ctr2.addPartial(ctr2c.rotate(0, 0, i * 3 * as).scale(0, 0, 1 + i * 0.2));
 		}
 		ctr2.closeSegStroke();
 		const ctr3 = ctr2.translate(10 * l1, 0);

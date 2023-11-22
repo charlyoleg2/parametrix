@@ -17,8 +17,8 @@ import {
 	contourCircle,
 	figure,
 	//degToRad,
-	//radToDeg,
-	//ffix,
+	radToDeg,
+	ffix,
 	pNumber,
 	//pCheckbox,
 	//pDropdown,
@@ -59,7 +59,7 @@ const pDef: tParamDef = {
 		N1: 'spider_lateral.svg'
 	},
 	sim: {
-		tMax: 180,
+		tMax: 360,
 		tStep: 0.5,
 		tUpdate: 500 // every 0.5 second
 	}
@@ -131,7 +131,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				.closeSegStroke();
 			return rCtr;
 		};
+		const posAngle = (Math.sin((2 * Math.PI * t) / pDef.sim.tMax) * Math.PI) / 2;
 		rGeome.logstr += `spide leg number: ${param.N1}\n`;
+		rGeome.logstr += `spide position angle: ${ffix(radToDeg(posAngle))} degree\n`;
 		// figLegs
 		const ctrLeg = contour(legE2, -legStartY)
 			.addCornerRounded(param.R2)
@@ -154,20 +156,28 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			.addSegStrokeA(-legE2, -legStartY)
 			.addCornerRounded(param.R2)
 			.closeSegArc(R1, true, false);
-		figLegs.addMain(ctrLeg);
-		figLegs.addMain(contourCircle(0, 0, R1 - param.E1));
-		figLegs.addSecond(ctrSquare(squareX, squareY, param.L3));
-		figLegs.addSecond(ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3));
-		figLegs.addSecond(ctrSquare(-squareX, squareY, param.L3));
-		figLegs.addSecond(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
+		figLegs.addMain(ctrLeg.rotate(0, 0, posAngle));
+		figLegs.addMain(contourCircle(0, 0, R1 - param.E1).rotate(0, 0, posAngle));
+		figLegs.addSecond(ctrSquare(squareX, squareY, param.L3).rotate(0, 0, posAngle));
+		figLegs.addSecond(
+			ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3).rotate(0, 0, posAngle)
+		);
+		figLegs.addSecond(ctrSquare(-squareX, squareY, param.L3).rotate(0, 0, posAngle));
+		figLegs.addSecond(
+			ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3).rotate(0, 0, posAngle)
+		);
 		// figTube
-		figTube.addMain(contourCircle(0, 0, R1));
-		figTube.addMain(contourCircle(0, 0, R1 - param.E1));
-		figTube.addMain(ctrSquare(squareX, squareY, param.L3));
-		figTube.addMain(ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3));
-		figTube.addMain(ctrSquare(-squareX, squareY, param.L3));
-		figTube.addMain(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
-		figTube.addSecond(ctrLeg);
+		figTube.addMain(contourCircle(0, 0, R1).rotate(0, 0, posAngle));
+		figTube.addMain(contourCircle(0, 0, R1 - param.E1).rotate(0, 0, posAngle));
+		figTube.addMain(ctrSquare(squareX, squareY, param.L3).rotate(0, 0, posAngle));
+		figTube.addMain(
+			ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3).rotate(0, 0, posAngle)
+		);
+		figTube.addMain(ctrSquare(-squareX, squareY, param.L3).rotate(0, 0, posAngle));
+		figTube.addMain(
+			ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3).rotate(0, 0, posAngle)
+		);
+		figTube.addSecond(ctrLeg.rotate(0, 0, posAngle));
 		// figBody
 		figBody.addSecond(ctrRect(param.L5, param.D1, 0, -param.D1 / 2));
 		figBody.addSecond(ctrRect(param.L5, param.L3, 0, -param.L4 - param.L3));

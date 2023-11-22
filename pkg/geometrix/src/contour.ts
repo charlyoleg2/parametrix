@@ -371,7 +371,8 @@ class Contour extends AContour {
 	translatePolar(ia: number, il: number): Contour {
 		return this.translate(il * Math.cos(ia), il * Math.sin(ia));
 	}
-	rotate(ic: Point, ia: number): Contour {
+	rotate(ix: number, iy: number, ia: number): Contour {
+		const ic = point(ix, iy);
 		const pStart = point(this.segments[0].px, this.segments[0].py);
 		const pStartRot = pStart.rotate(ic, ia);
 		const rctr = new Contour(pStartRot.cx, pStartRot.cy);
@@ -392,7 +393,8 @@ class Contour extends AContour {
 		}
 		return rctr;
 	}
-	scale(ic: Point, ir: number, scaleCorner = false): Contour {
+	scale(ix: number, iy: number, ir: number, scaleCorner = false): Contour {
+		const ic = point(ix, iy);
 		const pStart = point(this.segments[0].px, this.segments[0].py);
 		const pStartScale = pStart.scale(ic, ir);
 		const rctr = new Contour(pStartScale.cx, pStartScale.cy);
@@ -724,6 +726,19 @@ class ContourCircle extends AContour {
 		this.py = iy;
 		this.radius = iRadius;
 		this.imposedColor = icolor;
+	}
+	translate(ix: number, iy: number): ContourCircle {
+		const rctr = new ContourCircle(this.px + ix, this.py + iy, this.radius, this.imposedColor);
+		return rctr;
+	}
+	translatePolar(ia: number, il: number): ContourCircle {
+		return this.translate(il * Math.cos(ia), il * Math.sin(ia));
+	}
+	rotate(ix: number, iy: number, ia: number): ContourCircle {
+		const ic = point(ix, iy);
+		const nCenter = point(this.px, this.py).rotate(ic, ia);
+		const rctr = new ContourCircle(nCenter.cx, nCenter.cy, this.radius, this.imposedColor);
+		return rctr;
 	}
 	draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string = colors.contour) {
 		const [cx3, cy3] = point2canvas(this.px, this.py, cAdjust);
