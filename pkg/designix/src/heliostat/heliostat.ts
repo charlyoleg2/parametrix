@@ -1,7 +1,7 @@
 // heliostat.ts
 
 import type {
-	tContour,
+	//tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -12,11 +12,12 @@ import type {
 	//tSubDesign
 } from 'geometrix';
 import {
-	contour,
-	contourCircle,
+	initParamVal,
+	//contour,
+	//contourCircle,
 	figure,
 	//degToRad,
-	//radToDeg,
+	radToDeg,
 	ffix,
 	pNumber,
 	//pCheckbox,
@@ -25,6 +26,8 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+
+import { poleStaticDef } from './pole_static';
 
 const pDef: tParamDef = {
 	partName: 'heliostat',
@@ -104,55 +107,28 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr1 = (orient: number) => tContour;
-
 function pGeom(t: number, param: tParamVal): tGeom {
-	let ctrPoleProfile: tCtr1;
 	const rGeome = initGeom();
-	const figCut = figure();
-	const figBottom = figure();
+	//const figSide = figure();
+	const figFace = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		const R1 = param.D1 / 2;
-		const R2 = param.D2 / 2;
-		const R3 = param.D3 / 2;
-		rGeome.logstr += `pole-height: ${ffix(param.H1)} mm\n`;
-		// figCut
-		const ctrCylinder = contour(R1, 0)
-			.addSegStrokeA(R1, param.H1)
-			.addSegStrokeA(R1 - param.E1, param.H1)
-			.addSegStrokeA(R1 - param.E1, 0)
-			.closeSegStroke();
-		figCut.addMain(ctrCylinder);
-		ctrPoleProfile = function (orient: number): tContour {
-			const rPoleProfile = contour(orient * R1, 0)
-				.addSegStrokeA(orient * R1, param.H1)
-				.addSegStrokeA(orient * R2, param.H1)
-				.addSegStrokeA(orient * R2, param.H1 - param.E2)
-				.addSegStrokeA(orient * (R1 - param.E1), param.H1 - param.E2)
-				.addSegStrokeA(orient * (R1 - param.E1), param.E2)
-				.addSegStrokeA(orient * R2, param.E2)
-				.addSegStrokeA(orient * R2, 0)
-				.closeSegStroke();
-			return rPoleProfile;
-		};
-		figCut.addSecond(ctrPoleProfile(1));
-		figCut.addSecond(ctrPoleProfile(-1));
-		// figBottom
-		figBottom.addMain(contourCircle(0, 0, R1));
-		figBottom.addMain(contourCircle(0, 0, R2));
-		const posR = R2 + param.L1;
-		const posA = (2 * Math.PI) / param.N1;
-		for (let i = 0; i < param.N1; i++) {
-			const posX = posR * Math.cos(i * posA);
-			const posY = posR * Math.sin(i * posA);
-			figBottom.addMain(contourCircle(posX, posY, R3));
-		}
-		figBottom.addSecond(contourCircle(0, 0, R1 - param.E1));
+		rGeome.logstr += `heliostat-height: ${ffix(param.H1)}, diameter ${ffix(param.H1)} m\n`;
+		rGeome.logstr += `heliostat-swing-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
+		rGeome.logstr += `heliostat-surface-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
+		const posAngle = (Math.sin((2 * Math.PI * t) / pDef.sim.tMax) * Math.PI) / 2;
+		rGeome.logstr += `swing position angle: ${ffix(radToDeg(posAngle))} degree\n`;
+		// sub-designs
+		const paramPoleStatic = initParamVal(poleStaticDef.pDef);
+		const geomPoleStatic = poleStaticDef.pGeom(t, paramPoleStatic);
+		// figSide
+		//figSide.addMain(geomPoleStatic.);
+		const figSide = geomPoleStatic.fig.poleCut;
+		// figFace
 		// final figure list
 		rGeome.fig = {
-			faceCut: figCut,
-			faceBottom: figBottom
+			faceSide: figSide,
+			faceFace: figFace
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {

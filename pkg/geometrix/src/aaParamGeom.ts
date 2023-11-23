@@ -109,5 +109,13 @@ function initGeom(): tGeom {
 	return rGeom;
 }
 
+function initParamVal(paramDef: tParamDef): tParamVal {
+	const rParamVal: tParamVal = {};
+	for (const pi of paramDef.params) {
+		rParamVal[pi.name] = pi.init;
+	}
+	return rParamVal;
+}
+
 export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef };
-export { PType, pNumber, pCheckbox, pDropdown, fround, initGeom };
+export { PType, pNumber, pCheckbox, pDropdown, fround, initGeom, initParamVal };
