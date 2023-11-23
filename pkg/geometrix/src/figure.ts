@@ -95,6 +95,54 @@ class Figure {
 		this.addLines(icontour.generateLines());
 		this.dynamicsList.push(icontour);
 	}
+	translate(ix: number, iy: number): Figure {
+		const rfig = new Figure();
+		for (const pt of this.pointList) {
+			rfig.addPoint(pt.translate(ix, iy));
+		}
+		for (const li of this.lineList) {
+			rfig.addLine(li.translate(ix, iy));
+		}
+		for (const vec of this.vectorList) {
+			rfig.addVector(vec.translate(ix, iy));
+		}
+		for (const ctr of this.mainList) {
+			rfig.addMain(ctr.translate(ix, iy));
+		}
+		for (const ctr of this.secondList) {
+			rfig.addSecond(ctr.translate(ix, iy));
+		}
+		for (const ctr of this.dynamicsList) {
+			rfig.addDynamics(ctr.translate(ix, iy));
+		}
+		return rfig;
+	}
+	translatePolar(ia: number, il: number): Figure {
+		return this.translate(il * Math.cos(ia), il * Math.sin(ia));
+	}
+	rotate(ix: number, iy: number, ia: number): Figure {
+		const rfig = new Figure();
+		const pt0 = point(ix, iy);
+		for (const pt of this.pointList) {
+			rfig.addPoint(pt.rotate(pt0, ia));
+		}
+		for (const li of this.lineList) {
+			rfig.addLine(li.rotate(pt0, ia));
+		}
+		for (const vec of this.vectorList) {
+			rfig.addVector(vec.rotate(pt0, ia));
+		}
+		for (const ctr of this.mainList) {
+			rfig.addMain(ctr.rotate(ix, iy, ia));
+		}
+		for (const ctr of this.secondList) {
+			rfig.addSecond(ctr.rotate(ix, iy, ia));
+		}
+		for (const ctr of this.dynamicsList) {
+			rfig.addDynamics(ctr.rotate(ix, iy, ia));
+		}
+		return rfig;
+	}
 	clear() {
 		this.pointList = [];
 		this.lineList = [];

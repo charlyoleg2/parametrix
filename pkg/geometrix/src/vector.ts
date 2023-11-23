@@ -80,6 +80,15 @@ class Vector {
 		const rVect = this.setCartesian(x1 + ix, y1 + iy);
 		return rVect;
 	}
+	// transforms
+	translate(ix: number, iy: number): Vector {
+		const rVec = new Vector(this.ca, this.cl, this.drawPoint.translate(ix, iy));
+		return rVec;
+	}
+	rotate(ic: Point, ia: number): Vector {
+		const rVec = new Vector(this.ca + ia, this.cl, this.drawPoint.rotate(ic, ia));
+		return rVec;
+	}
 	// point comparison
 	isEqual(iVect: Vector): boolean {
 		const [x1, y1] = this.getCartesian();
