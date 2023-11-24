@@ -143,6 +143,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rakeParam.setVal('H2', param.H5);
 		rakeParam.setVal('D1', param.D3);
 		rakeParam.setVal('D2', param.D4);
+		rakeParam.setVal('L9', param.D3 / 2);
 		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
 		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
 		const spiderGeom = spiderDef.pGeom(0, spiderParam.getParamVal());
