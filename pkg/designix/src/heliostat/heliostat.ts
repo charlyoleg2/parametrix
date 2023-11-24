@@ -120,6 +120,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += `swing position angle: ${ffix(radToDeg(posAngle))} degree\n`;
 		// sub-designs
 		const poleStaticParam = designParam(poleStaticDef.pDef);
+		poleStaticParam.setVal('L1', poleStaticParam.getVal('L1') + 10);
 		const poleStaticGeom = poleStaticDef.pGeom(t, poleStaticParam.getParamVal());
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
