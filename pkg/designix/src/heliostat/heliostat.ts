@@ -48,7 +48,7 @@ const pDef: tParamDef = {
 		pNumber('H9', 'mm', 100, 10, 400, 10),
 		pNumber('D1', 'mm', 1000, 100, 4000, 10),
 		pNumber('D2', 'mm', 700, 100, 4000, 10),
-		pNumber('D3', 'mm', 600, 100, 4000, 10),
+		pNumber('D3', 'mm', 900, 100, 4000, 10),
 		pNumber('D4', 'mm', 400, 100, 4000, 10),
 		pNumber('D5', 'mm', 300, 100, 1000, 10),
 		pNumber('D6', 'mm', 200, 100, 1000, 10),
@@ -133,7 +133,16 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const rakeParam = designParam(rakeDef.pDef);
 		const spiderParam = designParam(spiderDef.pDef);
 		const swingParam = designParam(swingDef.pDef);
-		//poleStaticParam.setVal('L1', poleStaticParam.getVal('L1') + 10);
+		poleStaticParam.setVal('H1', param.H1);
+		poleStaticParam.setVal('H2', param.H2);
+		poleStaticParam.setVal('D1', param.D1);
+		poleStaticParam.setVal('D2', param.D2);
+		poleStaticParam.setVal('E1', param.E1);
+		poleStaticParam.setVal('E2', param.E1);
+		rakeParam.setVal('H1', param.H4);
+		rakeParam.setVal('H2', param.H5);
+		rakeParam.setVal('D1', param.D3);
+		rakeParam.setVal('D2', param.D4);
 		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
 		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
 		const spiderGeom = spiderDef.pGeom(0, spiderParam.getParamVal());
