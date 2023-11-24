@@ -235,6 +235,10 @@ class Line {
 		const lPoint2 = new Point(this.cx, this.cy).scale(ic, ir);
 		return new Line(lPoint2.cx, lPoint2.cy, this.ca);
 	}
+	clone(): Line {
+		const lPoint2 = new Point(this.cx, this.cy);
+		return new Line(lPoint2.cx, lPoint2.cy, this.ca);
+	}
 	// end of methods from point
 	// line creation
 	lineOrthogonal(ic: Point): Line {

@@ -109,7 +109,7 @@ const pDef: tParamDef = {
 
 function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome = initGeom();
-	//const figSide = figure();
+	const figSide = figure();
 	const figFace = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
@@ -119,11 +119,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const posAngle = (Math.sin((2 * Math.PI * t) / pDef.sim.tMax) * Math.PI) / 2;
 		rGeome.logstr += `swing position angle: ${ffix(radToDeg(posAngle))} degree\n`;
 		// sub-designs
-		const paramPoleStatic = initParamVal(poleStaticDef.pDef);
-		const geomPoleStatic = poleStaticDef.pGeom(t, paramPoleStatic);
+		const poleStaticParam = initParamVal(poleStaticDef.pDef);
+		const poleStaticGeom = poleStaticDef.pGeom(t, poleStaticParam);
 		// figSide
-		//figSide.addMain(geomPoleStatic.);
-		const figSide = geomPoleStatic.fig.poleCut;
+		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
 		// figFace
 		// final figure list
 		rGeome.fig = {

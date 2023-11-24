@@ -89,6 +89,10 @@ class Vector {
 		const rVec = new Vector(this.ca + ia, this.cl, this.drawPoint.rotate(ic, ia));
 		return rVec;
 	}
+	clone(): Vector {
+		const rVec = new Vector(this.ca, this.cl, this.drawPoint.clone());
+		return rVec;
+	}
 	// point comparison
 	isEqual(iVect: Vector): boolean {
 		const [x1, y1] = this.getCartesian();

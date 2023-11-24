@@ -143,6 +143,26 @@ class Figure {
 		}
 		return rfig;
 	}
+	mergeFigure(ifig: Figure) {
+		for (const pt of ifig.pointList) {
+			this.addPoint(pt.clone());
+		}
+		for (const li of ifig.lineList) {
+			this.addLine(li.clone());
+		}
+		for (const vec of ifig.vectorList) {
+			this.addVector(vec.clone());
+		}
+		for (const ctr of ifig.mainList) {
+			this.addMain(ctr.clone());
+		}
+		for (const ctr of ifig.secondList) {
+			this.addSecond(ctr.clone());
+		}
+		for (const ctr of ifig.dynamicsList) {
+			this.addDynamics(ctr.clone());
+		}
+	}
 	clear() {
 		this.pointList = [];
 		this.lineList = [];

@@ -727,6 +727,10 @@ class ContourCircle extends AContour {
 		this.radius = iRadius;
 		this.imposedColor = icolor;
 	}
+	clone(): ContourCircle {
+		const rctr = new ContourCircle(this.px, this.py, this.radius, this.imposedColor);
+		return rctr;
+	}
 	translate(ix: number, iy: number): ContourCircle {
 		const rctr = new ContourCircle(this.px + ix, this.py + iy, this.radius, this.imposedColor);
 		return rctr;
