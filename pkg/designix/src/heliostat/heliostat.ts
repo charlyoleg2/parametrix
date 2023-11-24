@@ -37,15 +37,15 @@ const pDef: tParamDef = {
 	partName: 'heliostat',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('H1', 'mm', 600, 100, 4000, 10),
-		pNumber('H2', 'mm', 600, 100, 4000, 10),
-		pNumber('H3', 'mm', 600, 100, 4000, 10),
-		pNumber('H4', 'mm', 600, 100, 4000, 10),
-		pNumber('H5', 'mm', 600, 100, 4000, 10),
-		pNumber('H6', 'mm', 600, 100, 4000, 10),
+		pNumber('H1', 'mm', 3000, 100, 40000, 10),
+		pNumber('H2', 'mm', 7000, 100, 40000, 10),
+		pNumber('H3', 'mm', 200, 10, 500, 10),
+		pNumber('H4', 'mm', 800, 100, 4000, 10),
+		pNumber('H5', 'mm', 3000, 100, 6000, 10),
+		pNumber('H6', 'mm', 400, 100, 4000, 10),
 		pNumber('H7', 'mm', 600, 100, 4000, 10),
-		pNumber('H8', 'mm', 600, 100, 4000, 10),
-		pNumber('H9', 'mm', 600, 100, 4000, 10),
+		pNumber('H8', 'mm', 400, 100, 4000, 10),
+		pNumber('H9', 'mm', 100, 10, 400, 10),
 		pNumber('D1', 'mm', 600, 100, 4000, 10),
 		pNumber('D2', 'mm', 400, 100, 4000, 10),
 		pNumber('D3', 'mm', 400, 100, 4000, 10),
@@ -122,6 +122,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += `heliostat-surface-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
 		const posAngle = (Math.sin((2 * Math.PI * t) / pDef.sim.tMax) * Math.PI) / 2;
 		rGeome.logstr += `swing position angle: ${ffix(radToDeg(posAngle))} degree\n`;
+		const rakePosY = param.H1 + param.H2 - param.H3;
+		const spiderPosY = rakePosY + param.H4 + param.H5 - param.H6 + param.H7;
+		const swingPosY = spiderPosY + param.H8;
 		// sub-designs
 		const poleStaticParam = designParam(poleStaticDef.pDef);
 		const rakeParam = designParam(rakeDef.pDef);
@@ -134,14 +137,18 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
-		figSide.mergeFigure(rakeGeom.fig.faceBeam);
-		figSide.mergeFigure(spiderGeom.fig.faceLegs);
-		figSide.mergeFigure(swingGeom.fig.faceSide);
+		figSide.mergeFigure(rakeGeom.fig.faceBeam.translate(0, rakePosY));
+		figSide.mergeFigure(
+			spiderGeom.fig.faceLegs.translate(0, spiderPosY).rotate(0, spiderPosY, posAngle / 2)
+		);
+		figSide.mergeFigure(
+			swingGeom.fig.faceSide.translate(0, swingPosY).rotate(0, swingPosY, posAngle)
+		);
 		// figFace
 		figFace.mergeFigure(poleStaticGeom.fig.poleCut);
-		figFace.mergeFigure(rakeGeom.fig.faceCone);
-		figFace.mergeFigure(spiderGeom.fig.faceBody);
-		figFace.mergeFigure(swingGeom.fig.faceFace);
+		figFace.mergeFigure(rakeGeom.fig.faceCone.translate(0, rakePosY));
+		figFace.mergeFigure(spiderGeom.fig.faceBody.translate(0, spiderPosY));
+		figFace.mergeFigure(swingGeom.fig.faceFace.translate(0, swingPosY));
 		// final figure list
 		rGeome.fig = {
 			faceSide: figSide,
