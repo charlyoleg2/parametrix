@@ -16,7 +16,7 @@ import {
 	//contour,
 	//contourCircle,
 	figure,
-	//degToRad,
+	degToRad,
 	radToDeg,
 	ffix,
 	pNumber,
@@ -46,29 +46,29 @@ const pDef: tParamDef = {
 		pNumber('H7', 'mm', 600, 100, 4000, 10),
 		pNumber('H8', 'mm', 400, 100, 4000, 10),
 		pNumber('H9', 'mm', 100, 10, 400, 10),
-		pNumber('D1', 'mm', 600, 100, 4000, 10),
-		pNumber('D2', 'mm', 400, 100, 4000, 10),
-		pNumber('D3', 'mm', 400, 100, 4000, 10),
+		pNumber('D1', 'mm', 1000, 100, 4000, 10),
+		pNumber('D2', 'mm', 700, 100, 4000, 10),
+		pNumber('D3', 'mm', 600, 100, 4000, 10),
 		pNumber('D4', 'mm', 400, 100, 4000, 10),
-		pNumber('D5', 'mm', 400, 100, 4000, 10),
-		pNumber('D6', 'mm', 400, 100, 4000, 10),
-		pNumber('D7', 'mm', 400, 100, 4000, 10),
-		pNumber('D8', 'mm', 400, 100, 4000, 10),
-		pNumber('D9', 'mm', 400, 100, 4000, 10),
-		pNumber('S1', 'mm', 5, 1, 80, 1),
-		pNumber('S2', 'mm', 5, 1, 80, 1),
-		pNumber('E1', 'mm', 5, 1, 80, 1),
-		pNumber('E2', 'mm', 30, 1, 80, 1),
-		pNumber('L1', 'mm', 8000, 100, 40000, 10),
-		pNumber('L2', 'mm', 8000, 100, 40000, 10),
-		pNumber('L3', 'mm', 8000, 100, 40000, 10),
-		pNumber('L4', 'mm', 8000, 100, 40000, 10),
-		pNumber('L5', 'mm', 8000, 100, 40000, 10),
-		pNumber('L6', 'mm', 8000, 100, 40000, 10),
-		pNumber('L7', 'mm', 8000, 100, 40000, 10),
-		pNumber('L8', 'mm', 8000, 100, 40000, 10),
-		pNumber('al', 'degree', 8000, 100, 40000, 10),
-		pNumber('ar', 'degree', 8000, 100, 40000, 10)
+		pNumber('D5', 'mm', 300, 100, 1000, 10),
+		pNumber('D6', 'mm', 200, 100, 1000, 10),
+		pNumber('D7', 'mm', 400, 100, 1000, 10),
+		pNumber('D8', 'mm', 100, 10, 1000, 10),
+		pNumber('D9', 'mm', 100, 10, 1000, 10),
+		pNumber('S1', 'mm', 250, 10, 800, 10),
+		pNumber('S2', 'mm', 200, 10, 800, 10),
+		pNumber('E1', 'mm', 30, 1, 80, 1),
+		pNumber('E2', 'mm', 50, 1, 80, 1),
+		pNumber('L1', 'mm', 12500, 1000, 40000, 10),
+		pNumber('L2', 'mm', 6000, 1000, 40000, 10),
+		pNumber('L3', 'mm', 100, 10, 500, 10),
+		pNumber('L4', 'mm', 600, 100, 4000, 10),
+		pNumber('L5', 'mm', 2000, 100, 6000, 10),
+		pNumber('L6', 'mm', 2000, 100, 6000, 10),
+		pNumber('L7', 'mm', 100, 10, 1000, 10),
+		pNumber('L8', 'mm', 200, 10, 1000, 10),
+		pNumber('al', 'degree', 80, 0, 95, 1),
+		pNumber('ar', 'degree', 80, 0, 95, 1)
 	],
 	paramSvg: {
 		H1: 'heliostat_overview.svg',
@@ -120,7 +120,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += `heliostat-height: ${ffix(param.H1)}, diameter ${ffix(param.H1)} m\n`;
 		rGeome.logstr += `heliostat-swing-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
 		rGeome.logstr += `heliostat-surface-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
-		const posAngle = (Math.sin((2 * Math.PI * t) / pDef.sim.tMax) * Math.PI) / 2;
+		const posAngleMid = (param.al - param.ar) / 2;
+		const posAngleDegree =
+			posAngleMid - (Math.sin((2 * Math.PI * t) / pDef.sim.tMax) * (param.al + param.ar)) / 2;
+		const posAngle = degToRad(posAngleDegree);
 		rGeome.logstr += `swing position angle: ${ffix(radToDeg(posAngle))} degree\n`;
 		const rakePosY = param.H1 + param.H2 - param.H3;
 		const spiderPosY = rakePosY + param.H4 + param.H5 - param.H6 + param.H7;
