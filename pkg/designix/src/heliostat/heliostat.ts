@@ -27,7 +27,11 @@ import {
 	EBVolume
 } from 'geometrix';
 
+// design import
 import { poleStaticDef } from './pole_static';
+import { rakeDef } from './rake';
+import { spiderDef } from './spider';
+import { swingDef } from './swing';
 
 const pDef: tParamDef = {
 	partName: 'heliostat',
@@ -120,11 +124,24 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += `swing position angle: ${ffix(radToDeg(posAngle))} degree\n`;
 		// sub-designs
 		const poleStaticParam = designParam(poleStaticDef.pDef);
-		poleStaticParam.setVal('L1', poleStaticParam.getVal('L1') + 10);
-		const poleStaticGeom = poleStaticDef.pGeom(t, poleStaticParam.getParamVal());
+		const rakeParam = designParam(rakeDef.pDef);
+		const spiderParam = designParam(spiderDef.pDef);
+		const swingParam = designParam(swingDef.pDef);
+		//poleStaticParam.setVal('L1', poleStaticParam.getVal('L1') + 10);
+		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
+		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
+		const spiderGeom = spiderDef.pGeom(0, spiderParam.getParamVal());
+		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
+		figSide.mergeFigure(rakeGeom.fig.faceBeam);
+		figSide.mergeFigure(spiderGeom.fig.faceLegs);
+		figSide.mergeFigure(swingGeom.fig.faceSide);
 		// figFace
+		figFace.mergeFigure(poleStaticGeom.fig.poleCut);
+		figFace.mergeFigure(rakeGeom.fig.faceCone);
+		figFace.mergeFigure(spiderGeom.fig.faceBody);
+		figFace.mergeFigure(swingGeom.fig.faceFace);
 		// final figure list
 		rGeome.fig = {
 			faceSide: figSide,
