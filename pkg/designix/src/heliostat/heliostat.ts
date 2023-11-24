@@ -12,7 +12,7 @@ import type {
 	//tSubDesign
 } from 'geometrix';
 import {
-	initParamVal,
+	designParam,
 	//contour,
 	//contourCircle,
 	figure,
@@ -119,8 +119,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const posAngle = (Math.sin((2 * Math.PI * t) / pDef.sim.tMax) * Math.PI) / 2;
 		rGeome.logstr += `swing position angle: ${ffix(radToDeg(posAngle))} degree\n`;
 		// sub-designs
-		const poleStaticParam = initParamVal(poleStaticDef.pDef);
-		const poleStaticGeom = poleStaticDef.pGeom(t, poleStaticParam);
+		const poleStaticParam = designParam(poleStaticDef.pDef);
+		const poleStaticGeom = poleStaticDef.pGeom(t, poleStaticParam.getParamVal());
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
 		// figFace

@@ -109,13 +109,66 @@ function initGeom(): tGeom {
 	return rGeom;
 }
 
-function initParamVal(paramDef: tParamDef): tParamVal {
-	const rParamVal: tParamVal = {};
-	for (const pi of paramDef.params) {
-		rParamVal[pi.name] = pi.init;
+// DesignParamVal
+type tParamChanged = Record<string, boolean>;
+
+class DesignParam {
+	paramVal: tParamVal = {};
+	paramInit: tParamVal = {};
+	paramChanged: tParamChanged = {};
+	designName: string;
+	constructor(iparamDef: tParamDef) {
+		for (const pi of iparamDef.params) {
+			this.paramVal[pi.name] = pi.init;
+			this.paramInit[pi.name] = pi.init;
+			this.paramChanged[pi.name] = false;
+		}
+		this.designName = iparamDef.partName;
 	}
-	return rParamVal;
+	getParamVal(): tParamVal {
+		return this.paramVal;
+	}
+	getParamName(): string[] {
+		const rNames: string[] = [];
+		for (const pName of Object.keys(this.paramVal)) {
+			rNames.push(pName);
+		}
+		return rNames;
+	}
+	getVal(iname: string): number {
+		if (this.getParamName().includes(iname)) {
+			return this.paramVal[iname];
+		} else {
+			throw `err140: parameter ${iname} does not exist in design ${this.designName}`;
+		}
+	}
+	getInit(iname: string): number {
+		if (this.getParamName().includes(iname)) {
+			return this.paramInit[iname];
+		} else {
+			throw `err149: parameter ${iname} does not exist in design ${this.designName}`;
+		}
+	}
+	getChanged(iname: string): boolean {
+		if (this.getParamName().includes(iname)) {
+			return this.paramChanged[iname];
+		} else {
+			throw `err156: parameter ${iname} does not exist in design ${this.designName}`;
+		}
+	}
+	setVal(iname: string, ival: number) {
+		if (this.getParamName().includes(iname)) {
+			this.paramVal[iname] = ival;
+			this.paramChanged[iname] = true;
+		} else {
+			throw `err163: parameter ${iname} does not exist in design ${this.designName}`;
+		}
+	}
 }
 
-export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef };
-export { PType, pNumber, pCheckbox, pDropdown, fround, initGeom, initParamVal };
+function designParam(iparamDef: tParamDef): DesignParam {
+	return new DesignParam(iparamDef);
+}
+
+export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef, DesignParam };
+export { PType, pNumber, pCheckbox, pDropdown, fround, initGeom, designParam };
