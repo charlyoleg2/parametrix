@@ -13,6 +13,8 @@ import type {
 } from 'geometrix';
 import {
 	designParam,
+	checkGeom,
+	prefixLog,
 	//contour,
 	//contourCircle,
 	figure,
@@ -145,9 +147,17 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rakeParam.setVal('D2', param.D4);
 		rakeParam.setVal('L9', param.D3 / 2);
 		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
+		checkGeom(poleStaticGeom, poleStaticParam.designName);
+		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.designName);
 		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
+		checkGeom(rakeGeom, rakeParam.designName);
+		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.designName);
 		const spiderGeom = spiderDef.pGeom(0, spiderParam.getParamVal());
+		checkGeom(spiderGeom, spiderParam.designName);
+		rGeome.logstr += prefixLog(spiderGeom.logstr, spiderParam.designName);
 		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
+		checkGeom(swingGeom, swingParam.designName);
+		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.designName);
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
 		figSide.mergeFigure(rakeGeom.fig.faceBeam.translate(0, rakePosY));

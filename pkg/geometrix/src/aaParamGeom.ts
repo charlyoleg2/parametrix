@@ -172,5 +172,33 @@ function designParam(iparamDef: tParamDef): DesignParam {
 	return new DesignParam(iparamDef);
 }
 
+function prefixLog(iLog: string, iPartName: string): string {
+	let rLog = '';
+	for (const oneline of iLog.split('\n')) {
+		if (oneline !== '') {
+			rLog += `[${iPartName}]: ${oneline}\n`;
+		}
+	}
+	return rLog;
+}
+
+function checkGeom(iGeom: tGeom, iPartName: string) {
+	if (iGeom.calcErr) {
+		let errMsg = `err182: Error in sub-design ${iPartName}`;
+		errMsg += prefixLog(iGeom.logstr, iPartName);
+		throw errMsg;
+	}
+}
+
 export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef, DesignParam };
-export { PType, pNumber, pCheckbox, pDropdown, fround, initGeom, designParam };
+export {
+	PType,
+	pNumber,
+	pCheckbox,
+	pDropdown,
+	fround,
+	initGeom,
+	designParam,
+	checkGeom,
+	prefixLog
+};
