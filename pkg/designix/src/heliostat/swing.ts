@@ -120,18 +120,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// figSide
 		figSide.addMain(contourCircle(0, 0, R1));
 		figSide.addMain(contourCircle(0, 0, R1 - param.E1));
-		const sidePx = [
-			-param.L2 / 2,
-			-param.L3 / 2 - param.H2,
-			param.L3 / 2,
-			param.L2 / 2 - param.H2
-		];
+		const sidePx = [-param.L2 / 2, -param.L3 - param.H2, param.L3, param.L2 / 2 - param.H2];
 		for (const px of sidePx) {
-			figSide.addMain(ctrRectangle(px, R1 - param.H1, param.H2, param.H4));
+			figSide.addMain(ctrRectangle(px, R1 - param.H4, param.H2, param.H4));
 			figSide.addMain(
 				ctrRectangle(
 					px + param.E2,
-					R1 - param.H1 + param.E2,
+					R1 - param.H4 + param.E2,
 					param.H2 - 2 * param.E2,
 					param.H4 - 2 * param.E2
 				)

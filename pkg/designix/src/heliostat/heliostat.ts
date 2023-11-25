@@ -181,7 +181,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		swingParam.setVal('D1', param.D6);
 		swingParam.setVal('H4', param.H9);
 		swingParam.setVal('L1', param.L1);
+		if (param.L1 < 4 * param.L4 + 2 * param.L6 + param.L5 + 2 * param.L3) {
+			throw `err185: L1 ${param.L1} too small compare to L4 ${param.L4}, L5 ${param.L5}, L6 ${param.L6}`;
+		}
 		swingParam.setVal('H1', param.L3);
+		swingParam.setVal('H2', param.L3);
 		swingParam.setVal('L4', param.L4);
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
