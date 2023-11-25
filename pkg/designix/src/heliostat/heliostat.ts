@@ -45,8 +45,8 @@ const pDef: tParamDef = {
 		pNumber('H4', 'mm', 800, 100, 4000, 10),
 		pNumber('H5', 'mm', 3000, 100, 6000, 10),
 		pNumber('H6', 'mm', 400, 100, 4000, 10),
-		pNumber('H7', 'mm', 600, 100, 4000, 10),
-		pNumber('H8', 'mm', 400, 100, 4000, 10),
+		pNumber('H7', 'mm', 800, 100, 4000, 10),
+		pNumber('H8', 'mm', 200, 100, 4000, 10),
 		pNumber('H9', 'mm', 100, 10, 400, 10),
 		pNumber('D1', 'mm', 1000, 100, 4000, 10),
 		pNumber('D2', 'mm', 700, 100, 4000, 10),
@@ -146,6 +146,46 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rakeParam.setVal('D1', param.D3);
 		rakeParam.setVal('D2', param.D4);
 		rakeParam.setVal('L9', param.D3 / 2);
+		rakeParam.setVal('E1', param.E1);
+		rakeParam.setVal('E3', param.E1);
+		rakeParam.setVal('D3', param.D2 * 0.6);
+		if (param.D2 > param.D3 - 2 * param.E1) {
+			throw `err153: D2 ${param.D2} too large compare to D3 ${param.D3} and E1 ${param.E1}`;
+		}
+		rakeParam.setVal('H4', param.H6);
+		rakeParam.setVal('D4', param.D5);
+		rakeParam.setVal('L7', param.L7);
+		rakeParam.setVal('L8', param.L8);
+		rakeParam.setVal('D6', param.D9);
+		rakeParam.setVal('H5', param.H7 + param.H8);
+		rakeParam.setVal('D5', param.D6);
+		rakeParam.setVal('D8', param.D7);
+		if (param.D6 >= param.D7) {
+			throw `err164: D6 ${param.D6} too large compare to D7 ${param.D7}`;
+		}
+		const rakeL4 = param.L4 - 2 * param.L3;
+		rakeParam.setVal('L4', rakeL4);
+		if (rakeL4 <= 0) {
+			throw `err169: L3 ${param.L3} too large compare to L4 ${param.L4}`;
+		}
+		rakeParam.setVal('L5', param.L5 + 2 * rakeL4);
+		rakeParam.setVal('L6', param.L6 + 2 * rakeL4);
+		const spiderL5 = param.L5 * 0.96;
+		spiderParam.setVal('L5', spiderL5);
+		spiderParam.setVal('D1', param.D8);
+		spiderParam.setVal('L1', param.S1);
+		spiderParam.setVal('L2', param.S2);
+		spiderParam.setVal('E2', param.E2);
+		spiderParam.setVal('L4', param.L2 / 2 - param.H8);
+		swingParam.setVal('L2', param.L2);
+		swingParam.setVal('D1', param.D6);
+		swingParam.setVal('H4', param.H9);
+		swingParam.setVal('L1', param.L1);
+		swingParam.setVal('H1', param.L3);
+		swingParam.setVal('L4', param.L4);
+		swingParam.setVal('L5', param.L5);
+		swingParam.setVal('L6', param.L6);
+		swingParam.setVal('L3', param.D6);
 		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
 		checkGeom(poleStaticGeom, poleStaticParam.designName);
 		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.designName);
@@ -170,7 +210,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// figFace
 		figFace.mergeFigure(poleStaticGeom.fig.poleCut);
 		figFace.mergeFigure(rakeGeom.fig.faceCone.translate(0, rakePosY));
-		figFace.mergeFigure(spiderGeom.fig.faceBody.translate(0, spiderPosY));
+		figFace.mergeFigure(spiderGeom.fig.faceBody.translate(-spiderL5 / 2, spiderPosY));
 		figFace.mergeFigure(swingGeom.fig.faceFace.translate(0, swingPosY));
 		// final figure list
 		rGeome.fig = {
