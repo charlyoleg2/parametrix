@@ -184,7 +184,7 @@ function prefixLog(iLog: string, iPartName: string): string {
 
 function checkGeom(iGeom: tGeom, iPartName: string) {
 	if (iGeom.calcErr) {
-		let errMsg = `err182: Error in sub-design ${iPartName}`;
+		let errMsg = `err182: Error in sub-design ${iPartName}\n`;
 		errMsg += prefixLog(iGeom.logstr, iPartName);
 		throw errMsg;
 	}
