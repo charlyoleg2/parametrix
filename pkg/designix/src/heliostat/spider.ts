@@ -41,7 +41,7 @@ const pDef: tParamDef = {
 		pNumber('E1', 'mm', 3, 1, 80, 1),
 		pNumber('E2', 'mm', 50, 1, 200, 1),
 		pNumber('E3', 'mm', 3, 1, 80, 1),
-		pNumber('R2', 'mm', 100, 10, 400, 10),
+		pNumber('R2', 'mm', 100, 0, 400, 10),
 		pNumber('N1', '', 6, 1, 20, 1)
 	],
 	paramSvg: {
