@@ -168,8 +168,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		if (rakeL4 <= 0) {
 			throw `err169: L3 ${param.L3} too large compare to L4 ${param.L4}`;
 		}
-		rakeParam.setVal('L5', param.L5 + 2 * rakeL4);
-		rakeParam.setVal('L6', param.L6 + 2 * rakeL4);
+		rakeParam.setVal('L5', param.L5 + 2 * param.L3);
+		rakeParam.setVal('L6', param.L6 + 2 * param.L3);
 		const spiderL5 = param.L5 * 0.96;
 		spiderParam.setVal('L5', spiderL5);
 		spiderParam.setVal('D1', param.D8);

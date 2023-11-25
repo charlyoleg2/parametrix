@@ -142,7 +142,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		if (param.E4 > R4) {
 			throw `err122: E4 ${param.E4} is too large compare to D4 ${param.D4}`;
 		}
-		const beamL = 3 * param.L4 + param.L5 + 2 * param.L6;
+		const beamL = 4 * param.L4 + param.L5 + 2 * param.L6;
 		const beamH = param.H1 + param.H2 - param.H4;
 		const handLowX = R4 * Math.cos(Math.PI / 6);
 		const handLowY = R4 * Math.sin(Math.PI / 6);
