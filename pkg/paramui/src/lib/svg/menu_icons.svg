@@ -7,7 +7,7 @@
    viewBox="0 0 158.75 1058.3333"
    version="1.1"
    id="svg5"
-   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
+   inkscape:version="1.3.1 (1:1.3.1+202311172155+91b66b0783)"
    sodipodi:docname="menu_icons.svg"
    inkscape:export-filename="page_spider.svg"
    inkscape:export-xdpi="96"
@@ -28,8 +28,8 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="4.4489708"
-     inkscape:cx="193.64029"
-     inkscape:cy="1003.8277"
+     inkscape:cx="119.91537"
+     inkscape:cy="1111.9426"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -152,7 +152,7 @@
        style="font-style:normal;font-weight:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect113);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="7.9628906"
          y="18.576202"
-         id="tspan8">menu_icons.svg</tspan></text>
+         id="tspan1">menu_icons.svg</tspan></text>
     <rect
        style="fill:none;stroke:none;stroke-width:0.264583;fill-opacity:1"
        id="rect111"
@@ -180,22 +180,27 @@
        style="font-style:normal;font-weight:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect481);display:inline;fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="399.25586"
          y="45.830108"
-         id="tspan9">index&#10;</tspan><tspan
+         id="tspan2">index
+</tspan><tspan
          x="399.25586"
          y="64.163482"
-         id="tspan10">rough&#10;</tspan><tspan
+         id="tspan3">rough
+</tspan><tspan
          x="399.25586"
          y="82.496856"
-         id="tspan11">circle&#10;</tspan><tspan
+         id="tspan4">circle
+</tspan><tspan
          x="399.25586"
          y="100.83023"
-         id="tspan12">docs&#10;</tspan><tspan
+         id="tspan5">docs
+</tspan><tspan
          x="399.25586"
          y="119.1636"
-         id="tspan13">readme&#10;</tspan><tspan
+         id="tspan6">readme
+</tspan><tspan
          x="399.25586"
          y="137.49698"
-         id="tspan14">about</tspan></text>
+         id="tspan7">about</tspan></text>
     <rect
        style="fill:none;stroke:#e6e6e6;stroke-width:0.264583"
        id="rect111-3"
@@ -1053,7 +1058,7 @@
        d="m 26.262914,303.17775 3.124114,0.0391 0.0048,-3.36319 -0.874307,-7.48814 h -1.414395 l -0.880271,7.1941 z"
        id="path7-6"
        sodipodi:nodetypes="ccccccc"
-       inkscape:export-filename="page_pole_static.svg"
+       inkscape:export-filename="page_heliostat.svg"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <path
@@ -1126,8 +1131,8 @@
        id="rect1-6-2-2-6-6-2-2-9-6-2-2"
        width="6.0374026"
        height="0.30097663"
-       x="-164.69984"
-       y="306.72852"
+       x="-164.54309"
+       y="306.8288"
        inkscape:export-filename="./page_trapeze.svg"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
@@ -1172,7 +1177,10 @@
        cx="61.369514"
        cy="288.10538"
        rx="2.5110524"
-       ry="2.5130301" />
+       ry="2.5130301"
+       inkscape:export-filename="./page_spider.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <ellipse
        style="fill:#ffffff;fill-opacity:1;stroke:#6495ed;stroke-width:0.264583;stroke-opacity:1"
        id="path10-8-7"
@@ -1223,5 +1231,15 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96"
        transform="rotate(-90)" />
+    <rect
+       style="fill:#6495ed;fill-opacity:1;stroke:#6495ed;stroke-width:0.264584;stroke-opacity:1"
+       id="rect1-6-2-2-6-0-3"
+       width="15.582964"
+       height="0.29142898"
+       x="20.365162"
+       y="288.17535"
+       inkscape:export-filename="./page_rake.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
 </svg>
