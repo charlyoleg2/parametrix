@@ -478,7 +478,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	return rGeome;
 }
 
-const rakeDef: tPageDef = {
+const rakeStopperDef: tPageDef = {
 	pTitle: 'Heliostat rake with stopper',
 	pDescription: 'The rake-stopper on top of the pole-rotor of the heliostat',
 	pDef: pDef,
