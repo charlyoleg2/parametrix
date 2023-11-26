@@ -4,6 +4,7 @@ export * from './gears/gear_wheel_wheel';
 export * from './gears/simplified_gear_wheel';
 
 export * from './heliostat/heliostat';
+export * from './heliostat/heliostat_2';
 export * from './heliostat/base';
 export * from './heliostat/pole_static';
 export * from './heliostat/pole_rotor';
