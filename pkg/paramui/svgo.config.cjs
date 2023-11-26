@@ -1,12 +1,12 @@
 module.exports = {
-  plugins: [
-    {
-      name: 'preset-default',
-      params: {
-        overrides: {
-          convertTransform: false
-        }
-      }
-    }
-  ]
+	plugins: [
+		{
+			name: 'preset-default',
+			params: {
+				overrides: {
+					convertTransform: false
+				}
+			}
+		}
+	]
 };
