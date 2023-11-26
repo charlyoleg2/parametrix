@@ -7,8 +7,32 @@
    viewBox="0 0 145.77631 211.12589"
    version="1.1"
    id="svg1"
+   inkscape:version="1.3.1 (1:1.3.1+202311172155+91b66b0783)"
+   sodipodi:docname="heliostat.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.52916665"
+     inkscape:cx="437.48033"
+     inkscape:cy="3541.4174"
+     inkscape:window-width="1370"
+     inkscape:window-height="836"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="true" />
   <defs
      id="defs1">
     <rect
@@ -89,9 +113,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -111,9 +138,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -127,9 +157,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -143,9 +176,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -159,9 +195,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -175,9 +214,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -191,9 +233,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -207,9 +252,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -223,9 +271,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -239,9 +290,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -255,9 +309,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -271,9 +328,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -287,9 +347,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -303,9 +366,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -319,9 +385,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -335,9 +404,12 @@
        refX="0"
        refY="0"
        orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
        markerWidth="1"
        markerHeight="1"
        viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
        preserveAspectRatio="xMidYMid">
       <path
          transform="scale(0.7)"
@@ -347,6 +419,8 @@
     </marker>
   </defs>
   <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-8.7876301,-34.955597)">
     <rect
@@ -355,11 +429,15 @@
        width="145.51172"
        height="210.86131"
        x="8.9199219"
-       y="35.087891" />
+       y="35.087891"
+       inkscape:export-filename="heliostat_overview.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <path
        style="fill:#d4aa00;stroke:#d4aa00;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 30.151032,203.298 h 93.862308 l -1.55762,13.35855 -11.75156,22.63638 -16.272044,-4.8055 -23.911943,5.89334 -15.544737,-4.2235 -13.980652,1.84557 -8.679689,-11.63339 z"
-       id="path2" />
+       id="path2"
+       sodipodi:nodetypes="cccccccccc" />
     <rect
        style="fill:#e3dedb;stroke:#e3dedb;stroke-width:0.264583"
        id="rect3"
@@ -1334,63 +1412,78 @@
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8)"
        d="m 114.90067,46.181369 6.4156,-4.822901"
-       id="path4-0" />
+       id="path4-0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-9)"
        d="m 128.70615,45.854295 -6.4156,-4.822901"
-       id="path4-0-6" />
+       id="path4-0-6"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-4)"
        d="m 138.53057,51.266586 3.19274,2.576366"
-       id="path4-0-9" />
+       id="path4-0-9"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0)"
        d="m 115.34867,56.908187 8.33552,15.137354"
-       id="path4-0-2" />
+       id="path4-0-2"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-3)"
        d="m 129.41774,57.203729 -4.18415,15.082663"
-       id="path4-0-2-7" />
+       id="path4-0-2-7"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-1)"
        d="m 38.557435,67.281008 -5.9926,9.644196"
-       id="path4-0-2-9" />
+       id="path4-0-2-9"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-2)"
        d="m 92.570392,88.17701 7.34996,5.404376"
-       id="path4-0-2-1" />
+       id="path4-0-2-1"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-2-6)"
        d="m 83.925358,124.18935 14.924067,5.40437"
-       id="path4-0-2-1-8" />
+       id="path4-0-2-1-8"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-2-6-3)"
        d="m 99.688339,157.19489 10.085241,-8.00534"
-       id="path4-0-2-1-8-4" />
+       id="path4-0-2-1-8-4"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-2-6-3-8)"
        d="m 71.36753,187.93044 4.113131,6.81883"
-       id="path4-0-2-1-8-4-6" />
+       id="path4-0-2-1-8-4-6"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-2-6-3-8-9)"
        d="m 81.82393,187.96493 -4.11313,6.81883"
-       id="path4-0-2-1-8-4-6-3" />
+       id="path4-0-2-1-8-4-6-3"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-2-6-3-8-3)"
        d="m 32.510785,207.21001 -4.11313,-6.81883"
-       id="path4-0-2-1-8-4-6-5" />
+       id="path4-0-2-1-8-4-6-5"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-2-6-3-8-5)"
        d="m 45.443092,205.13403 -6.36454,-16.1043"
-       id="path4-0-2-1-8-4-6-9" />
+       id="path4-0-2-1-8-4-6-9"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-2-6-3-8-4)"
        d="m 57.352632,169.59569 -10.66552,-6.81883"
-       id="path4-0-2-1-8-4-6-4" />
+       id="path4-0-2-1-8-4-6-4"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-8-0-2-6-3-8-0)"
        d="M 67.758613,165.3838 50.361817,144.13563"
-       id="path4-0-2-1-8-4-6-47" />
+       id="path4-0-2-1-8-4-6-47"
+       sodipodi:nodetypes="cc" />
     <rect
        style="fill:#7f2aff;stroke:none;stroke-width:0.264582"
        id="rect2-2-5-0-5-1-1-3-5-5-6-6-6-8-4"
