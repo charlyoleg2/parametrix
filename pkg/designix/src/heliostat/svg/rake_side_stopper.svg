@@ -7,7 +7,7 @@
    viewBox="0 0 114.01348 118.98394"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
+   inkscape:version="1.3.1 (1:1.3.1+202311172155+91b66b0783)"
    sodipodi:docname="rake.svg"
    inkscape:export-filename="rake.svg"
    inkscape:export-xdpi="96"
@@ -26,9 +26,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="0.52916668"
-     inkscape:cx="263.62204"
-     inkscape:cy="650.07872"
+     inkscape:zoom="0.7483547"
+     inkscape:cx="312.01782"
+     inkscape:cy="3240.442"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -299,6 +299,56 @@
        width="64.478706"
        height="48.026573"
        id="rect29-3" />
+    <rect
+       x="175.91412"
+       y="3377.8162"
+       width="64.502953"
+       height="44.276573"
+       id="rect8-75" />
+    <marker
+       style="overflow:visible"
+       id="RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5-9-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="m -0.21114562,-4.1055728 6.42229122,3.21114561 a 1,1 90 0 1 0,1.78885438 L -0.21114562,4.1055728 A 1.236068,1.236068 31.717474 0 1 -2,3 v -6 a 1.236068,1.236068 148.28253 0 1 1.78885438,-1.1055728 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path8-67-2-9-1-6-6-3-9-4-1-2-8-9-2-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5-9-3-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Rounded arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="m -0.21114562,-4.1055728 6.42229122,3.21114561 a 1,1 90 0 1 0,1.78885438 L -0.21114562,4.1055728 A 1.236068,1.236068 31.717474 0 1 -2,3 v -6 a 1.236068,1.236068 148.28253 0 1 1.78885438,-1.1055728 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path8-67-2-9-1-6-6-3-9-4-1-2-8-9-2-5-9" />
+    </marker>
+    <rect
+       x="175.91412"
+       y="3377.8162"
+       width="64.502953"
+       height="44.276573"
+       id="rect8-75-6" />
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -312,7 +362,7 @@
        height="118.71937"
        x="20.860287"
        y="757.65155"
-       inkscape:export-filename="rake_side.svg"
+       inkscape:export-filename="rake_side_stopper.svg"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <path
@@ -484,7 +534,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29)"><tspan
          x="98.763672"
          y="3400.5664"
-         id="tspan8">S2</tspan></text>
+         id="tspan7">S2</tspan></text>
     <path
        style="fill:#cccccc;stroke:#cccccc;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 67.421576,786.30316 H 24.562327"
@@ -520,7 +570,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect18-28);display:inline"><tspan
          x="492.41406"
          y="1294.6289"
-         id="tspan9">H2</tspan></text>
+         id="tspan8">H2</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264581px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7);marker-end:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7)"
        d="m 81.961255,797.76913 v 6.26363"
@@ -532,7 +582,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect21-5);display:inline"><tspan
          x="509.18945"
          y="998.58206"
-         id="tspan11">H4</tspan></text>
+         id="tspan9">H4</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264581px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-2-4);marker-end:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-2-4)"
        d="m 103.96116,787.68818 v 16.72229"
@@ -544,7 +594,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect23-5);display:inline"><tspan
          x="502.50977"
          y="921.65237"
-         id="tspan12">H5</tspan></text>
+         id="tspan10">H5</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264581px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-9);marker-end:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-9)"
        d="m 94.7496,797.28606 v 36.69643"
@@ -584,7 +634,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7-2);display:inline"><tspan
          x="203.51367"
          y="3394.3028"
-         id="tspan13">E7</tspan></text>
+         id="tspan11">E7</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,81.967554,-94.473356)"
@@ -592,7 +642,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8-1);display:inline"><tspan
          x="175.91406"
          y="3390.793"
-         id="tspan14">S1</tspan></text>
+         id="tspan12">S1</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264581px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5);marker-end:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5)"
        d="m 130.081,795.09788 v 2.60732"
@@ -608,7 +658,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8-1-3);display:inline"><tspan
          x="175.91406"
          y="3390.793"
-         id="tspan15">S1</tspan></text>
+         id="tspan13">S1</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264581px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5-8);marker-end:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5-8)"
        d="m 130.081,789.98511 v 2.60732"
@@ -632,6 +682,30 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect29-3);display:inline"><tspan
          x="98.763672"
          y="3400.5664"
-         id="tspan16">S2</tspan></text>
+         id="tspan14">S2</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,-6.5446415,-43.762296)"
+       id="text8-9"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8-75);display:inline"><tspan
+         x="175.91406"
+         y="3390.793"
+         id="tspan15">S1</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264581px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5-9-3);marker-end:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5-9-3)"
+       d="m 41.337842,849.12052 h 2.60732"
+       id="path5-1-0-8-3-8-1-8-6-7-8-0-15-3-0-1" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,77.319873,-111.26278)"
+       id="text8-9-6"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8-75-6);display:inline"><tspan
+         x="175.91406"
+         y="3390.793"
+         id="tspan16">S1</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264581px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5-9-3-0);marker-end:url(#RoundedArrow-7-7-9-1-2-9-5-8-2-8-7-7-5-9-3-0)"
+       d="m 124.9968,787.25824 h 2.60732"
+       id="path5-1-0-8-3-8-1-8-6-7-8-0-15-3-0-1-2" />
   </g>
 </svg>

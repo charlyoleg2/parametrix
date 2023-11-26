@@ -91,7 +91,10 @@ const pDef: tParamDef = {
 		H6: 'rake_door.svg',
 		H7: 'rake_door.svg',
 		L9: 'rake_door.svg',
-		R9: 'rake_door.svg'
+		R9: 'rake_door.svg',
+		S1: 'rake_side_stopper.svg',
+		S2: 'rake_top_stopper.svg',
+		E7: 'rake_side_stopper.svg'
 	},
 	sim: {
 		tMax: 180,
