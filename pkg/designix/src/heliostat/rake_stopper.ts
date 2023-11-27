@@ -1,7 +1,7 @@
 // rake_stopper.ts
 
 import type {
-	//tContour,
+	tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -16,11 +16,11 @@ import {
 	designParam,
 	checkGeom,
 	prefixLog,
-	//contour,
-	//contourCircle,
+	contour,
+	contourCircle,
 	figure,
 	//degToRad,
-	//radToDeg,
+	radToDeg,
 	ffix,
 	pNumber,
 	//pCheckbox,
@@ -66,7 +66,7 @@ const pDef: tParamDef = {
 		pNumber('L9', 'mm', 300, 100, 1000, 10),
 		pNumber('R9', 'mm', 50, 0, 300, 1),
 		pNumber('S1', 'mm', 100, 10, 300, 1),
-		pNumber('S2', 'mm', 2000, 300, 8000, 10),
+		pNumber('S2', 'mm', 2000, 100, 8000, 10),
 		pNumber('E7', 'mm', 5, 1, 80, 1)
 	],
 	paramSvg: {
@@ -109,7 +109,10 @@ const pDef: tParamDef = {
 	}
 };
 
+type tCtr2 = (width: number, height: number, xpos: number, ypos: number, angle: number) => tContour;
+
 function pGeom(t: number, param: tParamVal): tGeom {
+	let ctrRect: tCtr2;
 	const rGeome = initGeom();
 	const figCone = figure();
 	const figBeam = figure();
@@ -123,10 +126,41 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figStopperSide = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
+		const R1 = param.D1 / 2;
 		const H1H2 = param.H1 + param.H2;
 		const H1H5 = H1H2 - param.H4 + param.H5;
 		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
 		rGeome.logstr += `cone-height total: ${ffix(H1H5)} mm\n`;
+		if (2 * param.E7 >= param.S1) {
+			throw `err135: E7 ${param.E7} too large compare to S1 ${param.S1}`;
+		}
+		if (param.L5 < param.D1 + 4 * param.S1) {
+			throw `err138: L5 ${param.L5} too small compare to D1 ${param.D1} and S1 ${param.S1}`;
+		}
+		const stopper1H = H1H5 - param.S2;
+		if (stopper1H < 0) {
+			throw `err143: S2 ${param.S2} too large compare to H1H5 ${ffix(H1H5)}`;
+		}
+		const stopper2H = param.H1 + param.H2 - param.H4 + param.D4 / 2;
+		const stopper3H = param.H1 + param.L8 - param.S1;
+		ctrRect = function (
+			width: number,
+			height: number,
+			xpos: number,
+			ypos: number,
+			angle: number
+		): tContour {
+			const xWidth = width * Math.cos(angle);
+			const yWidth = width * Math.sin(angle);
+			const xHeight = -height * Math.sin(angle);
+			const yHeight = height * Math.cos(angle);
+			const rCtr = contour(xpos, ypos)
+				.addSegStrokeA(xpos + xWidth, ypos + yWidth)
+				.addSegStrokeA(xpos + xWidth + xHeight, ypos + yWidth + yHeight)
+				.addSegStrokeA(xpos + xHeight, ypos + yHeight)
+				.closeSegStroke();
+			return rCtr;
+		};
 		// sub-design rake
 		const rakeParam = designParam(rakeDef.pDef);
 		rakeParam.setVal('D1', param.D1);
@@ -169,8 +203,47 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figWing.mergeFigure(rakeGeom.fig.faceWing);
 		figWingHollow.mergeFigure(rakeGeom.fig.faceWingHollow);
 		figDoor.mergeFigure(rakeGeom.fig.faceDoor);
+		// figStopperTop
 		figStopperTop.mergeFigure(rakeGeom.fig.faceDisc, true);
+		const L5h = param.L5 / 2;
+		const S1r = param.S1 / 2;
+		const S1h = param.S1 - 2 * param.E7;
+		const S1hr = S1h / 2;
+		figStopperTop.addMain(ctrRect(param.S1, param.L5, -R1 - param.S1, -L5h, 0));
+		figStopperTop.addMain(ctrRect(S1h, param.L5, -R1 - param.E7 - S1h, -L5h, 0));
+		figStopperTop.addMain(ctrRect(param.S1, param.L5, param.S2 - param.S1, -L5h, 0));
+		figStopperTop.addMain(ctrRect(S1h, param.L5, param.S2 - param.E7 - S1h, -L5h, 0));
+		const S2s = param.S2 - param.S1 / 2;
+		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, -L5h, 0));
+		figStopperTop.addMain(ctrRect(S2s, S1h, 0, -L5h + param.E7, 0));
+		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, L5h - param.S1, 0));
+		figStopperTop.addMain(ctrRect(S2s, S1h, 0, L5h - param.S1 + param.E7, 0));
+		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, -R1 - param.S1, 0));
+		figStopperTop.addMain(ctrRect(S2s, S1h, 0, -R1 - param.S1 + param.E7, 0));
+		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, R1, 0));
+		figStopperTop.addMain(ctrRect(S2s, S1h, 0, R1 + param.E7, 0));
+		// figStopperSide
 		figStopperSide.mergeFigure(rakeGeom.fig.faceBeam, true);
+		figStopperSide.addMain(contourCircle(-R1 - S1r, stopper1H + S1r, S1r));
+		figStopperSide.addMain(contourCircle(-R1 - S1r, stopper1H + S1r, S1hr));
+		figStopperSide.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
+		figStopperSide.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1hr));
+		figStopperSide.addSecond(ctrRect(S2s, param.S1, 0, stopper2H, 0));
+		figStopperSide.addSecond(ctrRect(S2s, S1h, 0, stopper2H + param.E7, 0));
+		const stopper3Ly = stopper2H + param.S1 / 2 - stopper3H;
+		const stopper3L = Math.sqrt(S2s ** 2 + stopper3Ly ** 2);
+		const stopper3A = Math.atan2(stopper3Ly, S2s);
+		rGeome.logstr += `stopper-rod: L ${ffix(stopper3L)} mm, A ${ffix(
+			radToDeg(stopper3A)
+		)} degree\n`;
+		const stp3posdX = S1r * Math.sin(stopper3A);
+		const stp3posdY = S1r * Math.cos(stopper3A);
+		const stp3posY = stopper3H - stp3posdY;
+		figStopperSide.addSecond(ctrRect(stopper3L, param.S1, stp3posdX, stp3posY, stopper3A));
+		const stp3posdX2 = S1hr * Math.sin(stopper3A);
+		const stp3posdY2 = S1hr * Math.cos(stopper3A);
+		const stp3posY2 = stopper3H - stp3posdY2;
+		figStopperSide.addSecond(ctrRect(stopper3L, S1h, stp3posdX2, stp3posY2, stopper3A));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
