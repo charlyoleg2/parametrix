@@ -124,6 +124,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figDoor = figure();
 	const figStopperTop = figure();
 	const figStopperSide = figure();
+	const figStopperSideH = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
@@ -244,6 +245,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const stp3posdY2 = S1hr * Math.cos(stopper3A);
 		const stp3posY2 = stopper3H - stp3posdY2;
 		figStopperSide.addSecond(ctrRect(stopper3L, S1h, stp3posdX2, stp3posY2, stopper3A));
+		// figStopperSideH
+		figStopperSideH.mergeFigure(rakeGeom.fig.faceBeam, true);
+		figStopperSideH.addMain(contourCircle(-R1 - S1r, stopper1H + S1r, S1r));
+		figStopperSideH.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
@@ -255,17 +260,26 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceWingHollow: figWingHollow,
 			faceDoor: figDoor,
 			faceStopperTop: figStopperTop,
-			faceStopperSide: figStopperSide
+			faceStopperSide: figStopperSide,
+			faceStopperSideH: figStopperSideH
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
 			extrudes: [
 				{
-					outName: `subpax_${designName}_door`,
-					face: `${designName}_faceDoor`,
+					outName: `subpax_${designName}_stpSide`,
+					face: `${designName}_faceStopperSide`,
 					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.D1,
-					rotate: [Math.PI / 2, 0, Math.PI / 2],
+					length: param.L5,
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_stpSideH`,
+					face: `${designName}_faceStopperSideH`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: param.L5,
+					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
 				}
 			],
@@ -273,27 +287,12 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				{
 					outName: `ipax_${designName}_plus`,
 					boolMethod: EBVolume.eUnion,
-					inList: [
-						`subpax_${designName}_cone`,
-						`subpax_${designName}_beam`,
-						`subpax_${designName}_disc`,
-						`subpax_${designName}_hand_0`,
-						`subpax_${designName}_hand_1`,
-						`subpax_${designName}_hand_2`,
-						`subpax_${designName}_hand_3`,
-						`subpax_${designName}_wing_right`,
-						`subpax_${designName}_wing_left`
-					]
+					inList: [`subpax_${designName}_stpSide`]
 				},
 				{
 					outName: `ipax_${designName}_hollow`,
 					boolMethod: EBVolume.eUnion,
-					inList: [
-						`subpax_${designName}_beamHollow`,
-						`subpax_${designName}_wing_hollow_right`,
-						`subpax_${designName}_wing_hollow_left`,
-						`subpax_${designName}_door`
-					]
+					inList: [`subpax_${designName}_stpSideH`]
 				},
 				{
 					outName: `pax_${designName}`,
