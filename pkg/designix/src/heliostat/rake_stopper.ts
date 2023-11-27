@@ -125,6 +125,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figStopperTop = figure();
 	const figStopperSide = figure();
 	const figStopperSideH = figure();
+	const figStopperFaceT = figure();
+	const figStopperFaceTH = figure();
+	const figStopperFaceB = figure();
+	const figStopperFaceBH = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
@@ -247,8 +251,34 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figStopperSide.addSecond(ctrRect(stopper3L, S1h, stp3posdX2, stp3posY2, stopper3A));
 		// figStopperSideH
 		figStopperSideH.mergeFigure(rakeGeom.fig.faceBeam, true);
-		figStopperSideH.addMain(contourCircle(-R1 - S1r, stopper1H + S1r, S1r));
-		figStopperSideH.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
+		figStopperSideH.addSecond(contourCircle(-R1 - S1r, stopper1H + S1r, S1r));
+		figStopperSideH.addMain(contourCircle(-R1 - S1r, stopper1H + S1r, S1hr));
+		figStopperSideH.addSecond(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
+		figStopperSideH.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1hr));
+		// figStopperFaceT
+		figStopperFaceT.mergeFigure(rakeGeom.fig.faceCone, true);
+		figStopperFaceT.addMain(contourCircle(-param.L5 / 2 + S1r, stopper2H + S1r, S1r));
+		figStopperFaceT.addMain(contourCircle(-param.L5 / 2 + S1r, stopper2H + S1r, S1hr));
+		figStopperFaceT.addMain(contourCircle(param.L5 / 2 - S1r, stopper2H + S1r, S1r));
+		figStopperFaceT.addMain(contourCircle(param.L5 / 2 - S1r, stopper2H + S1r, S1hr));
+		// figStopperFaceTH
+		figStopperFaceTH.mergeFigure(rakeGeom.fig.faceCone, true);
+		figStopperFaceTH.addSecond(contourCircle(-param.L5 / 2 + S1r, stopper2H + S1r, S1r));
+		figStopperFaceTH.addMain(contourCircle(-param.L5 / 2 + S1r, stopper2H + S1r, S1hr));
+		figStopperFaceTH.addSecond(contourCircle(param.L5 / 2 - S1r, stopper2H + S1r, S1r));
+		figStopperFaceTH.addMain(contourCircle(param.L5 / 2 - S1r, stopper2H + S1r, S1hr));
+		// figStopperFaceB
+		figStopperFaceB.mergeFigure(rakeGeom.fig.faceCone, true);
+		figStopperFaceB.addMain(contourCircle(-R1 - S1r, 0, S1r));
+		figStopperFaceB.addMain(contourCircle(-R1 - S1r, 0, S1hr));
+		figStopperFaceB.addMain(contourCircle(R1 + S1r, 0, S1r));
+		figStopperFaceB.addMain(contourCircle(R1 + S1r, 0, S1hr));
+		// figStopperFaceBH
+		figStopperFaceBH.mergeFigure(rakeGeom.fig.faceCone, true);
+		figStopperFaceBH.addSecond(contourCircle(-R1 - S1r, 0, S1r));
+		figStopperFaceBH.addMain(contourCircle(-R1 - S1r, 0, S1hr));
+		figStopperFaceBH.addSecond(contourCircle(R1 + S1r, 0, S1r));
+		figStopperFaceBH.addMain(contourCircle(R1 + S1r, 0, S1hr));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
@@ -261,7 +291,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceDoor: figDoor,
 			faceStopperTop: figStopperTop,
 			faceStopperSide: figStopperSide,
-			faceStopperSideH: figStopperSideH
+			faceStopperSideH: figStopperSideH,
+			faceStopperFaceT: figStopperFaceT,
+			faceStopperFaceTH: figStopperFaceTH,
+			faceStopperFaceB: figStopperFaceB,
+			faceStopperFaceBH: figStopperFaceBH
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
@@ -272,7 +306,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: param.L5,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					translate: [0, 0, -param.L5 / 2]
 				},
 				{
 					outName: `subpax_${designName}_stpSideH`,
@@ -280,19 +314,59 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: param.L5,
 					rotate: [0, 0, 0],
+					translate: [0, 0, -param.L5 / 2]
+				},
+				{
+					outName: `subpax_${designName}_stpFaceT`,
+					face: `${designName}_faceStopperFaceT`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: S2s,
+					rotate: [0, Math.PI / 2, 0],
 					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_stpFaceTH`,
+					face: `${designName}_faceStopperFaceTH`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: S2s,
+					rotate: [0, Math.PI / 2, 0],
+					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_stpFaceB`,
+					face: `${designName}_faceStopperFaceB`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: stopper3L,
+					rotate: [0, Math.PI / 2, stopper3A],
+					translate: [0, stopper3H, 0]
+				},
+				{
+					outName: `subpax_${designName}_stpFaceBH`,
+					face: `${designName}_faceStopperFaceBH`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: stopper3L,
+					rotate: [0, Math.PI / 2, stopper3A],
+					translate: [0, stopper3H, 0]
 				}
 			],
 			volumes: [
 				{
 					outName: `ipax_${designName}_plus`,
 					boolMethod: EBVolume.eUnion,
-					inList: [`subpax_${designName}_stpSide`]
+					inList: [
+						`subpax_${designName}_stpSide`,
+						`subpax_${designName}_stpFaceT`,
+						`subpax_${designName}_stpFaceB`
+					]
 				},
 				{
 					outName: `ipax_${designName}_hollow`,
 					boolMethod: EBVolume.eUnion,
-					inList: [`subpax_${designName}_stpSideH`]
+					inList: [
+						`subpax_${designName}_stpSideH`,
+						`subpax_${designName}_stpFaceTH`,
+						`subpax_${designName}_stpFaceBH`
+					]
 				},
 				{
 					outName: `pax_${designName}`,
