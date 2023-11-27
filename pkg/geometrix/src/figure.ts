@@ -143,7 +143,7 @@ class Figure {
 		}
 		return rfig;
 	}
-	mergeFigure(ifig: Figure) {
+	mergeFigure(ifig: Figure, mainToSecond = false) {
 		for (const pt of ifig.pointList) {
 			this.addPoint(pt.clone());
 		}
@@ -154,7 +154,11 @@ class Figure {
 			this.addVector(vec.clone());
 		}
 		for (const ctr of ifig.mainList) {
-			this.addMain(ctr.clone());
+			if (mainToSecond) {
+				this.addSecond(ctr.clone());
+			} else {
+				this.addMain(ctr.clone());
+			}
 		}
 		for (const ctr of ifig.secondList) {
 			this.addSecond(ctr.clone());

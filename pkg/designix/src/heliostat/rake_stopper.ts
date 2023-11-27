@@ -119,6 +119,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figWing = figure();
 	const figWingHollow = figure();
 	const figDoor = figure();
+	const figStopperTop = figure();
+	const figStopperSide = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const H1H2 = param.H1 + param.H2;
@@ -167,6 +169,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figWing.mergeFigure(rakeGeom.fig.faceWing);
 		figWingHollow.mergeFigure(rakeGeom.fig.faceWingHollow);
 		figDoor.mergeFigure(rakeGeom.fig.faceDoor);
+		figStopperTop.mergeFigure(rakeGeom.fig.faceDisc, true);
+		figStopperSide.mergeFigure(rakeGeom.fig.faceBeam, true);
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
@@ -176,7 +180,9 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceHand: figHand,
 			faceWing: figWing,
 			faceWingHollow: figWingHollow,
-			faceDoor: figDoor
+			faceDoor: figDoor,
+			faceStopperTop: figStopperTop,
+			faceStopperSide: figStopperSide
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
