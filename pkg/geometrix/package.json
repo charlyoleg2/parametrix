@@ -44,8 +44,8 @@
 		"@zip.js/zip.js": "^2.7.31"
 	},
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^6.12.0",
-		"@typescript-eslint/parser": "^6.12.0",
+		"@typescript-eslint/eslint-plugin": "^6.13.1",
+		"@typescript-eslint/parser": "^6.13.1",
 		"eslint": "^8.54.0",
 		"eslint-config-prettier": "^9.0.0",
 		"npm-run-all": "^4.1.5",
