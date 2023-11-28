@@ -109,9 +109,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figTop = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		rGeome.logstr += `heliostat-height: ${ffix(param.H1)}, diameter ${ffix(param.H1)} m\n`;
-		rGeome.logstr += `heliostat-swing-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
-		rGeome.logstr += `heliostat-surface-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
+		const helioHeight =
+			param.H1 + param.H2 - param.H3 + param.H4 + param.H5 - param.H6 + param.H7;
+		rGeome.logstr += `heliostat-height: ${ffix(helioHeight)}, diameter ${ffix(param.D1)} m\n`;
+		rGeome.logstr += `heliostat-swing-length: ${ffix(param.L1)}, width ${ffix(param.L2)} m\n`;
 		const posAngleDegree = (param.al * t) / pDef.sim.tMax;
 		const posAngle = degToRad(posAngleDegree);
 		rGeome.logstr += `swing position angle: ${ffix(radToDeg(posAngle))} degree\n`;
