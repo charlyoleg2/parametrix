@@ -31,7 +31,7 @@ import {
 
 // design import
 import { poleStaticDef } from './pole_static';
-import { rakeDef } from './rake';
+import { rakeStopperDef } from './rake_stopper';
 import { swingDef } from './swing';
 
 const pDef: tParamDef = {
@@ -64,7 +64,7 @@ const pDef: tParamDef = {
 		pNumber('L7', 'mm', 100, 10, 1000, 10),
 		pNumber('L8', 'mm', 200, 10, 1000, 10),
 		pNumber('al', 'degree', 80, 0, 95, 1),
-		pNumber('ar', 'degree', 80, 0, 95, 1)
+		pNumber('S1', 'mm', 100, 10, 800, 1)
 	],
 	paramSvg: {
 		H1: 'heliostat_overview.svg',
@@ -93,7 +93,7 @@ const pDef: tParamDef = {
 		L7: 'heliostat2_face_sizing.svg',
 		L8: 'heliostat2_face_sizing.svg',
 		al: 'heliostat2_side_sizing.svg',
-		ar: 'heliostat2_side_sizing.svg'
+		S1: 'heliostat2_side_sizing.svg'
 	},
 	sim: {
 		tMax: 180,
@@ -106,21 +106,20 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const rGeome = initGeom();
 	const figSide = figure();
 	const figFace = figure();
+	const figTop = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		rGeome.logstr += `heliostat-height: ${ffix(param.H1)}, diameter ${ffix(param.H1)} m\n`;
 		rGeome.logstr += `heliostat-swing-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
 		rGeome.logstr += `heliostat-surface-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
-		const posAngleMid = (param.al - param.ar) / 2;
-		const posAngleDegree =
-			posAngleMid - (Math.sin((2 * Math.PI * t) / pDef.sim.tMax) * (param.al + param.ar)) / 2;
+		const posAngleDegree = (param.al * t) / pDef.sim.tMax;
 		const posAngle = degToRad(posAngleDegree);
 		rGeome.logstr += `swing position angle: ${ffix(radToDeg(posAngle))} degree\n`;
 		const rakePosY = param.H1 + param.H2 - param.H3;
 		const swingPosY = rakePosY + param.H4 + param.H5 - param.H6 + param.H7;
 		// sub-designs
 		const poleStaticParam = designParam(poleStaticDef.pDef);
-		const rakeParam = designParam(rakeDef.pDef);
+		const rakeParam = designParam(rakeStopperDef.pDef);
 		const swingParam = designParam(swingDef.pDef);
 		poleStaticParam.setVal('H1', param.H1);
 		poleStaticParam.setVal('H2', param.H2);
@@ -157,6 +156,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		rakeParam.setVal('L5', param.L5 + 2 * param.L3);
 		rakeParam.setVal('L6', param.L6 + 2 * param.L3);
+		rakeParam.setVal('S1', param.S1);
+		rakeParam.setVal('S2', param.L2 / 2);
 		swingParam.setVal('L2', param.L2);
 		swingParam.setVal('D1', param.D6);
 		swingParam.setVal('H4', param.H9);
@@ -169,11 +170,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		swingParam.setVal('L4', param.L4);
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
-		swingParam.setVal('L3', param.D6);
+		swingParam.setVal('L3', param.D7);
 		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
 		checkGeom(poleStaticGeom, poleStaticParam.designName);
 		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.designName);
-		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
+		const rakeGeom = rakeStopperDef.pGeom(0, rakeParam.getParamVal());
 		checkGeom(rakeGeom, rakeParam.designName);
 		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.designName);
 		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
@@ -181,18 +182,23 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.designName);
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
-		figSide.mergeFigure(rakeGeom.fig.faceBeam.translate(0, rakePosY));
+		figSide.mergeFigure(rakeGeom.fig.faceStopperSide.translate(0, rakePosY));
 		figSide.mergeFigure(
 			swingGeom.fig.faceSide.translate(0, swingPosY).rotate(0, swingPosY, posAngle)
 		);
 		// figFace
 		figFace.mergeFigure(poleStaticGeom.fig.poleCut);
-		figFace.mergeFigure(rakeGeom.fig.faceCone.translate(0, rakePosY));
+		figFace.mergeFigure(rakeGeom.fig.faceStopperFaceT.translate(0, rakePosY));
 		figFace.mergeFigure(swingGeom.fig.faceFace.translate(0, swingPosY));
+		// figTop
+		figTop.mergeFigure(poleStaticGeom.fig.poleBottom.translate(0, 0));
+		figTop.mergeFigure(rakeGeom.fig.faceStopperTop.translate(0, 0));
+		figTop.mergeFigure(swingGeom.fig.faceTop.rotate(0, 0, Math.PI / 2));
 		// final figure list
 		rGeome.fig = {
 			faceSide: figSide,
-			faceFace: figFace
+			faceFace: figFace,
+			faceTop: figTop
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
