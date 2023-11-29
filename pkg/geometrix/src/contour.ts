@@ -47,7 +47,7 @@ abstract class AContour {
 	abstract generatePoints(): Point[];
 	abstract generateLines(): Line[];
 	abstract check(): string;
-	abstract toSvg(color?: string): string;
+	abstract toSvg(yCeiling: number, color?: string): string;
 	abstract toDxfSeg(): DxfSeg[];
 	abstract toPax(): tPaxContour;
 }
@@ -654,15 +654,15 @@ class Contour extends AContour {
 		this.checkContour(ctrG);
 		return segLib.gSegDbg.getMsg();
 	}
-	toSvg(color = ''): string {
+	toSvg(yCeiling: number, color = ''): string {
 		const sPath = svgPath();
 		for (const seg of this.segments) {
 			if (seg.sType === segLib.SegEnum.eStart) {
-				sPath.addStart(seg.px, seg.py);
+				sPath.addStart(seg.px, yCeiling - seg.py);
 			} else if (seg.sType === segLib.SegEnum.eStroke) {
-				sPath.addStroke(seg.px, seg.py);
+				sPath.addStroke(seg.px, yCeiling - seg.py);
 			} else if (seg.sType === segLib.SegEnum.eArc) {
-				sPath.addArc(seg.px, seg.py, seg.radius, seg.arcLarge, seg.arcCcw);
+				sPath.addArc(seg.px, yCeiling - seg.py, seg.radius, seg.arcLarge, seg.arcCcw);
 			} else {
 				console.log(`err631: contour.toSvg has unknown segment type ${seg.sType}`);
 			}
@@ -777,8 +777,8 @@ class ContourCircle extends AContour {
 	check(): string {
 		return '';
 	}
-	toSvg(color = ''): string {
-		const rSvg = svgCircleString(this.px, this.py, this.radius, color);
+	toSvg(yCeiling: number, color = ''): string {
+		const rSvg = svgCircleString(this.px, yCeiling - this.py, this.radius, color);
 		return rSvg;
 	}
 	toDxfSeg(): DxfSeg[] {

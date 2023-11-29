@@ -54,32 +54,47 @@ class MinMaxPoint {
 	}
 }
 
+interface tGroup {
+	gpName: string;
+	gpColor: string;
+	ctrs: tContour[];
+}
+
 class SvgWriter2 {
 	minMax: MinMaxPoint;
+	groups: tGroup[];
 	svg: SvgWriter;
 	constructor() {
 		this.minMax = new MinMaxPoint();
+		this.groups = [];
 		this.svg = svgWriter();
 	}
-	addAContour(aCtr: tContour[], groupId = '', color = colors.contour) {
-		this.minMax.addAContour(aCtr);
-		if (groupId !== '') {
-			this.svg.addGroup(groupId);
-		}
-		for (const ctr of aCtr) {
-			let ctrColor = ctr.imposedColor;
-			if (ctrColor === '') {
-				ctrColor = color;
+	addAContour(aCtrs: tContour[], groupId = '', icolor = colors.contour) {
+		this.minMax.addAContour(aCtrs);
+		const grp: tGroup = { gpName: groupId, gpColor: icolor, ctrs: aCtrs };
+		this.groups.push(grp);
+	}
+	makeSvg(yCeiling: number) {
+		for (const grp of this.groups) {
+			if (grp.gpName !== '') {
+				this.svg.addGroup(grp.gpName);
 			}
-			this.svg.addSvgString(ctr.toSvg(ctrColor));
-		}
-		if (groupId !== '') {
-			this.svg.closeGroup();
+			for (const ctr of grp.ctrs) {
+				let ctrColor = ctr.imposedColor;
+				if (ctrColor === '') {
+					ctrColor = grp.gpColor;
+				}
+				this.svg.addSvgString(ctr.toSvg(yCeiling, ctrColor));
+			}
+			if (grp.gpName !== '') {
+				this.svg.closeGroup();
+			}
 		}
 	}
 	stringify() {
 		const [Xmin2, Xdelta, Ymin2, Ydelta] = this.minMax.getViewBox();
 		this.svg.addHeader(Xmin2, Xdelta, Ymin2, Ydelta);
+		this.makeSvg(this.minMax.yMax);
 		return this.svg.stringify();
 	}
 }
