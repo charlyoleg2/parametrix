@@ -662,7 +662,7 @@ class Contour extends AContour {
 			} else if (seg.sType === segLib.SegEnum.eStroke) {
 				sPath.addStroke(seg.px, yCeiling - seg.py);
 			} else if (seg.sType === segLib.SegEnum.eArc) {
-				sPath.addArc(seg.px, yCeiling - seg.py, seg.radius, seg.arcLarge, seg.arcCcw);
+				sPath.addArc(seg.px, yCeiling - seg.py, seg.radius, seg.arcLarge, !seg.arcCcw);
 			} else {
 				console.log(`err631: contour.toSvg has unknown segment type ${seg.sType}`);
 			}

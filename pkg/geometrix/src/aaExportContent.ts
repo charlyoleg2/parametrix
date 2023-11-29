@@ -94,7 +94,7 @@ class SvgWriter2 {
 	stringify() {
 		const [Xmin2, Xdelta, Ymin2, Ydelta] = this.minMax.getViewBox();
 		this.svg.addHeader(Xmin2, Xdelta, Ymin2, Ydelta);
-		this.makeSvg(this.minMax.yMax);
+		this.makeSvg(this.minMax.yMax + this.minMax.yMin);
 		return this.svg.stringify();
 	}
 }
