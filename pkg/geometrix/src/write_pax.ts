@@ -36,9 +36,9 @@ class PaxWrite {
 		}
 		return figFaces;
 	}
-	getPaxJson(paramVal: tParamVal, geome0: tGeom, partName: string): tPaxJson {
+	getPaxJson(paramVal: tParamVal, geome0: tGeom): tPaxJson {
 		const rPaxJson = {
-			partName: partName,
+			partName: geom0.partName,
 			params: paramVal,
 			faces: this.getFigures(geome0.fig),
 			volume: geome0.vol,
@@ -47,8 +47,8 @@ class PaxWrite {
 		};
 		return rPaxJson;
 	}
-	getPaxStr(paramVal: tParamVal, geome0: tGeom, partName: string): string {
-		const paxJson = this.getPaxJson(paramVal, geome0, partName);
+	getPaxStr(paramVal: tParamVal, geome0: tGeom): string {
+		const paxJson = this.getPaxJson(paramVal, geome0);
 		const rStr = JSON.stringify(paxJson, null, 2);
 		return rStr;
 	}

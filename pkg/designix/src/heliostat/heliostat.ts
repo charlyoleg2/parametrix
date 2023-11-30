@@ -119,9 +119,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 	const figFace = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
-		rGeome.logstr += `heliostat-height: ${ffix(param.H1)}, diameter ${ffix(param.H1)} m\n`;
-		rGeome.logstr += `heliostat-swing-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
-		rGeome.logstr += `heliostat-surface-length: ${ffix(param.H1)}, width ${ffix(param.H1)} m\n`;
+		const helioHeight =
+			param.H1 + param.H2 - param.H3 + param.H4 + param.H5 - param.H6 + param.H7;
+		rGeome.logstr += `heliostat-height: ${ffix(helioHeight)}, diameter ${ffix(param.D1)} m\n`;
+		rGeome.logstr += `heliostat-swing-length: ${ffix(param.L1)}, width ${ffix(param.L2)} m\n`;
 		const posAngleMid = (param.al - param.ar) / 2;
 		const posAngleDegree =
 			posAngleMid - (Math.sin((2 * Math.PI * t) / pDef.sim.tMax) * (param.al + param.ar)) / 2;
@@ -236,21 +237,21 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					subdesign: 'pax_rake_stopper',
 					subgeom: rakeGeom,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					translate: [0, 0, rakePosY]
 				},
 				{
 					outName: `inpax_${designName}_swing`,
 					subdesign: 'pax_swing',
 					subgeom: swingGeom,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					translate: [0, 0, swingPosY]
 				},
 				{
 					outName: `inpax_${designName}_spider`,
 					subdesign: 'pax_spider',
 					subgeom: spiderGeom,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					translate: [0, 0, spiderPosY]
 				}
 			],
 			extrudes: [],

@@ -302,7 +302,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			inherits: [
 				{
 					outName: `inpax_${designName}_rake`,
-					subdesign: 'pax_rake_stopper',
+					subdesign: 'pax_rake',
 					subgeom: rakeGeom,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]

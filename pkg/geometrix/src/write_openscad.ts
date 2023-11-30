@@ -249,8 +249,15 @@ module ${volum.outName} () {
 		return rGeoms;
 	}
 	getOneInherit(inherit: tInherit): string {
-		let rStr = '';
-		rStr += inherit.subdesign;
+		const rStr = `
+module ${inherit.outName} () {
+	translate( [ ${inherit.translate[0]}, ${inherit.translate[1]}, ${inherit.translate[2]} ])
+		rotate( [ ${radToDeg(inherit.rotate[0])}, ${radToDeg(inherit.rotate[1])}, ${radToDeg(
+			inherit.rotate[2]
+		)} ])
+			   ${inherit.subdesign}();
+}
+`;
 		return rStr;
 	}
 	getAllInherits(inherits: tInherit[]): string {
@@ -266,6 +273,8 @@ module ${volum.outName} () {
 		if (vol.inherits !== undefined) {
 			const subGeoms = this.getAllSubGeoms(vol.inherits);
 			for (const oneGeom of subGeoms) {
+				const paxJson = paxWrite().getPaxJson({}, oneGeom);
+				rStr += this.getAllFigures(paxJson.faces, paxJson.partName);
 				rStr += this.getVolume(oneGeom.vol);
 			}
 			rStr += this.getAllInherits(vol.inherits);

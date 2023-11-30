@@ -141,21 +141,21 @@ function figureToDxf(aCtr: tContour[]): string {
 }
 
 // PAX
-function makePax(paramVal: tParamVal, geome0: tGeom, partName: string): string {
-	const rStr = paxWrite().getPaxStr(paramVal, geome0, partName);
+function makePax(paramVal: tParamVal, geome0: tGeom): string {
+	const rStr = paxWrite().getPaxStr(paramVal, geome0);
 	return rStr;
 }
 
 // OpenSCad
-function makeOpenscad(geome0: tGeom, partName: string): string {
-	const paxJson = paxWrite().getPaxJson({}, geome0, partName);
+function makeOpenscad(geome0: tGeom): string {
+	const paxJson = paxWrite().getPaxJson({}, geome0);
 	const rStr = oscadWrite().getExportFile(paxJson);
 	return rStr;
 }
 
 // OpenJSCAD
-function makeOpenjscad(geome0: tGeom, partName: string): string {
-	const paxJson = paxWrite().getPaxJson({}, geome0, partName);
+function makeOpenjscad(geome0: tGeom): string {
+	const paxJson = paxWrite().getPaxJson({}, geome0);
 	const rStr = ojscadWrite().getExportFile(paxJson);
 	return rStr;
 }
@@ -165,12 +165,12 @@ async function makeZip(
 	paramVal: tParamVal,
 	geome0: tGeom,
 	tSim: number,
-	geome1: tGeom,
-	partName: string
+	geome1: tGeom
 ): Promise<Blob> {
 	// zip writer preparation
 	const zipFileWriter = new zip.BlobWriter('application/zip');
 	const zipWriter = new zip.ZipWriter(zipFileWriter);
+	const partName = geome0.partName;
 	// zip payload
 	const zParam = new zip.TextReader(JSON.stringify(paramVal, null, 2));
 	await zipWriter.add(`param_${partName}.json`, zParam);
@@ -197,11 +197,11 @@ async function makeZip(
 	await zipWriter.add(`deco_${partName}_all_merged.svg`, svgMergedDeco);
 	const svgMergedDecoT = new zip.TextReader(figureToSvgDeco(mergedFace));
 	await zipWriter.add(`deco_${partName}_all_merged_t${tSim}.svg`, svgMergedDecoT);
-	const zPax = new zip.TextReader(makePax(paramVal, geome0, partName));
+	const zPax = new zip.TextReader(makePax(paramVal, geome0));
 	await zipWriter.add(`${partName}.pax.json`, zPax);
-	const zSCad = new zip.TextReader(makeOpenscad(geome0, partName));
+	const zSCad = new zip.TextReader(makeOpenscad(geome0));
 	await zipWriter.add(`${partName}_noarc_openscad.scad`, zSCad);
-	const zJScad = new zip.TextReader(makeOpenjscad(geome0, partName));
+	const zJScad = new zip.TextReader(makeOpenjscad(geome0));
 	await zipWriter.add(`${partName}_noarc_jscad.js`, zJScad);
 	// zip writer finalization
 	await zipWriter.close();

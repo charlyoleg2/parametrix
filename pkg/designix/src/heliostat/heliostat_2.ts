@@ -216,14 +216,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					subdesign: 'pax_rake_stopper',
 					subgeom: rakeGeom,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					translate: [0, 0, rakePosY]
 				},
 				{
 					outName: `inpax_${designName}_swing`,
 					subdesign: 'pax_swing',
 					subgeom: swingGeom,
 					rotate: [0, 0, 0],
-					translate: [0, 0, 0]
+					translate: [0, 0, swingPosY]
 				}
 			],
 			extrudes: [],

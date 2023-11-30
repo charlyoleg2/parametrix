@@ -27,7 +27,7 @@ function fileTextContent(
 	eFace: string,
 	exportFormat: EFormat
 ): string {
-	const geome0 = geom(0, paramVal);
+	const geome0 = geom(0, paramVal, partName);
 	let rFileContent = '';
 	if (!geome0.calcErr) {
 		const figList = Object.keys(geome0.fig);
@@ -52,11 +52,11 @@ function fileTextContent(
 				console.log(`err759: fileTextContent eFace ${eFace} invalid`);
 			}
 		} else if (exportFormat === EFormat.ePAX) {
-			rFileContent = makePax(paramVal, geome0, partName);
+			rFileContent = makePax(paramVal, geome0);
 		} else if (exportFormat === EFormat.eOPENSCAD) {
-			rFileContent = makeOpenscad(geome0, partName);
+			rFileContent = makeOpenscad(geome0);
 		} else if (exportFormat === EFormat.eJSCAD) {
-			rFileContent = makeOpenjscad(geome0, partName);
+			rFileContent = makeOpenjscad(geome0);
 		} else {
 			console.log(`err912: unknown exportFormat ${exportFormat}`);
 		}
@@ -73,12 +73,12 @@ async function fileBinContent(
 	partName: string,
 	exportFormat: EFormat
 ): Promise<Blob> {
-	const geome0 = geom(0, paramVal);
-	const geome1 = geom(tSim, paramVal);
+	const geome0 = geom(0, paramVal, partName);
+	const geome1 = geom(tSim, paramVal, partName);
 	let rFileContent = new Blob();
 	if (!geome0.calcErr && !geome1.calcErr) {
 		if (exportFormat === EFormat.eZIP) {
-			rFileContent = await makeZip(paramVal, geome0, tSim, geome1, partName);
+			rFileContent = await makeZip(paramVal, geome0, tSim, geome1);
 		} else {
 			console.log(`err913: unknown exportFormat ${exportFormat}`);
 		}
