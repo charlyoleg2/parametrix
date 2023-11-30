@@ -299,6 +299,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
+			inherit: [
+				{
+					outName: `inpax_${designName}_rake`,
+					subdesign: 'pax_rake_stopper',
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
+				}
+			],
 			extrudes: [
 				{
 					outName: `subpax_${designName}_stpSide`,
@@ -369,9 +377,14 @@ function pGeom(t: number, param: tParamVal): tGeom {
 					]
 				},
 				{
-					outName: `pax_${designName}`,
+					outName: `ipax_${designName}_stopper`,
 					boolMethod: EBVolume.eSubstraction,
 					inList: [`ipax_${designName}_plus`, `ipax_${designName}_hollow`]
+				},
+				{
+					outName: `pax_${designName}`,
+					boolMethod: EBVolume.eUnion,
+					inList: [`inpax_${designName}_rake`, `ipax_${designName}_stopper`]
 				}
 			]
 		};

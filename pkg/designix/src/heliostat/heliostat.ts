@@ -25,7 +25,7 @@ import {
 	//pCheckbox,
 	//pDropdown,
 	initGeom,
-	EExtrude,
+	//EExtrude,
 	EBVolume
 } from 'geometrix';
 
@@ -223,39 +223,42 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
-			extrudes: [
+			inherit: [
 				{
-					outName: `subpax_${designName}_pole`,
-					face: `${designName}_faceCut`,
-					extrudeMethod: EExtrude.eRotate,
+					outName: `inpax_${designName}_poleStatic`,
+					subdesign: 'pax_pole_static',
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
 				},
 				{
-					outName: `subpax_${designName}_bottom`,
-					face: `${designName}_faceBottom`,
-					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.E2,
+					outName: `inpax_${designName}_rake`,
+					subdesign: 'pax_rake_stopper',
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
 				},
 				{
-					outName: `subpax_${designName}_top`,
-					face: `${designName}_faceBottom`,
-					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.E2,
+					outName: `inpax_${designName}_swing`,
+					subdesign: 'pax_swing',
 					rotate: [0, 0, 0],
-					translate: [0, 0, param.H1 - param.E2]
+					translate: [0, 0, 0]
+				},
+				{
+					outName: `inpax_${designName}_spider`,
+					subdesign: 'pax_spider',
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
 				}
 			],
+			extrudes: [],
 			volumes: [
 				{
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eUnion,
 					inList: [
-						`subpax_${designName}_pole`,
-						`subpax_${designName}_bottom`,
-						`subpax_${designName}_top`
+						`inpax_${designName}_poleStatic`,
+						`inpax_${designName}_rake`,
+						`inpax_${designName}_swing`,
+						`inpax_${designName}_spider`
 					]
 				}
 			]
