@@ -41,7 +41,7 @@ interface tBVolume {
 }
 
 interface tVolume {
-	inherit?: tInherit[];
+	inherits?: tInherit[];
 	extrudes: tExtrude[];
 	volumes: tBVolume[];
 }

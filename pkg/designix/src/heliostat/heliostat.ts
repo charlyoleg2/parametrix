@@ -223,7 +223,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
-			inherit: [
+			inherits: [
 				{
 					outName: `inpax_${designName}_poleStatic`,
 					subdesign: 'pax_pole_static',

@@ -13,7 +13,8 @@ import type {
 import { PSeg } from './prepare_pax';
 import type { tPaxFaces, tPaxJson } from './write_pax';
 import { convTypePaxToSeg1 } from './write_pax';
-import type { tVolume, tExtrude, tBVolume } from './volume';
+import type { tGeom } from './aaParamGeom';
+import type { tVolume, tInherit, tExtrude, tBVolume } from './volume';
 import { EExtrude, EBVolume } from './volume';
 //import { withinZero2Pi, radToDeg } from './angle_utils';
 import { radToDeg } from './angle_utils';
@@ -238,8 +239,37 @@ module ${volum.outName} () {
 		}
 		return rStr;
 	}
+	getAllSubGeoms(inherits: tInherit[]): tGeom[] {
+		const rGeoms: tGeom[] = [];
+		for (const inher of inherits) {
+			if (!rGeoms.includes(inher.subgeom)) {
+				rGeoms.push(inher.subgeom);
+			}
+		}
+		return rGeoms;
+	}
+	getOneInherit(inherit: tInherit): string {
+		let rStr = '';
+		rStr += inherit.subdesign;
+		return rStr;
+	}
+	getAllInherits(inherits: tInherit[]): string {
+		let rStr = '';
+		for (const inher of inherits) {
+			const subinhe = this.getOneInherit(inher);
+			rStr += subinhe;
+		}
+		return rStr;
+	}
 	getVolume(vol: tVolume): string {
 		let rStr = '';
+		if (vol.inherits !== undefined) {
+			const subGeoms = this.getAllSubGeoms(vol.inherits);
+			for (const oneGeom of subGeoms) {
+				rStr += this.getVolume(oneGeom.vol);
+			}
+			rStr += this.getAllInherits(vol.inherits);
+		}
 		rStr += this.getAllExtrudes(vol.extrudes);
 		rStr += this.getAllVolumes(vol.volumes);
 		return rStr;

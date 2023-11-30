@@ -299,7 +299,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		};
 		const designName = pDef.partName;
 		rGeome.vol = {
-			inherit: [
+			inherits: [
 				{
 					outName: `inpax_${designName}_rake`,
 					subdesign: 'pax_rake_stopper',
