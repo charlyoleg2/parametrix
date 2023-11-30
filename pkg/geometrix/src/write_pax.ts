@@ -38,7 +38,7 @@ class PaxWrite {
 	}
 	getPaxJson(paramVal: tParamVal, geome0: tGeom): tPaxJson {
 		const rPaxJson = {
-			partName: geom0.partName,
+			partName: geome0.partName,
 			params: paramVal,
 			faces: this.getFigures(geome0.fig),
 			volume: geome0.vol,

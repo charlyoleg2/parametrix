@@ -96,7 +96,7 @@
 		return rFace;
 	}
 	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iFace: string, iLayers: tLayers) {
-		const FigList = geom(iSimTime, pVal).fig;
+		const FigList = geom(iSimTime, pVal, pDef.partName).fig;
 		const FigListKeys = Object.keys(FigList);
 		const sFace = checkFace(FigListKeys, iFace);
 		if (FigListKeys.includes(sFace)) {

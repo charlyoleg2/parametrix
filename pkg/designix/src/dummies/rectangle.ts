@@ -21,8 +21,8 @@ const pDef: tParamDef = {
 	}
 };
 
-function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome = initGeom();
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+	const rGeome = initGeom(partName);
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();

@@ -37,7 +37,7 @@
 	function paramChange2(iPageName: string) {
 		const mydate = new Date().toLocaleTimeString();
 		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
-		const geome = geom(simTime, $storePV[pDef.partName]);
+		const geome = geom(simTime, $storePV[pDef.partName], pDef.partName);
 		logValue += geome.logstr;
 		calcErr = geome.calcErr;
 		calcWarn = checkWarn(geome.logstr);

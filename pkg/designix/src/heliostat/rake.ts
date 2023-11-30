@@ -100,11 +100,11 @@ const pDef: tParamDef = {
 type tCtr1 = (orient: number) => tContour;
 type tCtr2 = (width: number, height: number, xpos: number, ypos: number, angle: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 	let ctrCone: tCtr1;
 	let ctrConePlus: tCtr1;
 	let ctrRect: tCtr2;
-	const rGeome = initGeom();
+	const rGeome = initGeom(partName);
 	const figCone = figure();
 	const figBeam = figure();
 	const figBeamHollow = figure();
@@ -346,7 +346,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceWingHollow: figWingHollow,
 			faceDoor: figDoor
 		};
-		const designName = pDef.partName;
+		const designName = partName;
 		const preExtrude = handPos.map((posX, idx) => {
 			const rHand: tExtrude = {
 				outName: `subpax_${designName}_hand_${idx}`,

@@ -34,7 +34,7 @@
 	}
 	let domInit = 0;
 	function geomRedraw(iSimTime: number, ipVal: tParamVal, iFace: string, iLayers: tLayers) {
-		const FigList = geom(iSimTime, ipVal).fig;
+		const FigList = geom(iSimTime, ipVal, pageName).fig;
 		if (Object.keys(FigList).includes(iFace)) {
 			const aFigure = FigList[iFace];
 			canvasRedrawMini(aFigure, iLayers);

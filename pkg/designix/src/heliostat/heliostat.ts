@@ -113,8 +113,8 @@ const pDef: tParamDef = {
 	}
 };
 
-function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome = initGeom();
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+	const rGeome = initGeom(partName);
 	const figSide = figure();
 	const figFace = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
@@ -191,17 +191,21 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
 		swingParam.setVal('L3', param.D6);
-		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
-		checkGeom(poleStaticGeom, poleStaticParam.designName);
+		const poleStaticGeom = poleStaticDef.pGeom(
+			0,
+			poleStaticParam.getParamVal(),
+			poleStaticParam.designName
+		);
+		checkGeom(poleStaticGeom);
 		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.designName);
-		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
-		checkGeom(rakeGeom, rakeParam.designName);
+		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal(), rakeParam.designName);
+		checkGeom(rakeGeom);
 		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.designName);
-		const spiderGeom = spiderDef.pGeom(0, spiderParam.getParamVal());
-		checkGeom(spiderGeom, spiderParam.designName);
+		const spiderGeom = spiderDef.pGeom(0, spiderParam.getParamVal(), spiderParam.designName);
+		checkGeom(spiderGeom);
 		rGeome.logstr += prefixLog(spiderGeom.logstr, spiderParam.designName);
-		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
-		checkGeom(swingGeom, swingParam.designName);
+		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal(), swingParam.designName);
+		checkGeom(swingGeom);
 		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.designName);
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
@@ -222,7 +226,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceSide: figSide,
 			faceFace: figFace
 		};
-		const designName = pDef.partName;
+		const designName = partName;
 		rGeome.vol = {
 			inherits: [
 				{

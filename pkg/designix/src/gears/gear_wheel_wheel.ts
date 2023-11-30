@@ -137,8 +137,8 @@ const pDef: tParamDef = {
 	}
 };
 
-function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome = initGeom();
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+	const rGeome = initGeom(partName);
 	const figOne = figure();
 	const figTwo = figure();
 	rGeome.logstr += `simTime: ${t}\n`;
@@ -284,7 +284,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			figTwo.addSecond(ctrAxisProfile_left);
 		}
 		rGeome.fig = { teethProfile: figOne, axisProfile: figTwo };
-		const designName = pDef.partName;
+		const designName = partName;
 		const axisHLength =
 			param.wheelHeight / 2 + param.wheelMidExtra + param.wheelAxisLength + 10;
 		rGeome.vol = {

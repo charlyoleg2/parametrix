@@ -111,9 +111,9 @@ const pDef: tParamDef = {
 
 type tCtr2 = (width: number, height: number, xpos: number, ypos: number, angle: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 	let ctrRect: tCtr2;
-	const rGeome = initGeom();
+	const rGeome = initGeom(partName);
 	const figCone = figure();
 	const figBeam = figure();
 	const figBeamHollow = figure();
@@ -196,8 +196,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rakeParam.setVal('H7', param.H7);
 		rakeParam.setVal('L9', param.L9);
 		rakeParam.setVal('R9', param.R9);
-		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
-		checkGeom(rakeGeom, rakeParam.designName);
+		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal(), rakeParam.designName);
+		checkGeom(rakeGeom);
 		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.designName);
 		// figures
 		figCone.mergeFigure(rakeGeom.fig.faceCone);
@@ -297,7 +297,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceStopperFaceB: figStopperFaceB,
 			faceStopperFaceBH: figStopperFaceBH
 		};
-		const designName = pDef.partName;
+		const designName = partName;
 		rGeome.vol = {
 			inherits: [
 				{

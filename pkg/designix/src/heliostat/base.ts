@@ -73,11 +73,11 @@ const pDef: tParamDef = {
 
 type tCtr1 = (orient: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 	let ctrBaseCut1: tCtr1;
 	let ctrBaseCut2: tCtr1;
 	let ctrHollow: tCtr1;
-	const rGeome = initGeom();
+	const rGeome = initGeom(partName);
 	const figCut = figure();
 	const figTop = figure();
 	const figHollow = figure();
@@ -182,7 +182,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceTop: figTop,
 			faceHollow: figHollow
 		};
-		const designName = pDef.partName;
+		const designName = partName;
 		const hollowStep = (2 * Math.PI) / param.N2;
 		const lHollow = [...Array(param.N2).keys()];
 		const preExtrude = lHollow.map((idx) => {

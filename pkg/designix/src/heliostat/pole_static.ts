@@ -73,10 +73,10 @@ const pDef: tParamDef = {
 type tCtr1 = (orient: number, withR3: boolean) => tContour;
 type tCtr2 = (pL2: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 	let ctrPoleProfile: tCtr1;
 	let ctrDoorFace: tCtr2;
-	const rGeome = initGeom();
+	const rGeome = initGeom(partName);
 	const figCut = figure();
 	const figFace = figure();
 	const figBottom = figure();
@@ -189,7 +189,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			emptyPole: figEmptyPole,
 			emptyDoor: figEmptyDoor
 		};
-		const designName = pDef.partName;
+		const designName = partName;
 		rGeome.vol = {
 			extrudes: [
 				{

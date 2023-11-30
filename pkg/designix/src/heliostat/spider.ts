@@ -68,10 +68,10 @@ const pDef: tParamDef = {
 type tCtr1 = (sx: number, sy: number, sl: number) => tContour;
 type tCtr2 = (width: number, height: number, xpos: number, ypos: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 	let ctrSquare: tCtr1;
 	let ctrRect: tCtr2;
-	const rGeome = initGeom();
+	const rGeome = initGeom(partName);
 	const figLegs = figure();
 	const figTube = figure();
 	const figBody = figure();
@@ -182,7 +182,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceTube: figTube.rotate(0, 0, posAngle),
 			faceBody: figBody
 		};
-		const designName = pDef.partName;
+		const designName = partName;
 		const preExtrude = legPos.map((posX, idx) => {
 			const rElem: tExtrude = {
 				outName: `subpax_${designName}_leg_${idx}`,

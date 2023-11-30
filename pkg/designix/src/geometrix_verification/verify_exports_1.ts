@@ -36,8 +36,8 @@ const pDef: tParamDef = {
 	}
 };
 
-function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome = initGeom();
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+	const rGeome = initGeom(partName);
 	rGeome.logstr += `simTime: ${t}\n`;
 	try {
 		const figOne = figure();
@@ -56,7 +56,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			figOne.addMain(ctr1);
 		}
 		rGeome.fig = { one: figOne };
-		const designName = pDef.partName;
+		const designName = partName;
 		rGeome.vol = {
 			extrudes: [
 				{

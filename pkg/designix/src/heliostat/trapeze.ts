@@ -84,10 +84,10 @@ const pDef: tParamDef = {
 
 type tCtr1 = (px: number, py: number, angle: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 	let ctrRodFootprint: tCtr1;
 	let ctrRod: tCtr1;
-	const rGeome = initGeom();
+	const rGeome = initGeom(partName);
 	const figFrame = figure();
 	const figPlate = figure();
 	const figRod = figure();
@@ -311,7 +311,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			faceRodHollow: figRodHollow,
 			faceCutRod: figCutRod
 		};
-		const designName = pDef.partName;
+		const designName = partName;
 		rGeome.vol = {
 			extrudes: [
 				{

@@ -12,7 +12,7 @@ import type {
 } from './prepare_pax';
 import { PSeg } from './prepare_pax';
 import type { tPaxFaces, tPaxJson } from './write_pax';
-import { convTypePaxToSeg1 } from './write_pax';
+import { convTypePaxToSeg1, paxWrite } from './write_pax';
 import type { tGeom } from './aaParamGeom';
 import type { tVolume, tInherit, tExtrude, tBVolume } from './volume';
 import { EExtrude, EBVolume } from './volume';
