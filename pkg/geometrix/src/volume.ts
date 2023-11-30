@@ -1,8 +1,11 @@
 // volume.ts
 
+import type { tGeom } from './aaParamGeom';
+
 interface tInherit {
 	outName: string;
 	subdesign: string;
+	subgeom: tGeom;
 	rotate: [number, number, number];
 	translate: [number, number, number];
 }

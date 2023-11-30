@@ -207,18 +207,21 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				{
 					outName: `inpax_${designName}_poleStatic`,
 					subdesign: 'pax_pole_static',
+					subgeom: poleStaticGeom,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
 				},
 				{
 					outName: `inpax_${designName}_rake`,
 					subdesign: 'pax_rake_stopper',
+					subgeom: rakeGeom,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
 				},
 				{
 					outName: `inpax_${designName}_swing`,
 					subdesign: 'pax_swing',
+					subgeom: swingGeom,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
 				}

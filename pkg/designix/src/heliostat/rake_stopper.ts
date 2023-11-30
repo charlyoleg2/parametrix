@@ -303,6 +303,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				{
 					outName: `inpax_${designName}_rake`,
 					subdesign: 'pax_rake_stopper',
+					subgeom: rakeGeom,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
 				}
