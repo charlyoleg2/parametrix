@@ -39,12 +39,12 @@ const pDef: tParamDef = {
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('H1', 'mm', 3000, 100, 40000, 10),
-		pNumber('H2', 'mm', 7000, 100, 40000, 10),
+		pNumber('H2', 'mm', 2500, 100, 40000, 10),
 		pNumber('H3', 'mm', 200, 10, 500, 10),
 		pNumber('H4', 'mm', 800, 100, 4000, 10),
 		pNumber('H5', 'mm', 3000, 100, 6000, 10),
-		pNumber('H6', 'mm', 400, 100, 4000, 10),
-		pNumber('H7', 'mm', 800, 100, 4000, 10),
+		pNumber('H6', 'mm', 200, 100, 4000, 10),
+		pNumber('H7', 'mm', 400, 100, 4000, 10),
 		pNumber('H9', 'mm', 100, 10, 400, 10),
 		pNumber('D1', 'mm', 1000, 100, 4000, 10),
 		pNumber('D2', 'mm', 700, 100, 4000, 10),
@@ -226,7 +226,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 					outName: `inpax_${designName}_swing`,
 					subdesign: 'pax_swing',
 					subgeom: swingGeom,
-					rotate: [0, 0, 0],
+					rotate: [Math.PI / 2, 0, 0],
 					translate: [0, 0, swingPosY]
 				}
 			],
