@@ -198,7 +198,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rakeParam.setVal('R9', param.R9);
 		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
 		checkGeom(rakeGeom);
-		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.designName);
+		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.partName);
 		// figures
 		figCone.mergeFigure(rakeGeom.fig.faceCone);
 		figBeam.mergeFigure(rakeGeom.fig.faceBeam);

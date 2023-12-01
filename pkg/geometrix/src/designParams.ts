@@ -31,11 +31,19 @@ interface tParamDef {
 type tParamVal = Record<string, number>;
 type tParamChanged = Record<string, boolean>;
 
+interface tDesignParamOne {
+	val: number;
+	init: number;
+	chg: boolean;
+}
+
+type tDesignParamList = Record<string, tDesignParamOne>;
+
 class DesignParam {
 	paramVal: tParamVal = {};
 	paramInit: tParamVal = {};
 	paramChanged: tParamChanged = {};
-	designName: string;
+	partName: string;
 	paramNames: string[];
 	getParamName(): string[] {
 		const rNames: string[] = [];
@@ -50,8 +58,11 @@ class DesignParam {
 			this.paramInit[pi.name] = pi.init;
 			this.paramChanged[pi.name] = false;
 		}
-		this.designName = iparamDef.partName;
+		this.partName = iparamDef.partName;
 		this.paramNames = this.getParamName();
+	}
+	getPartName(): string {
+		return this.partName;
 	}
 	getParamVal(): tParamVal {
 		return this.paramVal;
@@ -60,21 +71,21 @@ class DesignParam {
 		if (this.paramNames.includes(iname)) {
 			return this.paramVal[iname];
 		} else {
-			throw `err140: parameter ${iname} does not exist in design ${this.designName}`;
+			throw `err140: parameter ${iname} does not exist in design ${this.partName}`;
 		}
 	}
 	getInit(iname: string): number {
 		if (this.paramNames.includes(iname)) {
 			return this.paramInit[iname];
 		} else {
-			throw `err149: parameter ${iname} does not exist in design ${this.designName}`;
+			throw `err149: parameter ${iname} does not exist in design ${this.partName}`;
 		}
 	}
 	getChanged(iname: string): boolean {
 		if (this.paramNames.includes(iname)) {
 			return this.paramChanged[iname];
 		} else {
-			throw `err156: parameter ${iname} does not exist in design ${this.designName}`;
+			throw `err156: parameter ${iname} does not exist in design ${this.partName}`;
 		}
 	}
 	setVal(iname: string, ival: number) {
@@ -82,8 +93,20 @@ class DesignParam {
 			this.paramVal[iname] = ival;
 			this.paramChanged[iname] = true;
 		} else {
-			throw `err163: parameter ${iname} does not exist in design ${this.designName}`;
+			throw `err163: parameter ${iname} does not exist in design ${this.partName}`;
 		}
+	}
+	getDesignParamList(): tDesignParamList {
+		const rDPList: tDesignParamList = {};
+		for (const pi of this.paramNames) {
+			const oneParam: tDesignParamOne = {
+				val: this.getVal(pi),
+				init: this.getInit(pi),
+				chg: this.getChanged(pi)
+			};
+			rDPList[pi] = oneParam;
+		}
+		return rDPList;
 	}
 }
 
@@ -131,5 +154,5 @@ function pDropdown(name: string, values: string[]): tParam {
 	return rParam;
 }
 
-export type { tParamDef, tParamVal, DesignParam };
+export type { tParamDef, tParamVal, tDesignParamList, DesignParam };
 export { PType, pNumber, pCheckbox, pDropdown, designParam };

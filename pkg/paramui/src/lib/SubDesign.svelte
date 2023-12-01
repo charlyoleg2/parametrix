@@ -39,7 +39,7 @@
 							<div class="arrow" />
 							Mandatory
 						</label>
-						<span>( {Object.keys(subD[subInst].mandatories).length} parameters)</span>
+						<span>( {Object.keys(subD[subInst].dparam).length} parameters)</span>
 						<div class="nested">
 							<table>
 								<thead>
@@ -50,85 +50,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									{#each Object.keys(subD[subInst].mandatories) as param, pIdx}
+									{#each Object.keys(subD[subInst].dparam) as param, pIdx}
 										<tr>
 											<td>{pIdx + 1}</td>
 											<td>{param}</td>
-											<td>{subD[subInst].mandatories[param]}</td>
+											<td>{subD[subInst].dparam[param]}</td>
 										</tr>
 									{/each}
 								</tbody>
 							</table>
 						</div>
-					</article>
-					<article>
-						<input type="checkbox" id="cb2_{subInst}" class="toggle" checked={false} />
-						<label for="cb2_{subInst}" class="label">
-							<div class="arrow" />
-							Recommended
-						</label>
-						<span>( {Object.keys(subD[subInst].recommended).length} parameters)</span>
-						<div class="nested">
-							<table>
-								<thead>
-									<tr>
-										<td>Num</td>
-										<td>Name</td>
-										<td>Value</td>
-									</tr>
-								</thead>
-								<tbody>
-									{#each Object.keys(subD[subInst].recommended) as param, pIdx}
-										<tr>
-											<td>{pIdx + 1}</td>
-											<td>{param}</td>
-											<td>{subD[subInst].recommended[param]}</td>
-										</tr>
-									{/each}
-								</tbody>
-							</table>
-						</div>
-					</article>
-					<article>
-						<input type="checkbox" id="cb3_{subInst}" class="toggle" checked={false} />
-						<label for="cb3_{subInst}" class="label">
-							<div class="arrow" />
-							Restricted
-						</label>
-						<span>( {Object.keys(subD[subInst].restricted).length} parameters)</span>
-						<div class="nested">
-							<table>
-								<thead>
-									<tr>
-										<td>Num</td>
-										<td>Name</td>
-										<td>Min</td>
-										<td>Max</td>
-										<td>Step</td>
-									</tr>
-								</thead>
-								<tbody>
-									{#each Object.keys(subD[subInst].restricted) as param, pIdx}
-										<tr>
-											<td>{pIdx + 1}</td>
-											<td>{param}</td>
-											<td>{subD[subInst].restricted[param].min}</td>
-											<td>{subD[subInst].restricted[param].max}</td>
-											<td>{subD[subInst].restricted[param].step}</td>
-										</tr>
-									{/each}
-								</tbody>
-							</table>
-						</div>
-					</article>
-					<article>
-						<input type="checkbox" id="cb4_{subInst}" class="toggle" checked={false} />
-						<label for="cb4_{subInst}" class="label">
-							<div class="arrow" />
-							Summary
-						</label>
-						<span>( {Object.keys(subD[subInst].restricted).length} parameters)</span>
-						<div class="nested">aaa</div>
 					</article>
 				</div>
 			</li>

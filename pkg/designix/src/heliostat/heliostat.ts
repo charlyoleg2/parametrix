@@ -193,16 +193,16 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		swingParam.setVal('L3', param.D7);
 		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
 		checkGeom(poleStaticGeom);
-		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.designName);
+		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.partName);
 		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
 		checkGeom(rakeGeom);
-		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.designName);
+		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.partName);
 		const spiderGeom = spiderDef.pGeom(0, spiderParam.getParamVal());
 		checkGeom(spiderGeom);
-		rGeome.logstr += prefixLog(spiderGeom.logstr, spiderParam.designName);
+		rGeome.logstr += prefixLog(spiderGeom.logstr, spiderParam.partName);
 		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
 		checkGeom(swingGeom);
-		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.designName);
+		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.partName);
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
 		figSide.mergeFigure(rakeGeom.fig.faceBeam.translate(0, rakePosY));

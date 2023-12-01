@@ -174,13 +174,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		swingParam.setVal('L3', param.D7);
 		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
 		checkGeom(poleStaticGeom);
-		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.designName);
+		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.partName);
 		const rakeGeom = rakeStopperDef.pGeom(0, rakeParam.getParamVal());
 		checkGeom(rakeGeom);
-		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.designName);
+		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.partName);
 		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
 		checkGeom(swingGeom);
-		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.designName);
+		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.partName);
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
 		figSide.mergeFigure(rakeGeom.fig.faceStopperSide.translate(0, rakePosY));

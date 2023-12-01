@@ -1,27 +1,17 @@
 // sub_design.ts
 
-type tMParams = Record<string, number>;
-
-interface tRParam {
-	min: number;
-	max: number;
-	step: number;
-}
-type tRParams = Record<string, tRParam>;
+import type { tDesignParamList } from './designParams';
 
 type tPosiOrien = [number, number, number];
 
 interface tSubInst {
 	partName: string;
-	package: string;
-	version: string;
-	mandatories: tMParams;
-	recommended: tMParams;
-	restricted: tRParams;
+	dparam: tDesignParamList;
 	orientation: tPosiOrien;
 	position: tPosiOrien;
+	link: string;
 }
 
 type tSubDesign = Record<string, tSubInst>;
 
-export type { tMParams, tRParams, tSubInst, tSubDesign };
+export type { tSubInst, tSubDesign };
