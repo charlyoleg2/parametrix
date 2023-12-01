@@ -10,7 +10,7 @@ import type {
 } from 'geometrix';
 //import { contour, contourCircle, figure, degToRad } from 'geometrix';
 import {
-	//designParam,
+	designParam,
 	contour,
 	figure,
 	degToRad,
@@ -26,7 +26,7 @@ import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 
 // design import
-//import { gearWheelWheelDef } from './gear_wheel_wheel';
+import { gearWheelWheelDef } from './gear_wheel_wheel';
 
 const pDef: tParamDef = {
 	partName: 'simplified_gear_wheel',
@@ -358,16 +358,16 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			]
 		};
 		// sub-design
-		//const gearWWParam = designParam(gearWheelWheelDef.pDef);
+		const gearWWParam = designParam(gearWheelWheelDef.pDef);
 		const subGearWW: tSubInst = {
-			partName: 'aaa', //gearWWParam.getPartName(),
-			dparam: {}, //gearWWParam.getDesignParamList(),
+			partName: gearWWParam.getPartName(),
+			dparam: gearWWParam.getDesignParamList(),
 			orientation: [0, 0, 0],
 			position: [0, 0, 0],
-			link: 'blabla'
+			link: '/gear/gear_wheel_wheel'
 		};
 		console.log(subGearWW);
-		rGeome.sub = {}; //{ gear_wheel_wheel_1: subGearWW };
+		rGeome.sub = { gear_wheel_wheel_1: subGearWW };
 		// finalize
 		rGeome.logstr += 'simplified_gear_wheel draw successfully!\n';
 		rGeome.calcErr = false;
