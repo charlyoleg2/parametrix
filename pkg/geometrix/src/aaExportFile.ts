@@ -21,13 +21,12 @@ enum EFormat {
 }
 
 function fileTextContent(
-	geom: tGeomFunc,
+	fgeom: tGeomFunc,
 	paramVal: tParamVal,
-	partName: string,
 	eFace: string,
 	exportFormat: EFormat
 ): string {
-	const geome0 = geom(0, paramVal, partName);
+	const geome0 = fgeom(0, paramVal);
 	let rFileContent = '';
 	if (!geome0.calcErr) {
 		const figList = Object.keys(geome0.fig);
@@ -67,14 +66,13 @@ function fileTextContent(
 }
 
 async function fileBinContent(
-	geom: tGeomFunc,
+	fgeom: tGeomFunc,
 	tSim: number,
 	paramVal: tParamVal,
-	partName: string,
 	exportFormat: EFormat
 ): Promise<Blob> {
-	const geome0 = geom(0, paramVal, partName);
-	const geome1 = geom(tSim, paramVal, partName);
+	const geome0 = fgeom(0, paramVal);
+	const geome1 = fgeom(tSim, paramVal);
 	let rFileContent = new Blob();
 	if (!geome0.calcErr && !geome1.calcErr) {
 		if (exportFormat === EFormat.eZIP) {

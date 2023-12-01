@@ -25,7 +25,7 @@
 	import { onMount } from 'svelte';
 
 	export let pDef: tParamDef;
-	export let geom: tGeomFunc;
+	export let fgeom: tGeomFunc;
 	export let optFaces: string[];
 	export let face: string;
 	export let simTime = 0;
@@ -96,7 +96,7 @@
 		return rFace;
 	}
 	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iFace: string, iLayers: tLayers) {
-		const FigList = geom(iSimTime, pVal, pDef.partName).fig;
+		const FigList = fgeom(iSimTime, pVal).fig;
 		const FigListKeys = Object.keys(FigList);
 		const sFace = checkFace(FigListKeys, iFace);
 		if (FigListKeys.includes(sFace)) {

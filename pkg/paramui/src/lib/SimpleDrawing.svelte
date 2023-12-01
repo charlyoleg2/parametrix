@@ -7,7 +7,7 @@
 	import { onMount } from 'svelte';
 
 	export let pageName: string;
-	export let geom: tGeomFunc;
+	export let fgeom: tGeomFunc;
 	export let face: string;
 	export let simTime = 0;
 
@@ -34,7 +34,7 @@
 	}
 	let domInit = 0;
 	function geomRedraw(iSimTime: number, ipVal: tParamVal, iFace: string, iLayers: tLayers) {
-		const FigList = geom(iSimTime, ipVal, pageName).fig;
+		const FigList = fgeom(iSimTime, ipVal).fig;
 		if (Object.keys(FigList).includes(iFace)) {
 			const aFigure = FigList[iFace];
 			canvasRedrawMini(aFigure, iLayers);

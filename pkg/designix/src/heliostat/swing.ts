@@ -79,15 +79,15 @@ const pDef: tParamDef = {
 type tCtr1 = (px: number, py: number, lx: number, ly: number) => tContour;
 type tCtr2 = (px: number, py: number, lx: number, ly: number, round: number) => tContour;
 
-function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrRectangle: tCtr1;
 	let ctrRectRound: tCtr2;
-	const rGeome = initGeom(partName);
+	const rGeome = initGeom(pDef.partName);
 	const figSide = figure();
 	const figFace = figure();
 	const figTop = figure();
 	const figTopWithRod = figure();
-	rGeome.logstr += `simTime: ${t}\n`;
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
 		rGeome.logstr += `swing size: L1 ${ffix(param.L1)} x L2 ${ffix(param.L2)} mm\n`;
@@ -198,7 +198,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 			faceTop: figTop,
 			faceTopWithRods: figTopWithRod
 		};
-		const designName = partName;
+		const designName = rGeome.partName;
 		rGeome.vol = {
 			extrudes: [
 				{

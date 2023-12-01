@@ -10,7 +10,7 @@
 <h1>{pageDef.pTitle}</h1>
 <article>{pageDef.pDescription}</article>
 <DrawingList pDef={pageDef.pDef} />
-<ParamDrawExport pDef={pageDef.pDef} geom={pageDef.pGeom} />
+<ParamDrawExport pDef={pageDef.pDef} fgeom={pageDef.pGeom} />
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';

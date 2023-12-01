@@ -69,14 +69,14 @@ const pDef: tParamDef = {
 type tCtr1 = (py: number) => tContour[];
 type tCtr2 = (py: number, ly: number) => tContour;
 
-function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrPlate: tCtr1;
 	let ctrRod: tCtr2;
-	const rGeome = initGeom(partName);
+	const rGeome = initGeom(pDef.partName);
 	const figCut = figure();
 	const figPlate = figure();
 	const figTop = figure();
-	rGeome.logstr += `simTime: ${t}\n`;
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		const R2 = param.D2 / 2;
 		const n3step = param.L3 / (param.N3 + 1);
@@ -152,7 +152,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 			facePlate: figPlate,
 			faceTop: figTop
 		};
-		const designName = partName;
+		const designName = rGeome.partName;
 		rGeome.vol = {
 			extrudes: [
 				{

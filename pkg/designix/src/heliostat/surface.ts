@@ -91,12 +91,12 @@ const pDef: tParamDef = {
 type tCtr1 = (px: number, py: number) => tContour;
 type tPositions = [number, number][];
 
-function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrPanelProfile: tCtr1;
-	const rGeome = initGeom(partName);
+	const rGeome = initGeom(pDef.partName);
 	const figSurface = figure();
 	const figOnePanel = figure();
-	rGeome.logstr += `simTime: ${t}\n`;
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		const panel_surface = (param.LH * param.LV) / 10 ** 6;
 		const panel_power = (param.solar_power * panel_surface * param.power_efficiency) / 100;
@@ -275,7 +275,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 			faceSurface: figSurface,
 			faceOnePanel: figOnePanel
 		};
-		const designName = partName;
+		const designName = rGeome.partName;
 		rGeome.vol = {
 			extrudes: panelPositions.map((elem, idx) => {
 				const rElem: tExtrude = {

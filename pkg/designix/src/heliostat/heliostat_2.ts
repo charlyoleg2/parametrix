@@ -102,12 +102,12 @@ const pDef: tParamDef = {
 	}
 };
 
-function pGeom(t: number, param: tParamVal, partName: string): tGeom {
-	const rGeome = initGeom(partName);
+function pGeom(t: number, param: tParamVal): tGeom {
+	const rGeome = initGeom(pDef.partName);
 	const figSide = figure();
 	const figFace = figure();
 	const figTop = figure();
-	rGeome.logstr += `simTime: ${t}\n`;
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		const helioHeight =
 			param.H1 + param.H2 - param.H3 + param.H4 + param.H5 - param.H6 + param.H7;
@@ -172,17 +172,13 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
 		swingParam.setVal('L3', param.D7);
-		const poleStaticGeom = poleStaticDef.pGeom(
-			0,
-			poleStaticParam.getParamVal(),
-			poleStaticParam.designName
-		);
+		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
 		checkGeom(poleStaticGeom);
 		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.designName);
-		const rakeGeom = rakeStopperDef.pGeom(0, rakeParam.getParamVal(), rakeParam.designName);
+		const rakeGeom = rakeStopperDef.pGeom(0, rakeParam.getParamVal());
 		checkGeom(rakeGeom);
 		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.designName);
-		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal(), swingParam.designName);
+		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
 		checkGeom(swingGeom);
 		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.designName);
 		// figSide
@@ -205,7 +201,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 			faceFace: figFace,
 			faceTop: figTop
 		};
-		const designName = partName;
+		const designName = rGeome.partName;
 		rGeome.vol = {
 			inherits: [
 				{

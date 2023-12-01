@@ -68,14 +68,14 @@ const pDef: tParamDef = {
 type tCtr1 = (sx: number, sy: number, sl: number) => tContour;
 type tCtr2 = (width: number, height: number, xpos: number, ypos: number) => tContour;
 
-function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrSquare: tCtr1;
 	let ctrRect: tCtr2;
-	const rGeome = initGeom(partName);
+	const rGeome = initGeom(pDef.partName);
 	const figLegs = figure();
 	const figTube = figure();
 	const figBody = figure();
-	rGeome.logstr += `simTime: ${t}\n`;
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
 		if (param.D1 < param.E2) {
@@ -182,7 +182,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 			faceTube: figTube.rotate(0, 0, posAngle),
 			faceBody: figBody
 		};
-		const designName = partName;
+		const designName = rGeome.partName;
 		const preExtrude = legPos.map((posX, idx) => {
 			const rElem: tExtrude = {
 				outName: `subpax_${designName}_leg_${idx}`,

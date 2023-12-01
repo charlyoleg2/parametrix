@@ -58,12 +58,12 @@ const pDef: tParamDef = {
 
 type tCtr1 = (orient: number) => tContour;
 
-function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrPoleProfile: tCtr1;
-	const rGeome = initGeom(partName);
+	const rGeome = initGeom(pDef.partName);
 	const figCut = figure();
 	const figBottom = figure();
-	rGeome.logstr += `simTime: ${t}\n`;
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
 		const R2 = param.D2 / 2;
@@ -106,7 +106,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 			faceCut: figCut,
 			faceBottom: figBottom
 		};
-		const designName = partName;
+		const designName = rGeome.partName;
 		rGeome.vol = {
 			extrudes: [
 				{

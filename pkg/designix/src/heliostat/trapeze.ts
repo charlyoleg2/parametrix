@@ -84,16 +84,16 @@ const pDef: tParamDef = {
 
 type tCtr1 = (px: number, py: number, angle: number) => tContour;
 
-function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrRodFootprint: tCtr1;
 	let ctrRod: tCtr1;
-	const rGeome = initGeom(partName);
+	const rGeome = initGeom(pDef.partName);
 	const figFrame = figure();
 	const figPlate = figure();
 	const figRod = figure();
 	const figRodHollow = figure();
 	const figCutRod = figure();
-	rGeome.logstr += `simTime: ${t}\n`;
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		if (param.L3 > param.L1 - param.L5) {
 			throw `err595: L3 ${param.L3} too large compare to L1 ${param.L1} and L5 ${param.L5}`;
@@ -311,7 +311,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 			faceRodHollow: figRodHollow,
 			faceCutRod: figCutRod
 		};
-		const designName = partName;
+		const designName = rGeome.partName;
 		rGeome.vol = {
 			extrudes: [
 				{

@@ -31,9 +31,9 @@ const pDef: tParamDef = {
 	}
 };
 
-function pGeom(t: number, param: tParamVal, partName: string): tGeom {
-	const rGeome = initGeom(partName);
-	rGeome.logstr += `simTime: ${t}\n`;
+function pGeom(t: number, param: tParamVal): tGeom {
+	const rGeome = initGeom(pDef.partName);
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		const figOne = figure();
 		const p1 = point(param.p1x, param.p1y + t);

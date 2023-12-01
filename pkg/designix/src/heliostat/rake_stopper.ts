@@ -111,9 +111,9 @@ const pDef: tParamDef = {
 
 type tCtr2 = (width: number, height: number, xpos: number, ypos: number, angle: number) => tContour;
 
-function pGeom(t: number, param: tParamVal, partName: string): tGeom {
+function pGeom(t: number, param: tParamVal): tGeom {
 	let ctrRect: tCtr2;
-	const rGeome = initGeom(partName);
+	const rGeome = initGeom(pDef.partName);
 	const figCone = figure();
 	const figBeam = figure();
 	const figBeamHollow = figure();
@@ -129,7 +129,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 	const figStopperFaceTH = figure();
 	const figStopperFaceB = figure();
 	const figStopperFaceBH = figure();
-	rGeome.logstr += `simTime: ${t}\n`;
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		const R1 = param.D1 / 2;
 		const H1H2 = param.H1 + param.H2;
@@ -196,7 +196,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 		rakeParam.setVal('H7', param.H7);
 		rakeParam.setVal('L9', param.L9);
 		rakeParam.setVal('R9', param.R9);
-		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal(), rakeParam.designName);
+		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
 		checkGeom(rakeGeom);
 		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.designName);
 		// figures
@@ -297,7 +297,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 			faceStopperFaceB: figStopperFaceB,
 			faceStopperFaceBH: figStopperFaceBH
 		};
-		const designName = partName;
+		const designName = rGeome.partName;
 		rGeome.vol = {
 			inherits: [
 				{

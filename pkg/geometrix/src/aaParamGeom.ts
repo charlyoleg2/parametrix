@@ -46,7 +46,7 @@ interface tGeom {
 	vol: tVolume;
 	sub: tSubDesign;
 }
-type tGeomFunc = (t: number, ipVal: tParamVal, partName: string) => tGeom;
+type tGeomFunc = (t: number, ipVal: tParamVal) => tGeom;
 
 interface tPageDef {
 	pTitle: string;

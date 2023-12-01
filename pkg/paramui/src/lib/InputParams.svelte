@@ -16,7 +16,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let pDef: tParamDef;
-	export let geom: tGeomFunc;
+	export let fgeom: tGeomFunc;
 	export let face: string;
 	export let simTime = 0;
 
@@ -350,7 +350,7 @@
 		<img src={paramSvg} alt={paramSvg} />
 	</button>
 	<div class="mini-canvas">
-		<SimpleDrawing pageName={pDef.partName} {geom} {face} {simTime} />
+		<SimpleDrawing pageName={pDef.partName} {fgeom} {face} {simTime} />
 	</div>
 </section>
 

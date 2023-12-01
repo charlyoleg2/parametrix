@@ -15,7 +15,7 @@
 	import { storePV } from '$lib/storePVal';
 
 	export let pDef: tParamDef;
-	export let geom: tGeomFunc;
+	export let fgeom: tGeomFunc;
 
 	function checkWarn(txt: string) {
 		let rWarn = true;
@@ -37,7 +37,7 @@
 	function paramChange2(iPageName: string) {
 		const mydate = new Date().toLocaleTimeString();
 		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
-		const geome = geom(simTime, $storePV[pDef.partName], pDef.partName);
+		const geome = fgeom(simTime, $storePV[pDef.partName]);
 		logValue += geome.logstr;
 		calcErr = geome.calcErr;
 		calcWarn = checkWarn(geome.logstr);
@@ -128,27 +128,20 @@
 		const fName = pDef.partName + '_' + nFace + '_' + dateString() + fSuffix;
 		if (fBin) {
 			const fContent = await fileBinContent(
-				geom,
+				fgeom,
 				simTime,
 				$storePV[pDef.partName],
-				pDef.partName,
 				exportFormat
 			);
 			download_binFile(fName, fContent);
 		} else {
-			const fContent = fileTextContent(
-				geom,
-				$storePV[pDef.partName],
-				pDef.partName,
-				eFace,
-				exportFormat
-			);
+			const fContent = fileTextContent(fgeom, $storePV[pDef.partName], eFace, exportFormat);
 			download_textFile(fName, fContent, fMime);
 		}
 	}
 </script>
 
-<InputParams {pDef} on:paramChg={paramChange} {geom} {face} {simTime} />
+<InputParams {pDef} on:paramChg={paramChange} {fgeom} {face} {simTime} />
 <section>
 	<h2>Log</h2>
 	<textarea
@@ -161,7 +154,7 @@
 		class:colorWarn={calcWarn}
 	/>
 </section>
-<Drawing {pDef} {geom} {optFaces} bind:face bind:simTime />
+<Drawing {pDef} {fgeom} {optFaces} bind:face bind:simTime />
 <section>
 	<h2>Export</h2>
 	<select bind:value={exportFace}>
