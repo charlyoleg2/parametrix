@@ -6,8 +6,6 @@ import type {
 	tParamVal,
 	tGeom,
 	tPageDef
-	//tMParams,
-	//tRParams,
 	//tSubInst
 	//tSubDesign
 } from 'geometrix';

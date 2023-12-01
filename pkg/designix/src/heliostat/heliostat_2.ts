@@ -5,10 +5,8 @@ import type {
 	tParamDef,
 	tParamVal,
 	tGeom,
-	tPageDef
-	//tMParams,
-	//tRParams,
-	//tSubInst
+	tPageDef,
+	tSubInst
 	//tSubDesign
 } from 'geometrix';
 import {
@@ -240,7 +238,32 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			]
 		};
 		// sub-design
-		rGeome.sub = {};
+		const subPoleStatic: tSubInst = {
+			partName: poleStaticParam.getPartName(),
+			dparam: poleStaticParam.getDesignParamList(),
+			orientation: [0, 0, 0],
+			position: [0, 0, 0],
+			link: '/heliostat/pole_static'
+		};
+		const subRake: tSubInst = {
+			partName: rakeParam.getPartName(),
+			dparam: rakeParam.getDesignParamList(),
+			orientation: [0, 0, 0],
+			position: [0, 0, rakePosY],
+			link: '/heliostat/rake_stopper'
+		};
+		const subSwing: tSubInst = {
+			partName: swingParam.getPartName(),
+			dparam: swingParam.getDesignParamList(),
+			orientation: [0, 0, 0],
+			position: [0, 0, swingPosY],
+			link: '/heliostat/swing'
+		};
+		rGeome.sub = {
+			pole_static_1: subPoleStatic,
+			rake_1: subRake,
+			swing_1: subSwing
+		};
 		// finalize
 		rGeome.logstr += 'heliostat-2-overview draw successfully!\n';
 		rGeome.calcErr = false;

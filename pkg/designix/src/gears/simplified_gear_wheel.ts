@@ -393,7 +393,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			position: [0, 0, 0],
 			link: '/gear/gear_wheel_wheel'
 		};
-		console.log(subGearWW);
+		//console.log(subGearWW);
 		rGeome.sub = { gear_wheel_wheel_1: subGearWW };
 		// finalize
 		rGeome.logstr += 'simplified_gear_wheel draw successfully!\n';

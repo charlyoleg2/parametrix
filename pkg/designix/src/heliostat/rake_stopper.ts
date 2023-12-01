@@ -7,8 +7,6 @@ import type {
 	tGeom,
 	//tExtrude,
 	tPageDef
-	//tMParams,
-	//tRParams,
 	//tSubInst
 	//tSubDesign
 } from 'geometrix';
