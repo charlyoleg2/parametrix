@@ -45,10 +45,10 @@ const pDef: tParamDef = {
 		pNumber('H3', 'mm', 400, 0, 4000, 10),
 		pNumber('E1', 'mm', 20, 1, 80, 1),
 		pNumber('E3', 'mm', 30, 1, 80, 1),
-		pNumber('H4', 'mm', 400, 100, 1000, 10),
+		pNumber('H4', 'mm', 200, 100, 1000, 10),
 		pNumber('D4', 'mm', 300, 100, 1000, 10),
 		pNumber('E4', 'mm', 20, 1, 80, 1),
-		pNumber('H5', 'mm', 1000, 100, 2000, 10),
+		pNumber('H5', 'mm', 400, 100, 2000, 10),
 		pNumber('D5', 'mm', 200, 10, 1000, 10),
 		pNumber('L4', 'mm', 300, 10, 1000, 10),
 		pNumber('L5', 'mm', 2000, 100, 4000, 10),
@@ -314,23 +314,23 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 					face: `${designName}_faceStopperSide`,
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: param.L5,
-					rotate: [0, 0, 0],
-					translate: [0, 0, -param.L5 / 2]
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, param.L5 / 2, 0]
 				},
 				{
 					outName: `subpax_${designName}_stpSideH`,
 					face: `${designName}_faceStopperSideH`,
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: param.L5,
-					rotate: [0, 0, 0],
-					translate: [0, 0, -param.L5 / 2]
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, param.L5 / 2, 0]
 				},
 				{
 					outName: `subpax_${designName}_stpFaceT`,
 					face: `${designName}_faceStopperFaceT`,
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: S2s,
-					rotate: [0, Math.PI / 2, 0],
+					rotate: [Math.PI / 2, 0, Math.PI / 2],
 					translate: [0, 0, 0]
 				},
 				{
@@ -338,7 +338,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 					face: `${designName}_faceStopperFaceTH`,
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: S2s,
-					rotate: [0, Math.PI / 2, 0],
+					rotate: [Math.PI / 2, 0, Math.PI / 2],
 					translate: [0, 0, 0]
 				},
 				{
@@ -346,16 +346,16 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 					face: `${designName}_faceStopperFaceB`,
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: stopper3L,
-					rotate: [0, Math.PI / 2, stopper3A],
-					translate: [0, stopper3H, 0]
+					rotate: [Math.PI / 2 - stopper3A, 0, Math.PI / 2],
+					translate: [0, 0, stopper3H]
 				},
 				{
 					outName: `subpax_${designName}_stpFaceBH`,
 					face: `${designName}_faceStopperFaceBH`,
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: stopper3L,
-					rotate: [0, Math.PI / 2, stopper3A],
-					translate: [0, stopper3H, 0]
+					rotate: [Math.PI / 2 - stopper3A, 0, Math.PI / 2],
+					translate: [0, 0, stopper3H]
 				}
 			],
 			volumes: [
