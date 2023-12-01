@@ -149,6 +149,10 @@ const pDef: tParamDef = {
 };
 
 function pGeom(t: number, param: tParamVal): tGeom {
+	const rGeome = initGeom(pDef.partName);
+	const figOne = figure();
+	const figTwo = figure();
+	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	const param2: tParamVal = {
 		N2: 23,
 		angleCenterCenter: 0,
@@ -177,10 +181,6 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		initAngle1: 0
 		//gw2Position: 0,
 	};
-	const rGeome = initGeom(pDef.partName);
-	const figOne = figure();
-	const figTwo = figure();
-	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// Figure One
 		// re-arrange parameters
@@ -359,6 +359,33 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		};
 		// sub-design
 		const gearWWParam = designParam(gearWheelWheelDef.pDef);
+		gearWWParam.setVal('module', param.module);
+		gearWWParam.setVal('N1', param.N1);
+		gearWWParam.setVal('c1x', param.c1x);
+		gearWWParam.setVal('c1y', param.c1y);
+		gearWWParam.setVal('centralAxis', param.centralAxis);
+		gearWWParam.setVal('axisRadius', param.axisRadius);
+		gearWWParam.setVal('ribNb', param.ribNb);
+		gearWWParam.setVal('ribWidth', param.ribWidth);
+		gearWWParam.setVal('ribHeight', param.ribHeight);
+		gearWWParam.setVal('ribRound1', param.ribRound1);
+		gearWWParam.setVal('ribRound2', param.ribRound2);
+		gearWWParam.setVal('hollow', param.hollow);
+		gearWWParam.setVal('materialHeightExt', param.materialHeightExt);
+		gearWWParam.setVal('materialHeightInt', param.materialHeightInt);
+		gearWWParam.setVal('spokeNb', param.spokeNb);
+		gearWWParam.setVal('spokeWidth', param.spokeWidth);
+		gearWWParam.setVal('spokeRound', param.spokeRound);
+		gearWWParam.setVal('wheelAxis', param.wheelAxis);
+		gearWWParam.setVal('wheelHeight', param.wheelHeight);
+		gearWWParam.setVal('wheelMidExtra', param.wheelMidExtra);
+		gearWWParam.setVal('wheelAxisLength', param.wheelAxisLength);
+		gearWWParam.setVal('wheelAxisRadius', param.wheelAxisRadius);
+		gearWWParam.setVal('wheelMidRadius', param.wheelMidRadius);
+		gearWWParam.setVal('wheelRadiusExtra', param.wheelRadiusExtra);
+		gearWWParam.setVal('wheelAxisExtRound', param.wheelAxisExtRound);
+		gearWWParam.setVal('wheelAxisIntRound', param.wheelAxisIntRound);
+		gearWWParam.setVal('wheelExtraRound', param.wheelExtraRound);
 		const subGearWW: tSubInst = {
 			partName: gearWWParam.getPartName(),
 			dparam: gearWWParam.getDesignParamList(),
