@@ -37,7 +37,7 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"ci": "run-s check build pretty lint test:unit:once",
-		"svgo": "svgo --config ../paramui/svgo.config.cjs -f svg -o ../paramui/static",
+		"svgo": "svgo -f svg -o ../paramui/static",
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
