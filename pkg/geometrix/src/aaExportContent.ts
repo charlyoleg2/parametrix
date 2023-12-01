@@ -1,6 +1,7 @@
 // aaExportContent.ts
 
-import type { tGeom, tParamVal } from './aaParamGeom';
+import type { tParamVal } from './designParams';
+import type { tGeom } from './aaParamGeom';
 import { colors } from './canvas_utils';
 import { Point, point, pointMinMax } from './point';
 import type { tContour } from './contour';

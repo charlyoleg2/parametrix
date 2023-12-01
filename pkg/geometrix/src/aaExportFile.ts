@@ -1,6 +1,7 @@
 // aaExportFile.ts
 
-import type { tGeomFunc, tParamVal } from './aaParamGeom';
+import type { tParamVal } from './designParams';
+import type { tGeomFunc } from './aaParamGeom';
 import {
 	figureToSvg,
 	figureToDxf,

@@ -7,12 +7,12 @@ export * from './canvas_utils';
 //export type * from './figure';
 export * from './figure';
 
+export * from './designParams';
+export * from './volume';
+export * from './sub_design';
 //import type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef } from './aaParamGeom';
 //export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef };
 //export type * from './aaParamGeom';
 export * from './aaParamGeom';
-export * from './volume';
-export * from './sub_design';
-export * from './designParamValues';
 
 export * from './aaExportFile';
