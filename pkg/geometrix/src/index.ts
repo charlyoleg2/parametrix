@@ -13,5 +13,6 @@ export * from './figure';
 export * from './aaParamGeom';
 export * from './volume';
 export * from './sub_design';
+export * from './designParamValues';
 
 export * from './aaExportFile';
