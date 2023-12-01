@@ -40,11 +40,11 @@ const pDef: tParamDef = {
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('H1', 'mm', 3000, 100, 40000, 10),
-		pNumber('H2', 'mm', 7000, 100, 40000, 10),
+		pNumber('H2', 'mm', 2500, 100, 40000, 10),
 		pNumber('H3', 'mm', 200, 10, 500, 10),
 		pNumber('H4', 'mm', 800, 100, 4000, 10),
 		pNumber('H5', 'mm', 3000, 100, 6000, 10),
-		pNumber('H6', 'mm', 400, 100, 4000, 10),
+		pNumber('H6', 'mm', 200, 100, 4000, 10),
 		pNumber('H7', 'mm', 800, 100, 4000, 10),
 		pNumber('H8', 'mm', 200, 100, 4000, 10),
 		pNumber('H9', 'mm', 100, 10, 400, 10),
@@ -190,7 +190,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 		swingParam.setVal('L4', param.L4);
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
-		swingParam.setVal('L3', param.D6);
+		swingParam.setVal('L3', param.D7);
 		const poleStaticGeom = poleStaticDef.pGeom(
 			0,
 			poleStaticParam.getParamVal(),
@@ -238,7 +238,7 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 				},
 				{
 					outName: `inpax_${designName}_rake`,
-					subdesign: 'pax_rake_stopper',
+					subdesign: 'pax_rake',
 					subgeom: rakeGeom,
 					rotate: [0, 0, 0],
 					translate: [0, 0, rakePosY]
@@ -247,15 +247,15 @@ function pGeom(t: number, param: tParamVal, partName: string): tGeom {
 					outName: `inpax_${designName}_swing`,
 					subdesign: 'pax_swing',
 					subgeom: swingGeom,
-					rotate: [0, 0, 0],
+					rotate: [Math.PI / 2, 0, 0],
 					translate: [0, 0, swingPosY]
 				},
 				{
 					outName: `inpax_${designName}_spider`,
 					subdesign: 'pax_spider',
 					subgeom: spiderGeom,
-					rotate: [0, 0, 0],
-					translate: [0, 0, spiderPosY]
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, spiderL5 / 2, spiderPosY]
 				}
 			],
 			extrudes: [],
