@@ -243,21 +243,21 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			dparam: poleStaticParam.getDesignParamList(),
 			orientation: [0, 0, 0],
 			position: [0, 0, 0],
-			link: '/heliostat/pole_static'
+			link: 'heliostat/pole_static'
 		};
 		const subRake: tSubInst = {
 			partName: rakeParam.getPartName(),
 			dparam: rakeParam.getDesignParamList(),
 			orientation: [0, 0, 0],
 			position: [0, 0, rakePosY],
-			link: '/heliostat/rake_stopper'
+			link: 'heliostat/rake_stopper'
 		};
 		const subSwing: tSubInst = {
 			partName: swingParam.getPartName(),
 			dparam: swingParam.getDesignParamList(),
 			orientation: [0, 0, 0],
 			position: [0, 0, swingPosY],
-			link: '/heliostat/swing'
+			link: 'heliostat/swing'
 		};
 		rGeome.sub = {
 			pole_static_1: subPoleStatic,

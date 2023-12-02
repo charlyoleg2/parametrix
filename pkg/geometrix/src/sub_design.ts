@@ -14,4 +14,4 @@ interface tSubInst {
 
 type tSubDesign = Record<string, tSubInst>;
 
-export type { tSubInst, tSubDesign };
+export type { tPosiOrien, tSubInst, tSubDesign };

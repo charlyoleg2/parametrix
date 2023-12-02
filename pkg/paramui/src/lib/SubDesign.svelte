@@ -1,7 +1,6 @@
 <script lang="ts">
-	//import type { tMParams, tRParams, tSubInst, tSubDesign } from 'geometrix';
-	import type { tSubDesign } from 'geometrix';
-	//import { PType } from 'geometrix';
+	import type { tPosiOrien, tSubDesign } from 'geometrix';
+	import { ffix, radToDeg } from 'geometrix';
 	//import { onMount, createEventDispatcher } from 'svelte';
 	//import { browser } from '$app/environment';
 	//import { page } from '$app/stores';
@@ -14,6 +13,20 @@
 
 	function downloadConstraints() {
 		console.log(`dbg330: downloadConstraints`);
+	}
+	function printOrientation(vec: tPosiOrien): string {
+		let rStr = '[ ';
+		rStr += `${ffix(radToDeg(vec[0]))}, `;
+		rStr += `${ffix(radToDeg(vec[1]))}, `;
+		rStr += `${ffix(radToDeg(vec[2]))} ]`;
+		return rStr;
+	}
+	function printPosition(vec: tPosiOrien): string {
+		let rStr = '[ ';
+		rStr += `${ffix(vec[0])}, `;
+		rStr += `${ffix(vec[1])}, `;
+		rStr += `${ffix(vec[2])} ]`;
+		return rStr;
 	}
 </script>
 
@@ -30,37 +43,37 @@
 					<div class="arrow" />
 					{subInst}
 				</label>
-				<a href="{base}/gear/{subD[subInst].partName}">Go to {subD[subInst].partName}</a>
+				<a href="{base}/{subD[subInst].link}">Go to {subD[subInst].link}</a>
 				<button on:click={downloadConstraints}>Export Constraints</button>
 				<div class="nested">
 					<article>
-						<input type="checkbox" id="cb1_{subInst}" class="toggle" checked={false} />
-						<label for="cb1_{subInst}" class="label">
-							<div class="arrow" />
-							Mandatory
-						</label>
-						<span>( {Object.keys(subD[subInst].dparam).length} parameters)</span>
-						<div class="nested">
-							<table>
-								<thead>
-									<tr>
-										<td>Num</td>
-										<td>Name</td>
-										<td>Value</td>
-									</tr>
-								</thead>
-								<tbody>
-									{#each Object.keys(subD[subInst].dparam) as param, pIdx}
-										<tr>
-											<td>{pIdx + 1}</td>
-											<td>{param}</td>
-											<td>{subD[subInst].dparam[param]}</td>
-										</tr>
-									{/each}
-								</tbody>
-							</table>
-						</div>
+						{Object.keys(subD[subInst].dparam).length} parameters of {subD[subInst]
+							.partName}
+						with orientation {printOrientation(subD[subInst].orientation)}
+						at position {printPosition(subD[subInst].position)}
 					</article>
+					<table>
+						<thead>
+							<tr>
+								<td>Num</td>
+								<td>Name</td>
+								<td>Value</td>
+								<td>Init</td>
+								<td>Changed</td>
+							</tr>
+						</thead>
+						<tbody>
+							{#each Object.keys(subD[subInst].dparam) as param, pIdx}
+								<tr>
+									<td>{pIdx + 1}</td>
+									<td>{param}</td>
+									<td>{subD[subInst].dparam[param].val}</td>
+									<td><i>{subD[subInst].dparam[param].init}</i></td>
+									<td><i>{subD[subInst].dparam[param].chg}</i></td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
 				</div>
 			</li>
 		{/each}
@@ -129,18 +142,6 @@
 		border-right: $arrow-size solid transparent;
 		border-top: (1.8 * $arrow-size) solid colors.$arrow;
 		border-bottom: 0;
-	}
-	article > label {
-		color: colors.$subd-h4;
-		font-size: 1rem;
-		font-weight: 700;
-		margin: 0;
-	}
-	article > span {
-		color: colors.$subd-title-complement;
-		font-size: 1rem;
-		font-weight: 400;
-		margin-left: 0.5rem;
 	}
 	div > table {
 		font-size: 0.8rem;

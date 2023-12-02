@@ -391,7 +391,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			dparam: gearWWParam.getDesignParamList(),
 			orientation: [0, 0, 0],
 			position: [0, 0, 0],
-			link: '/gear/gear_wheel_wheel'
+			link: 'gear/gear_wheel_wheel'
 		};
 		//console.log(subGearWW);
 		rGeome.sub = { gear_wheel_wheel_1: subGearWW };
