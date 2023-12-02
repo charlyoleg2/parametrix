@@ -47,10 +47,10 @@
 				<button on:click={downloadConstraints}>Export Constraints</button>
 				<div class="nested">
 					<article>
-						{Object.keys(subD[subInst].dparam).length} parameters of {subD[subInst]
-							.partName}
-						with orientation {printOrientation(subD[subInst].orientation)}
-						at position {printPosition(subD[subInst].position)}
+						{Object.keys(subD[subInst].dparam).length} parameters of
+						<strong>{subD[subInst].partName}</strong>
+						with orientation {printOrientation(subD[subInst].orientation)} (degree) at position
+						{printPosition(subD[subInst].position)} (mm)
 					</article>
 					<table>
 						<thead>
@@ -149,6 +149,7 @@
 	div > table {
 		font-size: 0.8rem;
 		font-weight: 400;
+		padding-bottom: 1rem;
 		margin-left: 1rem;
 	}
 	div > table > thead {
