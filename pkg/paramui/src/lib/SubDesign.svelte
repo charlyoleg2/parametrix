@@ -143,6 +143,9 @@
 		border-top: (1.8 * $arrow-size) solid colors.$arrow;
 		border-bottom: 0;
 	}
+	div > article {
+		margin: 0.5rem;
+	}
 	div > table {
 		font-size: 0.8rem;
 		font-weight: 400;
