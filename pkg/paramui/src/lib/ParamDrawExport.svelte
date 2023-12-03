@@ -172,7 +172,7 @@
 		<option value="zip">all faces and more as zip</option>
 	</select>
 	<button on:click={downloadExport}>Save to File</button>
-	<SubDesign {subD} />
+	<SubDesign {subD} origPartName={pDef.partName} />
 </section>
 
 <style lang="scss">

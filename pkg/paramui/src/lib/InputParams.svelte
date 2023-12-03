@@ -1,13 +1,14 @@
 <script lang="ts">
-	//import type { tOkFunc } from '$lib/ModalDiag.svelte';
-	import ModalDiag from '$lib/ModalDiag.svelte';
-	import ModalImg from '$lib/ModalImg.svelte';
-	import LocStorWrite from '$lib/LocStorWrite.svelte';
-	import LocStorRead from '$lib/LocStorRead.svelte';
-	import SimpleDrawing from '$lib/SimpleDrawing.svelte';
+	//import type { tOkFunc } from './ModalDiag.svelte';
+	import ModalDiag from './ModalDiag.svelte';
+	import ModalImg from './ModalImg.svelte';
+	import LocStorWrite from './LocStorWrite.svelte';
+	import LocStorRead from './LocStorRead.svelte';
+	import SimpleDrawing from './SimpleDrawing.svelte';
 	import type { tParamDef, tParamVal, tAllVal, tGeomFunc } from 'geometrix';
 	import { PType } from 'geometrix';
-	import { storePV } from '$lib/storePVal';
+	import { storePV } from './storePVal';
+	import { downloadParams } from './downloadParams';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
@@ -112,32 +113,8 @@
 		}
 	}
 	// download parameters
-	function download_file(file_name: string, file_content: string) {
-		//create temporary an invisible element
-		const elem_a_download = document.createElement('a');
-		elem_a_download.setAttribute(
-			'href',
-			'data:text/plain;charset=utf-8,' + encodeURIComponent(file_content)
-		);
-		elem_a_download.setAttribute('download', file_name);
-		//document.body.appendChild(elem_a_download); // it does not seem required to append the element to the DOM to use it
-		elem_a_download.click();
-		//document.body.removeChild(elem_a_download);
-		elem_a_download.remove(); // Is this really required?
-	}
-	function dowloadParams() {
-		const re1 = /[-:]/g;
-		const re2 = /\..*$/;
-		const datestr = new Date()
-			.toISOString()
-			.replace(re1, '')
-			.replace(re2, '')
-			.replace('T', '_');
-		const file_name = `px_${pDef.partName}_${datestr}.json`;
-		const allVal = { lastModif: datestr, pVal: $storePV[pDef.partName], comment: inputComment };
-		const file_content = JSON.stringify(allVal, null, '  ');
-		download_file(file_name, file_content);
-		//console.log(`dbg343: ${file_name}`);
+	function downloadParams2() {
+		downloadParams(pDef.partName, $storePV[pDef.partName], inputComment);
 	}
 	// modal
 	let modalLoadDefault = false;
@@ -327,7 +304,7 @@
 			<label for="inComment">Comment:</label>
 			<input type="text" id="inComment" bind:value={inputComment} maxlength="150" size="70" />
 		</div>
-		<button on:click={dowloadParams}>Save Parameters to File</button>
+		<button on:click={downloadParams2}>Save Parameters to File</button>
 		<button on:click={openModalUrl}>Save Parameters as URL</button>
 		<button
 			on:click={() => {
@@ -355,8 +332,8 @@
 </section>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
-	@use '$lib/style/styling.scss';
+	@use './style/colors.scss';
+	@use './style/styling.scss';
 
 	section > h2 {
 		@include styling.mix-h2;

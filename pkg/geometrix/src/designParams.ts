@@ -114,6 +114,14 @@ function designParam(iparamDef: tParamDef): DesignParam {
 	return new DesignParam(iparamDef);
 }
 
+function paramListToVal(dpList: tDesignParamList): tParamVal {
+	const rParamVal: tParamVal = {};
+	for (const pa of Object.keys(dpList)) {
+		rParamVal[pa] = dpList[pa].val;
+	}
+	return rParamVal;
+}
+
 function pNumber(name: string, unit: string, init: number, min = 0, max = 100, step = 1): tParam {
 	const rParam: tParam = {
 		name: name,
@@ -155,4 +163,4 @@ function pDropdown(name: string, values: string[]): tParam {
 }
 
 export type { tParamDef, tParamVal, tDesignParamList, DesignParam };
-export { PType, pNumber, pCheckbox, pDropdown, designParam };
+export { PType, pNumber, pCheckbox, pDropdown, designParam, paramListToVal };

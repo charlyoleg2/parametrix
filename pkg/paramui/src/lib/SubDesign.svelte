@@ -1,18 +1,21 @@
 <script lang="ts">
-	import type { tPosiOrien, tSubDesign } from 'geometrix';
-	import { ffix, radToDeg } from 'geometrix';
+	import type { tPosiOrien, tSubDesign, tDesignParamList } from 'geometrix';
+	import { ffix, radToDeg, paramListToVal } from 'geometrix';
+	import { downloadParams } from './downloadParams';
 	//import { onMount, createEventDispatcher } from 'svelte';
 	//import { browser } from '$app/environment';
 	//import { page } from '$app/stores';
 	import { base } from '$app/paths';
 
 	export let subD: tSubDesign = {};
+	export let origPartName = '';
 
 	let subInsts: string[] = [];
 	$: subInsts = Object.keys(subD);
 
-	function downloadConstraints() {
-		console.log(`dbg330: downloadConstraints`);
+	function dwnParams2(iPartName: string, idparams: tDesignParamList) {
+		const aComment = `sub-design parameters of ${iPartName} from ${origPartName}`;
+		downloadParams(iPartName, paramListToVal(idparams), aComment);
 	}
 	function printOrientation(vec: tPosiOrien): string {
 		let rStr = '[ ';
@@ -48,7 +51,9 @@
 					{subInst}
 				</label>
 				<a href="{base}/{subD[subInst].link}">Go to {subD[subInst].link}</a>
-				<button on:click={downloadConstraints}>Export Constraints</button>
+				<button on:click={() => dwnParams2(subD[subInst].partName, subD[subInst].dparam)}
+					>Export parameters</button
+				>
 				<div class="nested">
 					<article>
 						{Object.keys(subD[subInst].dparam).length} parameters of
