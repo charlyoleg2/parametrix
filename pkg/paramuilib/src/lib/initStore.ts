@@ -1,6 +1,6 @@
 // initStore
 
-import type { tAllPageDef } from 'geometrix';
+import type { tParamVal, tAllPageDef } from 'geometrix';
 import type { tStorePVal } from './storePVal';
 import { storePV } from './storePVal';
 
