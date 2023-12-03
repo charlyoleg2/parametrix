@@ -85,13 +85,14 @@
 		if (iFaces.length === 0) {
 			console.log(`warn404: Drawing has an empty face list`);
 		} else {
-			const FaceList2 = iFaces.slice();
-			FaceList2.push(c_ParametrixAll);
-			if (!FaceList2.includes(rFace)) {
-				console.log(`warn403: Drawing has an invalid face ${rFace}`);
-				rFace = iFaces[0];
-				face = rFace; // update input select
-			}
+			rFace = iFaces[0];
+			//const FaceList2 = iFaces.slice();
+			//FaceList2.push(c_ParametrixAll);
+			//if (!FaceList2.includes(rFace)) {
+			//	console.log(`warn403: Drawing has an invalid face ${rFace}`);
+			//	rFace = iFaces[0];
+			//	face = rFace; // update input select
+			//}
 		}
 		return rFace;
 	}

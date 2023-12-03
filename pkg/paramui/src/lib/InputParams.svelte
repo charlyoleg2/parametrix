@@ -69,17 +69,23 @@
 					pVal2[kk] = vvn;
 				}
 			}
+			console.log(`dbg072: pVal2.length ${Object.keys(pVal2).length}`);
 			if (Object.keys(pVal2).length > 0) {
 				initpVal(pVal2);
 			}
 		}
 	}
-	// No initialization when loading page! Keep the previous values!
+	// Bug? No initialization when loading page! Keep the previous values!
 	//initParams1();
-	onMount(() => {
+	function forceInit(partName: string) {
 		initParams2();
 		paramChange();
+		console.log(`dbg098: forceInit: partName ${partName}`);
+	}
+	onMount(() => {
+		forceInit(pDef.partName);
 	});
+	$: forceInit(pDef.partName);
 	// load parameters
 	let loadMsg = '';
 	function loadParams(iNew: tAllVal) {
