@@ -30,7 +30,7 @@
 	function paramChange() {
 		dispatch('paramChg', { foo: 'bla' });
 	}
-	function initpVal(ipVal: tParamVal) {
+	function initpVal(ipVal: tParamVal): string {
 		let cover = 0;
 		let uncover = 0;
 		let equal = 0;
@@ -47,17 +47,20 @@
 			}
 		}
 		const loadDate = new Date().toLocaleTimeString();
-		loadMsg = `Parameters loaded at ${loadDate} :`;
-		loadMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
-		loadMsg += `, load-nb: ${Object.keys(ipVal).length}`;
-		loadMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
-		loadMsg += `, equal-nb: ${equal}, diff-nb: ${cover - equal}`;
+		let rMsg = `Parameters loaded at ${loadDate} :`;
+		rMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
+		rMsg += `, load-nb: ${Object.keys(ipVal).length}`;
+		rMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
+		rMsg += `, equal-nb: ${equal}, diff-nb: ${cover - equal}`;
+		return rMsg;
 	}
 	//function initParams1() {
 	//	for (const p of pDef.params) {
 	//		$storePV[pDef.partName][p.name] = p.init;
 	//	}
 	//}
+	// load parameters
+	let loadMsg = '';
 	function initParams2() {
 		if (browser) {
 			const searchParams = new URLSearchParams($page.url.search);
@@ -69,28 +72,37 @@
 					pVal2[kk] = vvn;
 				}
 			}
-			console.log(`dbg072: pVal2.length ${Object.keys(pVal2).length}`);
+			//console.log(`dbg072: pVal2.length ${Object.keys(pVal2).length}`);
 			if (Object.keys(pVal2).length > 0) {
-				initpVal(pVal2);
+				loadMsg = initpVal(pVal2);
 			}
 		}
 	}
 	// Bug? No initialization when loading page! Keep the previous values!
 	//initParams1();
-	function forceInit(partName: string) {
+	function forceInit() {
 		initParams2();
 		paramChange();
-		console.log(`dbg098: forceInit: partName ${partName}`);
 	}
 	onMount(() => {
-		forceInit(pDef.partName);
+		forceInit();
 	});
-	$: forceInit(pDef.partName);
-	// load parameters
-	let loadMsg = '';
+	// workaround because $page.url.searchParams contains the new value with some delay
+	//function delay(milliseconds: number) {
+	//	return new Promise((resolve) => {
+	//		setTimeout(resolve, milliseconds);
+	//	});
+	//}
+	//async function forceInit2(partName: string) {
+	//	await delay(1000);
+	//	console.log(`dbg081: forceInit: partName ${partName} url ${$page.url}`);
+	//	forceInit(partName);
+	//}
+	//$: forceInit2(pDef.partName);
+	// end of the workaround
 	function loadParams(iNew: tAllVal) {
 		if (Object.hasOwn(iNew, pValKey)) {
-			initpVal(iNew[pValKey]);
+			loadMsg = initpVal(iNew[pValKey]);
 		}
 		if (Object.hasOwn(iNew, commentKey)) {
 			inputComment = iNew[commentKey];

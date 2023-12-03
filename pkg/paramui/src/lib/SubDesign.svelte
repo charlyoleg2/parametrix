@@ -2,6 +2,7 @@
 	import type { tPosiOrien, tSubDesign } from 'geometrix';
 	import { ffix, radToDeg, paramListToVal } from 'geometrix';
 	import { downloadParams, generateUrl } from './downloadParams';
+	import { storePV } from './storePVal';
 	//import { onMount, createEventDispatcher } from 'svelte';
 	//import { browser } from '$app/environment';
 	import { page } from '$app/stores';
@@ -15,12 +16,14 @@
 	$: subInsts = Object.keys(subD);
 
 	async function goToUrl(subInstName: string) {
-		const rUrl = generateUrl(
-			`${$page.url.origin}${base}/${subD[subInstName].link}`,
-			paramListToVal(subD[subInstName].dparam),
-			true
-		);
-		//const rUrl = `${base}/${subD[subInstName].link}`;
+		const subObj = subD[subInstName];
+		// modify the global store $storePV
+		for (const pa of Object.keys(subObj.dparam)) {
+			$storePV[subObj.partName][pa] = subObj.dparam[pa].val;
+		}
+		//const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, paramListToVal(subObj.dparam), true);
+		const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, {}, true);
+		//const rUrl = `${base}/${subObj.link}`;
 		//console.log(`dbg505: ${rUrl}`);
 		//window.location.assign(rUrl);
 		goto(rUrl, { invalidateAll: true });
