@@ -8,7 +8,7 @@
 	import type { tParamDef, tParamVal, tAllVal, tGeomFunc } from 'geometrix';
 	import { PType } from 'geometrix';
 	import { storePV } from './storePVal';
-	import { downloadParams } from './downloadParams';
+	import { downloadParams, generateUrl } from './downloadParams';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
@@ -170,18 +170,12 @@
 	}
 	// Save as URL
 	let pUrl = '';
-	function generateUrl(): string {
-		const url1 = new URL($page.url.href);
-		for (const ky of Object.keys($storePV[pDef.partName])) {
-			url1.searchParams.append(
-				encodeURIComponent(ky),
-				encodeURIComponent($storePV[pDef.partName][ky])
-			);
-		}
+	function generateUrl2(): string {
+		const url1 = generateUrl($page.url.href, $storePV[pDef.partName], true);
 		return url1.toString();
 	}
 	function openModalUrl() {
-		pUrl = generateUrl();
+		pUrl = generateUrl2();
 		modalSaveUrl = true;
 	}
 	function saveAsUrl() {

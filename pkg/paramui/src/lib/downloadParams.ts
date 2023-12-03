@@ -1,6 +1,7 @@
 // downloadParams.ts
 
 import type { tParamVal } from 'geometrix';
+//import { ffix } from 'geometrix';
 
 function download_file(file_name: string, file_content: string) {
 	//create temporary an invisible element
@@ -27,4 +28,23 @@ function downloadParams(iPartName: string, idparams: tParamVal, iComment: string
 	//console.log(`dbg343: ${file_name}`);
 }
 
-export { downloadParams };
+function generateUrl(ihref: string, idparams: tParamVal, iLenghtLimit: boolean): string {
+	const url1 = new URL(ihref);
+	const strLengthLimit = 2000;
+	let strLength = url1.toString().length;
+	for (const ky of Object.keys(idparams)) {
+		//const val = ffix(idparams[ky]);
+		const val = idparams[ky].toString();
+		const nLen = 2 + ky.length + val.length;
+		if (iLenghtLimit && strLength + nLen < strLengthLimit) {
+			url1.searchParams.append(encodeURIComponent(ky), encodeURIComponent(val));
+		}
+		//strLength += nLen;
+		strLength = url1.toString().length;
+		//console.log(`dbg546: strLength ${strLength} and strLengthLimit ${strLengthLimit}`);
+	}
+	console.log(`dbg547: strLength ${strLength} and strLengthLimit ${strLengthLimit}`);
+	return url1.toString();
+}
+
+export { downloadParams, generateUrl };
