@@ -255,7 +255,7 @@
 			</thead>
 			<tbody>
 				{#each pDef.params as param}
-					<tr>
+					<tr class:changed={$storePV[pDef.partName][param.name] !== param.init}>
 						<td><button on:click={() => paramPict(param.name)}>{param.name}</button></td
 						>
 						<td>
@@ -375,6 +375,9 @@
 	}
 	section > main > table > tbody {
 		background-color: colors.$table-body;
+	}
+	section > main > table > tbody > tr.changed {
+		background-color: colors.$table-line-changed;
 	}
 	section > main > table > thead > tr > td,
 	section > main > table > tbody > tr > td {
