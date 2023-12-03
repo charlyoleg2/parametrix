@@ -29,8 +29,8 @@
 		"clean": "shx rm -fr .svelte-kit build node_modules"
 	},
 	"dependencies": {
-		"designix": "^0.1.1",
-		"geometrix": "^1.0.1"
+		"designix": "^0.5.2",
+		"geometrix": "^0.5.1"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",
