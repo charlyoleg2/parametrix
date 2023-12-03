@@ -28,11 +28,15 @@
 		rStr += `${ffix(vec[2])} ]`;
 		return rStr;
 	}
+	function printSet(changed: boolean): string {
+		const rStr = changed ? 'Yes' : '';
+		return rStr;
+	}
 </script>
 
 <section>
 	<h2>
-		Sub-design
+		Sub-designs
 		<span>(Number of sub-instances: {subInsts.length})</span>
 	</h2>
 	<ol>
@@ -59,17 +63,17 @@
 								<td>Name</td>
 								<td>Value</td>
 								<td>Init</td>
-								<td>Changed</td>
+								<td>Set?</td>
 							</tr>
 						</thead>
 						<tbody>
 							{#each Object.keys(subD[subInst].dparam) as param, pIdx}
-								<tr>
+								<tr class:changed={subD[subInst].dparam[param].chg}>
 									<td>{pIdx + 1}</td>
 									<td>{param}</td>
 									<td>{subD[subInst].dparam[param].val}</td>
 									<td><i>{subD[subInst].dparam[param].init}</i></td>
-									<td><i>{subD[subInst].dparam[param].chg}</i></td>
+									<td><i>{printSet(subD[subInst].dparam[param].chg)}</i></td>
 								</tr>
 							{/each}
 						</tbody>
@@ -157,5 +161,8 @@
 	}
 	div > table > tbody {
 		background-color: colors.$table-body;
+	}
+	div > table > tbody > tr.changed {
+		background-color: colors.$table-line-changed;
 	}
 </style>
