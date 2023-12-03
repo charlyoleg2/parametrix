@@ -26,18 +26,21 @@
 		"designix:ci": "npm -w designix run ci",
 		"designix:svgo": "npm -w designix run svgo",
 		"designix:clean": "npm -w designix run clean",
+		"paramuilib:dev": "npm -w paramuilib run dev",
+		"paramuilib:ci": "npm -w paramuilib run ci",
+		"paramuilib:clean": "npm -w paramuilib run clean",
 		"paramui:dev": "npm -w paramui run dev",
 		"paramui:ci": "npm -w paramui run ci",
 		"paramui:svgo": "npm -w paramui run svgo",
 		"paramui:clean": "npm -w paramui run clean",
 		"paramui:preview": "npm -w paramui run preview",
-		"dev": "run-p geometrix:dev designix:dev paramui:dev",
-		"ci": "run-s geometrix:ci designix:ci paramui:ci",
+		"dev": "run-p geometrix:dev designix:dev paramuilib:dev paramui:dev",
+		"ci": "run-s geometrix:ci designix:ci paramuilib:ci paramui:ci",
 		"ci2": "run-s designix:ci paramui:ci",
 		"svgo": "run-s geometrix:svgo designix:svgo paramui:svgo",
-		"clean": "run-s geometrix:clean designix:clean paramui:clean",
+		"clean": "run-s geometrix:clean designix:clean paramuilib:clean paramui:clean",
 		"preview": "run-s paramui:preview",
-		"ls-pkg": "ls -ltra pkg/geometrix pkg/designix pkg/paramui"
+		"ls-pkg": "ls -ltra pkg/geometrix pkg/designix pkg/paramuilib pkg/paramui"
 	},
 	"workspaces": [
 		"pkg/*"
