@@ -21,7 +21,7 @@
 			true
 		);
 		//const rUrl = `${base}/${subD[subInstName].link}`;
-		console.log(`dbg505: ${rUrl}`);
+		//console.log(`dbg505: ${rUrl}`);
 		//window.location.assign(rUrl);
 		goto(rUrl, { invalidateAll: true });
 	}
