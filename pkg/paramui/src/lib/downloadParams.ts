@@ -30,7 +30,7 @@ function downloadParams(iPartName: string, idparams: tParamVal, iComment: string
 
 function generateUrl(ihref: string, idparams: tParamVal, iLenghtLimit: boolean): string {
 	const url1 = new URL(ihref);
-	const strLengthLimit = 2000;
+	const strLengthLimit = 60;
 	let strLength = url1.toString().length;
 	for (const ky of Object.keys(idparams)) {
 		//const val = ffix(idparams[ky]);
@@ -39,11 +39,15 @@ function generateUrl(ihref: string, idparams: tParamVal, iLenghtLimit: boolean):
 		if (iLenghtLimit && strLength + nLen < strLengthLimit) {
 			url1.searchParams.append(encodeURIComponent(ky), encodeURIComponent(val));
 		}
-		//strLength += nLen;
-		strLength = url1.toString().length;
+		strLength += nLen;
+		//strLength = url1.toString().length;
 		//console.log(`dbg546: strLength ${strLength} and strLengthLimit ${strLengthLimit}`);
 	}
-	console.log(`dbg547: strLength ${strLength} and strLengthLimit ${strLengthLimit}`);
+	if (strLength >= strLengthLimit) {
+		console.log(
+			`warn547: generateUrl: strLength ${strLength} larger than strLengthLimit ${strLengthLimit}`
+		);
+	}
 	return url1.toString();
 }
 

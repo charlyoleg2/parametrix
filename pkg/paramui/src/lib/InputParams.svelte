@@ -171,7 +171,7 @@
 	// Save as URL
 	let pUrl = '';
 	function generateUrl2(): string {
-		const url1 = generateUrl($page.url.href, $storePV[pDef.partName], true);
+		const url1 = generateUrl($page.url.href, $storePV[pDef.partName], false);
 		return url1.toString();
 	}
 	function openModalUrl() {

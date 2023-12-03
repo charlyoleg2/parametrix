@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { tPosiOrien, tSubDesign, tDesignParamList } from 'geometrix';
+	import type { tPosiOrien, tSubDesign } from 'geometrix';
 	import { ffix, radToDeg, paramListToVal } from 'geometrix';
+	//import { downloadParams, generateUrl } from './downloadParams';
 	import { downloadParams } from './downloadParams';
 	//import { onMount, createEventDispatcher } from 'svelte';
 	//import { browser } from '$app/environment';
@@ -13,7 +14,14 @@
 	let subInsts: string[] = [];
 	$: subInsts = Object.keys(subD);
 
-	function dwnParams2(iPartName: string, idparams: tDesignParamList) {
+	function goToUrl(subInstName: string) {
+		//const rUrl = generateUrl(`${base}/${subD[subInst].link}`, paramListToVal(subD[subInst].dparam), true);
+		const rUrl = `${base}/${subD[subInstName].link}`;
+		window.location.assign(rUrl);
+	}
+	function dwnParams2(subInstName: string) {
+		const iPartName = subD[subInstName].partName;
+		const idparams = subD[subInstName].dparam;
 		const aComment = `sub-design parameters of ${iPartName} from ${origPartName}`;
 		downloadParams(iPartName, paramListToVal(idparams), aComment);
 	}
@@ -50,10 +58,8 @@
 					<div class="arrow" />
 					{subInst}
 				</label>
-				<a href="{base}/{subD[subInst].link}">Go to {subD[subInst].link}</a>
-				<button on:click={() => dwnParams2(subD[subInst].partName, subD[subInst].dparam)}
-					>Export parameters</button
-				>
+				<button on:click={() => goToUrl(subInst)}>Go to {subD[subInst].link}</button>
+				<button on:click={() => dwnParams2(subInst)}>Export parameters</button>
 				<div class="nested">
 					<article>
 						{Object.keys(subD[subInst].dparam).length} parameters of
@@ -114,10 +120,6 @@
 		font-size: 1rem;
 		font-weight: 400;
 	}
-	section > ol > li > a {
-		text-decoration: none;
-	}
-	section > ol > li > a,
 	section > ol > li > button {
 		@include styling.mix-button;
 	}
