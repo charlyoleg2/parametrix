@@ -18,7 +18,7 @@
 
 	export let pDef: tParamDef;
 	export let fgeom: tGeomFunc;
-	export let face: string;
+	export let selFace: string;
 	export let simTime = 0;
 
 	//const lastModifKey = 'lastModif';
@@ -339,7 +339,7 @@
 		<img src={paramSvg} alt={paramSvg} />
 	</button>
 	<div class="mini-canvas">
-		<SimpleDrawing pageName={pDef.partName} {fgeom} {face} {simTime} />
+		<SimpleDrawing pageName={pDef.partName} {fgeom} {selFace} {simTime} />
 	</div>
 </section>
 

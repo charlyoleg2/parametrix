@@ -8,7 +8,7 @@
 
 	export let pageName: string;
 	export let fgeom: tGeomFunc;
-	export let face: string;
+	export let selFace: string;
 	export let simTime = 0;
 
 	let canvasMini: HTMLCanvasElement;
@@ -45,14 +45,14 @@
 	}
 	onMount(() => {
 		// initial drawing
-		geomRedraw(simTime, $storePV[pageName], face, $dLayers);
+		geomRedraw(simTime, $storePV[pageName], selFace, $dLayers);
 		domInit = 1;
 		//paramChange();
 	});
 	// reactivity on simTime and $storePV
 	$: {
 		if (domInit === 1) {
-			geomRedraw(simTime, $storePV[pageName], face, $dLayers);
+			geomRedraw(simTime, $storePV[pageName], selFace, $dLayers);
 		}
 	}
 </script>

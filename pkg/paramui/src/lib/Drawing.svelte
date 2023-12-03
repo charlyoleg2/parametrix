@@ -27,7 +27,7 @@
 	export let pDef: tParamDef;
 	export let fgeom: tGeomFunc;
 	export let optFaces: string[];
-	export let face: string;
+	export let selFace: string;
 	export let simTime = 0;
 
 	let windowWidth: number;
@@ -94,12 +94,15 @@
 			//	face = rFace; // update input select
 			//}
 		}
+		console.log(iFaces);
+		console.log(`dbg097: rFace ${rFace}`);
 		return rFace;
 	}
 	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iFace: string, iLayers: tLayers) {
 		const FigList = fgeom(iSimTime, pVal).fig;
 		const FigListKeys = Object.keys(FigList);
 		const sFace = checkFace(FigListKeys, iFace);
+		selFace = sFace;
 		if (FigListKeys.includes(sFace)) {
 			aFigure = FigList[sFace];
 		} else {
@@ -114,14 +117,14 @@
 	onMount(() => {
 		// initial drawing
 		canvasSetSize();
-		geomRedraw(simTime, face);
+		geomRedraw(simTime, selFace);
 		//paramChange();
 		domInit = 1;
 	});
 	// reactivity on simTime, $storePV and layers
 	$: {
 		if (domInit === 1) {
-			geomRedrawSub(simTime, $storePV[pDef.partName], face, $dLayers);
+			geomRedrawSub(simTime, $storePV[pDef.partName], selFace, $dLayers);
 		}
 	}
 	// Zoom stories
@@ -190,7 +193,7 @@
 					//console.log(`dbg160: a click at ${eve.offsetX} ${eve.offsetY}`);
 					const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 					zAdjust = adjustCenter(px, py, zAdjust);
-					geomRedraw(simTime, face);
+					geomRedraw(simTime, selFace);
 				}
 				if (diffX > mouseDiffClick && diffY > mouseDiffClick) {
 					const diffRatio1 = diffX / diffY;
@@ -200,7 +203,7 @@
 						const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 						const [p2x, p2y] = canvas2point(mouseF.offsetX, mouseF.offsetY, cAdjust);
 						zAdjust = adjustRect(p1x, p1y, p2x, p2y, canvas_size_min, canvas_size_min);
-						geomRedraw(simTime, face);
+						geomRedraw(simTime, selFace);
 					}
 				}
 			} else {
@@ -282,7 +285,7 @@
 <section>
 	<h2>
 		Drawing
-		<select bind:value={face}>
+		<select bind:value={selFace}>
 			{#each optFaces as optFace}
 				<option value={optFace}>{optFace}</option>
 			{/each}

@@ -27,7 +27,7 @@
 	}
 	let optFaces: string[] = [];
 	let exportFace: string;
-	let face: string;
+	let selFace: string;
 	let simTime = 0;
 	// log and paramChange
 	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
@@ -141,7 +141,7 @@
 	}
 </script>
 
-<InputParams {pDef} on:paramChg={paramChange} {fgeom} {face} {simTime} />
+<InputParams {pDef} on:paramChg={paramChange} {fgeom} {selFace} {simTime} />
 <section>
 	<h2>Log</h2>
 	<textarea
@@ -154,7 +154,7 @@
 		class:colorWarn={calcWarn}
 	/>
 </section>
-<Drawing {pDef} {fgeom} {optFaces} bind:face bind:simTime />
+<Drawing {pDef} {fgeom} {optFaces} bind:selFace bind:simTime />
 <section>
 	<h2>Export</h2>
 	<select bind:value={exportFace}>
