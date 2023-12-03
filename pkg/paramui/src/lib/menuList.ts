@@ -29,11 +29,10 @@ import {
 	verifyContour4Def,
 	verifyExports1Def
 } from 'designix';
-import type { tParamVal, tPageDef } from 'geometrix';
-//import { storePVal_init } from 'paramuilib';
+import type { tParamVal, tAllPageDef } from 'geometrix';
+import { storePVal_init } from 'paramuilib';
 import { get, writable } from 'svelte/store';
 
-type tAllPageDef = Record<string, tPageDef>;
 type tIcon = Record<string, string>;
 const designDefs: tAllPageDef = {
 	gear_wheel_wheel: gearWheelWheelDef,
@@ -165,7 +164,7 @@ const mIcon: tIcon = {
 // end of section to be updated
 
 // initialization storePV
-//storePVal_init();
+storePVal_init(designDefs);
 
 type tPageList = string[];
 interface tArrayLabel {
