@@ -7,6 +7,7 @@
 	export let okName = 'Ok';
 	export let okFunc: tOkFunc;
 	export let modalOpen: boolean;
+	export let sizeLarge = false;
 
 	function mCancel() {
 		modalOpen = false;
@@ -19,7 +20,7 @@
 
 {#if modalOpen}
 	<aside class="backdrop">
-		<div class="dialog">
+		<div class="dialog" class:sizeLarge>
 			<article class="question">
 				<slot />
 			</article>
@@ -56,6 +57,10 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: stretch;
+	}
+	aside > div.dialog.sizeLarge {
+		width: 60rem;
+		height: 30rem;
 	}
 	aside > div > article.question {
 		font-size: 1.2rem;

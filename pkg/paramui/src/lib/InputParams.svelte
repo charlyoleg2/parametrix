@@ -305,7 +305,7 @@
 				modalSaveLocal = true;
 			}}>Save Parameters to localStorage</button
 		>
-		<ModalDiag bind:modalOpen={modalSaveUrl} okName="Done" okFunc={saveAsUrl}
+		<ModalDiag bind:modalOpen={modalSaveUrl} okName="Done" okFunc={saveAsUrl} sizeLarge={true}
 			><p>Copy this URL and send it to your friends!</p>
 			<p class="cUrl">{pUrl}</p></ModalDiag
 		>

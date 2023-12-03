@@ -36,7 +36,7 @@ function generateUrl(ihref: string, idparams: tParamVal, iLenghtLimit: boolean):
 		//const val = ffix(idparams[ky]);
 		const val = idparams[ky].toString();
 		const nLen = 2 + ky.length + val.length;
-		if (iLenghtLimit && strLength + nLen < strLengthLimit) {
+		if (!iLenghtLimit || strLength + nLen < strLengthLimit) {
 			url1.searchParams.append(encodeURIComponent(ky), encodeURIComponent(val));
 		}
 		strLength += nLen;
