@@ -85,24 +85,23 @@
 		if (iFaces.length === 0) {
 			console.log(`warn404: Drawing has an empty face list`);
 		} else {
-			rFace = iFaces[0];
-			//const FaceList2 = iFaces.slice();
-			//FaceList2.push(c_ParametrixAll);
-			//if (!FaceList2.includes(rFace)) {
-			//	console.log(`warn403: Drawing has an invalid face ${rFace}`);
-			//	rFace = iFaces[0];
-			//	face = rFace; // update input select
-			//}
+			//rFace = iFaces[0];
+			const FaceList2 = iFaces.slice();
+			FaceList2.push(c_ParametrixAll);
+			if (!FaceList2.includes(rFace)) {
+				//console.log(`warn403: Drawing has an invalid face ${rFace}`);
+				rFace = iFaces[0];
+			}
 		}
-		console.log(iFaces);
-		console.log(`dbg097: rFace ${rFace}`);
+		//console.log(iFaces);
+		//console.log(`dbg097: rFace ${rFace}`);
 		return rFace;
 	}
 	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iFace: string, iLayers: tLayers) {
 		const FigList = fgeom(iSimTime, pVal).fig;
 		const FigListKeys = Object.keys(FigList);
 		const sFace = checkFace(FigListKeys, iFace);
-		selFace = sFace;
+		selFace = sFace; // update input select
 		if (FigListKeys.includes(sFace)) {
 			aFigure = FigList[sFace];
 		} else {
