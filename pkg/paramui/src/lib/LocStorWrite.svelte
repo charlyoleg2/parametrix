@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LocStorTable from '$lib/LocStorTable.svelte';
+	import LocStorTable from './LocStorTable.svelte';
 	//import { browser } from '$app/environment';
 
 	export let pageName: string;
@@ -55,7 +55,7 @@
 </div>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use './style/colors.scss';
 
 	div {
 		min-height: 6rem;

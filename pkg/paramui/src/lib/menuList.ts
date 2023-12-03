@@ -30,8 +30,8 @@ import {
 	verifyExports1Def
 } from 'designix';
 import type { tParamVal, tPageDef } from 'geometrix';
-import type { tStorePVal } from '$lib/storePVal';
-import { storePV } from '$lib/storePVal';
+import type { tStorePVal } from './storePVal';
+import { storePV } from './storePVal';
 import { get, writable } from 'svelte/store';
 
 type tAllPageDef = Record<string, tPageDef>;

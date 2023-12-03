@@ -9,10 +9,10 @@
 		fileMime,
 		fileBin
 	} from 'geometrix';
-	import InputParams from '$lib/InputParams.svelte';
-	import Drawing from '$lib/Drawing.svelte';
-	import SubDesign from '$lib/SubDesign.svelte';
-	import { storePV } from '$lib/storePVal';
+	import InputParams from './InputParams.svelte';
+	import Drawing from './Drawing.svelte';
+	import SubDesign from './SubDesign.svelte';
+	import { storePV } from './storePVal';
 
 	export let pDef: tParamDef;
 	export let fgeom: tGeomFunc;
@@ -176,8 +176,8 @@
 </section>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
-	@use '$lib/style/styling.scss';
+	@use './style/colors.scss';
+	@use './style/styling.scss';
 
 	section > h2 {
 		@include styling.mix-h2;

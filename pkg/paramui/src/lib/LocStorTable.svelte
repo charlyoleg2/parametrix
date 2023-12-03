@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ModalDiag from '$lib/ModalDiag.svelte';
+	import ModalDiag from './ModalDiag.svelte';
 	import { browser } from '$app/environment';
 
 	export let pageName: string;
@@ -118,8 +118,8 @@
 </div>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
-	@use '$lib/style/styling.scss';
+	@use './style/colors.scss';
+	@use './style/styling.scss';
 
 	div.deleteKeys {
 		display: flex;

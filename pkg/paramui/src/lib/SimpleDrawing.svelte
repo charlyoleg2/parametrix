@@ -2,8 +2,8 @@
 	//import { colors } from 'geometrix';
 	import type { tCanvasAdjust, tLayers, Figure, tParamVal, tGeomFunc } from 'geometrix';
 	import { copyLayers, mergeFaces } from 'geometrix';
-	import { storePV } from '$lib/storePVal';
-	import { dLayers } from '$lib/drawingLayers';
+	import { storePV } from './storePVal';
+	import { dLayers } from './drawingLayers';
 	import { onMount } from 'svelte';
 
 	export let pageName: string;
@@ -60,8 +60,8 @@
 <canvas class="mini" width={canvas_size_mini} height={canvas_size_mini} bind:this={canvasMini} />
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
-	@use '$lib/style/styling.scss';
+	@use './style/colors.scss';
+	@use './style/styling.scss';
 
 	canvas {
 		background-color: colors.$pde-canvas;

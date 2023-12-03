@@ -21,7 +21,7 @@
 </nav>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use './style/colors.scss';
 
 	nav > button {
 		height: 2rem;

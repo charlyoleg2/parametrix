@@ -1,7 +1,7 @@
 <script lang="ts">
-	import TimeControl from '$lib/TimeControl.svelte';
-	import ZoomControl from '$lib/ZoomControl.svelte';
-	import LabelCheckbox from '$lib/LabelCheckbox.svelte';
+	import TimeControl from './TimeControl.svelte';
+	import ZoomControl from './ZoomControl.svelte';
+	import LabelCheckbox from './LabelCheckbox.svelte';
 	import type {
 		tCanvasAdjust,
 		tLayers,
@@ -20,8 +20,8 @@
 		c_ParametrixAll,
 		mergeFaces
 	} from 'geometrix';
-	import { storePV } from '$lib/storePVal';
-	import { dLayers } from '$lib/drawingLayers';
+	import { storePV } from './storePVal';
+	import { dLayers } from './drawingLayers';
 	import { onMount } from 'svelte';
 
 	export let pDef: tParamDef;
@@ -324,8 +324,8 @@
 </section>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
-	@use '$lib/style/styling.scss';
+	@use './style/colors.scss';
+	@use './style/styling.scss';
 
 	section > h2 {
 		@include styling.mix-h2;

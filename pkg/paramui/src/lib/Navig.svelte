@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { tMenuFull } from '$lib/menuList';
+	import type { tMenuFull } from './menuList';
 	//import type { HTMLAttributes } from 'svelte/elements';
 	//interface $$Props extends HTMLAttributes<HTMLElement> {
 	//	menuList: tMenu;
@@ -26,7 +26,7 @@
 </nav>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use './style/colors.scss';
 
 	nav {
 		background-color: colors.$header-bg;

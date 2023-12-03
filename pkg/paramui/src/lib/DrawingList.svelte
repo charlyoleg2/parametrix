@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { tParamDef } from 'geometrix';
-	import ModalImg from '$lib/ModalImg.svelte';
+	import ModalImg from './ModalImg.svelte';
 	//import { onMount } from 'svelte';
 	//import { browser } from '$app/environment';
 	import { base } from '$app/paths';
@@ -53,8 +53,8 @@
 </section>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
-	@use '$lib/style/styling.scss';
+	@use './style/colors.scss';
+	@use './style/styling.scss';
 
 	section {
 		margin: 1rem;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dLayers } from '$lib/drawingLayers';
+	import { dLayers } from './drawingLayers';
 </script>
 
 <div>
@@ -16,7 +16,7 @@
 </div>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use './style/colors.scss';
 
 	div > label > input {
 		margin-left: 1rem;

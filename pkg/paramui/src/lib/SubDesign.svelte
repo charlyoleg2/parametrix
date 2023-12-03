@@ -105,8 +105,8 @@
 </section>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
-	@use '$lib/style/styling.scss';
+	@use './style/colors.scss';
+	@use './style/styling.scss';
 
 	section {
 		margin-left: 0.25rem;

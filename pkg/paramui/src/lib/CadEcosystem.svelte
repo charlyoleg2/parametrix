@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MyUl from '$lib/MyUl.svelte';
+	import MyUl from './MyUl.svelte';
 </script>
 
 <ul class="list-top">
@@ -232,7 +232,7 @@
 </ul>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use './style/colors.scss';
 
 	ul.list-top {
 		list-style-type: none;

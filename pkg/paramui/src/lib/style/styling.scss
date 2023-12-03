@@ -1,5 +1,5 @@
 // styling.scss
-@use '$lib/style/colors.scss';
+@use './colors.scss';
 
 @mixin mix-h2 {
 	color: colors.$pde-title;

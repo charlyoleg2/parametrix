@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { tPageDef } from 'geometrix';
 
-	import DrawingList from '$lib/DrawingList.svelte';
-	import ParamDrawExport from '$lib/ParamDrawExport.svelte';
+	import DrawingList from './DrawingList.svelte';
+	import ParamDrawExport from './ParamDrawExport.svelte';
 
 	export let pageDef: tPageDef;
 </script>
@@ -13,7 +13,7 @@
 <ParamDrawExport pDef={pageDef.pDef} fgeom={pageDef.pGeom} />
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use './style/colors.scss';
 
 	h1 {
 		margin: 1rem 1rem 0;
