@@ -1,0 +1,77 @@
+// colors.scss
+
+$header-bg: #eeeeff;
+//$header-bg: #666699;
+//$header-bg: #666655;
+
+$header-title: #c0c0c0;
+
+//$header-subtitle: #808080;
+//$header-subtitle: #a26565;
+$header-subtitle: grey;
+
+$menu: white;
+$menu-active: gold;
+$menu-hover: orange;
+$menu-back: grey;
+//$menu-border: yellow;
+$menu-border: lemonchiffon;
+//$menu-arrow: lightPink;
+$menu-arrow: cornFlowerBlue;
+$menu-category: grey;
+
+//$main: #ccccee;
+//$main: #f0f0ff;
+//$main-bg: #ffffff;
+//$main-bg: ghostwhite;
+$main-bg: whitesmoke;
+$subdesign-bg: LightGrey;
+
+$arrow: DarkOrange;
+$link: ForestGreen;
+
+//$footer: grey;
+$footer-bg: $header-bg;
+
+//$footer: $header-title;
+$footer: $header-subtitle;
+
+$indexBg: Lavender;
+$indexSepara: DarkBlue;
+$indexSeparaStop: LightBlue;
+
+$pde-title: grey;
+$pde-params: darkBlue;
+$pde-canvas: pink;
+$subd-title-complement: white;
+$subd-title: black;
+$subd-h4: DarkGrey;
+
+$timectrl-bg: lightBlue;
+$timectrl-sign: darkBlue;
+
+$zoom-bg: lightGreen;
+$zoom-sign: darkGreen;
+$zoom-other: grey;
+
+$modal: lightCyan;
+//$table-head: aquamarine;
+$table-head: #ddd;
+//$table-body: lightSkyBlue;
+$table-body: #eee;
+$table-line-changed: #ded;
+
+$warning-message: orange;
+$warn-calc-warning: orange;
+$warn-calc-error: violet;
+
+$mini-picture: white;
+
+/*
+$canvas-point: grey;
+
+// export to js
+:export {
+	colorCanvasPoint: $canvas-point;
+}
+*/
