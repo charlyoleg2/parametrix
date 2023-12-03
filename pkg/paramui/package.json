@@ -29,6 +29,7 @@
 		"clean": "shx rm -fr .svelte-kit build node_modules"
 	},
 	"dependencies": {
+		"paramuilib": "^0.5.4",
 		"designix": "^0.5.2",
 		"geometrix": "^0.5.1"
 	},

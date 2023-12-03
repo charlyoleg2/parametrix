@@ -1,5 +1,5 @@
 <script lang="ts">
-	import OneDesign from '$lib/OneDesign.svelte';
+	import OneDesign from 'paramuilib/OneDesign.svelte';
 	export let data;
 </script>
 
