@@ -30,8 +30,7 @@ import {
 	verifyExports1Def
 } from 'designix';
 import type { tParamVal, tPageDef } from 'geometrix';
-import type { tStorePVal } from './storePVal';
-import { storePV } from './storePVal';
+//import { storePVal_init } from 'paramuilib';
 import { get, writable } from 'svelte/store';
 
 type tAllPageDef = Record<string, tPageDef>;
@@ -165,17 +164,8 @@ const mIcon: tIcon = {
 };
 // end of section to be updated
 
-/* initialization storePV */
-const iniPV: tStorePVal = {};
-for (const design of Object.keys(designDefs)) {
-	const designParam: tParamVal = {};
-	for (const param of designDefs[design].pDef.params) {
-		designParam[param.name] = param.init;
-	}
-	iniPV[design] = designParam;
-}
-storePV.set(iniPV);
-/* end of initialization storePV */
+// initialization storePV
+//storePVal_init();
 
 type tPageList = string[];
 interface tArrayLabel {

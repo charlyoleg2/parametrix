@@ -1,3 +1,7 @@
 // Reexport your entry components here
 
-export { OneDesign } from './OneDesign.svelte';
+import OneDesign from './OneDesign.svelte';
+import { storePVal_init } from './storePVal_init';
+
+export { OneDesign, storePVal_init };
+
