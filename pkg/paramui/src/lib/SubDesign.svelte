@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { tPosiOrien, tSubDesign } from 'geometrix';
 	import { ffix, radToDeg, paramListToVal } from 'geometrix';
-	//import { downloadParams, generateUrl } from './downloadParams';
-	import { downloadParams } from './downloadParams';
+	import { downloadParams, generateUrl } from './downloadParams';
 	//import { onMount, createEventDispatcher } from 'svelte';
 	//import { browser } from '$app/environment';
-	//import { page } from '$app/stores';
+	import { page } from '$app/stores';
 	import { base } from '$app/paths';
+	import { goto } from '$app/navigation';
 
 	export let subD: tSubDesign = {};
 	export let origPartName = '';
@@ -14,10 +14,16 @@
 	let subInsts: string[] = [];
 	$: subInsts = Object.keys(subD);
 
-	function goToUrl(subInstName: string) {
-		//const rUrl = generateUrl(`${base}/${subD[subInst].link}`, paramListToVal(subD[subInst].dparam), true);
-		const rUrl = `${base}/${subD[subInstName].link}`;
-		window.location.assign(rUrl);
+	async function goToUrl(subInstName: string) {
+		const rUrl = generateUrl(
+			`${$page.url.origin}${base}/${subD[subInstName].link}`,
+			paramListToVal(subD[subInstName].dparam),
+			true
+		);
+		//const rUrl = `${base}/${subD[subInstName].link}`;
+		console.log(`dbg505: ${rUrl}`);
+		//window.location.assign(rUrl);
+		goto(rUrl);
 	}
 	function dwnParams2(subInstName: string) {
 		const iPartName = subD[subInstName].partName;

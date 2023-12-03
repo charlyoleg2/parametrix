@@ -30,7 +30,7 @@ function downloadParams(iPartName: string, idparams: tParamVal, iComment: string
 
 function generateUrl(ihref: string, idparams: tParamVal, iLenghtLimit: boolean): string {
 	const url1 = new URL(ihref);
-	const strLengthLimit = 60;
+	const strLengthLimit = 70;
 	let strLength = url1.toString().length;
 	for (const ky of Object.keys(idparams)) {
 		//const val = ffix(idparams[ky]);
