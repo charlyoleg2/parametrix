@@ -19,21 +19,12 @@ jobs:
             - name: clean and install
               run: npm ci
 
-            - run: npm -w geometrix run ci
-            - run: npm -w designix run ci
-            - run: npm -w paramui run ci
-
             - name: Build and check Parametrix
               env:
                   BASE_PATH: '/parametrix'
               run: |
-                  npm -w geometrix run build
-                  npm -w designix run build
-                  npm -w paramui run build
+                  npm run ci
                   npm -w paramui run github-pages-fix
-                  npm -w paramui run check
-                  npm -w paramui run test:unit
-                  npm -w paramui run lint
 
             - name: Deploy Parametrix to GitHub pages
               uses: crazy-max/ghaction-github-pages@v4
