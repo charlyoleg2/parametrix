@@ -1,10 +1,10 @@
-// storePVal_init
+// initStore
 
 import type { tAllPageDef } from 'geometrix';
 import type { tStorePVal } from './storePVal';
 import { storePV } from './storePVal';
 
-function storePVal_init(designDefs: tAllPageDef) {
+function initStore(designDefs: tAllPageDef) {
 	const iniPV: tStorePVal = {};
 	for (const design of Object.keys(designDefs)) {
 		const designParam: tParamVal = {};
@@ -16,4 +16,4 @@ function storePVal_init(designDefs: tAllPageDef) {
 	storePV.set(iniPV);
 }
 
-export { storePVal_init };
+export { initStore };

@@ -1,5 +1,6 @@
 // menuList.ts
 
+import type { tAllPageDef } from 'geometrix';
 import {
 	gearWheelWheelDef,
 	simplifiedGearWheelDef,
@@ -29,8 +30,7 @@ import {
 	verifyContour4Def,
 	verifyExports1Def
 } from 'designix';
-import type { tParamVal, tAllPageDef } from 'geometrix';
-import { storePVal_init } from 'paramuilib';
+import { initStore } from 'paramuilib';
 import { get, writable } from 'svelte/store';
 
 type tIcon = Record<string, string>;
@@ -164,7 +164,7 @@ const mIcon: tIcon = {
 // end of section to be updated
 
 // initialization storePV
-storePVal_init(designDefs);
+initStore(designDefs);
 
 type tPageList = string[];
 interface tArrayLabel {
