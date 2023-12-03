@@ -23,7 +23,7 @@
 		//const rUrl = `${base}/${subD[subInstName].link}`;
 		console.log(`dbg505: ${rUrl}`);
 		//window.location.assign(rUrl);
-		goto(rUrl);
+		goto(rUrl, { invalidateAll: true });
 	}
 	function dwnParams2(subInstName: string) {
 		const iPartName = subD[subInstName].partName;
