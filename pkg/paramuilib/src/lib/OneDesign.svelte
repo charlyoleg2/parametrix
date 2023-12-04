@@ -1,10 +1,13 @@
 <script lang="ts">
 	import type { tPageDef } from 'geometrix';
 
+	import { incrStore } from './initStore';
 	import DrawingList from './DrawingList.svelte';
 	import ParamDrawExport from './ParamDrawExport.svelte';
 
 	export let pageDef: tPageDef;
+
+	$: incrStore(pageDef);
 </script>
 
 <h1>{pageDef.pTitle}</h1>

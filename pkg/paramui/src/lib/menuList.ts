@@ -30,7 +30,6 @@ import {
 	verifyContour4Def,
 	verifyExports1Def
 } from 'designix';
-import { initStore } from 'paramuilib';
 import { get, writable } from 'svelte/store';
 
 type tIcon = Record<string, string>;
@@ -162,9 +161,6 @@ const mIcon: tIcon = {
 	about: 'page_about.svg'
 };
 // end of section to be updated
-
-// initialization storePV
-initStore(designDefs);
 
 type tPageList = string[];
 interface tArrayLabel {
