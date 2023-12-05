@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { tMenuFull } from './menuList';
+	import type { tCategoryOne } from './menuListType';
 	//import type { HTMLAttributes } from 'svelte/elements';
 	//interface $$Props extends HTMLAttributes<HTMLElement> {
 	//	menuList: tMenu;
@@ -7,7 +7,7 @@
 
 	import { base } from '$app/paths';
 
-	export let menuList: tMenuFull;
+	export let menuList: tCategoryOne;
 	export let menuSelected: string;
 </script>
 
