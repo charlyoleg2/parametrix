@@ -17,7 +17,7 @@ function initStore(designDefs: tAllPageDef) {
 	storePV.set(iniPV);
 }
 
-function updateStore(iPartName: string, dParams: tParamVal) {
+function updateStore(iPartName: string, dParams: tParamVal, overwrite: boolean) {
 	const iniPV = get(storePV);
 	const designNames = Object.keys(iniPV);
 	if (designNames.includes(iPartName)) {
@@ -25,6 +25,8 @@ function updateStore(iPartName: string, dParams: tParamVal) {
 		const inidParamNames = Object.keys(inidParams);
 		for (const pa of Object.keys(dParams)) {
 			if (!inidParamNames.includes(pa)) {
+				inidParams[pa] = dParams[pa];
+			} else if (overwrite) {
 				inidParams[pa] = dParams[pa];
 			}
 		}
@@ -43,7 +45,7 @@ function incrStore(oneDesignDef: tPageDef) {
 	for (const param of oneDesignDef.pDef.params) {
 		dParams[param.name] = param.init;
 	}
-	updateStore(dName, dParams);
+	updateStore(dName, dParams, false);
 }
 
 export { initStore, incrStore, updateStore };

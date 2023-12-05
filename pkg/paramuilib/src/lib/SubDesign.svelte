@@ -19,7 +19,7 @@
 	async function goToUrl(subInstName: string) {
 		const subObj = subD[subInstName];
 		// modify the global store $storePV
-		updateStore(subObj.partName, paramListToVal(subObj.dparam));
+		updateStore(subObj.partName, paramListToVal(subObj.dparam), true);
 		//const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, paramListToVal(subObj.dparam), true);
 		//const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, {}, true);
 		const rUrl = `${base}/${subObj.link}`;
