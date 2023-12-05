@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { indexMenu } from '$lib/menuList';
+	import { menuList2 } from '$lib/makeMenu';
 	import { base } from '$app/paths';
 </script>
 
 <h1>Parametrix index</h1>
 <article>
-	{#each indexMenu as menuCategory, listIdx}
+	{#each menuList2 as menuCategory, listIdx}
 		<div class="separation" />
 		{#if menuCategory.category !== ''}
 			<h2>{listIdx} - {menuCategory.category}</h2>
 		{/if}
 		<ul>
-			{#each menuCategory.menu as menuItem, itemIdx}
+			{#each menuCategory.pages as menuItem, itemIdx}
 				<li>
 					<img
 						class:alter={(listIdx + itemIdx) % 2 === 1}

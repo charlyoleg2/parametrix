@@ -1,6 +1,6 @@
 // [design]/+page.js
 
-import { designDefs } from '$lib/menuList';
+import { designDefs } from '$lib/makeMenu';
 import { error } from '@sveltejs/kit';
 
 export function load({ params }) {

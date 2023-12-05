@@ -12,7 +12,7 @@
 </script>
 
 <nav>
-	{#each menuList.menu as menuItem}
+	{#each menuList.pages as menuItem}
 		<div class="oneMenu">
 			<a href="{base}{menuItem.path}" class:page-active={menuSelected === menuItem.path}
 				>{menuItem.label}</a
