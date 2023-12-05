@@ -29,10 +29,10 @@ function updateStore(iPartName: string, dParams: tParamVal) {
 			}
 		}
 		iniPV[iPartName] = inidParams;
-		console.log(`dbg781: updateStore of ${iPartName}`);
+		//console.log(`dbg781: updateStore of ${iPartName}`);
 	} else {
 		iniPV[iPartName] = dParams;
-		console.log(`dbg782: updateStore of new ${iPartName}`);
+		//console.log(`dbg782: updateStore of new ${iPartName}`);
 	}
 	storePV.set(iniPV);
 }
