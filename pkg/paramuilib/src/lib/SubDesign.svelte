@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { tPosiOrien, tSubDesign } from 'geometrix';
 	import { ffix, radToDeg, paramListToVal } from 'geometrix';
-	import { downloadParams, generateUrl } from './downloadParams';
-	import { storePV } from './storePVal';
+	//import { downloadParams, generateUrl } from './downloadParams';
+	import { downloadParams } from './downloadParams';
+	import { updateStore } from './initStore';
 	//import { onMount, createEventDispatcher } from 'svelte';
 	//import { browser } from '$app/environment';
-	import { page } from '$app/stores';
+	//import { page } from '$app/stores';
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 
@@ -18,15 +19,14 @@
 	async function goToUrl(subInstName: string) {
 		const subObj = subD[subInstName];
 		// modify the global store $storePV
-		for (const pa of Object.keys(subObj.dparam)) {
-			$storePV[subObj.partName][pa] = subObj.dparam[pa].val;
-		}
+		updateStore(subObj.partName, paramListToVal(subObj.dparam));
 		//const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, paramListToVal(subObj.dparam), true);
-		const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, {}, true);
-		//const rUrl = `${base}/${subObj.link}`;
+		//const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, {}, true);
+		const rUrl = `${base}/${subObj.link}`;
 		//console.log(`dbg505: ${rUrl}`);
 		//window.location.assign(rUrl);
-		goto(rUrl, { invalidateAll: true });
+		//goto(rUrl, { invalidateAll: true });
+		goto(rUrl);
 	}
 	function dwnParams2(subInstName: string) {
 		const iPartName = subD[subInstName].partName;

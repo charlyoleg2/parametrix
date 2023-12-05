@@ -17,29 +17,33 @@ function initStore(designDefs: tAllPageDef) {
 	storePV.set(iniPV);
 }
 
-function incrStore(oneDesignDef: tPageDef) {
+function updateStore(iPartName: string, dParams: tParamVal) {
 	const iniPV = get(storePV);
 	const designNames = Object.keys(iniPV);
-	const dName = oneDesignDef.pDef.partName;
-	if (designNames.includes(dName)) {
-		const designParam = iniPV[dName];
-		const dParams = Object.keys(designParam);
-		for (const param of oneDesignDef.pDef.params) {
-			if (!dParams.includes(param.name)) {
-				designParam[param.name] = param.init;
+	if (designNames.includes(iPartName)) {
+		const inidParams = iniPV[iPartName];
+		const inidParamNames = Object.keys(inidParams);
+		for (const pa of Object.keys(dParams)) {
+			if (!inidParamNames.includes(pa)) {
+				inidParams[pa] = dParams[pa];
 			}
 		}
-		iniPV[dName] = designParam;
-		console.log(`dbg781: incrStore of ${dName}`);
+		iniPV[iPartName] = inidParams;
+		console.log(`dbg781: updateStore of ${iPartName}`);
 	} else {
-		const designParam: tParamVal = {};
-		for (const param of oneDesignDef.pDef.params) {
-			designParam[param.name] = param.init;
-		}
-		iniPV[dName] = designParam;
-		console.log(`dbg782: incrStore of new ${dName}`);
+		iniPV[iPartName] = dParams;
+		console.log(`dbg782: updateStore of new ${iPartName}`);
 	}
 	storePV.set(iniPV);
 }
 
-export { initStore, incrStore };
+function incrStore(oneDesignDef: tPageDef) {
+	const dName = oneDesignDef.pDef.partName;
+	const dParams: tParamVal = {};
+	for (const param of oneDesignDef.pDef.params) {
+		dParams[param.name] = param.init;
+	}
+	updateStore(dName, dParams);
+}
+
+export { initStore, incrStore, updateStore };
