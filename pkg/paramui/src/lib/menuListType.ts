@@ -23,4 +23,3 @@ interface tMenuList {
 }
 
 export type { tPageOne, tCategoryOne, tMenuList };
-

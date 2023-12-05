@@ -5,7 +5,6 @@ import type { tPageOne, tCategoryOne, tMenuList } from './menuListType';
 import { menuList } from './menuList';
 //import { get, writable } from 'svelte/store';
 
-
 function pathToLabel(ipath: string): string {
 	const re = /^.*\//g;
 	const rLabel = ipath.replace(re, '');
@@ -22,7 +21,7 @@ function makeMenuList2(iMenu: tMenuList): tMenuList {
 				page: pag.page,
 				svg: pag.svg,
 				label: pathToLabel(pag.path)
-				};
+			};
 			categ2.pages.push(pag2);
 		}
 		rMenu.push(categ2);
@@ -68,7 +67,7 @@ function findTheCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
 			page: pag.page,
 			svg: pag.svg,
 			label: pathToLabel(pag.path)
-			};
+		};
 		rCateg.pages.push(pag2);
 	}
 	return rCateg;
