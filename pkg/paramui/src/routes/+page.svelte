@@ -19,11 +19,11 @@
 						alt={menuItem.label}
 					/>
 					{#if menuCategory.category !== ''}
-						<a href="{base}{menuItem.path}"
+						<a href="{base}/{menuItem.path}"
 							>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
 						>
 					{:else}
-						<a href="{base}{menuItem.path}" class="noindex">{menuItem.label}</a>
+						<a href="{base}/{menuItem.path}" class="noindex">{menuItem.label}</a>
 					{/if}
 				</li>
 			{/each}
