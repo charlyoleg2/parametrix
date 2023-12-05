@@ -36,6 +36,7 @@ function makeDesignDefs(iMenu: tMenuList): tAllPageDef {
 			if (pag.page != null) {
 				const label = pathToLabel(pag.path);
 				rDesignDefs[label] = pag.page;
+				//console.log(`dbg939: label: ${label}`);
 			}
 		}
 	}
