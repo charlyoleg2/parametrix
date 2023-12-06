@@ -9,7 +9,6 @@ interface tSubInst {
 	dparam: tDesignParamList;
 	orientation: tPosiOrien;
 	position: tPosiOrien;
-	link: string;
 }
 
 type tSubDesign = Record<string, tSubInst>;

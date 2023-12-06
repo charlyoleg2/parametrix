@@ -390,8 +390,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			partName: gearWWParam.getPartName(),
 			dparam: gearWWParam.getDesignParamList(),
 			orientation: [0, 0, 0],
-			position: [0, 0, 0],
-			link: 'gear/gear_wheel_wheel'
+			position: [0, 0, 0]
 		};
 		//console.log(subGearWW);
 		rGeome.sub = { gear_wheel_wheel_1: subGearWW };

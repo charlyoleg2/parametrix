@@ -1,6 +1,6 @@
 // [design]/+page.js
 
-import { designDefs } from '$lib/makeMenu';
+import { designDefs, allLink } from '$lib/makeMenu';
 import { error } from '@sveltejs/kit';
 
 export function load({ params }) {
@@ -15,7 +15,8 @@ export function load({ params }) {
 			throw error(500, `pDef.partName ${pDef_page} does not fit with short ${short}`);
 		}
 		return {
-			pageDef: designDefs[short]
+			pageDef: designDefs[short],
+			allLink: allLink
 			//category: category
 		};
 	}

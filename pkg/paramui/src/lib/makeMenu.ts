@@ -1,9 +1,10 @@
 // makeMenu.ts
 
-import type { tAllPageDef } from 'geometrix';
+import type { tAllPageDef, tAllLink } from 'geometrix';
 import type { tPageOne, tCategoryOne, tMenuList } from './menuListType';
 import { menuList } from './menuList';
 //import { get, writable } from 'svelte/store';
+import { base } from '$app/paths';
 
 function pathToLabel(ipath: string): string {
 	const re = /^.*\//g;
@@ -44,6 +45,19 @@ function makeDesignDefs(iMenu: tMenuList): tAllPageDef {
 		}
 	}
 	return rDesignDefs;
+}
+
+function makeAllLink(iMenu: tMenuList): tAllLink {
+	const rLink: tAllLink = {};
+	for (const categ of iMenu) {
+		for (const pag of categ.pages) {
+			if (pag.page != null) {
+				const label = pathToLabel(pag.path);
+				rLink[label] = `${base}${pag.path}`;
+			}
+		}
+	}
+	return rLink;
 }
 
 function checkIndexPath(iPath: string): string {
@@ -112,5 +126,6 @@ function listOneCategory(ipath: string): tCategoryOne {
 
 const menuList2 = makeMenuList2(menuList);
 const designDefs = makeDesignDefs(menuList);
+const allLink = makeAllLink(menuList);
 
-export { checkPath, listOneCategory, menuList2, designDefs };
+export { checkPath, listOneCategory, menuList2, designDefs, allLink };

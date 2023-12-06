@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { tPosiOrien, tSubDesign } from 'geometrix';
+	import type { tPosiOrien, tSubDesign, tAllLink } from 'geometrix';
 	import { ffix, radToDeg, paramListToVal } from 'geometrix';
 	//import { downloadParams, generateUrl } from './downloadParams';
 	import { downloadParams } from './downloadParams';
@@ -7,11 +7,12 @@
 	//import { onMount, createEventDispatcher } from 'svelte';
 	//import { browser } from '$app/environment';
 	//import { page } from '$app/stores';
-	import { base } from '$app/paths';
+	//import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 
 	export let subD: tSubDesign = {};
 	export let origPartName = '';
+	export let pLink: tAllLink;
 
 	let subInsts: string[] = [];
 	$: subInsts = Object.keys(subD);
@@ -22,7 +23,8 @@
 		updateStore(subObj.partName, paramListToVal(subObj.dparam), true);
 		//const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, paramListToVal(subObj.dparam), true);
 		//const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, {}, true);
-		const rUrl = `${base}/${subObj.link}`;
+		//const rUrl = `${base}/${subObj.link}`;
+		const rUrl = pLink[subObj.partName];
 		//console.log(`dbg505: ${rUrl}`);
 		//window.location.assign(rUrl);
 		//goto(rUrl, { invalidateAll: true });
@@ -67,7 +69,9 @@
 					<div class="arrow" />
 					{subInst}
 				</label>
-				<button on:click={() => goToUrl(subInst)}>Go to {subD[subInst].link}</button>
+				<button on:click={() => goToUrl(subInst)}
+					>Go to {pLink[subD[subInst].partName]}</button
+				>
 				<button on:click={() => dwnParams2(subInst)}>Export parameters</button>
 				<div class="nested">
 					<article>

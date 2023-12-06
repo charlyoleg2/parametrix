@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { tParamDef, tGeomFunc, tSubDesign } from 'geometrix';
+	import type { tParamDef, tGeomFunc, tSubDesign, tAllLink } from 'geometrix';
 	import {
 		c_ParametrixAll,
 		EFormat,
@@ -16,6 +16,7 @@
 
 	export let pDef: tParamDef;
 	export let fgeom: tGeomFunc;
+	export let pLink: tAllLink;
 
 	function checkWarn(txt: string) {
 		let rWarn = true;
@@ -172,7 +173,7 @@
 		<option value="zip">all faces and more as zip</option>
 	</select>
 	<button on:click={downloadExport}>Save to File</button>
-	<SubDesign {subD} origPartName={pDef.partName} />
+	<SubDesign {subD} origPartName={pDef.partName} {pLink} />
 </section>
 
 <style lang="scss">

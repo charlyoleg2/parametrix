@@ -3,4 +3,4 @@
 	export let data;
 </script>
 
-<OneDesign pageDef={data.pageDef} />
+<OneDesign pageDef={data.pageDef} pLink={data.allLink} />

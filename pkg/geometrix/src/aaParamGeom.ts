@@ -27,6 +27,7 @@ interface tPageDef {
 	pGeom: tGeomFunc;
 }
 type tAllPageDef = Record<string, tPageDef>;
+type tAllLink = Record<string, string>; // partName: its-link
 
 function fround(ireal: number, iprecision = 1000.0): number {
 	return Math.floor(ireal * iprecision) / iprecision;
@@ -62,5 +63,5 @@ function prefixLog(iLog: string, iPartName: string): string {
 	return rLog;
 }
 
-export type { tAllVal, tGeom, tGeomFunc, tPageDef, tAllPageDef };
+export type { tAllVal, tGeom, tGeomFunc, tPageDef, tAllPageDef, tAllLink };
 export { fround, initGeom, checkGeom, prefixLog };

@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { tPageDef } from 'geometrix';
+	import type { tPageDef, tAllLink } from 'geometrix';
 
 	import { incrStore } from './initStore';
 	import DrawingList from './DrawingList.svelte';
 	import ParamDrawExport from './ParamDrawExport.svelte';
 
 	export let pageDef: tPageDef;
+	export let pLink: tAllLink;
 
 	$: incrStore(pageDef);
 </script>
@@ -13,7 +14,7 @@
 <h1>{pageDef.pTitle}</h1>
 <article>{pageDef.pDescription}</article>
 <DrawingList pDef={pageDef.pDef} />
-<ParamDrawExport pDef={pageDef.pDef} fgeom={pageDef.pGeom} />
+<ParamDrawExport pDef={pageDef.pDef} fgeom={pageDef.pGeom} {pLink} />
 
 <style lang="scss">
 	@use './style/colors.scss';
