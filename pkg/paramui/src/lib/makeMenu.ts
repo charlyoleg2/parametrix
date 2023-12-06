@@ -75,7 +75,7 @@ const pageAbout: tPageOne = { path: '/about', page: null, svg: 'page_about.svg',
 const categ0: tCategoryOne = { category: '', pages: [pageIndex, pageAbout] };
 function listOneCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
 	//console.log(`dbg572: ${ipath}`);
-	let spath = checkIndexPath(ipath);
+	const spath = checkIndexPath(ipath);
 	let categIdx = 0;
 	lookForCategory: for (const [idx, categ] of iMenu.entries()) {
 		for (const pag of categ.pages) {
