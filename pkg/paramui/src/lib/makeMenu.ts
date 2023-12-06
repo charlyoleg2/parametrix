@@ -49,7 +49,7 @@ function makeDesignDefs(iMenu: tMenuList): tAllPageDef {
 function checkIndexPath(iPath: string): string {
 	//console.log(`dbg518: ${iPath}`);
 	let rpath = iPath;
-	if ((rpath === '/index') || (rpath === '/index.html')) {
+	if (rpath === '/index' || rpath === '/index.html') {
 		rpath = '/';
 		//console.log(`dbg565: ${rpath}`);
 	}
@@ -77,8 +77,7 @@ function listOneCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
 	//console.log(`dbg572: ${ipath}`);
 	let spath = checkIndexPath(ipath);
 	let categIdx = 0;
-	lookForCategory:
-	for (const [idx, categ] of iMenu.entries()) {
+	lookForCategory: for (const [idx, categ] of iMenu.entries()) {
 		for (const pag of categ.pages) {
 			if (spath === pag.path) {
 				categIdx = idx;
@@ -88,7 +87,7 @@ function listOneCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
 	}
 	// exception index and about
 	let rCateg = categ0;
-	if ((categIdx > 0) && (categIdx < iMenu.length - 1)) {
+	if (categIdx > 0 && categIdx < iMenu.length - 1) {
 		const categ1 = iMenu[categIdx];
 		rCateg = { category: categ1.category, pages: [] };
 		rCateg.pages.push(pageIndex);
