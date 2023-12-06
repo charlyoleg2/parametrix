@@ -51,7 +51,7 @@ function checkEmptyPath(iPath: string): string {
 	return rPath;
 }
 
-function findTheCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
+function listOneCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
 	let categIdx = 0;
 	for (const [idx, categ] of iMenu.entries()) {
 		for (const pag of categ.pages) {
@@ -74,12 +74,12 @@ function findTheCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
 	return rCateg;
 }
 
-function findTheCategory(ipath: string): tCategoryOne {
-	const rCateg = findTheCategorySub(menuList, ipath);
+function listOneCategory(ipath: string): tCategoryOne {
+	const rCateg = listOneCategorySub(menuList, ipath);
 	return rCateg;
 }
 
 const menuList2 = makeMenuList2(menuList);
 const designDefs = makeDesignDefs(menuList);
 
-export { checkEmptyPath, findTheCategory, menuList2, designDefs };
+export { checkEmptyPath, listOneCategory, menuList2, designDefs };
