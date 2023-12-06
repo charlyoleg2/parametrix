@@ -7,7 +7,7 @@
 	//import { onMount, createEventDispatcher } from 'svelte';
 	//import { browser } from '$app/environment';
 	//import { page } from '$app/stores';
-	//import { base } from '$app/paths';
+	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 
 	export let subD: tSubDesign = {};
@@ -23,8 +23,8 @@
 		updateStore(subObj.partName, paramListToVal(subObj.dparam), true);
 		//const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, paramListToVal(subObj.dparam), true);
 		//const rUrl = generateUrl(`${$page.url.origin}${base}/${subObj.link}`, {}, true);
-		//const rUrl = `${base}/${subObj.link}`;
-		const rUrl = pLink[subObj.partName];
+		const rUrl = `${base}${pLink[subObj.partName]}`;
+		//const rUrl = pLink[subObj.partName];
 		//console.log(`dbg505: ${rUrl}`);
 		//window.location.assign(rUrl);
 		//goto(rUrl, { invalidateAll: true });
