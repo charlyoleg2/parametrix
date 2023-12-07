@@ -32,7 +32,7 @@ const designList: tDesignList = {
 	'heliostat/swing': swingDef,
 	'heliostat/rod': rodDef,
 	'heliostat/trapeze': trapezeDef,
-	'heliostat/surface': surfaceDef,
-	}
+	'heliostat/surface': surfaceDef
+};
 
 export { designList };
