@@ -6,9 +6,11 @@ Presentation
 ------------
 
 This is the monorepo that contains the following *javascript* packages:
-- geometrix
-- designix
-- paramui
+- geometrix: the core library of *parametrix*
+- designix: some designs implemeted with *geometrix*
+- paramuilib: the *svelte* library to create easily a web-ui for some *geometrix-designs*
+- demo-paramuilib: a *sveltekit* app that showcase *paramuilib*
+- paramui: an enhanced web-ui for showcasing *designix*
 
 A public instance of *Parametrix* is available on that [github-page](https://charlyoleg2.github.io/parametrix/).
 The *code source* is available on [github](https://github.com/charlyoleg2/parametrix).
