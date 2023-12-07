@@ -19,6 +19,15 @@ function makeAllLink(iDesignList: tDesignList): tAllLink {
 	return rLink;
 }
 
-const allLink = makeAllLink(designList);
+function makeDesingNameList(iDesignList: tDesignList): string[] {
+	const rDesignName: string[] = [];
+	for (const onePath of Object.keys(iDesignList)) {
+		rDesignName.push(onePath);
+	}
+	return rDesignName;
+}
 
-export { allLink };
+const allLink = makeAllLink(designList);
+const designNameList = makeDesingNameList(designList);
+
+export { allLink, designNameList };
