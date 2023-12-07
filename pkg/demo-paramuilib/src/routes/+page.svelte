@@ -1,20 +1,17 @@
 <script lang="ts">
-	const aaa = 'bbb';
+	import { designList } from '$lib/designList';
+	import { base } from '$app/paths';
 </script>
 
-<h1>Welcome to demo-paramuilib</h1>
-<h6>
-	Demonstrating the usage of the <a href="https://svelte.dev/">svelte</a> library
-	<strong>paramuilib</strong>
-</h6>
-
 <h2>List of designs:</h2>
-<ul>
-	<li>aaa{aaa}</li>
-</ul>
+<ol>
+	{#each designList as designOne, designIdx}
+		<li><a href={`${base}${designOne}`}>{designOne}</a></li>
+	{/each}
+</ol>
 
 <style lang="scss">
-	h1 {
+	h2 {
 		color: pink;
 	}
 </style>
