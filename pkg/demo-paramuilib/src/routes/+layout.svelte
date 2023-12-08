@@ -51,6 +51,9 @@
 		margin-top: 0.1rem;
 		margin-left: 0.1rem;
 	}
+	nav > a:hover {
+		background-color: yellow;
+	}
 	main {
 		background-color: GhostWhite;
 		min-height: 70vh;
