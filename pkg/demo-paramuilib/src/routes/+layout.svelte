@@ -8,7 +8,7 @@
 	<a href="https://www.npmjs.com/">paramuilib</a>.
 </h6>
 <nav>
-	<a href={`${base}/`}>[index] list of designs</a>
+	<a href={`${base}/`}>index: list of designs</a>
 </nav>
 <main>
 	<slot />
@@ -26,13 +26,30 @@
 		background-color: DarkCyan;
 	}
 	h1 {
+		color: aquamarine;
 		margin: 1rem;
+		margin-bottom: 0.2rem;
 	}
 	h6 {
 		margin: 1rem;
+		margin-top: 0.2rem;
 	}
 	nav {
 		margin: 1rem;
+	}
+	nav > a {
+		display: inline-block;
+		color: black;
+		background-color: GhostWhite;
+		text-decoration: none;
+		padding-left: 0.3rem;
+		padding-right: 0.3rem;
+		border-style: solid;
+		border-width: 0.2rem;
+		border-radius: 0.6rem;
+		border-color: Brown;
+		margin-top: 0.1rem;
+		margin-left: 0.1rem;
 	}
 	main {
 		background-color: GhostWhite;

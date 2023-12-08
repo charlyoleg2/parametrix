@@ -13,5 +13,6 @@
 <style lang="scss">
 	h2 {
 		color: pink;
+		margin: 1rem;
 	}
 </style>
