@@ -5,8 +5,8 @@ import { heliostat_2Def } from 'designix';
 
 const simtime = 0;
 
-make_heliostat_2() {
-	let logstr = "";
+function make_heliostat_2() {
+	let logstr = '';
 	try {
 		const helioParam = designParam(heliostat_2Def.pDef);
 		helioParam.setVal('H1', 2000);
@@ -20,7 +20,6 @@ make_heliostat_2() {
 		console.log('err909: error while making heliostat_2');
 		console.log(emsg as string);
 	}
-
 }
 
 export { make_heliostat_2 };
