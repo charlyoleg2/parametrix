@@ -1,7 +1,6 @@
 // [design]/+page.js
 
-import { designList } from '$lib/designList';
-import { allLink } from '$lib/makeList';
+import { designList, allLink } from '$lib/makeList';
 import { error } from '@sveltejs/kit';
 
 export function load({ params }) {

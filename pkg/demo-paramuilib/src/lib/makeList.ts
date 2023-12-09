@@ -2,7 +2,7 @@
 
 import type { tAllLink } from 'geometrix';
 import type { tDesignList } from './designListType';
-import { designList } from '$lib/designList';
+import { designList } from './designList';
 
 function pathToLabel(ipath: string): string {
 	const re = /^.*\//g;
@@ -30,4 +30,4 @@ function makeDesingNameList(iDesignList: tDesignList): string[] {
 const allLink = makeAllLink(designList);
 const designNameList = makeDesingNameList(designList);
 
-export { allLink, designNameList };
+export { designList, allLink, designNameList };

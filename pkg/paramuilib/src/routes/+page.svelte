@@ -1,3 +1,18 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import { designNameList } from './makeList';
+	import { base } from '$app/paths';
+</script>
+
+<h2>List of designs:</h2>
+<ol>
+	{#each designNameList as designOne}
+		<li><a href={`${base}/${designOne}`}>{designOne}</a></li>
+	{/each}
+</ol>
+
+<style lang="scss">
+	h2 {
+		color: pink;
+		margin: 1rem;
+	}
+</style>
