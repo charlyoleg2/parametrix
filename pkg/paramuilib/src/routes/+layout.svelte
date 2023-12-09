@@ -2,9 +2,9 @@
 	import { base } from '$app/paths';
 </script>
 
-<h1>Welcome to demo-paramuilib</h1>
+<h1>Welcome to paramuilib test-app</h1>
 <h6>
-	Showcasing the usage of the <a href="https://svelte.dev/">svelte</a> library
+	Testing the <a href="https://svelte.dev/">svelte</a> library
 	<a href="https://www.npmjs.com/">paramuilib</a>.
 </h6>
 <nav>
@@ -14,8 +14,8 @@
 	<slot />
 </main>
 <footer>
-	<a href="https://github.com/charlyoleg2/parametrix">demo-paramuilib</a>, a minimalist showcase
-	of
+	<a href="https://github.com/charlyoleg2/parametrix">paramuilib test-app</a>, a sveltekit-app for
+	testing
 	<a href="https://www.npmjs.com/">paramuilib</a>.
 </footer>
 
