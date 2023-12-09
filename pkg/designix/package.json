@@ -46,7 +46,7 @@
 		"svgCp1": "shx cp export_svg/*.svg ../paramui/static",
 		"svgCp2": "shx cp export_svg/*.svg ../demo-paramuilib/static",
 		"svgCp3": "shx cp export_svg/*.svg ../paramuilib/static",
-		"svgo": "run-s svgoAll svgoCp1 svgoCp2 svgoCp3",
+		"svgo": "run-s svgoAll svgCp1 svgCp2 svgCp3",
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
