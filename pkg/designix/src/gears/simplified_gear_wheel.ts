@@ -185,12 +185,12 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gearWWParam.setVal('wheelAxisExtRound', param.wheelAxisExtRound);
 		gearWWParam.setVal('wheelAxisIntRound', param.wheelAxisIntRound);
 		gearWWParam.setVal('wheelExtraRound', param.wheelExtraRound);
-		const gearWWGeom = gearWheelWheelDef.pGeom(0, gearWWParam.getParamVal());
+		const gearWWGeom = gearWheelWheelDef.pGeom(t, gearWWParam.getParamVal());
 		checkGeom(gearWWGeom);
 		rGeome.logstr += prefixLog(gearWWGeom.logstr, gearWWParam.partName);
 		// figures
-		figOne.mergeFigure(gearWWGeom.fig.figOne);
-		figTwo.mergeFigure(gearWWGeom.fig.figTwo);
+		figOne.mergeFigure(gearWWGeom.fig.teethProfile);
+		figTwo.mergeFigure(gearWWGeom.fig.axisProfile);
 		// final figure list
 		rGeome.fig = { teethProfile: figOne, axisProfile: figTwo };
 		const designName = rGeome.partName;
