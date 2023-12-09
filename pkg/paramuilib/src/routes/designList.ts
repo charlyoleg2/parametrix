@@ -15,7 +15,10 @@ import {
 	swingDef,
 	rodDef,
 	trapezeDef,
-	surfaceDef
+	surfaceDef,
+	circlesDef,
+	rectangleDef,
+	dummyPoleStaticDef
 } from 'designix';
 
 const designList: tDesignList = {
@@ -32,7 +35,10 @@ const designList: tDesignList = {
 	'heliostat/swing': swingDef,
 	'heliostat/rod': rodDef,
 	'heliostat/trapeze': trapezeDef,
-	'heliostat/surface': surfaceDef
+	'heliostat/surface': surfaceDef,
+	'dummy/circles': circlesDef,
+	'dummy/rectangle': rectangleDef,
+	'dummy/pole_static': dummyPoleStaticDef
 };
 
 export { designList };
