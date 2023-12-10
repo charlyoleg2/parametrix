@@ -31,7 +31,7 @@
 	"dependencies": {
 		"designix": "^0.5.2",
 		"geometrix": "^0.5.1",
-		"paramuilib": "^0.5.4"
+		"geomui": "^0.5.3"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",

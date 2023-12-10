@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { OneDesign } from 'paramuilib';
+	import { OneDesign } from 'geomui';
 	export let data;
 </script>
 
