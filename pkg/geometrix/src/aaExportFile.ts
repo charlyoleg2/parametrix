@@ -10,7 +10,7 @@ import {
 	makeOpenjscad,
 	makeZip
 } from './aaExportContent';
-import { c_ParametrixAll, mergeFaces } from './figure';
+import { mergeFaces } from './figure';
 
 enum EFormat {
 	eSVG,
@@ -20,6 +20,7 @@ enum EFormat {
 	eJSCAD,
 	eZIP
 }
+const c_ParametrixAll = 'ParametrixAll';
 
 function fileTextContent(
 	fgeom: tGeomFunc,
@@ -136,4 +137,4 @@ function fileBin(exportFormat: EFormat): boolean {
 	return rBin;
 }
 
-export { EFormat, fileBinContent, fileTextContent, fileMime, fileSuffix, fileBin };
+export { EFormat, c_ParametrixAll, fileBinContent, fileTextContent, fileMime, fileSuffix, fileBin };
