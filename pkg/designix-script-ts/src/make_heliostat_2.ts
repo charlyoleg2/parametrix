@@ -41,23 +41,23 @@ async function make_heliostat_2() {
 	checkGeom(helioGeom);
 	logstr += prefixLog(helioGeom.logstr, helioParam.partName);
 	logstr += await write_geom(
-		helioGeom.partName,
+		helioParam.partName,
 		heliostat_2Def.pGeom,
 		simtime,
 		helioParam.getParamVal(),
-		//EFormat.ePARAMS,
+		//EFormat.ePARAMS, // output-format
 		//EFormat.eSVG,
 		//EFormat.eDXF,
 		//EFormat.ePAX,
 		//EFormat.eOPENSCAD,
 		//EFormat.eJSCAD,
 		EFormat.eZIP,
-		'',
+		'', // selected-2d-face
 		//'faceSide',
 		//'faceFace',
 		//'faceTop',
-		'output',
-		''
+		'output', // output-directory
+		'' // output-filename
 	);
 	console.log(logstr);
 }
