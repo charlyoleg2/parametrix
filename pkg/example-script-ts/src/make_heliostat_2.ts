@@ -36,6 +36,7 @@ function make_heliostat_2() {
 		helioParam.setVal('L8', 200); // 200 mm
 		helioParam.setVal('al', 80); // 80 degree
 		helioParam.setVal('S1', 100); // 100 mm
+		//helioParam.setVal('S1wrong', 100); // checking if not existing parameter generates an error
 		const helioGeom = heliostat_2Def.pGeom(simtime, helioParam.getParamVal());
 		checkGeom(helioGeom);
 		logstr += prefixLog(helioGeom.logstr, helioParam.partName);
