@@ -1,0 +1,66 @@
+{
+	"name": "geomcli",
+	"version": "0.5.7",
+	"description": "the nodejs companion library of geometrix",
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/charlyoleg2/parametrix.git"
+	},
+	"homepage": "https://github.com/charlyoleg2/parametrix#readme",
+	"keywords": [
+		"cad",
+		"programmatic",
+		"2D",
+		"circle",
+		"stroke",
+		"arc",
+		"gear"
+	],
+	"author": "charlyoleg",
+	"tsup": {
+		"entry": [
+			"src/index.ts"
+		],
+		"format": "esm",
+		"splitting": false,
+		"dts": false,
+		"sourcemap": false,
+		"clean": true
+	},
+	"scripts": {
+		"dev": "tsup --watch",
+		"build": "tsup build",
+		"check": "tsc --noEmit",
+		"pretty": "prettier --check .",
+		"format": "prettier --write .",
+		"lint": "eslint .",
+		"test:unit": "vitest",
+		"test:unit:once": "vitest --run",
+		"ci": "run-s check build pretty lint test:unit:once",
+		"clean": "shx rm -fr build dist node_modules"
+	},
+	"dependencies": {
+		"geometrix": "^0.5.1"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.13.2",
+		"@typescript-eslint/parser": "^6.13.2",
+		"eslint": "^8.55.0",
+		"eslint-config-prettier": "^9.1.0",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^3.1.0",
+		"shx": "^0.3.4",
+		"tsup": "^8.0.1",
+		"typescript": "^5.3.3",
+		"vitest": "^0.34.6"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"types": "dist/index.d.ts",
+	"type": "module"
+}
