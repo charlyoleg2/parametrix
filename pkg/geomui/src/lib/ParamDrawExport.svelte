@@ -86,59 +86,62 @@
 			.replace('T', '_');
 		return rDateStr;
 	}
-	async function downloadExport() {
+	async function downloadExport(iExportFace: string) {
 		//console.log(`dbg883: exportFace ${exportFace}`);
 		const reSvg = /^svg_/;
 		const reDxf = /^dxf_/;
-		let exportFormat = EFormat.eSVG;
+		let iExportFormat = EFormat.eSVG;
 		let eFace = '';
 		let nFace = 'all';
 		if (exportFace.match(reSvg)) {
-			exportFormat = EFormat.eSVG;
+			iExportFormat = EFormat.eSVG;
 			eFace = exportFace.replace(reSvg, '');
 			nFace = eFace;
 		} else if (exportFace.match(reDxf)) {
-			exportFormat = EFormat.eDXF;
+			iExportFormat = EFormat.eDXF;
 			eFace = exportFace.replace(reDxf, '');
 			nFace = eFace;
 		} else if (exportFace === 'allsvg') {
-			exportFormat = EFormat.eSVG;
+			iExportFormat = EFormat.eSVG;
 			eFace = c_ParametrixAll;
 		} else if (exportFace === 'alldxf') {
-			exportFormat = EFormat.eDXF;
+			iExportFormat = EFormat.eDXF;
 			eFace = c_ParametrixAll;
 		} else if (exportFace === 'pax') {
-			exportFormat = EFormat.ePAX;
+			iExportFormat = EFormat.ePAX;
 			eFace = c_ParametrixAll;
 		} else if (exportFace === 'oscad') {
-			exportFormat = EFormat.eOPENSCAD;
+			iExportFormat = EFormat.eOPENSCAD;
 			eFace = c_ParametrixAll;
 		} else if (exportFace === 'ojscad') {
-			exportFormat = EFormat.eJSCAD;
+			iExportFormat = EFormat.eJSCAD;
 			eFace = c_ParametrixAll;
 		} else if (exportFace === 'zip') {
-			exportFormat = EFormat.eZIP;
+			iExportFormat = EFormat.eZIP;
 			eFace = c_ParametrixAll;
 		} else {
 			console.log(`err883: downloadExport exportFace ${exportFace} invalid`);
 		}
-		//console.log(`exportFormat ${exportFormat}`);
-		const fSuffix = fileSuffix(exportFormat);
-		const fMime = fileMime(exportFormat);
-		const fBin = fileBin(exportFormat);
+		//console.log(`iExportFormat ${iExportFormat}`);
+		const fSuffix = fileSuffix(iExportFormat);
+		const fMime = fileMime(iExportFormat);
+		const fBin = fileBin(iExportFormat);
 		const fName = pDef.partName + '_' + nFace + '_' + dateString() + fSuffix;
 		if (fBin) {
 			const fContent = await fileBinContent(
 				fgeom,
 				simTime,
 				$storePV[pDef.partName],
-				exportFormat
+				iExportFormat
 			);
 			download_binFile(fName, fContent);
 		} else {
-			const fContent = fileTextContent(fgeom, $storePV[pDef.partName], eFace, exportFormat);
+			const fContent = fileTextContent(fgeom, $storePV[pDef.partName], eFace, iExportFormat);
 			download_textFile(fName, fContent, fMime);
 		}
+	}
+	async function downloadExport2() {
+		await downloadExport(exportFace);
 	}
 </script>
 
@@ -172,7 +175,7 @@
 		<option value="ojscad">all faces as OpenJScad.js</option>
 		<option value="zip">all faces and more as zip</option>
 	</select>
-	<button on:click={downloadExport}>Save to File</button>
+	<button on:click={downloadExport2}>Save to File</button>
 	<SubDesign {subD} origPartName={pDef.partName} {pLink} />
 </section>
 
