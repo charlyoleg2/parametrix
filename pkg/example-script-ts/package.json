@@ -38,7 +38,7 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"ci": "run-s check build pretty lint test:unit:once",
-		"run": "node build/index.js",
+		"run": "build/index.js",
 		"clean": "shx rm -fr build dist node_modules"
 	},
 	"dependencies": {
@@ -57,5 +57,13 @@
 		"typescript": "^5.3.3",
 		"vitest": "^0.34.6"
 	},
+	"exports": {
+		".": {
+			"types": "./build/index.d.ts",
+			"default": "./build/index.js"
+		}
+	},
+	"bin": "./build/index.js",
+	"types": "build/index.d.ts",
 	"type": "module"
 }

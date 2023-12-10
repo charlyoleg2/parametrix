@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // example-script-ts index.ts
 
 import { make_heliostat_2 } from './make_heliostat_2';
