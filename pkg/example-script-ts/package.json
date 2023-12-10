@@ -18,9 +18,19 @@
 		"gear"
 	],
 	"author": "charlyoleg",
+	"tsup": {
+		"entry": [
+			"src/index.ts"
+		],
+		"format": "esm",
+		"splitting": false,
+		"dts": true,
+		"sourcemap": true,
+		"clean": true
+	},
 	"scripts": {
-		"dev": "tsc --watch",
-		"build": "tsc",
+		"dev": "tsup --out-dir build --watch",
+		"build": "tsup --out-dir build",
 		"check": "tsc --noEmit",
 		"pretty": "prettier --check .",
 		"format": "prettier --write .",
