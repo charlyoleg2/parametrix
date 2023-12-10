@@ -39,7 +39,7 @@
 		"test:unit:once": "vitest --run",
 		"ci": "run-s check build pretty lint test:unit:once",
 		"run": "build/index.js",
-		"clean": "shx rm -fr build dist node_modules"
+		"clean": "shx rm -fr build dist node_modules output"
 	},
 	"dependencies": {
 		"designix": "^0.5.2",
