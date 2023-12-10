@@ -30,7 +30,7 @@
 	},
 	"scripts": {
 		"dev": "tsup --watch",
-		"build": "tsup build",
+		"build": "tsup",
 		"check": "tsc --noEmit",
 		"pretty": "prettier --check .",
 		"format": "prettier --write .",
