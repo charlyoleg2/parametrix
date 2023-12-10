@@ -15,6 +15,11 @@
 		"format": "prettier --write .",
 		"clean": "shx rm -fr .svelte-kit build node_modules"
 	},
+	"dependencies": {
+		"designix": "^0.5.2",
+		"geometrix": "^0.5.1",
+		"geomui": "^0.5.3"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",

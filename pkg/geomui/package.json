@@ -32,6 +32,10 @@
 		"@sveltejs/kit": "^1.27.6",
 		"svelte": "^4.0.0"
 	},
+	"dependencies": {
+		"designix": "^0.5.2",
+		"geometrix": "^0.5.1"
+	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.1.1",
 		"@sveltejs/adapter-static": "^2.0.3",

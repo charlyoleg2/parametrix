@@ -43,7 +43,8 @@
 	},
 	"dependencies": {
 		"designix": "^0.5.2",
-		"geometrix": "^0.5.1"
+		"geometrix": "^0.5.1",
+		"geomcli": "^0.5.4"
 	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^6.13.2",
