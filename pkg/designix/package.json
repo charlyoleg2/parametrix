@@ -38,7 +38,7 @@
 		"test:unit:once": "vitest --run",
 		"ci": "run-s check build pretty lint test:unit:once",
 		"svgo1": "svgo --config ../paramui/svgo.config.cjs -f src/svg -o export_svg",
-		"svgo2": "svgo --config ../paramui/svgo.config.cjs -f src/dummies/svg -o export_svg",
+		"svgo2": "svgo --config ../paramui/svgo.config.cjs -f src/dummy/svg -o export_svg",
 		"svgo3": "svgo --config ../paramui/svgo.config.cjs -f src/gears/svg -o export_svg",
 		"svgo4": "svgo --config ../paramui/svgo.config.cjs -f src/geometrix_verification/svg -o export_svg",
 		"svgo5": "svgo --config ../paramui/svgo.config.cjs -f src/heliostat/svg -o export_svg",
