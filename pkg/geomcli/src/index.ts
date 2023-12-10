@@ -1,7 +1,5 @@
 // geomcli index.ts
 
-function write_geom() {
-	console.log('todo');
-}
+import { write_geom } from './write_geom';
 
 export { write_geom };
