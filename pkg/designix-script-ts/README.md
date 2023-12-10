@@ -15,7 +15,7 @@ git clone https://github.com/charlyoleg2/parametrix
 cd parametrix
 npm install
 npm ci
-npm -w example-script-ts run run
+npm -w designix-script-ts run run
 ```
 
 
