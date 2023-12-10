@@ -1,6 +1,6 @@
 {
 	"name": "geomcli",
-	"version": "0.5.7",
+	"version": "0.5.4",
 	"description": "the nodejs companion library of geometrix",
 	"private": true,
 	"repository": {
