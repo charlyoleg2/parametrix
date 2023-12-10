@@ -24,8 +24,8 @@
 		],
 		"format": "esm",
 		"splitting": false,
-		"dts": true,
-		"sourcemap": true,
+		"dts": false,
+		"sourcemap": false,
 		"clean": true
 	},
 	"scripts": {
