@@ -13,6 +13,7 @@ import {
 import { mergeFaces } from './figure';
 
 enum EFormat {
+	ePARAMS,
 	eSVG,
 	eDXF,
 	ePAX,
