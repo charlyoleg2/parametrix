@@ -87,56 +87,56 @@
 		return rDateStr;
 	}
 	async function downloadExport(iExportFace: string) {
-		//console.log(`dbg883: exportFace ${exportFace}`);
+		//console.log(`dbg883: iExportFace ${iExportFace}`);
 		const reSvg = /^svg_/;
 		const reDxf = /^dxf_/;
-		let iExportFormat = EFormat.eSVG;
+		let exportFormat = EFormat.eSVG;
 		let eFace = '';
 		let nFace = 'all';
-		if (exportFace.match(reSvg)) {
-			iExportFormat = EFormat.eSVG;
-			eFace = exportFace.replace(reSvg, '');
+		if (iExportFace.match(reSvg)) {
+			exportFormat = EFormat.eSVG;
+			eFace = iExportFace.replace(reSvg, '');
 			nFace = eFace;
-		} else if (exportFace.match(reDxf)) {
-			iExportFormat = EFormat.eDXF;
-			eFace = exportFace.replace(reDxf, '');
+		} else if (iExportFace.match(reDxf)) {
+			exportFormat = EFormat.eDXF;
+			eFace = iExportFace.replace(reDxf, '');
 			nFace = eFace;
-		} else if (exportFace === 'allsvg') {
-			iExportFormat = EFormat.eSVG;
+		} else if (iExportFace === 'allsvg') {
+			exportFormat = EFormat.eSVG;
 			eFace = c_ParametrixAll;
-		} else if (exportFace === 'alldxf') {
-			iExportFormat = EFormat.eDXF;
+		} else if (iExportFace === 'alldxf') {
+			exportFormat = EFormat.eDXF;
 			eFace = c_ParametrixAll;
-		} else if (exportFace === 'pax') {
-			iExportFormat = EFormat.ePAX;
+		} else if (iExportFace === 'pax') {
+			exportFormat = EFormat.ePAX;
 			eFace = c_ParametrixAll;
-		} else if (exportFace === 'oscad') {
-			iExportFormat = EFormat.eOPENSCAD;
+		} else if (iExportFace === 'oscad') {
+			exportFormat = EFormat.eOPENSCAD;
 			eFace = c_ParametrixAll;
-		} else if (exportFace === 'ojscad') {
-			iExportFormat = EFormat.eJSCAD;
+		} else if (iExportFace === 'ojscad') {
+			exportFormat = EFormat.eJSCAD;
 			eFace = c_ParametrixAll;
-		} else if (exportFace === 'zip') {
-			iExportFormat = EFormat.eZIP;
+		} else if (iExportFace === 'zip') {
+			exportFormat = EFormat.eZIP;
 			eFace = c_ParametrixAll;
 		} else {
-			console.log(`err883: downloadExport exportFace ${exportFace} invalid`);
+			console.log(`err883: downloadExport iExportFace ${iExportFace} invalid`);
 		}
-		//console.log(`iExportFormat ${iExportFormat}`);
-		const fSuffix = fileSuffix(iExportFormat);
-		const fMime = fileMime(iExportFormat);
-		const fBin = fileBin(iExportFormat);
+		//console.log(`exportFormat ${exportFormat}`);
+		const fSuffix = fileSuffix(exportFormat);
+		const fMime = fileMime(exportFormat);
+		const fBin = fileBin(exportFormat);
 		const fName = pDef.partName + '_' + nFace + '_' + dateString() + fSuffix;
 		if (fBin) {
 			const fContent = await fileBinContent(
 				fgeom,
 				simTime,
 				$storePV[pDef.partName],
-				iExportFormat
+				exportFormat
 			);
 			download_binFile(fName, fContent);
 		} else {
-			const fContent = fileTextContent(fgeom, $storePV[pDef.partName], eFace, iExportFormat);
+			const fContent = fileTextContent(fgeom, $storePV[pDef.partName], eFace, exportFormat);
 			download_textFile(fName, fContent, fMime);
 		}
 	}
