@@ -101,7 +101,7 @@ class DesignParam {
 		for (const pa of Object.keys(iValues)) {
 			this.setVal(pa, iValues[pa].val);
 		}
-		rlog += `info104: apply ${Object.keys(iValues).length} parameters on ${this.partName}`;
+		rlog += `info104: apply ${Object.keys(iValues).length} parameters on ${this.partName}\n`;
 		return rlog;
 	}
 	getDesignParamList(): tDesignParamList {

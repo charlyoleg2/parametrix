@@ -32,14 +32,14 @@ async function write_binFile(fName: string, fContent: Blob): Promise<string> {
 	const buffer = await fContent.arrayBuffer();
 	const arrBufView = new DataView(buffer);
 	fs.writeFileSync(fName, arrBufView);
-	rlog += `info304: bin-file ${fName} has been written`;
+	rlog += `info304: bin-file ${fName} has been written\n`;
 	return rlog;
 }
 
 function write_textFile(fName: string, fContent: string): string {
 	let rlog = '';
 	fs.writeFileSync(fName, fContent);
-	rlog += `info405: text-file ${fName} has been written`;
+	rlog += `info405: text-file ${fName} has been written\n`;
 	return rlog;
 }
 
