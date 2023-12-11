@@ -25,6 +25,7 @@ import {
 	initGeom,
 	//EExtrude,
 	EBVolume
+	//oneDesignParam
 } from 'geometrix';
 
 // design import
@@ -238,9 +239,11 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			]
 		};
 		// sub-design
+		const poleDesignParamList = poleStaticParam.getDesignParamList();
+		//poleDesignParamList.gaga = oneDesignParam(5, 6, true); // testing adding a wring param
 		const subPoleStatic: tSubInst = {
 			partName: poleStaticParam.getPartName(),
-			dparam: poleStaticParam.getDesignParamList(),
+			dparam: poleDesignParamList,
 			orientation: [0, 0, 0],
 			position: [0, 0, 0]
 		};

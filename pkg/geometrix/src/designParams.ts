@@ -37,6 +37,11 @@ interface tDesignParamOne {
 	chg: boolean;
 }
 
+function oneDesignParam(iVal: number, iInit: number, iChg: boolean): tDesignParamOne {
+	const oneDP: tDesignParamOne = { val: iVal, init: iInit, chg: iChg };
+	return oneDP;
+}
+
 type tDesignParamList = Record<string, tDesignParamOne>;
 
 class DesignParam {
@@ -107,12 +112,7 @@ class DesignParam {
 	getDesignParamList(): tDesignParamList {
 		const rDPList: tDesignParamList = {};
 		for (const pi of this.paramNames) {
-			const oneParam: tDesignParamOne = {
-				val: this.getVal(pi),
-				init: this.getInit(pi),
-				chg: this.getChanged(pi)
-			};
-			rDPList[pi] = oneParam;
+			rDPList[pi] = oneDesignParam(this.getVal(pi), this.getInit(pi), this.getChanged(pi));
 		}
 		return rDPList;
 	}
@@ -171,4 +171,4 @@ function pDropdown(name: string, values: string[]): tParam {
 }
 
 export type { tParamDef, tParamVal, tDesignParamList, DesignParam };
-export { PType, pNumber, pCheckbox, pDropdown, designParam, paramListToVal };
+export { PType, pNumber, pCheckbox, pDropdown, designParam, paramListToVal, oneDesignParam };
