@@ -96,6 +96,14 @@ class DesignParam {
 			throw `err163: parameter ${iname} does not exist in design ${this.partName}`;
 		}
 	}
+	applyParams(iValues: tDesignParamList): string {
+		let rlog = '';
+		for (const pa of Object.keys(iValues)) {
+			this.setVal(pa, iValues[pa].val);
+		}
+		rlog += `info104: apply ${Object.keys(iValues).length} parameters on ${this.partName}`;
+		return rlog;
+	}
 	getDesignParamList(): tDesignParamList {
 		const rDPList: tDesignParamList = {};
 		for (const pi of this.paramNames) {

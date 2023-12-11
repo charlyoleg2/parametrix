@@ -70,6 +70,9 @@ async function write_geom(
 	if (reSlash.test(fName)) {
 		throw `err932: the filename ${fName} contains a slash '/'`;
 	}
+	if (iDir === '') {
+		throw `err074: write_geom output-directory is an empty string!`;
+	}
 	rlog += createDir(iDir);
 	const fName2 = `${iDir}/${fName}`;
 	if (fBin) {

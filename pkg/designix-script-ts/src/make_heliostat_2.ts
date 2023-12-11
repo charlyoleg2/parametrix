@@ -1,12 +1,13 @@
 // make_heliostat_2.ts
 
+import type { tSubDesign } from 'geometrix';
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { heliostat_2Def } from 'designix';
 import { write_geom } from 'geomcli';
 
 const simtime = 0;
 
-async function make_heliostat_2() {
+async function make_heliostat_2(iOutDir: string, iPrintLog: boolean): Promise<tSubDesign> {
 	let logstr = '';
 	const helioParam = designParam(heliostat_2Def.pDef);
 	helioParam.setVal('H1', 3000); // 3000 mm
@@ -40,26 +41,31 @@ async function make_heliostat_2() {
 	const helioGeom = heliostat_2Def.pGeom(simtime, helioParam.getParamVal());
 	checkGeom(helioGeom);
 	logstr += prefixLog(helioGeom.logstr, helioParam.partName);
-	logstr += await write_geom(
-		helioParam.partName,
-		heliostat_2Def.pGeom,
-		simtime,
-		helioParam.getParamVal(),
-		//EFormat.ePARAMS, // output-format
-		//EFormat.eSVG,
-		//EFormat.eDXF,
-		//EFormat.ePAX,
-		//EFormat.eOPENSCAD,
-		//EFormat.eJSCAD,
-		EFormat.eZIP,
-		'', // selected-2d-face
-		//'faceSide',
-		//'faceFace',
-		//'faceTop',
-		'output', // output-directory
-		'' // output-filename
-	);
-	console.log(logstr);
+	if (iOutDir !== '') {
+		logstr += await write_geom(
+			helioParam.partName,
+			heliostat_2Def.pGeom,
+			simtime,
+			helioParam.getParamVal(),
+			//EFormat.ePARAMS, // output-format
+			//EFormat.eSVG,
+			//EFormat.eDXF,
+			//EFormat.ePAX,
+			//EFormat.eOPENSCAD,
+			//EFormat.eJSCAD,
+			EFormat.eZIP,
+			'', // selected-2d-face
+			//'faceSide',
+			//'faceFace',
+			//'faceTop',
+			iOutDir, // output-directory
+			'' // output-filename
+		);
+	}
+	if (iPrintLog) {
+		console.log(logstr);
+	}
+	return helioGeom.sub;
 }
 
 export { make_heliostat_2 };
