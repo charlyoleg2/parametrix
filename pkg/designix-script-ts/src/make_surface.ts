@@ -10,7 +10,6 @@ const simtime = 0;
 async function make_surface(iOutDir: string, iPrintLog: boolean): Promise<tGeom> {
 	let logstr = '';
 	const surfaceParam = designParam(surfaceDef.pDef);
-	surfaceParam.setVal('L1', 12500); // 12500 mm
 	surfaceParam.setVal('LH', 1600); // 1600 mm
 	surfaceParam.setVal('LV', 1000); // 1000 mm
 	surfaceParam.setVal('LZ', 40); // 40 mm
@@ -57,11 +56,10 @@ async function make_surface(iOutDir: string, iPrintLog: boolean): Promise<tGeom>
 			//'faceTop',
 			//'faceTopWithRods',
 			iOutDir, // output-directory
-			'surface_flavour_A' // output-filename
+			'surface_flavour_A.zip' // output-filename
 		);
 	}
 	// surface_flavour_B
-	surfaceParam.setVal('L1', 10500); // 12500 mm
 	surfaceParam.setVal('LH', 1400); // 1600 mm
 	surfaceParam.setVal('LV', 900); // 1000 mm
 	const surfaceGeom_B = surfaceDef.pGeom(simtime, surfaceParam.getParamVal());
@@ -86,7 +84,7 @@ async function make_surface(iOutDir: string, iPrintLog: boolean): Promise<tGeom>
 			//'faceTop',
 			//'faceTopWithRods',
 			iOutDir, // output-directory
-			'surface_flavour_B' // output-filename
+			'surface_flavour_B.zip' // output-filename
 		);
 	}
 	if (iPrintLog) {
