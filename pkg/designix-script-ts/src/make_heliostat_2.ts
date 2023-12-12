@@ -1,13 +1,13 @@
 // make_heliostat_2.ts
 
-import type { tSubDesign } from 'geometrix';
+import type { tGeom } from 'geometrix';
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { heliostat_2Def } from 'designix';
 import { write_geom } from 'geomcli';
 
 const simtime = 0;
 
-async function make_heliostat_2(iOutDir: string, iPrintLog: boolean): Promise<tSubDesign> {
+async function make_heliostat_2(iOutDir: string, iPrintLog: boolean): Promise<tGeom> {
 	let logstr = '';
 	const helioParam = designParam(heliostat_2Def.pDef);
 	helioParam.setVal('H1', 3000); // 3000 mm
@@ -65,7 +65,7 @@ async function make_heliostat_2(iOutDir: string, iPrintLog: boolean): Promise<tS
 	if (iPrintLog) {
 		console.log(logstr);
 	}
-	return helioGeom.sub;
+	return helioGeom;
 }
 
 export { make_heliostat_2 };

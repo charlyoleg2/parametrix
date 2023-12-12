@@ -1,5 +1,6 @@
 // make_pole_static.ts
 
+import type { tGeom } from 'geometrix';
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { write_geom } from 'geomcli';
 import { poleStaticDef } from 'designix';
@@ -7,11 +8,11 @@ import { make_heliostat_2 } from './make_heliostat_2';
 
 const simtime = 0;
 
-async function make_pole_static(iOutDir: string, iPrintLog: boolean) {
+async function make_pole_static(iOutDir: string, iPrintLog: boolean): Promise<tGeom> {
 	let logstr = '';
 	const poleParam = designParam(poleStaticDef.pDef);
-	const helioSub = await make_heliostat_2('', false);
-	logstr += poleParam.applyParams(helioSub.pole_static_1.dparam);
+	const helioGeom = await make_heliostat_2('', false);
+	logstr += poleParam.applyParams(helioGeom.sub.pole_static_1.dparam);
 	poleParam.setVal('D1', 1000); // 1000 mm
 	poleParam.setVal('D2', 700); // 700 mm
 	poleParam.setVal('D3', 800); // 800 mm
@@ -56,6 +57,7 @@ async function make_pole_static(iOutDir: string, iPrintLog: boolean) {
 	if (iPrintLog) {
 		console.log(logstr);
 	}
+	return poleGeom;
 }
 
 export { make_pole_static };
