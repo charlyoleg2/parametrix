@@ -61,11 +61,21 @@ async function make_rake_stopper(iOutDir: string, iPrintLog: boolean): Promise<t
 			//EFormat.eJSCAD,
 			EFormat.eZIP,
 			'', // selected-2d-face
-			//'poleCut',
-			//'poleFace',
-			//'poleBottom',
-			//'emptyPole',
-			//'emptyDoor',
+			//'faceCone',
+			//'faceBeam',
+			//'faceBeamHollow',
+			//'faceDisc',
+			//'faceHand',
+			//'faceWing',
+			//'faceWingHollow',
+			//'faceDoor',
+			//'faceStopperTop',
+			//'faceStopperSide',
+			//'faceStopperSideH',
+			//'faceStopperFaceT',
+			//'faceStopperFaceTH',
+			//'faceStopperFaceB',
+			//'faceStopperFaceBH',
 			iOutDir, // output-directory
 			'' // output-filename
 		);
