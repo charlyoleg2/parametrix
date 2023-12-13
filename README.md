@@ -24,17 +24,6 @@ The *code source* is available on [github](https://github.com/charlyoleg2/parame
 Packages details
 ----------------
 
-<style>
-	table {
-		border-collapse: collapse;
-	}
-	th, td {
-		border: 1px solid;
-		padding-left: 1rem;
-		padding-right: 1rem;
-	}
-</style>
-
 | id | package name        | lib or app | browser env | nodejs env |
 |----|---------------------|------------|-------------|------------|
 | 1  | geometrix           | lib        | yes         | yes        |
