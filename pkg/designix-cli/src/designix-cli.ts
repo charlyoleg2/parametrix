@@ -1,19 +1,42 @@
 #!/usr/bin/env node
 // designix-cli.ts
 
-//import { make_heliostat_2 } from './make_heliostat_2';
-//import { make_pole_static } from './make_pole_static';
-//import { make_rake_stopper } from './make_rake_stopper';
-//import { make_swing } from './make_swing';
-//import { make_surface } from './make_surface';
+import type { tAllPageDef } from 'geometrix';
+import { geomcli } from 'geomcli';
+import {
+	gearWheelWheelDef,
+	simplifiedGearWheelDef,
+	heliostatDef,
+	heliostat_2Def,
+	baseDef,
+	poleStaticDef,
+	poleRotorDef,
+	rakeDef,
+	rakeStopperDef,
+	spiderDef,
+	swingDef,
+	rodDef,
+	trapezeDef,
+	surfaceDef
+} from 'designix';
 
-//const outDir = ''; // empty outDir means don't write file
-//const outDir = 'output';
+const designList: tAllPageDef = {
+	'gear/gear_wheel_wheel': gearWheelWheelDef,
+	'gear/simplified_gear_wheel': simplifiedGearWheelDef,
+	'heliostat/heliostat': heliostatDef,
+	'heliostat/heliostat_2': heliostat_2Def,
+	'heliostat/base': baseDef,
+	'heliostat/pole_static': poleStaticDef,
+	'heliostat/pole_rotor': poleRotorDef,
+	'heliostat/rake': rakeDef,
+	'heliostat/rake_stopper': rakeStopperDef,
+	'heliostat/spider': spiderDef,
+	'heliostat/swing': swingDef,
+	'heliostat/rod': rodDef,
+	'heliostat/trapeze': trapezeDef,
+	'heliostat/surface': surfaceDef
+};
 
-console.log('start of designix-cli');
-//await make_heliostat_2(outDir, true);
-//await make_pole_static(outDir, true);
-//await make_rake_stopper(outDir, true);
-//await make_swing(outDir, true);
-//await make_surface(outDir, true);
-console.log('end of designix-cli');
+console.log('designix-cli says hello');
+geomcli(designList, 'output', process.argv);
+console.log('designix-cli says bye');

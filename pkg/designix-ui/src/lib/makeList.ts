@@ -1,7 +1,7 @@
 // makeList.ts
 
 import type { tAllLink } from 'geometrix';
-import type { tDesignList } from './designListType';
+import type { tAllPageDef } from 'geometrix';
 import { designList } from './designList';
 
 function pathToLabel(ipath: string): string {
@@ -10,7 +10,7 @@ function pathToLabel(ipath: string): string {
 	return rLabel;
 }
 
-function makeAllLink(iDesignList: tDesignList): tAllLink {
+function makeAllLink(iDesignList: tAllPageDef): tAllLink {
 	const rLink: tAllLink = {};
 	for (const onePath of Object.keys(iDesignList)) {
 		const partName = pathToLabel(onePath);
@@ -19,7 +19,7 @@ function makeAllLink(iDesignList: tDesignList): tAllLink {
 	return rLink;
 }
 
-function makeDesingNameList(iDesignList: tDesignList): string[] {
+function makeDesingNameList(iDesignList: tAllPageDef): string[] {
 	const rDesignName: string[] = [];
 	for (const onePath of Object.keys(iDesignList)) {
 		rDesignName.push(onePath);

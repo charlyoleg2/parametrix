@@ -1,6 +1,6 @@
 // designList.ts
 
-import type { tDesignList } from './designListType';
+import type { tAllPageDef } from 'geometrix';
 import {
 	gearWheelWheelDef,
 	simplifiedGearWheelDef,
@@ -18,7 +18,7 @@ import {
 	surfaceDef
 } from 'designix';
 
-const designList: tDesignList = {
+const designList: tAllPageDef = {
 	'gear/gear_wheel_wheel': gearWheelWheelDef,
 	'gear/simplified_gear_wheel': simplifiedGearWheelDef,
 	'heliostat/heliostat': heliostatDef,
