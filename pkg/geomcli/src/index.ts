@@ -1,5 +1,6 @@
 // geomcli index.ts
 
-import { write_geom } from './write_geom';
+import { geom_write } from './geom_write';
+import { geom_cli } from './geom_cli';
 
-export { write_geom };
+export { geom_write, geom_cli };

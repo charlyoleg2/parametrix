@@ -1,7 +1,7 @@
 // make_surface.ts
 
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
-import { write_geom } from 'geomcli';
+import { geom_write } from 'geomcli';
 import { surfaceDef } from 'designix';
 
 const simtime = 0;
@@ -37,7 +37,7 @@ async function make_surface(iOutDir, iPrintLog) {
 	checkGeom(surfaceGeom_A);
 	logstr += prefixLog(surfaceGeom_A.logstr, surfaceParam.partName);
 	if (iOutDir !== '') {
-		logstr += await write_geom(
+		logstr += await geom_write(
 			surfaceParam.partName,
 			surfaceDef.pGeom,
 			simtime,
@@ -65,7 +65,7 @@ async function make_surface(iOutDir, iPrintLog) {
 	checkGeom(surfaceGeom_B);
 	logstr += prefixLog(surfaceGeom_B.logstr, surfaceParam.partName);
 	if (iOutDir !== '') {
-		logstr += await write_geom(
+		logstr += await geom_write(
 			surfaceParam.partName,
 			surfaceDef.pGeom,
 			simtime,

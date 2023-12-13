@@ -2,7 +2,7 @@
 
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { heliostat_2Def } from 'designix';
-import { write_geom } from 'geomcli';
+import { geom_write } from 'geomcli';
 
 const simtime = 0;
 
@@ -41,7 +41,7 @@ async function make_heliostat_2(iOutDir, iPrintLog) {
 	checkGeom(helioGeom);
 	logstr += prefixLog(helioGeom.logstr, helioParam.partName);
 	if (iOutDir !== '') {
-		logstr += await write_geom(
+		logstr += await geom_write(
 			helioParam.partName,
 			heliostat_2Def.pGeom,
 			simtime,

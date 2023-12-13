@@ -2,7 +2,7 @@
 // designix-cli.ts
 
 import type { tAllPageDef } from 'geometrix';
-import { geomcli } from 'geomcli';
+import { geom_cli } from 'geomcli';
 import {
 	gearWheelWheelDef,
 	simplifiedGearWheelDef,
@@ -38,5 +38,5 @@ const designList: tAllPageDef = {
 };
 
 console.log('designix-cli says hello');
-geomcli(designList, 'output', process.argv);
+geom_cli(process.argv, designList, 'output');
 console.log('designix-cli says bye');

@@ -1,7 +1,7 @@
 // make_pole_static.js
 
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
-import { write_geom } from 'geomcli';
+import { geom_write } from 'geomcli';
 import { poleStaticDef } from 'designix';
 import { make_heliostat_2 } from './make_heliostat_2.js';
 
@@ -31,7 +31,7 @@ async function make_pole_static(iOutDir, iPrintLog) {
 	checkGeom(poleGeom);
 	logstr += prefixLog(poleGeom.logstr, poleParam.partName);
 	if (iOutDir !== '') {
-		logstr += await write_geom(
+		logstr += await geom_write(
 			poleParam.partName,
 			poleStaticDef.pGeom,
 			simtime,

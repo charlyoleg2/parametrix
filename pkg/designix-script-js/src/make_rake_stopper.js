@@ -1,7 +1,7 @@
 // make_rake_stopper.ts
 
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
-import { write_geom } from 'geomcli';
+import { geom_write } from 'geomcli';
 import { rakeStopperDef } from 'designix';
 import { make_heliostat_2 } from './make_heliostat_2.js';
 
@@ -47,7 +47,7 @@ async function make_rake_stopper(iOutDir, iPrintLog) {
 	checkGeom(rakeGeom);
 	logstr += prefixLog(rakeGeom.logstr, rakeParam.partName);
 	if (iOutDir !== '') {
-		logstr += await write_geom(
+		logstr += await geom_write(
 			rakeParam.partName,
 			rakeStopperDef.pGeom,
 			simtime,

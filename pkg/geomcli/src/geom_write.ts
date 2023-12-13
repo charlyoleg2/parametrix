@@ -1,4 +1,4 @@
-// write_geom.ts
+// geom_write.ts
 
 import type { tGeomFunc, tParamVal } from 'geometrix';
 import {
@@ -43,7 +43,7 @@ function write_textFile(fName: string, fContent: string): string {
 	return rlog;
 }
 
-async function write_geom(
+async function geom_write(
 	iPartName: string,
 	fgeom: tGeomFunc,
 	simTime: number,
@@ -71,7 +71,7 @@ async function write_geom(
 		throw `err932: the filename ${fName} contains a slash '/'`;
 	}
 	if (iDir === '') {
-		throw `err074: write_geom output-directory is an empty string!`;
+		throw `err074: geom_write output-directory is an empty string!`;
 	}
 	rlog += createDir(iDir);
 	const fName2 = `${iDir}/${fName}`;
@@ -85,4 +85,4 @@ async function write_geom(
 	return rlog;
 }
 
-export { write_geom };
+export { geom_write };

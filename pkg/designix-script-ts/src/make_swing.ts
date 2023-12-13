@@ -2,7 +2,7 @@
 
 import type { tGeom } from 'geometrix';
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
-import { write_geom } from 'geomcli';
+import { geom_write } from 'geomcli';
 import { swingDef } from 'designix';
 import { make_heliostat_2 } from './make_heliostat_2';
 
@@ -35,7 +35,7 @@ async function make_swing(iOutDir: string, iPrintLog: boolean): Promise<tGeom> {
 	checkGeom(swingGeom);
 	logstr += prefixLog(swingGeom.logstr, swingParam.partName);
 	if (iOutDir !== '') {
-		logstr += await write_geom(
+		logstr += await geom_write(
 			swingParam.partName,
 			swingDef.pGeom,
 			simtime,

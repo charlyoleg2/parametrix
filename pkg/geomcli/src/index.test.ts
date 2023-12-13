@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-//import { write_geom } from './index';
+//import { geom_write } from './index';
 
 describe('geomcli index suit', () => {
-	it('write_geom', () => {
+	it('geom_write', () => {
 		expect(2 + 2).toBe(4);
 	});
 });
