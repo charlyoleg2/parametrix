@@ -1,11 +1,11 @@
-Example-script-js
-=================
+designix-script-js
+==================
 
 
 Presentation
 ------------
 
-*Example-script-js* is a small *javascript* package for showing the usage of *geometrix* and *designix*.
+*designix-script-js* is a small *javascript* package for showing the usage of *geometrix* and *designix*.
 
 Getting started
 ---------------

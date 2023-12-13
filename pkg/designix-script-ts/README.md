@@ -1,11 +1,11 @@
-Example-script-ts
-=================
+designix-script-ts
+==================
 
 
 Presentation
 ------------
 
-*Example-script-ts* is a small *typescript* package for showing the usage of *geometrix* and *designix*.
+*designix-script-ts* is a small *typescript* package for showing the usage of *geometrix* and *designix*.
 
 Getting started
 ---------------
