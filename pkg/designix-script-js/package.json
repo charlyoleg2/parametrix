@@ -30,14 +30,14 @@
 	},
 	"dependencies": {
 		"designix": "^0.5.2",
-		"geometrix": "^0.5.1",
-		"geomcli": "^0.5.4"
+		"geomcli": "^0.5.4",
+		"geometrix": "^0.5.1"
 	},
 	"devDependencies": {
 		"eslint": "^8.55.0",
 		"eslint-config-prettier": "^9.1.0",
 		"npm-run-all": "^4.1.5",
-		"prettier": "^3.1.0",
+		"prettier": "^3.1.1",
 		"shx": "^0.3.4",
 		"vitest": "^0.34.6"
 	},
