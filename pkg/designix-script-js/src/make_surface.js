@@ -32,7 +32,7 @@ async function make_surface(iOutDir, iPrintLog) {
 	surfaceParam.setVal('EV_shape', 0); // 0:sinusoid 1:triangle 2:sawUp 3:sawDown
 	surfaceParam.setVal('power_efficiency', 16); // 16%
 	surfaceParam.setVal('solar_power', 816); // 816 W/m2 // 1361*0.6=816 W/m2
-	// surface_flavour_A
+	logstr += 'make surface_flavour_A\n';
 	const surfaceGeom_A = surfaceDef.pGeom(simtime, surfaceParam.getParamVal());
 	checkGeom(surfaceGeom_A);
 	logstr += prefixLog(surfaceGeom_A.logstr, surfaceParam.partName);
@@ -58,7 +58,7 @@ async function make_surface(iOutDir, iPrintLog) {
 			'surface_flavour_A.zip' // output-filename
 		);
 	}
-	// surface_flavour_B
+	logstr += 'make surface_flavour_B\n';
 	surfaceParam.setVal('LH', 1400); // 1600 mm
 	surfaceParam.setVal('LV', 900); // 1000 mm
 	const surfaceGeom_B = surfaceDef.pGeom(simtime, surfaceParam.getParamVal());

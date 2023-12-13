@@ -3,7 +3,7 @@
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { write_geom } from 'geomcli';
 import { rakeStopperDef } from 'designix';
-import { make_heliostat_2 } from './make_heliostat_2';
+import { make_heliostat_2 } from './make_heliostat_2.js';
 
 const simtime = 0;
 
