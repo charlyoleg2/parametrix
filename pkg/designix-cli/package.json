@@ -20,7 +20,7 @@
 	"author": "charlyoleg",
 	"tsup": {
 		"entry": [
-			"src/index.ts"
+			"src/designix-cli.ts"
 		],
 		"format": "esm",
 		"splitting": false,
@@ -38,7 +38,7 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"ci": "run-s check build pretty lint test:unit:once",
-		"run": "dist/index.js",
+		"run": "dist/designix-cli.js",
 		"clean": "shx rm -fr build dist node_modules output"
 	},
 	"dependencies": {
@@ -60,11 +60,11 @@
 	},
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+			"types": "./dist/designix-cli.d.ts",
+			"default": "./dist/designix-cli.js"
 		}
 	},
-	"bin": "./dist/index.js",
-	"types": "dist/index.d.ts",
+	"bin": "./dist/designix-cli.js",
+	"types": "dist/designix-cli.d.ts",
 	"type": "module"
 }
