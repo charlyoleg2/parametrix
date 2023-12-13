@@ -20,6 +20,22 @@ A public instance of *paramui* is available on that [github-page](https://charly
 The *code source* is available on [github](https://github.com/charlyoleg2/parametrix).
 
 
+Packages details
+----------------
+
+| id | package name        | lib or app | browser env | nodejs env |
+|----|---------------------|------------|-------------|------------|
+| 1  | geometrix           | lib        | yes         | yes        |
+| 2  | designix            | lib        | yes         | yes        |
+| 3  | geomui              | lib        | yes         |            |
+| 4  | geomcli             | lib        |             | yes        |
+| 5  | designix-ui         | app        | yes         |            |
+| 6  | designix-script-ts  | app        |             | yes        |
+| 7  | designix-script-js  | app        |             | yes        |
+| 8  | designix-cli        | app        |             | yes        |
+| 9  | parami-ui           | app        | yes         |            |
+
+
 Prerequisite
 ------------
 
