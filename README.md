@@ -6,15 +6,16 @@ Presentation
 ------------
 
 This is the monorepo that contains the following *javascript* packages:
-- geometrix: the core library of *parametrix*
-- designix: the first library of designs implemeted with *geometrix*
-- geomui: the *svelte* library for creating easily a web-ui for some *geometrix-designs*
-- geomcli: the *nodejs* library for creating easily scripts and cli for *geometrix-designs*
-- designix-ui: a *sveltekit* app that showcase *geomui* in a minimalist way
-- designix-script-ts: a *nodejs* script that showcase the usage of *geometrix-designs* in *tyepscript*
-- designix-script-js: a *nodejs* script that showcase the usage of *geometrix-designs* in *javascript*
-- designix-cli: a *nodejs* cli that showcase the usage of *geometrix-designs*
-- paramui: the main *parametrix* web-ui containing *designix* designs and various documentation
+
+1. geometrix: the core library of *parametrix*
+2. designix: the first library of designs implemeted with *geometrix*
+3. geomui: the *svelte* library for creating easily a web-ui for some *geometrix-designs*
+4. geomcli: the *nodejs* library for creating easily scripts and cli for *geometrix-designs*
+5. designix-ui: a *sveltekit* app that showcase *geomui* in a minimalist way
+6. designix-script-ts: a *nodejs* script that showcase the usage of *geometrix-designs* in *tyepscript*
+7. designix-script-js: a *nodejs* script that showcase the usage of *geometrix-designs* in *javascript*
+8. designix-cli: a *nodejs* cli that showcase the usage of *geometrix-designs*
+9. paramui: the main *parametrix* web-ui containing *designix* designs and various documentation
 
 A public instance of *paramui* is available on that [github-page](https://charlyoleg2.github.io/parametrix/).
 The *code source* is available on [github](https://github.com/charlyoleg2/parametrix).
@@ -22,6 +23,17 @@ The *code source* is available on [github](https://github.com/charlyoleg2/parame
 
 Packages details
 ----------------
+
+<style>
+	table {
+		border-collapse: collapse;
+	}
+	th, td {
+		border: 1px solid;
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+</style>
 
 | id | package name        | lib or app | browser env | nodejs env |
 |----|---------------------|------------|-------------|------------|
