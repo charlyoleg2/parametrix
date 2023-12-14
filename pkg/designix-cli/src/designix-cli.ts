@@ -38,5 +38,5 @@ const designList: tAllPageDef = {
 };
 
 console.log('designix-cli says hello');
-geom_cli(process.argv, designList, 'output');
+await geom_cli(process.argv, designList, 'output');
 console.log('designix-cli says bye');
