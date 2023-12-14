@@ -1,16 +1,21 @@
 // geom_cli.ts
 
-import type { tPageDef, tAllPageDef } from 'geometrix';
+import type { tSubDesign, tPageDef, tAllPageDef } from 'geometrix';
 //import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { PType, designParam, checkGeom } from 'geometrix';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { version } from '../package.json';
 
-function list_designs(dList: tAllPageDef) {
+function list_designs(dList: tAllPageDef, detail: boolean) {
 	let rlog = 'List of available designs:\n';
 	for (const [idx, dname] of Object.keys(dList).entries()) {
 		rlog += `${idx.toString().padStart(4, ' ')} : ${dname}\n`;
+		if (detail) {
+			rlog += `    ${dList[dname].pDef.partName}\n`;
+			rlog += `    ${dList[dname].pTitle}\n`;
+			rlog += `    ${dList[dname].pDescription}\n`;
+		}
 	}
 	console.log(rlog);
 }
@@ -21,6 +26,12 @@ function selectDesign(dList: tAllPageDef, selD: string): tPageDef {
 		process.exit(1);
 	}
 	return dList[selD];
+}
+
+function selectDesignN(dList: tAllPageDef, selD: string): string {
+	const theD = selectDesign(dList, selD);
+	const dName = theD.pDef.partName;
+	return dName;
 }
 
 function list_parameters(dList: tAllPageDef, selD: string) {
@@ -54,37 +65,96 @@ function list_parameters(dList: tAllPageDef, selD: string) {
 	console.log(rlog);
 }
 
-function list_figures(dList: tAllPageDef, selD: string) {
+function get_figure_array(dList: tAllPageDef, selD: string): string[] {
+	//let rlog = `Get figure array of the design ${selD} (${theD.pDef.partName}):\n`;
 	const theD = selectDesign(dList, selD);
-	let rlog = `List of figures of the design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
 	const simtime = 0;
 	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
 	checkGeom(dGeom);
 	//rlog += prefixLog(dGeom.logstr, dParam.partName);
-	for (const [idx, figN] of Object.keys(dGeom.fig).entries()) {
+	const rfigN = Object.keys(dGeom.fig);
+	//console.log(rlog);
+	return rfigN;
+}
+
+function get_subdesign_array(dList: tAllPageDef, selD: string): tSubDesign {
+	const theD = selectDesign(dList, selD);
+	//let rlog = `Get sub-design  array of the design ${selD} (${theD.pDef.partName}):\n`;
+	const dParam = designParam(theD.pDef);
+	const simtime = 0;
+	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
+	checkGeom(dGeom);
+	//rlog += prefixLog(dGeom.logstr, dParam.partName);
+	const subd = dGeom.sub;
+	//console.log(rlog);
+	return subd;
+}
+
+function list_figures(dList: tAllPageDef, selD: string) {
+	const dPartName = selectDesignN(dList, selD);
+	const figN = get_figure_array(dList, selD);
+	let rlog = `List of figures of the design ${selD} (${dPartName}):\n`;
+	for (const [idx, figNi] of figN.entries()) {
 		const idx2 = idx.toString().padStart(4, ' ');
-		rlog += `${idx2} : ${figN}\n`;
+		rlog += `${idx2} : ${figNi}\n`;
 	}
 	console.log(rlog);
 }
 
 function list_subdesigns(dList: tAllPageDef, selD: string) {
-	const theD = selectDesign(dList, selD);
-	let rlog = `List of sub-designs of the design ${selD} (${theD.pDef.partName}):\n`;
-	const dParam = designParam(theD.pDef);
-	const simtime = 0;
-	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
-	checkGeom(dGeom);
-	//rlog += prefixLog(dGeom.logstr, dParam.partName);
-	for (const [idx, subdN] of Object.keys(dGeom.sub).entries()) {
+	const dPartName = selectDesignN(dList, selD);
+	const subdA = get_subdesign_array(dList, selD);
+	const subdN = Object.keys(subdA);
+	let rlog = `List of sub-designs of the design ${selD} (${dPartName}):\n`;
+	for (const [idx, subdNi] of subdN.entries()) {
 		const idx2 = idx.toString().padStart(4, ' ');
-		const subd = dGeom.sub[subdN];
+		const subd = subdA[subdNi];
 		const ori = `[ ${subd.orientation[0]}, ${subd.orientation[1]}, ${subd.orientation[2]}]`;
 		const pos = `[ ${subd.position[0]}, ${subd.position[1]}, ${subd.position[2]}]`;
-		const subdNp = subdN.padEnd(15, ' ');
+		const subdNp = subdNi.padEnd(15, ' ');
 		const subdPp = subd.partName.padEnd(15, ' ');
 		rlog += `${idx2} : ${subdNp} ${subdPp}   orientation: ${ori}  position: ${pos}\n`;
+	}
+	console.log(rlog);
+}
+
+function lS(idx: number): string {
+	const idx2 = idx.toString().padStart(4, ' ');
+	const rStr = `${idx2} : `;
+	return rStr;
+}
+
+function list_outputs(dList: tAllPageDef, selD: string) {
+	const dPartName = selectDesignN(dList, selD);
+	const figN = get_figure_array(dList, selD);
+	const subdN = Object.keys(get_subdesign_array(dList, selD));
+	let rlog = `List of outputs of the design ${selD} (${dPartName}):\n`;
+	let idx = 0;
+	for (const figNi of figN) {
+		idx += 1;
+		rlog += `${lS(idx)}svg_${figNi}\n`;
+	}
+	for (const figNi of figN) {
+		idx += 1;
+		rlog += `${lS(idx)}dxf_${figNi}\n`;
+	}
+	for (const subdNi of subdN) {
+		idx += 1;
+		rlog += `${lS(idx)}json_sub_param_${subdNi}\n`;
+	}
+	const fileFormat = [
+		'json_param',
+		'svg_all_figures',
+		'dxf_all_figures',
+		'pax_all',
+		'scad_3d_openscad',
+		'js_3d_openjscad',
+		'zip_all'
+	];
+	for (const ffi of fileFormat) {
+		idx += 1;
+		rlog += `${lS(idx)}${ffi}\n`;
 	}
 	console.log(rlog);
 }
@@ -106,21 +176,30 @@ function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') {
 			description: 'the path of the directory where to write the output files',
 			default: outDir
 		})
-		.command(['list', 'list-designs'], 'list the available designs', {}, () => {
-			list_designs(dList);
+		.command(['list-designs', 'list'], 'list the available designs', {}, () => {
+			list_designs(dList, false);
+		})
+		.command('list-designs-detailed', 'list the available designs with details', {}, () => {
+			list_designs(dList, true);
 		})
 		.command('list-parameters', 'list the parameters of the selected design', {}, (argv) => {
 			//console.log(argv)
 			list_parameters(dList, argv.design as string);
 		})
 		.command('list-figures', 'list the figures of the selected design', {}, (argv) => {
-			//console.log(argv)
 			list_figures(dList, argv.design as string);
 		})
 		.command('list-subdesigns', 'list the subdesigns of the selected design', {}, (argv) => {
-			//console.log(argv)
 			list_subdesigns(dList, argv.design as string);
 		})
+		.command(
+			'list-outputs',
+			'list the possible output formats of the selected design',
+			{},
+			(argv) => {
+				list_outputs(dList, argv.design as string);
+			}
+		)
 		.strict()
 		.parseSync();
 	//console.log(argv.$0);
