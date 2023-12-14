@@ -188,6 +188,13 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 		.scriptName('geom_cli')
 		.version(version)
 		.usage('Usage: $0 <global-options> command <command-options>')
+		.example([
+			['$0 list-designs', 'list the available designs'],
+			['$0 list-designs-detailed', 'list the available designs with detailed information'],
+			['$0 -d heliostat/rake compute-log', 'compute and print the log'],
+			['$0 -d heliostat/swing list-oformat', 'list possible output-format'],
+			['$0 -d heliostat/rod write zip_all', 'write a zip file']
+		])
 		.option('design', {
 			alias: 'd',
 			type: 'string',
