@@ -119,6 +119,29 @@ function list_subdesigns(dList: tAllPageDef, selD: string) {
 	console.log(rlog);
 }
 
+function list_subd_parameters(dList: tAllPageDef, selD: string, subdN: string) {
+	const theD = selectDesign(dList, selD);
+	let rlog = `Subdesign ${subdN} of ${selD} (${theD.pDef.partName}):\n`;
+	rlog += 'TODO\n';
+	console.log(rlog);
+}
+
+function compute_log(dList: tAllPageDef, selD: string) {
+	const theD = selectDesign(dList, selD);
+	let rlog = `Compute design ${selD} (${theD.pDef.partName}):\n`;
+	const dParam = designParam(theD.pDef);
+	const simtime = 0;
+	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
+	//checkGeom(dGeom);
+	rlog += prefixLog(dGeom.logstr, dParam.partName);
+	if (dGeom.calcErr) {
+		rlog += `err907: Error while computing ${theD.pDef.partName}\n`;
+	} else {
+		rlog += `${theD.pDef.partName} successfully computed\n`;
+	}
+	console.log(rlog);
+}
+
 function lS(idx: number): string {
 	const idx2 = idx.toString().padStart(4, ' ');
 	const rStr = `${idx2} : `;
@@ -199,6 +222,17 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			list_subdesigns(dList, argv.design as string);
 		})
 		.command(
+			'list-subd-parameters <subdN>',
+			'list the parameters of subdesigns',
+			{},
+			(argv) => {
+				list_subd_parameters(dList, argv.design as string, argv.subdN as string);
+			}
+		)
+		.command('compute-log', 'Compute and print the log without writing file', {}, (argv) => {
+			compute_log(dList, argv.design as string);
+		})
+		.command(
 			'list-oformat',
 			'list the possible output formats of the selected design',
 			{},
@@ -213,7 +247,7 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 		.parseSync();
 	//console.log(argv.$0);
 	//console.log(argv.design);
-	console.log(argv.outDir);
+	//console.log(argv.outDir);
 	//console.log(argv);
 	if (cmd_write) {
 		const iOutDir = argv.outDir;
