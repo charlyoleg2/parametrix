@@ -1,8 +1,8 @@
 // geom_cli.ts
 
 import type { tSubDesign, tPageDef, tAllPageDef } from 'geometrix';
-//import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
-import { PType, designParam, checkGeom } from 'geometrix';
+import { PType, EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
+import { geom_write } from './geom_write';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { version } from '../package.json';
@@ -12,9 +12,9 @@ function list_designs(dList: tAllPageDef, detail: boolean) {
 	for (const [idx, dname] of Object.keys(dList).entries()) {
 		rlog += `${idx.toString().padStart(4, ' ')} : ${dname}\n`;
 		if (detail) {
-			rlog += `    ${dList[dname].pDef.partName}\n`;
-			rlog += `    ${dList[dname].pTitle}\n`;
-			rlog += `    ${dList[dname].pDescription}\n`;
+			rlog += `        ${dList[dname].pDef.partName}\n`;
+			rlog += `        ${dList[dname].pTitle}\n`;
+			rlog += `        ${dList[dname].pDescription}\n`;
 		}
 	}
 	console.log(rlog);
@@ -159,7 +159,8 @@ function list_outputs(dList: tAllPageDef, selD: string) {
 	console.log(rlog);
 }
 
-function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') {
+let cmd_write = false;
+async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') {
 	const argv = yargs(hideBin(iArgs))
 		.scriptName('geom_cli')
 		.version(version)
@@ -175,6 +176,11 @@ function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') {
 			type: 'string',
 			description: 'the path of the directory where to write the output files',
 			default: outDir
+		})
+		.option('outFileName', {
+			type: 'string',
+			description: 'Rename the output filename',
+			default: ''
 		})
 		.command(['list-designs', 'list'], 'list the available designs', {}, () => {
 			list_designs(dList, false);
@@ -193,19 +199,58 @@ function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') {
 			list_subdesigns(dList, argv.design as string);
 		})
 		.command(
-			'list-outputs',
+			'list-oformat',
 			'list the possible output formats of the selected design',
 			{},
 			(argv) => {
 				list_outputs(dList, argv.design as string);
 			}
 		)
+		.command('write <oformat>', 'write the output format file', {}, () => {
+			cmd_write = true;
+		})
 		.strict()
 		.parseSync();
 	//console.log(argv.$0);
 	//console.log(argv.design);
 	console.log(argv.outDir);
 	//console.log(argv);
+	if (cmd_write) {
+		const iOutDir = argv.outDir;
+		if (iOutDir !== '') {
+			const selD = argv.design;
+			const oformat = argv.oformat as string;
+			const theD = selectDesign(dList, selD);
+			let rlog = `Write ${oformat} of ${selD} (${theD.pDef.partName}):\n`;
+			const dParam = designParam(theD.pDef);
+			const simtime = 0;
+			const dGeom = theD.pGeom(simtime, dParam.getParamVal());
+			checkGeom(dGeom);
+			rlog += prefixLog(dGeom.logstr, dParam.partName);
+			rlog += await geom_write(
+				dParam.partName,
+				theD.pGeom,
+				simtime,
+				dParam.getParamVal(),
+				//EFormat.ePARAMS, // output-format
+				//EFormat.eSVG,
+				//EFormat.eDXF,
+				//EFormat.ePAX,
+				//EFormat.eOPENSCAD,
+				//EFormat.eJSCAD,
+				EFormat.eZIP,
+				'', // selected-2d-face
+				//'faceSide',
+				//'faceFace',
+				//'faceTop',
+				iOutDir, // output-directory
+				argv.outFileName // output-filename
+			);
+			console.log(rlog);
+		} else {
+			console.log("err638: option 'outDir' is set to empty string. Nothing written!");
+		}
+	}
 }
 
 export { geom_cli };
