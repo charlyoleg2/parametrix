@@ -122,7 +122,26 @@ function list_subdesigns(dList: tAllPageDef, selD: string) {
 function list_subd_parameters(dList: tAllPageDef, selD: string, subdN: string) {
 	const theD = selectDesign(dList, selD);
 	let rlog = `Subdesign ${subdN} of ${selD} (${theD.pDef.partName}):\n`;
-	rlog += 'TODO\n';
+	const dParam = designParam(theD.pDef);
+	const simtime = 0;
+	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
+	checkGeom(dGeom);
+	rlog += prefixLog(dGeom.logstr, dParam.partName);
+	if (!Object.keys(dGeom.sub).includes(subdN)) {
+		console.log(`err207: sub-design ${subdN} not defined in partName ${theD.pDef.partName}`);
+		process.exit(1);
+	}
+	const nameLength = 20;
+	const nameLabel = 'name'.padEnd(nameLength, ' ');
+	rlog += `   # : ${nameLabel} value init changed\n`;
+	for (const [idx, ipaN] of Object.keys(dGeom.sub[subdN].dparam).entries()) {
+		const idx2 = idx.toString().padStart(4, ' ');
+		const paN = ipaN.padEnd(nameLength, ' ');
+		const pa = dGeom.sub[subdN].dparam[ipaN];
+		const paVal = pa.val.toString().padStart(6, ' ');
+		const paInit = pa.init.toString().padStart(6, ' ');
+		rlog += `${idx2} : ${paN} ${paVal} ${paInit} ${pa.chg ? 'changed' : ''}\n`;
+	}
 	console.log(rlog);
 }
 
@@ -180,6 +199,32 @@ function list_outputs(dList: tAllPageDef, selD: string) {
 		rlog += `${lS(idx)}${ffi}\n`;
 	}
 	console.log(rlog);
+}
+
+interface tEFormat {
+	eFormat: EFormat;
+	eFace: string;
+	eSubdesign: string;
+}
+
+function decompose_oformat(oformat: string): tEFormat {
+	let rFormat = EFormat.eZIP;
+	let rFace = '';
+	let rSubD = '';
+	switch (oformat) {
+		case 'zip_all':
+			rFormat = EFormat.eZIP;
+			break;
+		case 'svg_':
+			rFormat = EFormat.eSVG;
+			rFace = 'aaa';
+			rSubD = 'aaa';
+			break;
+		default:
+			rFormat = EFormat.ePAX;
+	}
+	const eFormat: tEFormat = { eFormat: rFormat, eFace: rFace, eSubdesign: rSubD };
+	return eFormat;
 }
 
 let cmd_write = false;
@@ -250,6 +295,8 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 		.command('write <oformat>', 'write the output format file', {}, () => {
 			cmd_write = true;
 		})
+		.demandCommand(1)
+		.help()
 		.strict()
 		.parseSync();
 	//console.log(argv.$0);
@@ -263,6 +310,7 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			const oformat = argv.oformat as string;
 			const theD = selectDesign(dList, selD);
 			let rlog = `Write ${oformat} of ${selD} (${theD.pDef.partName}):\n`;
+			const oformat2 = decompose_oformat(oformat);
 			const dParam = designParam(theD.pDef);
 			const simtime = 0;
 			const dGeom = theD.pGeom(simtime, dParam.getParamVal());
@@ -273,17 +321,15 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 				theD.pGeom,
 				simtime,
 				dParam.getParamVal(),
-				//EFormat.ePARAMS, // output-format
+				oformat2.eFormat, // output-format
+				//EFormat.ePARAMS,
 				//EFormat.eSVG,
 				//EFormat.eDXF,
 				//EFormat.ePAX,
 				//EFormat.eOPENSCAD,
 				//EFormat.eJSCAD,
-				EFormat.eZIP,
-				'', // selected-2d-face
-				//'faceSide',
-				//'faceFace',
-				//'faceTop',
+				//EFormat.eZIP,
+				oformat2.eFace, // selected-2d-face
 				iOutDir, // output-directory
 				argv.outFileName // output-filename
 			);

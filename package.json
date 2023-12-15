@@ -52,7 +52,7 @@
 		"ci2": "run-s designix:ci designix-ui:ci",
 		"ci3": "run-s designix:ci designix-cli:ci",
 		"svgo": "run-s geometrix:svgo designix:svgo paramui:svgo",
-		"clean-root": "shx rm -fr build tmp output",
+		"clean-root": "shx rm -fr tmp output output2",
 		"clean-lib": "run-s geometrix:clean designix:clean geomui:clean geomcli:clean",
 		"clean-app": "run-s paramui:clean designix-ui:clean designix-script-ts:clean designix-script-js:clean designix-cli:clean",
 		"clean": "run-s clean-root clean-lib clean-app",
