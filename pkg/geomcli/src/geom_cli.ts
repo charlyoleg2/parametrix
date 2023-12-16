@@ -1,7 +1,7 @@
 // geom_cli.ts
 
-import type { tSubDesign, tPageDef, tAllPageDef, tDesignParamList } from 'geometrix';
-import { PType, EFormat, designParam, checkGeom, prefixLog, paramListToVal } from 'geometrix';
+import type { tGeom, tSubDesign, tPageDef, tAllPageDef, tDesignParamList } from 'geometrix';
+import { PType, EFormat, designParam, prefixLog, paramListToVal } from 'geometrix';
 import { geom_write, writeParams, readParams } from './geom_write';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -26,31 +26,42 @@ function selectDesignN(dList: tAllPageDef, selD: string): string {
 	return dName;
 }
 
-function get_figure_array(dList: tAllPageDef, selD: string, paramPath: string): string[] {
-	//let rlog = `Get figure array of the design ${selD} (${theD.pDef.partName}):\n`;
+function computeGeom(
+	dList: tAllPageDef,
+	selD: string,
+	paramPath: string,
+	printLog: boolean
+): tGeom {
 	const theD = selectDesign(dList, selD);
+	let rlog = `Compute design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
-	dParam.applyParamVal(readParams(paramPath, false));
+	dParam.applyParamVal(readParams(paramPath, true));
 	const simtime = 0;
 	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
-	checkGeom(dGeom);
-	//rlog += prefixLog(dGeom.logstr, dParam.partName);
+	//checkGeom(dGeom);
+	rlog += prefixLog(dGeom.logstr, dParam.partName);
+	if (dGeom.calcErr) {
+		rlog += `err907: Error while computing ${theD.pDef.partName}\n`;
+		console.log(rlog);
+		process.exit(1);
+	} else {
+		rlog += `${theD.pDef.partName} successfully computed\n`;
+	}
+	if (printLog) {
+		console.log(rlog);
+	}
+	return dGeom;
+}
+
+function get_figure_array(dList: tAllPageDef, selD: string, paramPath: string): string[] {
+	const dGeom = computeGeom(dList, selD, paramPath, false);
 	const rfigN = Object.keys(dGeom.fig);
-	//console.log(rlog);
 	return rfigN;
 }
 
 function get_subdesign_array(dList: tAllPageDef, selD: string, paramPath: string): tSubDesign {
-	const theD = selectDesign(dList, selD);
-	//let rlog = `Get sub-design  array of the design ${selD} (${theD.pDef.partName}):\n`;
-	const dParam = designParam(theD.pDef);
-	dParam.applyParamVal(readParams(paramPath, false));
-	const simtime = 0;
-	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
-	checkGeom(dGeom);
-	//rlog += prefixLog(dGeom.logstr, dParam.partName);
+	const dGeom = computeGeom(dList, selD, paramPath, false);
 	const subd = dGeom.sub;
-	//console.log(rlog);
 	return subd;
 }
 
@@ -62,13 +73,8 @@ function get_subd_parameters(
 	printLog: boolean
 ): tDesignParamList {
 	const theD = selectDesign(dList, selD);
-	let rlog = `Subdesign ${subdN} of ${selD} (${theD.pDef.partName}):\n`;
-	const dParam = designParam(theD.pDef);
-	dParam.applyParamVal(readParams(paramPath, false));
-	const simtime = 0;
-	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
-	checkGeom(dGeom);
-	rlog += prefixLog(dGeom.logstr, dParam.partName);
+	const rlog = `Subdesign ${subdN} of ${selD} (${theD.pDef.partName}):\n`;
+	const dGeom = computeGeom(dList, selD, paramPath, printLog);
 	if (!Object.keys(dGeom.sub).includes(subdN)) {
 		console.log(`err207: sub-design ${subdN} not defined in partName ${theD.pDef.partName}`);
 		process.exit(1);
@@ -272,23 +278,6 @@ function list_subd_parameters(dList: tAllPageDef, selD: string, subdN: string, p
 	console.log(rlog);
 }
 
-function compute_log(dList: tAllPageDef, selD: string, paramPath: string) {
-	const theD = selectDesign(dList, selD);
-	let rlog = `Compute design ${selD} (${theD.pDef.partName}):\n`;
-	const dParam = designParam(theD.pDef);
-	dParam.applyParamVal(readParams(paramPath, true));
-	const simtime = 0;
-	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
-	//checkGeom(dGeom);
-	rlog += prefixLog(dGeom.logstr, dParam.partName);
-	if (dGeom.calcErr) {
-		rlog += `err907: Error while computing ${theD.pDef.partName}\n`;
-	} else {
-		rlog += `${theD.pDef.partName} successfully computed\n`;
-	}
-	console.log(rlog);
-}
-
 function list_outopt(dList: tAllPageDef, selD: string, paramPath: string) {
 	const dPartName = selectDesignN(dList, selD);
 	let rlog = `List of outputs of the design ${selD} (${dPartName}):\n`;
@@ -366,7 +355,7 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			}
 		)
 		.command('compute-log', 'Compute and print the log without writing file', {}, (argv) => {
-			compute_log(dList, argv.design as string, argv.param as string);
+			computeGeom(dList, argv.design as string, argv.param as string, true);
 		})
 		.command(
 			'list-outopt',
@@ -405,10 +394,7 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			const oOpt = decompose_outopt(outopt);
 			const dParam = designParam(theD.pDef);
 			dParam.applyParamVal(readParams(paramPath, true));
-			const simtime = 0;
-			const dGeom = theD.pGeom(simtime, dParam.getParamVal());
-			checkGeom(dGeom);
-			rlog += prefixLog(dGeom.logstr, dParam.partName);
+			computeGeom(dList, selD, paramPath, true);
 			if (oOpt.eWrite === EWrite.eEGOPARAMS) {
 				rlog += writeParams(
 					dParam.partName,
@@ -431,6 +417,7 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 					argv.outFileName
 				);
 			} else {
+				const simtime = 0;
 				rlog += await geom_write(
 					dParam.partName,
 					theD.pGeom,
