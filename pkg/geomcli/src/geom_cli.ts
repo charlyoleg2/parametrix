@@ -157,11 +157,11 @@ function decompose_outopt(outopt: string): tEFormat {
 				rWrite = EWrite.eOTHERS;
 				break;
 			case 'scad_3d_openscad':
-				rFormat = EFormat.ePAX;
+				rFormat = EFormat.eOPENSCAD;
 				rWrite = EWrite.eOTHERS;
 				break;
 			case 'js_3d_openjscad':
-				rFormat = EFormat.ePAX;
+				rFormat = EFormat.eJSCAD;
 				rWrite = EWrite.eOTHERS;
 				break;
 			case 'zip_all':
