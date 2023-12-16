@@ -51,7 +51,7 @@ function parseModif(modif: string[], printLog: boolean): tParamVal {
 	}
 	const pValLen = Object.keys(pVal).length;
 	if (printLog && pValLen > 0) {
-		const rlog = `info308: ${pValLen} modified parameters\n`;
+		const rlog = `info308: ${pValLen} modified parameters`;
 		console.log(rlog);
 	}
 	return pVal;

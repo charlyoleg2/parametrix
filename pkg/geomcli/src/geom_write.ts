@@ -67,18 +67,18 @@ function writeParams(
 }
 
 function readParams(paramPath: string, printLog: boolean): tParamVal {
-	let rlog = `Read parameter file ${paramPath}\n`;
 	let rParamVal: tParamVal = {};
 	if (paramPath !== '') {
+		let rlog = `Read parameter file ${paramPath}\n`;
 		const fContentStr = fs.readFileSync(paramPath, 'utf8');
 		const [obj, tlog] = parseParamFile(fContentStr);
 		rlog += tlog;
 		rlog += `file lastModif: ${obj.lastModif}`;
 		rlog += `file comment: ${obj.comment}`;
 		rParamVal = obj.pVal;
-	}
-	if (printLog) {
-		console.log(rlog);
+		if (printLog) {
+			console.log(rlog);
+		}
 	}
 	return rParamVal;
 }
