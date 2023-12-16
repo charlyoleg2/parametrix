@@ -76,6 +76,105 @@ function get_subd_parameters(
 	return rSubdParams;
 }
 
+const c_fileFormat = [
+	'json_param',
+	'svg_all_figures',
+	'dxf_all_figures',
+	'pax_all',
+	'scad_3d_openscad',
+	'js_3d_openjscad',
+	'zip_all'
+];
+
+function get_outopt_array(dList: tAllPageDef, selD: string): string[] {
+	const rOutOpt: string[] = [];
+	const figN = get_figure_array(dList, selD);
+	const subdN = Object.keys(get_subdesign_array(dList, selD));
+	for (const figNi of figN) {
+		rOutOpt.push(`svg_${figNi}`);
+	}
+	for (const figNi of figN) {
+		rOutOpt.push(`dxf_${figNi}`);
+	}
+	for (const subdNi of subdN) {
+		rOutOpt.push(`json_sub_param_${subdNi}`);
+	}
+	for (const ffi of c_fileFormat) {
+		rOutOpt.push(`${ffi}`);
+	}
+	return rOutOpt;
+}
+
+enum EWrite {
+	eEGOPARAMS,
+	eSUBDPARAMS,
+	eOTHERS
+}
+
+interface tEFormat {
+	eWrite: EWrite;
+	eFormat: EFormat;
+	eFace: string;
+	eSubdesign: string;
+}
+
+function decompose_outopt(outopt: string): tEFormat {
+	let rWrite = EWrite.eOTHERS;
+	let rFormat = EFormat.ePAX;
+	let rFace = '';
+	let rSubD = '';
+	const reSvg = /^svg_/;
+	const reDxf = /^dxf_/;
+	const reSubP = /^json_sub_param_/;
+	if (outopt.match(reSvg)) {
+		rFace = outopt.replace(reSvg, '');
+		rFormat = EFormat.eSVG;
+		rWrite = EWrite.eOTHERS;
+	} else if (outopt.match(reDxf)) {
+		rFace = outopt.replace(reDxf, '');
+		rFormat = EFormat.eDXF;
+		rWrite = EWrite.eOTHERS;
+	} else if (outopt.match(reSubP)) {
+		rSubD = outopt.replace(reSubP, '');
+		rWrite = EWrite.eSUBDPARAMS;
+	} else {
+		switch (outopt) {
+			case 'json_param':
+				rWrite = EWrite.eEGOPARAMS;
+				break;
+			case 'svg_all_figures':
+				rFormat = EFormat.eSVG;
+				rWrite = EWrite.eOTHERS;
+				break;
+			case 'dxf_all_figures':
+				rFormat = EFormat.eDXF;
+				rWrite = EWrite.eOTHERS;
+				break;
+			case 'pax_all':
+				rFormat = EFormat.ePAX;
+				rWrite = EWrite.eOTHERS;
+				break;
+			case 'scad_3d_openscad':
+				rFormat = EFormat.ePAX;
+				rWrite = EWrite.eOTHERS;
+				break;
+			case 'js_3d_openjscad':
+				rFormat = EFormat.ePAX;
+				rWrite = EWrite.eOTHERS;
+				break;
+			case 'zip_all':
+				rFormat = EFormat.eZIP;
+				rWrite = EWrite.eOTHERS;
+				break;
+			default:
+				rFormat = EFormat.ePAX;
+				rWrite = EWrite.eOTHERS;
+		}
+	}
+	const eFormat: tEFormat = { eWrite: rWrite, eFormat: rFormat, eFace: rFace, eSubdesign: rSubD };
+	return eFormat;
+}
+
 function list_designs(dList: tAllPageDef, detail: boolean) {
 	let rlog = 'List of available designs:\n';
 	for (const [idx, dname] of get_design_array(dList).entries()) {
@@ -104,10 +203,10 @@ function list_parameters(dList: tAllPageDef, selD: string) {
 		const pinit = pa.init.toString().padStart(6, ' ');
 		switch (pa.pType) {
 			case PType.eCheckbox:
-				rlog += `${idx2} : ${pname} checkbox ${pa.init}\n`;
+				rlog += `${idx2} : ${pname} checkbox ${pa.init}   ${pa.init}\n`;
 				break;
 			case PType.eDropdown:
-				rlog += `${idx2} : ${pname}`;
+				rlog += `${idx2} : ${pname} ${pa.init}   ${pa.init}`;
 				for (const [optI, optN] of pa.dropdown.entries()) {
 					rlog += ` ${optI}:${optN}`;
 				}
@@ -180,78 +279,15 @@ function compute_log(dList: tAllPageDef, selD: string) {
 	console.log(rlog);
 }
 
-function lS(idx: number): string {
-	const idx2 = idx.toString().padStart(4, ' ');
-	const rStr = `${idx2} : `;
-	return rStr;
-}
-
-function list_outputs(dList: tAllPageDef, selD: string) {
+function list_outopt(dList: tAllPageDef, selD: string) {
 	const dPartName = selectDesignN(dList, selD);
-	const figN = get_figure_array(dList, selD);
-	const subdN = Object.keys(get_subdesign_array(dList, selD));
 	let rlog = `List of outputs of the design ${selD} (${dPartName}):\n`;
-	let idx = 0;
-	for (const figNi of figN) {
-		idx += 1;
-		rlog += `${lS(idx)}svg_${figNi}\n`;
-	}
-	for (const figNi of figN) {
-		idx += 1;
-		rlog += `${lS(idx)}dxf_${figNi}\n`;
-	}
-	for (const subdNi of subdN) {
-		idx += 1;
-		rlog += `${lS(idx)}json_sub_param_${subdNi}\n`;
-	}
-	const fileFormat = [
-		'json_param',
-		'svg_all_figures',
-		'dxf_all_figures',
-		'pax_all',
-		'scad_3d_openscad',
-		'js_3d_openjscad',
-		'zip_all'
-	];
-	for (const ffi of fileFormat) {
-		idx += 1;
-		rlog += `${lS(idx)}${ffi}\n`;
+	const outOpt = get_outopt_array(dList, selD);
+	for (const [idx, oneOpt] of outOpt.entries()) {
+		const idx2 = idx.toString().padStart(4, ' ');
+		rlog += `${idx2} : ${oneOpt}\n`;
 	}
 	console.log(rlog);
-}
-
-enum EWrite {
-	eEGOPARAMS,
-	eSUBDPARAMS,
-	eOTHERS
-}
-interface tEFormat {
-	eWrite: EWrite;
-	eFormat: EFormat;
-	eFace: string;
-	eSubdesign: string;
-}
-
-function decompose_oformat(oformat: string): tEFormat {
-	let rWrite = EWrite.eOTHERS;
-	let rFormat = EFormat.eZIP;
-	let rFace = '';
-	let rSubD = '';
-	switch (oformat) {
-		case 'zip_all':
-			rFormat = EFormat.eZIP;
-			break;
-		case 'svg_':
-			rWrite = EWrite.eEGOPARAMS;
-			rFormat = EFormat.eSVG;
-			rFace = 'aaa';
-			rSubD = 'aaa';
-			break;
-		default:
-			rFormat = EFormat.ePAX;
-	}
-	const eFormat: tEFormat = { eWrite: rWrite, eFormat: rFormat, eFace: rFace, eSubdesign: rSubD };
-	return eFormat;
 }
 
 let cmd_write = false;
@@ -264,7 +300,7 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			['$0 list-designs', 'list the available designs'],
 			['$0 list-designs-detailed', 'list the available designs with detailed information'],
 			['$0 -d heliostat/rake compute-log', 'compute and print the log'],
-			['$0 -d heliostat/swing list-oformat', 'list possible output-format'],
+			['$0 -d heliostat/swing list-outopt', 'list possible output-format-options'],
 			['$0 -d heliostat/rod write zip_all', 'write a zip file']
 		])
 		.option('design', {
@@ -312,14 +348,14 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			compute_log(dList, argv.design as string);
 		})
 		.command(
-			'list-oformat',
-			'list the possible output formats of the selected design',
+			'list-outopt',
+			'list the possible output format options of the selected design',
 			{},
 			(argv) => {
-				list_outputs(dList, argv.design as string);
+				list_outopt(dList, argv.design as string);
 			}
 		)
-		.command('write <oformat>', 'write the output format file', {}, () => {
+		.command('write <outopt>', 'write the output format file', {}, () => {
 			cmd_write = true;
 		})
 		.demandCommand(1)
@@ -334,10 +370,10 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 		const iOutDir = argv.outDir;
 		if (iOutDir !== '') {
 			const selD = argv.design;
-			const oformat = argv.oformat as string;
+			const outopt = argv.outopt as string;
 			const theD = selectDesign(dList, selD);
-			let rlog = `Write ${oformat} of ${selD} (${theD.pDef.partName}):\n`;
-			const oformat2 = decompose_oformat(oformat);
+			let rlog = `Write ${outopt} of ${selD} (${theD.pDef.partName}):\n`;
+			const oOpt = decompose_outopt(outopt);
 			const dParam = designParam(theD.pDef);
 			const simtime = 0;
 			const dGeom = theD.pGeom(simtime, dParam.getParamVal());
@@ -348,15 +384,14 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 				theD.pGeom,
 				simtime,
 				dParam.getParamVal(),
-				oformat2.eFormat, // output-format
-				//EFormat.ePARAMS,
+				oOpt.eFormat, // output-format
 				//EFormat.eSVG,
 				//EFormat.eDXF,
 				//EFormat.ePAX,
 				//EFormat.eOPENSCAD,
 				//EFormat.eJSCAD,
 				//EFormat.eZIP,
-				oformat2.eFace, // selected-2d-face
+				oOpt.eFace, // selected-2d-face
 				iOutDir, // output-directory
 				argv.outFileName // output-filename
 			);
