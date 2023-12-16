@@ -1,6 +1,13 @@
 // geom_cli.ts
 
-import type { tGeom, tSubDesign, tPageDef, tAllPageDef, tDesignParamList } from 'geometrix';
+import type {
+	tParamVal,
+	tGeom,
+	tSubDesign,
+	tPageDef,
+	tAllPageDef,
+	tDesignParamList
+} from 'geometrix';
 import { PType, EFormat, designParam, prefixLog, paramListToVal } from 'geometrix';
 import { geom_write, writeParams, readParams } from './geom_write';
 import yargs from 'yargs';
@@ -26,16 +33,42 @@ function selectDesignN(dList: tAllPageDef, selD: string): string {
 	return dName;
 }
 
+function parseModif(modif: string[], printLog: boolean): tParamVal {
+	const pVal: tParamVal = {};
+	const arrayLen = modif.length;
+	if (arrayLen % 2 === 1) {
+		console.log(`err903: length ${arrayLen} of modif string array is odd!`);
+		process.exit(1);
+	}
+	for (let i = 0; i < arrayLen / 2; i++) {
+		const valStr = modif[2 * i + 1];
+		const val = parseFloat(valStr);
+		if (isNaN(val)) {
+			console.log(`err908: ${valStr} is not a number!`);
+			process.exit(1);
+		}
+		pVal[modif[2 * i]] = val;
+	}
+	const pValLen = Object.keys(pVal).length;
+	if (printLog && pValLen > 0) {
+		const rlog = `info308: ${pValLen} modified parameters\n`;
+		console.log(rlog);
+	}
+	return pVal;
+}
+
 function computeGeom(
 	dList: tAllPageDef,
 	selD: string,
 	paramPath: string,
+	modif: string[],
 	printLog: boolean
 ): tGeom {
 	const theD = selectDesign(dList, selD);
 	let rlog = `Compute design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
 	dParam.applyParamVal(readParams(paramPath, true));
+	dParam.applyParamVal(parseModif(modif, true));
 	const simtime = 0;
 	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
 	//checkGeom(dGeom);
@@ -53,14 +86,24 @@ function computeGeom(
 	return dGeom;
 }
 
-function get_figure_array(dList: tAllPageDef, selD: string, paramPath: string): string[] {
-	const dGeom = computeGeom(dList, selD, paramPath, false);
+function get_figure_array(
+	dList: tAllPageDef,
+	selD: string,
+	paramPath: string,
+	modif: string[]
+): string[] {
+	const dGeom = computeGeom(dList, selD, paramPath, modif, false);
 	const rfigN = Object.keys(dGeom.fig);
 	return rfigN;
 }
 
-function get_subdesign_array(dList: tAllPageDef, selD: string, paramPath: string): tSubDesign {
-	const dGeom = computeGeom(dList, selD, paramPath, false);
+function get_subdesign_array(
+	dList: tAllPageDef,
+	selD: string,
+	paramPath: string,
+	modif: string[]
+): tSubDesign {
+	const dGeom = computeGeom(dList, selD, paramPath, modif, false);
 	const subd = dGeom.sub;
 	return subd;
 }
@@ -70,11 +113,12 @@ function get_subd_parameters(
 	selD: string,
 	subdN: string,
 	paramPath: string,
+	modif: string[],
 	printLog: boolean
 ): tDesignParamList {
 	const theD = selectDesign(dList, selD);
 	const rlog = `Subdesign ${subdN} of ${selD} (${theD.pDef.partName}):\n`;
-	const dGeom = computeGeom(dList, selD, paramPath, printLog);
+	const dGeom = computeGeom(dList, selD, paramPath, modif, printLog);
 	if (!Object.keys(dGeom.sub).includes(subdN)) {
 		console.log(`err207: sub-design ${subdN} not defined in partName ${theD.pDef.partName}`);
 		process.exit(1);
@@ -96,10 +140,15 @@ const c_fileFormat = [
 	'zip_all'
 ];
 
-function get_outopt_array(dList: tAllPageDef, selD: string, paramPath: string): string[] {
+function get_outopt_array(
+	dList: tAllPageDef,
+	selD: string,
+	paramPath: string,
+	modif: string[]
+): string[] {
 	const rOutOpt: string[] = [];
-	const figN = get_figure_array(dList, selD, paramPath);
-	const subdN = Object.keys(get_subdesign_array(dList, selD, paramPath));
+	const figN = get_figure_array(dList, selD, paramPath, modif);
+	const subdN = Object.keys(get_subdesign_array(dList, selD, paramPath, modif));
 	for (const figNi of figN) {
 		rOutOpt.push(`svg_${figNi}`);
 	}
@@ -198,11 +247,12 @@ function list_designs(dList: tAllPageDef, detail: boolean) {
 	console.log(rlog);
 }
 
-function list_parameters(dList: tAllPageDef, selD: string, paramPath: string) {
+function list_parameters(dList: tAllPageDef, selD: string, paramPath: string, modif: string[]) {
 	const theD = selectDesign(dList, selD);
 	let rlog = `List of parameters of the design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
 	dParam.applyParamVal(readParams(paramPath, true));
+	dParam.applyParamVal(parseModif(modif, true));
 	const paramVal = dParam.getParamVal();
 	const nameLength = 20;
 	const unitLength = 8;
@@ -234,9 +284,9 @@ function list_parameters(dList: tAllPageDef, selD: string, paramPath: string) {
 	console.log(rlog);
 }
 
-function list_figures(dList: tAllPageDef, selD: string, paramPath: string) {
+function list_figures(dList: tAllPageDef, selD: string, paramPath: string, modif: string[]) {
 	const dPartName = selectDesignN(dList, selD);
-	const figN = get_figure_array(dList, selD, paramPath);
+	const figN = get_figure_array(dList, selD, paramPath, modif);
 	let rlog = `List of figures of the design ${selD} (${dPartName}):\n`;
 	for (const [idx, figNi] of figN.entries()) {
 		const idx2 = idx.toString().padStart(4, ' ');
@@ -245,9 +295,9 @@ function list_figures(dList: tAllPageDef, selD: string, paramPath: string) {
 	console.log(rlog);
 }
 
-function list_subdesigns(dList: tAllPageDef, selD: string, paramPath: string) {
+function list_subdesigns(dList: tAllPageDef, selD: string, paramPath: string, modif: string[]) {
 	const dPartName = selectDesignN(dList, selD);
-	const subdA = get_subdesign_array(dList, selD, paramPath);
+	const subdA = get_subdesign_array(dList, selD, paramPath, modif);
 	const subdN = Object.keys(subdA);
 	let rlog = `List of sub-designs of the design ${selD} (${dPartName}):\n`;
 	for (const [idx, subdNi] of subdN.entries()) {
@@ -262,8 +312,14 @@ function list_subdesigns(dList: tAllPageDef, selD: string, paramPath: string) {
 	console.log(rlog);
 }
 
-function list_subd_parameters(dList: tAllPageDef, selD: string, subdN: string, paramPath: string) {
-	const subdParam = get_subd_parameters(dList, selD, subdN, paramPath, true);
+function list_subd_parameters(
+	dList: tAllPageDef,
+	selD: string,
+	subdN: string,
+	paramPath: string,
+	modif: string[]
+) {
+	const subdParam = get_subd_parameters(dList, selD, subdN, paramPath, modif, true);
 	const nameLength = 20;
 	const nameLabel = 'name'.padEnd(nameLength, ' ');
 	let rlog = `   # : ${nameLabel} value init changed\n`;
@@ -278,10 +334,10 @@ function list_subd_parameters(dList: tAllPageDef, selD: string, subdN: string, p
 	console.log(rlog);
 }
 
-function list_outopt(dList: tAllPageDef, selD: string, paramPath: string) {
+function list_outopt(dList: tAllPageDef, selD: string, paramPath: string, modif: string[]) {
 	const dPartName = selectDesignN(dList, selD);
 	let rlog = `List of outputs of the design ${selD} (${dPartName}):\n`;
-	const outOpt = get_outopt_array(dList, selD, paramPath);
+	const outOpt = get_outopt_array(dList, selD, paramPath, modif);
 	for (const [idx, oneOpt] of outOpt.entries()) {
 		const idx2 = idx.toString().padStart(4, ' ');
 		rlog += `${idx2} : ${oneOpt}\n`;
@@ -314,6 +370,13 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			description: 'path to the input parameter file',
 			default: ''
 		})
+		.option('modif', {
+			alias: 'm',
+			nargs: 2,
+			type: 'string',
+			description: 'modify parameter values <paramName> <paramValue>',
+			default: ''
+		})
 		.option('outDir', {
 			alias: 'o',
 			type: 'string',
@@ -333,13 +396,28 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 		})
 		.command('list-parameters', 'list the parameters of the selected design', {}, (argv) => {
 			//console.log(argv)
-			list_parameters(dList, argv.design as string, argv.param as string);
+			list_parameters(
+				dList,
+				argv.design as string,
+				argv.param as string,
+				argv.modif as string[]
+			);
 		})
 		.command('list-figures', 'list the figures of the selected design', {}, (argv) => {
-			list_figures(dList, argv.design as string, argv.param as string);
+			list_figures(
+				dList,
+				argv.design as string,
+				argv.param as string,
+				argv.modif as string[]
+			);
 		})
 		.command('list-subdesigns', 'list the subdesigns of the selected design', {}, (argv) => {
-			list_subdesigns(dList, argv.design as string, argv.param as string);
+			list_subdesigns(
+				dList,
+				argv.design as string,
+				argv.param as string,
+				argv.modif as string[]
+			);
 		})
 		.command(
 			'list-subd-parameters <subdN>',
@@ -350,19 +428,31 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 					dList,
 					argv.design as string,
 					argv.subdN as string,
-					argv.param as string
+					argv.param as string,
+					argv.modif as string[]
 				);
 			}
 		)
 		.command('compute-log', 'Compute and print the log without writing file', {}, (argv) => {
-			computeGeom(dList, argv.design as string, argv.param as string, true);
+			computeGeom(
+				dList,
+				argv.design as string,
+				argv.param as string,
+				argv.modif as string[],
+				true
+			);
 		})
 		.command(
 			'list-outopt',
 			'list the possible output format options of the selected design',
 			{},
 			(argv) => {
-				list_outopt(dList, argv.design as string, argv.param as string);
+				list_outopt(
+					dList,
+					argv.design as string,
+					argv.param as string,
+					argv.modif as string[]
+				);
 			}
 		)
 		.command('write <outopt>', 'write the output format file', {}, () => {
@@ -374,6 +464,8 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 		.parseSync();
 	//console.log(argv.$0);
 	//console.log(argv.design);
+	//console.log(argv.param);
+	//console.log(argv.modif);
 	//console.log(argv.outDir);
 	//console.log(argv);
 	if (cmd_write) {
@@ -382,9 +474,10 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			const selD = argv.design;
 			const outopt = argv.outopt as string;
 			const paramPath = argv.param;
+			const paramModif = argv.modif as unknown as string[];
 			const theD = selectDesign(dList, selD);
 			// check if outopt is valid
-			const outOpt = get_outopt_array(dList, selD, paramPath);
+			const outOpt = get_outopt_array(dList, selD, paramPath, paramModif);
 			if (!outOpt.includes(outopt)) {
 				console.log(`err639: outopt ${outopt} is not a valid option`);
 				process.exit(1);
@@ -394,7 +487,8 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			const oOpt = decompose_outopt(outopt);
 			const dParam = designParam(theD.pDef);
 			dParam.applyParamVal(readParams(paramPath, true));
-			computeGeom(dList, selD, paramPath, true);
+			dParam.applyParamVal(parseModif(paramModif, true));
+			computeGeom(dList, selD, paramPath, paramModif, true);
 			if (oOpt.eWrite === EWrite.eEGOPARAMS) {
 				rlog += writeParams(
 					dParam.partName,
@@ -408,6 +502,7 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 					selD,
 					oOpt.eSubdesign,
 					paramPath,
+					paramModif,
 					true
 				);
 				rlog += writeParams(
