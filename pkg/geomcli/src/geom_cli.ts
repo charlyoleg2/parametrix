@@ -67,8 +67,8 @@ function computeGeom(
 	const theD = selectDesign(dList, selD);
 	let rlog = `Compute design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
-	dParam.applyParamVal(readParams(paramPath, true));
-	dParam.applyParamVal(parseModif(modif, true));
+	dParam.applyParamVal(readParams(paramPath, printLog));
+	dParam.applyParamVal(parseModif(modif, printLog));
 	const simtime = 0;
 	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
 	//checkGeom(dGeom);
@@ -486,8 +486,8 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			let rlog = `Write ${outopt} of ${selD} (${theD.pDef.partName}):\n`;
 			const oOpt = decompose_outopt(outopt);
 			const dParam = designParam(theD.pDef);
-			dParam.applyParamVal(readParams(paramPath, true));
-			dParam.applyParamVal(parseModif(paramModif, true));
+			dParam.applyParamVal(readParams(paramPath, false));
+			dParam.applyParamVal(parseModif(paramModif, false));
 			computeGeom(dList, selD, paramPath, paramModif, true);
 			if (oOpt.eWrite === EWrite.eEGOPARAMS) {
 				rlog += writeParams(

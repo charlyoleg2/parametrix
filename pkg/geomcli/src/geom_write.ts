@@ -73,8 +73,8 @@ function readParams(paramPath: string, printLog: boolean): tParamVal {
 		const fContentStr = fs.readFileSync(paramPath, 'utf8');
 		const [obj, tlog] = parseParamFile(fContentStr);
 		rlog += tlog;
-		rlog += `file lastModif: ${obj.lastModif}`;
-		rlog += `file comment: ${obj.comment}`;
+		rlog += `file lastModif: ${obj.lastModif}\n`;
+		rlog += `file comment: ${obj.comment}\n`;
 		rParamVal = obj.pVal;
 		if (printLog) {
 			console.log(rlog);
