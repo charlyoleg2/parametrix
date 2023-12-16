@@ -297,7 +297,7 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 	const argv = yargs(hideBin(iArgs))
 		.scriptName('geom_cli')
 		.version(version)
-		.usage('Usage: $0 <global-options> command <command-options>')
+		.usage('Usage: $0 <global-options> command <command-argument>')
 		.example([
 			['$0 list-designs', 'list the available designs'],
 			['$0 list-designs-detailed', 'list the available designs with detailed information'],
