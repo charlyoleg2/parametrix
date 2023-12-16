@@ -22,7 +22,7 @@ function dateString(): string {
 function createDir(iDir: string): string {
 	let rlog = '';
 	if (!fs.existsSync(iDir)) {
-		fs.mkdirSync(iDir);
+		fs.mkdirSync(iDir, { recursive: true });
 		rlog += `info203: mkdir ${iDir}\n`;
 	}
 	return rlog;
