@@ -1,6 +1,6 @@
 // geom_cli.ts
 
-import type { tSubDesign, tPageDef, tAllPageDef } from 'geometrix';
+import type { tSubDesign, tPageDef, tAllPageDef, tDesignParamList } from 'geometrix';
 import { PType, EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { geom_write } from './geom_write';
 import yargs from 'yargs';
@@ -50,6 +50,30 @@ function get_subdesign_array(dList: tAllPageDef, selD: string): tSubDesign {
 	const subd = dGeom.sub;
 	//console.log(rlog);
 	return subd;
+}
+
+function get_subd_parameters(
+	dList: tAllPageDef,
+	selD: string,
+	subdN: string,
+	printLog: boolean
+): tDesignParamList {
+	const theD = selectDesign(dList, selD);
+	let rlog = `Subdesign ${subdN} of ${selD} (${theD.pDef.partName}):\n`;
+	const dParam = designParam(theD.pDef);
+	const simtime = 0;
+	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
+	checkGeom(dGeom);
+	rlog += prefixLog(dGeom.logstr, dParam.partName);
+	if (!Object.keys(dGeom.sub).includes(subdN)) {
+		console.log(`err207: sub-design ${subdN} not defined in partName ${theD.pDef.partName}`);
+		process.exit(1);
+	}
+	const rSubdParams = dGeom.sub[subdN].dparam;
+	if (printLog) {
+		console.log(rlog);
+	}
+	return rSubdParams;
 }
 
 function list_designs(dList: tAllPageDef, detail: boolean) {
@@ -125,24 +149,14 @@ function list_subdesigns(dList: tAllPageDef, selD: string) {
 }
 
 function list_subd_parameters(dList: tAllPageDef, selD: string, subdN: string) {
-	const theD = selectDesign(dList, selD);
-	let rlog = `Subdesign ${subdN} of ${selD} (${theD.pDef.partName}):\n`;
-	const dParam = designParam(theD.pDef);
-	const simtime = 0;
-	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
-	checkGeom(dGeom);
-	rlog += prefixLog(dGeom.logstr, dParam.partName);
-	if (!Object.keys(dGeom.sub).includes(subdN)) {
-		console.log(`err207: sub-design ${subdN} not defined in partName ${theD.pDef.partName}`);
-		process.exit(1);
-	}
+	const subdParam = get_subd_parameters(dList, selD, subdN, true);
 	const nameLength = 20;
 	const nameLabel = 'name'.padEnd(nameLength, ' ');
-	rlog += `   # : ${nameLabel} value init changed\n`;
-	for (const [idx, ipaN] of Object.keys(dGeom.sub[subdN].dparam).entries()) {
+	let rlog = `   # : ${nameLabel} value init changed\n`;
+	for (const [idx, ipaN] of Object.keys(subdParam).entries()) {
 		const idx2 = idx.toString().padStart(4, ' ');
 		const paN = ipaN.padEnd(nameLength, ' ');
-		const pa = dGeom.sub[subdN].dparam[ipaN];
+		const pa = subdParam[ipaN];
 		const paVal = pa.val.toString().padStart(6, ' ');
 		const paInit = pa.init.toString().padStart(6, ' ');
 		rlog += `${idx2} : ${paN} ${paVal} ${paInit} ${pa.chg ? 'changed' : ''}\n`;
