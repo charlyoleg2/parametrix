@@ -220,13 +220,20 @@ function list_outputs(dList: tAllPageDef, selD: string) {
 	console.log(rlog);
 }
 
+enum EWrite {
+	eEGOPARAMS,
+	eSUBDPARAMS,
+	eOTHERS
+}
 interface tEFormat {
+	eWrite: EWrite;
 	eFormat: EFormat;
 	eFace: string;
 	eSubdesign: string;
 }
 
 function decompose_oformat(oformat: string): tEFormat {
+	let rWrite = EWrite.eOTHERS;
 	let rFormat = EFormat.eZIP;
 	let rFace = '';
 	let rSubD = '';
@@ -235,6 +242,7 @@ function decompose_oformat(oformat: string): tEFormat {
 			rFormat = EFormat.eZIP;
 			break;
 		case 'svg_':
+			rWrite = EWrite.eEGOPARAMS;
 			rFormat = EFormat.eSVG;
 			rFace = 'aaa';
 			rSubD = 'aaa';
@@ -242,7 +250,7 @@ function decompose_oformat(oformat: string): tEFormat {
 		default:
 			rFormat = EFormat.ePAX;
 	}
-	const eFormat: tEFormat = { eFormat: rFormat, eFace: rFace, eSubdesign: rSubD };
+	const eFormat: tEFormat = { eWrite: rWrite, eFormat: rFormat, eFace: rFace, eSubdesign: rSubD };
 	return eFormat;
 }
 
