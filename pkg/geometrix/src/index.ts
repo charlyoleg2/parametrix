@@ -10,8 +10,8 @@ export * from './figure';
 export * from './designParams';
 export * from './volume';
 export * from './sub_design';
-//import type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef } from './aaParamGeom';
-//export type { tParamDef, tParamVal, tAllVal, tGeom, tGeomFunc, tPageDef };
+//import type { tParamValInFile, tGeom, tGeomFunc, tPageDef } from './aaParamGeom';
+//export type { tParamValInFile, tGeom, tGeomFunc, tPageDef };
 //export type * from './aaParamGeom';
 export * from './aaParamGeom';
 

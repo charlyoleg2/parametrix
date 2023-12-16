@@ -5,7 +5,7 @@
 	import LocStorWrite from './LocStorWrite.svelte';
 	import LocStorRead from './LocStorRead.svelte';
 	import SimpleDrawing from './SimpleDrawing.svelte';
-	import type { tParamDef, tParamVal, tAllVal, tGeomFunc } from 'geometrix';
+	import type { tParamDef, tParamVal, tParamValInFile, tGeomFunc } from 'geometrix';
 	import { PType } from 'geometrix';
 	import { storePV } from './storePVal';
 	import { downloadParams, generateUrl } from './downloadParams';
@@ -100,7 +100,7 @@
 	//}
 	//$: forceInit2(pDef.partName);
 	// end of the workaround
-	function loadParams(iNew: tAllVal) {
+	function loadParams(iNew: tParamValInFile) {
 		if (Object.hasOwn(iNew, pValKey)) {
 			loadMsg = initpVal(iNew[pValKey]);
 		}
@@ -115,7 +115,7 @@
 	function loadFile(fileP: File) {
 		const reader = new FileReader();
 		reader.addEventListener('loadend', () => {
-			const allJson: tAllVal = JSON.parse(reader.result as string);
+			const allJson: tParamValInFile = JSON.parse(reader.result as string);
 			//console.log(`dbg345`);
 			loadParams(allJson);
 		});
@@ -144,7 +144,7 @@
 		for (const p of pDef.params) {
 			pInit[p.name] = p.init;
 		}
-		loadParams({ pVal: pInit } as tAllVal);
+		loadParams({ pVal: pInit } as tParamValInFile);
 	}
 	// load parameters from localStorage
 	let locStorRname: string;

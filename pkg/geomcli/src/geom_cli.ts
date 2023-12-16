@@ -6,7 +6,7 @@ import type {
 	tAllPageDef,
 	tDesignParamList,
 	tParamVal,
-	tAllVal
+	tParamValInFile
 } from 'geometrix';
 import { c_ParametrixAll, PType, EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { geom_write, write_textFile2 } from './geom_write';
@@ -314,7 +314,7 @@ function writeParams(
 	}
 	const paramNb = Object.keys(idparams).length;
 	let rlog = `Write file ${file_name} in directory ${oDir} containing ${paramNb} params\n`;
-	const allVal: tAllVal = { lastModif: datestr, pVal: idparams, comment: 'Written by geom_cli' };
+	const allVal: tParamValInFile = { lastModif: datestr, pVal: idparams, comment: 'Written by geom_cli' };
 	const file_content = JSON.stringify(allVal, null, '  ');
 	rlog += write_textFile2(oDir, file_name, file_content);
 	return rlog;
