@@ -7,17 +7,9 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import { version } from '../package.json';
 
-function list_designs(dList: tAllPageDef, detail: boolean) {
-	let rlog = 'List of available designs:\n';
-	for (const [idx, dname] of Object.keys(dList).entries()) {
-		rlog += `${idx.toString().padStart(4, ' ')} : ${dname}\n`;
-		if (detail) {
-			rlog += `        ${dList[dname].pDef.partName}\n`;
-			rlog += `        ${dList[dname].pTitle}\n`;
-			rlog += `        ${dList[dname].pDescription}\n`;
-		}
-	}
-	console.log(rlog);
+function get_design_array(dList: tAllPageDef): string[] {
+	const rDesignArray = Object.keys(dList);
+	return rDesignArray;
 }
 
 function selectDesign(dList: tAllPageDef, selD: string): tPageDef {
@@ -32,6 +24,45 @@ function selectDesignN(dList: tAllPageDef, selD: string): string {
 	const theD = selectDesign(dList, selD);
 	const dName = theD.pDef.partName;
 	return dName;
+}
+
+function get_figure_array(dList: tAllPageDef, selD: string): string[] {
+	//let rlog = `Get figure array of the design ${selD} (${theD.pDef.partName}):\n`;
+	const theD = selectDesign(dList, selD);
+	const dParam = designParam(theD.pDef);
+	const simtime = 0;
+	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
+	checkGeom(dGeom);
+	//rlog += prefixLog(dGeom.logstr, dParam.partName);
+	const rfigN = Object.keys(dGeom.fig);
+	//console.log(rlog);
+	return rfigN;
+}
+
+function get_subdesign_array(dList: tAllPageDef, selD: string): tSubDesign {
+	const theD = selectDesign(dList, selD);
+	//let rlog = `Get sub-design  array of the design ${selD} (${theD.pDef.partName}):\n`;
+	const dParam = designParam(theD.pDef);
+	const simtime = 0;
+	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
+	checkGeom(dGeom);
+	//rlog += prefixLog(dGeom.logstr, dParam.partName);
+	const subd = dGeom.sub;
+	//console.log(rlog);
+	return subd;
+}
+
+function list_designs(dList: tAllPageDef, detail: boolean) {
+	let rlog = 'List of available designs:\n';
+	for (const [idx, dname] of get_design_array(dList).entries()) {
+		rlog += `${idx.toString().padStart(4, ' ')} : ${dname}\n`;
+		if (detail) {
+			rlog += `        ${dList[dname].pDef.partName}\n`;
+			rlog += `        ${dList[dname].pTitle}\n`;
+			rlog += `        ${dList[dname].pDescription}\n`;
+		}
+	}
+	console.log(rlog);
 }
 
 function list_parameters(dList: tAllPageDef, selD: string) {
@@ -63,32 +94,6 @@ function list_parameters(dList: tAllPageDef, selD: string) {
 		}
 	}
 	console.log(rlog);
-}
-
-function get_figure_array(dList: tAllPageDef, selD: string): string[] {
-	//let rlog = `Get figure array of the design ${selD} (${theD.pDef.partName}):\n`;
-	const theD = selectDesign(dList, selD);
-	const dParam = designParam(theD.pDef);
-	const simtime = 0;
-	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
-	checkGeom(dGeom);
-	//rlog += prefixLog(dGeom.logstr, dParam.partName);
-	const rfigN = Object.keys(dGeom.fig);
-	//console.log(rlog);
-	return rfigN;
-}
-
-function get_subdesign_array(dList: tAllPageDef, selD: string): tSubDesign {
-	const theD = selectDesign(dList, selD);
-	//let rlog = `Get sub-design  array of the design ${selD} (${theD.pDef.partName}):\n`;
-	const dParam = designParam(theD.pDef);
-	const simtime = 0;
-	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
-	checkGeom(dGeom);
-	//rlog += prefixLog(dGeom.logstr, dParam.partName);
-	const subd = dGeom.sub;
-	//console.log(rlog);
-	return subd;
 }
 
 function list_figures(dList: tAllPageDef, selD: string) {
