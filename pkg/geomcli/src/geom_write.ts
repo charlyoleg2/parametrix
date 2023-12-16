@@ -43,6 +43,14 @@ function write_textFile(fName: string, fContent: string): string {
 	return rlog;
 }
 
+function write_textFile2(iDir: string, fName: string, fContent: string): string {
+	let rlog = '';
+	rlog += createDir(iDir);
+	const fName2 = `${iDir}/${fName}`;
+	rlog += write_textFile(fName2, fContent);
+	return rlog;
+}
+
 async function geom_write(
 	iPartName: string,
 	fgeom: tGeomFunc,
@@ -85,4 +93,4 @@ async function geom_write(
 	return rlog;
 }
 
-export { geom_write };
+export { geom_write, write_textFile2 };
