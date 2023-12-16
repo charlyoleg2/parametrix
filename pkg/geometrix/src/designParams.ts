@@ -44,6 +44,14 @@ function oneDesignParam(iVal: number, iInit: number, iChg: boolean): tDesignPara
 
 type tDesignParamList = Record<string, tDesignParamOne>;
 
+function paramListToVal(dpList: tDesignParamList): tParamVal {
+	const rParamVal: tParamVal = {};
+	for (const pa of Object.keys(dpList)) {
+		rParamVal[pa] = dpList[pa].val;
+	}
+	return rParamVal;
+}
+
 class DesignParam {
 	paramVal: tParamVal = {};
 	paramInit: tParamVal = {};
@@ -101,12 +109,16 @@ class DesignParam {
 			throw `err163: parameter ${iname} does not exist in design ${this.partName}`;
 		}
 	}
-	applyParams(iValues: tDesignParamList): string {
+	applyParamVal(iValues: tParamVal): string {
 		let rlog = '';
 		for (const pa of Object.keys(iValues)) {
-			this.setVal(pa, iValues[pa].val);
+			this.setVal(pa, iValues[pa]);
 		}
 		rlog += `info104: apply ${Object.keys(iValues).length} parameters on ${this.partName}\n`;
+		return rlog;
+	}
+	applyParamList(iValues: tDesignParamList): string {
+		const rlog = this.applyParamVal(paramListToVal(iValues));
 		return rlog;
 	}
 	getDesignParamList(): tDesignParamList {
@@ -120,14 +132,6 @@ class DesignParam {
 
 function designParam(iparamDef: tParamDef): DesignParam {
 	return new DesignParam(iparamDef);
-}
-
-function paramListToVal(dpList: tDesignParamList): tParamVal {
-	const rParamVal: tParamVal = {};
-	for (const pa of Object.keys(dpList)) {
-		rParamVal[pa] = dpList[pa].val;
-	}
-	return rParamVal;
 }
 
 function pNumber(name: string, unit: string, init: number, min = 0, max = 100, step = 1): tParam {

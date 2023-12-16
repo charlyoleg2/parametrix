@@ -1,7 +1,15 @@
 // geom_write.ts
 
 import type { tGeomFunc, tParamVal } from 'geometrix';
-import { EFormat, fileBinContent, fileTextContent, fileSuffix, fileBin } from 'geometrix';
+import {
+	EFormat,
+	fileBinContent,
+	fileTextContent,
+	fileSuffix,
+	fileBin,
+	createParamFile,
+	parseParamFile
+} from 'geometrix';
 import fs from 'fs';
 
 function dateString(): string {
@@ -36,12 +44,43 @@ function write_textFile(fName: string, fContent: string): string {
 	return rlog;
 }
 
-function write_textFile2(iDir: string, fName: string, fContent: string): string {
-	let rlog = '';
-	rlog += createDir(iDir);
-	const fName2 = `${iDir}/${fName}`;
-	rlog += write_textFile(fName2, fContent);
+function writeParams(
+	iPartName: string,
+	idparams: tParamVal,
+	oDir: string,
+	oFileName: string
+): string {
+	const re1 = /[-:]/g;
+	const re2 = /\..*$/;
+	const datestr = new Date().toISOString().replace(re1, '').replace(re2, '').replace('T', '_');
+	let file_name = `px_${iPartName}_${datestr}.json`;
+	if (oFileName !== '') {
+		file_name = oFileName;
+	}
+	const paramNb = Object.keys(idparams).length;
+	let rlog = `Write file ${file_name} in directory ${oDir} containing ${paramNb} params\n`;
+	const file_content = createParamFile(datestr, idparams, 'Written by geom_cli');
+	rlog += createDir(oDir);
+	const fName2 = `${oDir}/${file_name}`;
+	rlog += write_textFile(fName2, file_content);
 	return rlog;
+}
+
+function readParams(paramPath: string, printLog: boolean): tParamVal {
+	let rlog = `Read parameter file ${paramPath}\n`;
+	let rParamVal: tParamVal = {};
+	if (paramPath !== '') {
+		const fContentStr = fs.readFileSync(paramPath, 'utf8');
+		const [obj, tlog] = parseParamFile(fContentStr);
+		rlog += tlog;
+		rlog += `file lastModif: ${obj.lastModif}`;
+		rlog += `file comment: ${obj.comment}`;
+		rParamVal = obj.pVal;
+	}
+	if (printLog) {
+		console.log(rlog);
+	}
+	return rParamVal;
 }
 
 async function geom_write(
@@ -84,4 +123,4 @@ async function geom_write(
 	return rlog;
 }
 
-export { geom_write, write_textFile2 };
+export { geom_write, writeParams, readParams };

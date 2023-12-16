@@ -12,7 +12,7 @@ async function make_pole_static(iOutDir: string, iPrintLog: boolean): Promise<tG
 	let logstr = '';
 	const poleParam = designParam(poleStaticDef.pDef);
 	const helioGeom = await make_heliostat_2('', false);
-	logstr += poleParam.applyParams(helioGeom.sub.pole_static_1.dparam);
+	logstr += poleParam.applyParamList(helioGeom.sub.pole_static_1.dparam);
 	poleParam.setVal('D1', 1000); // 1000 mm
 	poleParam.setVal('D2', 700); // 700 mm
 	poleParam.setVal('D3', 800); // 800 mm

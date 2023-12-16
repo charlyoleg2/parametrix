@@ -5,11 +5,6 @@ import type { tFaces } from './figure';
 import type { tVolume } from './volume';
 import type { tSubDesign } from './sub_design';
 
-interface tParamValInFile {
-	lastModif: string;
-	pVal: tParamVal;
-	comment: string;
-}
 interface tGeom {
 	partName: string;
 	calcErr: boolean;
@@ -63,5 +58,5 @@ function prefixLog(iLog: string, iPartName: string): string {
 	return rLog;
 }
 
-export type { tParamValInFile, tGeom, tGeomFunc, tPageDef, tAllPageDef, tAllLink };
+export type { tGeom, tGeomFunc, tPageDef, tAllPageDef, tAllLink };
 export { fround, initGeom, checkGeom, prefixLog };

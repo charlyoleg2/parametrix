@@ -12,7 +12,7 @@ async function make_swing(iOutDir: string, iPrintLog: boolean): Promise<tGeom> {
 	let logstr = '';
 	const swingParam = designParam(swingDef.pDef);
 	const helioGeom = await make_heliostat_2('', false);
-	logstr += swingParam.applyParams(helioGeom.sub.swing_1.dparam);
+	logstr += swingParam.applyParamList(helioGeom.sub.swing_1.dparam);
 	swingParam.setVal('L1', 12500); // 12500 mm
 	swingParam.setVal('L2', 6000); // 6000 mm
 	swingParam.setVal('L3', 500); // 500 mm

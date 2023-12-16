@@ -12,7 +12,7 @@ async function make_rake_stopper(iOutDir: string, iPrintLog: boolean): Promise<t
 	let logstr = '';
 	const rakeParam = designParam(rakeStopperDef.pDef);
 	const helioGeom = await make_heliostat_2('', false);
-	logstr += rakeParam.applyParams(helioGeom.sub.rake_1.dparam);
+	logstr += rakeParam.applyParamList(helioGeom.sub.rake_1.dparam);
 	rakeParam.setVal('D1', 600); // 600 mm
 	rakeParam.setVal('D2', 400); // 400 mm
 	rakeParam.setVal('D3', 400); // 400 mm
