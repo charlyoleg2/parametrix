@@ -1,7 +1,7 @@
 // geom_cli.ts
 
 import type { tSubDesign, tPageDef, tAllPageDef, tDesignParamList } from 'geometrix';
-import { PType, EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
+import { c_ParametrixAll, PType, EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { geom_write } from './geom_write';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -121,7 +121,7 @@ interface tEFormat {
 function decompose_outopt(outopt: string): tEFormat {
 	let rWrite = EWrite.eOTHERS;
 	let rFormat = EFormat.ePAX;
-	let rFace = '';
+	let rFace = c_ParametrixAll;
 	let rSubD = '';
 	const reSvg = /^svg_/;
 	const reDxf = /^dxf_/;
@@ -143,10 +143,12 @@ function decompose_outopt(outopt: string): tEFormat {
 				rWrite = EWrite.eEGOPARAMS;
 				break;
 			case 'svg_all_figures':
+				rFace = c_ParametrixAll;
 				rFormat = EFormat.eSVG;
 				rWrite = EWrite.eOTHERS;
 				break;
 			case 'dxf_all_figures':
+				rFace = c_ParametrixAll;
 				rFormat = EFormat.eDXF;
 				rWrite = EWrite.eOTHERS;
 				break;
@@ -372,6 +374,13 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			const selD = argv.design;
 			const outopt = argv.outopt as string;
 			const theD = selectDesign(dList, selD);
+			// check if outopt is valid
+			const outOpt = get_outopt_array(dList, selD);
+			if (!outOpt.includes(outopt)) {
+				console.log(`err639: outopt ${outopt} is not a valid option`);
+				process.exit(1);
+			}
+			// end of check of outopt
 			let rlog = `Write ${outopt} of ${selD} (${theD.pDef.partName}):\n`;
 			const oOpt = decompose_outopt(outopt);
 			const dParam = designParam(theD.pDef);
@@ -379,22 +388,28 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			const dGeom = theD.pGeom(simtime, dParam.getParamVal());
 			checkGeom(dGeom);
 			rlog += prefixLog(dGeom.logstr, dParam.partName);
-			rlog += await geom_write(
-				dParam.partName,
-				theD.pGeom,
-				simtime,
-				dParam.getParamVal(),
-				oOpt.eFormat, // output-format
-				//EFormat.eSVG,
-				//EFormat.eDXF,
-				//EFormat.ePAX,
-				//EFormat.eOPENSCAD,
-				//EFormat.eJSCAD,
-				//EFormat.eZIP,
-				oOpt.eFace, // selected-2d-face
-				iOutDir, // output-directory
-				argv.outFileName // output-filename
-			);
+			if (oOpt.eWrite === EWrite.eEGOPARAMS) {
+				rlog += 'Write ego-params';
+			} else if (oOpt.eWrite === EWrite.eSUBDPARAMS) {
+				rlog += `Write subd-params of ${oOpt.eSubdesign}`;
+			} else {
+				rlog += await geom_write(
+					dParam.partName,
+					theD.pGeom,
+					simtime,
+					dParam.getParamVal(),
+					oOpt.eFormat, // output-format
+					//EFormat.eSVG,
+					//EFormat.eDXF,
+					//EFormat.ePAX,
+					//EFormat.eOPENSCAD,
+					//EFormat.eJSCAD,
+					//EFormat.eZIP,
+					oOpt.eFace, // selected-2d-face
+					iOutDir, // output-directory
+					argv.outFileName // output-filename
+				);
+			}
 			console.log(rlog);
 		} else {
 			console.log("err638: option 'outDir' is set to empty string. Nothing written!");
