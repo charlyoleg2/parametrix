@@ -8,7 +8,7 @@ import type {
 	tParamVal,
 	tParamValInFile
 } from 'geometrix';
-import { PType, EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
+import { PType, EFormat, designParam, checkGeom, prefixLog, paramListToVal } from 'geometrix';
 import { geom_write, write_textFile2 } from './geom_write';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -426,7 +426,13 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 					argv.outFileName
 				);
 			} else if (oOpt.eWrite === EWrite.eSUBDPARAMS) {
-				rlog += `Write subd-params of ${oOpt.eSubdesign}`;
+				const subdParam = get_subd_parameters(dList, selD, oOpt.eSubdesign, true);
+				rlog += writeParams(
+					dParam.partName,
+					paramListToVal(subdParam),
+					iOutDir,
+					argv.outFileName
+				);
 			} else {
 				rlog += await geom_write(
 					dParam.partName,
