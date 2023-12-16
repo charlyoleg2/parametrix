@@ -14,13 +14,14 @@ import { mergeFaces } from './figure';
 
 enum EFormat {
 	eSVG,
+	eSVGALL,
 	eDXF,
+	eDXFALL,
 	ePAX,
 	eOPENSCAD,
 	eJSCAD,
 	eZIP
 }
-const c_ParametrixAll = 'ParametrixAll';
 
 function fileTextContent(
 	fgeom: tGeomFunc,
@@ -36,22 +37,22 @@ function fileTextContent(
 			if (figList.includes(eFace)) {
 				const figu = geome0.fig[eFace];
 				rFileContent = figureToSvg(figu.mainList);
-			} else if (eFace === c_ParametrixAll) {
-				const figu = mergeFaces(geome0.fig);
-				rFileContent = figureToSvg(figu.mainList);
 			} else {
 				console.log(`err749: fileTextContent eFace ${eFace} invalid`);
 			}
+		} else if (exportFormat === EFormat.eSVGALL) {
+			const figu = mergeFaces(geome0.fig);
+			rFileContent = figureToSvg(figu.mainList);
 		} else if (exportFormat === EFormat.eDXF) {
 			if (figList.includes(eFace)) {
 				const figu = geome0.fig[eFace];
 				rFileContent = figureToDxf(figu.mainList);
-			} else if (eFace === c_ParametrixAll) {
-				const figu = mergeFaces(geome0.fig);
-				rFileContent = figureToDxf(figu.mainList);
 			} else {
 				console.log(`err759: fileTextContent eFace ${eFace} invalid`);
 			}
+		} else if (exportFormat === EFormat.eDXFALL) {
+			const figu = mergeFaces(geome0.fig);
+			rFileContent = figureToDxf(figu.mainList);
 		} else if (exportFormat === EFormat.ePAX) {
 			rFileContent = makePax(paramVal, geome0);
 		} else if (exportFormat === EFormat.eOPENSCAD) {
@@ -137,4 +138,4 @@ function fileBin(exportFormat: EFormat): boolean {
 	return rBin;
 }
 
-export { EFormat, c_ParametrixAll, fileBinContent, fileTextContent, fileMime, fileSuffix, fileBin };
+export { EFormat, fileBinContent, fileTextContent, fileMime, fileSuffix, fileBin };

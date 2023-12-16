@@ -17,7 +17,6 @@
 		adjustRect,
 		adjustScale,
 		adjustTranslate,
-		c_ParametrixAll,
 		mergeFaces
 	} from 'geometrix';
 	import { storePV } from './storePVal';
@@ -30,6 +29,7 @@
 	export let selFace: string;
 	export let simTime = 0;
 
+	const c_ParametrixAll = 'ParametrixAll';
 	let windowWidth: number;
 	let canvasFull: HTMLCanvasElement;
 	let canvasZoom: HTMLCanvasElement;

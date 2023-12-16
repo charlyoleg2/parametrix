@@ -8,7 +8,7 @@ import type {
 	tParamVal,
 	tParamValInFile
 } from 'geometrix';
-import { c_ParametrixAll, PType, EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
+import { PType, EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { geom_write, write_textFile2 } from './geom_write';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -128,7 +128,7 @@ interface tEFormat {
 function decompose_outopt(outopt: string): tEFormat {
 	let rWrite = EWrite.eOTHERS;
 	let rFormat = EFormat.ePAX;
-	let rFace = c_ParametrixAll;
+	let rFace = 'all';
 	let rSubD = '';
 	const reSvg = /^svg_/;
 	const reDxf = /^dxf_/;
@@ -150,13 +150,11 @@ function decompose_outopt(outopt: string): tEFormat {
 				rWrite = EWrite.eEGOPARAMS;
 				break;
 			case 'svg_all_figures':
-				rFace = c_ParametrixAll;
-				rFormat = EFormat.eSVG;
+				rFormat = EFormat.eSVGALL;
 				rWrite = EWrite.eOTHERS;
 				break;
 			case 'dxf_all_figures':
-				rFace = c_ParametrixAll;
-				rFormat = EFormat.eDXF;
+				rFormat = EFormat.eDXFALL;
 				rWrite = EWrite.eOTHERS;
 				break;
 			case 'pax_all':

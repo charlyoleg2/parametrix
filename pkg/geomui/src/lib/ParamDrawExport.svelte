@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { tParamDef, tGeomFunc, tSubDesign, tAllLink } from 'geometrix';
 	import {
-		c_ParametrixAll,
 		EFormat,
 		fileBinContent,
 		fileTextContent,
@@ -91,34 +90,25 @@
 		const reSvg = /^svg_/;
 		const reDxf = /^dxf_/;
 		let exportFormat = EFormat.eSVG;
-		let eFace = '';
 		let nFace = 'all';
 		if (iExportFace.match(reSvg)) {
 			exportFormat = EFormat.eSVG;
-			eFace = iExportFace.replace(reSvg, '');
-			nFace = eFace;
+			nFace = iExportFace.replace(reSvg, '');
 		} else if (iExportFace.match(reDxf)) {
 			exportFormat = EFormat.eDXF;
-			eFace = iExportFace.replace(reDxf, '');
-			nFace = eFace;
+			nFace = iExportFace.replace(reDxf, '');
 		} else if (iExportFace === 'allsvg') {
-			exportFormat = EFormat.eSVG;
-			eFace = c_ParametrixAll;
+			exportFormat = EFormat.eSVGALL;
 		} else if (iExportFace === 'alldxf') {
-			exportFormat = EFormat.eDXF;
-			eFace = c_ParametrixAll;
+			exportFormat = EFormat.eDXFALL;
 		} else if (iExportFace === 'pax') {
 			exportFormat = EFormat.ePAX;
-			eFace = c_ParametrixAll;
 		} else if (iExportFace === 'oscad') {
 			exportFormat = EFormat.eOPENSCAD;
-			eFace = c_ParametrixAll;
 		} else if (iExportFace === 'ojscad') {
 			exportFormat = EFormat.eJSCAD;
-			eFace = c_ParametrixAll;
 		} else if (iExportFace === 'zip') {
 			exportFormat = EFormat.eZIP;
-			eFace = c_ParametrixAll;
 		} else {
 			console.log(`err883: downloadExport iExportFace ${iExportFace} invalid`);
 		}
@@ -136,7 +126,7 @@
 			);
 			download_binFile(fName, fContent);
 		} else {
-			const fContent = fileTextContent(fgeom, $storePV[pDef.partName], eFace, exportFormat);
+			const fContent = fileTextContent(fgeom, $storePV[pDef.partName], nFace, exportFormat);
 			download_textFile(fName, fContent, fMime);
 		}
 	}

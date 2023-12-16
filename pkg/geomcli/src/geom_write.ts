@@ -1,14 +1,7 @@
 // geom_write.ts
 
 import type { tGeomFunc, tParamVal } from 'geometrix';
-import {
-	c_ParametrixAll,
-	EFormat,
-	fileBinContent,
-	fileTextContent,
-	fileSuffix,
-	fileBin
-} from 'geometrix';
+import { EFormat, fileBinContent, fileTextContent, fileSuffix, fileBin } from 'geometrix';
 import fs from 'fs';
 
 function dateString(): string {
@@ -64,10 +57,8 @@ async function geom_write(
 	let rlog = '';
 	const fSuffix = fileSuffix(iFormat);
 	const fBin = fileBin(iFormat);
-	let eFace = c_ParametrixAll;
 	let nFace = 'all';
 	if (iFace !== '') {
-		eFace = iFace;
 		nFace = iFace;
 	}
 	let fName = iFname;
@@ -87,7 +78,7 @@ async function geom_write(
 		const fContent = await fileBinContent(fgeom, simTime, iParam, iFormat);
 		rlog += await write_binFile(fName2, fContent);
 	} else {
-		const fContent = fileTextContent(fgeom, iParam, eFace, iFormat);
+		const fContent = fileTextContent(fgeom, iParam, nFace, iFormat);
 		rlog += write_textFile(fName2, fContent);
 	}
 	return rlog;
