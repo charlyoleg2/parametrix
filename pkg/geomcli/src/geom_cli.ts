@@ -42,7 +42,7 @@ function parseModif(modif: string[], printLog: boolean): tParamVal {
 	}
 	const pValLen = Object.keys(pVal).length;
 	if (printLog && pValLen > 0) {
-		const rlog = `info308: ${pValLen} modified parameters`;
+		const rlog = `info308: ${pValLen} parameters of modifier`;
 		console.log(rlog);
 	}
 	return pVal;
@@ -370,6 +370,7 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 		.option('param', {
 			alias: 'p',
 			type: 'string',
+			array: false,
 			description: 'path to the input parameter file',
 			default: ''
 		})

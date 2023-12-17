@@ -91,6 +91,7 @@ function readParams(paramPath: string, printLog: boolean): tParamVal {
 		//rlog += tlog;
 		rlog += `file lastModif: ${obj.lastModif}\n`;
 		rlog += `file comment: ${obj.comment}\n`;
+		rlog += `info307: ${Object.keys(obj.pVal).length} parameters from file`;
 		rParamVal = obj.pVal;
 		if (printLog) {
 			console.log(rlog);
