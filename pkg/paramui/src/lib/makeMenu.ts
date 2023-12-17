@@ -61,6 +61,13 @@ function makeAllLink(iMenu: tMenuList): tAllLink {
 	return rLink;
 }
 
+function removeTrailingSlash(iPath: string): string {
+	const rpath = iPath;
+	const re = /\/$/;
+	rpath.replace(re, '');
+	return rpath;
+}
+
 function checkIndexPath(iPath: string): string {
 	//console.log(`dbg518: ${iPath}`);
 	let rpath = iPath;
@@ -78,7 +85,9 @@ function checkEmptyPath(iPath: string): string {
 	return rPath;
 }
 function checkPath(iPath: string): string {
+	//console.log(`dbg787: ${iPath}`);
 	let rPath = iPath;
+	rPath = removeTrailingSlash(rPath);
 	rPath = checkEmptyPath(rPath);
 	rPath = checkIndexPath(rPath);
 	return rPath;
@@ -90,7 +99,7 @@ const pageAbout: tPageOne = { path: '/about', page: null, svg: 'page_about.svg',
 const categ0: tCategoryOne = { category: '', pages: [pageIndex, pageAbout] };
 function listOneCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
 	//console.log(`dbg572: ${ipath}`);
-	const spath = checkIndexPath(ipath);
+	const spath = checkPath(ipath);
 	let categIdx = 0;
 	lookForCategory: for (const [idx, categ] of iMenu.entries()) {
 		for (const pag of categ.pages) {
