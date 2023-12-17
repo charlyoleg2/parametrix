@@ -1,13 +1,6 @@
 // geom_cli.ts
 
-import type {
-	tParamVal,
-	tGeom,
-	tSubDesign,
-	tPageDef,
-	tAllPageDef,
-	tDesignParamList
-} from 'geometrix';
+import type { tParamVal, tGeom, tSubDesign, tPageDef, tAllPageDef, tSubInst } from 'geometrix';
 import { PType, EFormat, designParam, prefixLog, paramListToVal } from 'geometrix';
 import { geom_write, writeParams, readParams } from './geom_write';
 import yargs from 'yargs';
@@ -112,14 +105,14 @@ function get_subdesign_array(
 	return subd;
 }
 
-function get_subd_parameters(
+function get_subd(
 	dList: tAllPageDef,
 	selD: string,
 	subdN: string,
 	paramPath: string,
 	modif: string[],
 	printLog: boolean
-): tDesignParamList {
+): tSubInst {
 	const theD = selectDesign(dList, selD);
 	const rlog = `Subdesign ${subdN} of ${selD} (${theD.pDef.partName}):\n`;
 	const dGeom = computeGeom(dList, selD, paramPath, modif, printLog);
@@ -127,11 +120,11 @@ function get_subd_parameters(
 		console.log(`err207: sub-design ${subdN} not defined in partName ${theD.pDef.partName}`);
 		process.exit(1);
 	}
-	const rSubdParams = dGeom.sub[subdN].dparam;
+	const rSubd = dGeom.sub[subdN];
 	if (printLog) {
 		console.log(rlog);
 	}
-	return rSubdParams;
+	return rSubd;
 }
 
 const c_fileFormat = [
@@ -329,7 +322,7 @@ function list_subd_parameters(
 	paramPath: string,
 	modif: string[]
 ) {
-	const subdParam = get_subd_parameters(dList, selD, subdN, paramPath, modif, true);
+	const subdParam = get_subd(dList, selD, subdN, paramPath, modif, true).dparam;
 	const nameLength = 20;
 	const nameLabel = 'name'.padEnd(nameLength, ' ');
 	let rlog = `   # : ${nameLabel} value init changed\n`;
@@ -514,17 +507,10 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 					argv.outFileName
 				);
 			} else if (oOpt.eWrite === EWrite.eSUBDPARAMS) {
-				const subdParam = get_subd_parameters(
-					dList,
-					selD,
-					oOpt.eSubdesign,
-					paramPath,
-					paramModif,
-					true
-				);
+				const subD = get_subd(dList, selD, oOpt.eSubdesign, paramPath, paramModif, false);
 				rlog += writeParams(
-					dParam.partName,
-					paramListToVal(subdParam),
+					subD.partName,
+					paramListToVal(subD.dparam),
 					iOutDir,
 					argv.outFileName
 				);
