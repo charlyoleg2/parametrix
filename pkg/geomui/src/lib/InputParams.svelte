@@ -58,7 +58,7 @@
 		}
 		const rApplyWarn = notInScope > 0 ? true : true;
 		const loadDate = new Date().toLocaleTimeString();
-		rMsg += `Parameters loaded at ${loadDate} :`;
+		rMsg += `Params loaded at ${loadDate} :`;
 		rMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
 		rMsg += `, load-nb: ${Object.keys(ipVal).length}`;
 		rMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}\n`;
@@ -256,7 +256,14 @@
 		<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}
 			><LocStorRead pageName={pDef.partName} bind:storeName={locStorRname} /></ModalDiag
 		>
-		<p class="load-msg" class:applyWarn>{loadMsg}</p>
+		<textarea
+			rows="3"
+			cols="85"
+			readonly
+			wrap="off"
+			value={loadMsg}
+			class:colorWarn={applyWarn}
+		/>
 		<table>
 			<thead>
 				<tr>
@@ -375,13 +382,15 @@
 	section > main > input[type='file'] {
 		display: none;
 	}
-	section > main > p.load-msg {
+	section > main > textarea {
+		display: block;
+		/*resize: horizontal;*/
 		font-size: 0.8rem;
 		font-weight: 400;
 		margin: 0.2rem;
 		margin-left: 0.5rem;
 	}
-	section > main > p.load-msg.applyWarn {
+	section > main > textarea.colorWarn {
 		background-color: colors.$warn-calc-warning;
 	}
 	section > main > table {
