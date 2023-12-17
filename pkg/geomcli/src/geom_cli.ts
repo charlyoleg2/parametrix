@@ -473,32 +473,36 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 	//console.log(argv);
 	if (cmd_write) {
 		const iOutDir = argv.outDir;
-		if (iOutDir !== '') {
-			const selD = argv.design;
-			const outopt = argv.outopt as string;
-			const paramPath = argv.param;
-			const paramModif = argv.modif as unknown as string[];
-			const theD = selectDesign(dList, selD);
-			// check if outopt is valid
-			const outOpt = get_outopt_array(dList, selD, paramPath, paramModif);
-			if (!outOpt.includes(outopt)) {
-				console.log(`err639: outopt ${outopt} is not a valid option`);
-				process.exit(1);
-			}
-			// end of check of outopt
-			//let rlog = `Write ${outopt} of ${selD} (${theD.pDef.partName}):\n`;
-			let rlog = '';
-			const oOpt = decompose_outopt(outopt);
-			const dParam = designParam(theD.pDef);
-			try {
-				dParam.applyParamVal(readParams(paramPath, false));
-				dParam.applyParamVal(parseModif(paramModif, false));
-			} catch (emsg) {
-				console.log('err273: error while applying new parameters');
-				console.log(emsg);
-				process.exit(1);
-			}
-			computeGeom(dList, selD, paramPath, paramModif, true);
+		if (iOutDir === '') {
+			console.log("err638: option 'outDir' is set to empty string. Nothing written!");
+			process.exit(1);
+		}
+		const selD = argv.design;
+		const outopt = argv.outopt as string;
+		const paramPath = argv.param;
+		const paramModif = argv.modif as unknown as string[];
+		const theD = selectDesign(dList, selD);
+		// check if outopt is valid
+		const outOpt = get_outopt_array(dList, selD, paramPath, paramModif);
+		if (!outOpt.includes(outopt)) {
+			console.log(`err639: outopt ${outopt} is not a valid option`);
+			process.exit(1);
+		}
+		// end of check of outopt
+		//let rlog = `Write ${outopt} of ${selD} (${theD.pDef.partName}):\n`;
+		let rlog = '';
+		const oOpt = decompose_outopt(outopt);
+		const dParam = designParam(theD.pDef);
+		try {
+			dParam.applyParamVal(readParams(paramPath, false));
+			dParam.applyParamVal(parseModif(paramModif, false));
+		} catch (emsg) {
+			console.log('err273: error while applying new parameters');
+			console.log(emsg);
+			process.exit(1);
+		}
+		computeGeom(dList, selD, paramPath, paramModif, true);
+		try {
 			if (oOpt.eWrite === EWrite.eEGOPARAMS) {
 				rlog += writeParams(
 					dParam.partName,
@@ -533,10 +537,12 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 					argv.outFileName // output-filename
 				);
 			}
-			console.log(rlog);
-		} else {
-			console.log("err638: option 'outDir' is set to empty string. Nothing written!");
+		} catch (emsg) {
+			console.log('err279: error while writing file');
+			console.log(emsg);
+			process.exit(1);
 		}
+		console.log(rlog);
 	}
 }
 

@@ -44,6 +44,18 @@ function write_textFile(fName: string, fContent: string): string {
 	return rlog;
 }
 
+function checkDirFName(iDir: string, fName: string): string {
+	const reSlash = /\//;
+	if (reSlash.test(fName)) {
+		throw `err932: the filename ${fName} contains a slash '/'`;
+	}
+	if (iDir === '') {
+		throw `err074: geom_write output-directory is an empty string!`;
+	}
+	const fName2 = `${iDir}/${fName}`;
+	return fName2;
+}
+
 function writeParams(
 	iPartName: string,
 	idparams: tParamVal,
@@ -58,7 +70,7 @@ function writeParams(
 		file_name = oFileName;
 	}
 	const paramNb = Object.keys(idparams).length;
-	const fName2 = `${oDir}/${file_name}`;
+	const fName2 = checkDirFName(oDir, file_name);
 	let rlog = `Write ${paramNb} parameters in file ${fName2}\n`;
 	const file_content = createParamFile(datestr, idparams, 'Written by geom_cli');
 	rlog += createDir(oDir);
@@ -104,15 +116,8 @@ async function geom_write(
 	if (fName === '') {
 		fName = iPartName + '_' + nFace + '_' + dateString() + fSuffix;
 	}
-	const reSlash = /\//;
-	if (reSlash.test(fName)) {
-		throw `err932: the filename ${fName} contains a slash '/'`;
-	}
-	if (iDir === '') {
-		throw `err074: geom_write output-directory is an empty string!`;
-	}
+	const fName2 = checkDirFName(iDir, fName);
 	rlog += createDir(iDir);
-	const fName2 = `${iDir}/${fName}`;
 	if (fBin) {
 		const fContent = await fileBinContent(fgeom, simTime, iParam, iFormat);
 		rlog += await write_binFile(fName2, fContent);
