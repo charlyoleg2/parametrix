@@ -29,10 +29,18 @@ function parseParamFile(fContentStr: string): [tParamValInFile, string] {
 		rObj[lastModifKey] = wholeJson[lastModifKey];
 	}
 	if (Object.hasOwn(wholeJson, pValKey)) {
-		rObj[pValKey] = wholeJson[pValKey];
+		const paNaVa = wholeJson[pValKey];
+		for (const paNa of Object.keys(paNaVa)) {
+			const paVa = paNaVa[paNa];
+			//const paVa = parseFloat(paVaStr);
+			if (isNaN(paVa)) {
+				throw `err905: ${paVa} is not a number!`;
+			}
+			rObj[pValKey][paNa] = paVa;
+		}
 		rlog += `info398: parsing file has found ${Object.keys(rObj[pValKey]).length} parameters\n`;
 	} else {
-		rlog += `err489: parameter-json-file has no key ${pValKey}\n`;
+		throw `err489: parameter-json-file has no key ${pValKey}\n`;
 	}
 	if (Object.hasOwn(wholeJson, commentKey)) {
 		rObj[commentKey] = wholeJson[commentKey];

@@ -82,9 +82,13 @@ function readParams(paramPath: string, printLog: boolean): tParamVal {
 	let rParamVal: tParamVal = {};
 	if (paramPath !== '') {
 		let rlog = `Read parameter file ${paramPath}\n`;
+		if (!fs.existsSync(paramPath)) {
+			throw `err533: file ${paramPath} doesn't exist!`;
+		}
 		const fContentStr = fs.readFileSync(paramPath, 'utf8');
-		const [obj, tlog] = parseParamFile(fContentStr);
-		rlog += tlog;
+		const [obj] = parseParamFile(fContentStr);
+		//const [obj, tlog] = parseParamFile(fContentStr);
+		//rlog += tlog;
 		rlog += `file lastModif: ${obj.lastModif}\n`;
 		rlog += `file comment: ${obj.comment}\n`;
 		rParamVal = obj.pVal;
