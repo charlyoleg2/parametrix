@@ -43,8 +43,7 @@ function parseModif(modif: string[], printLog: boolean): tParamVal {
 		const valStr = modif[2 * i + 1];
 		const val = parseFloat(valStr);
 		if (isNaN(val)) {
-			console.log(`err908: ${valStr} is not a number!`);
-			process.exit(1);
+			throw(`err908: ${valStr} is not a number!`);
 		}
 		pVal[modif[2 * i]] = val;
 	}
