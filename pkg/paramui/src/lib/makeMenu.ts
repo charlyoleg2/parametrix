@@ -62,9 +62,8 @@ function makeAllLink(iMenu: tMenuList): tAllLink {
 }
 
 function removeTrailingSlash(iPath: string): string {
-	const rpath = iPath;
 	const re = /\/$/;
-	rpath.replace(re, '');
+	const rpath = iPath.replace(re, '');
 	return rpath;
 }
 
@@ -90,6 +89,7 @@ function checkPath(iPath: string): string {
 	rPath = removeTrailingSlash(rPath);
 	rPath = checkEmptyPath(rPath);
 	rPath = checkIndexPath(rPath);
+	//console.log(`dbg788: ${iPath}`);
 	return rPath;
 }
 
