@@ -114,7 +114,6 @@ function get_subd(
 	printLog: boolean
 ): tSubInst {
 	const theD = selectDesign(dList, selD);
-	const rlog = `Subdesign ${subdN} of ${selD} (${theD.pDef.partName}):\n`;
 	const dGeom = computeGeom(dList, selD, paramPath, modif, printLog);
 	if (!Object.keys(dGeom.sub).includes(subdN)) {
 		console.log(`err207: sub-design ${subdN} not defined in partName ${theD.pDef.partName}`);
@@ -122,6 +121,7 @@ function get_subd(
 	}
 	const rSubd = dGeom.sub[subdN];
 	if (printLog) {
+		const rlog = `Subdesign ${subdN} (${rSubd.partName}) of ${selD} (${theD.pDef.partName}):\n`;
 		console.log(rlog);
 	}
 	return rSubd;
