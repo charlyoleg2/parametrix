@@ -58,11 +58,12 @@
 		}
 		const rApplyWarn = notInScope > 0 ? true : true;
 		const loadDate = new Date().toLocaleTimeString();
-		rMsg += `Params loaded at ${loadDate} :`;
+		rMsg += `Parameters loaded at ${loadDate} :`;
 		rMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
 		rMsg += `, load-nb: ${Object.keys(ipVal).length}`;
-		rMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
-		rMsg += `, equal-nb: ${equal}, out-of-scope: ${notInScope}`;
+		rMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}\n`;
+		rMsg += ` equal-nb: ${equal}, diff-nb: ${cover - equal}`;
+		rMsg += `, out-of-scope: ${notInScope}`;
 		return [rMsg, rApplyWarn];
 	}
 	//function initParams1() {
