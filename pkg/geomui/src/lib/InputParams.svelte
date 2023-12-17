@@ -60,9 +60,9 @@
 		const loadDate = new Date().toLocaleTimeString();
 		rMsg += `Params loaded at ${loadDate} :`;
 		rMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
-		rMsg += `, load-nb: ${Object.keys(ipVal).length}`;
 		rMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}\n`;
 		rMsg += ` equal-nb: ${equal}, diff-nb: ${cover - equal}`;
+		rMsg += `, load-nb: ${Object.keys(ipVal).length}`;
 		rMsg += `, out-of-scope: ${notInScope}`;
 		return [rMsg, rApplyWarn];
 	}
@@ -258,7 +258,7 @@
 		>
 		<textarea
 			rows="3"
-			cols="85"
+			cols="80"
 			readonly
 			wrap="off"
 			value={loadMsg}
