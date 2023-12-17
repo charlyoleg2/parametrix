@@ -493,7 +493,8 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 				process.exit(1);
 			}
 			// end of check of outopt
-			let rlog = `Write ${outopt} of ${selD} (${theD.pDef.partName}):\n`;
+			//let rlog = `Write ${outopt} of ${selD} (${theD.pDef.partName}):\n`;
+			let rlog = '';
 			const oOpt = decompose_outopt(outopt);
 			const dParam = designParam(theD.pDef);
 			try {
