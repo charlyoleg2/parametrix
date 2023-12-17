@@ -37,8 +37,7 @@ function parseModif(modif: string[], printLog: boolean): tParamVal {
 	const pVal: tParamVal = {};
 	const arrayLen = modif.length;
 	if (arrayLen % 2 === 1) {
-		console.log(`err903: length ${arrayLen} of modif string array is odd!`);
-		process.exit(1);
+		throw `err903: length ${arrayLen} of modif string array is odd!`;
 	}
 	for (let i = 0; i < arrayLen / 2; i++) {
 		const valStr = modif[2 * i + 1];
@@ -67,8 +66,14 @@ function computeGeom(
 	const theD = selectDesign(dList, selD);
 	let rlog = `Compute design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
-	dParam.applyParamVal(readParams(paramPath, printLog));
-	dParam.applyParamVal(parseModif(modif, printLog));
+	try {
+		dParam.applyParamVal(readParams(paramPath, printLog));
+		dParam.applyParamVal(parseModif(modif, printLog));
+	} catch (emsg) {
+		console.log('err271: error while applying new parameters');
+		console.log(emsg);
+		process.exit(1);
+	}
 	const simtime = 0;
 	const dGeom = theD.pGeom(simtime, dParam.getParamVal());
 	//checkGeom(dGeom);
@@ -251,8 +256,14 @@ function list_parameters(dList: tAllPageDef, selD: string, paramPath: string, mo
 	const theD = selectDesign(dList, selD);
 	let rlog = `List of parameters of the design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
-	dParam.applyParamVal(readParams(paramPath, true));
-	dParam.applyParamVal(parseModif(modif, true));
+	try {
+		dParam.applyParamVal(readParams(paramPath, true));
+		dParam.applyParamVal(parseModif(modif, true));
+	} catch (emsg) {
+		console.log('err272: error while applying new parameters');
+		console.log(emsg);
+		process.exit(1);
+	}
 	const paramVal = dParam.getParamVal();
 	const nameLength = 20;
 	const unitLength = 8;
@@ -486,8 +497,14 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			let rlog = `Write ${outopt} of ${selD} (${theD.pDef.partName}):\n`;
 			const oOpt = decompose_outopt(outopt);
 			const dParam = designParam(theD.pDef);
-			dParam.applyParamVal(readParams(paramPath, false));
-			dParam.applyParamVal(parseModif(paramModif, false));
+			try {
+				dParam.applyParamVal(readParams(paramPath, false));
+				dParam.applyParamVal(parseModif(paramModif, false));
+			} catch (emsg) {
+				console.log('err273: error while applying new parameters');
+				console.log(emsg);
+				process.exit(1);
+			}
 			computeGeom(dList, selD, paramPath, paramModif, true);
 			if (oOpt.eWrite === EWrite.eEGOPARAMS) {
 				rlog += writeParams(
