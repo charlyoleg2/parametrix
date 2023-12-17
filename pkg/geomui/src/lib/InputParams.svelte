@@ -6,7 +6,7 @@
 	import LocStorRead from './LocStorRead.svelte';
 	import SimpleDrawing from './SimpleDrawing.svelte';
 	import type { tParamDef, tParamVal, tParamValInFile, tGeomFunc } from 'geometrix';
-	import { PType } from 'geometrix';
+	import { PType, parseParamFile, createParamFile } from 'geometrix';
 	import { storePV } from './storePVal';
 	import { downloadParams, generateUrl } from './downloadParams';
 	import { onMount, createEventDispatcher } from 'svelte';
@@ -21,20 +21,22 @@
 	export let selFace: string;
 	export let simTime = 0;
 
-	//const lastModifKey = 'lastModif';
-	const pValKey = 'pVal';
-	const commentKey = 'comment';
 	let inputComment = '';
 
 	// initialization
 	function paramChange() {
 		dispatch('paramChg', { foo: 'bla' });
 	}
-	function initpVal(ipVal: tParamVal): string {
+	// tolerant applyParamVal
+	function tolerantApply(ipVal: tParamVal): [string, boolean] {
+		let rMsg = '';
+		// forward
 		let cover = 0;
 		let uncover = 0;
 		let equal = 0;
+		const pNameList: string[] = [];
 		for (const p of pDef.params) {
+			pNameList.push(p.name);
 			if (Object.hasOwn(ipVal, p.name)) {
 				cover += 1;
 				if ($storePV[pDef.partName][p.name] === ipVal[p.name]) {
@@ -46,13 +48,22 @@
 				uncover += 1;
 			}
 		}
+		// backward
+		let notInScope = 0;
+		for (const pa of Object.keys(ipVal)) {
+			if (!pNameList.includes(pa)) {
+				notInScope += 1;
+				rMsg += `warn363: parameter ${pa} not in the scope of the design (${notInScope})\n`;
+			}
+		}
+		const rApplyWarn = notInScope > 0 ? true : true;
 		const loadDate = new Date().toLocaleTimeString();
-		let rMsg = `Parameters loaded at ${loadDate} :`;
+		rMsg += `Params loaded at ${loadDate} :`;
 		rMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
 		rMsg += `, load-nb: ${Object.keys(ipVal).length}`;
 		rMsg += `, cover-nb: ${cover}, uncover-nb: ${uncover}`;
-		rMsg += `, equal-nb: ${equal}, diff-nb: ${cover - equal}`;
-		return rMsg;
+		rMsg += `, equal-nb: ${equal}, out-of-scope: ${notInScope}`;
+		return [rMsg, rApplyWarn];
 	}
 	//function initParams1() {
 	//	for (const p of pDef.params) {
@@ -61,6 +72,7 @@
 	//}
 	// load parameters
 	let loadMsg = '';
+	let applyWarn = false;
 	function initParams2() {
 		if (browser) {
 			const searchParams = new URLSearchParams($page.url.search);
@@ -74,7 +86,7 @@
 			}
 			//console.log(`dbg072: pVal2.length ${Object.keys(pVal2).length}`);
 			if (Object.keys(pVal2).length > 0) {
-				loadMsg = initpVal(pVal2);
+				[loadMsg, applyWarn] = tolerantApply(pVal2);
 			}
 		}
 	}
@@ -101,23 +113,17 @@
 	//$: forceInit2(pDef.partName);
 	// end of the workaround
 	function loadParams(iNew: tParamValInFile) {
-		if (Object.hasOwn(iNew, pValKey)) {
-			loadMsg = initpVal(iNew[pValKey]);
-		}
-		if (Object.hasOwn(iNew, commentKey)) {
-			inputComment = iNew[commentKey];
-		} else {
-			inputComment = '';
-		}
+		[loadMsg, applyWarn] = tolerantApply(iNew.pVal);
+		inputComment = iNew.comment;
 		paramChange();
 	}
 	// load from file
 	function loadFile(fileP: File) {
 		const reader = new FileReader();
 		reader.addEventListener('loadend', () => {
-			const allJson: tParamValInFile = JSON.parse(reader.result as string);
+			const [paramJson] = parseParamFile(reader.result as string);
 			//console.log(`dbg345`);
-			loadParams(allJson);
+			loadParams(paramJson);
 		});
 		reader.readAsText(fileP);
 	}
@@ -144,7 +150,8 @@
 		for (const p of pDef.params) {
 			pInit[p.name] = p.init;
 		}
-		loadParams({ pVal: pInit } as tParamValInFile);
+		const paramJson: tParamValInFile = { lastModif: '', pVal: pInit, comment: '' };
+		loadParams(paramJson);
 	}
 	// load parameters from localStorage
 	let locStorRname: string;
@@ -157,8 +164,8 @@
 				if (storeStr === null) {
 					console.log(`Warn157: localStorage key ${storeKey} is null`);
 				} else {
-					const storeAll = JSON.parse(storeStr);
-					loadParams(storeAll);
+					const [paramJson] = parseParamFile(storeStr);
+					loadParams(paramJson);
 				}
 			}
 		} else {
@@ -173,14 +180,10 @@
 			const storeKey = `${pDef.partName}_${locStorWname}`;
 			const re2 = /\..*$/;
 			const lastModif = new Date().toISOString().replace(re2, '');
-			const storeAll = JSON.stringify({
-				lastModif: lastModif,
-				pVal: $storePV[pDef.partName],
-				comment: inputComment
-			});
+			const storeAllStr = createParamFile(lastModif, $storePV[pDef.partName], inputComment);
 			//console.log(`save in localStorage ${storeKey}`);
 			if (browser) {
-				window.localStorage.setItem(storeKey, storeAll);
+				window.localStorage.setItem(storeKey, storeAllStr);
 			}
 		} else {
 			console.log('Warn639: No valid name for writing to localStorage!');
@@ -252,7 +255,7 @@
 		<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}
 			><LocStorRead pageName={pDef.partName} bind:storeName={locStorRname} /></ModalDiag
 		>
-		<p class="load-msg">{loadMsg}</p>
+		<p class="load-msg" class:applyWarn>{loadMsg}</p>
 		<table>
 			<thead>
 				<tr>
@@ -376,6 +379,9 @@
 		font-weight: 400;
 		margin: 0.2rem;
 		margin-left: 0.5rem;
+	}
+	section > main > p.load-msg.applyWarn {
+		background-color: colors.$warn-calc-warning;
 	}
 	section > main > table {
 		font-size: 0.8rem;

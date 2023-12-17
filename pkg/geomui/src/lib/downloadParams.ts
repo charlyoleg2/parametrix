@@ -1,7 +1,7 @@
 // downloadParams.ts
 
 import type { tParamVal } from 'geometrix';
-//import { ffix } from 'geometrix';
+import { createParamFile } from 'geometrix';
 
 function download_file(file_name: string, file_content: string) {
 	//create temporary an invisible element
@@ -22,8 +22,7 @@ function downloadParams(iPartName: string, idparams: tParamVal, iComment: string
 	const re2 = /\..*$/;
 	const datestr = new Date().toISOString().replace(re1, '').replace(re2, '').replace('T', '_');
 	const file_name = `px_${iPartName}_${datestr}.json`;
-	const allVal = { lastModif: datestr, pVal: idparams, comment: iComment };
-	const file_content = JSON.stringify(allVal, null, '  ');
+	const file_content = createParamFile(datestr, idparams, iComment);
 	download_file(file_name, file_content);
 	//console.log(`dbg343: ${file_name}`);
 }
