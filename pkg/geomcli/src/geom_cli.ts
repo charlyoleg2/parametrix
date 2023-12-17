@@ -234,7 +234,7 @@ function decompose_outopt(outopt: string): tEFormat {
 function list_designs(dList: tAllPageDef, detail: boolean) {
 	let rlog = 'List of available designs:\n';
 	for (const [idx, dname] of get_design_array(dList).entries()) {
-		rlog += `${idx.toString().padStart(4, ' ')} : ${dname}\n`;
+		rlog += `${(idx + 1).toString().padStart(4, ' ')} : ${dname}\n`;
 		if (detail) {
 			rlog += `        ${dList[dname].pDef.partName}\n`;
 			rlog += `        ${dList[dname].pTitle}\n`;
@@ -263,7 +263,7 @@ function list_parameters(dList: tAllPageDef, selD: string, paramPath: string, mo
 	const unitLabel = 'unit'.padEnd(unitLength, ' ');
 	rlog += `   # : ${nameLabel} current ${unitLabel} init   min max step\n`;
 	for (const [idx, pa] of theD.pDef.params.entries()) {
-		const idx2 = idx.toString().padStart(4, ' ');
+		const idx2 = (idx + 1).toString().padStart(4, ' ');
 		const pname = pa.name.padEnd(nameLength, ' ');
 		const pcurr = paramVal[pa.name];
 		const pcurrP = pcurr.toString().padStart(6, ' ');
@@ -292,7 +292,7 @@ function list_figures(dList: tAllPageDef, selD: string, paramPath: string, modif
 	const figN = get_figure_array(dList, selD, paramPath, modif);
 	let rlog = `List of figures of the design ${selD} (${dPartName}):\n`;
 	for (const [idx, figNi] of figN.entries()) {
-		const idx2 = idx.toString().padStart(4, ' ');
+		const idx2 = (idx + 1).toString().padStart(4, ' ');
 		rlog += `${idx2} : ${figNi}\n`;
 	}
 	console.log(rlog);
@@ -304,7 +304,7 @@ function list_subdesigns(dList: tAllPageDef, selD: string, paramPath: string, mo
 	const subdN = Object.keys(subdA);
 	let rlog = `List of sub-designs of the design ${selD} (${dPartName}):\n`;
 	for (const [idx, subdNi] of subdN.entries()) {
-		const idx2 = idx.toString().padStart(4, ' ');
+		const idx2 = (idx + 1).toString().padStart(4, ' ');
 		const subd = subdA[subdNi];
 		const ori = `[ ${subd.orientation[0]}, ${subd.orientation[1]}, ${subd.orientation[2]}]`;
 		const pos = `[ ${subd.position[0]}, ${subd.position[1]}, ${subd.position[2]}]`;
@@ -327,7 +327,7 @@ function list_subd_parameters(
 	const nameLabel = 'name'.padEnd(nameLength, ' ');
 	let rlog = `   # : ${nameLabel} value init changed\n`;
 	for (const [idx, ipaN] of Object.keys(subdParam).entries()) {
-		const idx2 = idx.toString().padStart(4, ' ');
+		const idx2 = (idx + 1).toString().padStart(4, ' ');
 		const paN = ipaN.padEnd(nameLength, ' ');
 		const pa = subdParam[ipaN];
 		const paVal = pa.val.toString().padStart(6, ' ');
@@ -342,7 +342,7 @@ function list_outopt(dList: tAllPageDef, selD: string, paramPath: string, modif:
 	let rlog = `List of outputs of the design ${selD} (${dPartName}):\n`;
 	const outOpt = get_outopt_array(dList, selD, paramPath, modif);
 	for (const [idx, oneOpt] of outOpt.entries()) {
-		const idx2 = idx.toString().padStart(4, ' ');
+		const idx2 = (idx + 1).toString().padStart(4, ' ');
 		rlog += `${idx2} : ${oneOpt}\n`;
 	}
 	console.log(rlog);
