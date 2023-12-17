@@ -91,9 +91,9 @@ async function fileBinContent(
 
 function fileMime(exportFormat: EFormat): string {
 	let rMime = '';
-	if (exportFormat === EFormat.eSVG) {
+	if (exportFormat === EFormat.eSVG || exportFormat === EFormat.eSVGALL) {
 		rMime = 'image/svg+xml';
-	} else if (exportFormat === EFormat.eDXF) {
+	} else if (exportFormat === EFormat.eDXF || exportFormat === EFormat.eDXFALL) {
 		rMime = 'application/dxf';
 	} else if (exportFormat === EFormat.ePAX) {
 		rMime = 'application/json';
@@ -112,9 +112,9 @@ function fileMime(exportFormat: EFormat): string {
 
 function fileSuffix(exportFormat: EFormat): string {
 	let rSuffix = '';
-	if (exportFormat === EFormat.eSVG) {
+	if (exportFormat === EFormat.eSVG || exportFormat === EFormat.eSVGALL) {
 		rSuffix = '.svg';
-	} else if (exportFormat === EFormat.eDXF) {
+	} else if (exportFormat === EFormat.eDXF || exportFormat === EFormat.eDXFALL) {
 		rSuffix = '.dxf';
 	} else if (exportFormat === EFormat.ePAX) {
 		rSuffix = '.pax.json';
