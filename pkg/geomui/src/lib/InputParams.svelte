@@ -56,7 +56,7 @@
 				rMsg += `warn363: parameter ${pa} not in the scope of the design (${notInScope})\n`;
 			}
 		}
-		const rApplyWarn = notInScope > 0 ? true : true;
+		const rApplyWarn = notInScope > 0 ? true : false;
 		const loadDate = new Date().toLocaleTimeString();
 		rMsg += `Params loaded at ${loadDate} :`;
 		rMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
