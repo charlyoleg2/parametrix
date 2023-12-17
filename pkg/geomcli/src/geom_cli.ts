@@ -147,10 +147,10 @@ function get_outopt_array(
 	const figN = get_figure_array(dList, selD, paramPath, modif);
 	const subdN = Object.keys(get_subdesign_array(dList, selD, paramPath, modif));
 	for (const figNi of figN) {
-		rOutOpt.push(`svg_${figNi}`);
+		rOutOpt.push(`svg__${figNi}`);
 	}
 	for (const figNi of figN) {
-		rOutOpt.push(`dxf_${figNi}`);
+		rOutOpt.push(`dxf__${figNi}`);
 	}
 	for (const subdNi of subdN) {
 		rOutOpt.push(`json_sub_param_${subdNi}`);
@@ -179,8 +179,8 @@ function decompose_outopt(outopt: string): tEFormat {
 	let rFormat = EFormat.ePAX;
 	let rFace = 'all';
 	let rSubD = '';
-	const reSvg = /^svg_/;
-	const reDxf = /^dxf_/;
+	const reSvg = /^svg__/;
+	const reDxf = /^dxf__/;
 	const reSubP = /^json_sub_param_/;
 	if (outopt.match(reSvg)) {
 		rFace = outopt.replace(reSvg, '');
