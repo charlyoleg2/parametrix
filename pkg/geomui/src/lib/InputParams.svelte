@@ -5,7 +5,7 @@
 	import LocStorWrite from './LocStorWrite.svelte';
 	import LocStorRead from './LocStorRead.svelte';
 	import SimpleDrawing from './SimpleDrawing.svelte';
-	import type { tParamDef, tParamVal, tParamValInFile, tGeomFunc } from 'geometrix';
+	import type { tParamDef, tParamVal, tGeomFunc } from 'geometrix';
 	import { PType, parseParamFile, createParamFile } from 'geometrix';
 	import { storePV } from './storePVal';
 	import { downloadParams, generateUrl } from './downloadParams';
@@ -113,18 +113,25 @@
 	//}
 	//$: forceInit2(pDef.partName);
 	// end of the workaround
-	function loadParams(iNew: tParamValInFile) {
-		[loadMsg, applyWarn] = tolerantApply(iNew.pVal);
-		inputComment = iNew.comment;
-		paramChange();
+	function loadParams(iStr: string) {
+		try {
+			const [paramJson] = parseParamFile(iStr);
+			[loadMsg, applyWarn] = tolerantApply(paramJson.pVal);
+			inputComment = paramJson.comment;
+			paramChange();
+		} catch (emsg) {
+			let errMsg = 'err723: error by parsing parameter file\n';
+			errMsg += emsg as string;
+			loadMsg = errMsg;
+			applyWarn = true;
+		}
 	}
 	// load from file
 	function loadFile(fileP: File) {
 		const reader = new FileReader();
 		reader.addEventListener('loadend', () => {
-			const [paramJson] = parseParamFile(reader.result as string);
+			loadParams(reader.result as string);
 			//console.log(`dbg345`);
-			loadParams(paramJson);
 		});
 		reader.readAsText(fileP);
 	}
@@ -151,8 +158,7 @@
 		for (const p of pDef.params) {
 			pInit[p.name] = p.init;
 		}
-		const paramJson: tParamValInFile = { lastModif: '', pVal: pInit, comment: '' };
-		loadParams(paramJson);
+		[loadMsg, applyWarn] = tolerantApply(pInit);
 	}
 	// load parameters from localStorage
 	let locStorRname: string;
@@ -163,14 +169,15 @@
 			if (browser) {
 				const storeStr = window.localStorage.getItem(storeKey);
 				if (storeStr === null) {
-					console.log(`Warn157: localStorage key ${storeKey} is null`);
+					loadMsg = `Warn157: localStorage key ${storeKey} is null`;
+					applyWarn = true;
 				} else {
-					const [paramJson] = parseParamFile(storeStr);
-					loadParams(paramJson);
+					loadParams(storeStr);
 				}
 			}
 		} else {
-			console.log('Warn239: No valid name for loading from localStorage!');
+			loadMsg = 'Warn239: No valid name for loading from localStorage!';
+			applyWarn = true;
 		}
 	}
 	// save parameters into localStorage
