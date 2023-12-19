@@ -12,7 +12,7 @@ export function load({ params }) {
 	if (Object.keys(designDefs).includes(short)) {
 		const pDef_page = designDefs[short].pDef.partName;
 		if (pDef_page !== short) {
-			throw error(500, `pDef.partName ${pDef_page} does not fit with short ${short}`);
+			error(500, `pDef.partName ${pDef_page} does not fit with short ${short}`);
 		}
 		return {
 			pageDef: designDefs[short],
@@ -20,5 +20,5 @@ export function load({ params }) {
 			//category: category
 		};
 	}
-	throw error(404, 'Design undefined!');
+	error(404, 'Design undefined!');
 }

@@ -14,5 +14,5 @@ export function load({ params }) {
 			allLink: allLink
 		};
 	}
-	throw error(404, 'Design undefined!');
+	error(404, 'Design undefined!');
 }
