@@ -5,7 +5,7 @@
 		"outDir": "./build",
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"declaration": true,
 		"sourceMap": true,
 		"strict": true
