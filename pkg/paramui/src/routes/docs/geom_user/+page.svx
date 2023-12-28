@@ -10,6 +10,69 @@ category: documentation
 
 # {title}
 
+## Workflow
+
+The creation of a 3D part with *Parametrix* is composed by the following steps:
+
+1. **Concept:** brainstorming of the general ideas on a white-board
+2. **Design:** With [Inkscape](https://inkscape.org/) draw all relevant faces and sections of the parts and define the parameters
+3. **Architecture:** Using the *Geometrix* library, describe in *javascrit* the 3D parts from the parameters
+4. **Sizing:** Compute the optimal values of the parameters for your use-case
+5. **Export:** Apply the parameter values and export the 3D parts
+
+In the traditional approach, the steps 2, 3 and 4 are usually merged together.
+
+
+## Javascript description
+
+### main section of a Geometrix script
+
+1. import *Geometrix*
+2. [Optionally] import other parts
+3. define the list of parameters
+4. create the figures
+5. describe the contruction of the 3D parts
+6. [Optionally] define the links to the parameters of the sub-parts
+
+### hierarchy of the description
+
+1. a 3D part is an assembly of one or several extrusions of figures
+2. a figures consists of one or several contours
+3. a contour is either a circle or a closed path made of lines and arcs
+
+## Export options
+
+### SVG
+
+A 2D drawing of one of the figures. It can be visualized and edited by [inkscape](https://inkscape.org/).
+
+### DXF
+
+A 2D drawing of one of the figures. It can be visualized and edited by [librecad](https://librecad.org/).
+
+### OpenSCAD
+
+1. install [OpenSCAD](https://openscad.org/)
+2. run the exported script: `openscad path/to/exported-script.scad`
+3. press *F6* or click on the menu *design>render*
+
+
+### OpenJSCAD
+
+Open the exported script with [OpenJSCAD](https://openjscad.xyz/)
+
+
+### glTF
+
+1. Install [gltf-transform](https://gltf-transform.dev/)
+2. Execute the exported script
+3. Visualize the generated *gltf-file* with this [gltf-viewer](https://gltf-viewer.donmccurdy.com/)
+
+
+
+## Technical details
+
+### Notes on Part-name
 
 Two design-definition could have the same partName. This is not recommended but possible. In this case if they have parameters with identical name, their values will be shared.
 Also the map (partName: link) will allow you defining a single link per partName. So one of your design-definition can not be pointed by the link.
