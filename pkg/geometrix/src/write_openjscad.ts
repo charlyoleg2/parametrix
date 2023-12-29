@@ -115,8 +115,8 @@ class OjscadWriteFigure {
 			aList.push(aId);
 		}
 		if (aList.length === 1) {
-			rStr += `const face_${faceId} = ctr_${faceId}_0;\n`;
-		} else {
+			rStr += `const face_${faceId} = ${aList[0]};\n`;
+		} else if (aList.length > 1) {
 			const ctrList = aList.join(', ');
 			rStr += `const face_${faceId} = subtract( ${ctrList} )\n`;
 		}
