@@ -202,9 +202,9 @@ const ${extrud.outName} =
 				break;
 		}
 		const inList2 = volum.inList.join(', ');
-		let rStr = `const ${volum.outName} = ${vMethod}( ${inList2} );`;
+		let rStr = `const ${volum.outName} = ${vMethod}( ${inList2} );\n`;
 		if (volum.boolMethod === EBVolume.eIdentity) {
-			rStr = `const ${volum.outName} = ${inList2};`;
+			rStr = `const ${volum.outName} = ${inList2};\n`;
 		}
 		return rStr;
 	}
