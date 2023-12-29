@@ -10,9 +10,10 @@ import type {
 } from './prepare_pax';
 import { PSeg } from './prepare_pax';
 import type { tPaxFaces, tPaxJson } from './write_pax';
-import { convTypePaxToSeg1 } from './write_pax';
-import type { tVolume, tExtrude, tBVolume } from './volume';
+import { convTypePaxToSeg1, paxWrite } from './write_pax';
+import type { tVolume, tInherit, tExtrude, tBVolume } from './volume';
 import { EExtrude, EBVolume } from './volume';
+import type { tGeom } from './aaParamGeom';
 //import { withinZero2Pi } from './angle_utils';
 import type { tAtsPoints } from './arc_to_stroke';
 import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
@@ -198,13 +199,13 @@ const ${extrud.outName} =
 				vMethod = 'union';
 				break;
 			case EBVolume.eSubstraction:
-				vMethod = 'substract';
+				vMethod = 'subtract';
 				break;
 		}
 		const inList2 = volum.inList.join(', ');
 		let rStr = `const ${volum.outName} = ${vMethod}( ${inList2} );\n`;
 		if (volum.boolMethod === EBVolume.eIdentity) {
-			rStr = `const ${volum.outName} = ${inList2};\n`;
+			rStr = `const ${volum.outName} = ${volum.inList[0]};\n`;
 		}
 		return rStr;
 	}
@@ -216,8 +217,45 @@ const ${extrud.outName} =
 		}
 		return rStr;
 	}
+	getAllSubGeoms(inherits: tInherit[]): tGeom[] {
+		const rGeoms: tGeom[] = [];
+		for (const inher of inherits) {
+			if (!rGeoms.includes(inher.subgeom)) {
+				rGeoms.push(inher.subgeom);
+			}
+		}
+		return rGeoms;
+	}
+	getOneInherit(inherit: tInherit): string {
+		const rStr = `
+const ${inherit.outName} =
+	translate( [ ${inherit.translate[0]}, ${inherit.translate[1]}, ${inherit.translate[2]}, ],
+		rotate( [ ${inherit.rotate[0]}, ${inherit.rotate[1]}, ${inherit.rotate[2]}, ],
+			   ${inherit.subdesign}
+		)
+	);
+`;
+		return rStr;
+	}
+	getAllInherits(inherits: tInherit[]): string {
+		let rStr = '';
+		for (const inher of inherits) {
+			const subinhe = this.getOneInherit(inher);
+			rStr += subinhe;
+		}
+		return rStr;
+	}
 	getVolume(vol: tVolume): string {
 		let rStr = '';
+		if (vol.inherits !== undefined) {
+			const subGeoms = this.getAllSubGeoms(vol.inherits);
+			for (const oneGeom of subGeoms) {
+				const paxJson = paxWrite().getPaxJson({}, oneGeom);
+				rStr += this.getAllFigures(paxJson.faces, paxJson.partName);
+				rStr += this.getVolume(oneGeom.vol);
+			}
+			rStr += this.getAllInherits(vol.inherits);
+		}
 		rStr += this.getAllExtrudes(vol.extrudes);
 		rStr += this.getAllVolumes(vol.volumes);
 		return rStr;
