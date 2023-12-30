@@ -7,7 +7,7 @@
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
 	},
-	"homepage": "https://github.com/charlyoleg2/parametrix#readme",
+	"homepage": "https://github.com/charlyoleg2/parametrix/pkg/geomcli#readme",
 	"keywords": [
 		"cad",
 		"programmatic",
