@@ -1,13 +1,13 @@
 {
 	"name": "geometrix",
-	"version": "0.5.9",
+	"version": "0.5.10",
 	"description": "The 2D geometry engine of the parametrix",
 	"private": false,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
 	},
-	"homepage": "https://github.com/charlyoleg2/parametrix/pkg/geometrix#readme",
+	"homepage": "https://github.com/charlyoleg2/parametrix/tree/main/pkg/geometrix#readme",
 	"keywords": [
 		"cad",
 		"programmatic",

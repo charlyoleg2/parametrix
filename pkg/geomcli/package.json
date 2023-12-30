@@ -1,13 +1,13 @@
 {
 	"name": "geomcli",
-	"version": "0.5.12",
+	"version": "0.5.13",
 	"description": "the nodejs companion library of geometrix",
 	"private": false,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
 	},
-	"homepage": "https://github.com/charlyoleg2/parametrix/pkg/geomcli#readme",
+	"homepage": "https://github.com/charlyoleg2/parametrix/tree/main/pkg/geomcli#readme",
 	"keywords": [
 		"cad",
 		"programmatic",

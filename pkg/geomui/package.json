@@ -1,13 +1,13 @@
 {
 	"name": "geomui",
-	"version": "0.5.11",
+	"version": "0.5.12",
 	"description": "The svelte-library of the webapp-UI of Parametrix",
 	"private": false,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
 	},
-	"homepage": "https://github.com/charlyoleg2/parametrix/pkg/geomui#readme",
+	"homepage": "https://github.com/charlyoleg2/parametrix/tree/main/pkg/geomui#readme",
 	"keywords": [
 		"cad",
 		"programmatic",
