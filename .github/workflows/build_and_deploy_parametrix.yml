@@ -19,9 +19,7 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: '20'
-              if: steps.release.outputs.released == 'true'
-              with:
-                registry-url: 'https://npm.pkg.github.com'
+                  registry-url: 'https://npm.pkg.github.com'
 
             - name: clean and install
               run: npm ci
