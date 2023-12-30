@@ -45,4 +45,4 @@ jobs:
               if: github.ref_type == 'tag'
               run: npm run gh-publish
               env:
-                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
