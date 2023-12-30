@@ -12,12 +12,8 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
-            - name: Check if package version has been updated
-              uses: EndBug/version-check@v2
-              id: version
-
             - name: Automatic update of the github release
-              if: steps.version.outputs.changed == 'true'
+              if: startsWith(github.ref, 'refs/tags/')
               uses: ncipollo/release-action@v1
 
             - uses: actions/setup-node@v3
@@ -44,7 +40,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Publish
-              if: steps.version.outputs.changed == 'true'
+              if: startsWith(github.ref, 'refs/tags/')
               run: npm run publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
