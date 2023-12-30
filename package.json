@@ -66,7 +66,7 @@
 		"clean": "run-s clean-root clean-lib clean-app",
 		"preview": "run-s paramui:preview",
 		"versions": "run-s geometrix:version designix:version geomui:version geomcli:version",
-		"publib": "run-s geometrix:publish designix:publish geomui:publish geomcli:publish",
+		"gh-publish": "run-s geometrix:publish designix:publish geomui:publish geomcli:publish",
 		"ls-pkg": "ls -la pkg"
 	},
 	"workspaces": [
