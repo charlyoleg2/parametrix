@@ -2,7 +2,7 @@
 	"name": "geomcli",
 	"version": "0.5.5",
 	"description": "the nodejs companion library of geometrix",
-	"private": true,
+	"private": false,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
