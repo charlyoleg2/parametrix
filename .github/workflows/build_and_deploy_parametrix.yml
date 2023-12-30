@@ -16,6 +16,10 @@ jobs:
               uses: EndBug/version-check@v2
               id: release
 
+            - name: Automatic update of the github release
+              if: steps.release.outputs.released == 'true'
+              uses: ncipollo/release-action@v1
+
             - uses: actions/setup-node@v3
               with:
                   node-version: '20'
