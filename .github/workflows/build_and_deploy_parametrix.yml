@@ -12,8 +12,8 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
-            - name: Automatic GitHub Release
-              uses: justincy/github-action-npm-release@2.0.2
+            - name: Check if package version has been updated
+              uses: uses: EndBug/version-check@v2
               id: release
 
             - uses: actions/setup-node@v3
