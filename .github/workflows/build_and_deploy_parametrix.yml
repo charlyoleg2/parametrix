@@ -38,3 +38,9 @@ jobs:
                   build_dir: pkg/paramui/build
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Publish
+              if: steps.release.outputs.released == 'true'
+              run: npm run publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
