@@ -14,10 +14,10 @@ jobs:
 
             - name: Check if package version has been updated
               uses: EndBug/version-check@v2
-              id: release
+              id: version
 
             - name: Automatic update of the github release
-              if: steps.release.outputs.released == 'true'
+              if: steps.version.outputs.changed == 'true'
               uses: ncipollo/release-action@v1
 
             - uses: actions/setup-node@v3
@@ -44,7 +44,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Publish
-              if: steps.release.outputs.released == 'true'
+              if: steps.version.outputs.changed == 'true'
               run: npm run publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
