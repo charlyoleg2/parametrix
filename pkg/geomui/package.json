@@ -2,6 +2,7 @@
 	"name": "geomui",
 	"version": "0.5.4",
 	"description": "The svelte-library of the webapp-UI of Parametrix",
+	"private": false,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",

@@ -2,6 +2,7 @@
 	"name": "geometrix",
 	"version": "0.5.2",
 	"description": "The 2D geometry engine of the parametrix",
+	"private": false,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
