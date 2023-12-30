@@ -15,7 +15,7 @@ jobs:
                   fetch-depth: 0
 
             - name: Automatic update of the github release
-              if: github.ref_type == 'tag'
+              #if: github.ref_type == 'tag'
               uses: ncipollo/release-action@v1
 
             - uses: actions/setup-node@v3
@@ -42,7 +42,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Publish
-              if: github.ref_type == 'tag'
+              #if: github.ref_type == 'tag'
               run: npm run publish
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
