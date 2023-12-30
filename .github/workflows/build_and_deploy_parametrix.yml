@@ -12,9 +12,16 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
+            - name: Automatic GitHub Release
+              uses: justincy/github-action-npm-release@2.0.2
+              id: release
+
             - uses: actions/setup-node@v3
               with:
                   node-version: '20'
+              if: steps.release.outputs.released == 'true'
+              with:
+                registry-url: 'https://npm.pkg.github.com'
 
             - name: clean and install
               run: npm ci
