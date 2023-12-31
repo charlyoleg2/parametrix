@@ -63,6 +63,11 @@
 			"default": "./dist/index.js"
 		}
 	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
 	"types": "./dist/index.d.ts",
 	"type": "module"
 }
