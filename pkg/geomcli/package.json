@@ -65,6 +65,7 @@
 	},
 	"files": [
 		"dist",
+		"!dist/**/*.map",
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
