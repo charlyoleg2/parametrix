@@ -1,4 +1,4 @@
-// svg_gears.js
+// svg_gears.ts
 // created by svgfiles2js
 
 export const calculation_of_initAngle2_svg =

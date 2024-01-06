@@ -1,4 +1,4 @@
-// svg_dummy.js
+// svg_dummy.ts
 // created by svgfiles2js
 
 export const circles_amplitude_offset_svg =

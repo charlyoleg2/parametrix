@@ -1,4 +1,4 @@
-// svg_bundle.js
+// svg_bundle.ts
 // created by svgfiles2js
 
 export const default_param_blank_svg =

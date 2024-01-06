@@ -1,4 +1,4 @@
-// svg_heliostat.js
+// svg_heliostat.ts
 // created by svgfiles2js
 
 export const base_cut_svg =

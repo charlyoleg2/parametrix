@@ -1,4 +1,4 @@
-// svg_geomverif.js
+// svg_geomverif.ts
 // created by svgfiles2js
 
 export const verify_contour_1_l1_svg =
