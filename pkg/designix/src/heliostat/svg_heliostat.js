@@ -1,7 +1,7 @@
 // svg_heliostat.js
 // created by svgfiles2js
 
-export const base_cut_svg = 
+export const base_cut_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="413.94" height="315.873" viewBox=' +
 	'"0 0 109.522 83.575"><defs><marker id="a" markerHeight="1" markerWidth="1" orien' +
 	't="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="o' +
@@ -154,7 +154,7 @@ export const base_cut_svg =
 	'ate(-14.473883,-114.68002) matrix(0.26458333,0,0,0.26458333,-111.12418,-32.07392' +
 	'1)"><tspan x="486.535" y="764.275">E3</tspan></text></svg>';
 
-export const base_hollow_svg = 
+export const base_hollow_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="415.405" height="262.304" viewBox' +
 	'="0 0 109.909 69.401"><defs><marker id="q" markerHeight="1" markerWidth="1" orie' +
 	'nt="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="' +
@@ -328,7 +328,7 @@ export const base_hollow_svg =
 	'linejoin:miter;stroke-opacity:1;marker-end:url(#r)" transform="translate(-29.049' +
 	'347,-215.76419)"/></svg>';
 
-export const base_top_svg = 
+export const base_top_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="461.703" height="241.953" viewBox' +
 	'="0 0 122.159 64.017"><defs><marker id="a" markerHeight="1" markerWidth="1" orie' +
 	'nt="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="' +
@@ -428,7 +428,7 @@ export const base_top_svg =
 	'ne" transform="matrix(0.26458333,0,0,0.26458333,43.590426,-21.641547)"><tspan x=' +
 	'"348.785" y="288.744">D2</tspan></text></g></svg>';
 
-export const heliostat2_face_sizing_svg = 
+export const heliostat2_face_sizing_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="487.082" height="487.5" viewBox="' +
 	'0 0 128.874 128.984"><defs><marker id="a" markerHeight="1" markerWidth="1" orien' +
 	't="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="o' +
@@ -819,7 +819,7 @@ export const heliostat2_face_sizing_svg =
 	'-opacity:1;marker-start:url(#ac);marker-end:url(#ac)" transform="translate(-15.0' +
 	'73794,-967.30786)"/></svg>';
 
-export const heliostat2_side_sizing_svg = 
+export const heliostat2_side_sizing_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="487.082" height="527.99" viewBox=' +
 	'"0 0 128.874 139.697"><defs><path id="H" d="M418.802 3200.172h40.83v26.971h-40.8' +
 	'3z"/><path id="o" d="M170.189 2164.988h50.681v30.45h-50.681z"/><path id="p" d="M' +
@@ -1080,7 +1080,7 @@ export const heliostat2_side_sizing_svg =
 	'ke:none;stroke-width:.265152" transform="matrix(-0.42941908,-0.90310534,0.859549' +
 	'01,-0.51105332,0,0)"/></g></svg>';
 
-export const heliostat_face_sizing_svg = 
+export const heliostat_face_sizing_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="487.082" height="487.5" viewBox="' +
 	'0 0 128.874 128.984"><defs><marker id="a" markerHeight="1" markerWidth="1" orien' +
 	't="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="o' +
@@ -1489,7 +1489,7 @@ export const heliostat_face_sizing_svg =
 	'.615425,-643.08722) matrix(0.26458333,0,0,0.26458333,9.8349609,-12.880859)"><tsp' +
 	'an x="101.578" y="2805.951">L8</tspan></text></svg>';
 
-export const heliostat_overview_svg = 
+export const heliostat_overview_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="550.966" height="797.956" viewBox' +
 	'="0 0 145.776 211.126"><defs><marker id="b" markerHeight="1" markerWidth="1" ori' +
 	'ent="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style=' +
@@ -1914,7 +1914,7 @@ export const heliostat_overview_svg =
 	'10.637h2.218v2.291h-2.218z" style="fill:#7f2aff;stroke:none;stroke-width:.264582' +
 	'" transform="translate(-8.7876301,-34.955597) matrix(0,-1,-1,0,0,0)"/></svg>';
 
-export const heliostat_side_svg = 
+export const heliostat_side_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="551.382" height="689.269" viewBox' +
 	'="0 0 145.887 182.369"><defs><marker id="i" markerHeight="1" markerWidth="1" ori' +
 	'ent="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style=' +
@@ -2282,7 +2282,7 @@ export const heliostat_side_svg =
 	'.724-1.716" style="fill:none;stroke:#000;stroke-width:.264583px;stroke-linecap:b' +
 	'utt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#B)"/></g></svg>';
 
-export const heliostat_side_sizing_svg = 
+export const heliostat_side_sizing_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="487.082" height="527.989" viewBox' +
 	'="0 0 128.874 139.697"><defs><path id="O" d="M17.209 2038.808h65.972v37.731H17.2' +
 	'09z"/><path id="N" d="M309.638 2316.556h56.455v27.999h-56.455z"/><path id="M" d=' +
@@ -2582,7 +2582,7 @@ export const heliostat_side_sizing_svg =
 	'58333,0,0,0.26458333,49.218262,-15.339355)"><tspan x="17.209" y="2051.785">S2</t' +
 	'span></text></g></svg>';
 
-export const pole_rotor_cut_svg = 
+export const pole_rotor_cut_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="328.102" height="382.763" viewBox' +
 	'="0 0 86.81 101.273"><defs><path id="h" d="M233.246 47.293h44.299V68.39h-44.299z' +
 	'"/><path id="g" d="M232.386 422.66h31.102v21.1h-31.102z"/><path id="f" d="M44.16' +
@@ -2666,7 +2666,7 @@ export const pole_rotor_cut_svg =
 	'ransform="translate(-23.378723,-13.815951) matrix(0.26458333,0,0,0.26458333,2.53' +
 	'4906,3.7858525)"><tspan x="233.246" y="60.27">D2</tspan></text></svg>';
 
-export const pole_rotor_ends_svg = 
+export const pole_rotor_ends_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="415.902" height="241.953" viewBox' +
 	'="0 0 110.041 64.017"><defs><marker id="a" markerHeight="1" markerWidth="1" orie' +
 	'nt="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="' +
@@ -2752,7 +2752,7 @@ export const pole_rotor_ends_svg =
 	'4583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url' +
 	'(#j)"/></g></svg>';
 
-export const pole_stator_E2_svg = 
+export const pole_stator_E2_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="342.085" height="366.315" viewBox' +
 	'="0 0 90.51 96.921"><defs><path id="s" d="M42.288 2128.197h177.373v56.473H42.288' +
 	'z"/><path id="r" d="M94.302 1986.699h45.897v28.09H94.302z"/><path id="q" d="M77.' +
@@ -2904,7 +2904,7 @@ export const pole_stator_E2_svg =
 	'span x="42.287" y="2141.174">LK=E2*cos(BAC) </tspan><tspan x="42.287" y="2159.50' +
 	'7">LM=E2*sin(BAC)</tspan></text></svg>';
 
-export const pole_stator_bottom_svg = 
+export const pole_stator_bottom_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="415.902" height="241.953" viewBox' +
 	'="0 0 110.041 64.017"><defs><marker id="j" markerHeight="1" markerWidth="1" orie' +
 	'nt="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="' +
@@ -2989,7 +2989,7 @@ export const pole_stator_bottom_svg =
 	'495" style="fill:none;stroke:#000;stroke-width:.264583px;stroke-linecap:butt;str' +
 	'oke-linejoin:miter;stroke-opacity:1;marker-end:url(#j)"/></g></svg>';
 
-export const pole_stator_cut_svg = 
+export const pole_stator_cut_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="288.454" height="361.909" viewBox' +
 	'="0 0 76.32 95.755"><defs><marker id="a" markerHeight="1" markerWidth="1" orient' +
 	'="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="ov' +
@@ -3129,7 +3129,7 @@ export const pole_stator_cut_svg =
 	'rm="translate(-13.977389,-25.154371) matrix(0.26458333,0,0,0.26458333,-84.086871' +
 	',-15.363567)"><tspan x="411.641" y="318.301">E2</tspan></text></svg>';
 
-export const pole_stator_face_svg = 
+export const pole_stator_face_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="303.961" height="358.563" viewBox' +
 	'="0 0 80.423 94.87"><defs><marker id="p" markerHeight="1" markerWidth="1" orient' +
 	'="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="ov' +
@@ -3271,7 +3271,7 @@ export const pole_stator_face_svg =
 	'-12.004533,-151.02809) matrix(0.26458333,0,0,0.26458333,-17.961824,-35.199)"><ts' +
 	'pan x="280.182" y="897.797">L2</tspan></text></svg>';
 
-export const pole_stator_right_svg = 
+export const pole_stator_right_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="303.961" height="358.563" viewBox' +
 	'="0 0 80.423 94.87"><defs><marker id="m" markerHeight="1" markerWidth="1" orient' +
 	'="auto" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="overflow:visible' +
@@ -3392,7 +3392,7 @@ export const pole_stator_right_svg =
 	'(0.26458333,0,0,0.26458333,15.907161,12.669601)"><tspan x="57.746" y="1466.092">' +
 	'E3</tspan></text></svg>';
 
-export const rake_door_svg = 
+export const rake_door_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="557.043" height="399.985" viewBox' +
 	'="0 0 147.384 105.829"><defs><marker id="a" markerHeight="1" markerWidth="1" ori' +
 	'ent="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style=' +
@@ -3601,7 +3601,7 @@ export const rake_door_svg =
 	'necap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#w)" transfor' +
 	'm="translate(-6.2247643,-604.8114)"/></svg>';
 
-export const rake_face_svg = 
+export const rake_face_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="570.484" height="494.353" viewBox' +
 	'="0 0 150.94 130.798"><defs><marker id="a" markerHeight="1" markerWidth="1" orie' +
 	'nt="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="' +
@@ -4015,7 +4015,7 @@ export const rake_face_svg =
 	'ke-linejoin:miter;stroke-opacity:1" transform="translate(-2.0180311,-72.48011)"/' +
 	'></svg>';
 
-export const rake_side_svg = 
+export const rake_side_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="430.917" height="449.703" viewBox' +
 	'="0 0 114.013 118.984"><defs><marker id="b" markerHeight="1" markerWidth="1" ori' +
 	'ent="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style=' +
@@ -4278,7 +4278,7 @@ export const rake_side_svg =
 	'width:.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marke' +
 	'r-start:url(#J);marker-end:url(#J)"/></g></svg>';
 
-export const rake_side_stopper_svg = 
+export const rake_side_stopper_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="430.917" height="449.703" viewBox' +
 	'="0 0 114.013 118.984"><defs><path id="f" d="M98.764 3387.59h64.479v48.027H98.76' +
 	'4z"/><path id="e" d="M203.513 3381.326h75.126v49.828h-75.126z"/><path id="b" d="' +
@@ -4446,7 +4446,7 @@ export const rake_side_stopper_svg =
 	' r="1.725" style="fill:#fff;fill-opacity:1;stroke:none;stroke-width:.264583;stro' +
 	'ke-linejoin:bevel"/></g></svg>';
 
-export const rake_top_svg = 
+export const rake_top_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="460.863" height="533.622" viewBox' +
 	'="0 0 121.937 141.187"><defs><marker id="a" markerHeight="1" markerWidth="1" ori' +
 	'ent="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style=' +
@@ -4597,7 +4597,7 @@ export const rake_top_svg =
 	'ne" transform="matrix(0,0.26458333,-0.26458333,0,208.12778,389.3904)"><tspan x="' +
 	'245.254" y="256.172">4*L4+L5+2*L6</tspan></text></g></svg>';
 
-export const rake_top_stopper_svg = 
+export const rake_top_stopper_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="460.863" height="533.622" viewBox' +
 	'="0 0 121.937 141.187"><defs><marker id="d" markerHeight="1" markerWidth="1" ori' +
 	'ent="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style=' +
@@ -4740,7 +4740,7 @@ export const rake_top_stopper_svg =
 	'form="matrix(0.26458333,0,0,0.26458333,82.955546,90.523576)"><tspan x="175.914" ' +
 	'y="3390.793">S1</tspan></text></g></svg>';
 
-export const rod_cut_svg = 
+export const rod_cut_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="443.445" height="290.28" viewBox=' +
 	'"0 0 117.328 76.803"><defs><marker id="a" markerHeight="1" markerWidth="1" orien' +
 	't="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="o' +
@@ -4829,7 +4829,7 @@ export const rod_cut_svg =
 	'(0.26458333,0,0,0.26458333,10.891101,-26.419829)"><tspan x="446.715" y="1023.367' +
 	'">E2</tspan></text></svg>';
 
-export const rod_plate_svg = 
+export const rod_plate_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="207.959" height="158.044" viewBox' +
 	'="0 0 55.022 41.816"><defs><marker id="k" markerHeight="1" markerWidth="1" orien' +
 	't="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="o' +
@@ -4952,7 +4952,7 @@ export const rod_plate_svg =
 	'x;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#k)"' +
 	'/></g></svg>';
 
-export const rod_top_svg = 
+export const rod_top_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="225.613" height="369.016" viewBox' +
 	'="0 0 59.693 97.635"><defs><path id="i" d="M37.828 268.431h49.001v47.119H37.828z' +
 	'"/><path id="h" d="M34.341 228.742h49.173v44.537H34.341z"/><path id="g" d="M24.7' +
@@ -5094,7 +5094,7 @@ export const rod_top_svg =
 	'"rotate(-90)"/><circle cx="-37.463" cy="45.36" r=".759" style="fill:#fff;stroke:' +
 	'#5fbcd3;stroke-width:.264583" transform="rotate(-90)"/></g></svg>';
 
-export const spider_svg = 
+export const spider_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="600" height="3000" viewBox="0 0 1' +
 	'58.75 793.75"><defs><path id="y" d="M443.777 583.586H490.7v46.31h-46.923z"/><pat' +
 	'h id="x" d="M289.628 519.072h66.666v40.124h-66.666z"/><path id="v" d="M241.004 8' +
@@ -5280,7 +5280,7 @@ export const spider_svg =
 	'0.26458333,0,0,0.26458333,-3.0439453,5.0087891)"><tspan x="443.777" y="596.563">' +
 	'D1</tspan></text></svg>';
 
-export const spider_lateral_svg = 
+export const spider_lateral_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="365.865" height="299.28" viewBox=' +
 	'"0 0 96.802 79.184"><defs><path id="g" d="M443.777 583.586H490.7v46.31h-46.923z"' +
 	'/><path id="f" d="M289.628 519.072h66.666v40.124h-66.666z"/><path id="d" d="M241' +
@@ -5346,7 +5346,7 @@ export const spider_lateral_svg =
 	'8177) matrix(0.26458333,0,0,0.26458333,-3.0439453,5.0087891)"><tspan x="443.777"' +
 	' y="596.563">D1</tspan></text></svg>';
 
-export const spider_profile_svg = 
+export const spider_profile_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="547.836" height="337.489" viewBox' +
 	'="0 0 144.948 89.294"><defs><path id="r" d="M52.191 79.913h33.107v18.3H52.191z"/' +
 	'><path id="p" d="M217.928 289.918h103.906v60.45H217.928z"/><path id="o" d="M200.' +
@@ -5479,7 +5479,7 @@ export const spider_profile_svg =
 	'0.26458333,8.8442383,23.60258)"><tspan x="52.191" y="92.889">L4</tspan></text></' +
 	'g></svg>';
 
-export const surface_crenel_svg = 
+export const surface_crenel_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="171.504" height="370.942" viewBox' +
 	'="0 0 45.377 98.145"><defs><path id="b" d="M60 425.68h128.884v18.163H60z"/><path' +
 	' id="a" d="M71.751 210.976h100.371v30.102H71.751z"/><path id="c" d="M60 425.68h1' +
@@ -5590,7 +5590,7 @@ export const surface_crenel_svg =
 	'red;stroke-width:.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacit' +
 	'y:1;marker-end:url(#e)"/></g></svg>';
 
-export const surface_extremities_svg = 
+export const surface_extremities_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="145.685" height="255.062" viewBox' +
 	'="0 0 38.546 67.485"><defs><marker id="c" markerHeight="1" markerWidth="1" orien' +
 	't="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="o' +
@@ -5679,7 +5679,7 @@ export const surface_extremities_svg =
 	',4.5064246,-2.5128531)"><tspan x="94.277" y="1580.467">nx = 12 </tspan><tspan x=' +
 	'"94.277" y="1598.8">ny = 5</tspan></text></svg>';
 
-export const surface_lz_svg = 
+export const surface_lz_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="152.187" height="95.849" viewBox=' +
 	'"0 0 40.266 25.36"><defs><marker id="a" markerHeight="1" markerWidth="1" orient=' +
 	'"auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="ove' +
@@ -5736,7 +5736,7 @@ export const surface_lz_svg =
 	'8) matrix(0.26458333,0,0,0.26458333,-44.691702,18.330912)"><tspan x="227.535" y=' +
 	'"1664.127">LZ</tspan></text></svg>';
 
-export const surface_main_svg = 
+export const surface_main_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="225.524" height="190.598" viewBox' +
 	'="0 0 59.67 50.429"><defs><marker id="e" markerHeight="1" markerWidth="1" orient' +
 	'="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="ov' +
@@ -5835,7 +5835,7 @@ export const surface_main_svg =
 	'.757108,-143.09482) matrix(0.26458333,0,0,0.26458333,-15.224566,-31.479563)"><ts' +
 	'pan x="216.732" y="677.098">EH</tspan></text></svg>';
 
-export const surface_power_svg = 
+export const surface_power_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="256.282" height="223.573" viewBox' +
 	'="0 0 67.808 59.154"><defs><marker id="a" markerHeight="1" markerWidth="1" orien' +
 	't="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="o' +
@@ -5939,7 +5939,7 @@ export const surface_power_svg =
 	'8333,-7.4179686,-27.946288)"><tspan x="111.281" y="2099.227">indirect: </tspan><' +
 	'tspan x="111.281" y="2117.56">40%</tspan></text></g></svg>';
 
-export const surface_space_evolution_svg = 
+export const surface_space_evolution_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="267.076" height="224.396" viewBox' +
 	'="0 0 70.664 59.372"><defs><path id="j" d="M115.161 998.584h102.772v33.6H115.161' +
 	'z"/><path id="i" d="M120.684 998.897h135.884v39.871H120.684z"/><path id="h" d="M' +
@@ -6015,7 +6015,7 @@ export const surface_space_evolution_svg =
 	'58333,-0.56347571,-0.25135436)"><tspan x="115.162" y="1011.561">EVstart =0.5</ts' +
 	'pan></text></svg>';
 
-export const surface_space_shape_svg = 
+export const surface_space_shape_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="171.298" height="190.593" viewBox' +
 	'="0 0 45.323 50.428"><defs><path id="c" d="M181.372 1204.575h110.607v33.983H181.' +
 	'372z"/><path id="b" d="M179.615 1157.229h115.524v29.327H179.615z"/><path id="a" ' +
@@ -6049,7 +6049,7 @@ export const surface_space_shape_svg =
 	'translate(-22.307301,-290.71368) matrix(0.26458333,0,0,0.26458333,-1.6570456,11.' +
 	'511953)"><tspan x="181.371" y="1217.551">sawDown</tspan></text></svg>';
 
-export const swing_face_svg = 
+export const swing_face_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="510.927" height="250.752" viewBox' +
 	'="0 0 135.183 66.345"><defs><marker id="a" markerHeight="1" markerWidth="1" orie' +
 	'nt="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="' +
@@ -6310,7 +6310,7 @@ export const swing_face_svg =
 	'e" transform="translate(-15.975817,-282.74008) matrix(0.26458333,0,0,0.26458333,' +
 	'31.677527,103.85024)"><tspan x="232.998" y="706.125">L6</tspan></text></svg>';
 
-export const swing_side_svg = 
+export const swing_side_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="433.272" height="237.368" viewBox' +
 	'="0 0 114.637 62.804"><defs><marker id="c" markerHeight="1" markerWidth="1" orie' +
 	'nt="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="' +
@@ -6474,7 +6474,7 @@ export const swing_side_svg =
 	'e-space:pre;shape-inside:url(#x)" transform="matrix(0.26458333,0,0,0.26458333,33' +
 	'.704101,-35.729492)"><tspan x="386.615" y="951.689">H3</tspan></text></g></svg>';
 
-export const swing_top_svg = 
+export const swing_top_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="548.943" height="495.897" viewBox' +
 	'="0 0 145.241 131.206"><defs><marker id="b" markerHeight="1" markerWidth="1" ori' +
 	'ent="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style=' +
@@ -6744,7 +6744,7 @@ export const swing_top_svg =
 	'e-width:.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" tr' +
 	'ansform="translate(-4.7446613,-41.271027)"/></svg>';
 
-export const swing_with_rod_svg = 
+export const swing_with_rod_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="410.227" height="425.319" viewBox' +
 	'="0 0 108.539 112.532"><defs><marker id="a" markerHeight="1" markerWidth="1" ori' +
 	'ent="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style=' +
@@ -6863,7 +6863,7 @@ export const swing_with_rod_svg =
 	'3,75.598034,-0.56502765)"><tspan x="156.625" y="1888.098">rod4</tspan></text></g' +
 	'></svg>';
 
-export const trapeze_rod_svg = 
+export const trapeze_rod_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="112.231" height="197.611" viewBox' +
 	'="0 0 29.694 52.285"><defs><marker id="a" markerHeight="1" markerWidth="1" orien' +
 	't="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="o' +
@@ -6897,7 +6897,7 @@ export const trapeze_rod_svg =
 	'rl(#d)" transform="matrix(0.26458333,0,0,0.26458333,-46.130431,8.1075593)"><tspa' +
 	'n x="332.584" y="1187.486">D4</tspan></text></g></svg>';
 
-export const trapeze_side_svg = 
+export const trapeze_side_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="496.112" height="268.06" viewBox=' +
 	'"0 0 131.263 70.924"><defs><marker id="a" markerHeight="1" markerWidth="1" orien' +
 	't="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style="o' +
@@ -7003,7 +7003,7 @@ export const trapeze_side_svg =
 	'0.26458333,-46.129109,67.53933)"><tspan x="426.102" y="478.258">L4</tspan></text' +
 	'></svg>';
 
-export const trapeze_top_svg = 
+export const trapeze_top_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="449.755" height="465.295" viewBox' +
 	'="0 0 118.998 123.109"><defs><marker id="a" markerHeight="1" markerWidth="1" ori' +
 	'ent="auto-start-reverse" preserveAspectRatio="xMidYMid" refX="0" refY="0" style=' +

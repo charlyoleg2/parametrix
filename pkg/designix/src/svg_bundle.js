@@ -1,7 +1,7 @@
 // svg_bundle.js
 // created by svgfiles2js
 
-export const default_param_blank_svg = 
+export const default_param_blank_svg =
 	'<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 52' +
 	'.917 52.917"><defs><path id="a" d="M102.459 286.969h176.774v48.735H102.459z"/></' +
 	'defs><path d="M33.909 224.499h52.652v52.652H33.909z" style="fill:#fff;stroke:#ff' +
