@@ -48,6 +48,7 @@
 		"svgCp2": "shx cp export_svg/*.svg ../designix-ui/static",
 		"svgCp3": "shx cp export_svg/*.svg ../paramui/static",
 		"svgo": "run-s svgoAll svgCp1 svgCp2 svgCp3",
+		"svginline": "svgfiles2js --help",
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
