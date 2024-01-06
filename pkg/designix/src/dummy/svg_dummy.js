@@ -135,4 +135,3 @@ export const rectangle_width_svg =
 	't-family:sans-serif;white-space:pre;shape-inside:url(#a);display:inline;fill:#f6' +
 	'0" transform="translate(-23.779848,-35.508137) scale(0.26458333)"><tspan x="156.' +
 	'891" y="295.471">width</tspan></text></svg>';
-

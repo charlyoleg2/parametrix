@@ -392,4 +392,3 @@ export const verify_vector_p1x_svg =
 	'ans-serif;white-space:pre;shape-inside:url(#n);display:inline;fill:purple" trans' +
 	'form="matrix(0.26458333,0,0,0.26458333,8.2986425,-2.7791391)"><tspan x="157.592"' +
 	' y="891.889">v2a</tspan></text></g></svg>';
-

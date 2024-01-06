@@ -11,4 +11,3 @@ export const default_param_blank_svg =
 	'a);display:inline;fill:#f60" transform="translate(-33.776882,-224.36675) matrix(' +
 	'0.26458333,0,0,0.26458333,11.23015,171.5253)"><tspan x="102.459" y="299.945">def' +
 	'ault_param_blank</tspan></text></svg>';
-

@@ -7312,4 +7312,3 @@ export const trapeze_top_svg =
 	'"font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;sha' +
 	'pe-inside:url(#N);display:inline" transform="matrix(0.26458333,0,0,0.26458333,-6' +
 	'7.097114,-61.309058)"><tspan x="424.145" y="539.014">R3</tspan></text></g></svg>';
-

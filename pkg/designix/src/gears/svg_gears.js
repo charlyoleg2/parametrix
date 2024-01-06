@@ -2301,4 +2301,3 @@ export const right_side_angle_kitchen_svg =
 	'-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#g)" transf' +
 	'orm="translate(-32.014804,-796.24786) scale(0.26458333)"><tspan x="129.105" y="3' +
 	'256.932">right side angle kitchen</tspan></text></svg>';
-
