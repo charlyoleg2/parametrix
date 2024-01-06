@@ -67,6 +67,6 @@
 		}
 	},
 	"bin": "./dist/designix-cli.js",
-	"types": "dist/designix-cli.d.ts",
+	"types": "./dist/designix-cli.d.ts",
 	"type": "module"
 }
