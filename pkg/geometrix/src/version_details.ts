@@ -14,7 +14,7 @@ function version_details(appPackage: tPackage): string {
 	const depList = Object.keys(appPackage.dependencies);
 	for (const [idx, depN] of depList.entries()) {
 		const depK = depN;
-		rStr += `\n${idx} : ${depN} : ${appPackage.dependencies[depK]}`;
+		rStr += `\n${idx + 1} : ${depN} : ${appPackage.dependencies[depK]}`;
 	}
 	return rStr;
 }
