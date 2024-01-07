@@ -16,8 +16,10 @@ import { hideBin } from 'yargs/helpers';
 //import { version } from '../package.json';
 
 function print_version_details(appPackage: tPackage) {
-	const rStr = version_details(appPackage);
-	console.log(rStr);
+	const strList = version_details(appPackage);
+	for (const str of strList) {
+		console.log(str);
+	}
 }
 
 function get_design_array(dList: tAllPageDef): string[] {

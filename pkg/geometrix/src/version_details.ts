@@ -7,14 +7,16 @@ interface tPackage {
 	dependencies: tDependencies;
 }
 
-function version_details(appPackage: tPackage): string {
-	let rStr = 'version details:\n';
-	rStr += `${appPackage.name} : ${appPackage.version}\n`;
-	rStr += 'dependencies:';
+function version_details(appPackage: tPackage): string[] {
+	//const lb = html ? '<br>' : '\n'; // line-break
+	const rStr: string[] = [];
+	rStr.push('version details:');
+	rStr.push(`${appPackage.name} : ${appPackage.version}`);
+	rStr.push('dependencies:');
 	const depList = Object.keys(appPackage.dependencies);
 	for (const [idx, depN] of depList.entries()) {
 		const depK = depN;
-		rStr += `\n${idx + 1} : ${depN} : ${appPackage.dependencies[depK]}`;
+		rStr.push(`${idx + 1} : ${depN} : ${appPackage.dependencies[depK]}`);
 	}
 	return rStr;
 }

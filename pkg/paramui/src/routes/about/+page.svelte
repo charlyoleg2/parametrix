@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { detailed_versions } from '$lib/detailed_versions';
+</script>
+
 <h1>About Parametrix</h1>
 <article>
 	Parametrix is a library for programmatic CAD including a web-ui. It displays two dimentional
@@ -42,11 +46,20 @@
 		<li><a href="https://charlyoleg2.github.io/parametrix/docs/concept">Documentation</a></li>
 	</ul>
 </article>
+<article>
+	<h3>Parametrix versions</h3>
+	<code>
+		{#each detailed_versions as dversion}
+			{dversion}<br />
+		{/each}
+	</code>
+</article>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	h1 {
+	h1,
+	h3 {
 		margin: 1rem;
 	}
 	article {
