@@ -2,7 +2,6 @@
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 import { degToRad, contour, figure, pNumber, initGeom } from 'geometrix';
-import { verify_contour_1_r1_svg } from './svg_geomverif';
 
 const pDef: tParamDef = {
 	partName: 'verify_contour_3',
@@ -16,12 +15,12 @@ const pDef: tParamDef = {
 		pNumber('r6', 'mm', 5, 0, 200, 1)
 	],
 	paramSvg: {
-		r1: verify_contour_1_r1_svg,
-		r2: verify_contour_1_r1_svg,
-		r3: verify_contour_1_r1_svg,
-		r4: verify_contour_1_r1_svg,
-		r5: verify_contour_1_r1_svg,
-		r6: verify_contour_1_r1_svg
+		r1: 'verify_contour_1_r1.svg',
+		r2: 'verify_contour_1_r1.svg',
+		r3: 'verify_contour_1_r1.svg',
+		r4: 'verify_contour_1_r1.svg',
+		r5: 'verify_contour_1_r1.svg',
+		r6: 'verify_contour_1_r1.svg'
 	},
 	sim: {
 		tMax: 10,

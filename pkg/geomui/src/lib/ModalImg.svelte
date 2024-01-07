@@ -1,19 +1,17 @@
 <script lang="ts">
-	export let svgInline: string;
+	export let svgPath: string;
 	export let modalOpen: boolean;
 
 	function mCancel() {
 		modalOpen = false;
 	}
-	/* eslint svelte/no-at-html-tags: "off" */
 </script>
 
 {#if modalOpen}
 	<aside class="backdrop">
 		<div class="dialog">
 			<button on:click={mCancel}>
-				<!--img src={svgPath} alt={svgPath} /-->
-				{@html svgInline}
+				<img src={svgPath} alt={svgPath} />
 			</button>
 		</div>
 	</aside>

@@ -9,11 +9,10 @@
 	import { PType, parseParamFile, createParamFile } from 'geometrix';
 	import { storePV } from './storePVal';
 	import { downloadParams, generateUrl } from './downloadParams';
-	import { default_param_blank_svg } from 'geometrix';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	//import { base } from '$app/paths';
+	import { base } from '$app/paths';
 
 	const dispatch = createEventDispatcher();
 
@@ -212,14 +211,14 @@
 		//console.log(`dbg244: voila`);
 	}
 	// parameter picture
-	let paramSvg = default_param_blank_svg;
+	let paramSvg = `${base}/default_param_blank.svg`;
 	function paramPict(keyName: string) {
 		//console.log(`dbg783: ${keyName}`);
 		// convention for the file-names of the parameter description
 		//paramSvg = `${base}/${pDef.partName}_${keyName}.svg`;
-		paramSvg = default_param_blank_svg;
+		paramSvg = `${base}/default_param_blank.svg`;
 		if (Object.keys(pDef.paramSvg).includes(keyName)) {
-			paramSvg = pDef.paramSvg[keyName];
+			paramSvg = `${base}/${pDef.paramSvg[keyName]}`;
 		}
 	}
 	function paramPict2(idx: number, pDef_page: string) {
@@ -234,7 +233,6 @@
 		//console.log(`dbg231: svgPath: ${svgPath}`);
 		modalImg = true;
 	}
-	/* eslint svelte/no-at-html-tags: "off" */
 </script>
 
 <section>
@@ -354,16 +352,9 @@
 			><LocStorWrite pageName={pDef.partName} bind:storeName={locStorWname} /></ModalDiag
 		>
 	</main>
-	<ModalImg bind:modalOpen={modalImg} svgInline={paramSvg} />
+	<ModalImg bind:modalOpen={modalImg} svgPath={paramSvg} />
 	<button on:click={showSvg} class="side-img">
-		<!--img src={paramSvg} alt={paramSvg} /-->
-		{#if modalImg}
-			<svg height="100" width="100">
-				<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-			</svg>
-		{:else}
-			{@html paramSvg}
-		{/if}
+		<img src={paramSvg} alt={paramSvg} />
 	</button>
 	<div class="mini-canvas">
 		<SimpleDrawing pageName={pDef.partName} {fgeom} {selFace} {simTime} />
@@ -460,7 +451,7 @@
 		z-index: 1;
 		top: 0.5rem;
 	}
-	section > button.side-img > svg {
+	section > button.side-img > img {
 		max-width: 200px;
 		max-height: 200px;
 	}

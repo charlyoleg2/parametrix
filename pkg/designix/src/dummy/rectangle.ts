@@ -2,7 +2,6 @@
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 import { point, figure, pNumber, initGeom } from 'geometrix';
-import { rectangle_width_svg, rectangle_height_svg } from './svg_dummy';
 
 const pDef: tParamDef = {
 	partName: 'rectangle',
@@ -12,8 +11,8 @@ const pDef: tParamDef = {
 		pNumber('height', 'mm', 10, 3, 40, 0.5)
 	],
 	paramSvg: {
-		width: rectangle_width_svg,
-		height: rectangle_height_svg
+		width: 'rectangle_width.svg',
+		height: 'rectangle_height.svg'
 	},
 	sim: {
 		tMax: 120,

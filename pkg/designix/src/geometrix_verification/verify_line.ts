@@ -2,7 +2,6 @@
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 import { point, line, linePP, figure, pNumber, initGeom } from 'geometrix';
-import { verify_line_p1x_svg } from './svg_geomverif';
 
 const pDef: tParamDef = {
 	partName: 'verify_line',
@@ -16,12 +15,12 @@ const pDef: tParamDef = {
 		pNumber('p3y', 'mm', 30, -200, 200, 1)
 	],
 	paramSvg: {
-		p1x: verify_line_p1x_svg,
-		p1y: verify_line_p1x_svg,
-		p2x: verify_line_p1x_svg,
-		p2y: verify_line_p1x_svg,
-		p3x: verify_line_p1x_svg,
-		p3y: verify_line_p1x_svg
+		p1x: 'verify_line_p1x.svg',
+		p1y: 'verify_line_p1x.svg',
+		p2x: 'verify_line_p1x.svg',
+		p2y: 'verify_line_p1x.svg',
+		p3x: 'verify_line_p1x.svg',
+		p3y: 'verify_line_p1x.svg'
 	},
 	sim: {
 		tMax: 10,

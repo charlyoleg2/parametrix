@@ -14,5 +14,3 @@ export * from './aaParamGeom';
 
 export * from './aaExportFile';
 export * from './paramFile';
-
-export * from './svg_bundle';
