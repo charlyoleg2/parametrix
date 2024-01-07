@@ -79,12 +79,19 @@ Also the map (partName: link) will allow you defining a single link per partName
 
 ### SVG files
 
-The svg-files that described a design and its parameters are not embedded in the *designix* library. The SVG files associated to the designs you want to bind to your WebUI must be *manually* copy from the sources to the *static* folder of your *sveltekit* project.
-There was an attempt to *inline* those svg-files into the typescript-library using [svgfiles2js](https://www.npmjs.com/package/svgfiles2js). The size of the library becomes at least five time bigger and svelte complained about the usage of *&#123@html &#125* and the size of the bundles. So this experiment has been abandonned and reverted (commit d1517c13^..d566729d).
+The svg-files that described a design and its parameters are not embedded in the *design* library. The SVG files associated to the designs you want to bind to your WebUI must be *manually* copy from the sources to the *static* folder of your *sveltekit* project.
+
+#### Failed experiment of embedding the svg-files
+
+There was an attempt to *inline* those svg-files into the typescript-library using [svgfiles2js](https://www.npmjs.com/package/svgfiles2js). The size of the library becomes at least five time larger and *svelte* complained about the usage of *&#123@html &#125* and the size of the bundles. So this experiment has been abandonned and reverted (commit d1517c13^..d566729d).
 
 ```bash
 git diff --name-only d1517c13^..d566729d
 ```
+
+#### Other idea for embedding the svg-files
+
+An other way of embedding the svg-files in the design library would be to create a companion nodejs-CLI-tool that contains the svg-files and writes them in the target WebUI. So each design library would consist of the *browser/nodejs* library and the companion nodejs-cli-app for transferring the svg-files.
 
 
 <style lang="scss">
