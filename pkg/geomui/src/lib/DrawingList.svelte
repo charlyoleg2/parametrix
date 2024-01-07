@@ -49,7 +49,13 @@
 	{#each lSvg as iSvg}
 		<button on:click={() => showSvg(iSvg)}>
 			<!--img src={iSvg} alt={iSvg} /-->
-			{@html iSvg}
+			{#if modalImg}
+				<svg height="100" width="100">
+					<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+				</svg>
+			{:else}
+				{@html iSvg}
+			{/if}
 		</button>
 	{/each}
 </section>

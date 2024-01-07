@@ -357,7 +357,13 @@
 	<ModalImg bind:modalOpen={modalImg} svgInline={paramSvg} />
 	<button on:click={showSvg} class="side-img">
 		<!--img src={paramSvg} alt={paramSvg} /-->
-		{@html paramSvg}
+		{#if modalImg}
+			<svg height="100" width="100">
+				<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
+			</svg>
+		{:else}
+			{@html paramSvg}
+		{/if}
 	</button>
 	<div class="mini-canvas">
 		<SimpleDrawing pageName={pDef.partName} {fgeom} {selFace} {simTime} />
