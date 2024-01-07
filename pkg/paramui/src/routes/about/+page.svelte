@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { detailed_versions } from '$lib/detailed_versions';
+	import { version_details } from 'geometrix';
+	import appPackage from '../../../package.json';
+
+	const detailed_versions = version_details(appPackage);
 </script>
 
 <h1>About Parametrix</h1>
