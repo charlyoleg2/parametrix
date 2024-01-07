@@ -24,6 +24,7 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+import { base_cut_svg, base_hollow_svg, base_top_svg } from './svg_heliostat';
 
 const pDef: tParamDef = {
 	partName: 'base',
@@ -46,21 +47,21 @@ const pDef: tParamDef = {
 		pNumber('L1', 'mm', 34, 1, 300, 1)
 	],
 	paramSvg: {
-		D1: 'base_cut.svg',
-		D2: 'base_cut.svg',
-		D3: 'base_cut.svg',
-		D4: 'base_cut.svg',
-		E1: 'base_cut.svg',
-		E2: 'base_cut.svg',
-		E3: 'base_cut.svg',
-		H1: 'base_cut.svg',
-		H2: 'base_hollow.svg',
-		H3: 'base_hollow.svg',
-		N2: 'base_hollow.svg',
-		L2: 'base_hollow.svg',
-		N1: 'base_top.svg',
-		D5: 'base_top.svg',
-		L1: 'base_top.svg'
+		D1: base_cut_svg,
+		D2: base_cut_svg,
+		D3: base_cut_svg,
+		D4: base_cut_svg,
+		E1: base_cut_svg,
+		E2: base_cut_svg,
+		E3: base_cut_svg,
+		H1: base_cut_svg,
+		H2: base_hollow_svg,
+		H3: base_hollow_svg,
+		N2: base_hollow_svg,
+		L2: base_hollow_svg,
+		N1: base_top_svg,
+		D5: base_top_svg,
+		L1: base_top_svg
 	},
 	sim: {
 		tMax: 180,

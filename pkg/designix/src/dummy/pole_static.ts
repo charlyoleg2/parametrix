@@ -23,6 +23,7 @@ import {
 	//EExtrude,
 	//EBVolume
 } from 'geometrix';
+import { dummy_pole_static_face_svg } from './svg_dummy';
 
 const pDef: tParamDef = {
 	partName: 'pole_static',
@@ -33,9 +34,9 @@ const pDef: tParamDef = {
 		pNumber('radius', 'mm', 1000, 100, 40000, 10)
 	],
 	paramSvg: {
-		H1: 'dummy_pole_static_face.svg',
-		H2: 'dummy_pole_static_face.svg',
-		radius: 'dummy_pole_static_face.svg'
+		H1: dummy_pole_static_face_svg,
+		H2: dummy_pole_static_face_svg,
+		radius: dummy_pole_static_face_svg
 	},
 	sim: {
 		tMax: 180,

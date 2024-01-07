@@ -24,6 +24,7 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+import { spider_profile_svg, spider_lateral_svg } from './svg_heliostat';
 
 const pDef: tParamDef = {
 	partName: 'spider',
@@ -43,18 +44,18 @@ const pDef: tParamDef = {
 		pNumber('N1', '', 6, 1, 20, 1)
 	],
 	paramSvg: {
-		D1: 'spider_profile.svg',
-		L1: 'spider_profile.svg',
-		L2: 'spider_profile.svg',
-		L3: 'spider_profile.svg',
-		L4: 'spider_profile.svg',
-		L5: 'spider_lateral.svg',
-		L6: 'spider_lateral.svg',
-		E1: 'spider_profile.svg',
-		E2: 'spider_profile.svg',
-		E3: 'spider_profile.svg',
-		R2: 'spider_profile.svg',
-		N1: 'spider_lateral.svg'
+		D1: spider_profile_svg,
+		L1: spider_profile_svg,
+		L2: spider_profile_svg,
+		L3: spider_profile_svg,
+		L4: spider_profile_svg,
+		L5: spider_lateral_svg,
+		L6: spider_lateral_svg,
+		E1: spider_profile_svg,
+		E2: spider_profile_svg,
+		E3: spider_profile_svg,
+		R2: spider_profile_svg,
+		N1: spider_lateral_svg
 	},
 	sim: {
 		tMax: 360,

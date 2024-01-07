@@ -11,6 +11,7 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+import { default_param_blank_svg } from 'geometrix';
 
 const pDef: tParamDef = {
 	partName: 'verify_exports_1',
@@ -23,11 +24,11 @@ const pDef: tParamDef = {
 		pCheckbox('contour-arc-large', false)
 	],
 	paramSvg: {
-		circle: 'default_param_blank.svg',
-		'circle-size': 'default_param_blank.svg',
-		contour: 'default_param_blank.svg',
-		'contour-size': 'default_param_blank.svg',
-		'contour-arc-large': 'default_param_blank.svg'
+		circle: default_param_blank_svg,
+		'circle-size': default_param_blank_svg,
+		contour: default_param_blank_svg,
+		'contour-size': default_param_blank_svg,
+		'contour-arc-large': default_param_blank_svg
 	},
 	sim: {
 		tMax: 10,

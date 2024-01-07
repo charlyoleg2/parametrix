@@ -23,6 +23,13 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+import {
+	pole_stator_cut_svg,
+	pole_stator_E2_svg,
+	pole_stator_bottom_svg,
+	pole_stator_face_svg,
+	pole_stator_right_svg
+} from './svg_heliostat';
 
 const pDef: tParamDef = {
 	partName: 'pole_static',
@@ -45,21 +52,21 @@ const pDef: tParamDef = {
 		pNumber('E3', 'mm', 40, 1, 100, 1)
 	],
 	paramSvg: {
-		D1: 'pole_stator_cut.svg',
-		D2: 'pole_stator_cut.svg',
-		D3: 'pole_stator_cut.svg',
-		H1: 'pole_stator_cut.svg',
-		H2: 'pole_stator_cut.svg',
-		E1: 'pole_stator_cut.svg',
-		E2: 'pole_stator_E2.svg',
-		N1: 'pole_stator_bottom.svg',
-		D5: 'pole_stator_bottom.svg',
-		L1: 'pole_stator_bottom.svg',
-		D4: 'pole_stator_face.svg',
-		H3: 'pole_stator_face.svg',
-		H4: 'pole_stator_face.svg',
-		L2: 'pole_stator_face.svg',
-		E3: 'pole_stator_right.svg'
+		D1: pole_stator_cut_svg,
+		D2: pole_stator_cut_svg,
+		D3: pole_stator_cut_svg,
+		H1: pole_stator_cut_svg,
+		H2: pole_stator_cut_svg,
+		E1: pole_stator_cut_svg,
+		E2: pole_stator_E2_svg,
+		N1: pole_stator_bottom_svg,
+		D5: pole_stator_bottom_svg,
+		L1: pole_stator_bottom_svg,
+		D4: pole_stator_face_svg,
+		H3: pole_stator_face_svg,
+		H4: pole_stator_face_svg,
+		L2: pole_stator_face_svg,
+		E3: pole_stator_right_svg
 	},
 	sim: {
 		tMax: 180,

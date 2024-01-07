@@ -23,6 +23,7 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+import { pole_rotor_cut_svg, pole_rotor_ends_svg } from './svg_heliostat';
 
 const pDef: tParamDef = {
 	partName: 'pole_rotor',
@@ -38,14 +39,14 @@ const pDef: tParamDef = {
 		pNumber('L1', 'mm', 45, 1, 300, 1)
 	],
 	paramSvg: {
-		D1: 'pole_rotor_cut.svg',
-		D2: 'pole_rotor_cut.svg',
-		H1: 'pole_rotor_cut.svg',
-		E1: 'pole_rotor_cut.svg',
-		E2: 'pole_rotor_cut.svg',
-		N1: 'pole_rotor_ends.svg',
-		D3: 'pole_rotor_ends.svg',
-		L1: 'pole_rotor_ends.svg'
+		D1: pole_rotor_cut_svg,
+		D2: pole_rotor_cut_svg,
+		H1: pole_rotor_cut_svg,
+		E1: pole_rotor_cut_svg,
+		E2: pole_rotor_cut_svg,
+		N1: pole_rotor_ends_svg,
+		D3: pole_rotor_ends_svg,
+		L1: pole_rotor_ends_svg
 	},
 	sim: {
 		tMax: 180,

@@ -27,6 +27,12 @@ import {
 	EBVolume
 	//oneDesignParam
 } from 'geometrix';
+import {
+	heliostat_overview_svg,
+	heliostat_side_svg,
+	heliostat2_side_sizing_svg,
+	heliostat2_face_sizing_svg
+} from './svg_heliostat';
 
 // design import
 import { poleStaticDef } from './pole_static';
@@ -66,33 +72,33 @@ const pDef: tParamDef = {
 		pNumber('S1', 'mm', 100, 10, 800, 1)
 	],
 	paramSvg: {
-		H1: 'heliostat_overview.svg',
-		H2: 'heliostat_side.svg',
-		H3: 'heliostat2_side_sizing.svg',
-		H4: 'heliostat2_side_sizing.svg',
-		H5: 'heliostat2_side_sizing.svg',
-		H6: 'heliostat2_side_sizing.svg',
-		H7: 'heliostat2_side_sizing.svg',
-		H9: 'heliostat2_side_sizing.svg',
-		D1: 'heliostat2_side_sizing.svg',
-		D2: 'heliostat2_side_sizing.svg',
-		D3: 'heliostat2_side_sizing.svg',
-		D4: 'heliostat2_side_sizing.svg',
-		D5: 'heliostat2_side_sizing.svg',
-		D6: 'heliostat2_side_sizing.svg',
-		D7: 'heliostat2_side_sizing.svg',
-		D9: 'heliostat2_face_sizing.svg',
-		E1: 'heliostat2_side_sizing.svg',
-		L1: 'heliostat2_face_sizing.svg',
-		L2: 'heliostat2_side_sizing.svg',
-		L3: 'heliostat2_face_sizing.svg',
-		L4: 'heliostat2_face_sizing.svg',
-		L5: 'heliostat2_face_sizing.svg',
-		L6: 'heliostat2_face_sizing.svg',
-		L7: 'heliostat2_face_sizing.svg',
-		L8: 'heliostat2_face_sizing.svg',
-		al: 'heliostat2_side_sizing.svg',
-		S1: 'heliostat2_side_sizing.svg'
+		H1: heliostat_overview_svg,
+		H2: heliostat_side_svg,
+		H3: heliostat2_side_sizing_svg,
+		H4: heliostat2_side_sizing_svg,
+		H5: heliostat2_side_sizing_svg,
+		H6: heliostat2_side_sizing_svg,
+		H7: heliostat2_side_sizing_svg,
+		H9: heliostat2_side_sizing_svg,
+		D1: heliostat2_side_sizing_svg,
+		D2: heliostat2_side_sizing_svg,
+		D3: heliostat2_side_sizing_svg,
+		D4: heliostat2_side_sizing_svg,
+		D5: heliostat2_side_sizing_svg,
+		D6: heliostat2_side_sizing_svg,
+		D7: heliostat2_side_sizing_svg,
+		D9: heliostat2_face_sizing_svg,
+		E1: heliostat2_side_sizing_svg,
+		L1: heliostat2_face_sizing_svg,
+		L2: heliostat2_side_sizing_svg,
+		L3: heliostat2_face_sizing_svg,
+		L4: heliostat2_face_sizing_svg,
+		L5: heliostat2_face_sizing_svg,
+		L6: heliostat2_face_sizing_svg,
+		L7: heliostat2_face_sizing_svg,
+		L8: heliostat2_face_sizing_svg,
+		al: heliostat2_side_sizing_svg,
+		S1: heliostat2_side_sizing_svg
 	},
 	sim: {
 		tMax: 180,

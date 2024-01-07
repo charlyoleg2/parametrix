@@ -2,6 +2,7 @@
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 import { degToRad, point, figure, pNumber, initGeom } from 'geometrix';
+import { verify_point_p1x_svg } from './svg_geomverif';
 
 const pDef: tParamDef = {
 	partName: 'verify_point',
@@ -15,12 +16,12 @@ const pDef: tParamDef = {
 		pNumber('scaleOrig', 'scalar', 1.5, 0.1, 2, 0.1)
 	],
 	paramSvg: {
-		p1x: 'verify_point_p1x.svg',
-		p1y: 'verify_point_p1x.svg',
-		p2a: 'verify_point_p1x.svg',
-		p2l: 'verify_point_p1x.svg',
-		rotateOrig: 'verify_point_p1x.svg',
-		scaleOrig: 'verify_point_p1x.svg'
+		p1x: verify_point_p1x_svg,
+		p1y: verify_point_p1x_svg,
+		p2a: verify_point_p1x_svg,
+		p2l: verify_point_p1x_svg,
+		rotateOrig: verify_point_p1x_svg,
+		scaleOrig: verify_point_p1x_svg
 	},
 	sim: {
 		tMax: 10,

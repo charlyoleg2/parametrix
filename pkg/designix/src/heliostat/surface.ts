@@ -24,6 +24,15 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+import {
+	surface_main_svg,
+	surface_lz_svg,
+	surface_crenel_svg,
+	surface_extremities_svg,
+	surface_space_evolution_svg,
+	surface_space_shape_svg,
+	surface_power_svg
+} from './svg_heliostat';
 
 const pDef: tParamDef = {
 	partName: 'surface',
@@ -54,29 +63,29 @@ const pDef: tParamDef = {
 		pNumber('solar_power', 'W/m2', 816, 100, 2000, 1) // 1361*0.6=816 W/m2
 	],
 	paramSvg: {
-		LH: 'surface_main.svg',
-		LV: 'surface_main.svg',
-		LZ: 'surface_lz.svg',
-		nx: 'surface_main.svg',
-		ny: 'surface_main.svg',
-		main_direction: 'surface_crenel.svg',
-		crenel: 'surface_crenel.svg',
-		first_row: 'surface_extremities.svg',
-		second_row: 'surface_extremities.svg',
-		EH: 'surface_main.svg',
-		EH_gradient: 'surface_space_evolution.svg',
-		EH_sup: 'surface_space_evolution.svg',
-		EH_cycle: 'surface_space_evolution.svg',
-		EH_start: 'surface_space_evolution.svg',
-		EH_shape: 'surface_space_shape.svg',
-		EV: 'surface_main.svg',
-		EV_gradient: 'surface_space_evolution.svg',
-		EV_sup: 'surface_space_evolution.svg',
-		EV_cycle: 'surface_space_evolution.svg',
-		EV_start: 'surface_space_evolution.svg',
-		EV_shape: 'surface_space_shape.svg',
-		power_efficiency: 'surface_power.svg',
-		solar_power: 'surface_power.svg'
+		LH: surface_main_svg,
+		LV: surface_main_svg,
+		LZ: surface_lz_svg,
+		nx: surface_main_svg,
+		ny: surface_main_svg,
+		main_direction: surface_crenel_svg,
+		crenel: surface_crenel_svg,
+		first_row: surface_extremities_svg,
+		second_row: surface_extremities_svg,
+		EH: surface_main_svg,
+		EH_gradient: surface_space_evolution_svg,
+		EH_sup: surface_space_evolution_svg,
+		EH_cycle: surface_space_evolution_svg,
+		EH_start: surface_space_evolution_svg,
+		EH_shape: surface_space_shape_svg,
+		EV: surface_main_svg,
+		EV_gradient: surface_space_evolution_svg,
+		EV_sup: surface_space_evolution_svg,
+		EV_cycle: surface_space_evolution_svg,
+		EV_start: surface_space_evolution_svg,
+		EV_shape: surface_space_shape_svg,
+		power_efficiency: surface_power_svg,
+		solar_power: surface_power_svg
 	},
 	sim: {
 		tMax: 180,

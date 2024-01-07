@@ -3,7 +3,7 @@
 	import ModalImg from './ModalImg.svelte';
 	//import { onMount } from 'svelte';
 	//import { browser } from '$app/environment';
-	import { base } from '$app/paths';
+	//import { base } from '$app/paths';
 
 	export let pDef: tParamDef;
 
@@ -22,11 +22,12 @@
 		if (partName === 'impossible_part_name') {
 			//console.log(`dummy022: partName ${partName}`);
 		}
-		const lList = getSvgList(pDef);
-		const rList2: string[] = [];
-		for (const svg of lList) {
-			rList2.push(`${base}/${svg}`);
-		}
+		//const lList = getSvgList(pDef);
+		//const rList2: string[] = [];
+		//for (const svg of lList) {
+		//	rList2.push(`${base}/${svg}`);
+		//}
+		const rList2 = getSvgList(pDef);
 		return rList2;
 	}
 	// initialization
@@ -35,19 +36,20 @@
 	$: lSvg = getSvgList2(pDef.partName);
 	// modalImg
 	let modalImg = false;
-	let svgPath: string;
-	function showSvg(iSvgPath: string) {
-		svgPath = iSvgPath;
-		//console.log(`dbg231: svgPath: ${svgPath}`);
+	let svgInline: string;
+	function showSvg(iSvg: string) {
+		svgInline = iSvg;
 		modalImg = true;
 	}
+	/* eslint svelte/no-at-html-tags: "off" */
 </script>
 
 <section>
-	<ModalImg bind:modalOpen={modalImg} {svgPath} />
+	<ModalImg bind:modalOpen={modalImg} {svgInline} />
 	{#each lSvg as iSvg}
 		<button on:click={() => showSvg(iSvg)}>
-			<img src={iSvg} alt={iSvg} />
+			<!--img src={iSvg} alt={iSvg} /-->
+			{@html iSvg}
 		</button>
 	{/each}
 </section>
@@ -66,7 +68,7 @@
 		font-size: 0.6rem;
 		background-color: colors.$mini-picture;
 	}
-	section > button > img {
+	section > button > svg {
 		max-width: 200px;
 		max-height: 200px;
 	}

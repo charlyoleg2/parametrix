@@ -23,6 +23,7 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+import { trapeze_top_svg, trapeze_side_svg, trapeze_rod_svg } from './svg_heliostat';
 
 const pDef: tParamDef = {
 	partName: 'trapeze',
@@ -51,27 +52,27 @@ const pDef: tParamDef = {
 		pNumber('H3', 'mm', 5, 0.5, 800, 0.5)
 	],
 	paramSvg: {
-		L1: 'trapeze_top.svg',
-		L2: 'trapeze_top.svg',
-		L3: 'trapeze_top.svg',
-		L4: 'trapeze_top.svg',
-		N1: 'trapeze_top.svg',
-		N2: 'trapeze_top.svg',
-		N3: 'trapeze_top.svg',
-		N4: 'trapeze_top.svg',
-		L5: 'trapeze_top.svg',
-		L6: 'trapeze_top.svg',
-		L7: 'trapeze_top.svg',
-		D1: 'trapeze_top.svg',
-		D2: 'trapeze_top.svg',
-		D3: 'trapeze_rod.svg',
-		D4: 'trapeze_rod.svg',
-		R1: 'trapeze_top.svg',
-		R2: 'trapeze_top.svg',
-		R3: 'trapeze_top.svg',
-		H1: 'trapeze_side.svg',
-		H2: 'trapeze_side.svg',
-		H3: 'trapeze_side.svg'
+		L1: trapeze_top_svg,
+		L2: trapeze_top_svg,
+		L3: trapeze_top_svg,
+		L4: trapeze_top_svg,
+		N1: trapeze_top_svg,
+		N2: trapeze_top_svg,
+		N3: trapeze_top_svg,
+		N4: trapeze_top_svg,
+		L5: trapeze_top_svg,
+		L6: trapeze_top_svg,
+		L7: trapeze_top_svg,
+		D1: trapeze_top_svg,
+		D2: trapeze_top_svg,
+		D3: trapeze_rod_svg,
+		D4: trapeze_rod_svg,
+		R1: trapeze_top_svg,
+		R2: trapeze_top_svg,
+		R3: trapeze_top_svg,
+		H1: trapeze_side_svg,
+		H2: trapeze_side_svg,
+		H3: trapeze_side_svg
 	},
 	sim: {
 		tMax: 180,

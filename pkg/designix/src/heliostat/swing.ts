@@ -23,6 +23,7 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+import { swing_top_svg, swing_side_svg, swing_face_svg, swing_with_rod_svg } from './svg_heliostat';
 
 const pDef: tParamDef = {
 	partName: 'swing',
@@ -48,24 +49,24 @@ const pDef: tParamDef = {
 		pNumber('rod4', 'mm', 100, 50, 400, 10)
 	],
 	paramSvg: {
-		L1: 'swing_top.svg',
-		L2: 'swing_top.svg',
-		L3: 'swing_top.svg',
-		L4: 'swing_top.svg',
-		L5: 'swing_top.svg',
-		L6: 'swing_top.svg',
-		D1: 'swing_top.svg',
-		H1: 'swing_top.svg',
-		H2: 'swing_top.svg',
-		H3: 'swing_side.svg',
-		H4: 'swing_side.svg',
-		E1: 'swing_side.svg',
-		E2: 'swing_side.svg',
-		E3: 'swing_face.svg',
-		rod1: 'swing_with_rod.svg',
-		rod2: 'swing_with_rod.svg',
-		rod3: 'swing_with_rod.svg',
-		rod4: 'swing_with_rod.svg'
+		L1: swing_top_svg,
+		L2: swing_top_svg,
+		L3: swing_top_svg,
+		L4: swing_top_svg,
+		L5: swing_top_svg,
+		L6: swing_top_svg,
+		D1: swing_top_svg,
+		H1: swing_top_svg,
+		H2: swing_top_svg,
+		H3: swing_side_svg,
+		H4: swing_side_svg,
+		E1: swing_side_svg,
+		E2: swing_side_svg,
+		E3: swing_face_svg,
+		rod1: swing_with_rod_svg,
+		rod2: swing_with_rod_svg,
+		rod3: swing_with_rod_svg,
+		rod4: swing_with_rod_svg
 	},
 	sim: {
 		tMax: 180,

@@ -23,6 +23,7 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+import { rod_top_svg, rod_cut_svg, rod_plate_svg } from './svg_heliostat';
 
 const pDef: tParamDef = {
 	partName: 'rod',
@@ -43,19 +44,19 @@ const pDef: tParamDef = {
 		pNumber('L7', 'mm', 10, 1, 300, 1)
 	],
 	paramSvg: {
-		L1: 'rod_top.svg',
-		L2: 'rod_top.svg',
-		L3: 'rod_top.svg',
-		L4: 'rod_top.svg',
-		H1: 'rod_cut.svg',
-		E1: 'rod_cut.svg',
-		E2: 'rod_cut.svg',
-		N1: 'rod_top.svg',
-		N3: 'rod_top.svg',
-		N4: 'rod_top.svg',
-		R3: 'rod_top.svg',
-		D2: 'rod_plate.svg',
-		L7: 'rod_plate.svg'
+		L1: rod_top_svg,
+		L2: rod_top_svg,
+		L3: rod_top_svg,
+		L4: rod_top_svg,
+		H1: rod_cut_svg,
+		E1: rod_cut_svg,
+		E2: rod_cut_svg,
+		N1: rod_top_svg,
+		N3: rod_top_svg,
+		N4: rod_top_svg,
+		R3: rod_top_svg,
+		D2: rod_plate_svg,
+		L7: rod_plate_svg
 	},
 	sim: {
 		tMax: 180,

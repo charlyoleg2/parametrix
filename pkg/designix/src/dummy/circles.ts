@@ -2,6 +2,11 @@
 
 import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 import { degToRad, point, figure, pNumber, initGeom } from 'geometrix';
+import {
+	circles_angle_svg,
+	circles_amplitude_offset_svg,
+	circles_amplitude_scale_svg
+} from './svg_dummy';
 
 //const pi12 = fround(Math.PI / 12);
 //const pi24 = fround(Math.PI / 24); // input-number min and step must be rounded to avoid UI issue
@@ -17,9 +22,9 @@ const pDef: tParamDef = {
 		pNumber('amplitude-scale', 'scalar', 0.2, 0.1, 0.5, 0.01)
 	],
 	paramSvg: {
-		angle: 'circles_angle.svg',
-		'amplitude-offset': 'circles_amplitude-offset.svg',
-		'amplitude-scale': 'circles_amplitude-scale.svg'
+		angle: circles_angle_svg,
+		'amplitude-offset': circles_amplitude_offset_svg,
+		'amplitude-scale': circles_amplitude_scale_svg
 	},
 	sim: {
 		tMax: 10,
