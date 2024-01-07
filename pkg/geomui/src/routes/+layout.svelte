@@ -1,5 +1,9 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import { version_details } from 'geometrix';
+	import appPackage from '../../package.json';
+
+	const detailed_versions = version_details(appPackage);
 </script>
 
 <h1>Welcome to geomui test-app</h1>
@@ -14,9 +18,19 @@
 	<slot />
 </main>
 <footer>
-	<a href="https://github.com/charlyoleg2/parametrix">geomui test-app</a>, a sveltekit-app for
-	testing
-	<a href="https://www.npmjs.com/">geomui</a>.
+	<article>
+		<a href="https://github.com/charlyoleg2/parametrix">geomui test-app</a>, a sveltekit-app for
+		testing
+		<a href="https://www.npmjs.com/">geomui</a>.
+	</article>
+	<article>
+		<h3>Geomui version</h3>
+		<code>
+			{#each detailed_versions as dversion}
+				{dversion}<br />
+			{/each}
+		</code>
+	</article>
 </footer>
 
 <style lang="scss">

@@ -50,7 +50,7 @@
 	</ul>
 </article>
 <article>
-	<h3>Parametrix versions</h3>
+	<h3>Parametrix version</h3>
 	<code>
 		{#each detailed_versions as dversion}
 			{dversion}<br />

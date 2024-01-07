@@ -1,5 +1,9 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import { version_details } from 'geometrix';
+	import appPackage from '../../package.json';
+
+	const detailed_versions = version_details(appPackage);
 </script>
 
 <h1>Welcome to designix-ui</h1>
@@ -14,8 +18,18 @@
 	<slot />
 </main>
 <footer>
-	<a href="https://github.com/charlyoleg2/parametrix">designix-ui</a>, a minimalist showcase of
-	<a href="https://www.npmjs.com/">geomui</a>.
+	<article>
+		<a href="https://github.com/charlyoleg2/parametrix">designix-ui</a>, a minimalist showcase of
+		<a href="https://www.npmjs.com/">geomui</a>.
+	</article>
+	<article>
+		<h3>Designix-ui version</h3>
+		<code>
+			{#each detailed_versions as dversion}
+				{dversion}<br />
+			{/each}
+		</code>
+	</article>
 </footer>
 
 <style lang="scss">
