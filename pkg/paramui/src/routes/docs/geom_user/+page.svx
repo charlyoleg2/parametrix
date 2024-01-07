@@ -77,6 +77,14 @@ Open the exported script with [OpenJSCAD](https://openjscad.xyz/)
 Two design-definition could have the same partName. This is not recommended but possible. In this case if they have parameters with identical name, their values will be shared.
 Also the map (partName: link) will allow you defining a single link per partName. So one of your design-definition can not be pointed by the link.
 
+### SVG files
+
+The svg-files that described a design and its parameters are not embedded in the *designix* library. The SVG files associated to the designs you want to bind to your WebUI must be *manually* copy from the sources to the *static* folder of your *sveltekit* project.
+There was an attempt to *inline* those svg-files into the typescript-library using [svgfiles2js](https://www.npmjs.com/package/svgfiles2js). The size of the library becomes at least five time bigger and svelte complained about the usage of *&#123@html &#125* and the size of the bundles. So this experiment has been abandonned and reverted (commit d1517c13^..d566729d).
+
+```bash
+git diff --name-only d1517c13^..d566729d
+```
 
 
 <style lang="scss">
