@@ -19,7 +19,8 @@
 </main>
 <footer>
 	<article>
-		<a href="https://github.com/charlyoleg2/parametrix">designix-ui</a>, a minimalist showcase of
+		<a href="https://github.com/charlyoleg2/parametrix">designix-ui</a>, a minimalist showcase
+		of
 		<a href="https://www.npmjs.com/">geomui</a>.
 	</article>
 	<article>
