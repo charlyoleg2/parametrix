@@ -1,28 +1,22 @@
 // geom_cli.ts
 
-import type { tParamVal, tGeom, tSubDesign, tPageDef, tAllPageDef, tSubInst } from 'geometrix';
-import { PType, EFormat, designParam, prefixLog, paramListToVal } from 'geometrix';
+import type {
+	tParamVal,
+	tGeom,
+	tSubDesign,
+	tPageDef,
+	tAllPageDef,
+	tSubInst,
+	tPackage
+} from 'geometrix';
+import { PType, EFormat, designParam, prefixLog, paramListToVal, version_details } from 'geometrix';
 import { geom_write, writeParams, readParams } from './geom_write';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 //import { version } from '../package.json';
 
-type tDependencies = Record<string, string>; // package-name: package-version
-interface tPackage {
-	name: string;
-	version: string;
-	dependencies: tDependencies;
-}
-
-function version_details(appPackage: tPackage) {
-	let rStr = 'version details:\n';
-	rStr += `${appPackage.name} : ${appPackage.version}\n`;
-	rStr += 'dependencies:';
-	const depList = Object.keys(appPackage.dependencies);
-	for (const [idx, depN] of depList.entries()) {
-		const depK = depN;
-		rStr += `\n${idx} : ${depN} : ${appPackage.dependencies[depK]}`;
-	}
+function print_version_details(appPackage: tPackage) {
+	const rStr = version_details(appPackage);
 	console.log(rStr);
 }
 
@@ -416,14 +410,9 @@ async function geom_cli(
 			description: 'Rename the output filename',
 			default: ''
 		})
-		.command(
-			'versions',
-			'print details about the app version and its dependencies',
-			{},
-			() => {
-				version_details(appPackage);
-			}
-		)
+		.command('versions', 'print details about the app version and its dependencies', {}, () => {
+			print_version_details(appPackage);
+		})
 		.command(['list-designs', 'list'], 'list the available designs', {}, () => {
 			list_designs(dList, false);
 		})
@@ -579,5 +568,4 @@ async function geom_cli(
 	}
 }
 
-export type { tPackage };
 export { geom_cli };
