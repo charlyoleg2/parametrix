@@ -2,7 +2,9 @@
 // designix-cli.ts
 
 import type { tAllPageDef } from 'geometrix';
+//import type { tPackage } from 'geomcli';
 import { geom_cli } from 'geomcli';
+import packag from '../package.json';
 import {
 	gearWheelWheelDef,
 	simplifiedGearWheelDef,
@@ -37,6 +39,6 @@ const designList: tAllPageDef = {
 	'heliostat/surface': surfaceDef
 };
 
-console.log('designix-cli says hello');
-await geom_cli(process.argv, designList, 'output');
-console.log('designix-cli says bye');
+//console.log('designix-cli says hello');
+await geom_cli(process.argv, designList, packag, 'output');
+//console.log('designix-cli says bye');

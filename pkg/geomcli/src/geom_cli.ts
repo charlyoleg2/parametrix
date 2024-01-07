@@ -5,7 +5,26 @@ import { PType, EFormat, designParam, prefixLog, paramListToVal } from 'geometri
 import { geom_write, writeParams, readParams } from './geom_write';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-import { version } from '../package.json';
+//import { version } from '../package.json';
+
+type tDependencies = Record<string, string>; // package-name: package-version
+interface tPackage {
+	name: string;
+	version: string;
+	dependencies: tDependencies;
+}
+
+function version_details(appPackage: tPackage) {
+	let rStr = 'version details:\n';
+	rStr += `${appPackage.name} : ${appPackage.version}\n`;
+	rStr += 'dependencies:';
+	const depList = Object.keys(appPackage.dependencies);
+	for (const [idx, depN] of depList.entries()) {
+		const depK = depN;
+		rStr += `\n${idx} : ${depN} : ${appPackage.dependencies[depK]}`;
+	}
+	console.log(rStr);
+}
 
 function get_design_array(dList: tAllPageDef): string[] {
 	const rDesignArray = Object.keys(dList);
@@ -349,10 +368,15 @@ function list_outopt(dList: tAllPageDef, selD: string, paramPath: string, modif:
 }
 
 let cmd_write = false;
-async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') {
+async function geom_cli(
+	iArgs: string[],
+	dList: tAllPageDef,
+	appPackage: tPackage,
+	outDir = 'output'
+) {
 	const argv = yargs(hideBin(iArgs))
 		.scriptName('geom_cli')
-		.version(version)
+		.version(appPackage.version)
 		.usage('Usage: $0 <global-options> command <command-argument>')
 		.example([
 			['$0 list-designs', 'list the available designs'],
@@ -392,6 +416,14 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 			description: 'Rename the output filename',
 			default: ''
 		})
+		.command(
+			'versions',
+			'print details about the app version and its dependencies',
+			{},
+			() => {
+				version_details(appPackage);
+			}
+		)
 		.command(['list-designs', 'list'], 'list the available designs', {}, () => {
 			list_designs(dList, false);
 		})
@@ -547,4 +579,5 @@ async function geom_cli(iArgs: string[], dList: tAllPageDef, outDir = 'output') 
 	}
 }
 
+export type { tPackage };
 export { geom_cli };
