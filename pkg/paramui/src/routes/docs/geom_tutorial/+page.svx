@@ -12,11 +12,11 @@ category: documentation
 
 ### Simple design
 
-[myPartA]() goes through the required [steps]() of a 3D part description.
+[myPartA](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartA.ts) goes through the required [steps](https://charlyoleg2.github.io/parametrix/docs/geom_user#main_steps) of a 3D part description.
 
 ### Parameter types
 
-[myPartB]() illustrates the usage of the 3 types of parameters:
+[myPartB](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartB.ts) illustrates the usage of the 3 types of parameters:
 
 - numerical parameter
 - dropdown parameter

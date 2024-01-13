@@ -25,7 +25,7 @@ In the traditional approach, the steps 2, 3 and 4 are usually merged together.
 
 ## Javascript description
 
-### main steps of a Geometrix script
+### <a id="main_steps">main steps of a Geometrix script</a>
 
 1. import *Geometrix*
 2. [Optionally] import other parts
