@@ -95,6 +95,7 @@ const menuList: tMenuList = [
 			{ path: '/docs/ui', page: null, svg: 'page_ui.svg' },
 			{ path: '/docs/geom_dev', page: null, svg: 'page_geom.svg' },
 			{ path: '/docs/geom_user', page: null, svg: 'page_geom.svg' },
+			{ path: '/docs/geom_tutorial', page: null, svg: 'page_geom.svg' },
 			{ path: '/docs/gears', page: null, svg: 'page_gears.svg' },
 			{ path: '/docs/involute', page: null, svg: 'page_gears.svg' },
 			{ path: '/docs/magnetic', page: null, svg: 'page_magnetic.svg' },

@@ -1,0 +1,89 @@
+---
+title: Geom's tutorial
+category: documentation
+---
+
+<script lang="ts">
+	import { base } from '$app/paths';
+</script>
+
+
+# {title}
+
+### Simple design
+
+[myPartA]() goes through the required [steps]() of a 3D part description.
+
+### Parameter types
+
+[myPartB]() illustrates the usage of the 3 types of parameters:
+
+- numerical parameter
+- dropdown parameter
+- checkbox parameter
+
+### Extrusion and 3D construction
+
+[myPartC]() illustrates the usage of the 2 types of extrusion:
+
+- orthogonal extrusion
+- revolution extrusion
+
+And the usage of the 4 types of boolean operations:
+
+- identity (just an alias ot the first element of the list)
+- union (merge/fuse the list of parts in one part)
+- substraction (remove from the firt element of the list the overlaping portion of the rest of the list)
+- intersection (common portion of all elements of the list)
+
+### Evidences of the power of 2D technical drawings
+
+### Contour creation with absolute/relative cartesian/polar coordinates
+
+### Contour corner options
+
+### Assembly or design-reuse
+
+### Expose external design
+
+[parame52-ui]() might expose designs externally defined (not coming from *parame52*). In this case, you must manually copy the svg-files in the *static* directoty of the *sveltekit* project *parame52-ui*.
+
+### Common design list definition
+
+When you develop your own 3D part library (like [parame51]()) you typically create 3 node-packages:
+
+- parameXYZ : your 3D part library
+- parameXYZ-ui : the sveltekit project to visualize your work in a Web-UI
+- parameXYZ-cli : a CLI to export your work from command-line
+
+In *parameXYZ-ui* and *parameXYZ-cli* you define the list of designs you want to expose. Usually it corresponds to the list your 3D part libray *parameXYZ* exports plus optionally ad-hoc external designs you want to expose as well in your UI-app or CLI-app.
+
+In most cases you want to have the same list of designs for your UI-app and CLI-app. In this case, to get a common list of designs for UI-app and CLI-app, create an additional node-package:
+
+- parameXYZ-list : common list of designs to be exposed in parameXYZ-ui and parameXYZ-cli
+
+[parame52-list]() illustrates such node-package. Then [parame52-ui]() and [parame52]() have to be updated rarely.
+
+### Assembly using external design
+
+Previously we have seen that the UI-app and CLI-app can expose external designs. Now, [parame52]() illustrates how a new design can reuse an external design.
+
+### Contour with arcs
+
+### Functions defining a Contour
+
+### Transitive reuse of external designs
+
+### Defining sub-designs
+
+### Add points, lines, vectors and dynamics decorations
+
+
+
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
+	h1 {
+		margin: 1rem;
+	}
+</style>
