@@ -18,23 +18,23 @@ category: documentation
 
 [myPartB](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartB.ts) illustrates the usage of the 3 types of parameters:
 
-- numerical parameter
-- dropdown parameter
-- checkbox parameter
+- *numerical* parameter
+- *dropdown* parameter
+- *checkbox* parameter
 
 ### Extrusion and 3D construction
 
 [myPartC]() illustrates the usage of the 2 types of extrusion:
 
-- orthogonal extrusion
-- revolution extrusion
+- *linear-orthogonal* extrusion
+- *rotation-revolution* extrusion
 
 And the usage of the 4 types of boolean operations:
 
-- identity (just an alias ot the first element of the list)
-- union (merge/fuse the list of parts in one part)
-- substraction (remove from the firt element of the list the overlaping portion of the rest of the list)
-- intersection (common portion of all elements of the list)
+- *identity* : just an alias ot the first element of the list
+- *union* : merge/fuse the list of parts in one part
+- *substraction* : remove from the firt element of the list the overlaping portion of the rest of the list
+- *intersection* : common portion of all elements of the list
 
 ### Evidences of the power of 2D technical drawings
 
@@ -83,7 +83,16 @@ Previously we have seen that the UI-app and CLI-app can expose external designs.
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	h1 {
+	h1,
+	h3,
+	p {
 		margin: 1rem;
+	}
+	h1 {
+		counter-reset: h3count;
+	}
+	h3::before {
+		counter-increment: h3count;
+		content: counter(h3count) "- ";
 	}
 </style>
