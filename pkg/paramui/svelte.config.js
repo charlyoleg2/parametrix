@@ -1,10 +1,13 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
-import { join } from 'path';
+//import { join } from 'path';
+import { fileURLToPath } from 'url';
 
 const dev = process.argv.includes('dev');
-const pathToDocsLayout = join(import.meta.dirname, './src/lib/DocsLayout.svelte');
+//const pathToDocsLayout = join(import.meta.dirname, './src/lib/DocsLayout.svelte'); // works with node V20.11.0 and higher
+const pathToDocsLayoutURL = new URL('./src/lib/DocsLayout.svelte', import.meta.url);
+const pathToDocsLayout = fileURLToPath(pathToDocsLayoutURL);
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
