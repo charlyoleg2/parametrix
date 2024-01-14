@@ -97,7 +97,4 @@ An other way of embedding the svg-files in the design library would be to create
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	h1 {
-		margin: 1rem;
-	}
 </style>

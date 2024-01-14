@@ -102,7 +102,4 @@ Recipe to calculate the initAngle2 for the right side:
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	h1 {
-		margin: 1rem;
-	}
 </style>

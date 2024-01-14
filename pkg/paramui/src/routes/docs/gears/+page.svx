@@ -129,9 +129,6 @@ brr1 and blr1 can be different as long as they respect the previous constraint
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	h1 {
-		margin: 1rem;
-	}
 	table {
 		border-collapse: collapse;
 	}

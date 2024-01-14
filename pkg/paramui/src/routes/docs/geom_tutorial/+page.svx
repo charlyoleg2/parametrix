@@ -10,6 +10,16 @@ category: documentation
 
 # {title}
 
+## Design examples
+
+Below three repositories showcasing the usage of the library [geometrix](https://www.npmjs.com/package/geometrix) and its associated framework [parametrix](https://github.com/charlyoleg2/parametrix):
+
+1. [parame51](https://github.com/charlyoleg2/parame51) and the associated UI [desi51-ui](https://charlyoleg2.github.io/parame51/)
+2. [parame52](https://github.com/charlyoleg2/parame52) and the associated UI [desi52-ui](https://charlyoleg2.github.io/parame52/)
+3. [parame53](https://github.com/charlyoleg2/parame53) and the associated UI [desi53-ui](https://charlyoleg2.github.io/parame53/)
+
+## Tutorial of the Geometrix concepts
+
 ### Simple design
 
 [myPartA](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartA.ts) goes through the required [steps](https://charlyoleg2.github.io/parametrix/docs/geom_user#main_steps) of a 3D part description.
@@ -79,16 +89,10 @@ Previously we have seen that the UI-app and CLI-app can expose external designs.
 ### Add points, lines, vectors and dynamics decorations
 
 
-
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	h1,
-	h3,
-	p {
-		margin: 1rem;
-	}
-	h1 {
+	h2 {
 		counter-reset: h3count;
 	}
 	h3::before {

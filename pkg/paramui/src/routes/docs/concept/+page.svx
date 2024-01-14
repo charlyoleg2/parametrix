@@ -195,7 +195,4 @@ Advantages of heliostats (aka solar tracker):
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	h1 {
-		margin: 1rem;
-	}
 </style>
