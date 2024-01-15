@@ -41,9 +41,9 @@ Below three repositories showcasing the usage of the library [geometrix](https:/
 
 And the usage of the 4 types of boolean operations:
 
-- *identity* : just an alias ot the first element of the list
+- *identity* : just an alias to the first element of the list
 - *union* : merge/fuse the list of parts in one part
-- *substraction* : remove from the firt element of the list the overlaping portion of the rest of the list
+- *substraction* : remove from the first element of the list the overlaping portion of the rest of the list
 - *intersection* : common portion of all elements of the list
 
 ### Evidences of the power of 2D technical drawings
