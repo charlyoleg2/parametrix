@@ -390,7 +390,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += ctr6f.check();
 		figOne.addMain(ctr6f);
 		rGeome.fig = { one: figOne };
-		rGeome.logstr += 'verify_contour_3 draw successfully!\n';
+		rGeome.logstr += 'verify_contour_3 drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

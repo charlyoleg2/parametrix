@@ -223,7 +223,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		//console.log(subGearWW);
 		rGeome.sub = { gear_wheel_wheel_1: subGearWW };
 		// finalize
-		rGeome.logstr += 'simplified_gear_wheel draw successfully!\n';
+		rGeome.logstr += 'simplified_gear_wheel drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

@@ -76,7 +76,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				}
 			]
 		};
-		rGeome.logstr += 'verify_exports_1 draw successfully!\n';
+		rGeome.logstr += 'verify_exports_1 drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

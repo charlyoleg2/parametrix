@@ -57,7 +57,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const pBisec = point(bisector.cx, bisector.cy).translatePolar(bisector.ca, 30);
 		figOne.addPoint(pBisec);
 		rGeome.fig = { one: figOne };
-		rGeome.logstr += 'verify_line_2 draw successfully!\n';
+		rGeome.logstr += 'verify_line_2 drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

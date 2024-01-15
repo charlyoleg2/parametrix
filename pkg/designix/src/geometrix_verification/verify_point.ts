@@ -43,7 +43,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figOne.addPoint(p3);
 		figOne.addPoint(p4);
 		rGeome.fig = { one: figOne };
-		rGeome.logstr += 'verify_point draw successfully!\n';
+		rGeome.logstr += 'verify_point drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

@@ -390,7 +390,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// sub-design
 		rGeome.sub = {};
 		// finalize
-		rGeome.logstr += 'heliostat-rake draw successfully!\n';
+		rGeome.logstr += 'heliostat-rake drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

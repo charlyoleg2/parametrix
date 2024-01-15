@@ -146,7 +146,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// sub-design
 		rGeome.sub = {};
 		// finalize
-		rGeome.logstr += 'pole_rotor draw successfully!\n';
+		rGeome.logstr += 'pole_rotor drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

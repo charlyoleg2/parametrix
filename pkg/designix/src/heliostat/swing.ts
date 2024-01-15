@@ -227,7 +227,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// sub-design
 		rGeome.sub = {};
 		// finalize
-		rGeome.logstr += 'heliostat-swing draw successfully!\n';
+		rGeome.logstr += 'heliostat-swing drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

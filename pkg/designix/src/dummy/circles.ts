@@ -46,7 +46,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			);
 		}
 		rGeome.fig = { one: figOne };
-		rGeome.logstr += 'Circles draw successfully!\n';
+		rGeome.logstr += 'Circles drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

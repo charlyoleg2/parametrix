@@ -491,7 +491,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// sub-design
 		rGeome.sub = {};
 		// finalize
-		rGeome.logstr += 'trapeze draw successfully!\n';
+		rGeome.logstr += 'trapeze drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

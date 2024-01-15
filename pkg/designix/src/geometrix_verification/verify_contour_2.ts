@@ -248,7 +248,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		ctr5.check(); // throw an exception if any error
 		figOne.addMain(ctr5);
 		rGeome.fig = { one: figOne };
-		rGeome.logstr += 'verify_contour_2 draw successfully!\n';
+		rGeome.logstr += 'verify_contour_2 drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

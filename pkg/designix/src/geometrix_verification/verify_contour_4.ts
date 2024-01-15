@@ -72,7 +72,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rGeome.logstr += ctr4.check();
 		figOne.addMain(ctr4);
 		rGeome.fig = { one: figOne };
-		rGeome.logstr += 'verify_contour_4 draw successfully!\n';
+		rGeome.logstr += 'verify_contour_4 drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

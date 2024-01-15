@@ -57,7 +57,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figOne.addPoint(l1.projectPoint(p3));
 		rGeome.fig = { one: figOne };
 		rGeome.logstr += `dist(l1, p3) = ${l1.distanceToPoint(p3)}\n`;
-		rGeome.logstr += 'verify_line draw successfully!\n';
+		rGeome.logstr += 'verify_line drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

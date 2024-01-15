@@ -36,7 +36,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figOne.addPoint(p3.rotate(p1, angle));
 		figOne.addPoint(p4.rotate(p1, angle));
 		rGeome.fig = { one: figOne };
-		rGeome.logstr += 'Rectangle draw successfully!\n';
+		rGeome.logstr += 'Rectangle drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

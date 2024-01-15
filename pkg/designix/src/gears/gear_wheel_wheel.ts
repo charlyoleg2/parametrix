@@ -316,7 +316,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 				}
 			]
 		};
-		rGeome.logstr += 'gear_wheel_wheel draw successfully!\n';
+		rGeome.logstr += 'gear_wheel_wheel drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

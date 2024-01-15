@@ -45,7 +45,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const pCenter = circleCenter(p1, p2, p3);
 		figOne.addPoint(pCenter);
 		rGeome.fig = { one: figOne };
-		rGeome.logstr += 'verify_line_3 draw successfully!\n';
+		rGeome.logstr += 'verify_line_3 drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;

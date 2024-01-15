@@ -51,7 +51,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		figOne.addVector(v3);
 		figOne.addPoint(p3);
 		rGeome.fig = { one: figOne };
-		rGeome.logstr += 'verify_vector draw successfully!\n';
+		rGeome.logstr += 'verify_vector drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;
