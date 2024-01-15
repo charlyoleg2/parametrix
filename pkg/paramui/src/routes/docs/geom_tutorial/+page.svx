@@ -34,10 +34,10 @@ Below three repositories showcasing the usage of the library [geometrix](https:/
 
 ### Extrusion and 3D construction
 
-[myPartC]() illustrates the usage of the 2 types of extrusion:
+[myPartC](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartC.ts) illustrates the usage of the 2 types of extrusion:
 
-- *linear-orthogonal* extrusion
-- *rotation-revolution* extrusion
+- *linear-orthogonal* extrusion along the axis Oz
+- *rotation-revolution* extrusion along the axis Oy
 
 And the usage of the 4 types of boolean operations:
 
