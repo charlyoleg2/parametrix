@@ -48,6 +48,8 @@ And the usage of the 4 types of boolean operations:
 
 ### Evidences of the power of 2D technical drawings
 
+[myPartD](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartD.ts) has simple 2D figures but a complex 3D shape. 2D technical drawing provides a simple representation of complex shape.
+
 ### Contour creation with absolute/relative cartesian/polar coordinates
 
 ### Contour corner options
