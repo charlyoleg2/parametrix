@@ -90,6 +90,8 @@ Previously we have seen that the UI-app and CLI-app can expose external designs.
 
 ### Add points, lines, vectors and dynamics decorations
 
+### Just a 2D drawing
+
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
