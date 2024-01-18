@@ -18,3 +18,4 @@ yarn.lock
 src/app.html
 
 static/katex.min.css
+static/

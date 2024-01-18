@@ -15,3 +15,4 @@ yarn.lock
 # ignore recommended by eslint
 .eslintrc.cjs
 svelte.config.js
+static/
