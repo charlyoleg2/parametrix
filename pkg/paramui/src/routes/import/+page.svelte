@@ -5,7 +5,7 @@
 	let downloadMsg = '';
 	// load design-file
 	async function uploadDesign(fName: string, fContent: string) {
-		const fetchResp = await fetch(`${base}/upload`, {
+		const fetchResp = await fetch(`${base}/upload/design`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'text/plain;charset=utf-8'
@@ -62,7 +62,7 @@
 		});
 	}
 	async function downloadDesignFile() {
-		const fetchResp = await fetch(`${base}/xyz.js`);
+		const fetchResp = await fetch(`${base}/impDesign5432.js`);
 		if (fetchResp.ok) {
 			const downStr = await fetchResp.text();
 			downloadDesign('blabla', downStr);
