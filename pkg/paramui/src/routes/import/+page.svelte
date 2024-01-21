@@ -69,6 +69,10 @@
 		} else {
 			downloadMsg += 'err565: Error by downloading\n';
 		}
+		// import code
+		const impObg = await import(`${base}/impDesign5432.js`);
+		downloadMsg += `dbg320: import code\n`;
+		impObg.abc1();
 	}
 </script>
 
