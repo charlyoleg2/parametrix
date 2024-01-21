@@ -48,6 +48,7 @@ sw.addEventListener('fetch', (event) => {
 	async function postRespond() {
 		const cache = await caches.open(CACHE);
 		const postBody = await event.request.blob();
+		//const postBody = await event.request.text();
 
 		cache.put(getUrl, new Response(postBody, { status: 200, statusText: 'OK' }));
 
