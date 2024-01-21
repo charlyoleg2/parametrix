@@ -6,25 +6,26 @@
 // https://kit.svelte.dev/docs/service-workers#type-safety
 const sw = self as unknown as ServiceWorkerGlobalScope;
 
-import { build, files, version } from '$service-worker';
+import { base, version } from '$service-worker';
 
 // Create a unique cache name for this deployment
 const CACHE = `cache-${version}`;
 
-const ASSETS = [
-	...build, // the app itself
-	...files // everything in `static`
-];
+// urls
+const postUrl = `${base}/upload/design`;
+const getUrl = `${base}/impDesign5432.js`;
 
-sw.addEventListener('install', (event) => {
-	// Create a new cache and add all files to it
-	async function addFilesToCache() {
-		const cache = await caches.open(CACHE);
-		await cache.addAll(ASSETS);
-	}
+const ASSETS = [getUrl];
 
-	event.waitUntil(addFilesToCache());
-});
+//sw.addEventListener('install', (event) => {
+//	// Create a new cache and add all files to it
+//	async function addFilesToCache() {
+//		const cache = await caches.open(CACHE);
+//		await cache.addAll(ASSETS);
+//	}
+//
+//	event.waitUntil(addFilesToCache());
+//});
 
 sw.addEventListener('activate', (event) => {
 	// Remove previous cached data from disk
@@ -38,10 +39,12 @@ sw.addEventListener('activate', (event) => {
 });
 
 sw.addEventListener('fetch', (event) => {
-	// ignore POST requests etc
-	if (event.request.method !== 'GET') return;
+	// only consider the two request: POST {base}/upload/design and GET {base}/impDesign5432.js
+	const ePOST = event.request.method === 'POST' && event.request.url === postUrl;
+	const eGET = event.request.method === 'GET' && event.request.url === getUrl;
+	if (!ePOST && !eGET) return;
 
-	async function respond() {
+	async function postRespond() {
 		const url = new URL(event.request.url);
 		const cache = await caches.open(CACHE);
 
@@ -83,5 +86,37 @@ sw.addEventListener('fetch', (event) => {
 		}
 	}
 
-	event.respondWith(respond());
+	async function getRespond() {
+		const url = new URL(event.request.url);
+		const cache = await caches.open(CACHE);
+
+		// `build`/`files` can always be served from the cache
+		if (ASSETS.includes(url.pathname)) {
+			const response = await cache.match(url.pathname);
+
+			if (response) {
+				//return response;
+				return new Response(`dbg878: version: ${version}`);
+			} else {
+				return new Response(`dbg781: GET URL: ${url.pathname}`);
+			}
+		} else {
+			return new Response(`err784: Error with GET URL: ${url.pathname}`);
+		}
+	}
+
+	function fallbackRespond() {
+		const method = event.request.method;
+		const url = new URL(event.request.url);
+		const respStr = `err233: method: ${method} :: URL: ${url.pathname}`;
+		return new Response(respStr);
+	}
+
+	if (ePOST) {
+		event.respondWith(postRespond());
+	} else if (eGET) {
+		event.respondWith(getRespond());
+	} else {
+		event.respondWith(fallbackRespond());
+	}
 });
