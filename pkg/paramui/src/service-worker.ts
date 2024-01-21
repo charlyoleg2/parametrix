@@ -40,8 +40,9 @@ sw.addEventListener('activate', (event) => {
 
 sw.addEventListener('fetch', (event) => {
 	// only consider the two request: POST {base}/upload/design and GET {base}/impDesign5432.js
-	const ePOST = event.request.method === 'POST' && event.request.url === postUrl;
-	const eGET = event.request.method === 'GET' && event.request.url === getUrl;
+	const url = new URL(event.request.url);
+	const ePOST = event.request.method === 'POST' && url.pathname === postUrl;
+	const eGET = event.request.method === 'GET' && url.pathname === getUrl;
 	if (!ePOST && !eGET) return;
 
 	async function postRespond() {
@@ -54,7 +55,6 @@ sw.addEventListener('fetch', (event) => {
 	}
 
 	async function getRespond() {
-		const url = new URL(event.request.url);
 		const cache = await caches.open(CACHE);
 
 		// `build`/`files` can always be served from the cache
@@ -62,8 +62,8 @@ sw.addEventListener('fetch', (event) => {
 			const response = await cache.match(url.pathname);
 
 			if (response) {
-				//return response;
-				return new Response(`dbg878: version: ${version}`);
+				return response;
+				//return new Response(`dbg878: version: ${version}`);
 			} else {
 				return new Response(`dbg781: GET URL: ${url.pathname}`);
 			}
@@ -74,7 +74,6 @@ sw.addEventListener('fetch', (event) => {
 
 	function fallbackRespond() {
 		const method = event.request.method;
-		const url = new URL(event.request.url);
 		const respStr = `err233: method: ${method} :: URL: ${url.pathname}`;
 		return new Response(respStr);
 	}
