@@ -13,9 +13,15 @@
 	}
 	function loadFile(fileP: File) {
 		const reader = new FileReader();
-		reader.addEventListener('loadend', () => {
+		reader.onload = function () {
 			loadDesign(fileP.name, reader.result as string);
-		});
+		};
+		reader.onerror = function () {
+			loadMsg += `err702: Error while reading ${fileP.name}\n`;
+			//loadMsg += reader.error as string;
+			//loadMsg += '\n';
+			console.log(reader.error);
+		};
 		reader.readAsText(fileP);
 	}
 	function loadDesignFile(eve: Event) {
@@ -39,7 +45,7 @@
 		accept="text/plain, text/javascript"
 		on:change={loadDesignFile}
 	/>
-	<textarea rows="3" cols="80" readonly wrap="off" value={loadMsg} />
+	<textarea rows="10" cols="80" readonly wrap="off" value={loadMsg} />
 </article>
 
 <style lang="scss">
