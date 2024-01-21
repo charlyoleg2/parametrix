@@ -4,6 +4,19 @@
 	let loadMsg = '';
 	let downloadMsg = '';
 	// load design-file
+	async function uploadDesign(fName: string, fContent: string) {
+		const fetchResp = await fetch(`${base}/upload`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'text/plain;charset=utf-8'
+			},
+			body: fContent
+		});
+		loadMsg += `dbg345: upload ${fName}\n`;
+		//const fetchResult = await fetchResp.json();
+		//loadMsg += JSON.stringify(fetchResult, null, 2);
+		loadMsg += await fetchResp.text();
+	}
 	function loadDesign(fName: string, fContent: string) {
 		let cnt = 0;
 		loadMsg += `dbg904: loadDesign ${fName}\n`;
@@ -18,6 +31,7 @@
 		const reader = new FileReader();
 		reader.onload = function () {
 			loadDesign(fileP.name, reader.result as string);
+			uploadDesign(fileP.name, reader.result as string);
 		};
 		reader.onerror = function () {
 			loadMsg += `err702: Error while reading ${fileP.name}\n`;
