@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { base } from '$app/paths';
+
 	let loadMsg = '';
+	let downloadMsg = '';
 	// load design-file
 	function loadDesign(fName: string, fContent: string) {
 		let cnt = 0;
@@ -33,6 +36,26 @@
 			}
 		}
 	}
+	// download design-file
+	function downloadDesign(fName: string, fContent: string) {
+		let cnt = 0;
+		downloadMsg += `dbg805: loadDesign ${fName}\n`;
+		fContent.split('\n').forEach((line) => {
+			if (cnt < 3) {
+				downloadMsg += `${line}\n`;
+			}
+			cnt += 1;
+		});
+	}
+	async function downloadDesignFile() {
+		const fetchResp = await fetch(`${base}/xyz.js`);
+		if (fetchResp.ok) {
+			const downStr = await fetchResp.text();
+			downloadDesign('blabla', downStr);
+		} else {
+			downloadMsg += 'err565: Error by downloading\n';
+		}
+	}
 </script>
 
 <h1>Import a geometrix-design</h1>
@@ -46,6 +69,8 @@
 		on:change={loadDesignFile}
 	/>
 	<textarea rows="10" cols="80" readonly wrap="off" value={loadMsg} />
+	<button class="fileDownload" on:click={downloadDesignFile}>Download</button>
+	<textarea rows="10" cols="80" readonly wrap="off" value={downloadMsg} />
 </article>
 
 <style lang="scss">
@@ -57,7 +82,8 @@
 	article {
 		margin: 1rem;
 	}
-	article > label.fileUpload {
+	article > label.fileUpload,
+	article > button.fileDownload {
 		display: inline-block;
 		height: 1.2rem;
 		/*width: 1.6rem;*/
