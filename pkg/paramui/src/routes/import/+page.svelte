@@ -1,0 +1,75 @@
+<script lang="ts">
+	let loadMsg = '';
+	// load design-file
+	function loadDesign(fName: string, fContent: string) {
+		let cnt = 0;
+		loadMsg += `dbg904: loadDesign ${fName}\n`;
+		fContent.split('\n').forEach((line) => {
+			if (cnt < 3) {
+				loadMsg += `${line}\n`;
+			}
+			cnt += 1;
+		});
+	}
+	function loadFile(fileP: File) {
+		const reader = new FileReader();
+		reader.addEventListener('loadend', () => {
+			loadDesign(fileP.name, reader.result as string);
+		});
+		reader.readAsText(fileP);
+	}
+	function loadDesignFile(eve: Event) {
+		if (eve.target) {
+			type tEveFileList = FileList | null;
+			const paramFiles: tEveFileList = (eve.target as HTMLInputElement).files;
+			if (paramFiles) {
+				loadFile(paramFiles[0]);
+			}
+		}
+	}
+</script>
+
+<h1>Import a geometrix-design</h1>
+<article>
+	<h3>Upload a javascript-geometrix-design-library-file</h3>
+	<label for="loadDLib" class="fileUpload">Load design-file</label>
+	<input
+		type="file"
+		id="loadDLib"
+		accept="text/plain, text/javascript"
+		on:change={loadDesignFile}
+	/>
+	<textarea rows="3" cols="80" readonly wrap="off" value={loadMsg} />
+</article>
+
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
+	h1 {
+		margin: 1rem;
+	}
+	article {
+		margin: 1rem;
+	}
+	article > label.fileUpload {
+		display: inline-block;
+		height: 1.2rem;
+		/*width: 1.6rem;*/
+		color: blue;
+		font-size: 0.8rem;
+		font-weight: 400;
+		padding: 0.1rem 0.4rem 0.1rem;
+		border-style: solid;
+		border-width: 0.1rem;
+		border-radius: 0.2rem;
+		border-color: yellow;
+		margin: 0.5rem;
+		background-color: green;
+	}
+	article > input[type='file'] {
+		display: none;
+	}
+	article > textarea {
+		display: block;
+	}
+</style>
