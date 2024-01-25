@@ -111,7 +111,11 @@ async function runDesignFile4(): Promise<string> {
 	// import code
 	const impObg = await import(getUrl);
 	rMsg += `dbg320: import code\n`;
-	rMsg += `${impObg.abc1()}\n`;
+	//rMsg += `${impObg.abc1()}\n`;
+	const objK = Object.keys(impObg);
+	for (const [idx, k] of objK.entries()) {
+		rMsg += `${idx} : ${k}\n`;
+	}
 	return rMsg;
 }
 
