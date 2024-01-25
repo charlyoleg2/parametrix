@@ -91,6 +91,12 @@ function runDesignFile3(fName: string, fContent: string): string {
 async function runDesignFile2(): Promise<string> {
 	let rMsg = '';
 	const fetchResp = await fetch(getUrl);
+	// disable cache for this particular url
+	//const fetchResp = await fetch(getUrl, {
+	//	headers: {
+	//		'Cache-Control': 'no-store'
+	//	}
+	//});
 	if (fetchResp.ok) {
 		const downStr = await fetchResp.text();
 		rMsg += runDesignFile3('blabla', downStr);

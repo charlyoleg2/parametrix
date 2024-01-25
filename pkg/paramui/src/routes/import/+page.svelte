@@ -5,7 +5,7 @@
 
 	async function loadDesignFile(eve: Event) {
 		loadMsg += await loadDesignFile1(eve);
-		await delay(1000); // wait for 1000ms
+		await delay(1); // waiting in ms
 		loadMsg += await runDesignFile1();
 	}
 </script>

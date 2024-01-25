@@ -49,7 +49,13 @@ sw.addEventListener('fetch', (event) => {
 		const cache = await caches.open(CACHE);
 		const postBody = await event.request.blob();
 		//const postBody = await event.request.text();
-		cache.put(getUrl, new Response(postBody, { status: 200, statusText: 'OK' }));
+		//const headersObj = new Headers({
+		//	'Content-Type': 'text/javascript;charset=UTF-8',
+		//	'Cache-Control': 'no-store'
+		//});
+		//const optionObj = { status: 200, statusText: 'OK', headers: headersObj };
+		const optionObj = { status: 200, statusText: 'OK' };
+		cache.put(getUrl, new Response(postBody, optionObj));
 		return new Response(null, { status: 201, statusText: 'OK' });
 	}
 
