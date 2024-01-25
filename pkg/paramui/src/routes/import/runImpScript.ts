@@ -17,10 +17,15 @@ async function loadDesignFile4(fName: string, fContent: string): Promise<string>
 		},
 		body: fContent
 	});
-	rMsg += `dbg345: upload ${fName}\n`;
+	//rMsg += `dbg345: upload ${fName}\n`;
 	//const fetchResult = await fetchResp.json();
 	//rMsg += JSON.stringify(fetchResult, null, 2);
-	rMsg += await fetchResp.text();
+	if (fetchResp.ok) {
+		//rMsg += `info392: uploading ${fName} succeed\n`;
+		//rMsg += await fetchResp.text();
+	} else {
+		rMsg += `err390: uploading ${fName} failed\n`;
+	}
 	return rMsg;
 }
 
@@ -52,7 +57,7 @@ async function loadDesignFile2(fileP: File): Promise<string> {
 	//};
 	//reader.readAsText(fileP);
 	const fileContent = await fileP.text();
-	rMsg += loadDesignFile3(fileP.name, fileContent);
+	//rMsg += loadDesignFile3(fileP.name, fileContent);
 	rMsg += await loadDesignFile4(fileP.name, fileContent);
 	return rMsg;
 }
@@ -106,9 +111,13 @@ async function runDesignFile4(): Promise<string> {
 
 async function runDesignFile1(): Promise<string> {
 	let rMsg = '';
-	rMsg += await runDesignFile2();
+	//rMsg += await runDesignFile2();
 	rMsg += await runDesignFile4();
 	return rMsg;
+}
+
+function delay(ms: number) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export {
@@ -119,5 +128,6 @@ export {
 	runDesignFile1,
 	runDesignFile2,
 	runDesignFile3,
-	runDesignFile4
+	runDesignFile4,
+	delay
 };

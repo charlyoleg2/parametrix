@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { loadDesignFile1, runDesignFile1 } from './runImpScript';
+	import { loadDesignFile1, runDesignFile1, delay } from './runImpScript';
 
 	let loadMsg = '';
-	let downloadMsg = '';
 
 	async function loadDesignFile(eve: Event) {
 		loadMsg += await loadDesignFile1(eve);
-	}
-	async function runDesignFile() {
-		downloadMsg += await runDesignFile1();
+		await delay(1000); // wait for 1000ms
+		loadMsg += await runDesignFile1();
 	}
 </script>
 
@@ -18,8 +16,6 @@
 	<label for="loadDLib" class="fileUpload">Load design-file</label>
 	<input type="file" id="loadDLib" accept="text/javascript" on:change={loadDesignFile} />
 	<textarea rows="10" cols="80" readonly wrap="off" value={loadMsg} />
-	<button class="fileDownload" on:click={runDesignFile}>Download</button>
-	<textarea rows="10" cols="80" readonly wrap="off" value={downloadMsg} />
 </article>
 
 <style lang="scss">
@@ -31,8 +27,7 @@
 	article {
 		margin: 1rem;
 	}
-	article > label.fileUpload,
-	article > button.fileDownload {
+	article > label.fileUpload {
 		display: inline-block;
 		height: 1.2rem;
 		/*width: 1.6rem;*/
