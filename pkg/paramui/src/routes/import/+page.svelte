@@ -1,10 +1,32 @@
 <script lang="ts">
-	import { loadRunDesign } from './runImpScript';
+	//import { loadRunDesign } from './runImpScript';
 
 	let loadMsg = '';
 
+	async function loadDesignFile2(eve: Event): Promise<string> {
+		let rMsg = '';
+		if (eve.target) {
+			type tEveFileList = FileList | null;
+			const paramFiles: tEveFileList = (eve.target as HTMLInputElement).files;
+			if (paramFiles) {
+				const firstFile = paramFiles[0];
+				const objURL = URL.createObjectURL(firstFile); // no await!
+				// import code
+				const impObg = await import(objURL);
+				rMsg += `dbg320: import code from ${firstFile.name}\n`;
+				//rMsg += `${impObg.abc1()}\n`;
+				const objK = Object.keys(impObg);
+				for (const [idx, k] of objK.entries()) {
+					rMsg += `${idx} : ${k}\n`;
+				}
+				// release object memory
+				URL.revokeObjectURL(objURL);
+			}
+		}
+		return rMsg;
+	}
 	async function loadDesignFile(eve: Event) {
-		loadMsg += await loadRunDesign(eve);
+		loadMsg += await loadDesignFile2(eve);
 	}
 </script>
 
