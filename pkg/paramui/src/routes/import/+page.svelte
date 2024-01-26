@@ -1,10 +1,41 @@
 <script lang="ts">
-	//import { loadRunDesign } from './runImpScript';
+	import type { tPageDef, tAllPageDef } from 'geometrix';
+	import type { ComponentType } from 'svelte';
+	import { OneDesign } from 'geomui';
+	import { allLink } from '$lib/makeMenu';
 
+	type tComponentTypeNull = ComponentType | null;
+	type tPageDefNull = tPageDef | null;
+
+	let booting = true;
+	let running = false;
 	let loadMsg = '';
 	let objK: string[] = [];
-	let sDesign = '';
+	let impPages: tAllPageDef = {};
+	let dOneDesign: tComponentTypeNull = null;
+	let dPageDef: tPageDefNull = null;
 
+	function checkImpPages(pages: tAllPageDef): [boolean, string] {
+		let rMsg = '';
+		let rError = false;
+		const pageNames = Object.keys(pages);
+		rMsg += `found ${pageNames.length} designs\n`;
+		const props = ['pTitle', 'pDescription', 'pDef', 'pGeom'];
+		for (const pagN of pageNames) {
+			//rMsg += `${pagN}\n`;
+			const pag = pages[pagN];
+			//for (const prop of Object.keys(pag)) {
+			//	rMsg += `${prop}\n`;
+			//}
+			for (const prop of props) {
+				if (!(prop in pag)) {
+					rMsg += `err323: ${pagN} has no property ${prop}\n`;
+					rError = true;
+				}
+			}
+		}
+		return [rError, rMsg];
+	}
 	async function loadDesignFile2(eve: Event): Promise<string> {
 		let rMsg = '';
 		if (eve.target) {
@@ -19,15 +50,21 @@
 				const objURL = URL.createObjectURL(firstFile); // no await!
 				try {
 					// import code
-					const impObg = await import(objURL);
-					rMsg += `dbg320: import code from ${firstFile.name}\n`;
-					//rMsg += `${impObg.abc1()}\n`;
-					objK = Object.keys(impObg);
-					for (const [idx, k] of objK.entries()) {
-						rMsg += `${idx + 1} : ${k}\n`;
+					impPages = await import(objURL);
+					rMsg += `import the design from ${firstFile.name}\n`;
+					//rMsg += `${impPages.abc1()}\n`;
+					objK = Object.keys(impPages);
+					//for (const [idx, k] of objK.entries()) {
+					//	rMsg += `${idx + 1} : ${k}\n`;
+					//}
+					const [cErr, cMsg] = checkImpPages(impPages);
+					rMsg += cMsg;
+					if (cErr) {
+						objK = [];
+						rMsg += `err672: Error by loading ${firstFile.name}\n`;
 					}
 				} catch (err) {
-					const errMsg = `err739: Error by importing ${firstFile.name}`;
+					const errMsg = `err739: Error by importing ${firstFile.name}\n`;
 					rMsg += `${errMsg}\n`;
 					console.log(errMsg);
 					console.log(err);
@@ -42,17 +79,23 @@
 		loadMsg += await loadDesignFile2(eve);
 	}
 	function startDesign(aDesign: string) {
-		sDesign = aDesign;
+		dPageDef = impPages[aDesign];
+		dOneDesign = OneDesign;
+		booting = false;
+		running = true;
 	}
 	function resetDesign() {
 		loadMsg = '';
 		objK = [];
-		sDesign = '';
+		dOneDesign = null;
+		dPageDef = null;
+		booting = true;
+		running = false;
 	}
 </script>
 
 <h1>Dynamic import of geometrix-design</h1>
-<article>
+<article class:booting>
 	<h3>Upload a javascript-geometrix-design-library-file</h3>
 	<p>
 		To generate the javascript embedding its dependencies, use:<br /><code
@@ -63,19 +106,17 @@
 	<input type="file" id="loadDLib" accept="text/javascript" on:change={loadDesignFile} />
 	<textarea rows="5" cols="80" readonly wrap="off" value={loadMsg} />
 </article>
-<article>
+<article class:booting>
 	<ol>
 		{#each objK as iDesign}
 			<li><button on:click={() => startDesign(iDesign)}>{iDesign}</button></li>
 		{/each}
 	</ol>
 </article>
-<article>
+<article class:running>
 	<button on:click={resetDesign}>Reset dynamic design</button>
 </article>
-<article>
-	{sDesign}
-</article>
+<svelte:component this={dOneDesign} pageDef={dPageDef} pLink={allLink} />
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
@@ -85,6 +126,13 @@
 	}
 	article {
 		margin: 1rem;
+		display: none;
+	}
+	article.booting {
+		display: block;
+	}
+	article.running {
+		display: block;
 	}
 	article > h3,
 	article > p {
