@@ -10,14 +10,25 @@
 			const paramFiles: tEveFileList = (eve.target as HTMLInputElement).files;
 			if (paramFiles) {
 				const firstFile = paramFiles[0];
+				if (!firstFile.name.endsWith('.js')) {
+					rMsg += `err308: ${firstFile.name} has an unexpected file extension!\n`;
+					return rMsg;
+				}
 				const objURL = URL.createObjectURL(firstFile); // no await!
-				// import code
-				const impObg = await import(objURL);
-				rMsg += `dbg320: import code from ${firstFile.name}\n`;
-				//rMsg += `${impObg.abc1()}\n`;
-				const objK = Object.keys(impObg);
-				for (const [idx, k] of objK.entries()) {
-					rMsg += `${idx} : ${k}\n`;
+				try {
+					// import code
+					const impObg = await import(objURL);
+					rMsg += `dbg320: import code from ${firstFile.name}\n`;
+					//rMsg += `${impObg.abc1()}\n`;
+					const objK = Object.keys(impObg);
+					for (const [idx, k] of objK.entries()) {
+						rMsg += `${idx} : ${k}\n`;
+					}
+				} catch (err) {
+					const errMsg = `err739: Error by importing ${firstFile.name}`;
+					rMsg += `${errMsg}\n`;
+					console.log(errMsg);
+					console.log(err);
 				}
 				// release object memory
 				URL.revokeObjectURL(objURL);
@@ -33,6 +44,11 @@
 <h1>Import a geometrix-design</h1>
 <article>
 	<h3>Upload a javascript-geometrix-design-library-file</h3>
+	<p>
+		To generate the javascript embedding its dependencies, use:<br /><code
+			>npx esbuild src/myGroup1/myPartA.ts --bundle --format=esm --outfile=dist2/myPartA.js</code
+		>
+	</p>
 	<label for="loadDLib" class="fileUpload">Load design-file</label>
 	<input type="file" id="loadDLib" accept="text/javascript" on:change={loadDesignFile} />
 	<textarea rows="10" cols="80" readonly wrap="off" value={loadMsg} />
@@ -46,6 +62,11 @@
 	}
 	article {
 		margin: 1rem;
+	}
+	article > h3,
+	article > p {
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 	article > label.fileUpload {
 		display: inline-block;
