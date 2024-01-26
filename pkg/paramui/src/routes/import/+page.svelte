@@ -7,8 +7,9 @@
 	type tComponentTypeNull = ComponentType | null;
 	type tPageDefNull = tPageDef | null;
 
-	let booting = true;
-	let running = false;
+	let step1 = true;
+	let step2 = false;
+	let step3 = false;
 	let loadMsg = '';
 	let objK: string[] = [];
 	let impPages: tAllPageDef = {};
@@ -62,6 +63,8 @@
 					if (cErr) {
 						objK = [];
 						rMsg += `err672: Error by loading ${firstFile.name}\n`;
+					} else {
+						step2 = true;
 					}
 				} catch (err) {
 					const errMsg = `err739: Error by importing ${firstFile.name}\n`;
@@ -81,22 +84,24 @@
 	function startDesign(aDesign: string) {
 		dPageDef = impPages[aDesign];
 		dOneDesign = OneDesign;
-		booting = false;
-		running = true;
+		step1 = false;
+		step2 = false;
+		step3 = true;
 	}
 	function resetDesign() {
 		loadMsg = '';
 		objK = [];
 		dOneDesign = null;
 		dPageDef = null;
-		booting = true;
-		running = false;
+		step1 = true;
+		step2 = false;
+		step3 = false;
 	}
 </script>
 
 <h1>Dynamic import of geometrix-design</h1>
-<article class:booting>
-	<h3>Upload a javascript-geometrix-design-library-file</h3>
+<article class:step1>
+	<h3>Load a javascript-geometrix-design-library-file</h3>
 	<p>
 		To generate the javascript embedding its dependencies, use:<br /><code
 			>npx esbuild src/myGroup1/myPartA.ts --bundle --format=esm --outfile=dist2/myPartA.js</code
@@ -104,16 +109,17 @@
 	</p>
 	<label for="loadDLib" class="fileUpload">Load design-file</label>
 	<input type="file" id="loadDLib" accept="text/javascript" on:change={loadDesignFile} />
-	<textarea rows="5" cols="80" readonly wrap="off" value={loadMsg} />
+	<textarea rows="3" cols="80" readonly wrap="off" value={loadMsg} />
 </article>
-<article class:booting>
+<article class:step2>
+	<h3>Select a design-page</h3>
 	<ol>
 		{#each objK as iDesign}
 			<li><button on:click={() => startDesign(iDesign)}>{iDesign}</button></li>
 		{/each}
 	</ol>
 </article>
-<article class:running>
+<article class:step3>
 	<button on:click={resetDesign}>Reset dynamic design</button>
 </article>
 <svelte:component this={dOneDesign} pageDef={dPageDef} pLink={allLink} />
@@ -128,10 +134,13 @@
 		margin: 1rem;
 		display: none;
 	}
-	article.booting {
+	article.step1 {
 		display: block;
 	}
-	article.running {
+	article.step2 {
+		display: block;
+	}
+	article.step3 {
 		display: block;
 	}
 	article > h3,

@@ -88,6 +88,10 @@ const menuList: tMenuList = [
 		]
 	},
 	{
+		category: 'Dynamic import',
+		pages: [{ path: '/import', page: null, svg: 'page_about.svg' }]
+	},
+	{
 		category: 'Docs',
 		pages: [
 			{ path: '/docs/readme', page: null, svg: 'page_readme.svg' },
