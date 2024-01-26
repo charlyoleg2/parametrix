@@ -48,7 +48,7 @@
 		"svgCp2": "shx cp export_svg/*.svg ../designix-ui/static",
 		"svgCp3": "shx cp export_svg/*.svg ../paramui/static",
 		"svgo": "run-s svgoAll svgCp1 svgCp2 svgCp3",
-		"browserBundleA": "esbuild src/gears/gear_wheel_wheel.ts --bundle --format=esm --outfile=dist2/gear_wheel_wheel.js",
+		"browserBundleGearWheel": "esbuild src/gears/gear_wheel_wheel.ts --bundle --format=esm --outfile=dist2/gear_wheel_wheel.js",
 		"browserBundleAll": "esbuild dist/index.js --bundle --format=esm --outfile=dist2/designix.js",
 		"clean": "shx rm -fr dist dist2 node_modules"
 	},
