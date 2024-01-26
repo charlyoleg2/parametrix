@@ -2,6 +2,8 @@
 	//import { loadRunDesign } from './runImpScript';
 
 	let loadMsg = '';
+	let objK: string[] = [];
+	let sDesign = '';
 
 	async function loadDesignFile2(eve: Event): Promise<string> {
 		let rMsg = '';
@@ -20,7 +22,7 @@
 					const impObg = await import(objURL);
 					rMsg += `dbg320: import code from ${firstFile.name}\n`;
 					//rMsg += `${impObg.abc1()}\n`;
-					const objK = Object.keys(impObg);
+					objK = Object.keys(impObg);
 					for (const [idx, k] of objK.entries()) {
 						rMsg += `${idx + 1} : ${k}\n`;
 					}
@@ -39,9 +41,17 @@
 	async function loadDesignFile(eve: Event) {
 		loadMsg += await loadDesignFile2(eve);
 	}
+	function startDesign(aDesign: string) {
+		sDesign = aDesign;
+	}
+	function resetDesign() {
+		loadMsg = '';
+		objK = [];
+		sDesign = '';
+	}
 </script>
 
-<h1>Import a geometrix-design</h1>
+<h1>Dynamic import of geometrix-design</h1>
 <article>
 	<h3>Upload a javascript-geometrix-design-library-file</h3>
 	<p>
@@ -51,7 +61,20 @@
 	</p>
 	<label for="loadDLib" class="fileUpload">Load design-file</label>
 	<input type="file" id="loadDLib" accept="text/javascript" on:change={loadDesignFile} />
-	<textarea rows="10" cols="80" readonly wrap="off" value={loadMsg} />
+	<textarea rows="5" cols="80" readonly wrap="off" value={loadMsg} />
+</article>
+<article>
+	<ol>
+		{#each objK as iDesign}
+			<li><button on:click={() => startDesign(iDesign)}>{iDesign}</button></li>
+		{/each}
+	</ol>
+</article>
+<article>
+	<button on:click={resetDesign}>Reset dynamic design</button>
+</article>
+<article>
+	{sDesign}
 </article>
 
 <style lang="scss">
