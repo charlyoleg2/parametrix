@@ -127,13 +127,9 @@
 		}
 	}
 	// load from file
-	function loadFile(fileP: File) {
-		const reader = new FileReader();
-		reader.addEventListener('loadend', () => {
-			loadParams(reader.result as string);
-			//console.log(`dbg345`);
-		});
-		reader.readAsText(fileP);
+	async function loadFile(fileP: File) {
+		const fText = await fileP.text();
+		loadParams(fText);
 	}
 	function loadParamFromFile(eve: Event) {
 		if (eve.target) {
