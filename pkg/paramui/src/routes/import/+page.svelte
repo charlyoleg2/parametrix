@@ -22,7 +22,7 @@
 					//rMsg += `${impObg.abc1()}\n`;
 					const objK = Object.keys(impObg);
 					for (const [idx, k] of objK.entries()) {
-						rMsg += `${idx} : ${k}\n`;
+						rMsg += `${idx + 1} : ${k}\n`;
 					}
 				} catch (err) {
 					const errMsg = `err739: Error by importing ${firstFile.name}`;
