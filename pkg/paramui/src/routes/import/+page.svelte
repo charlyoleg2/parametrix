@@ -1,11 +1,8 @@
 <script lang="ts">
 	import type { tPageDef, tAllPageDef } from 'geometrix';
-	import type { ComponentType } from 'svelte';
+	//import type { ComponentType } from 'svelte';
 	import { OneDesign } from 'geomui';
 	import { allLink } from '$lib/makeMenu';
-
-	type tComponentTypeNull = ComponentType | null;
-	type tPageDefNull = tPageDef | null;
 
 	let step1 = true;
 	let step2 = false;
@@ -13,8 +10,7 @@
 	let loadMsg = '';
 	let objK: string[] = [];
 	let impPages: tAllPageDef = {};
-	let dOneDesign: tComponentTypeNull = null;
-	let dPageDef: tPageDefNull = null;
+	let dPageDef: tPageDef;
 
 	function checkImpPages(pages: tAllPageDef): [boolean, string] {
 		let rMsg = '';
@@ -49,23 +45,23 @@
 					return rMsg;
 				}
 				const objURL = URL.createObjectURL(firstFile); // no await!
+				rMsg += `import the design from ${firstFile.name}\n`;
 				try {
 					// import code
 					impPages = await import(objURL);
-					rMsg += `import the design from ${firstFile.name}\n`;
 					//rMsg += `${impPages.abc1()}\n`;
-					objK = Object.keys(impPages);
-					//for (const [idx, k] of objK.entries()) {
-					//	rMsg += `${idx + 1} : ${k}\n`;
-					//}
 					const [cErr, cMsg] = checkImpPages(impPages);
 					rMsg += cMsg;
 					if (cErr) {
 						objK = [];
 						rMsg += `err672: Error by loading ${firstFile.name}\n`;
 					} else {
+						objK = Object.keys(impPages);
 						step2 = true;
 					}
+					//for (const [idx, k] of objK.entries()) {
+					//	rMsg += `${idx + 1} : ${k}\n`;
+					//}
 				} catch (err) {
 					const errMsg = `err739: Error by importing ${firstFile.name}\n`;
 					rMsg += `${errMsg}\n`;
@@ -83,7 +79,6 @@
 	}
 	function startDesign(aDesign: string) {
 		dPageDef = impPages[aDesign];
-		dOneDesign = OneDesign;
 		step1 = false;
 		step2 = false;
 		step3 = true;
@@ -91,8 +86,6 @@
 	function resetDesign() {
 		loadMsg = '';
 		objK = [];
-		dOneDesign = null;
-		dPageDef = null;
 		step1 = true;
 		step2 = false;
 		step3 = false;
@@ -120,9 +113,9 @@
 	</ol>
 </article>
 <article class:step3>
-	<button on:click={resetDesign}>Reset dynamic design</button>
+	<button class="higher" on:click={resetDesign}>Reset dynamic design</button>
 </article>
-<svelte:component this={dOneDesign} pageDef={dPageDef} pLink={allLink} />
+<svelte:component this={step3 ? OneDesign : null} pageDef={dPageDef} pLink={allLink} />
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
@@ -148,25 +141,33 @@
 		margin-top: 0;
 		margin-bottom: 0;
 	}
-	article > label.fileUpload {
+	article > label.fileUpload,
+	button {
 		display: inline-block;
 		height: 1.2rem;
-		/*width: 1.6rem;*/
-		color: blue;
+		/*height: 1.6rem;*/
+		color: colors.$button-sign;
 		font-size: 0.8rem;
 		font-weight: 400;
 		padding: 0.1rem 0.4rem 0.1rem;
 		border-style: solid;
 		border-width: 0.1rem;
 		border-radius: 0.2rem;
-		border-color: yellow;
+		border-color: colors.$button-sign;
 		margin: 0.5rem;
-		background-color: green;
+		background-color: colors.$button-bg;
 	}
 	article > input[type='file'] {
 		display: none;
 	}
 	article > textarea {
 		display: block;
+	}
+	article > button.higher {
+		height: 1.6rem;
+	}
+	li > button {
+		margin-top: 0.2rem;
+		margin-bottom: 0.2rem;
 	}
 </style>

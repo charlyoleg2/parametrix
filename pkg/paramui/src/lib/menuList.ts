@@ -88,7 +88,7 @@ const menuList: tMenuList = [
 		]
 	},
 	{
-		category: 'Dynamic import',
+		category: 'Dynamic design import',
 		pages: [{ path: '/import', page: null, svg: 'page_about.svg' }]
 	},
 	{
