@@ -246,14 +246,31 @@ function decompose_outopt(outopt: string): tEFormat {
 	return eFormat;
 }
 
-function addDynamicPath(dList: tAllPageDef, iPath: string): tAllPageDef {
-	console.log(`addDynamicPath: ${iPath}`);
-	return dList;
+async function addDynamicPath(dList: tAllPageDef, iPath: string): Promise<tAllPageDef> {
+	const rList = dList;
+	if (iPath !== '') {
+		try {
+			console.log(`addDynamicPath: ${iPath}`);
+			const pages = (await import(iPath)) as tAllPageDef;
+			const pagK = Object.keys(pages);
+			if (pagK.length === 0) {
+				throw 'err330: imported script has no export';
+			}
+			for (const pagN of pagK) {
+				rList[`import/${pagN}`] = pages[pagN];
+			}
+		} catch (err) {
+			console.log(`err229: Error by importing ${iPath}`);
+			console.log(err);
+			process.exit(1);
+		}
+	}
+	return rList;
 }
 
-function list_designs(dList: tAllPageDef, iPath: string, detail: boolean) {
+async function list_designs(dList: tAllPageDef, iPath: string, detail: boolean) {
 	let rlog = 'List of available designs:\n';
-	const dList2 = addDynamicPath(dList, iPath);
+	const dList2 = await addDynamicPath(dList, iPath);
 	for (const [idx, dname] of get_design_array(dList2).entries()) {
 		rlog += `${(idx + 1).toString().padStart(4, ' ')} : ${dname}\n`;
 		if (detail) {
@@ -265,14 +282,14 @@ function list_designs(dList: tAllPageDef, iPath: string, detail: boolean) {
 	console.log(rlog);
 }
 
-function list_parameters(
+async function list_parameters(
 	dList: tAllPageDef,
 	iPath: string,
 	selD: string,
 	paramPath: string,
 	modif: string[]
 ) {
-	const dList2 = addDynamicPath(dList, iPath);
+	const dList2 = await addDynamicPath(dList, iPath);
 	const theD = selectDesign(dList2, selD);
 	let rlog = `List of parameters of the design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
@@ -315,14 +332,14 @@ function list_parameters(
 	console.log(rlog);
 }
 
-function list_figures(
+async function list_figures(
 	dList: tAllPageDef,
 	iPath: string,
 	selD: string,
 	paramPath: string,
 	modif: string[]
 ) {
-	const dList2 = addDynamicPath(dList, iPath);
+	const dList2 = await addDynamicPath(dList, iPath);
 	const dPartName = selectDesignN(dList2, selD);
 	const figN = get_figure_array(dList2, selD, paramPath, modif);
 	let rlog = `List of figures of the design ${selD} (${dPartName}):\n`;
@@ -333,14 +350,14 @@ function list_figures(
 	console.log(rlog);
 }
 
-function list_subdesigns(
+async function list_subdesigns(
 	dList: tAllPageDef,
 	iPath: string,
 	selD: string,
 	paramPath: string,
 	modif: string[]
 ) {
-	const dList2 = addDynamicPath(dList, iPath);
+	const dList2 = await addDynamicPath(dList, iPath);
 	const dPartName = selectDesignN(dList2, selD);
 	const subdA = get_subdesign_array(dList2, selD, paramPath, modif);
 	const subdN = Object.keys(subdA);
@@ -357,7 +374,7 @@ function list_subdesigns(
 	console.log(rlog);
 }
 
-function list_subd_parameters(
+async function list_subd_parameters(
 	dList: tAllPageDef,
 	iPath: string,
 	selD: string,
@@ -365,7 +382,7 @@ function list_subd_parameters(
 	paramPath: string,
 	modif: string[]
 ) {
-	const dList2 = addDynamicPath(dList, iPath);
+	const dList2 = await addDynamicPath(dList, iPath);
 	const subdParam = get_subd(dList2, selD, subdN, paramPath, modif, true).dparam;
 	const nameLength = 20;
 	const nameLabel = 'name'.padEnd(nameLength, ' ');
@@ -381,26 +398,26 @@ function list_subd_parameters(
 	console.log(rlog);
 }
 
-function computeGeom2(
+async function computeGeom2(
 	dList: tAllPageDef,
 	iPath: string,
 	selD: string,
 	paramPath: string,
 	modif: string[],
 	printLog: boolean
-): tGeom {
-	const dList2 = addDynamicPath(dList, iPath);
+): Promise<tGeom> {
+	const dList2 = await addDynamicPath(dList, iPath);
 	return computeGeom(dList2, selD, paramPath, modif, printLog);
 }
 
-function list_outopt(
+async function list_outopt(
 	dList: tAllPageDef,
 	iPath: string,
 	selD: string,
 	paramPath: string,
 	modif: string[]
 ) {
-	const dList2 = addDynamicPath(dList, iPath);
+	const dList2 = await addDynamicPath(dList, iPath);
 	const dPartName = selectDesignN(dList2, selD);
 	let rlog = `List of outputs of the design ${selD} (${dPartName}):\n`;
 	const outOpt = get_outopt_array(dList2, selD, paramPath, modif);
@@ -418,7 +435,7 @@ async function geom_cli(
 	appPackage: tPackage,
 	outDir = 'output'
 ) {
-	const argv = yargs(hideBin(iArgs))
+	const argv = await yargs(hideBin(iArgs))
 		.scriptName('geom_cli')
 		.version(appPackage.version)
 		.usage('Usage: $0 <global-options> command <command-argument>')
@@ -469,33 +486,34 @@ async function geom_cli(
 		.command('versions', 'print details about the app version and its dependencies', {}, () => {
 			print_version_details(appPackage);
 		})
-		.command(['list-designs', 'list'], 'list the available designs', {}, (argv) => {
-			list_designs(dList, argv.import as string, false);
+		.command(['list-designs', 'list'], 'list the available designs', {}, async (argv) => {
+			await list_designs(dList, argv.import as string, false);
 		})
-		.command('list-designs-detailed', 'list the available designs with details', {}, (argv) => {
-			list_designs(dList, argv.import as string, true);
-		})
-		.command('list-parameters', 'list the parameters of the selected design', {}, (argv) => {
-			//console.log(argv)
-			list_parameters(
-				dList,
-				argv.import as string,
-				argv.design as string,
-				argv.param as string,
-				argv.modif as string[]
-			);
-		})
-		.command('list-figures', 'list the figures of the selected design', {}, (argv) => {
-			list_figures(
-				dList,
-				argv.import as string,
-				argv.design as string,
-				argv.param as string,
-				argv.modif as string[]
-			);
-		})
-		.command('list-subdesigns', 'list the subdesigns of the selected design', {}, (argv) => {
-			list_subdesigns(
+		.command(
+			'list-designs-detailed',
+			'list the available designs with details',
+			{},
+			async (argv) => {
+				await list_designs(dList, argv.import as string, true);
+			}
+		)
+		.command(
+			'list-parameters',
+			'list the parameters of the selected design',
+			{},
+			async (argv) => {
+				//console.log(argv)
+				await list_parameters(
+					dList,
+					argv.import as string,
+					argv.design as string,
+					argv.param as string,
+					argv.modif as string[]
+				);
+			}
+		)
+		.command('list-figures', 'list the figures of the selected design', {}, async (argv) => {
+			await list_figures(
 				dList,
 				argv.import as string,
 				argv.design as string,
@@ -504,11 +522,25 @@ async function geom_cli(
 			);
 		})
 		.command(
+			'list-subdesigns',
+			'list the subdesigns of the selected design',
+			{},
+			async (argv) => {
+				await list_subdesigns(
+					dList,
+					argv.import as string,
+					argv.design as string,
+					argv.param as string,
+					argv.modif as string[]
+				);
+			}
+		)
+		.command(
 			'list-subd-parameters <subdN>',
 			'list the parameters of subdesigns',
 			{},
-			(argv) => {
-				list_subd_parameters(
+			async (argv) => {
+				await list_subd_parameters(
 					dList,
 					argv.import as string,
 					argv.design as string,
@@ -518,22 +550,27 @@ async function geom_cli(
 				);
 			}
 		)
-		.command('compute-log', 'Compute and print the log without writing file', {}, (argv) => {
-			computeGeom2(
-				dList,
-				argv.import as string,
-				argv.design as string,
-				argv.param as string,
-				argv.modif as string[],
-				true
-			);
-		})
+		.command(
+			'compute-log',
+			'Compute and print the log without writing file',
+			{},
+			async (argv) => {
+				await computeGeom2(
+					dList,
+					argv.import as string,
+					argv.design as string,
+					argv.param as string,
+					argv.modif as string[],
+					true
+				);
+			}
+		)
 		.command(
 			'list-outopt',
 			'list the possible output format options of the selected design',
 			{},
-			(argv) => {
-				list_outopt(
+			async (argv) => {
+				await list_outopt(
 					dList,
 					argv.import as string,
 					argv.design as string,
@@ -548,7 +585,7 @@ async function geom_cli(
 		.demandCommand(1)
 		.help()
 		.strict()
-		.parseSync();
+		.parseAsync();
 	//console.log(argv.$0);
 	//console.log(argv.design);
 	//console.log(argv.param);
@@ -562,7 +599,7 @@ async function geom_cli(
 			process.exit(1);
 		}
 		const iPath = argv.import;
-		const dList2 = addDynamicPath(dList, iPath);
+		const dList2 = await addDynamicPath(dList, iPath);
 		const selD = argv.design;
 		const outopt = argv.outopt as string;
 		const paramPath = argv.param;
