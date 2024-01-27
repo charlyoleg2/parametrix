@@ -55,7 +55,7 @@
 		return rMsg;
 	}
 	async function loadDesignFile(eve: Event) {
-		loadMsg += await loadDesignFile2(eve);
+		loadMsg = await loadDesignFile2(eve);
 	}
 	function startDesign(aDesign: string) {
 		dPageDef = impPages[aDesign];
