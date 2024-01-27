@@ -90,7 +90,9 @@
 		{#each objK as iDesign}
 			<li>
 				<button on:click={() => startDesign(iDesign)}>{iDesign}</button>
+				- {impPages[iDesign].pDef.partName}
 				- {impPages[iDesign].pTitle}
+				- {impPages[iDesign].pDescription}
 			</li>
 		{/each}
 	</ol>
