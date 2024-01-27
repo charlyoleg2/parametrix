@@ -108,7 +108,10 @@
 	<h3>Select a design-page</h3>
 	<ol>
 		{#each objK as iDesign}
-			<li><button on:click={() => startDesign(iDesign)}>{iDesign}</button></li>
+			<li>
+				<button on:click={() => startDesign(iDesign)}>{iDesign}</button>
+				- {impPages[iDesign].pTitle}
+			</li>
 		{/each}
 	</ol>
 </article>
