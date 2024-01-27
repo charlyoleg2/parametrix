@@ -246,21 +246,34 @@ function decompose_outopt(outopt: string): tEFormat {
 	return eFormat;
 }
 
-function list_designs(dList: tAllPageDef, detail: boolean) {
+function addDynamicPath(dList: tAllPageDef, iPath: string): tAllPageDef {
+	console.log(`addDynamicPath: ${iPath}`);
+	return dList;
+}
+
+function list_designs(dList: tAllPageDef, iPath: string, detail: boolean) {
 	let rlog = 'List of available designs:\n';
-	for (const [idx, dname] of get_design_array(dList).entries()) {
+	const dList2 = addDynamicPath(dList, iPath);
+	for (const [idx, dname] of get_design_array(dList2).entries()) {
 		rlog += `${(idx + 1).toString().padStart(4, ' ')} : ${dname}\n`;
 		if (detail) {
-			rlog += `        ${dList[dname].pDef.partName}\n`;
-			rlog += `        ${dList[dname].pTitle}\n`;
-			rlog += `        ${dList[dname].pDescription}\n`;
+			rlog += `        ${dList2[dname].pDef.partName}\n`;
+			rlog += `        ${dList2[dname].pTitle}\n`;
+			rlog += `        ${dList2[dname].pDescription}\n`;
 		}
 	}
 	console.log(rlog);
 }
 
-function list_parameters(dList: tAllPageDef, selD: string, paramPath: string, modif: string[]) {
-	const theD = selectDesign(dList, selD);
+function list_parameters(
+	dList: tAllPageDef,
+	iPath: string,
+	selD: string,
+	paramPath: string,
+	modif: string[]
+) {
+	const dList2 = addDynamicPath(dList, iPath);
+	const theD = selectDesign(dList2, selD);
 	let rlog = `List of parameters of the design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
 	try {
@@ -302,9 +315,16 @@ function list_parameters(dList: tAllPageDef, selD: string, paramPath: string, mo
 	console.log(rlog);
 }
 
-function list_figures(dList: tAllPageDef, selD: string, paramPath: string, modif: string[]) {
-	const dPartName = selectDesignN(dList, selD);
-	const figN = get_figure_array(dList, selD, paramPath, modif);
+function list_figures(
+	dList: tAllPageDef,
+	iPath: string,
+	selD: string,
+	paramPath: string,
+	modif: string[]
+) {
+	const dList2 = addDynamicPath(dList, iPath);
+	const dPartName = selectDesignN(dList2, selD);
+	const figN = get_figure_array(dList2, selD, paramPath, modif);
 	let rlog = `List of figures of the design ${selD} (${dPartName}):\n`;
 	for (const [idx, figNi] of figN.entries()) {
 		const idx2 = (idx + 1).toString().padStart(4, ' ');
@@ -313,9 +333,16 @@ function list_figures(dList: tAllPageDef, selD: string, paramPath: string, modif
 	console.log(rlog);
 }
 
-function list_subdesigns(dList: tAllPageDef, selD: string, paramPath: string, modif: string[]) {
-	const dPartName = selectDesignN(dList, selD);
-	const subdA = get_subdesign_array(dList, selD, paramPath, modif);
+function list_subdesigns(
+	dList: tAllPageDef,
+	iPath: string,
+	selD: string,
+	paramPath: string,
+	modif: string[]
+) {
+	const dList2 = addDynamicPath(dList, iPath);
+	const dPartName = selectDesignN(dList2, selD);
+	const subdA = get_subdesign_array(dList2, selD, paramPath, modif);
 	const subdN = Object.keys(subdA);
 	let rlog = `List of sub-designs of the design ${selD} (${dPartName}):\n`;
 	for (const [idx, subdNi] of subdN.entries()) {
@@ -332,12 +359,14 @@ function list_subdesigns(dList: tAllPageDef, selD: string, paramPath: string, mo
 
 function list_subd_parameters(
 	dList: tAllPageDef,
+	iPath: string,
 	selD: string,
 	subdN: string,
 	paramPath: string,
 	modif: string[]
 ) {
-	const subdParam = get_subd(dList, selD, subdN, paramPath, modif, true).dparam;
+	const dList2 = addDynamicPath(dList, iPath);
+	const subdParam = get_subd(dList2, selD, subdN, paramPath, modif, true).dparam;
 	const nameLength = 20;
 	const nameLabel = 'name'.padEnd(nameLength, ' ');
 	let rlog = `   # : ${nameLabel} value init changed\n`;
@@ -352,10 +381,29 @@ function list_subd_parameters(
 	console.log(rlog);
 }
 
-function list_outopt(dList: tAllPageDef, selD: string, paramPath: string, modif: string[]) {
-	const dPartName = selectDesignN(dList, selD);
+function computeGeom2(
+	dList: tAllPageDef,
+	iPath: string,
+	selD: string,
+	paramPath: string,
+	modif: string[],
+	printLog: boolean
+): tGeom {
+	const dList2 = addDynamicPath(dList, iPath);
+	return computeGeom(dList2, selD, paramPath, modif, printLog);
+}
+
+function list_outopt(
+	dList: tAllPageDef,
+	iPath: string,
+	selD: string,
+	paramPath: string,
+	modif: string[]
+) {
+	const dList2 = addDynamicPath(dList, iPath);
+	const dPartName = selectDesignN(dList2, selD);
 	let rlog = `List of outputs of the design ${selD} (${dPartName}):\n`;
-	const outOpt = get_outopt_array(dList, selD, paramPath, modif);
+	const outOpt = get_outopt_array(dList2, selD, paramPath, modif);
 	for (const [idx, oneOpt] of outOpt.entries()) {
 		const idx2 = (idx + 1).toString().padStart(4, ' ');
 		rlog += `${idx2} : ${oneOpt}\n`;
@@ -381,6 +429,12 @@ async function geom_cli(
 			['$0 -d heliostat/swing list-outopt', 'list possible output-format-options'],
 			['$0 -d heliostat/rod write zip_all', 'write a zip file']
 		])
+		.option('import', {
+			alias: 'i',
+			type: 'string',
+			description: 'path to a javascript-geometrix-design-library',
+			default: ''
+		})
 		.option('design', {
 			alias: 'd',
 			type: 'string',
@@ -415,16 +469,17 @@ async function geom_cli(
 		.command('versions', 'print details about the app version and its dependencies', {}, () => {
 			print_version_details(appPackage);
 		})
-		.command(['list-designs', 'list'], 'list the available designs', {}, () => {
-			list_designs(dList, false);
+		.command(['list-designs', 'list'], 'list the available designs', {}, (argv) => {
+			list_designs(dList, argv.import as string, false);
 		})
-		.command('list-designs-detailed', 'list the available designs with details', {}, () => {
-			list_designs(dList, true);
+		.command('list-designs-detailed', 'list the available designs with details', {}, (argv) => {
+			list_designs(dList, argv.import as string, true);
 		})
 		.command('list-parameters', 'list the parameters of the selected design', {}, (argv) => {
 			//console.log(argv)
 			list_parameters(
 				dList,
+				argv.import as string,
 				argv.design as string,
 				argv.param as string,
 				argv.modif as string[]
@@ -433,6 +488,7 @@ async function geom_cli(
 		.command('list-figures', 'list the figures of the selected design', {}, (argv) => {
 			list_figures(
 				dList,
+				argv.import as string,
 				argv.design as string,
 				argv.param as string,
 				argv.modif as string[]
@@ -441,6 +497,7 @@ async function geom_cli(
 		.command('list-subdesigns', 'list the subdesigns of the selected design', {}, (argv) => {
 			list_subdesigns(
 				dList,
+				argv.import as string,
 				argv.design as string,
 				argv.param as string,
 				argv.modif as string[]
@@ -453,6 +510,7 @@ async function geom_cli(
 			(argv) => {
 				list_subd_parameters(
 					dList,
+					argv.import as string,
 					argv.design as string,
 					argv.subdN as string,
 					argv.param as string,
@@ -461,8 +519,9 @@ async function geom_cli(
 			}
 		)
 		.command('compute-log', 'Compute and print the log without writing file', {}, (argv) => {
-			computeGeom(
+			computeGeom2(
 				dList,
+				argv.import as string,
 				argv.design as string,
 				argv.param as string,
 				argv.modif as string[],
@@ -476,6 +535,7 @@ async function geom_cli(
 			(argv) => {
 				list_outopt(
 					dList,
+					argv.import as string,
 					argv.design as string,
 					argv.param as string,
 					argv.modif as string[]
@@ -501,13 +561,15 @@ async function geom_cli(
 			console.log("err638: option 'outDir' is set to empty string. Nothing written!");
 			process.exit(1);
 		}
+		const iPath = argv.import;
+		const dList2 = addDynamicPath(dList, iPath);
 		const selD = argv.design;
 		const outopt = argv.outopt as string;
 		const paramPath = argv.param;
 		const paramModif = argv.modif as unknown as string[];
-		const theD = selectDesign(dList, selD);
+		const theD = selectDesign(dList2, selD);
 		// check if outopt is valid
-		const outOpt = get_outopt_array(dList, selD, paramPath, paramModif);
+		const outOpt = get_outopt_array(dList2, selD, paramPath, paramModif);
 		if (!outOpt.includes(outopt)) {
 			console.log(`err639: outopt ${outopt} is not a valid option`);
 			process.exit(1);
@@ -525,7 +587,7 @@ async function geom_cli(
 			console.log(emsg);
 			process.exit(1);
 		}
-		computeGeom(dList, selD, paramPath, paramModif, true);
+		computeGeom(dList2, selD, paramPath, paramModif, true);
 		try {
 			if (oOpt.eWrite === EWrite.eEGOPARAMS) {
 				rlog += writeParams(
@@ -535,7 +597,7 @@ async function geom_cli(
 					argv.outFileName
 				);
 			} else if (oOpt.eWrite === EWrite.eSUBDPARAMS) {
-				const subD = get_subd(dList, selD, oOpt.eSubdesign, paramPath, paramModif, false);
+				const subD = get_subd(dList2, selD, oOpt.eSubdesign, paramPath, paramModif, false);
 				rlog += writeParams(
 					subD.partName,
 					paramListToVal(subD.dparam),
