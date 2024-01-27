@@ -16,3 +16,4 @@ export * from './aaExportFile';
 export * from './paramFile';
 
 export * from './version_details';
+export * from './dynamicImport';

@@ -9,7 +9,15 @@ import type {
 	tSubInst,
 	tPackage
 } from 'geometrix';
-import { PType, EFormat, designParam, prefixLog, paramListToVal, version_details } from 'geometrix';
+import {
+	PType,
+	EFormat,
+	designParam,
+	prefixLog,
+	paramListToVal,
+	version_details,
+	checkImpPages
+} from 'geometrix';
 import { geom_write, writeParams, readParams } from './geom_write';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -249,13 +257,19 @@ function decompose_outopt(outopt: string): tEFormat {
 async function addDynamicPath(dList: tAllPageDef, iPath: string): Promise<tAllPageDef> {
 	const rList = dList;
 	if (iPath !== '') {
+		if (!iPath.endsWith('.js')) {
+			console.log(`err729: ${iPath} has an unexpected file extension`);
+			process.exit(1);
+		}
 		try {
 			console.log(`addDynamicPath: ${iPath}`);
 			const pages = (await import(iPath)) as tAllPageDef;
-			const pagK = Object.keys(pages);
-			if (pagK.length === 0) {
-				throw 'err330: imported script has no export';
+			const [cErr, cMsg] = checkImpPages(pages);
+			console.log(cMsg);
+			if (cErr) {
+				throw 'err337: unexpected export type';
 			}
+			const pagK = Object.keys(pages);
 			for (const pagN of pagK) {
 				rList[`import/${pagN}`] = pages[pagN];
 			}
