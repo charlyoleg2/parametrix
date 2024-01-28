@@ -92,6 +92,8 @@ Previously we have seen that the UI-app and CLI-app can expose external designs.
 
 ### Just a 2D drawing
 
+### A serie of blade profiles
+
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
