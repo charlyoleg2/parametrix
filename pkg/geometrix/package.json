@@ -42,10 +42,10 @@
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
-		"@zip.js/zip.js": "^2.7.32"
+		"@zip.js/zip.js": "^2.7.33"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.7",
+		"@types/node": "^20.11.9",
 		"@typescript-eslint/eslint-plugin": "^6.19.1",
 		"@typescript-eslint/parser": "^6.19.1",
 		"eslint": "^8.56.0",
