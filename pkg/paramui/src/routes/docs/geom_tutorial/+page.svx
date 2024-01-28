@@ -54,6 +54,12 @@ And the usage of the 4 types of boolean operations:
 
 ### Contour corner options
 
+### Contour transformation
+
+### Figure transformation
+
+### Partial contour
+
 ### Assembly or design-reuse
 
 ### Expose external design
