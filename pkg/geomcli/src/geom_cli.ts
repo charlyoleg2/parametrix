@@ -443,6 +443,10 @@ async function list_outopt(
 }
 
 let cmd_write = false;
+
+/**
+ * Docs for `geom_cli` function.
+ */
 async function geom_cli(
 	iArgs: string[],
 	dList: tAllPageDef,

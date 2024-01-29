@@ -1,6 +1,7 @@
 {
-	"entryPoints": ["pkg/*"],
-	"name": "parametrix ecosystem"
+	"entryPoints": ["pkg/geometrix", "pkg/geomcli"],
+	"name": "parametrix ecosystem",
 	"entryPointStrategy": "packages",
+	"out": "build/apidoc",
 	"includeVersion": false
 }
