@@ -56,7 +56,7 @@
 		"dev": "run-p geometrix:dev designix:dev geomui:dev paramui:dev",
 		"ci-lib": "run-s geometrix:ci designix:ci geomui:ci geomcli:ci",
 		"ci-app": "run-s paramui:ci designix-ui:ci designix-script-ts:ci designix-script-js:ci designix-cli:ci",
-		"ci": "run-s ci-lib ci-app",
+		"ci": "run-s ci-lib ci-app apidoc",
 		"ci2": "run-s designix:ci designix-ui:ci",
 		"ci3": "run-s designix:ci designix-cli:ci",
 		"svgo": "run-s geometrix:svgo designix:svgo paramui:svgo",
@@ -67,8 +67,10 @@
 		"preview": "run-s paramui:preview",
 		"versions": "run-s geometrix:version designix:version geomui:version geomcli:version",
 		"gh-publish": "run-s geometrix:publish designix:publish geomui:publish geomcli:publish",
-		"apidoc": "typedoc",
+		"gen_apidoc": "typedoc",
 		"serve_apidoc": "serve build/apidoc",
+		"cp_apidoc": "shx cp -r build/apidoc pkg/paramui/build/docs/",
+		"apidoc": "run-s gen_apidoc cp_apidoc",
 		"ls-pkg": "ls -la pkg"
 	},
 	"workspaces": [
