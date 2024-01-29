@@ -1,7 +1,15 @@
 {
 	"entryPoints": ["pkg/geometrix", "pkg/geomcli"],
-	"name": "parametrix ecosystem",
+	"name": "Parametrix ecosystem",
 	"entryPointStrategy": "packages",
 	"out": "build/apidoc",
+	"navigationLinks": {
+		"Geometrix": "https://www.npmjs.com/package/geometrix",
+		"Geomcli": "https://www.npmjs.com/package/geomcli",
+		"Geomui": "https://www.npmjs.com/package/geomui",
+		"Parametrix sources": "https://github.com/charlyoleg2/parametrix",
+		"Usage example": "https://github.com/charlyoleg2/parame51",
+		"Paramui instance": "https://charlyoleg2.github.io/parametrix/"
+	},
 	"includeVersion": false
 }
