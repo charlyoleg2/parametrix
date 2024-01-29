@@ -9,6 +9,7 @@ export * from './triangle_utils';
 //export type * from './figure';
 export * from './point';
 export * from './line';
+export * from './segment';
 export * from './vector';
 export * from './contour';
 export * from './figure';
@@ -18,6 +19,8 @@ export * from './volume';
 export * from './sub_design';
 export * from './aaParamGeom';
 
+export * from './prepare_pax';
+export * from './write_dxf';
 export * from './aaExportFile';
 export * from './paramFile';
 

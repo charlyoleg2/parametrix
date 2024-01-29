@@ -174,5 +174,14 @@ function pDropdown(name: string, values: string[]): tParam {
 	return rParam;
 }
 
-export type { tParamDef, tParamVal, tDesignParamList, DesignParam };
+export type {
+	tParam,
+	tSimTime,
+	tParamDef,
+	tParamChanged,
+	tParamVal,
+	tDesignParamOne,
+	tDesignParamList,
+	DesignParam
+};
 export { PType, pNumber, pCheckbox, pDropdown, designParam, paramListToVal, oneDesignParam };

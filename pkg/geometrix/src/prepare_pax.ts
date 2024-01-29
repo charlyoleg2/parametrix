@@ -98,5 +98,5 @@ function paxPath(): PaxPath {
 	return rPaxPath;
 }
 
-export type { tPaxSegArc, tPaxSeg, tPaxContourPath, tPaxContourCircle, tPaxContour };
-export { PSeg, paxPath, paxCircle };
+export type { tPaxSegSt, tPaxSegArc, tPaxSeg, tPaxContourPath, tPaxContourCircle, tPaxContour };
+export { PaxPath, PSeg, paxPath, paxCircle };

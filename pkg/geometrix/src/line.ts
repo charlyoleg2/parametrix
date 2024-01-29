@@ -356,4 +356,5 @@ function circleCenter(ip1: Point, ip2: Point, ip3: Point): Point {
 
 /* export */
 
+export type { tAffine };
 export { Line, line, linePP, bisector, circleCenter };

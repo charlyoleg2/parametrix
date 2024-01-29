@@ -55,7 +55,6 @@ abstract class AContour {
 /**
  * class Contour
  *
- * @category Figure
  */
 
 class Contour extends AContour {
@@ -719,7 +718,6 @@ class Contour extends AContour {
 /**
  * class ContourCircle
  *
- * @category Figure
  */
 
 class ContourCircle extends AContour {

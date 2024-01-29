@@ -96,5 +96,5 @@ function dxfWriter() {
 	return rDxfWrite;
 }
 
-export type { DxfSeg };
+export type { DxfSeg, DxfWrite };
 export { dxfSegLine, dxfSegArc, dxfSegCircle, dxfWriter };

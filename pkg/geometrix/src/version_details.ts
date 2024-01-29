@@ -21,5 +21,5 @@ function version_details(appPackage: tPackage): string[] {
 	return rStr;
 }
 
-export type { tPackage };
+export type { tDependencies, tPackage };
 export { version_details };

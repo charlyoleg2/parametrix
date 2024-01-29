@@ -694,6 +694,7 @@ export {
 	isCorner,
 	Segment1,
 	Segment2,
+	SegDbg,
 	gSegDbg,
 	arcSeg1To2,
 	arcSeg2To1,
