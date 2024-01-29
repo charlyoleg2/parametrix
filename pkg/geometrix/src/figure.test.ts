@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { degToRad, radToDeg, roundZero, point } from './figure';
+import { degToRad, radToDeg, roundZero } from './angle_utils';
+import { point } from './point';
 
 describe('angle suit', () => {
 	it('radian to degree', () => {

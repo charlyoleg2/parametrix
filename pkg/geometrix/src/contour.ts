@@ -52,7 +52,11 @@ abstract class AContour {
 	abstract toPax(): tPaxContour;
 }
 
-/* Contour class */
+/**
+ * class Contour
+ *
+ * @category Figure
+ */
 
 class Contour extends AContour {
 	circle = false;
@@ -712,7 +716,11 @@ class Contour extends AContour {
 	}
 }
 
-/* ContourCircle class */
+/**
+ * class ContourCircle
+ *
+ * @category Figure
+ */
 
 class ContourCircle extends AContour {
 	circle = true;
