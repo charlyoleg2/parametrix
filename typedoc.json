@@ -1,0 +1,6 @@
+{
+	"entryPoints": ["pkg/*"],
+	"name": "parametrix ecosystem"
+	"entryPointStrategy": "packages",
+	"includeVersion": false
+}
