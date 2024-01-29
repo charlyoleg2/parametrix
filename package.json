@@ -68,9 +68,10 @@
 		"versions": "run-s geometrix:version designix:version geomui:version geomcli:version",
 		"gh-publish": "run-s geometrix:publish designix:publish geomui:publish geomcli:publish",
 		"gen_apidoc": "typedoc",
-		"serve_apidoc": "serve build/apidoc",
 		"cp_apidoc": "shx cp -r build/apidoc pkg/paramui/build/docs/",
 		"apidoc": "run-s gen_apidoc cp_apidoc",
+		"serve_apidoc": "serve build/apidoc",
+		"serve_paramui": "serve pkg/paramui/build",
 		"ls-pkg": "ls -la pkg"
 	},
 	"workspaces": [

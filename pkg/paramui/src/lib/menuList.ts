@@ -94,6 +94,7 @@ const menuList: tMenuList = [
 	{
 		category: 'Docs',
 		pages: [
+			{ path: '/docs/apidoc', page: null, svg: 'page_readme.svg' },
 			{ path: '/docs/readme', page: null, svg: 'page_readme.svg' },
 			{ path: '/docs/concept', page: null, svg: 'page_concept.svg' },
 			{ path: '/docs/ui', page: null, svg: 'page_ui.svg' },

@@ -19,9 +19,15 @@
 						alt={menuItem.label}
 					/>
 					{#if menuCategory.category !== ''}
-						<a href="{base}{menuItem.path}"
-							>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
-						>
+						{#if menuItem.path === '/docs/apidoc'}
+							<a href="{base}{menuItem.path}" rel="external"
+								>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
+							>
+						{:else}
+							<a href="{base}{menuItem.path}"
+								>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
+							>
+						{/if}
 					{:else}
 						<a href="{base}{menuItem.path}" class="noindex">{menuItem.label}</a>
 					{/if}

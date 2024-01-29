@@ -14,9 +14,11 @@
 <nav>
 	{#each menuList.pages as menuItem}
 		<div class="oneMenu">
-			<a href="{base}{menuItem.path}" class:page-active={menuSelected === menuItem.path}
-				>{menuItem.label}</a
-			>
+			{#if menuItem.path !== '/docs/apidoc'}
+				<a href="{base}{menuItem.path}" class:page-active={menuSelected === menuItem.path}
+					>{menuItem.label}</a
+				>
+			{/if}
 			<div class="arrow" class:arrow-active={menuSelected === menuItem.path} />
 		</div>
 	{/each}
