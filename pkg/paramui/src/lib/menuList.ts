@@ -31,6 +31,8 @@ import {
 	verifyExports1Def
 } from 'designix';
 
+const apidocPath = '/docs/apidoc/';
+
 const menuList: tMenuList = [
 	{
 		category: '',
@@ -94,7 +96,7 @@ const menuList: tMenuList = [
 	{
 		category: 'Docs',
 		pages: [
-			{ path: '/docs/apidoc', page: null, svg: 'page_readme.svg' },
+			{ path: apidocPath, page: null, svg: 'page_about.svg' },
 			{ path: '/docs/readme', page: null, svg: 'page_readme.svg' },
 			{ path: '/docs/concept', page: null, svg: 'page_concept.svg' },
 			{ path: '/docs/ui', page: null, svg: 'page_ui.svg' },
@@ -114,4 +116,4 @@ const menuList: tMenuList = [
 	}
 ];
 
-export { menuList };
+export { apidocPath, menuList };

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { apidocPath } from '$lib/menuList';
 	import { menuList2 } from '$lib/makeMenu';
 	import { base } from '$app/paths';
 </script>
@@ -19,7 +20,7 @@
 						alt={menuItem.label}
 					/>
 					{#if menuCategory.category !== ''}
-						{#if menuItem.path === '/docs/apidoc'}
+						{#if menuItem.path === apidocPath}
 							<a href="{base}{menuItem.path}" rel="external"
 								>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
 							>

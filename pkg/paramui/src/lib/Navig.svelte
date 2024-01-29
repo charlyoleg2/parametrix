@@ -5,6 +5,7 @@
 	//	menuList: tMenu;
 	//}
 
+	import { apidocPath } from '$lib/menuList';
 	import { base } from '$app/paths';
 
 	export let menuList: tCategoryOne;
@@ -14,7 +15,7 @@
 <nav>
 	{#each menuList.pages as menuItem}
 		<div class="oneMenu">
-			{#if menuItem.path !== '/docs/apidoc'}
+			{#if menuItem.path !== apidocPath}
 				<a href="{base}{menuItem.path}" class:page-active={menuSelected === menuItem.path}
 					>{menuItem.label}</a
 				>
