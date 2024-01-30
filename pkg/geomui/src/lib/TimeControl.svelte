@@ -89,7 +89,7 @@
 		height: 1.6rem;
 		width: 1.6rem;
 		color: colors.$timectrl-sign;
-		font-size: 1.1rem;
+		font-size: 1rem; /* used to be 1.1rem */
 		font-weight: 900;
 		border-style: solid;
 		border-width: 0.1rem;
