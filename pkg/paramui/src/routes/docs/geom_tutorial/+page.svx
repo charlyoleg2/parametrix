@@ -54,9 +54,12 @@ And the usage of the 4 types of boolean operations:
 
 ### Contour corner options
 
-### Contour transformation
+Click in the checkboc *main skeleton* and *points* to activate the corresponding drawing layers.
 
-### Figure transformation
+
+### Contour transformations
+
+### Figure transformations
 
 ### Partial contour
 
