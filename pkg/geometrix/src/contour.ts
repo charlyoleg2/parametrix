@@ -53,11 +53,12 @@ abstract class AContour {
 }
 
 /**
- * class Contour
+ * class `Contour`
  *
  */
 
 class Contour extends AContour {
+	/** @internal */
 	circle = false;
 	segments: segLib.Segment1[];
 	points: Point[];
@@ -65,6 +66,11 @@ class Contour extends AContour {
 	debugLines: Line[];
 	lastPoint: Point;
 	imposedColor: string;
+	/**
+	 *	@param ix - the X absolute coordinate of the first point of the contour
+	 *	@param iy - the Y absolute coordinate of the first point of the contour
+	 *	@param icolor - an optional color name to be used instead of the default color
+	 */
 	constructor(ix: number, iy: number, icolor = '') {
 		super();
 		this.segments = [new segLib.Segment1(segLib.SegEnum.eStart, ix, iy, 0)];
@@ -74,9 +80,11 @@ class Contour extends AContour {
 		this.lastPoint = point(ix, iy);
 		this.imposedColor = icolor;
 	}
+	/** @internal */
 	setLastPoint(ix: number, iy: number) {
 		this.lastPoint = point(ix, iy);
 	}
+	/** @internal */
 	getLastPoint(): Point {
 		return this.lastPoint;
 	}
@@ -339,6 +347,7 @@ class Contour extends AContour {
 		this.addPointA(px, py).addSegArc(iRadius, iLarge, iCcw);
 		return this;
 	}
+	/** @internal */
 	clone(): Contour {
 		const rctr = new Contour(this.segments[0].px, this.segments[0].py);
 		for (const seg of this.segments) {
@@ -625,6 +634,7 @@ class Contour extends AContour {
 		rLines.push(...this.debugLines);
 		return rLines;
 	}
+	/** @internal */
 	checkContour(ctr: Contour) {
 		if (ctr.segments[0].sType !== segLib.SegEnum.eStart) {
 			throw `err412: contour check first seg is not eStart ${ctr.segments[0].sType}`;
@@ -716,7 +726,7 @@ class Contour extends AContour {
 }
 
 /**
- * class ContourCircle
+ * class `ContourCircle`
  *
  */
 
@@ -733,6 +743,7 @@ class ContourCircle extends AContour {
 		this.radius = iRadius;
 		this.imposedColor = icolor;
 	}
+	/** @internal */
 	clone(): ContourCircle {
 		const rctr = new ContourCircle(this.px, this.py, this.radius, this.imposedColor);
 		return rctr;
