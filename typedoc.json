@@ -1,5 +1,5 @@
 {
-	"entryPoints": ["pkg/geometrix", "pkg/geomcli"],
+	"entryPoints": ["pkg/geometrix", "pkg/designix", "pkg/geomcli", "pkg/designix-cli", "pkg/designix-script-ts"],
 	"name": "Parametrix ecosystem",
 	"entryPointStrategy": "packages",
 	"out": "build/apidoc",
