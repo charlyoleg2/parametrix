@@ -59,6 +59,8 @@ Click in the checkboc *main skeleton* and *points* to activate the corresponding
 
 ### Contour transformations
 
+### Partial contour
+
 ### Figure transformations
 
 ### Partial contour
