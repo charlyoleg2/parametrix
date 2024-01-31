@@ -22,7 +22,7 @@
 					{#if menuCategory.category !== ''}
 						{#if menuItem.path === apidocPath}
 							<a href="{base}{menuItem.path}" rel="external"
-								>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
+								>{listIdx}.{itemIdx + 1} - API docs</a
 							>
 						{:else}
 							<a href="{base}{menuItem.path}"
