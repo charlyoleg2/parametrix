@@ -112,10 +112,12 @@ class Contour extends AContour {
 		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
+	/** @internal */
 	addSeg(iSeg: segLib.Segment1): Contour {
 		this.segments.push(iSeg);
 		return this;
 	}
+	/** @internal */
 	addSegStroke(): Contour {
 		if (this.points.length !== 1) {
 			throw `err554: contour addSegStroke with unexpected points.length ${this.points.length}`;
