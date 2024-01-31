@@ -437,7 +437,17 @@ class Contour extends AContour {
 		if (this.points.length > 0) {
 			throw `err911: addPartial, points should be used ${this.points.length}`;
 		}
-		for (const seg of iContour.segments) {
+		let iCtr = iContour;
+		if (iContour.segments.length > 0) {
+			const p0 = iContour.segments[0];
+			const pLast = this.getLastPoint();
+			const dx = p0.px - pLast.cx;
+			const dy = p0.py - pLast.cy;
+			if (p0.sType === segLib.SegEnum.eStart) {
+				iCtr = iContour.translate(-dx, -dy);
+			}
+		}
+		for (const seg of iCtr.segments) {
 			if (seg.sType !== segLib.SegEnum.eStart) {
 				this.addSeg(seg);
 				if (segLib.isSeg(seg.sType)) {
