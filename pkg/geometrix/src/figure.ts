@@ -177,6 +177,7 @@ class Figure {
 		this.secondBList = [];
 		this.dynamicsList = [];
 	}
+	/** @internal */
 	getMinMax() {
 		[this.xMin, this.xMax, this.yMin, this.yMax] = pointMinMax(this.pointList);
 		//console.log(`dbg137: ${this.xMin}, ${this.xMax}, ${this.yMin}, ${this.yMax}`);
@@ -217,6 +218,7 @@ class Figure {
 		//console.log(`dbg150: ${rCanvasAdjust.shiftX}, ${rCanvasAdjust.scaleX}`);
 		return rCanvasAdjust;
 	}
+	/** @internal */
 	quantifyRuler(canvasWidth: number, adjust: tCanvasAdjust) {
 		const minWidth = canvasWidth / 10;
 		const lsizep = minWidth / adjust.scaleX;

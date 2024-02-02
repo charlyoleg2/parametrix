@@ -61,7 +61,13 @@ Click in the checkboc *main skeleton* and *points* to activate the corresponding
 
 ### Partial contour
 
+Automatic translation in order than the first point of the partial contour fits with the last point of the contour.
+
+
 ### Figure transformations
+
+This design is using the *time parameter t*. Play with the time control to see the effect of this *t* parameter.
+
 
 ### Partial contour
 
