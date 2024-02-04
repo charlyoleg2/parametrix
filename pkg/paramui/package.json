@@ -4,6 +4,7 @@
 	"description": "The webapp-UI of Parametrix",
 	"private": true,
 	"scripts": {
+		"cp_pdgsvg": "shx cp -r ../../node_modules/designix/dist/pgdsvg static/",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -12,7 +13,7 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"lint": "prettier --check . && eslint .",
-		"ci": "run-s build lint check test:unit:once",
+		"ci": "run-s cp_pdgsvg build lint check test:unit:once",
 		"format": "prettier --write .",
 		"svgo1": "svgo --config svgo.config.cjs -f src/lib/svg -o static",
 		"svgo4": "svgo --config svgo.config.cjs -f src/routes/docs/svg -o static",
@@ -26,7 +27,7 @@
 		"get-katex-font5": "wget -N https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Size1-Regular.woff2 -P ./static/fonts/",
 		"get-katex": "run-s get-katex-css1 get-katex-font1 get-katex-font2 get-katex-font3 get-katex-font4 get-katex-font5",
 		"github-pages-fix": "touch build/.nojekyll",
-		"clean": "shx rm -fr .svelte-kit build node_modules"
+		"clean": "shx rm -fr .svelte-kit build node_modules static/geomdocs static/pgdsvg"
 	},
 	"dependencies": {
 		"designix": "^0.5.15",
