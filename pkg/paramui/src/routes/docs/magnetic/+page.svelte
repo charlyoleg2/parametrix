@@ -843,7 +843,10 @@
 <h3>Torus with shuttle</h3>
 <article class="splitable">
 	<img src="{base}/psvg/torus_with_shuttle.svg" alt="torus with shuttle" />
-	<img src="{base}/psvg/top_view_of_air_gap_and_shuttle.svg" alt="top view of air gap and shuttle" />
+	<img
+		src="{base}/psvg/top_view_of_air_gap_and_shuttle.svg"
+		alt="top view of air gap and shuttle"
+	/>
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>

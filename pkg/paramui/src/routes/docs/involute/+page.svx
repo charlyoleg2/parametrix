@@ -14,8 +14,8 @@ category: documentation
 
 An *involute of circle* is the curve drawn by the extremity of a string rolled out from a *base circle*. The shape of an involute depends only on the size of the *base circle* (i.e. its radius). An *involute of circle* is completely defined with the radius of the *base circle* and the angle of the start position.
 
-![involute_of_circle_R0.svg]({base}/involute_of_circle_R0.svg)
-![negative_involute_of_circle_R0.svg]({base}/negative_involute_of_circle_R0.svg)
+![involute_of_circle_R0.svg]({base}/pgdsvg/involute_of_circle_R0.svg)
+![negative_involute_of_circle_R0.svg]({base}/pgdsvg/negative_involute_of_circle_R0.svg)
 
 ```
 OB=R
@@ -41,8 +41,8 @@ u -> [L: R*sqrt(1+u**2), w: u-atan(u)]
 
 ## Properties of an involute of circle
 
-![involute_of_circle_Ri1_u0.svg]({base}/involute_of_circle_Ri1_u0.svg)
-![involute_of_circle_Ri2_u2.svg]({base}/involute_of_circle_Ri2_u2.svg)
+![involute_of_circle_Ri1_u0.svg]({base}/pgdsvg/involute_of_circle_Ri1_u0.svg)
+![involute_of_circle_Ri2_u2.svg]({base}/pgdsvg/involute_of_circle_Ri2_u2.svg)
 
 ```
 if we choose u2=-j=i1-i2, then
@@ -65,8 +65,8 @@ Conclusion, if we have a plan with an inclination angle i3, it will be pushed by
 
 The *position* and *instant speed* of the contact point C of an *involute of circle* with the virtual plan perpendicular to the *line of action*.
 
-![point_c_position_and_speed_positive.svg]({base}/point_c_position_and_speed_positive.svg)
-![point_c_position_and_speed_negative.svg]({base}/point_c_position_and_speed_negative.svg)
+![point_c_position_and_speed_positive.svg]({base}/pgdsvg/point_c_position_and_speed_positive.svg)
+![point_c_position_and_speed_negative.svg]({base}/pgdsvg/point_c_position_and_speed_negative.svg)
 
 
 ## Speed ratio
@@ -80,7 +80,7 @@ Finaly we have `J2/J1 = br1/br2 = N1/N2`.
 
 ## Calculation of initAngle2
 
-![calculation_of_initAngle2.svg]({base}/calculation_of_initAngle2.svg)
+![calculation_of_initAngle2.svg]({base}/pgdsvg/calculation_of_initAngle2.svg)
 
 Recipe to calculate the initAngle2 for the right side:
 - Starting from *initAngle1*, the angle position of the primary point of the first tooth
@@ -95,8 +95,8 @@ Recipe to calculate the initAngle2 for the right side:
 
 ## Angle kitchen
 
-![right_side_angle_kitchen.svg]({base}/right_side_angle_kitchen.svg)
-![left_side_angle_kitchen.svg]({base}/left_side_angle_kitchen.svg)
+![right_side_angle_kitchen.svg]({base}/pgdsvg/right_side_angle_kitchen.svg)
+![left_side_angle_kitchen.svg]({base}/pgdsvg/left_side_angle_kitchen.svg)
 
 
 <style lang="scss">
