@@ -16,7 +16,7 @@ Parametrix is a web-app to generate 2D designs.
 
 ### Overview
 
-![users_around_parametrix.svg]({base}/users_around_parametrix.svg)
+![users_around_parametrix.svg]({base}/psvg/users_around_parametrix.svg)
 
 The user of Parametrix gets:
 - 2D
@@ -32,7 +32,7 @@ The programmer of Parametrix design (a.k.a. Designix) gets an API with:
 - compatible with FreeCAD
 - lines and arcs ready for CAM tools ;)
 
-![corner_options.svg]({base}/corner_options.svg)
+![corner_options.svg]({base}/psvg/corner_options.svg)
 
 The API provides options for rounding or widening corners of outlines. It's useful for:
 - good looking parts
@@ -53,7 +53,7 @@ Instead of using *graphical tools* like [FreeCAD](https://www.freecad.org/), *Pr
 
 ### CAD flow comparsion
 
-![comparison_of_cad_flows.svg]({base}/comparison_of_cad_flows.svg)
+![comparison_of_cad_flows.svg]({base}/psvg/comparison_of_cad_flows.svg)
 
 Low-tech CAD
 pros:
@@ -63,9 +63,9 @@ cons:
 - restricted to subset of 3D shapes
 - complex 2D programmatic design
 
-![low_tech_path.svg]({base}/low_tech_path.svg)
+![low_tech_path.svg]({base}/psvg/low_tech_path.svg)
 
-![high_tech_path.svg]({base}/high_tech_path.svg)
+![high_tech_path.svg]({base}/psvg/high_tech_path.svg)
 
 
 The constraints of part manufacturing and low-tech CAD shaping concept are similar. As consequences:
@@ -74,17 +74,17 @@ The constraints of part manufacturing and low-tech CAD shaping concept are simil
 
 Extruded-2D-design is good enough for 90% of technical parts
 
-![gui_vs_programmatic.svg]({base}/gui_vs_programmatic.svg)
+![gui_vs_programmatic.svg]({base}/psvg/gui_vs_programmatic.svg)
 
 
 ### Future tools around Parametrix
 
-![parametrix_galaxi.svg]({base}/parametrix_galaxi.svg)
+![parametrix_galaxi.svg]({base}/psvg/parametrix_galaxi.svg)
 
 
 ## Web app
 
-![software_stack.svg]({base}/software_stack.svg)
+![software_stack.svg]({base}/psvg/software_stack.svg)
 
 web app characteristics
 - [+] security
@@ -110,7 +110,7 @@ native app characteristics
 - [+] access to hardware
 
 
-![javascript_timeline.svg]({base}/javascript_timeline.svg)
+![javascript_timeline.svg]({base}/psvg/javascript_timeline.svg)
 
 In 2023 the eco-system for developing web-apps is mature.
 - [nodejs](https://nodejs.org) V18 is the first LTS with official support for [ESM][ESM-link].
@@ -123,7 +123,7 @@ In 2023 the eco-system for developing web-apps is mature.
 
 ### Types of electrical motors
 
-![classification_of_electrical_motors.svg]({base}/classification_of_electrical_motors.svg)
+![classification_of_electrical_motors.svg]({base}/psvg/classification_of_electrical_motors.svg)
 
 
 ### Controller of electrical motors
@@ -156,7 +156,7 @@ Enable motor synchronization for:
 
 ### multi-motor joint
 
-![multi_motor_joint.svg]({base}/multi_motor_joint.svg)
+![multi_motor_joint.svg]({base}/psvg/multi_motor_joint.svg)
 
 advantages of mechanical join with multi-motors
 - [+] distributed efforts
