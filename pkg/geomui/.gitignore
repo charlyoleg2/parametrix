@@ -4,6 +4,7 @@ node_modules
 /dist
 /.svelte-kit
 /package
+/static/pgdsvg/
 .env
 .env.*
 !.env.example
