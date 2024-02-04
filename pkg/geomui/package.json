@@ -19,6 +19,7 @@
 	],
 	"author": "charlyoleg",
 	"scripts": {
+		"cp_pdgsvg": "shx cp -r ../../node_modules/designix/dist/pgdsvg static/",
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",
@@ -29,7 +30,7 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"lint": "prettier --check . && eslint .",
-		"ci": "run-s build lint check test:unit:once",
+		"ci": "run-s cp_pdgsvg build lint check test:unit:once",
 		"format": "prettier --write .",
 		"clean": "shx rm -fr .svelte-kit build node_modules dist"
 	},

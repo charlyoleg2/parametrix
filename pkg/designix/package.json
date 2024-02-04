@@ -37,7 +37,7 @@
 		"lint": "eslint .",
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
-		"ci": "run-s check build pretty lint test:unit:once",
+		"ci": "run-s check build pretty lint test:unit:once svgo",
 		"svgo1": "svgo --config ../paramui/svgo.config.cjs -f src/svg -o dist/pgdsvg",
 		"svgo2": "svgo --config ../paramui/svgo.config.cjs -f src/dummy/svg -o dist/pgdsvg",
 		"svgo3": "svgo --config ../paramui/svgo.config.cjs -f src/gears/svg -o dist/pgdsvg",
