@@ -25,7 +25,7 @@
 		const lList = getSvgList(pDef);
 		const rList2: string[] = [];
 		for (const svg of lList) {
-			rList2.push(`${base}/${svg}`);
+			rList2.push(`${base}/pgdsvg/${svg}`);
 		}
 		return rList2;
 	}

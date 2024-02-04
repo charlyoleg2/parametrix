@@ -207,14 +207,14 @@
 		//console.log(`dbg244: voila`);
 	}
 	// parameter picture
-	let paramSvg = `${base}/default_param_blank.svg`;
+	let paramSvg = `${base}/pgdsvg/default_param_blank.svg`;
 	function paramPict(keyName: string) {
 		//console.log(`dbg783: ${keyName}`);
 		// convention for the file-names of the parameter description
-		//paramSvg = `${base}/${pDef.partName}_${keyName}.svg`;
-		paramSvg = `${base}/default_param_blank.svg`;
+		//paramSvg = `${base}/pgdsvg/${pDef.partName}_${keyName}.svg`;
+		paramSvg = `${base}/pgdsvg/default_param_blank.svg`;
 		if (Object.keys(pDef.paramSvg).includes(keyName)) {
-			paramSvg = `${base}/${pDef.paramSvg[keyName]}`;
+			paramSvg = `${base}/pgdsvg/${pDef.paramSvg[keyName]}`;
 		}
 	}
 	function paramPict2(idx: number, pDef_page: string) {
