@@ -32,7 +32,7 @@
 		"lint": "prettier --check . && eslint .",
 		"ci": "run-s cp_pdgsvg build lint check test:unit:once",
 		"format": "prettier --write .",
-		"clean": "shx rm -fr .svelte-kit build node_modules dist"
+		"clean": "shx rm -fr .svelte-kit build node_modules dist static/pgdsvg"
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "^2.0.3",
