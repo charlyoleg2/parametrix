@@ -16,7 +16,7 @@
 				<li>
 					<img
 						class:alter={(listIdx + itemIdx) % 2 === 1}
-						src="{base}/{menuItem.svg}"
+						src="{base}/psvg/{menuItem.svg}"
 						alt={menuItem.label}
 					/>
 					{#if menuCategory.category !== ''}

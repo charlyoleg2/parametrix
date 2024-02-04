@@ -13,7 +13,7 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"lint": "prettier --check . && eslint .",
-		"ci": "run-s cp_pdgsvg build lint check test:unit:once",
+		"ci": "run-s svgo cp_pdgsvg build lint check test:unit:once",
 		"format": "prettier --write .",
 		"svgo1": "svgo --config svgo.config.cjs -f src/lib/svg -o static/psvg",
 		"svgo4": "svgo --config svgo.config.cjs -f src/routes/docs/svg -o static/psvg",

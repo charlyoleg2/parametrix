@@ -99,11 +99,11 @@
 </article>
 <h2>Parameter description</h2>
 <article>
-	<img src="{base}/torque_requirements.svg" alt="torque requirements" />
-	<img src="{base}/axis_param_1.svg" alt="top-level axis parameters" />
-	<img src="{base}/gear_ring_overview.svg" alt="gear-ring overview" />
-	<img src="{base}/gear_module.svg" alt="gear module" />
-	<img src="{base}/epicyclic_gearing.svg" alt="epicyclic gearing" />
+	<img src="{base}/psvg/torque_requirements.svg" alt="torque requirements" />
+	<img src="{base}/psvg/axis_param_1.svg" alt="top-level axis parameters" />
+	<img src="{base}/psvg/gear_ring_overview.svg" alt="gear-ring overview" />
+	<img src="{base}/psvg/gear_module.svg" alt="gear module" />
+	<img src="{base}/psvg/epicyclic_gearing.svg" alt="epicyclic gearing" />
 </article>
 <h2>Numerical application</h2>
 <article>
