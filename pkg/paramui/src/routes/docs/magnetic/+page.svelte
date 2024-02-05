@@ -508,7 +508,7 @@
 </article>
 <h3>Regular torus</h3>
 <article class="splitable">
-	<img src="{base}/psvg/regular_torus.svg" alt="regular torus" />
+	<img src="{base}/puisvg/regular_torus.svg" alt="regular torus" />
 	<ul class="formula">
 		<li>{@html math('L = 2 \\pi R')} (length of the torus)</li>
 		<li>{@html math('\\mathcal{F} = N i')}</li>
@@ -648,7 +648,7 @@
 </article>
 <h3>Torus with swelling</h3>
 <article class="splitable">
-	<img src="{base}/psvg/torus_with_swelling.svg" alt="torus with swelling" />
+	<img src="{base}/puisvg/torus_with_swelling.svg" alt="torus with swelling" />
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
@@ -763,7 +763,7 @@
 </article>
 <h3>Torus with air gap</h3>
 <article class="splitable">
-	<img src="{base}/psvg/torus_with_air_gap.svg" alt="torus with air gap" />
+	<img src="{base}/puisvg/torus_with_air_gap.svg" alt="torus with air gap" />
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
@@ -842,9 +842,9 @@
 </article>
 <h3>Torus with shuttle</h3>
 <article class="splitable">
-	<img src="{base}/psvg/torus_with_shuttle.svg" alt="torus with shuttle" />
+	<img src="{base}/puisvg/torus_with_shuttle.svg" alt="torus with shuttle" />
 	<img
-		src="{base}/psvg/top_view_of_air_gap_and_shuttle.svg"
+		src="{base}/puisvg/top_view_of_air_gap_and_shuttle.svg"
 		alt="top view of air gap and shuttle"
 	/>
 	<ul class="formula">
@@ -1016,7 +1016,7 @@
 </article>
 <h3>Torus with realistic shuttle</h3>
 <article class="splitable">
-	<img src="{base}/psvg/torus_with_realistic_shuttle.svg" alt="torus with a realistic shuttle" />
+	<img src="{base}/puisvg/torus_with_realistic_shuttle.svg" alt="torus with a realistic shuttle" />
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>

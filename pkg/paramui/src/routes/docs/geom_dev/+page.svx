@@ -15,60 +15,60 @@ category: documentation
 
 ### Right triangle
 
-![right_triangle.svg]({base}/geomdocs/right_triangle.svg)
+![right_triangle.svg]({base}/puisvg/right_triangle.svg)
 
 ### Any triangle
 
-![any_triangle.svg]({base}/geomdocs/any_triangle.svg)
+![any_triangle.svg]({base}/puisvg/any_triangle.svg)
 
 Arcsin returns only values within [-PI/2, PI/2]. If you use the *law of sinus* to get an angle, make sure this angle is acute.
 
 ## Point
 
 ### Point polar coordinates
-![point_1.svg]({base}/geomdocs/point_1.svg)
+![point_1.svg]({base}/puisvg/point_1.svg)
 
 ### Basic point transforms
-![point_2.svg]({base}/geomdocs/point_2.svg)
-![point_3.svg]({base}/geomdocs/point_3.svg)
+![point_2.svg]({base}/puisvg/point_2.svg)
+![point_3.svg]({base}/puisvg/point_3.svg)
 
 ### Measurements between 2 points
-![point_4.svg]({base}/geomdocs/point_4.svg)
+![point_4.svg]({base}/puisvg/point_4.svg)
 
 ### Create a point from 2 points
-![point_5.svg]({base}/geomdocs/point_5.svg)
+![point_5.svg]({base}/puisvg/point_5.svg)
 
 
 ## Line
 
 ### Line and X-axis
-![line_getAxisXIntersection.svg]({base}/geomdocs/line_getAxisXIntersection.svg)
-![line_getAxisXIntersection_2.svg]({base}/geomdocs/line_getAxisXIntersection_2.svg)
-![line_axis_x_cases.svg]({base}/geomdocs/line_axis_x_cases.svg)
+![line_getAxisXIntersection.svg]({base}/puisvg/line_getAxisXIntersection.svg)
+![line_getAxisXIntersection_2.svg]({base}/puisvg/line_getAxisXIntersection_2.svg)
+![line_axis_x_cases.svg]({base}/puisvg/line_axis_x_cases.svg)
 
 ### Line and Y-axis
-![line_getAxisYIntersection.svg]({base}/geomdocs/line_getAxisYIntersection.svg)
-![line_getAxisYIntersection_2.svg]({base}/geomdocs/line_getAxisYIntersection_2.svg)
-![line_getAxisYIntersection_3.svg]({base}/geomdocs/line_getAxisYIntersection_3.svg)
-![line_axis_y_cases.svg]({base}/geomdocs/line_axis_y_cases.svg)
+![line_getAxisYIntersection.svg]({base}/puisvg/line_getAxisYIntersection.svg)
+![line_getAxisYIntersection_2.svg]({base}/puisvg/line_getAxisYIntersection_2.svg)
+![line_getAxisYIntersection_3.svg]({base}/puisvg/line_getAxisYIntersection_3.svg)
+![line_axis_y_cases.svg]({base}/puisvg/line_axis_y_cases.svg)
 
 ### Projection of origin on line
-![line_distanceOrig.svg]({base}/geomdocs/line_distanceOrig.svg)
+![line_distanceOrig.svg]({base}/puisvg/line_distanceOrig.svg)
 
 ### Projection of point on line
-![line_projectPoint.svg]({base}/geomdocs/line_projectPoint.svg)
+![line_projectPoint.svg]({base}/puisvg/line_projectPoint.svg)
 
 ### Line intersection and bisector
-![line_intersection.svg]({base}/geomdocs/line_intersection.svg)
-![construction_of_line_intersection_1.svg]({base}/geomdocs/construction_of_line_intersection_1.svg)
-![construction_of_line_intersection_2.svg]({base}/geomdocs/construction_of_line_intersection_2.svg)
+![line_intersection.svg]({base}/puisvg/line_intersection.svg)
+![construction_of_line_intersection_1.svg]({base}/puisvg/construction_of_line_intersection_1.svg)
+![construction_of_line_intersection_2.svg]({base}/puisvg/construction_of_line_intersection_2.svg)
 
 
 ## Vector
 
 A vector is defined by its orientation and its length.
 
-![vector_definition.svg]({base}/geomdocs/vector_definition.svg)
+![vector_definition.svg]({base}/puisvg/vector_definition.svg)
 
 
 ## Contour
@@ -80,25 +80,25 @@ A *ContourCircle* object defines a circle.
 
 *arc* are defined differently in *canvas-js* and in *svg-path*.
 
-![arc_definition.svg]({base}/geomdocs/arc_definition.svg)
+![arc_definition.svg]({base}/puisvg/arc_definition.svg)
 
 *Contour* has 3 methods to define arcs.
 
-![contour_arc_definition_options.svg]({base}/geomdocs/contour_arc_definition_options.svg)
+![contour_arc_definition_options.svg]({base}/puisvg/contour_arc_definition_options.svg)
 
 *Point* and *Stroke* can be defined relative to the previous point or absolute, with cartesian or polar coordinates. Relative coordines refer to the extremity of the last segment (stroke or arc). In particular, in case of two consecutive points, the second point, if defined with relative coordinates, refers to the previous segment and not to the previous point.
 
 *addPointRP* and *addSegStrokeRP* use relative polar coordinate. The angle of the polar coordinate is relative to the horizontal axis. It is not relative to the previous segment orientation.
 
 
-![contour_point_absolute_relative.svg]({base}/geomdocs/contour_point_absolute_relative.svg)
+![contour_point_absolute_relative.svg]({base}/puisvg/contour_point_absolute_relative.svg)
 
 
 *2-arc* defined by two points and there two tangents
 
-![contour_tangential_two_arcs_requirements.svg]({base}/geomdocs/contour_tangential_two_arcs_requirements.svg)
-![contour_tangential_two_arcs.svg]({base}/geomdocs/contour_tangential_two_arcs.svg)
-![contour_tangential_two_arcs_impossible_case.svg]({base}/geomdocs/contour_tangential_two_arcs_impossible_case.svg)
+![contour_tangential_two_arcs_requirements.svg]({base}/puisvg/contour_tangential_two_arcs_requirements.svg)
+![contour_tangential_two_arcs.svg]({base}/puisvg/contour_tangential_two_arcs.svg)
+![contour_tangential_two_arcs_impossible_case.svg]({base}/puisvg/contour_tangential_two_arcs_impossible_case.svg)
 
 ### Contour generation
 
@@ -113,12 +113,12 @@ A *ContourCircle* object defines a circle.
 
 *contour().addCornerRounded(radius)* replaces the peak with an arc within the angle/peak. There is one optimal solution for the problematic.
 
-![corner_rounded_stroke_stroke.svg]({base}/geomdocs/corner_rounded_stroke_stroke.svg)
-![corner_rounded_stroke_int_arc.svg]({base}/geomdocs/corner_rounded_stroke_int_arc.svg)
-![corner_rounded_stroke_ext_arc.svg]({base}/geomdocs/corner_rounded_stroke_ext_arc.svg)
-![corner_rounded_ext_arc_ext_arc.svg]({base}/geomdocs/corner_rounded_ext_arc_ext_arc.svg)
-![corner_rounded_int_arc_ext_arc.svg]({base}/geomdocs/corner_rounded_int_arc_ext_arc.svg)
-![corner_rounded_int_arc_int_arc.svg]({base}/geomdocs/corner_rounded_int_arc_int_arc.svg)
+![corner_rounded_stroke_stroke.svg]({base}/puisvg/corner_rounded_stroke_stroke.svg)
+![corner_rounded_stroke_int_arc.svg]({base}/puisvg/corner_rounded_stroke_int_arc.svg)
+![corner_rounded_stroke_ext_arc.svg]({base}/puisvg/corner_rounded_stroke_ext_arc.svg)
+![corner_rounded_ext_arc_ext_arc.svg]({base}/puisvg/corner_rounded_ext_arc_ext_arc.svg)
+![corner_rounded_int_arc_ext_arc.svg]({base}/puisvg/corner_rounded_int_arc_ext_arc.svg)
+![corner_rounded_int_arc_int_arc.svg]({base}/puisvg/corner_rounded_int_arc_int_arc.svg)
 
 ##### Construction of Rounded Corner
 
@@ -126,21 +126,21 @@ A *ContourCircle* object defines a circle.
 
 The method-1 is not recommended because the line intersection can generate point very far and then deals with very big numbers.
 
-![construct_corner_rounded_stroke_stroke.svg]({base}/geomdocs/construct_corner_rounded_stroke_stroke.svg)
-![construct_corner_rounded_stroke_int_arc.svg]({base}/geomdocs/construct_corner_rounded_stroke_int_arc.svg)
-![construct_corner_rounded_stroke_int_arc.svg]({base}/geomdocs/construct_corner_rounded_stroke_int_arc_obtuse.svg)
-![construct_corner_rounded_stroke_ext_arc.svg]({base}/geomdocs/construct_corner_rounded_stroke_ext_arc.svg)
-![construct_corner_rounded_stroke_ext_arc.svg]({base}/geomdocs/construct_corner_rounded_stroke_ext_arc_obtuse.svg)
-![construct_corner_rounded_ext_arc_ext_arc.svg]({base}/geomdocs/construct_corner_rounded_ext_arc_ext_arc.svg)
-![construct_corner_rounded_int_arc_ext_arc.svg]({base}/geomdocs/construct_corner_rounded_int_arc_ext_arc.svg)
-![construct_corner_rounded_int_arc_int_arc.svg]({base}/geomdocs/construct_corner_rounded_int_arc_int_arc.svg)
+![construct_corner_rounded_stroke_stroke.svg]({base}/puisvg/construct_corner_rounded_stroke_stroke.svg)
+![construct_corner_rounded_stroke_int_arc.svg]({base}/puisvg/construct_corner_rounded_stroke_int_arc.svg)
+![construct_corner_rounded_stroke_int_arc.svg]({base}/puisvg/construct_corner_rounded_stroke_int_arc_obtuse.svg)
+![construct_corner_rounded_stroke_ext_arc.svg]({base}/puisvg/construct_corner_rounded_stroke_ext_arc.svg)
+![construct_corner_rounded_stroke_ext_arc.svg]({base}/puisvg/construct_corner_rounded_stroke_ext_arc_obtuse.svg)
+![construct_corner_rounded_ext_arc_ext_arc.svg]({base}/puisvg/construct_corner_rounded_ext_arc_ext_arc.svg)
+![construct_corner_rounded_int_arc_ext_arc.svg]({base}/puisvg/construct_corner_rounded_int_arc_ext_arc.svg)
+![construct_corner_rounded_int_arc_int_arc.svg]({base}/puisvg/construct_corner_rounded_int_arc_int_arc.svg)
 
 ###### method-2
 
 The method-2 is more stable because of the orthogonal projection.
 
-![construct_corner_rounded_stroke_int_arc_method2.svg]({base}/geomdocs/construct_corner_rounded_stroke_int_arc_obtuse_method2.svg)
-![construct_corner_rounded_stroke_ext_arc_method2.svg]({base}/geomdocs/construct_corner_rounded_stroke_ext_arc_obtuse_method2.svg)
+![construct_corner_rounded_stroke_int_arc_method2.svg]({base}/puisvg/construct_corner_rounded_stroke_int_arc_obtuse_method2.svg)
+![construct_corner_rounded_stroke_ext_arc_method2.svg]({base}/puisvg/construct_corner_rounded_stroke_ext_arc_obtuse_method2.svg)
 
 
 #### Widened Corner
@@ -151,7 +151,7 @@ The method-2 is more stable because of the orthogonal projection.
 
 ##### Construction of Widened Corner
 
-![construct_corner_widened.svg]({base}/geomdocs/construct_corner_widened.svg)
+![construct_corner_widened.svg]({base}/puisvg/construct_corner_widened.svg)
 
 
 #### Wide-Access Corner
@@ -163,7 +163,7 @@ The method-2 is more stable because of the orthogonal projection.
 
 ##### Construction of Wide-Access Corner
 
-![construct_corner_wideacc.svg]({base}/geomdocs/construct_corner_wideacc.svg)
+![construct_corner_wideacc.svg]({base}/puisvg/construct_corner_wideacc.svg)
 
 
 #### Corner summary
@@ -195,7 +195,7 @@ The typescript library *Geom* dependes only the standard library *Math* and the 
 
 Internally, *Geom* consists of several modules organised with the following dependencies:
 
-![geom_modules.svg]({base}/geomdocs/geom_modules.svg)
+![geom_modules.svg]({base}/puisvg/geom_modules.svg)
 
 
 
