@@ -29,7 +29,7 @@ Dependencies
 Documentation
 -------------
 
-The directory *docs_svg* contains diagrams used during the development of *geometrix*. The website *Paramui* contains the documentation of *gepmetrix*:
+The directory *docs_svg* contains diagrams used during the development of *geometrix*. The website *Paramui* contains the documentation of *geometrix*:
 
 - [dev-docs](https://charlyoleg2.github.io/parametrix/docs/geom_dev)
 - [user-docs](https://charlyoleg2.github.io/parametrix/docs/geom_user)
