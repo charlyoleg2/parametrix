@@ -1016,7 +1016,10 @@
 </article>
 <h3>Torus with realistic shuttle</h3>
 <article class="splitable">
-	<img src="{base}/puisvg/torus_with_realistic_shuttle.svg" alt="torus with a realistic shuttle" />
+	<img
+		src="{base}/puisvg/torus_with_realistic_shuttle.svg"
+		alt="torus with a realistic shuttle"
+	/>
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
