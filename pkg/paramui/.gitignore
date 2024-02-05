@@ -1,9 +1,8 @@
 .DS_Store
 node_modules
 /build
-/static/geomdocs
 /static/pgdsvg
-/static/psvg
+/static/puisvg
 /.svelte-kit
 /package
 .env

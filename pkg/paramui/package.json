@@ -15,9 +15,10 @@
 		"lint": "prettier --check . && eslint .",
 		"ci": "run-s svgo cp_pdgsvg build lint check test:unit:once",
 		"format": "prettier --write .",
-		"svgo1": "svgo --config svgo.config.cjs -f src/lib/svg -o static/psvg",
-		"svgo4": "svgo --config svgo.config.cjs -f src/routes/docs/svg -o static/psvg",
-		"svgo": "run-s svgo1 svgo4",
+		"svgo1": "svgo --config ../designix/svgo.config.cjs -f src/lib/svg -o static/puisvg",
+		"svgo4": "svgo --config ../designix/svgo.config.cjs -f src/routes/docs/svg -o static/puisvg",
+		"svgo5": "svgo --config ../designix/svgo.config.cjs -f ../geometrix/docs_svg -o static/puisvg",
+		"svgo": "run-s svgo1 svgo4 svgo5",
 		"rm-katex": "shx rm -fr static/katex.min.css static/fonts",
 		"get-katex-css1": "wget -N https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css -P ./static/",
 		"get-katex-font1": "wget -N https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Math-Italic.woff2 -P ./static/fonts/",
@@ -27,7 +28,7 @@
 		"get-katex-font5": "wget -N https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Size1-Regular.woff2 -P ./static/fonts/",
 		"get-katex": "run-s get-katex-css1 get-katex-font1 get-katex-font2 get-katex-font3 get-katex-font4 get-katex-font5",
 		"github-pages-fix": "touch build/.nojekyll",
-		"clean": "shx rm -fr .svelte-kit build node_modules static/geomdocs static/pgdsvg static/psvg"
+		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg static/puisvg"
 	},
 	"dependencies": {
 		"designix": "^0.5.15",
