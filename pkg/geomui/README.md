@@ -1,3 +1,13 @@
+Geomui
+======
+
+
+Presentation
+------------
+
+The svg-files, that describe the parameters, are expected to be copied in the directory *static/pgdsvg*. Per convention, each *design package* should provide its svg-files in the directory *dist/pgdsvg*.
+
+
 # create-svelte
 
 Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).

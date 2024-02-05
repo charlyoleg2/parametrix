@@ -25,3 +25,16 @@ Dependencies
 
 *Designix* runtime depends only on *Geometrix*. Use *Paramui* WebUI or *Paramec* CLI to visualize and export the designs in different formats like dxf, svg and others.
 
+
+Node package
+------------
+
+The node-package *designix* contains a serie of designs and the associated svg-files, stored in the directory *dist/pgdsvg*.
+
+- gear designs
+- heliostat designs
+- spring designs
+- verification desgins
+- some junk designs
+
+
