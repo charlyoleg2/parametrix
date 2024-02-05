@@ -22,19 +22,42 @@ Below three repositories showcasing the usage of the library [geometrix](https:/
 
 ### Simple design
 
-[myPartA](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartA.ts) goes through the required [steps](https://charlyoleg2.github.io/parametrix/docs/geom_user#main_steps) of a 3D part description.
+- [myPartA source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartA.ts)
+- [myPartA page](https://charlyoleg2.github.io/parame51/myGroup1/myPartA)
+
+*myPartA* goes through the required [steps](https://charlyoleg2.github.io/parametrix/docs/geom_user#main_steps) of a 3D part description.
+
+Programmatically, defining a 3D-part-design consists of creating a [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) object of type *tPageDef*.
+
+API:
+
+- [tPageDef](https://charlyoleg2.github.io/parametrix/docs/apidoc/interfaces/geometrix.tPageDef.html)
+
 
 ### Parameter types
 
-[myPartB](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartB.ts) illustrates the usage of the 3 types of parameters:
+- [myPartB source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartB.ts)
+- [myPartB page](https://charlyoleg2.github.io/parame51/myGroup1/myPartB)
+
+*myPartB* illustrates the usage of the 3 types of parameters:
 
 - *numerical* parameter
 - *dropdown* parameter
 - *checkbox* parameter
 
+API:
+
+- [pNumber()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.pNumber.html)
+- [pDropdown()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.pDropdown.html)
+- [pCheckbox()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.pCheckbox.html)
+
+
 ### Extrusion and 3D construction
 
-[myPartC](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartC.ts) illustrates the usage of the 2 types of extrusion:
+- [myPartC source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartC.ts)
+- [myPartC page](https://charlyoleg2.github.io/parame51/myGroup1/myPartC)
+
+*myPartC* illustrates the usage of the 2 types of extrusion:
 
 - *linear-orthogonal* extrusion along the axis Oz
 - *rotation-revolution* extrusion along the axis Oy
@@ -46,30 +69,115 @@ And the usage of the 4 types of boolean operations:
 - *substraction* : remove from the first element of the list the overlaping portion of the rest of the list
 - *intersection* : common portion of all elements of the list
 
+API:
+
+- [EExtrude](https://charlyoleg2.github.io/parametrix/docs/apidoc/enums/geometrix.EExtrude.html)
+- [EBVolume](https://charlyoleg2.github.io/parametrix/docs/apidoc/enums/geometrix.EBVolume.html)
+
+
 ### Evidences of the power of 2D technical drawings
 
-[myPartD](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartD.ts) has simple 2D figures but a complex 3D shape. 2D technical drawing provides a simple representation of complex shape.
+- [myPartD source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartD.ts)
+- [myPartD page](https://charlyoleg2.github.io/parame51/myGroup1/myPartD)
+
+*myPartD* has simple 2D figures but a complex 3D shape. 2D technical drawing provides a simple representation of complex shape.
+
 
 ### Contour creation with absolute/relative cartesian/polar coordinates
 
+- [myPartE source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartE.ts)
+- [myPartE page](https://charlyoleg2.github.io/parame51/myGroup2/myPartE)
+
+*myPartE* illustrates how to create contours using the four types of coordinates:
+
+- cartesian absolute : X,Y relative to the figure origin
+- cartesian relative : x,y relative to the previous point of the contour
+- polar absolute : angle, length relative to the figure origin
+- polar relative : angle relative to the horizontal, length relative to the previous point
+
+The first point of a *contour* is always in *cartesian absolute*.
+
+API:
+
+- [.addSegStrokeA()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeA)
+- [.addSegStrokeR()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeR)
+- [.addSegStrokeAP()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeAP)
+- [.addSegStrokeRP()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeRP)
+
+
 ### Contour corner options
 
-Click in the checkboc *main skeleton* and *points* to activate the corresponding drawing layers.
+- [myPartF source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartF.ts)
+- [myPartF page](https://charlyoleg2.github.io/parame51/myGroup2/myPartF)
+
+*myPartF* illustrates how to apply the four possible corner types:
+
+- pointed (i.e. no corner)
+- rounded
+- widened
+- wideAcc
+
+The corner of the first point of a *contour* can be set at the begining of the contour chain or at the end of the contour chain.
+
+In the UI, click on the checkboc *main skeleton* and *points* to activate the corresponding drawing layers. It helps to understand the *contours*.
+
+API:
+
+- [.addCornerPointed()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addCornerPointed)
+- [.addCornerRounded()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addCornerRounded)
+- [.addCornerWidened()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addCornerWidened)
+- [.addCornerWideAcc()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addCornerWideAcc)
 
 
 ### Contour transformations
 
+- [myPartG source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartG.ts)
+- [myPartG page](https://charlyoleg2.github.io/parame51/myGroup2/myPartG)
+
+*myPartG* illustrates how to apply the four following transformations on *contours*:
+
+- rotate contour
+- scale contour
+- translate contour with parameters x,y
+- translate contour with parameters angle,length
+
+API:
+
+- [.rotate()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#rotate)
+- [.scale()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#scale)
+- [.translate()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#translate)
+- [.translatePolar()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#translatePolar)
+
+
 ### Partial contour
 
-Automatic translation in order than the first point of the partial contour fits with the last point of the contour.
+- [myPartH source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartH.ts)
+- [myPartH page](https://charlyoleg2.github.io/parame51/myGroup2/myPartH)
+
+*myPartH* illustrates how to create a *partial contour* (i.e. a not closed contour) and re-use it several times to create complete contour (i.e. a closed contour).
+
+The method *.addPartial()* automatic translate the new piece of contour, so the first point of the partial contour fits with the last point of the contour.
+
+API:
+
+- [.addPartial()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addPartial)
 
 
 ### Figure transformations
 
+- [myPartI source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartI.ts)
+- [myPartI page](https://charlyoleg2.github.io/parame51/myGroup2/myPartI)
+
+*myPartI* illustrates how to apply to all layers of a figures the following transformations:
+
+- rotate figure
+- translate figure with parameters x,y
+- translate figure with parameters angle,length
+- merge two figures together
+
 This design is using the *time parameter t*. Play with the time control to see the effect of this *t* parameter.
 
 
-### Partial contour
 
 ### Assembly or design-reuse
 
