@@ -174,7 +174,7 @@ API:
 - translate figure with parameters x,y
 - translate figure with parameters angle,length
 
-*myPartI* illustrate also how to merge figures together.
+*myPartI* illustrates also how to merge figures together.
 
 This design is using the *time parameter t*. Play with the time control to see the effect of this *t* parameter.
 
