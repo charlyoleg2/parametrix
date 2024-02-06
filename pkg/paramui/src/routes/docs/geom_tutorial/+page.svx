@@ -173,10 +173,17 @@ API:
 - rotate figure
 - translate figure with parameters x,y
 - translate figure with parameters angle,length
-- merge two figures together
+
+*myPartI* illustrate also how to merge figures together.
 
 This design is using the *time parameter t*. Play with the time control to see the effect of this *t* parameter.
 
+API:
+
+- [.rotate()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#rotate)
+- [.translate()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#translate)
+- [.translatePolar()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#translatePolar)
+- [.mergeFigure()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#mergeFigure)
 
 
 ### Assembly or design-reuse
