@@ -186,7 +186,30 @@ API:
 - [.mergeFigure()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#mergeFigure)
 
 
-### Assembly or design-reuse
+### Re-using figures of other designs
+
+- [myPartJ source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartJ.ts)
+- [myPartJ page](https://charlyoleg2.github.io/parame51/myGroup2/myPartJ)
+
+*myPartJ* illustrates how to re-use figures defined in other designs. *myPartJ* imports the designs *myPartF*, *myPartG* and *myPartI* to use their figures.
+
+API:
+
+- [designParam()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.designParam-1.html)
+- [.setVal()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.DesignParam.html#setVal)
+- [.getParamVal()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.DesignParam.html#getParamVal)
+- [checkGeom()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.checkGeom.html)
+- [prefixLog()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.prefixLog.html)
+- [.mergeFigure()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#mergeFigure)
+
+
+### Assembly of 3D-parts
+
+- [myPartK source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartK.ts)
+- [myPartK page](https://charlyoleg2.github.io/parame51/myGroup2/myPartK)
+
+*myPartK* assembles 3D-parts defined in other designs. *myPartK* imports the designs *myPartA* and *myPartD* to use their *volume definitions*.
+
 
 ### Expose external design
 
