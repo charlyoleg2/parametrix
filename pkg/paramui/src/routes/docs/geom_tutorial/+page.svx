@@ -221,10 +221,6 @@ API:
 - <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getDesignParamList" rel="external">.getDesignParamList()</a>
 
 
-### Expose external design
-
-[parame52-ui]() might expose designs externally defined (not coming from *parame52*). In this case, you must manually copy the svg-files in the *static* directoty of the *sveltekit* project *parame52-ui*.
-
 ### Common design list definition
 
 When you develop your own 3D part library (like [parame51]()) you typically create 3 node-packages:
@@ -241,23 +237,26 @@ In most cases you want to have the same list of designs for your UI-app and CLI-
 
 [parame52-list]() illustrates such node-package. Then [parame52-ui]() and [parame52]() have to be updated rarely.
 
-### Assembly using external design
-
-Previously we have seen that the UI-app and CLI-app can expose external designs. Now, [parame52]() illustrates how a new design can reuse an external design.
-
 ### Contour with arcs
 
 ### Functions defining a Contour
-
-### Transitive reuse of external designs
-
-### Defining sub-designs
 
 ### Add points, lines, vectors and dynamics decorations
 
 ### Just a 2D drawing
 
 ### A serie of blade profiles
+
+
+### Expose external design
+
+[parame52-ui]() might expose designs externally defined (not coming from *parame52*). In this case, you must manually copy the svg-files in the *static* directoty of the *sveltekit* project *parame52-ui*.
+
+### Assembly using external design
+
+Previously we have seen that the UI-app and CLI-app can expose external designs. Now, [parame52]() illustrates how a new design can reuse an external design.
+
+### Transitive reuse of external designs
 
 
 <style lang="scss">
