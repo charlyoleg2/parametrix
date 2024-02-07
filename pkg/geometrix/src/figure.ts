@@ -309,6 +309,8 @@ function figure() {
 }
 
 type tFaces = Record<string, Figure>;
+
+/** For cli-app and ui-app */
 function mergeFaces(iFaces: tFaces): Figure {
 	const rfig = figure();
 	for (const face in iFaces) {
