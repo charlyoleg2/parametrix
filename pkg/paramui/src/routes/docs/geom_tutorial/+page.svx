@@ -193,6 +193,8 @@ API:
 
 *myPartJ* illustrates how to re-use figures defined in other designs. *myPartJ* imports the designs *myPartF*, *myPartG* and *myPartI* to use their figures.
 
+The optional sub-design section is populated. In the UI, links to the sub-designs with their parameters have been generated.
+
 API:
 
 - <a href="{base}/docs/apidoc/functions/geometrix.designParam-1.html" rel="external">designParam()</a>
@@ -201,6 +203,7 @@ API:
 - <a href="{base}/docs/apidoc/functions/geometrix.checkGeom.html" rel="external">checkGeom()</a>
 - <a href="{base}/docs/apidoc/functions/geometrix.prefixLog.html" rel="external">prefixLog()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#mergeFigure" rel="external">.mergeFigure()</a>
+- <a href="{base}/docs/apidoc/types/geometrix.tSubDesign.html" rel="external">tSubDesign</a>
 
 
 ### Assembly of 3D-parts
@@ -209,6 +212,13 @@ API:
 - [myPartK page](https://charlyoleg2.github.io/parame51/myGroup2/myPartK)
 
 *myPartK* assembles 3D-parts defined in other designs. *myPartK* imports the designs *myPartA* and *myPartD* to use their *volume definitions*.
+
+API:
+
+- <a href="{base}/docs/apidoc/interfaces/geometrix.tInherit.html" rel="external">tInherit</a>
+- <a href="{base}/docs/apidoc/types/geometrix.tSubDesign.html" rel="external">tSubDesign</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartName" rel="external">.getPartName()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getDesignParamList" rel="external">.getDesignParamList()</a>
 
 
 ### Expose external design
