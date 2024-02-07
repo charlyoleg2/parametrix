@@ -12,32 +12,32 @@ category: documentation
 
 Below a list of libraries of 3D-part-designs based on *Geometrix*:
 
-- designix : [src](https://github.com/charlyoleg2/parametrix)-
-	[ui](https://charlyoleg2.github.io/parametrix/)-
+- designix : [src](https://github.com/charlyoleg2/parametrix) -
+	[ui](https://charlyoleg2.github.io/parametrix/) -
 	[pkg](https://www.npmjs.com/package/designix) :
 	The first and reference design library. *Geometrix* features were selected to support those designs
-- desi51 : [src](https://github.com/charlyoleg2/parame51)-
-	[ui](https://charlyoleg2.github.io/parame51/)-
+- desi51 : [src](https://github.com/charlyoleg2/parame51) -
+	[ui](https://charlyoleg2.github.io/parame51/) -
 	[pkg](https://www.npmjs.com/package/desi51) :
 	First batch of geometrix design examples for the tutorial
-- desi52 : [src](https://github.com/charlyoleg2/parame52)-
-	[ui](https://charlyoleg2.github.io/parame52/)-
+- desi52 : [src](https://github.com/charlyoleg2/parame52) -
+	[ui](https://charlyoleg2.github.io/parame52/) -
 	[pkg](https://www.npmjs.com/package/desi52) :
 	Second batch of geometrix design examples for the tutorial
-- desi53 : [src](https://github.com/charlyoleg2/parame53)-
-	[ui](https://charlyoleg2.github.io/parame53/)-
+- desi53 : [src](https://github.com/charlyoleg2/parame53) -
+	[ui](https://charlyoleg2.github.io/parame53/) -
 	[pkg](https://www.npmjs.com/package/desi53) :
 	Third batch of geometrix design examples for the tutorial
-- desi54 : [src](https://github.com/charlyoleg2/parame54)-
-	[ui](https://charlyoleg2.github.io/parame54/)-
+- desi54 : [src](https://github.com/charlyoleg2/parame54) -
+	[ui](https://charlyoleg2.github.io/parame54/) -
 	[pkg](https://www.npmjs.com/package/desi54) :
 	Fourth batch of geometrix design examples for the tutorial
-- desi78 : [src](https://github.com/charlyoleg2/parame78)-
-	[ui](https://charlyoleg2.github.io/parame78/)-
+- desi78 : [src](https://github.com/charlyoleg2/parame78) -
+	[ui](https://charlyoleg2.github.io/parame78/) -
 	[pkg](https://www.npmjs.com/package/desi78) :
 	The designs of Charlyoleg
-- desi82 : [src](https://github.com/charlyoleg2/parame82)-
-	[ui](https://charlyoleg2.github.io/parame82/)-
+- desi82 : [src](https://github.com/charlyoleg2/parame82) -
+	[ui](https://charlyoleg2.github.io/parame82/) -
 	[pkg](https://www.npmjs.com/package/desi82) :
 	The designs of a friend
 
