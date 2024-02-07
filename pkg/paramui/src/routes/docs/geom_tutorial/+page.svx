@@ -31,7 +31,7 @@ Programmatically, defining a 3D-part-design consists of creating a [const](https
 
 API:
 
-- [tPageDef](https://charlyoleg2.github.io/parametrix/docs/apidoc/interfaces/geometrix.tPageDef.html)
+- <a href="{base}/docs/apidoc/interfaces/geometrix.tPageDef.html" rel="external">tPageDef</a>
 
 
 ### Parameter types
@@ -47,9 +47,9 @@ API:
 
 API:
 
-- [pNumber()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.pNumber.html)
-- [pDropdown()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.pDropdown.html)
-- [pCheckbox()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.pCheckbox.html)
+- <a href="{base}/docs/apidoc/functions/geometrix.pNumber.html" rel="external">pNumber()</a>
+- <a href="{base}/docs/apidoc/functions/geometrix.pDropdown.html" rel="external">pDropdown()</a>
+- <a href="{base}/docs/apidoc/functions/geometrix.pCheckbox.html" rel="external">pCheckbox()</a>
 
 
 ### Extrusion and 3D construction
@@ -71,8 +71,8 @@ And the usage of the 4 types of boolean operations:
 
 API:
 
-- [EExtrude](https://charlyoleg2.github.io/parametrix/docs/apidoc/enums/geometrix.EExtrude.html)
-- [EBVolume](https://charlyoleg2.github.io/parametrix/docs/apidoc/enums/geometrix.EBVolume.html)
+- <a href="{base}/docs/apidoc/enums/geometrix.EExtrude.html" rel="external">EExtrude</a>
+- <a href="{base}/docs/apidoc/enums/geometrix.EBVolume.html" rel="external">EBVolume</a>
 
 
 ### Evidences of the power of 2D technical drawings
@@ -99,10 +99,10 @@ The first point of a *contour* is always in *cartesian absolute*.
 
 API:
 
-- [.addSegStrokeA()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeA)
-- [.addSegStrokeR()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeR)
-- [.addSegStrokeAP()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeAP)
-- [.addSegStrokeRP()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeRP)
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeA" rel="external">.addSegStrokeA()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeR" rel="external">.addSegStrokeR()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeAP" rel="external">.addSegStrokeAP()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeRP" rel="external">.addSegStrokeRP()</a>
 
 
 ### Contour corner options
@@ -123,10 +123,10 @@ In the UI, click on the checkboc *main skeleton* and *points* to activate the co
 
 API:
 
-- [.addCornerPointed()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addCornerPointed)
-- [.addCornerRounded()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addCornerRounded)
-- [.addCornerWidened()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addCornerWidened)
-- [.addCornerWideAcc()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addCornerWideAcc)
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerPointed" rel="external">.addCornerPointed()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerRounded" rel="external">.addCornerRounded()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWidened" rel="external">.addCornerWidened()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWideAcc" rel="external">.addCornerWideAcc()</a>
 
 
 ### Contour transformations
@@ -143,10 +143,10 @@ API:
 
 API:
 
-- [.rotate()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#rotate)
-- [.scale()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#scale)
-- [.translate()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#translate)
-- [.translatePolar()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#translatePolar)
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#rotate" rel="external">.rotate()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#scale" rel="external">.scale()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#translate" rel="external">.translate()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#translatePolar" rel="external">.translatePolar()</a>
 
 
 ### Partial contour
@@ -160,7 +160,7 @@ The method *.addPartial()* automatic translate the new piece of contour, so the 
 
 API:
 
-- [.addPartial()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Contour.html#addPartial)
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addPartial" rel="external">.addPartial()</a>
 
 
 ### Figure transformations
@@ -180,10 +180,10 @@ This design is using the *time parameter t*. Play with the time control to see t
 
 API:
 
-- [.rotate()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#rotate)
-- [.translate()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#translate)
-- [.translatePolar()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#translatePolar)
-- [.mergeFigure()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#mergeFigure)
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#rotate" rel="external">.rotate()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#translate" rel="external">.translate()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#translatePolar" rel="external">.translatePolar()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#mergeFigure" rel="external">.mergeFigure()</a>
 
 
 ### Re-using figures of other designs
@@ -195,12 +195,12 @@ API:
 
 API:
 
-- [designParam()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.designParam-1.html)
-- [.setVal()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.DesignParam.html#setVal)
-- [.getParamVal()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.DesignParam.html#getParamVal)
-- [checkGeom()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.checkGeom.html)
-- [prefixLog()](https://charlyoleg2.github.io/parametrix/docs/apidoc/functions/geometrix.prefixLog.html)
-- [.mergeFigure()](https://charlyoleg2.github.io/parametrix/docs/apidoc/classes/geometrix.Figure.html#mergeFigure)
+- <a href="{base}/docs/apidoc/functions/geometrix.designParam-1.html" rel="external">designParam()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#setVal" rel="external">.setVal()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getParamVal" rel="external">.getParamVal()</a>
+- <a href="{base}/docs/apidoc/functions/geometrix.checkGeom.html" rel="external">checkGeom()</a>
+- <a href="{base}/docs/apidoc/functions/geometrix.prefixLog.html" rel="external">prefixLog()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#mergeFigure" rel="external">.mergeFigure()</a>
 
 
 ### Assembly of 3D-parts
