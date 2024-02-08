@@ -43,13 +43,13 @@
 		"clean": "shx rm -fr build dist node_modules output"
 	},
 	"dependencies": {
-		"designix": "^0.5.15",
-		"geomcli": "^0.5.17",
-		"geometrix": "^0.5.14"
+		"designix": "^0.5.16",
+		"geomcli": "^0.5.18",
+		"geometrix": "^0.5.15"
 	},
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^6.20.0",
-		"@typescript-eslint/parser": "^6.20.0",
+		"@typescript-eslint/eslint-plugin": "^6.21.0",
+		"@typescript-eslint/parser": "^6.21.0",
 		"bats": "^1.10.0",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",

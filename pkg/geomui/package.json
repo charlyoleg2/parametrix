@@ -39,7 +39,7 @@
 		"svelte": "^4.0.0"
 	},
 	"dependencies": {
-		"geometrix": "^0.5.14"
+		"geometrix": "^0.5.15"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.1.1",
@@ -47,9 +47,9 @@
 		"@sveltejs/kit": "^2.5.0",
 		"@sveltejs/package": "^2.2.6",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
-		"@typescript-eslint/eslint-plugin": "^6.20.0",
-		"@typescript-eslint/parser": "^6.20.0",
-		"designix": "^0.5.15",
+		"@typescript-eslint/eslint-plugin": "^6.21.0",
+		"@typescript-eslint/parser": "^6.21.0",
+		"designix": "^0.5.16",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.35.1",
@@ -59,11 +59,11 @@
 		"publint": "^0.2.7",
 		"sass": "^1.70.0",
 		"shx": "^0.3.4",
-		"svelte": "^4.2.9",
-		"svelte-check": "^3.6.3",
+		"svelte": "^4.2.10",
+		"svelte-check": "^3.6.4",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.3",
-		"vite": "^5.0.12",
+		"vite": "^5.1.0",
 		"vitest": "^1.2.2"
 	},
 	"exports": {
