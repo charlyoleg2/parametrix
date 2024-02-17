@@ -66,7 +66,14 @@
 			"default": "./dist/designix-cli.js"
 		}
 	},
-	"bin": "./dist/designix-cli.js",
-	"types": "./dist/designix-cli.d.ts",
+	"bin": {
+		"designix": "dist/designix-cli.js"
+	},
+	"files": [
+		"dist/",
+		"!dist/**/*.map",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
 	"type": "module"
 }
