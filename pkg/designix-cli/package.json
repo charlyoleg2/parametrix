@@ -2,7 +2,7 @@
 	"name": "designix-cli",
 	"version": "0.5.8",
 	"description": "The application cli as frontend of geometrix and designix",
-	"private": true,
+	"private": false,
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
