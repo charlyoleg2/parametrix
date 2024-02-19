@@ -28,18 +28,18 @@ const pDef: tParamDef = {
 	partName: 'rod',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('L1', 'mm', 10000, 1000, 40000, 10),
-		pNumber('L2', 'mm', 100, 10, 400, 1),
-		pNumber('L3', 'mm', 400, 100, 1000, 1),
-		pNumber('L4', 'mm', 600, 100, 1000, 1),
-		pNumber('H1', 'mm', 200, 10, 4000, 1),
+		pNumber('L1', 'mm', 10000, 100, 40000, 10),
+		pNumber('L2', 'mm', 100, 2, 400, 1),
+		pNumber('L3', 'mm', 400, 10, 1000, 1),
+		pNumber('L4', 'mm', 600, 10, 1000, 1),
+		pNumber('H1', 'mm', 200, 5, 4000, 1),
 		pNumber('E1', 'mm', 2, 1, 80, 1),
 		pNumber('E2', 'mm', 10, 1, 80, 1),
 		pNumber('N1', '', 10, 2, 50, 1),
 		pNumber('N3', '', 2, 1, 20, 1),
 		pNumber('N4', '', 4, 1, 20, 1),
 		pNumber('R3', 'mm', 100, 1, 500, 1),
-		pNumber('D2', 'mm', 10, 5, 100, 1),
+		pNumber('D2', 'mm', 10, 1, 100, 1),
 		pNumber('L7', 'mm', 10, 1, 300, 1)
 	],
 	paramSvg: {
@@ -80,6 +80,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const n3step = param.L3 / (param.N3 + 1);
 		const n4step = param.L4 / (param.N4 + 1);
 		rGeome.logstr += `rod-length: ${ffix(param.L1)} mm\n`;
+		const space_length = (param.L1 - param.L3) / (param.N1 - 1);
+		rGeome.logstr += `space-length: ${ffix(space_length)} mm\n`;
 		ctrPlate = function (py: number): tContour[] {
 			const rPlate: tContour[] = [];
 			const plateExt = contour(param.L4 / 2, py)
@@ -125,7 +127,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ctrRodInt = contour(L2hi, param.E1)
 			.addSegStrokeA(L2hi, H1i)
 			.addSegStrokeA(-L2hi, H1i)
-			.addSegStrokeA(-L2h, param.E1)
+			.addSegStrokeA(-L2hi, param.E1)
 			.closeSegStroke();
 		const ctrPlateSide = contour(L4h, param.H1)
 			.addSegStrokeA(L4h, param.H1 + param.E2)
