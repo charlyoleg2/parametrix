@@ -185,47 +185,47 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const step2 = param.L2 / (param.N2 + 1);
 		const step3 = param.L3 / (param.N3 + 1);
 		const step4 = param.L4 / (param.N4 + 1);
-		if (param.L5 < param.D1 + param.L6) {
+		if (param.L5 < param.D1 / 2 + param.L6) {
 			throw `err658: L5 ${param.L5} too small compare to D1 ${param.D1} or L6 ${param.L6}`;
 		}
-		if (step3 < param.D2 + param.L7) {
+		if (step3 < param.D2 / 2 + param.L7) {
 			throw `err661: D2 ${param.D2} or L7 ${param.L7} too large compare to L3 ${param.l3}`;
 		}
-		if (step4 < param.D2 + param.L7) {
+		if (step4 < param.D2 / 2 + param.L7) {
 			throw `err664: D2 ${param.D2} or L7 ${param.L7} too large compare to L4 ${param.l4}`;
 		}
 		const lFrameHole: tContour[] = [];
 		for (let i = 1; i < param.N1 + 1; i++) {
 			lFrameHole.push(
-				contourCircle(param.L2 / 2 - param.L6, -param.L1 / 2 + i * step1, param.D1)
+				contourCircle(param.L2 / 2 - param.L6, -param.L1 / 2 + i * step1, param.D1 / 2)
 			);
 			lFrameHole.push(
-				contourCircle(-param.L2 / 2 + param.L6, -param.L1 / 2 + i * step1, param.D1)
+				contourCircle(-param.L2 / 2 + param.L6, -param.L1 / 2 + i * step1, param.D1 / 2)
 			);
 		}
 		for (let i = 1; i < param.N2 + 1; i++) {
 			lFrameHole.push(
-				contourCircle(-param.L2 / 2 + i * step2, param.L1 / 2 - param.L6, param.D1)
+				contourCircle(-param.L2 / 2 + i * step2, param.L1 / 2 - param.L6, param.D1 / 2)
 			);
 			lFrameHole.push(
-				contourCircle(-param.L2 / 2 + i * step2, -param.L1 / 2 + param.L6, param.D1)
+				contourCircle(-param.L2 / 2 + i * step2, -param.L1 / 2 + param.L6, param.D1 / 2)
 			);
 		}
 		const lPlateHole: tContour[] = [];
 		for (let i = 1; i < param.N3 + 1; i++) {
 			lPlateHole.push(
-				contourCircle(param.L4 / 2 - param.L7, -param.L3 / 2 + i * step3, param.D2)
+				contourCircle(param.L4 / 2 - param.L7, -param.L3 / 2 + i * step3, param.D2 / 2)
 			);
 			lPlateHole.push(
-				contourCircle(-param.L4 / 2 + param.L7, -param.L3 / 2 + i * step3, param.D2)
+				contourCircle(-param.L4 / 2 + param.L7, -param.L3 / 2 + i * step3, param.D2 / 2)
 			);
 		}
 		for (let i = 1; i < param.N4 + 1; i++) {
 			lPlateHole.push(
-				contourCircle(-param.L4 / 2 + i * step4, param.L3 / 2 - param.L7, param.D2)
+				contourCircle(-param.L4 / 2 + i * step4, param.L3 / 2 - param.L7, param.D2 / 2)
 			);
 			lPlateHole.push(
-				contourCircle(-param.L4 / 2 + i * step4, -param.L3 / 2 + param.L7, param.D2)
+				contourCircle(-param.L4 / 2 + i * step4, -param.L3 / 2 + param.L7, param.D2 / 2)
 			);
 		}
 		lFrameHole.forEach((ctr) => {
