@@ -1,4 +1,5 @@
-// localpoc.ts
+#!/usr/bin/env node
+// designix-uis.ts
 
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -45,7 +46,7 @@ async function mini_server(aDirectory: string, aBrowser: boolean, aPort: number)
 	// spin the http-server
 	app.listen(portnumber, chost, () => {
 		console.log(
-			`${packag.name} serves on port ${portnumber} for host ${chost} the directory ${aDirectory} ...`
+			`${packag.name} serves on port ${portnumber} for host ${chost} the directory:\n ${aDirectory} ...`
 		);
 	});
 
@@ -66,7 +67,7 @@ async function mini_server(aDirectory: string, aBrowser: boolean, aPort: number)
 // cli
 async function mini_cli(argv: string[]) {
 	const args = await yargs(hideBin(argv))
-		.version('0.2.0')
+		.version(packag.version)
 		.usage('Usage: $0 --port <port> --directoy <directory-path>')
 		.example([
 			[
@@ -101,5 +102,5 @@ async function mini_cli(argv: string[]) {
 }
 
 console.log('designix-uis says Hello!');
-mini_cli(process.argv);
+await mini_cli(process.argv);
 console.log('designix-uis says Bye!');

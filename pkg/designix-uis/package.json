@@ -37,7 +37,9 @@
 		"lint": "eslint .",
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
-		"ci": "run-s check build pretty lint test:unit:once",
+		"copy": "shx cp -r ../designix-ui/build dist/public",
+		"checkCopy": "ls -l dist/public/index.html",
+		"ci": "run-s check build pretty lint test:unit:once copy checkCopy",
 		"clean": "shx rm -fr build dist tmp"
 	},
 	"repository": {
