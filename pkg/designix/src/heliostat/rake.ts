@@ -175,7 +175,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const doorLowX = param.L9 / 2;
 		const doorHighX = doorLowX - param.H7 * Math.tan(coneAngle);
 		if (doorHighX < param.R9) {
-			throw `err177: R9 ${param.R9} too large compare to coneAngle and L9 ${param.L9}`;
+			throw `err177: R9 ${param.R9} too large compare to doorHighX ${doorHighX} and L9 ${param.L9}`;
 		}
 		if (param.L9 > param.D1) {
 			throw `err180: L9 ${param.L9} too large compare to D1 ${param.D1}`;

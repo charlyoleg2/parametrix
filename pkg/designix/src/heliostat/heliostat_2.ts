@@ -37,33 +37,33 @@ const pDef: tParamDef = {
 	partName: 'heliostat_2',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('H1', 'mm', 3000, 100, 40000, 10),
-		pNumber('H2', 'mm', 2500, 100, 40000, 10),
-		pNumber('H3', 'mm', 200, 10, 500, 10),
-		pNumber('H4', 'mm', 800, 100, 4000, 10),
-		pNumber('H5', 'mm', 3000, 100, 6000, 10),
-		pNumber('H6', 'mm', 200, 100, 4000, 10),
-		pNumber('H7', 'mm', 400, 100, 4000, 10),
-		pNumber('H9', 'mm', 100, 10, 400, 10),
-		pNumber('D1', 'mm', 1000, 100, 4000, 10),
-		pNumber('D2', 'mm', 700, 100, 4000, 10),
-		pNumber('D3', 'mm', 900, 100, 4000, 10),
-		pNumber('D4', 'mm', 400, 100, 4000, 10),
-		pNumber('D5', 'mm', 300, 100, 1000, 10),
-		pNumber('D6', 'mm', 200, 100, 1000, 10),
-		pNumber('D7', 'mm', 400, 100, 1000, 10),
-		pNumber('D9', 'mm', 100, 10, 1000, 10),
+		pNumber('H1', 'mm', 3000, 10, 40000, 10),
+		pNumber('H2', 'mm', 2500, 50, 40000, 10),
+		pNumber('H3', 'mm', 200, 1, 500, 10),
+		pNumber('H4', 'mm', 800, 10, 4000, 10),
+		pNumber('H5', 'mm', 3000, 50, 6000, 10),
+		pNumber('H6', 'mm', 200, 10, 4000, 10),
+		pNumber('H7', 'mm', 400, 10, 4000, 10),
+		pNumber('H9', 'mm', 100, 1, 400, 10),
+		pNumber('D1', 'mm', 1000, 50, 4000, 10),
+		pNumber('D2', 'mm', 700, 50, 4000, 10),
+		pNumber('D3', 'mm', 900, 50, 4000, 10),
+		pNumber('D4', 'mm', 400, 50, 4000, 10),
+		pNumber('D5', 'mm', 300, 50, 1000, 10),
+		pNumber('D6', 'mm', 200, 50, 1000, 10),
+		pNumber('D7', 'mm', 400, 50, 1000, 10),
+		pNumber('D9', 'mm', 100, 1, 1000, 10),
 		pNumber('E1', 'mm', 30, 1, 80, 1),
-		pNumber('L1', 'mm', 12500, 1000, 40000, 10),
-		pNumber('L2', 'mm', 6000, 1000, 40000, 10),
-		pNumber('L3', 'mm', 100, 10, 500, 10),
-		pNumber('L4', 'mm', 600, 100, 4000, 10),
-		pNumber('L5', 'mm', 2000, 100, 6000, 10),
-		pNumber('L6', 'mm', 2000, 100, 6000, 10),
-		pNumber('L7', 'mm', 100, 10, 1000, 10),
-		pNumber('L8', 'mm', 200, 10, 1000, 10),
+		pNumber('L1', 'mm', 12500, 100, 40000, 10),
+		pNumber('L2', 'mm', 6000, 100, 40000, 10),
+		pNumber('L3', 'mm', 100, 1, 500, 10),
+		pNumber('L4', 'mm', 600, 1, 4000, 10),
+		pNumber('L5', 'mm', 2000, 10, 6000, 10),
+		pNumber('L6', 'mm', 2000, 1, 6000, 10),
+		pNumber('L7', 'mm', 100, 1, 1000, 10),
+		pNumber('L8', 'mm', 200, 1, 1000, 10),
 		pNumber('al', 'degree', 80, 0, 95, 1),
-		pNumber('S1', 'mm', 100, 10, 800, 1)
+		pNumber('S1', 'mm', 100, 1, 800, 1)
 	],
 	paramSvg: {
 		H1: 'heliostat_overview.svg',
@@ -95,7 +95,7 @@ const pDef: tParamDef = {
 		S1: 'heliostat2_side_sizing.svg'
 	},
 	sim: {
-		tMax: 180,
+		tMax: 100,
 		tStep: 0.5,
 		tUpdate: 500 // every 0.5 second
 	}
@@ -125,19 +125,43 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		poleStaticParam.setVal('H2', param.H2);
 		poleStaticParam.setVal('D1', param.D1);
 		poleStaticParam.setVal('D2', param.D2);
+		poleStaticParam.setVal('D3', param.D1 - 6 * param.E1);
 		poleStaticParam.setVal('E1', param.E1);
 		poleStaticParam.setVal('E2', param.E1);
+		const poleStaticN1 = 32;
+		const poleStaticD5 = (param.D1 - 6 * param.E1) / (poleStaticN1 * 4);
+		poleStaticParam.setVal('N1', poleStaticN1);
+		poleStaticParam.setVal('D5', poleStaticD5);
+		poleStaticParam.setVal('L1', param.E1 + poleStaticD5 / 2);
+		poleStaticParam.setVal('H3', param.H1 / 4);
+		poleStaticParam.setVal('H4', param.H1 / 2);
+		poleStaticParam.setVal('D4', param.H1 / 4);
+		poleStaticParam.setVal('L2', param.H1 / 80);
+		poleStaticParam.setVal('E3', param.H1 / 80);
 		rakeParam.setVal('H1', param.H4);
 		rakeParam.setVal('H2', param.H5);
+		rakeParam.setVal('H3', param.H4 - 2 * param.E1);
 		rakeParam.setVal('D1', param.D3);
 		rakeParam.setVal('D2', param.D4);
 		rakeParam.setVal('L9', param.D3 / 2);
+		rakeParam.setVal('H7', (param.D3 / 2) * 1.6);
+		rakeParam.setVal('H6', param.D3 / 20);
+		rakeParam.setVal('R9', param.D3 / 20);
 		rakeParam.setVal('E1', param.E1);
 		rakeParam.setVal('E3', param.E1);
-		rakeParam.setVal('D3', param.D2 * 0.6);
+		rakeParam.setVal('E4', param.E1);
+		rakeParam.setVal('E6', param.E1);
+		rakeParam.setVal('E7', param.E1);
+		const rakeD3 = param.D2 * 0.6;
+		const rakeN1 = 24;
+		const rakeD7 = rakeD3 / (rakeN1 * 4);
+		rakeParam.setVal('D3', rakeD3);
 		if (param.D2 > param.D3 - 2 * param.E1) {
 			throw `err153: D2 ${param.D2} too large compare to D3 ${param.D3} and E1 ${param.E1}`;
 		}
+		rakeParam.setVal('N1', rakeN1);
+		rakeParam.setVal('D7', rakeD7);
+		rakeParam.setVal('L1', rakeD7);
 		rakeParam.setVal('H4', param.H6);
 		rakeParam.setVal('D4', param.D5);
 		rakeParam.setVal('L7', param.L7);
@@ -160,6 +184,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		rakeParam.setVal('S2', param.L2 / 2);
 		swingParam.setVal('L2', param.L2);
 		swingParam.setVal('D1', param.D6);
+		swingParam.setVal('H3', param.H9);
 		swingParam.setVal('H4', param.H9);
 		swingParam.setVal('L1', param.L1);
 		if (param.L1 < 4 * param.L4 + 2 * param.L6 + param.L5 + 2 * param.L3) {
