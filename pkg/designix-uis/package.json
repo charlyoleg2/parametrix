@@ -41,7 +41,7 @@
 		"copy": "shx cp -r ../designix-ui/build dist/public",
 		"checkCopy": "ls -l dist/public/index.html",
 		"ci": "run-s check build pretty lint test:unit:once clean_public copy checkCopy",
-		"clean": "shx rm -fr build dist tmp"
+		"clean": "shx rm -fr node_modules build dist tmp"
 	},
 	"repository": {
 		"type": "git",

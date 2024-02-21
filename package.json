@@ -68,7 +68,7 @@
 		"svgo": "run-s geometrix:svgo designix:svgo paramui:svgo",
 		"clean-root": "shx rm -fr tmp output output2 build",
 		"clean-lib": "run-s geometrix:clean designix:clean geomui:clean geomcli:clean",
-		"clean-app": "run-s paramui:clean designix-ui:clean designix-script-ts:clean designix-script-js:clean designix-cli:clean",
+		"clean-app": "run-s paramui:clean designix-ui:clean designix-script-ts:clean designix-script-js:clean designix-cli:clean designix-uis:clean",
 		"clean": "run-s clean-root clean-lib clean-app",
 		"preview": "run-s paramui:preview",
 		"versions": "run-s geometrix:version designix:version geomui:version geomcli:version designix-cli:version designix-uis:version",
