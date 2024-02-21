@@ -61,7 +61,7 @@
 		"designix-uis:publish": "npm -w designix-uis publish --provenance",
 		"dev": "run-p geometrix:dev designix:dev geomui:dev paramui:dev",
 		"ci-lib": "run-s geometrix:ci designix:ci geomui:ci geomcli:ci",
-		"ci-app": "run-s paramui:ci designix-ui:ci designix-script-ts:ci designix-script-js:ci designix-cli:ci",
+		"ci-app": "run-s paramui:ci designix-ui:ci designix-script-ts:ci designix-script-js:ci designix-cli:ci designix-uis:ci",
 		"ci": "run-s ci-lib ci-app apidoc",
 		"ci2": "run-s designix:ci designix-ui:ci",
 		"ci3": "run-s designix:ci designix-cli:ci",
