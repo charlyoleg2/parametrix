@@ -1,0 +1,91 @@
+{
+	"name": "designix-uis",
+	"version": "0.5.0",
+	"description": "mini-server for static content of designix-ui",
+	"type": "module",
+	"private": false,
+	"main": "./dist/designix-uis.js",
+	"types": "./dist/designix-uis.d.ts",
+	"bin": {
+		"designix-ui": "dist/designix-uis.js"
+	},
+	"files": [
+		"dist/",
+		"!dist/**/*.map",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"engines": {
+		"node": ">=20.10.0"
+	},
+	"tsup": {
+		"entry": [
+			"src/designix-uis.ts"
+		],
+		"format": "esm",
+		"splitting": false,
+		"dts": true,
+		"sourcemap": true,
+		"clean": true
+	},
+	"scripts": {
+		"dev": "tsup --watch",
+		"build": "tsup",
+		"check": "tsc --noEmit",
+		"pretty": "prettier --check .",
+		"format": "prettier --write .",
+		"lint": "eslint .",
+		"test:unit": "vitest",
+		"test:unit:once": "vitest --run",
+		"ci": "run-s check build pretty lint test:unit:once",
+		"clean": "shx rm -fr build dist tmp"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/charlyoleg2/parametrix.git"
+	},
+	"keywords": [
+		"cad",
+		"programmatic",
+		"2D",
+		"circle",
+		"stroke",
+		"arc",
+		"gear",
+		"ui"
+	],
+	"author": "charlyoleg",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/charlyoleg2/parametrix/issues"
+	},
+	"homepage": "https://charlyoleg2.github.io/parametrix/",
+	"dependencies": {
+		"express": "^4.18.2",
+		"fs-extra": "^11.2.0",
+		"get-port": "^6.1.2",
+		"open": "^8.4.0",
+		"yargs": "^17.7.2"
+	},
+	"devDependencies": {
+		"@types/fs-extra": "^11.0.4",
+		"@types/node": "^20.11.19",
+		"@types/yargs": "^17.0.32",
+		"eslint": "^8.56.0",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^3.2.5",
+		"shx": "^0.3.4",
+		"tsup": "^8.0.2",
+		"typescript": "^5.3.3",
+		"typescript-eslint": "^7.0.1",
+		"vitest": "^1.2.2"
+	},
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true,
+		"trailingComma": "none",
+		"printWidth": 100,
+		"plugins": [],
+		"overrides": []
+	}
+}

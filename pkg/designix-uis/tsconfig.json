@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"outDir": "./build",
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "bundler",
+		"declaration": true,
+		"sourceMap": true,
+		"strict": true
+	},
+	"include": ["./src"]
+}

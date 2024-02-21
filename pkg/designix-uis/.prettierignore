@@ -1,0 +1,6 @@
+# .prettierignore of designix-uis
+node_modules
+build
+dist
+tmp
+README.md
