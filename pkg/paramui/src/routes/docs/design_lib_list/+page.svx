@@ -40,6 +40,10 @@ Below a list of libraries of 3D-part-designs based on *Geometrix*:
 	[ui](https://charlyoleg2.github.io/parame82/) -
 	[pkg](https://www.npmjs.com/package/desi82) :
 	The designs of a friend
+8. desi15L : [src](https://github.com/charlyoleg2/parame15L) -
+	[ui](https://charlyoleg2.github.io/parame15L/) -
+	[pkg](https://www.npmjs.com/package/desi15L) :
+	The designs of a junior developer
 
 If you want to get your *geometrix design library* in this list, please, create a [Github issue](https://github.com/charlyoleg2/parametrix/issues) with a link to your library.
 
