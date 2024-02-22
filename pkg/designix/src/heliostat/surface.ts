@@ -29,8 +29,8 @@ const pDef: tParamDef = {
 	partName: 'surface',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('LH', 'mm', 1600, 100, 4000, 1),
-		pNumber('LV', 'mm', 1000, 100, 4000, 1),
+		pNumber('LH', 'mm', 1600, 10, 4000, 1),
+		pNumber('LV', 'mm', 1000, 10, 4000, 1),
 		pNumber('LZ', 'mm', 40, 0, 100, 1),
 		pNumber('nx', '', 9, 1, 40, 1),
 		pNumber('ny', '', 9, 1, 40, 1),
@@ -118,6 +118,7 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		const ELateralCycle = param.main_direction === 0 ? param.EV_cycle : param.EH_cycle;
 		const ELateralStart = param.main_direction === 0 ? param.EV_start : param.EH_start;
 		const ELateralShape = param.main_direction === 0 ? param.EV_shape : param.EH_shape;
+		const lenLateralMax = Math.max(lenLateral, param.first_row, param.second_row);
 		const lenRow: number[] = [];
 		for (let i = 0; i < lenMain; i++) {
 			const iEven = (i + 1) % 2; // 0 or 1
@@ -172,10 +173,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 			eMainCumul.push(eMainTotal);
 		});
 		const eLateral: number[] = [];
-		for (let i = 0; i < lenLateral - 1; i++) {
+		for (let i = 0; i < lenLateralMax - 1; i++) {
 			let eSpace = ELateral;
 			if (ELateralGradient === 1) {
-				const gapNb = lenLateral > 2 ? lenLateral - 2 : 1; // -2 to get a complete cycle
+				const gapNb = lenLateralMax > 2 ? lenLateralMax - 2 : 1; // -2 to get a complete cycle
 				const phase = (ELateralStart + (i * ELateralCycle) / gapNb) % 1;
 				switch (ELateralShape) {
 					case 0: // sinusoid
@@ -208,10 +209,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		if (param.main_direction === 0) {
 			// horizontal
 			gLenHorizontal = lenMain * param.LH + eMainTotal;
-			gLenVertical = lenLateral * param.LV + eLateralTotal;
+			gLenVertical = lenLateralMax * param.LV + eLateralTotal;
 		} else {
 			// vertical
-			gLenHorizontal = lenLateral * param.LH + eLateralTotal;
+			gLenHorizontal = lenLateralMax * param.LH + eLateralTotal;
 			gLenVertical = lenMain * param.LV + eMainTotal;
 		}
 		const gArea = (gLenHorizontal * gLenVertical) / 10 ** 6; // m2
@@ -232,8 +233,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		// figSurface
 		const panelPositions: tPositions = [];
 		lenRow.forEach((oneRow, rowIdx) => {
-			const half = (lenLateral - oneRow) % 2;
-			const offset = Math.floor((lenLateral - oneRow) / 2);
+			const half = (lenLateralMax - oneRow) % 2;
+			const offset = Math.floor((lenLateralMax - oneRow) / 2);
 			for (let pIdx = 0; pIdx < oneRow; pIdx++) {
 				let dx = 0;
 				let dy = 0;
