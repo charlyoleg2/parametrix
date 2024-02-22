@@ -30,11 +30,11 @@ const pDef: tParamDef = {
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('L1', 'mm', 12500, 100, 40000, 10),
 		pNumber('L2', 'mm', 6000, 100, 40000, 10),
-		pNumber('L3', 'mm', 500, 10, 4000, 10),
-		pNumber('L4', 'mm', 600, 1, 4000, 10),
-		pNumber('L5', 'mm', 2000, 10, 10000, 10),
-		pNumber('L6', 'mm', 2000, 1, 10000, 10),
-		pNumber('D1', 'mm', 400, 10, 1000, 1),
+		pNumber('L3', 'mm', 500, 1, 4000, 1),
+		pNumber('L4', 'mm', 600, 1, 4000, 1),
+		pNumber('L5', 'mm', 2000, 1, 10000, 1),
+		pNumber('L6', 'mm', 2000, 1, 10000, 1),
+		pNumber('D1', 'mm', 400, 1, 1000, 1),
 		pNumber('H1', 'mm', 100, 1, 400, 1),
 		pNumber('H2', 'mm', 100, 1, 400, 1),
 		pNumber('H3', 'mm', 100, 1, 400, 1),
@@ -43,9 +43,9 @@ const pDef: tParamDef = {
 		pNumber('E2', 'mm', 3, 1, 80, 1),
 		pNumber('E3', 'mm', 3, 1, 80, 1),
 		pNumber('rod1', '', 10, 1, 40, 1),
-		pNumber('rod2', 'mm', 1300, 50, 4000, 10),
+		pNumber('rod2', 'mm', 1300, 10, 4000, 10),
 		pNumber('rod3', 'mm', 400, 10, 1000, 10),
-		pNumber('rod4', 'mm', 100, 1, 400, 10)
+		pNumber('rod4', 'mm', 100, 1, 400, 1)
 	],
 	paramSvg: {
 		L1: 'swing_top.svg',

@@ -29,12 +29,12 @@ const pDef: tParamDef = {
 	partName: 'spider',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('D1', 'mm', 100, 10, 400, 1),
-		pNumber('L1', 'mm', 400, 100, 1000, 10),
-		pNumber('L2', 'mm', 400, 100, 1000, 10),
-		pNumber('L3', 'mm', 100, 10, 400, 1),
-		pNumber('L4', 'mm', 3000, 500, 8000, 10),
-		pNumber('L5', 'mm', 2000, 100, 8000, 10),
+		pNumber('D1', 'mm', 100, 1, 400, 1),
+		pNumber('L1', 'mm', 400, 1, 1000, 1),
+		pNumber('L2', 'mm', 400, 1, 1000, 1),
+		pNumber('L3', 'mm', 100, 1, 400, 1),
+		pNumber('L4', 'mm', 3000, 10, 8000, 10),
+		pNumber('L5', 'mm', 2000, 1, 8000, 1),
 		pNumber('L6', 'mm', 30, 1, 100, 1),
 		pNumber('E1', 'mm', 3, 1, 80, 1),
 		pNumber('E2', 'mm', 50, 1, 200, 1),

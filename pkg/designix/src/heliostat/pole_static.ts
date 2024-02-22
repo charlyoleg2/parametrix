@@ -28,9 +28,9 @@ const pDef: tParamDef = {
 	partName: 'pole_static',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('D1', 'mm', 1000, 50, 4000, 1),
-		pNumber('D2', 'mm', 700, 50, 4000, 1),
-		pNumber('D3', 'mm', 800, 50, 4000, 1),
+		pNumber('D1', 'mm', 1000, 20, 4000, 1),
+		pNumber('D2', 'mm', 700, 10, 4000, 1),
+		pNumber('D3', 'mm', 800, 10, 4000, 1),
 		pNumber('H1', 'mm', 3000, 10, 40000, 10),
 		pNumber('H2', 'mm', 7000, 50, 40000, 10),
 		pNumber('E1', 'mm', 30, 1, 80, 1),
@@ -38,7 +38,7 @@ const pDef: tParamDef = {
 		pNumber('N1', '', 32, 3, 100, 1),
 		pNumber('D5', 'mm', 40, 1, 100, 1),
 		pNumber('L1', 'mm', 45, 1, 300, 1),
-		pNumber('D4', 'mm', 600, 10, 1200, 1),
+		pNumber('D4', 'mm', 600, 1, 1200, 1),
 		pNumber('H3', 'mm', 300, 5, 1200, 1),
 		pNumber('H4', 'mm', 1800, 10, 2500, 1),
 		pNumber('L2', 'mm', 30, 1, 100, 1),
