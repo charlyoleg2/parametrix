@@ -11,11 +11,12 @@ This is the monorepo that contains the following *javascript* packages:
 2. designix: the first library of designs implemeted with *geometrix*
 3. geomui: the *svelte* library for creating easily a web-ui for *geometrix-designs*
 4. geomcli: the *nodejs* library for creating easily scripts and cli for *geometrix-designs*
-5. designix-ui: a *sveltekit* app that showcases *geomui* in a minimalist way
-6. designix-script-ts: a *nodejs* script that showcases the usage of *geomcli* in *tyepscript*
-7. designix-script-js: a *nodejs* script that showcases the usage of *geomcli* in *javascript*
-8. designix-cli: a *nodejs* cli that showcases the usage of *geomcli*
-9. paramui: the main *parametrix* web-ui containing *designix* designs and various documentation
+5. designix-script-ts: a *nodejs* script that showcases the usage of *geomcli* in *tyepscript*
+6. designix-script-js: a *nodejs* script that showcases the usage of *geomcli* in *javascript*
+7. designix-cli: a *nodejs* cli that showcases the usage of *geomcli*
+8. designix-ui: a *sveltekit* app that showcases *geomui* in a minimalist way
+9. designix-uis: a mini-web-server for distributing *designix-ui* via *npm*
+10. paramui: the main *parametrix* web-ui containing *designix* designs and various documentation
 
 A public instance of *paramui* is available on that [github-page](https://charlyoleg2.github.io/parametrix/).
 The *code source* is available on [github](https://github.com/charlyoleg2/parametrix).
