@@ -26,15 +26,15 @@ Packages details
 
 | id | package name         | lib or app | browser env | nodejs env | published                                     |
 |----|----------------------|------------|-------------|------------|-----------------------------------------------|
-| 1  | geometrix            | lib        | yes         | yes        | https://www.npmjs.com/package/geometrix       |
-| 2  | designix             | lib        | yes         | yes        | https://www.npmjs.com/package/designix        |
-| 3  | geomui               | lib        | yes         |            | https://www.npmjs.com/package/geomui          |
-| 4  | geomcli              | lib        |             | yes        | https://www.npmjs.com/package/geomcli         |
+| 1  | geometrix            | lib        | yes         | yes        | <https://www.npmjs.com/package/geometrix>     |
+| 2  | designix             | lib        | yes         | yes        | <https://www.npmjs.com/package/designix>      |
+| 3  | geomui               | lib        | yes         |            | <https://www.npmjs.com/package/geomui>        |
+| 4  | geomcli              | lib        |             | yes        | <https://www.npmjs.com/package/geomcli>       |
 | 5  | designix-script-ts   | app        |             | yes        |                                               |
 | 6  | designix-script-js   | app        |             | yes        |                                               |
-| 7  | designix-cli         | app        |             | yes        | https://www.npmjs.com/package/designix-cli    |
+| 7  | designix-cli         | app        |             | yes        | <https://www.npmjs.com/package/designix-cli>  |
 | 8  | designix-ui          | app        | yes         |            |                                               |
-| 9  | designix-uis         | app        |             | yes        | https://www.npmjs.com/package/designix-uis    |
+| 9  | designix-uis         | app        |             | yes        | <https://www.npmjs.com/package/designix-uis>  |
 | 10 | parami-ui            | app        | yes         |            |                                               |
 
 
