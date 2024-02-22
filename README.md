@@ -24,18 +24,25 @@ The *code source* is available on [github](https://github.com/charlyoleg2/parame
 Packages details
 ----------------
 
-| id | package name         | lib or app | browser env | nodejs env | published                                     |
-|----|----------------------|------------|-------------|------------|-----------------------------------------------|
-| 1  | geometrix            | lib        | yes         | yes        | <https://www.npmjs.com/package/geometrix>     |
-| 2  | designix             | lib        | yes         | yes        | <https://www.npmjs.com/package/designix>      |
-| 3  | geomui               | lib        | yes         |            | <https://www.npmjs.com/package/geomui>        |
-| 4  | geomcli              | lib        |             | yes        | <https://www.npmjs.com/package/geomcli>       |
-| 5  | designix-script-ts   | app        |             | yes        |                                               |
-| 6  | designix-script-js   | app        |             | yes        |                                               |
-| 7  | designix-cli         | app        |             | yes        | <https://www.npmjs.com/package/designix-cli>  |
-| 8  | designix-ui          | app        | yes         |            |                                               |
-| 9  | designix-uis         | app        |             | yes        | <https://www.npmjs.com/package/designix-uis>  |
-| 10 | parami-ui            | app        | yes         |            |                                               |
+| id | package name         | lib or app | browser env | nodejs env | published                     |
+|----|----------------------|------------|-------------|------------|-------------------------------|
+| 1  | geometrix            | lib        | yes         | yes        | [geometrix][geometrix]        |
+| 2  | designix             | lib        | yes         | yes        | [designix][designix]          |
+| 3  | geomui               | lib        | yes         |            | [geomui][geomui]              |
+| 4  | geomcli              | lib        |             | yes        | [geomcli][geomcli]            |
+| 5  | designix-script-ts   | app        |             | yes        |                               |
+| 6  | designix-script-js   | app        |             | yes        |                               |
+| 7  | designix-cli         | app        |             | yes        | [designix-cli][designix-cli]  |
+| 8  | designix-ui          | app        | yes         |            |                               |
+| 9  | designix-uis         | app        |             | yes        | [designix-uis][designix-uis]  |
+| 10 | parami-ui            | app        | yes         |            |                               |
+
+[geometrix]: https://www.npmjs.com/package/geometrix
+[geomui]: https://www.npmjs.com/package/geomui
+[geomcli]: https://www.npmjs.com/package/geomcli
+[designix]: https://www.npmjs.com/package/designix
+[designix-cli]: https://www.npmjs.com/package/designix-cli
+[designix-uis]: https://www.npmjs.com/package/designix-uis
 
 
 Prerequisite
