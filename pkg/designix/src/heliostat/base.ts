@@ -29,15 +29,15 @@ const pDef: tParamDef = {
 	partName: 'base',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('D1', 'mm', 600, 100, 4000, 10),
-		pNumber('D2', 'mm', 700, 100, 4000, 10),
-		pNumber('D3', 'mm', 400, 100, 4000, 10),
-		pNumber('D4', 'mm', 500, 100, 4000, 10),
+		pNumber('D1', 'mm', 600, 10, 4000, 10),
+		pNumber('D2', 'mm', 700, 10, 4000, 10),
+		pNumber('D3', 'mm', 400, 10, 4000, 10),
+		pNumber('D4', 'mm', 500, 10, 4000, 10),
 		pNumber('E1', 'mm', 30, 1, 80, 1),
 		pNumber('E2', 'mm', 30, 1, 80, 1),
 		pNumber('E3', 'mm', 30, 1, 80, 1),
 		pNumber('H1', 'mm', 800, 10, 4000, 10),
-		pNumber('H2', 'mm', 50, 10, 4000, 10),
+		pNumber('H2', 'mm', 50, 1, 4000, 1),
 		pNumber('H3', 'mm', 400, 10, 4000, 10),
 		pNumber('N2', '', 12, 1, 100, 1),
 		pNumber('L2', 'mm', 100, 1, 400, 1),
@@ -95,6 +95,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		}
 		rGeome.logstr += `base-height: ${ffix(param.H1)} mm\n`;
 		rGeome.logstr += `base-external-diameter: ${ffix(param.D2)} mm\n`;
+		const interHollow = (param.D1 * Math.PI) / param.N2 - param.L2;
+		rGeome.logstr += `inter-hollow: ${ffix(interHollow)} mm\n`;
 		// figCut
 		ctrBaseCut1 = function (orient: number): tContour {
 			const rBaseCut1 = contour(orient * R2, 0)
