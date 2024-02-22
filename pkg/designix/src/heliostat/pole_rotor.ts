@@ -28,9 +28,9 @@ const pDef: tParamDef = {
 	partName: 'pole_rotor',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('D1', 'mm', 600, 100, 4000, 10),
-		pNumber('D2', 'mm', 400, 100, 4000, 10),
-		pNumber('H1', 'mm', 8000, 100, 40000, 10),
+		pNumber('D1', 'mm', 600, 1, 4000, 1),
+		pNumber('D2', 'mm', 400, 1, 4000, 1),
+		pNumber('H1', 'mm', 8000, 10, 40000, 10),
 		pNumber('E1', 'mm', 5, 1, 80, 1),
 		pNumber('E2', 'mm', 30, 1, 80, 1),
 		pNumber('N1', '', 24, 3, 100, 1),
