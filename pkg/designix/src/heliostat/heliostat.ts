@@ -39,13 +39,13 @@ const pDef: tParamDef = {
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('H1', 'mm', 3000, 10, 40000, 10),
 		pNumber('H2', 'mm', 2500, 50, 40000, 10),
-		pNumber('H3', 'mm', 200, 1, 500, 10),
-		pNumber('H4', 'mm', 800, 1, 4000, 10),
+		pNumber('H3', 'mm', 200, 1, 500, 1),
+		pNumber('H4', 'mm', 800, 1, 4000, 1),
 		pNumber('H5', 'mm', 3000, 50, 6000, 10),
-		pNumber('H6', 'mm', 200, 1, 4000, 10),
-		pNumber('H7', 'mm', 800, 1, 4000, 10),
-		pNumber('H8', 'mm', 200, 1, 4000, 10),
-		pNumber('H9', 'mm', 100, 1, 400, 10),
+		pNumber('H6', 'mm', 200, 1, 4000, 1),
+		pNumber('H7', 'mm', 800, 1, 4000, 1),
+		pNumber('H8', 'mm', 200, 1, 4000, 1),
+		pNumber('H9', 'mm', 100, 1, 400, 1),
 		pNumber('D1', 'mm', 1000, 20, 4000, 10),
 		pNumber('D2', 'mm', 700, 20, 4000, 10),
 		pNumber('D3', 'mm', 900, 20, 4000, 10),
@@ -53,20 +53,20 @@ const pDef: tParamDef = {
 		pNumber('D5', 'mm', 300, 20, 1000, 10),
 		pNumber('D6', 'mm', 200, 10, 1000, 10),
 		pNumber('D7', 'mm', 400, 10, 1000, 10),
-		pNumber('D8', 'mm', 100, 1, 1000, 10),
-		pNumber('D9', 'mm', 100, 10, 1000, 10),
-		pNumber('S1', 'mm', 250, 1, 800, 10),
-		pNumber('S2', 'mm', 200, 1, 800, 10),
+		pNumber('D8', 'mm', 100, 1, 1000, 1),
+		pNumber('D9', 'mm', 100, 1, 1000, 1),
+		pNumber('S1', 'mm', 250, 1, 800, 1),
+		pNumber('S2', 'mm', 200, 1, 800, 1),
 		pNumber('E1', 'mm', 30, 1, 80, 1),
 		pNumber('E2', 'mm', 50, 1, 80, 1),
 		pNumber('L1', 'mm', 12500, 100, 40000, 10),
 		pNumber('L2', 'mm', 6000, 100, 40000, 10),
-		pNumber('L3', 'mm', 100, 1, 500, 10),
-		pNumber('L4', 'mm', 600, 1, 4000, 10),
-		pNumber('L5', 'mm', 2000, 10, 6000, 10),
-		pNumber('L6', 'mm', 2000, 1, 6000, 10),
-		pNumber('L7', 'mm', 100, 1, 1000, 10),
-		pNumber('L8', 'mm', 200, 10, 1000, 10),
+		pNumber('L3', 'mm', 100, 1, 500, 1),
+		pNumber('L4', 'mm', 600, 1, 4000, 1),
+		pNumber('L5', 'mm', 2000, 10, 6000, 1),
+		pNumber('L6', 'mm', 2000, 1, 6000, 1),
+		pNumber('L7', 'mm', 100, 1, 1000, 1),
+		pNumber('L8', 'mm', 200, 1, 1000, 1),
 		pNumber('al', 'degree', 80, 0, 95, 1),
 		pNumber('ar', 'degree', 80, 0, 95, 1)
 	],
@@ -197,10 +197,10 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		spiderParam.setVal('D1', param.D8);
 		spiderParam.setVal('L1', param.S1);
 		spiderParam.setVal('L2', param.S2);
-		spiderParam.setVal('L3', param.D8);
-		spiderParam.setVal('E1', param.E2);
+		spiderParam.setVal('L3', param.E2 * 2);
+		spiderParam.setVal('E1', param.E1);
 		spiderParam.setVal('E2', param.E2);
-		spiderParam.setVal('E3', param.E2);
+		spiderParam.setVal('E3', param.E1);
 		spiderParam.setVal('L4', param.L2 / 2 - param.H8);
 		spiderParam.setVal('R2', 0);
 		spiderParam.setVal('N1', spiderN1);
