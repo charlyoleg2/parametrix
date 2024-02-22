@@ -24,17 +24,18 @@ The *code source* is available on [github](https://github.com/charlyoleg2/parame
 Packages details
 ----------------
 
-| id | package name        | lib or app | browser env | nodejs env |
-|----|---------------------|------------|-------------|------------|
-| 1  | geometrix           | lib        | yes         | yes        |
-| 2  | designix            | lib        | yes         | yes        |
-| 3  | geomui              | lib        | yes         |            |
-| 4  | geomcli             | lib        |             | yes        |
-| 5  | designix-ui         | app        | yes         |            |
-| 6  | designix-script-ts  | app        |             | yes        |
-| 7  | designix-script-js  | app        |             | yes        |
-| 8  | designix-cli        | app        |             | yes        |
-| 9  | parami-ui           | app        | yes         |            |
+| id | package name         | lib or app | browser env | nodejs env | published                                     |
+|----|----------------------|------------|-------------|------------|-----------------------------------------------|
+| 1  | geometrix            | lib        | yes         | yes        | https://www.npmjs.com/package/geometrix       |
+| 2  | designix             | lib        | yes         | yes        | https://www.npmjs.com/package/designix        |
+| 3  | geomui               | lib        | yes         |            | https://www.npmjs.com/package/geomui          |
+| 4  | geomcli              | lib        |             | yes        | https://www.npmjs.com/package/geomcli         |
+| 5  | designix-script-ts   | app        |             | yes        |                                               |
+| 6  | designix-script-js   | app        |             | yes        |                                               |
+| 7  | designix-cli         | app        |             | yes        | https://www.npmjs.com/package/designix-cli    |
+| 8  | designix-ui          | app        | yes         |            |                                               |
+| 9  | designix-uis         | app        |             | yes        | https://www.npmjs.com/package/designix-uis    |
+| 10 | parami-ui            | app        | yes         |            |                                               |
 
 
 Prerequisite

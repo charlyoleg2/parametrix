@@ -2,6 +2,11 @@
 	"name": "designix-ui",
 	"version": "0.5.5",
 	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/charlyoleg2/parametrix.git"
+	},
+	"homepage": "https://charlyoleg2.github.io/parametrix/",
 	"scripts": {
 		"cp_pgdsvg": "shx cp -r ../../node_modules/designix/dist/pgdsvg static/",
 		"dev": "vite dev",
