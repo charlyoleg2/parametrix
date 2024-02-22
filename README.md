@@ -5,7 +5,7 @@ Parametrix
 Presentation
 ------------
 
-This is the monorepo that contains the following *javascript* packages:
+This is a monorepo that contains the following *javascript* packages:
 
 1. geometrix: the core library of *parametrix*
 2. designix: the first library of designs implemeted with *geometrix*
