@@ -137,8 +137,8 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		if (2 * param.E7 >= param.S1) {
 			throw `err135: E7 ${param.E7} too large compare to S1 ${param.S1}`;
 		}
-		if (param.L5 < param.D1 + 4 * param.S1) {
-			throw `err138: L5 ${param.L5} too small compare to D1 ${param.D1} and S1 ${param.S1}`;
+		if (param.L5 < param.D2) {
+			throw `err138: L5 ${param.L5} too small compare to D2 ${param.D2}`;
 		}
 		const stopper1H = H1H5 - param.S2;
 		if (stopper1H < 0) {
