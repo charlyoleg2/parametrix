@@ -101,6 +101,6 @@ async function mini_cli(argv: string[]) {
 	await mini_server(args.directory, args.browser, args.port);
 }
 
-console.log('designix-uis says Hello!');
+//console.log('designix-uis says Hello!');
 await mini_cli(process.argv);
-console.log('designix-uis says Bye!');
+//console.log('designix-uis says Bye!');
