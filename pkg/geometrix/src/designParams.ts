@@ -65,13 +65,13 @@ class DesignParam {
 		}
 		return rNames;
 	}
-	constructor(iparamDef: tParamDef) {
+	constructor(iparamDef: tParamDef, suffix = '') {
 		for (const pi of iparamDef.params) {
 			this.paramVal[pi.name] = pi.init;
 			this.paramInit[pi.name] = pi.init;
 			this.paramChanged[pi.name] = false;
 		}
-		this.partName = iparamDef.partName;
+		this.partName = iparamDef.partName + suffix;
 		this.paramNames = this.getParamName();
 	}
 	getPartName(): string {
@@ -130,8 +130,8 @@ class DesignParam {
 	}
 }
 
-function designParam(iparamDef: tParamDef): DesignParam {
-	return new DesignParam(iparamDef);
+function designParam(iparamDef: tParamDef, suffix = ''): DesignParam {
+	return new DesignParam(iparamDef, suffix);
 }
 
 function pNumber(name: string, unit: string, init: number, min = 0, max = 100, step = 1): tParam {
