@@ -157,7 +157,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// sub-design gear_wheel_wheel
-		const gearWWParam = designParam(gearWheelWheelDef.pDef, 'ref1');
+		const gearWWParam = designParam(gearWheelWheelDef.pDef, '_ref1');
 		gearWWParam.setVal('module', param.module);
 		gearWWParam.setVal('N1', param.N1);
 		gearWWParam.setVal('c1x', param.c1x);
@@ -202,7 +202,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			inherits: [
 				{
 					outName: `inpax_${designName}_gearWW`,
-					subdesign: 'pax_gear_wheel_wheel',
+					subdesign: 'pax_gear_wheel_wheel_ref1',
 					subgeom: gearWWGeom,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
