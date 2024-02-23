@@ -297,6 +297,7 @@ pax_${partName}();
 		return rStr;
 	}
 }
+
 function oscadWrite() {
 	const rOscadWrite = new OpenscadWrite();
 	return rOscadWrite;
