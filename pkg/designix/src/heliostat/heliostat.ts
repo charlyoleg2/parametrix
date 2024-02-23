@@ -219,7 +219,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
 		swingParam.setVal('L3', param.D7);
-		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal(), poleStaticParam.getSuffix());
+		const poleStaticGeom = poleStaticDef.pGeom(
+			0,
+			poleStaticParam.getParamVal(),
+			poleStaticParam.getSuffix()
+		);
 		checkGeom(poleStaticGeom);
 		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.getPartNameSuffix());
 		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal(), rakeParam.getSuffix());
