@@ -188,7 +188,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const gearWWGeom = gearWheelWheelDef.pGeom(
 			t,
 			gearWWParam.getParamVal(),
-			gearWWParam.suffix
+			gearWWParam.getSuffix()
 		);
 		checkGeom(gearWWGeom);
 		rGeome.logstr += prefixLog(gearWWGeom.logstr, gearWWParam.getPartNameSuffix());

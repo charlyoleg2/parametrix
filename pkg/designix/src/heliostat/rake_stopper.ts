@@ -194,9 +194,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rakeParam.setVal('H7', param.H7);
 		rakeParam.setVal('L9', param.L9);
 		rakeParam.setVal('R9', param.R9);
-		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
+		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal(), rakeParam.getSuffix());
 		checkGeom(rakeGeom);
-		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.partName);
+		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.getPartNameSuffix());
 		// figures
 		figCone.mergeFigure(rakeGeom.fig.faceCone);
 		figBeam.mergeFigure(rakeGeom.fig.faceBeam);

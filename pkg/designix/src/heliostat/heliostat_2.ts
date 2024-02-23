@@ -196,15 +196,15 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
 		swingParam.setVal('L3', param.D7);
-		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
+		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal(), poleStaticParam.getSuffix());
 		checkGeom(poleStaticGeom);
-		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.partName);
-		const rakeGeom = rakeStopperDef.pGeom(0, rakeParam.getParamVal());
+		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.getPartNameSuffix());
+		const rakeGeom = rakeStopperDef.pGeom(0, rakeParam.getParamVal(), rakeParam.getSuffix());
 		checkGeom(rakeGeom);
-		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.partName);
-		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
+		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.getPartNameSuffix());
+		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal(), swingParam.getSuffix());
 		checkGeom(swingGeom);
-		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.partName);
+		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.getPartNameSuffix());
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
 		figSide.mergeFigure(rakeGeom.fig.faceStopperSide.translate(0, rakePosY));

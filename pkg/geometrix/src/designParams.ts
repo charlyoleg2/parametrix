@@ -82,6 +82,9 @@ class DesignParam {
 	getPartNameSuffix(): string {
 		return this.partName + this.suffix;
 	}
+	getSuffix(): string {
+		return this.suffix;
+	}
 	getParamVal(): tParamVal {
 		return this.paramVal;
 	}

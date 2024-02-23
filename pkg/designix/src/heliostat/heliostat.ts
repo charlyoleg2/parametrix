@@ -219,18 +219,18 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
 		swingParam.setVal('L3', param.D7);
-		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal());
+		const poleStaticGeom = poleStaticDef.pGeom(0, poleStaticParam.getParamVal(), poleStaticParam.getSuffix());
 		checkGeom(poleStaticGeom);
-		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.partName);
-		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal());
+		rGeome.logstr += prefixLog(poleStaticGeom.logstr, poleStaticParam.getPartNameSuffix());
+		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal(), rakeParam.getSuffix());
 		checkGeom(rakeGeom);
-		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.partName);
-		const spiderGeom = spiderDef.pGeom(0, spiderParam.getParamVal());
+		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.getPartNameSuffix());
+		const spiderGeom = spiderDef.pGeom(0, spiderParam.getParamVal(), spiderParam.getSuffix());
 		checkGeom(spiderGeom);
-		rGeome.logstr += prefixLog(spiderGeom.logstr, spiderParam.partName);
-		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal());
+		rGeome.logstr += prefixLog(spiderGeom.logstr, spiderParam.getPartNameSuffix());
+		const swingGeom = swingDef.pGeom(0, swingParam.getParamVal(), swingParam.getSuffix());
 		checkGeom(swingGeom);
-		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.partName);
+		rGeome.logstr += prefixLog(swingGeom.logstr, swingParam.getPartNameSuffix());
 		// figSide
 		figSide.mergeFigure(poleStaticGeom.fig.poleCut);
 		figSide.mergeFigure(rakeGeom.fig.faceBeam.translate(0, rakePosY));
