@@ -23,7 +23,7 @@ Below three repositories showcasing the usage of the library [geometrix](https:/
 ### Simple design
 
 - [myPartA source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartA.ts)
-- [myPartA page](https://charlyoleg2.github.io/parame51/myGroup1/myPartA)
+- [myPartA page](https://charlyoleg2.github.io/parame51/desi51/myGroup1/myPartA)
 
 *myPartA* goes through the required [steps](https://charlyoleg2.github.io/parametrix/docs/geom_user#main_steps) of a 3D part description.
 
@@ -37,7 +37,7 @@ API:
 ### Parameter types
 
 - [myPartB source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartB.ts)
-- [myPartB page](https://charlyoleg2.github.io/parame51/myGroup1/myPartB)
+- [myPartB page](https://charlyoleg2.github.io/parame51/desi51/myGroup1/myPartB)
 
 *myPartB* illustrates the usage of the 3 types of parameters:
 
@@ -55,7 +55,7 @@ API:
 ### Extrusion and 3D construction
 
 - [myPartC source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartC.ts)
-- [myPartC page](https://charlyoleg2.github.io/parame51/myGroup1/myPartC)
+- [myPartC page](https://charlyoleg2.github.io/parame51/desi51/myGroup1/myPartC)
 
 *myPartC* illustrates the usage of the 2 types of extrusion:
 
@@ -78,7 +78,7 @@ API:
 ### Evidences of the power of 2D technical drawings
 
 - [myPartD source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup1/myPartD.ts)
-- [myPartD page](https://charlyoleg2.github.io/parame51/myGroup1/myPartD)
+- [myPartD page](https://charlyoleg2.github.io/parame51/desi51/myGroup1/myPartD)
 
 *myPartD* has simple 2D figures but a complex 3D shape. 2D technical drawing provides a simple representation of complex shape.
 
@@ -86,7 +86,7 @@ API:
 ### Contour creation with absolute/relative cartesian/polar coordinates
 
 - [myPartE source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartE.ts)
-- [myPartE page](https://charlyoleg2.github.io/parame51/myGroup2/myPartE)
+- [myPartE page](https://charlyoleg2.github.io/parame51/desi51/myGroup2/myPartE)
 
 *myPartE* illustrates how to create contours using the four types of coordinates:
 
@@ -108,7 +108,7 @@ API:
 ### Contour corner options
 
 - [myPartF source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartF.ts)
-- [myPartF page](https://charlyoleg2.github.io/parame51/myGroup2/myPartF)
+- [myPartF page](https://charlyoleg2.github.io/parame51/desi51/myGroup2/myPartF)
 
 *myPartF* illustrates how to apply the four possible corner types:
 
@@ -132,7 +132,7 @@ API:
 ### Contour transformations
 
 - [myPartG source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartG.ts)
-- [myPartG page](https://charlyoleg2.github.io/parame51/myGroup2/myPartG)
+- [myPartG page](https://charlyoleg2.github.io/parame51/desi51/myGroup2/myPartG)
 
 *myPartG* illustrates how to apply the four following transformations on *contours*:
 
@@ -152,7 +152,7 @@ API:
 ### Partial contour
 
 - [myPartH source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartH.ts)
-- [myPartH page](https://charlyoleg2.github.io/parame51/myGroup2/myPartH)
+- [myPartH page](https://charlyoleg2.github.io/parame51/desi51/myGroup2/myPartH)
 
 *myPartH* illustrates how to create a *partial contour* (i.e. a not closed contour) and re-use it several times to create complete contour (i.e. a closed contour).
 
@@ -166,7 +166,7 @@ API:
 ### Figure transformations
 
 - [myPartI source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartI.ts)
-- [myPartI page](https://charlyoleg2.github.io/parame51/myGroup2/myPartI)
+- [myPartI page](https://charlyoleg2.github.io/parame51/desi51/myGroup2/myPartI)
 
 *myPartI* illustrates how to apply to all layers of a figures the following transformations:
 
@@ -189,7 +189,7 @@ API:
 ### Re-using figures of other designs
 
 - [myPartJ source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartJ.ts)
-- [myPartJ page](https://charlyoleg2.github.io/parame51/myGroup2/myPartJ)
+- [myPartJ page](https://charlyoleg2.github.io/parame51/desi51/myGroup2/myPartJ)
 
 *myPartJ* illustrates how to re-use figures defined in other designs. *myPartJ* imports the designs *myPartF*, *myPartG* and *myPartI* to use their figures.
 
@@ -209,7 +209,7 @@ API:
 ### Assembly of 3D-parts
 
 - [myPartK source](https://github.com/charlyoleg2/parame51/blob/main/pkg/desi51/src/myGroup2/myPartK.ts)
-- [myPartK page](https://charlyoleg2.github.io/parame51/myGroup2/myPartK)
+- [myPartK page](https://charlyoleg2.github.io/parame51/desi51/myGroup2/myPartK)
 
 *myPartK* assembles 3D-parts defined in other designs. *myPartK* imports the designs *myPartA* and *myPartD* to use their *volume definitions*.
 
