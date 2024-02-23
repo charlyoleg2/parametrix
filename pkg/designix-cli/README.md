@@ -31,6 +31,15 @@ Usage
 npx designix --help
 ```
 
+Usage without installation
+--------------------------
+
+```bash
+npx --package=designix-cli designix --help
+npx --package=designix-cli designix versions
+npx --package=designix-cli designix list-designs
+```
+
 
 Dev
 ---

@@ -32,3 +32,11 @@ Usage
 npm designux-ui
 ```
 
+
+Usage without installation
+--------------------------
+
+```bash
+npx --package=designix-uis designix-ui
+npx --package=designix-uis designix-ui --help
+```
