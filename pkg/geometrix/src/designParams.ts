@@ -57,6 +57,7 @@ class DesignParam {
 	paramInit: tParamVal = {};
 	paramChanged: tParamChanged = {};
 	partName: string;
+	suffix: string;
 	paramNames: string[];
 	getParamName(): string[] {
 		const rNames: string[] = [];
@@ -71,11 +72,15 @@ class DesignParam {
 			this.paramInit[pi.name] = pi.init;
 			this.paramChanged[pi.name] = false;
 		}
-		this.partName = iparamDef.partName + suffix;
+		this.suffix = suffix;
+		this.partName = iparamDef.partName;
 		this.paramNames = this.getParamName();
 	}
 	getPartName(): string {
 		return this.partName;
+	}
+	getPartNameSuffix(): string {
+		return this.partName + this.suffix;
 	}
 	getParamVal(): tParamVal {
 		return this.paramVal;

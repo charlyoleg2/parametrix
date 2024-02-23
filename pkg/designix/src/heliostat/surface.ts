@@ -89,9 +89,9 @@ const pDef: tParamDef = {
 type tCtr1 = (px: number, py: number) => tContour;
 type tPositions = [number, number][];
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
+	const rGeome = initGeom(pDef.partName + suffix);
 	let ctrPanelProfile: tCtr1;
-	const rGeome = initGeom(pDef.partName);
 	const figSurface = figure();
 	const figOnePanel = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;

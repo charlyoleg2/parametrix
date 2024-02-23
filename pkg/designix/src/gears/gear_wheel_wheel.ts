@@ -137,8 +137,8 @@ const pDef: tParamDef = {
 	}
 };
 
-function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome = initGeom(pDef.partName);
+function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
+	const rGeome = initGeom(pDef.partName + suffix);
 	const figOne = figure();
 	const figTwo = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;

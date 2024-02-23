@@ -66,10 +66,10 @@ const pDef: tParamDef = {
 type tCtr1 = (sx: number, sy: number, sl: number) => tContour;
 type tCtr2 = (width: number, height: number, xpos: number, ypos: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
+	const rGeome = initGeom(pDef.partName + suffix);
 	let ctrSquare: tCtr1;
 	let ctrRect: tCtr2;
-	const rGeome = initGeom(pDef.partName);
 	const figLegs = figure();
 	const figTube = figure();
 	const figBody = figure();

@@ -71,11 +71,11 @@ const pDef: tParamDef = {
 
 type tCtr1 = (orient: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
+	const rGeome = initGeom(pDef.partName + suffix);
 	let ctrBaseCut1: tCtr1;
 	let ctrBaseCut2: tCtr1;
 	let ctrHollow: tCtr1;
-	const rGeome = initGeom(pDef.partName);
 	const figCut = figure();
 	const figTop = figure();
 	const figHollow = figure();

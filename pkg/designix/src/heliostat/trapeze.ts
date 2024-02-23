@@ -82,10 +82,10 @@ const pDef: tParamDef = {
 
 type tCtr1 = (px: number, py: number, angle: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
+	const rGeome = initGeom(pDef.partName + suffix);
 	let ctrRodFootprint: tCtr1;
 	let ctrRod: tCtr1;
-	const rGeome = initGeom(pDef.partName);
 	const figFrame = figure();
 	const figPlate = figure();
 	const figRod = figure();

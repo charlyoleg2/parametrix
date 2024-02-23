@@ -13,7 +13,7 @@ interface tGeom {
 	vol: tVolume;
 	sub: tSubDesign;
 }
-type tGeomFunc = (t: number, ipVal: tParamVal) => tGeom;
+type tGeomFunc = (t: number, ipVal: tParamVal, suffix?: string) => tGeom;
 
 interface tPageDef {
 	pTitle: string;

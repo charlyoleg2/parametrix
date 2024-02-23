@@ -56,9 +56,9 @@ const pDef: tParamDef = {
 
 type tCtr1 = (orient: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
+	const rGeome = initGeom(pDef.partName + suffix);
 	let ctrPoleProfile: tCtr1;
-	const rGeome = initGeom(pDef.partName);
 	const figCut = figure();
 	const figBottom = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;

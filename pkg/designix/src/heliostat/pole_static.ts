@@ -71,10 +71,10 @@ const pDef: tParamDef = {
 type tCtr1 = (orient: number, withR3: boolean) => tContour;
 type tCtr2 = (pL2: number) => tContour;
 
-function pGeom(t: number, param: tParamVal): tGeom {
+function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
+	const rGeome = initGeom(pDef.partName + suffix);
 	let ctrPoleProfile: tCtr1;
 	let ctrDoorFace: tCtr2;
-	const rGeome = initGeom(pDef.partName);
 	const figCut = figure();
 	const figFace = figure();
 	const figBottom = figure();

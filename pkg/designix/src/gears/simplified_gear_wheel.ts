@@ -150,14 +150,14 @@ const pDef: tParamDef = {
 	}
 };
 
-function pGeom(t: number, param: tParamVal): tGeom {
-	const rGeome = initGeom(pDef.partName);
+function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
+	const rGeome = initGeom(pDef.partName + suffix);
 	const figOne = figure();
 	const figTwo = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// sub-design gear_wheel_wheel
-		const gearWWParam = designParam(gearWheelWheelDef.pDef);
+		const gearWWParam = designParam(gearWheelWheelDef.pDef, 'ref1');
 		gearWWParam.setVal('module', param.module);
 		gearWWParam.setVal('N1', param.N1);
 		gearWWParam.setVal('c1x', param.c1x);
@@ -185,9 +185,13 @@ function pGeom(t: number, param: tParamVal): tGeom {
 		gearWWParam.setVal('wheelAxisExtRound', param.wheelAxisExtRound);
 		gearWWParam.setVal('wheelAxisIntRound', param.wheelAxisIntRound);
 		gearWWParam.setVal('wheelExtraRound', param.wheelExtraRound);
-		const gearWWGeom = gearWheelWheelDef.pGeom(t, gearWWParam.getParamVal());
+		const gearWWGeom = gearWheelWheelDef.pGeom(
+			t,
+			gearWWParam.getParamVal(),
+			gearWWParam.suffix
+		);
 		checkGeom(gearWWGeom);
-		rGeome.logstr += prefixLog(gearWWGeom.logstr, gearWWParam.partName);
+		rGeome.logstr += prefixLog(gearWWGeom.logstr, gearWWParam.getPartNameSuffix());
 		// figures
 		figOne.mergeFigure(gearWWGeom.fig.teethProfile);
 		figTwo.mergeFigure(gearWWGeom.fig.axisProfile);
