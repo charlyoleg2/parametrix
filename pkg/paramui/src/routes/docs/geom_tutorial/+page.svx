@@ -14,9 +14,9 @@ category: documentation
 
 Below three repositories showcasing the usage of the library [geometrix](https://www.npmjs.com/package/geometrix) and its associated framework [parametrix](https://github.com/charlyoleg2/parametrix):
 
-1. [parame51](https://github.com/charlyoleg2/parame51) and the associated UI [desi51-ui](https://charlyoleg2.github.io/parame51/)
-2. [parame52](https://github.com/charlyoleg2/parame52) and the associated UI [desi52-ui](https://charlyoleg2.github.io/parame52/)
-3. [parame53](https://github.com/charlyoleg2/parame53) and the associated UI [desi53-ui](https://charlyoleg2.github.io/parame53/)
+1. [parame51](https://github.com/charlyoleg2/parame51) containing the library [desi51](https://www.npmjs.com/package/desi51) and the associated UI [desi51-ui](https://charlyoleg2.github.io/parame51/)
+2. [parame52](https://github.com/charlyoleg2/parame52) containing the libray [desi52](https://www.npmjs.com/package/desi52) and the associated UI [desi52-ui](https://charlyoleg2.github.io/parame52/)
+3. [parame53](https://github.com/charlyoleg2/parame53) containing two libraries [desi53](https://www.npmjs.com/package/desi53) and [desi54](https://www.npmjs.com/package/desi54) and the associated UI [desi53-ui](https://charlyoleg2.github.io/parame53/)
 
 ## Tutorial of the Geometrix concepts
 
@@ -234,11 +234,32 @@ When you develop your own 3D part library (like [parame51]()) you typically crea
 
 In *parameXYZ-ui* and *parameXYZ-cli* you define the list of designs you want to expose. Usually it corresponds to the list your 3D part libray *parameXYZ* exports plus optionally ad-hoc external designs you want to expose as well in your UI-app or CLI-app.
 
-In most cases you want to have the same list of designs for your UI-app and CLI-app. In this case, to get a common list of designs for UI-app and CLI-app, create an additional node-package:
+In most cases you want to expose in UI-app and CLI-app all the designs defined in your library and you don't want to spend effort to create and maintain those UI-app and CLI-app. The helper repository [parame_paxApp](https://github.com/charlyoleg2/parame_paxApp) provides such generic UI-app and CLI-app, as well as an helper script, so you don't have to take care of the UI-app and CLI-app.
 
-- parameXYZ-list : common list of designs to be exposed in parameXYZ-ui and parameXYZ-cli
+Below th recipe to benefit from the generic UI-app and CLI-app for *geometrix design library*:
 
-[parame52-list]() illustrates such node-package. Then [parame52-ui]() and [parame52]() have to be updated rarely.
+- your repo is a monorepo that contains one or several sub-packages of your *geometrix design library*
+- degit https://github.com/charlyoleg2/parame_paxApps/paxApps in your repo
+- gitignore the directory *paxApps*
+- In the top-monorepo *package.json*:
+	- add the section *paxApps* for configuring those generic UI-app and CLI-app
+	- complete the scripts for build automation
+- build the all and you get all the designs of your library exposed in UI-app and CLI-app
+
+The section *paxApps* of the *package.json* looks like:
+
+```json
+"paxApps": {
+	"colorBg": "DarkCyan",
+	"colorTitle": "AquaMarine",
+	"libs": [
+		"desi52"
+	]
+}
+```
+
+For starting a new *geometrix design library*, use *parame52* as template.
+
 
 ### Contour with arcs
 
