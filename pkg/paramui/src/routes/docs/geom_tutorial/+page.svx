@@ -217,6 +217,9 @@ API:
 
 - <a href="{base}/docs/apidoc/interfaces/geometrix.tInherit.html" rel="external">tInherit</a>
 - <a href="{base}/docs/apidoc/types/geometrix.tSubDesign.html" rel="external">tSubDesign</a>
+- <a href="{base}/docs/apidoc/functions/geometrix.designParam-1.html" rel="external">designParam()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getSuffix" rel="external">.getSuffix()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartNameSuffix" rel="external">.getPartNameSuffix()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartName" rel="external">.getPartName()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getDesignParamList" rel="external">.getDesignParamList()</a>
 
