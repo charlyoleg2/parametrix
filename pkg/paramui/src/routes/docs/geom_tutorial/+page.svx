@@ -226,6 +226,13 @@ API:
 
 ### Generic UI-app and CLI-app
 
+- [myPartL source](https://github.com/charlyoleg2/parame52/blob/main/pkg/desi52/src/pointedCorners/myPartL.ts)
+- [myPartL page](https://charlyoleg2.github.io/parame52/desi52/myPartLDef)
+
+*myPartL* is a simple design of Maltese cross to showcase how to use the generic UI-app and CLI-app.
+
+#### Context
+
 When you develop your own 3D part library (like [parame51](https://github.com/charlyoleg2/parame51)) you typically create 3 node-packages:
 
 - parameXYZ : your 3D part library
@@ -234,7 +241,11 @@ When you develop your own 3D part library (like [parame51](https://github.com/ch
 
 In *parameXYZ-ui* and *parameXYZ-cli* you define the list of designs you want to expose. Usually it corresponds to the list your 3D part library *parameXYZ* exports plus optionally ad-hoc external designs you want to expose as well in your UI-app or CLI-app.
 
+#### Solution
+
 In most cases you want to expose in UI-app and CLI-app all the designs defined in your library and you don't want to spend effort to create and maintain those UI-app and CLI-app. The helper repository [parame_paxApps](https://github.com/charlyoleg2/parame_paxApps) provides such generic UI-app and CLI-app, as well as an helper script, so you don't have to take care of the UI-app and CLI-app.
+
+#### HowTo
 
 Below the recipe to benefit from the generic UI-app and CLI-app for *geometrix design libraries*:
 
@@ -257,6 +268,8 @@ The section *paxApps* of the *package.json* looks like:
 	]
 }
 ```
+
+#### Template recommendation
 
 For starting a new *geometrix design library*, use [parame52](https://github.com/charlyoleg2/parame52) as template. If you want to create several *geometrix design libraries* in your repo, use [parame53](https://github.com/charlyoleg2/parame53) as template.
 
