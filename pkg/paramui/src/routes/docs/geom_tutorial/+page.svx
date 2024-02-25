@@ -16,7 +16,7 @@ Below three repositories showcasing the usage of the library [geometrix](https:/
 
 1. [parame51](https://github.com/charlyoleg2/parame51) containing the library [desi51](https://www.npmjs.com/package/desi51) and the associated UI [desi51-ui](https://charlyoleg2.github.io/parame51/)
 2. [parame52](https://github.com/charlyoleg2/parame52) containing the library [desi52](https://www.npmjs.com/package/desi52) and the associated UI [desi52-ui](https://charlyoleg2.github.io/parame52/)
-3. [parame53](https://github.com/charlyoleg2/parame53) containing two libraries [desi53](https://www.npmjs.com/package/desi53) and [desi54](https://www.npmjs.com/package/desi54) and the associated UI [desi53-ui](https://charlyoleg2.github.io/parame53/)
+3. [parame53](https://github.com/charlyoleg2/parame53) containing two libraries [desi53](https://www.npmjs.com/package/desi53) and [desi53b](https://www.npmjs.com/package/desi53b) and the associated UI [desi53-ui](https://charlyoleg2.github.io/parame53/)
 
 ## Tutorial of the Geometrix concepts
 

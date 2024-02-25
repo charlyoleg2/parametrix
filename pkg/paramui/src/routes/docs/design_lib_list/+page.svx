@@ -28,9 +28,9 @@ Below a list of libraries of 3D-part-designs based on *Geometrix*:
 	[ui](https://charlyoleg2.github.io/parame53/) -
 	[pkg](https://www.npmjs.com/package/desi53) :
 	Third batch of geometrix design examples for the tutorial
-5. desi54 : [src](https://github.com/charlyoleg2/parame54) -
-	[ui](https://charlyoleg2.github.io/parame54/) -
-	[pkg](https://www.npmjs.com/package/desi54) :
+5. desi53b : [src](https://github.com/charlyoleg2/parame53) -
+	[ui](https://charlyoleg2.github.io/parame53/) -
+	[pkg](https://www.npmjs.com/package/desi53b) :
 	Fourth batch of geometrix design examples for the tutorial
 6. desi78 : [src](https://github.com/charlyoleg2/parame78) -
 	[ui](https://charlyoleg2.github.io/parame78/) -
