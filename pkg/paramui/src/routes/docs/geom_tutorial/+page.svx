@@ -277,7 +277,7 @@ For starting a new *geometrix design library*, use [parame52](https://github.com
 ### Contour with arcs
 
 - [myPartM source](https://github.com/charlyoleg2/parame52/blob/main/desi52/src/pointedCorners/myPartM.ts)
-- [myPartM page](https://charlyoleg2.github.io/parame52/desi52/pointedCorners/myPartM)
+- [myPartM page](https://charlyoleg2.github.io/parame52/desi52/myPartMDef)
 
 *myPartM* illustrates how to define arcs. *Geometrix* offers three ways to define arcs.
 
@@ -287,6 +287,21 @@ API:
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc2" rel="external">.addSegArc2()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc3" rel="external">.addSegArc3()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#closeSegArc" rel="external">.closeSegArc()</a>
+
+
+### Contour with arcs and modified corners
+
+- [myPartN source](https://github.com/charlyoleg2/parame52/blob/main/desi52/src/modifiedCorners/myPartN.ts)
+- [myPartN page](https://charlyoleg2.github.io/parame52/desi52/myPartNDef)
+
+*myPartN* illustrates a design with arcs and modified corners.
+
+API:
+
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerPointed" rel="external">.addCornerPointed()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerRounded" rel="external">.addCornerRounded()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWidened" rel="external">.addCornerWidened()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWideAcc" rel="external">.addCornerWideAcc()</a>
 
 
 ### Functions defining a Contour
