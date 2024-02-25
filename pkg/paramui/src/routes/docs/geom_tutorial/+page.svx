@@ -226,7 +226,7 @@ API:
 
 ### Generic UI-app and CLI-app
 
-- [myPartL source](https://github.com/charlyoleg2/parame52/blob/main/pkg/desi52/src/pointedCorners/myPartL.ts)
+- [myPartL source](https://github.com/charlyoleg2/parame52/blob/main/desi52/src/pointedCorners/myPartL.ts)
 - [myPartL page](https://charlyoleg2.github.io/parame52/desi52/myPartLDef)
 
 *myPartL* is a simple design of Maltese cross to showcase how to use the generic UI-app and CLI-app.
