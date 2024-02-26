@@ -286,6 +286,7 @@ API:
 - <a href="{base}/docs/apidoc/functions/geometrix.point-1.html" rel="external">point()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Point.html#middlePoint" rel="external">.middlePoint()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translatePolar" rel="external">.translatePolar()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addPointA" rel="external">.addPointA()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc" rel="external">.addSegArc()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc2" rel="external">.addSegArc2()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc3" rel="external">.addSegArc3()</a>
@@ -309,6 +310,17 @@ API:
 
 ### Contour with double-arcs
 
+- [myPartO source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup5/myPartO.ts)
+- [myPartO page](https://charlyoleg2.github.io/parame53/desi53/myGroup5/myPartO)
+
+*myPartO* illustrates double-arcs. Use double-arcs where you want to ensure the continuity of the derivate (i.e. tangent).
+
+API:
+
+- <a href="{base}/docs/apidoc/functions/geometrix.point-1.html" rel="external">point()</a>
+- <a href="{base}/docs/apidoc/enums/geometrix.ShapePoint.html" rel="external">ShapePoint</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addPointA" rel="external">.addPointA()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSeg2Arcs" rel="external">.addSeg2Arcs()</a>
 
 
 ### Functions defining a Contour
