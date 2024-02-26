@@ -311,7 +311,7 @@ API:
 ### Contour with double-arcs
 
 - [myPartO source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup5/myPartO.ts)
-- [myPartO page](https://charlyoleg2.github.io/parame53/desi53/myGroup5/myPartO)
+- [myPartO page](https://charlyoleg2.github.io/parame53/desi53/myPartODef)
 
 *myPartO* illustrates double-arcs. Use double-arcs where you want to ensure the continuity of the derivate (i.e. tangent).
 
