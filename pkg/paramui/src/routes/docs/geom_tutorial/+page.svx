@@ -283,6 +283,9 @@ For starting a new *geometrix design library*, use [parame52](https://github.com
 
 API:
 
+- <a href="{base}/docs/apidoc/functions/geometrix.point-1.html" rel="external">point()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#middlePoint" rel="external">.middlePoint()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translatePolar" rel="external">.translatePolar()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc" rel="external">.addSegArc()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc2" rel="external">.addSegArc2()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc3" rel="external">.addSegArc3()</a>
@@ -302,6 +305,10 @@ API:
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerRounded" rel="external">.addCornerRounded()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWidened" rel="external">.addCornerWidened()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWideAcc" rel="external">.addCornerWideAcc()</a>
+
+
+### Contour with double-arcs
+
 
 
 ### Functions defining a Contour
