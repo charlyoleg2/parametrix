@@ -325,6 +325,17 @@ API:
 
 ### Functions defining a Contour
 
+- [myPartP source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup5/myPartP.ts)
+- [myPartP page](https://charlyoleg2.github.io/parame53/desi53/myPartPDef)
+
+*myPartP* shows how to use a function for creating a contour.
+
+API:
+
+- <a href="{base}/docs/apidoc/types/geometrix.tContour.html" rel="external">tContour</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#translate" rel="external">.translate()</a>
+
+
 ### Add points, lines, vectors and dynamics decorations
 
 ### Just a 2D drawing
