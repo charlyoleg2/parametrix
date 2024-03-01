@@ -263,6 +263,7 @@ The section *paxApps* of the *package.json* looks like:
 "paxApps": {
 	"colorBg": "DarkCyan",
 	"colorTitle": "AquaMarine",
+	"homepage2": "https://github.com/charlyoleg2/parame52",
 	"libs": [
 		"desi52"
 	]
