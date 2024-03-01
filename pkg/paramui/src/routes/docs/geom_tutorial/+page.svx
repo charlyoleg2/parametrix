@@ -341,7 +341,7 @@ API:
 - [myPartQ source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup6/myPartQ.ts)
 - [myPartQ page](https://charlyoleg2.github.io/parame53/desi53/myPartQDef)
 
-*myPartQ* shows how to use the extra layers for second contours, dynamics contoues, points, lines and vectors.
+*myPartQ* shows how to use the extra layers for second contours, dynamics contours, points, lines and vectors.
 
 - *Second contours* are thought for counter parts that are drawn for simulation but are not exported in 3D scripts.
 - *Dynamics contours* are free contours that could be used to show relative speeds, displacement, etc
@@ -349,6 +349,7 @@ API:
 
 API:
 
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#constructor" rel="external">Contour()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addSecond" rel="external">.addSecond()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addDynamics" rel="external">.addDynamics()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Point.html" rel="external">Point()</a>
