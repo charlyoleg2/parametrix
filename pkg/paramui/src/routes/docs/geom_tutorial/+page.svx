@@ -338,6 +338,28 @@ API:
 
 ### Add points, lines, vectors and dynamics decorations
 
+- [myPartQ source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup6/myPartQ.ts)
+- [myPartQ page](https://charlyoleg2.github.io/parame53/desi53/myPartQDef)
+
+*myPartQ* shows how to use the extra layers for second contours, dynamics contoues, points, lines and vectors.
+
+- *Second contours* are thought for counter parts that are drawn for simulation but are not exported in 3D scripts.
+- *Dynamics contours* are free contours that could be used to show relative speeds, displacement, etc
+- *Point*, *Line* and *Vector* are helpers that you can use to debug your geometry.
+
+API:
+
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addSecond" rel="external">.addSecond()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addDynamics" rel="external">.addDynamics()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Point.html" rel="external">Point()</a>
+- <a href="{base}/docs/apidoc/enums/geometrix.ShapePoint.html" rel="external">ShapePoint</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addPoint" rel="external">.addPoint()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Line.html" rel="external">Line()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addLine" rel="external">.addLine()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Vector.html" rel="external">Vector()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addVector" rel="external">.addVector()</a>
+
+
 ### Just a 2D drawing
 
 ### A serie of blade profiles
