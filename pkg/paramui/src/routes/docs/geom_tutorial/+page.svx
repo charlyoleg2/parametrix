@@ -364,6 +364,19 @@ API:
 
 ### Just a 2D drawing
 
+- [myPartR source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup6/myPartR.ts)
+- [myPartR page](https://charlyoleg2.github.io/parame53/desi53/myPartRDef)
+
+*myPartR* shows a serie of 2D designs without 3D volume.
+
+API:
+
+- <a href="{base}/docs/apidoc/functions/geometrix.point-1.html" rel="external">point()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Point.html" rel="external">Point()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translate" rel="external">.translate()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translatePolar" rel="external">.translatePolar()</a>
+
+
 ### A serie of blade profiles
 
 
