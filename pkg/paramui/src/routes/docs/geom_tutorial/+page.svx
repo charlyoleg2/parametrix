@@ -348,6 +348,8 @@ API:
 - *Dynamics contours* are free contours that could be used to show relative speeds, displacement, etc
 - *Point*, *Line* and *Vector* are helpers that you can use to debug your geometry.
 
+Notice that the color of a contour can be overwritten when it is instanciated with *contour(x, y, color?)*.
+
 API:
 
 - <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#constructor" rel="external">Contour()</a>
@@ -362,12 +364,12 @@ API:
 - <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addVector" rel="external">.addVector()</a>
 
 
-### Just a 2D drawing
+### Just 2D drawings
 
 - [myPartR source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup6/myPartR.ts)
 - [myPartR page](https://charlyoleg2.github.io/parame53/desi53/myPartRDef)
 
-*myPartR* shows a serie of 2D designs without 3D volume.
+*myPartR* shows a serie of 2D designs without 3D volume. The property *vol* of the object *rGeome* of type *tGeom* has been commented out.
 
 API:
 
