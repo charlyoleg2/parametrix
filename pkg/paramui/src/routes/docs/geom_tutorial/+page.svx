@@ -427,6 +427,7 @@ API:
 - <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getSuffix" rel="external">.getSuffix()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartNameSuffix" rel="external">.getPartNameSuffix()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartName" rel="external">.getPartName()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#setVal" rel="external">.setVal()</a>
 - <a href="{base}/docs/apidoc/functions/geometrix.checkGeom.html" rel="external">checkGeom()</a>
 - <a href="{base}/docs/apidoc/functions/geometrix.prefixLog.html" rel="external">prefixLog()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#mergeFigure" rel="external">.mergeFigure()</a>
