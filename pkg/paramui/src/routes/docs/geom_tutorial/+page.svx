@@ -380,6 +380,19 @@ API:
 
 ### A serie of blade profiles
 
+- [myPartS source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup7/myPartS.ts)
+- [myPartS page](https://charlyoleg2.github.io/parame53/desi53b/myPartSDef)
+
+*myPartS* shows a serie of blade profiles. Wing is a complex shape that cannot be described with *Parametrix*. But a serie of 2D profiles can approximate the ideal shape description.
+
+API:
+
+- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#rotate" rel="external">.rotate()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translate" rel="external">.translate()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translatePolar" rel="external">.translatePolar()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#rotate" rel="external">.rotate()</a>
+- <a href="{base}/docs/apidoc/interfaces/geometrix.tExtrude.html" rel="external">tExtrude</a>
+
 
 ### Expose external design
 
