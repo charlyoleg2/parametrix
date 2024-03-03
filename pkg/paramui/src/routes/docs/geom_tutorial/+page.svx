@@ -396,7 +396,21 @@ API:
 
 ### Expose external design
 
-[parame52-ui]() might expose designs externally defined (not coming from *parame52*). In this case, you must manually copy the svg-files in the *static* directoty of the *sveltekit* project *parame52-ui*.
+- [myPartT source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup7/myPartT.ts)
+- [myPartT page](https://charlyoleg2.github.io/parame53/desi53b/myPartTDef)
+
+*myPartT* is a re-export and rename of *myPartA* of the library *desi51*.
+
+For this re-export, two modifications are required:
+
+- *desi51* must be installed as dependency of *desi53b*
+- the svg files of *desi51* must be copied in the *pgdsvg* directory of *desi53b*
+
+API:
+
+- <a href="{base}/docs/apidoc/interfaces/geometrix.tPageDef.html" rel="external">tPageDef</a>
+- <a href="{base}/docs/apidoc/interfaces/geometrix.tParamDef.html" rel="external">tParamDef</a>
+
 
 ### Assembly using external design
 
