@@ -414,9 +414,30 @@ API:
 
 ### Assembly using external design
 
-Previously we have seen that the UI-app and CLI-app can expose external designs. Now, [parame52]() illustrates how a new design can reuse an external design.
+- [myPartU source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup8/myPartU.ts)
+- [myPartU page](https://charlyoleg2.github.io/parame53/desi53b/myPartUDef)
 
-### Transitive reuse of external designs
+*myPartU* is an assembly of external design *myPartA* of the library *desi51*.
+
+As the module *myPartT* overwrites the *partName*, the new name *myPartT* must be used.
+
+API:
+
+- <a href="{base}/docs/apidoc/functions/geometrix.designParam-1.html" rel="external">designParam()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getSuffix" rel="external">.getSuffix()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartNameSuffix" rel="external">.getPartNameSuffix()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartName" rel="external">.getPartName()</a>
+- <a href="{base}/docs/apidoc/functions/geometrix.checkGeom.html" rel="external">checkGeom()</a>
+- <a href="{base}/docs/apidoc/functions/geometrix.prefixLog.html" rel="external">prefixLog()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#mergeFigure" rel="external">.mergeFigure()</a>
+
+
+### Transitive reuse of designs
+
+- [myPartV source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup8/myPartV.ts)
+- [myPartV page](https://charlyoleg2.github.io/parame53/desi53b/myPartVDef)
+
+*myPartV* re-exports *myPartK*, which is itself an assembly of other designs.
 
 
 <style lang="scss">
