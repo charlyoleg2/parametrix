@@ -32,7 +32,8 @@ const config = {
 		}),
 		//appDir: 'app_',
 		paths: {
-			base: dev ? '' : process.env.BASE_PATH
+			//base: dev ? '' : process.env.BASE_PATH
+			base: dev ? '' : `/${process.env.BASE_PATH}`
 		}
 	}
 };
