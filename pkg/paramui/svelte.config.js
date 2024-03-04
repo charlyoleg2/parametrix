@@ -4,7 +4,8 @@ import { mdsvex } from 'mdsvex';
 //import { join } from 'path';
 import { fileURLToPath } from 'url';
 
-const dev = process.argv.includes('dev');
+const basePath = process.env.BASE_PATH;
+const dev = process.argv.includes('dev') || basePath === undefined;
 //const pathToDocsLayout = join(import.meta.dirname, './src/lib/DocsLayout.svelte'); // works with node V20.11.0 and higher
 const pathToDocsLayoutURL = new URL('./src/lib/DocsLayout.svelte', import.meta.url);
 const pathToDocsLayout = fileURLToPath(pathToDocsLayoutURL);
@@ -33,7 +34,7 @@ const config = {
 		//appDir: 'app_',
 		paths: {
 			//base: dev ? '' : process.env.BASE_PATH
-			base: dev ? '' : `/${process.env.BASE_PATH}`
+			base: dev ? '' : `/${basePath}`
 		}
 	}
 };
