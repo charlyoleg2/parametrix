@@ -33,8 +33,8 @@ const config = {
 		}),
 		//appDir: 'app_',
 		paths: {
-			//base: dev ? '' : process.env.BASE_PATH
-			base: dev ? '' : `/${basePath}`
+			base: dev ? '' : `/${basePath}`,
+			relative: true // true and false works for paramui
 		}
 	}
 };
