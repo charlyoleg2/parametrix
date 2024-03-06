@@ -37,6 +37,7 @@ async function make_pole_static(iOutDir: string, iPrintLog: boolean): Promise<tG
 			poleStaticDef.pGeom,
 			simtime,
 			poleParam.getParamVal(),
+			poleStaticDef.pDef,
 			//EFormat.ePARAMS, // output-format
 			//EFormat.eSVG,
 			//EFormat.eDXF,

@@ -40,6 +40,7 @@ async function make_swing(iOutDir: string, iPrintLog: boolean): Promise<tGeom> {
 			swingDef.pGeom,
 			simtime,
 			swingParam.getParamVal(),
+			swingDef.pDef,
 			//EFormat.ePARAMS, // output-format
 			//EFormat.eSVG,
 			//EFormat.eDXF,

@@ -39,6 +39,7 @@ async function make_swing(iOutDir, iPrintLog) {
 			swingDef.pGeom,
 			simtime,
 			swingParam.getParamVal(),
+			swingDef.pDef,
 			//EFormat.ePARAMS, // output-format
 			//EFormat.eSVG,
 			//EFormat.eDXF,

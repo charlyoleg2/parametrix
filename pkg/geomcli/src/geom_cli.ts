@@ -666,6 +666,7 @@ async function geom_cli(
 					theD.pGeom,
 					simtime,
 					dParam.getParamVal(),
+					theD.pDef,
 					oOpt.eFormat, // output-format
 					//EFormat.eSVG,
 					//EFormat.eDXF,

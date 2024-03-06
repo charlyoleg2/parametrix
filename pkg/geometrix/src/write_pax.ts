@@ -4,7 +4,7 @@ import * as segLib from './segment';
 import type { tFaces } from './figure';
 import type { tVolume } from './volume';
 import type { tSubDesign } from './sub_design';
-import type { tParamVal } from './designParams';
+import type { tParamDef, tParamVal } from './designParams';
 import type { tGeom } from './aaParamGeom';
 import type { tPaxContour } from './prepare_pax';
 import { PSeg } from './prepare_pax';
@@ -13,6 +13,7 @@ import type { tContour } from './contour';
 type tPaxFaces = Record<string, tPaxContour[]>;
 interface tPaxJson {
 	partName: string;
+	pDef: tParamDef;
 	params: tParamVal;
 	faces: tPaxFaces;
 	volume: tVolume;
@@ -37,9 +38,10 @@ class PaxWrite {
 		}
 		return figFaces;
 	}
-	getPaxJson(paramVal: tParamVal, geome0: tGeom): tPaxJson {
+	getPaxJson(paramVal: tParamVal, geome0: tGeom, ipDef: tParamDef): tPaxJson {
 		const rPaxJson = {
 			partName: geome0.partName,
+			pDef: ipDef,
 			params: paramVal,
 			faces: this.getFigures(geome0.fig),
 			volume: geome0.vol,
@@ -48,8 +50,8 @@ class PaxWrite {
 		};
 		return rPaxJson;
 	}
-	getPaxStr(paramVal: tParamVal, geome0: tGeom): string {
-		const paxJson = this.getPaxJson(paramVal, geome0);
+	getPaxStr(paramVal: tParamVal, geome0: tGeom, ipDef: tParamDef): string {
+		const paxJson = this.getPaxJson(paramVal, geome0, ipDef);
 		const rStr = JSON.stringify(paxJson, null, 2);
 		return rStr;
 	}

@@ -1,6 +1,6 @@
 // aaExportContent.ts
 
-import type { tParamVal } from './designParams';
+import type { tParamDef, tParamVal } from './designParams';
 import type { tGeom } from './aaParamGeom';
 import { colors } from './canvas_utils';
 import { Point, point, pointMinMax } from './point';
@@ -8,6 +8,7 @@ import type { tContour } from './contour';
 import type { Figure } from './figure';
 import { mergeFaces } from './figure';
 import type { SvgWriter } from './write_svg';
+import { zeroPDef } from './designParams';
 import { svgWriter } from './write_svg';
 import { dxfWriter } from './write_dxf';
 import { paxWrite } from './write_pax';
@@ -142,21 +143,21 @@ function figureToDxf(aCtr: tContour[]): string {
 }
 
 // PAX
-function makePax(paramVal: tParamVal, geome0: tGeom): string {
-	const rStr = paxWrite().getPaxStr(paramVal, geome0);
+function makePax(paramVal: tParamVal, geome0: tGeom, ipDef: tParamDef): string {
+	const rStr = paxWrite().getPaxStr(paramVal, geome0, ipDef);
 	return rStr;
 }
 
 // OpenSCad
 function makeOpenscad(geome0: tGeom): string {
-	const paxJson = paxWrite().getPaxJson({}, geome0);
+	const paxJson = paxWrite().getPaxJson({}, geome0, zeroPDef);
 	const rStr = oscadWrite().getExportFile(paxJson);
 	return rStr;
 }
 
 // OpenJSCAD
 function makeOpenjscad(geome0: tGeom): string {
-	const paxJson = paxWrite().getPaxJson({}, geome0);
+	const paxJson = paxWrite().getPaxJson({}, geome0, zeroPDef);
 	const rStr = ojscadWrite().getExportFile(paxJson);
 	return rStr;
 }
@@ -166,7 +167,8 @@ async function makeZip(
 	paramVal: tParamVal,
 	geome0: tGeom,
 	tSim: number,
-	geome1: tGeom
+	geome1: tGeom,
+	ipDef: tParamDef
 ): Promise<Blob> {
 	// zip writer preparation
 	const zipFileWriter = new zip.BlobWriter('application/zip');
@@ -198,7 +200,7 @@ async function makeZip(
 	await zipWriter.add(`deco_${partName}_all_merged.svg`, svgMergedDeco);
 	const svgMergedDecoT = new zip.TextReader(figureToSvgDeco(mergedFace));
 	await zipWriter.add(`deco_${partName}_all_merged_t${tSim}.svg`, svgMergedDecoT);
-	const zPax = new zip.TextReader(makePax(paramVal, geome0));
+	const zPax = new zip.TextReader(makePax(paramVal, geome0, ipDef));
 	await zipWriter.add(`${partName}.pax.json`, zPax);
 	const zSCad = new zip.TextReader(makeOpenscad(geome0));
 	await zipWriter.add(`${partName}_noarc_openscad.scad`, zSCad);

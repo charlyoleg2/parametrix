@@ -1,6 +1,6 @@
 // aaExportFile.ts
 
-import type { tParamVal } from './designParams';
+import type { tParamDef, tParamVal } from './designParams';
 import type { tGeomFunc } from './aaParamGeom';
 import {
 	figureToSvg,
@@ -26,6 +26,7 @@ enum EFormat {
 function fileTextContent(
 	fgeom: tGeomFunc,
 	paramVal: tParamVal,
+	ipDef: tParamDef,
 	eFace: string,
 	exportFormat: EFormat
 ): string {
@@ -54,7 +55,7 @@ function fileTextContent(
 			const figu = mergeFaces(geome0.fig);
 			rFileContent = figureToDxf(figu.mainList);
 		} else if (exportFormat === EFormat.ePAX) {
-			rFileContent = makePax(paramVal, geome0);
+			rFileContent = makePax(paramVal, geome0, ipDef);
 		} else if (exportFormat === EFormat.eOPENSCAD) {
 			rFileContent = makeOpenscad(geome0);
 		} else if (exportFormat === EFormat.eJSCAD) {
@@ -72,6 +73,7 @@ async function fileBinContent(
 	fgeom: tGeomFunc,
 	tSim: number,
 	paramVal: tParamVal,
+	ipDef: tParamDef,
 	exportFormat: EFormat
 ): Promise<Blob> {
 	const geome0 = fgeom(0, paramVal);
@@ -79,7 +81,7 @@ async function fileBinContent(
 	let rFileContent = new Blob();
 	if (!geome0.calcErr && !geome1.calcErr) {
 		if (exportFormat === EFormat.eZIP) {
-			rFileContent = await makeZip(paramVal, geome0, tSim, geome1);
+			rFileContent = await makeZip(paramVal, geome0, tSim, geome1, ipDef);
 		} else {
 			console.log(`err913: unknown exportFormat ${exportFormat}`);
 		}

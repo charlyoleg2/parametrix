@@ -53,6 +53,7 @@ async function make_rake_stopper(iOutDir: string, iPrintLog: boolean): Promise<t
 			rakeStopperDef.pGeom,
 			simtime,
 			rakeParam.getParamVal(),
+			rakeStopperDef.pDef,
 			//EFormat.ePARAMS, // output-format
 			//EFormat.eSVG,
 			//EFormat.eDXF,

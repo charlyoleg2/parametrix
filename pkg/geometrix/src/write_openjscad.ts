@@ -11,6 +11,7 @@ import type {
 import { PSeg } from './prepare_pax';
 import type { tPaxFaces, tPaxJson } from './write_pax';
 import { convTypePaxToSeg1, paxWrite } from './write_pax';
+import { zeroPDef } from './designParams';
 import type { tVolume, tInherit, tExtrude, tBVolume } from './volume';
 import { EExtrude, EBVolume } from './volume';
 import type { tGeom } from './aaParamGeom';
@@ -250,7 +251,7 @@ const ${inherit.outName} =
 		if (vol.inherits !== undefined) {
 			const subGeoms = this.getAllSubGeoms(vol.inherits);
 			for (const oneGeom of subGeoms) {
-				const paxJson = paxWrite().getPaxJson({}, oneGeom);
+				const paxJson = paxWrite().getPaxJson({}, oneGeom, zeroPDef);
 				rStr += this.getAllFigures(paxJson.faces, paxJson.partName);
 				rStr += this.getVolume(oneGeom.vol);
 			}

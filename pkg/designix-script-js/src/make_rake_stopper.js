@@ -52,6 +52,7 @@ async function make_rake_stopper(iOutDir, iPrintLog) {
 			rakeStopperDef.pGeom,
 			simtime,
 			rakeParam.getParamVal(),
+			rakeStopperDef.pDef,
 			//EFormat.ePARAMS, // output-format
 			//EFormat.eSVG,
 			//EFormat.eDXF,

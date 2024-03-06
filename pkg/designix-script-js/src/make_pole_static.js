@@ -36,6 +36,7 @@ async function make_pole_static(iOutDir, iPrintLog) {
 			poleStaticDef.pGeom,
 			simtime,
 			poleParam.getParamVal(),
+			poleStaticDef.pDef,
 			//EFormat.ePARAMS, // output-format
 			//EFormat.eSVG,
 			//EFormat.eDXF,

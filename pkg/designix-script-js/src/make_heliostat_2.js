@@ -46,6 +46,7 @@ async function make_heliostat_2(iOutDir, iPrintLog) {
 			heliostat_2Def.pGeom,
 			simtime,
 			helioParam.getParamVal(),
+			heliostat_2Def.pDef,
 			//EFormat.ePARAMS, // output-format
 			//EFormat.eSVG,
 			//EFormat.eDXF,

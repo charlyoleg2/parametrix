@@ -122,11 +122,18 @@
 				fgeom,
 				simTime,
 				$storePV[pDef.partName],
+				pDef,
 				exportFormat
 			);
 			download_binFile(fName, fContent);
 		} else {
-			const fContent = fileTextContent(fgeom, $storePV[pDef.partName], nFace, exportFormat);
+			const fContent = fileTextContent(
+				fgeom,
+				$storePV[pDef.partName],
+				pDef,
+				nFace,
+				exportFormat
+			);
 			download_textFile(fName, fContent, fMime);
 		}
 	}

@@ -43,6 +43,7 @@ async function make_surface(iOutDir: string, iPrintLog: boolean): Promise<tGeom>
 			surfaceDef.pGeom,
 			simtime,
 			surfaceParam.getParamVal(),
+			surfaceDef.pDef,
 			//EFormat.ePARAMS, // output-format
 			//EFormat.eSVG,
 			//EFormat.eDXF,
@@ -71,6 +72,7 @@ async function make_surface(iOutDir: string, iPrintLog: boolean): Promise<tGeom>
 			surfaceDef.pGeom,
 			simtime,
 			surfaceParam.getParamVal(),
+			surfaceDef.pDef,
 			//EFormat.ePARAMS, // output-format
 			//EFormat.eSVG,
 			//EFormat.eDXF,

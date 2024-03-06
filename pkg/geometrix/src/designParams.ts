@@ -28,6 +28,17 @@ interface tParamDef {
 	sim: tSimTime;
 }
 
+const zeroPDef: tParamDef = {
+	partName: '',
+	params: [],
+	paramSvg: {},
+	sim: {
+		tMax: 0,
+		tStep: 0,
+		tUpdate: 0
+	}
+};
+
 type tParamVal = Record<string, number>;
 type tParamChanged = Record<string, boolean>;
 
@@ -192,4 +203,13 @@ export type {
 	tDesignParamList,
 	DesignParam
 };
-export { PType, pNumber, pCheckbox, pDropdown, designParam, paramListToVal, oneDesignParam };
+export {
+	PType,
+	pNumber,
+	pCheckbox,
+	pDropdown,
+	designParam,
+	paramListToVal,
+	oneDesignParam,
+	zeroPDef
+};

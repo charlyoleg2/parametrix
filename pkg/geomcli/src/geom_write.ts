@@ -1,6 +1,6 @@
 // geom_write.ts
 
-import type { tGeomFunc, tParamVal } from 'geometrix';
+import type { tGeomFunc, tParamVal, tParamDef } from 'geometrix';
 import {
 	EFormat,
 	fileBinContent,
@@ -110,6 +110,7 @@ async function geom_write(
 	fgeom: tGeomFunc,
 	simTime: number,
 	iParam: tParamVal,
+	iPDef: tParamDef,
 	iFormat: EFormat,
 	iFace = '',
 	iDir = '.',
@@ -129,10 +130,10 @@ async function geom_write(
 	const fName2 = checkDirFName(iDir, fName);
 	rlog += createDir(iDir);
 	if (fBin) {
-		const fContent = await fileBinContent(fgeom, simTime, iParam, iFormat);
+		const fContent = await fileBinContent(fgeom, simTime, iParam, iPDef, iFormat);
 		rlog += await write_binFile(fName2, fContent);
 	} else {
-		const fContent = fileTextContent(fgeom, iParam, nFace, iFormat);
+		const fContent = fileTextContent(fgeom, iParam, iPDef, nFace, iFormat);
 		rlog += write_textFile(fName2, fContent);
 	}
 	return rlog;
