@@ -82,7 +82,7 @@ function computeGeom(
 	let rlog = `Compute design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
 	try {
-		dParam.applyParamVal(readParams(paramPath, printLog));
+		dParam.applyParamVal(readParams(paramPath, theD.pDef.partName, printLog));
 		dParam.applyParamVal(parseModif(modif, printLog));
 	} catch (emsg) {
 		console.log('err271: error while applying new parameters');
@@ -308,7 +308,7 @@ async function list_parameters(
 	let rlog = `List of parameters of the design ${selD} (${theD.pDef.partName}):\n`;
 	const dParam = designParam(theD.pDef);
 	try {
-		dParam.applyParamVal(readParams(paramPath, true));
+		dParam.applyParamVal(readParams(paramPath, theD.pDef.partName, true));
 		dParam.applyParamVal(parseModif(modif, true));
 	} catch (emsg) {
 		console.log('err272: error while applying new parameters');
@@ -635,7 +635,7 @@ async function geom_cli(
 		const oOpt = decompose_outopt(outopt);
 		const dParam = designParam(theD.pDef);
 		try {
-			dParam.applyParamVal(readParams(paramPath, false));
+			dParam.applyParamVal(readParams(paramPath, theD.pDef.partName, false));
 			dParam.applyParamVal(parseModif(paramModif, false));
 		} catch (emsg) {
 			console.log('err273: error while applying new parameters');

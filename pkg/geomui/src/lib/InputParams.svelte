@@ -28,8 +28,14 @@
 		dispatch('paramChg', { foo: 'bla' });
 	}
 	// tolerant applyParamVal
-	function tolerantApply(ipVal: tParamVal): [string, boolean] {
+	function tolerantApply(iPartName: string, ipVal: tParamVal): [string, boolean] {
 		let rMsg = '';
+		// partName
+		let applyWarn1 = false;
+		if (iPartName !== pDef.partName) {
+			rMsg += `warn361: read partName ${iPartName}  expected partName ${pDef.partName}\n`;
+			applyWarn1 = true;
+		}
 		// forward
 		let cover = 0;
 		let uncover = 0;
@@ -56,7 +62,7 @@
 				rMsg += `warn363: parameter ${pa} not in the scope of the design (${notInScope})\n`;
 			}
 		}
-		const rApplyWarn = notInScope > 0 ? true : false;
+		const applyWarn2 = notInScope > 0 ? true : false;
 		const loadDate = new Date().toLocaleTimeString();
 		rMsg += `Params loaded at ${loadDate} :`;
 		rMsg += ` def-nb: ${Object.keys(pDef.params).length}`;
@@ -64,6 +70,7 @@
 		rMsg += ` load-nb: ${Object.keys(ipVal).length}`;
 		rMsg += `, equal-nb: ${equal}, changed-nb: ${cover - equal}`;
 		rMsg += `, out-of-scope: ${notInScope}`;
+		const rApplyWarn = applyWarn1 || applyWarn2;
 		return [rMsg, rApplyWarn];
 	}
 	//function initParams1() {
@@ -87,7 +94,7 @@
 			}
 			//console.log(`dbg072: pVal2.length ${Object.keys(pVal2).length}`);
 			if (Object.keys(pVal2).length > 0) {
-				[loadMsg, applyWarn] = tolerantApply(pVal2);
+				[loadMsg, applyWarn] = tolerantApply(pDef.partName, pVal2);
 			}
 		}
 	}
@@ -116,7 +123,7 @@
 	function loadParams(iStr: string) {
 		try {
 			const [paramJson] = parseParamFile(iStr);
-			[loadMsg, applyWarn] = tolerantApply(paramJson.pVal);
+			[loadMsg, applyWarn] = tolerantApply(paramJson.partName, paramJson.pVal);
 			inputComment = paramJson.comment;
 			paramChange();
 		} catch (emsg) {
@@ -154,7 +161,7 @@
 		for (const p of pDef.params) {
 			pInit[p.name] = p.init;
 		}
-		[loadMsg, applyWarn] = tolerantApply(pInit);
+		[loadMsg, applyWarn] = tolerantApply(pDef.partName, pInit);
 	}
 	// load parameters from localStorage
 	let locStorRname: string;

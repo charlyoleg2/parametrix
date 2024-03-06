@@ -78,7 +78,7 @@ function writeParams(
 	return rlog;
 }
 
-function readParams(paramPath: string, printLog: boolean): tParamVal {
+function readParams(paramPath: string, expectedPartName: string, printLog: boolean): tParamVal {
 	let rParamVal: tParamVal = {};
 	if (paramPath !== '') {
 		let rlog = `Read parameter file ${paramPath}\n`;
@@ -89,6 +89,11 @@ function readParams(paramPath: string, printLog: boolean): tParamVal {
 		const [obj] = parseParamFile(fContentStr);
 		//const [obj, tlog] = parseParamFile(fContentStr);
 		//rlog += tlog;
+		if (obj.partName !== expectedPartName) {
+			rlog += `warn329: file partName: ${obj.partName}  expected partName ${expectedPartName}\n`;
+		} else {
+			rlog += `file partName: ${obj.partName}\n`;
+		}
 		rlog += `file lastModif: ${obj.lastModif}\n`;
 		rlog += `file comment: ${obj.comment}\n`;
 		rlog += `info307: ${Object.keys(obj.pVal).length} parameters from file`;
