@@ -4,13 +4,20 @@ import type { tParamVal } from './designParams';
 
 interface tParamValInFile {
 	lastModif: string;
+	partName: string;
 	pVal: tParamVal;
 	comment: string;
 }
 
-function createParamFile(lastModif: string, idparams: tParamVal, comment: string): string {
+function createParamFile(
+	lastModif: string,
+	iPartName: string,
+	idparams: tParamVal,
+	comment: string
+): string {
 	const allVal: tParamValInFile = {
 		lastModif: lastModif,
+		partName: iPartName,
 		pVal: idparams,
 		comment: comment
 	};
@@ -21,12 +28,16 @@ function createParamFile(lastModif: string, idparams: tParamVal, comment: string
 function parseParamFile(fContentStr: string): [tParamValInFile, string] {
 	const wholeJson = JSON.parse(fContentStr) as tParamValInFile;
 	const lastModifKey = 'lastModif';
+	const partNameKey = 'partName';
 	const pValKey = 'pVal';
 	const commentKey = 'comment';
 	let rlog = '';
-	const rObj: tParamValInFile = { lastModif: '', pVal: {}, comment: '' };
+	const rObj: tParamValInFile = { lastModif: '', partName: '', pVal: {}, comment: '' };
 	if (Object.hasOwn(wholeJson, lastModifKey)) {
 		rObj[lastModifKey] = wholeJson[lastModifKey];
+	}
+	if (Object.hasOwn(wholeJson, partNameKey)) {
+		rObj[partNameKey] = wholeJson[partNameKey];
 	}
 	if (Object.hasOwn(wholeJson, pValKey)) {
 		const paNaVa = wholeJson[pValKey];

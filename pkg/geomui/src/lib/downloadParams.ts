@@ -22,7 +22,7 @@ function downloadParams(iPartName: string, idparams: tParamVal, iComment: string
 	const re2 = /\..*$/;
 	const datestr = new Date().toISOString().replace(re1, '').replace(re2, '').replace('T', '_');
 	const file_name = `px_${iPartName}_${datestr}.json`;
-	const file_content = createParamFile(datestr, idparams, iComment);
+	const file_content = createParamFile(datestr, iPartName, idparams, iComment);
 	download_file(file_name, file_content);
 	//console.log(`dbg343: ${file_name}`);
 }

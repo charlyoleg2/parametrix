@@ -72,7 +72,7 @@ function writeParams(
 	const paramNb = Object.keys(idparams).length;
 	const fName2 = checkDirFName(oDir, file_name);
 	let rlog = `Write ${paramNb} parameters in file ${fName2}\n`;
-	const file_content = createParamFile(datestr, idparams, 'Written by geom_cli');
+	const file_content = createParamFile(datestr, iPartName, idparams, 'Written by geom_cli');
 	rlog += createDir(oDir);
 	write_textFile(fName2, file_content);
 	return rlog;

@@ -184,7 +184,12 @@
 			const storeKey = `${pDef.partName}_${locStorWname}`;
 			const re2 = /\..*$/;
 			const lastModif = new Date().toISOString().replace(re2, '');
-			const storeAllStr = createParamFile(lastModif, $storePV[pDef.partName], inputComment);
+			const storeAllStr = createParamFile(
+				lastModif,
+				pDef.partName,
+				$storePV[pDef.partName],
+				inputComment
+			);
 			//console.log(`save in localStorage ${storeKey}`);
 			if (browser) {
 				window.localStorage.setItem(storeKey, storeAllStr);
