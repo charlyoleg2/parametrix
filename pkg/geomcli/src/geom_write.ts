@@ -90,7 +90,7 @@ function readParams(paramPath: string, expectedPartName: string, printLog: boole
 		//const [obj, tlog] = parseParamFile(fContentStr);
 		//rlog += tlog;
 		if (obj.partName !== expectedPartName) {
-			rlog += `warn329: file partName: ${obj.partName}  expected partName ${expectedPartName}\n`;
+			rlog += `warn329: file partName: '${obj.partName}'  expected partName: '${expectedPartName}'\n`;
 		} else {
 			rlog += `file partName: ${obj.partName}\n`;
 		}

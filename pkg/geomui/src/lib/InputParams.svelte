@@ -33,7 +33,7 @@
 		// partName
 		let applyWarn1 = false;
 		if (iPartName !== pDef.partName) {
-			rMsg += `warn361: read partName ${iPartName}  expected partName ${pDef.partName}\n`;
+			rMsg += `warn361: read partName: '${iPartName}'  expected partName: '${pDef.partName}'\n`;
 			applyWarn1 = true;
 		}
 		// forward
