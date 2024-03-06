@@ -282,6 +282,7 @@
 		<table>
 			<thead>
 				<tr>
+					<td>&#35;</td>
 					<td>Parameter name</td>
 					<td>Value</td>
 					<td>Unit</td>
@@ -292,49 +293,68 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each pDef.params as param}
-					<tr class:changed={$storePV[pDef.partName][param.name] !== param.init}>
-						<td><button on:click={() => paramPict(param.name)}>{param.name}</button></td
-						>
-						<td>
-							{#if param.pType === PType.eNumber}
-								<input
-									type="number"
-									bind:value={$storePV[pDef.partName][param.name]}
-									min={param.min}
-									max={param.max}
-									step={param.step}
-									on:change={paramChange}
-									class="input-number"
-								/>
-								<input
-									type="range"
-									bind:value={$storePV[pDef.partName][param.name]}
-									min={param.min}
-									max={param.max}
-									step={param.step}
-									on:change={paramChange}
-								/>
-							{:else if param.pType === PType.eCheckbox}
+				{#each pDef.params as param, pidx}
+					{#if param.pType === PType.eSeparator}
+						<tr class="separator">
+							<td>{pidx + 1}</td>
+							<td colspan="5">{param.name}</td>
+							<td colspan="2">
 								<select bind:value={$storePV[pDef.partName][param.name]}>
 									{#each ['Off', 'On'] as one, idx}
 										<option value={idx}>{one}</option>
 									{/each}
 								</select>
-							{:else}
-								<select bind:value={$storePV[pDef.partName][param.name]}>
-									{#each param.dropdown as one, idx}
-										<option value={idx}>{one}</option>
-									{/each}
-								</select>
-							{/if}
-						</td>
-						<td>{param.unit}</td>
-						<td>{param.init}</td>
-						<td>{param.min}</td>
-						<td>{param.max}</td>
-						<td>{param.step}</td>
-					</tr>
+							</td>
+						</tr>
+					{:else}
+						<tr class:changed={$storePV[pDef.partName][param.name] !== param.init}>
+							<td>{pidx + 1}</td>
+							<td
+								><button on:click={() => paramPict(param.name)}>{param.name}</button
+								></td
+							>
+							<td>
+								{#if param.pType === PType.eNumber}
+									<input
+										type="number"
+										bind:value={$storePV[pDef.partName][param.name]}
+										min={param.min}
+										max={param.max}
+										step={param.step}
+										on:change={paramChange}
+										class="input-number"
+									/>
+									<input
+										type="range"
+										bind:value={$storePV[pDef.partName][param.name]}
+										min={param.min}
+										max={param.max}
+										step={param.step}
+										on:change={paramChange}
+									/>
+								{:else if param.pType === PType.eCheckbox}
+									<select bind:value={$storePV[pDef.partName][param.name]}>
+										{#each ['Off', 'On'] as one, idx}
+											<option value={idx}>{one}</option>
+										{/each}
+									</select>
+								{:else if param.pType === PType.eDropdown}
+									<select bind:value={$storePV[pDef.partName][param.name]}>
+										{#each param.dropdown as one, idx}
+											<option value={idx}>{one}</option>
+										{/each}
+									</select>
+								{:else}
+									unknown
+								{/if}
+							</td>
+							<td>{param.unit}</td>
+							<td>{param.init}</td>
+							<td>{param.min}</td>
+							<td>{param.max}</td>
+							<td>{param.step}</td>
+						</tr>
+					{/if}
 				{/each}
 			</tbody>
 		</table>
@@ -421,6 +441,9 @@
 	}
 	section > main > table > tbody > tr.changed {
 		background-color: colors.$table-line-changed;
+	}
+	section > main > table > tbody > tr.separator {
+		background-color: colors.$table-line-separator;
 	}
 	section > main > table > thead > tr > td,
 	section > main > table > tbody > tr > td {

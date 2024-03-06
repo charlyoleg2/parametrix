@@ -3,7 +3,8 @@
 enum PType {
 	eNumber,
 	eCheckbox,
-	eDropdown
+	eDropdown,
+	eSeparator
 }
 
 interface tParam {
@@ -192,6 +193,19 @@ function pDropdown(name: string, values: string[]): tParam {
 	};
 	return rParam;
 }
+function pSeparator(name: string): tParam {
+	const rParam: tParam = {
+		name: name,
+		unit: 'separator',
+		init: 0,
+		min: 0,
+		max: 1,
+		step: 1,
+		dropdown: [],
+		pType: PType.eSeparator
+	};
+	return rParam;
+}
 
 export type {
 	tParam,
@@ -208,6 +222,7 @@ export {
 	pNumber,
 	pCheckbox,
 	pDropdown,
+	pSeparator,
 	designParam,
 	paramListToVal,
 	oneDesignParam,
