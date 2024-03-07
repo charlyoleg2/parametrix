@@ -254,7 +254,7 @@
 		const sectionMain: tHTableSection = {
 			sectionName: 'main',
 			sectionID: 'g0main',
-			sectionVisible: true,
+			sectionVisible: false,
 			params: []
 		};
 		let section = sectionMain;
@@ -266,7 +266,7 @@
 				const sectionNew: tHTableSection = {
 					sectionName: param.name,
 					sectionID: `g${sectionID}${param.name}`,
-					sectionVisible: false,
+					sectionVisible: true,
 					params: []
 				};
 				section = sectionNew;
@@ -284,11 +284,16 @@
 		}
 		return rVis;
 	}
-	let htable = makeHTable(pDef.params);
-	let htableVis = makeHTableVis(htable);
+	let htable: tHTableSection[];
+	let htableVis: tHTableVis;
+	let prePartName = '';
 	$: {
 		htable = makeHTable(pDef.params);
-		htableVis = makeHTableVis(htable);
+		if (prePartName !== pDef.partName) {
+			// workaround for avoiding weird re-trigger
+			prePartName = pDef.partName;
+			htableVis = makeHTableVis(htable);
+		}
 	}
 </script>
 
@@ -344,16 +349,15 @@
 			{#each htable as sect, sidx}
 				<tr class="separator">
 					<td>{sidx + 1}</td>
-					<td colspan="5">{sect.sectionName}</td>
-					<td colspan="2">
-						<select bind:value={htableVis[sect.sectionID]}>
-							{#each ['Off', 'On'] as one, idx}
-								<option value={idx}>{one}</option>
-							{/each}
-						</select>
+					<td colspan="4">{sect.sectionName}</td>
+					<td colspan="3">
+						<label>
+							<input type="checkbox" bind:checked={htableVis[sect.sectionID]} />
+							<span> </span></label
+						>
 					</td>
 				</tr>
-				<tbody>
+				<tbody class:collaps={htableVis[sect.sectionID]}>
 					{#each sect.params as param, pidx}
 						<tr class:changed={$storePV[pDef.partName][param.name] !== param.init}>
 							<td>{sidx + 1}.{pidx + 1}</td>
@@ -487,11 +491,44 @@
 	section > main > table > tbody {
 		background-color: colors.$table-body;
 	}
+	section > main > table > tbody.collaps {
+		visibility: collapse;
+	}
 	section > main > table > tbody > tr.changed {
 		background-color: colors.$table-line-changed;
 	}
 	section > main > table > tr.separator {
+		font-weight: 700;
 		background-color: colors.$table-line-separator;
+	}
+	tr.separator > td > label > input[type='checkbox'] {
+		display: none;
+	}
+	tr.separator > td > label > span {
+		height: 8px;
+		width: 50px;
+		border: 1px solid grey;
+		border-radius: 6px;
+		background-color: LightBlue;
+		position: relative;
+		display: inline-block;
+	}
+	tr.separator > td > label > span::after {
+		content: '';
+		position: absolute;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background-color: grey;
+		top: 0;
+		left: 1px;
+		display: inline-block;
+	}
+	tr.separator > td > label > input[type='checkbox']:checked + span {
+		background: DarkBlue;
+	}
+	tr.separator > td > label > input[type='checkbox']:checked + span::after {
+		left: 37px;
 	}
 	section > main > table > thead > tr > td,
 	section > main > table > tr > td,
