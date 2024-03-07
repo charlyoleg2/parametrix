@@ -5,7 +5,7 @@
 	import LocStorWrite from './LocStorWrite.svelte';
 	import LocStorRead from './LocStorRead.svelte';
 	import SimpleDrawing from './SimpleDrawing.svelte';
-	import type { tParamDef, tParamVal, tGeomFunc } from 'geometrix';
+	import type { tParam, tParamDef, tParamVal, tGeomFunc } from 'geometrix';
 	import { PType, parseParamFile, createParamFile } from 'geometrix';
 	import { storePV } from './storePVal';
 	import { downloadParams, generateUrl } from './downloadParams';
@@ -241,6 +241,55 @@
 		//console.log(`dbg231: svgPath: ${svgPath}`);
 		modalImg = true;
 	}
+	// hierarchical table
+	interface tHTableSection {
+		sectionName: string;
+		sectionID: string;
+		sectionVisible: boolean;
+		params: tParam[];
+	}
+	type tHTableVis = Record<string, boolean>;
+	function makeHTable(iParams: tParam[]): tHTableSection[] {
+		const rHTable: tHTableSection[] = [];
+		const sectionMain: tHTableSection = {
+			sectionName: 'main',
+			sectionID: 'g0main',
+			sectionVisible: true,
+			params: []
+		};
+		let section = sectionMain;
+		let sectionID = 0;
+		for (const param of iParams) {
+			if (param.pType === PType.eSectionSeparator) {
+				rHTable.push(section);
+				sectionID += 1;
+				const sectionNew: tHTableSection = {
+					sectionName: param.name,
+					sectionID: `g${sectionID}${param.name}`,
+					sectionVisible: false,
+					params: []
+				};
+				section = sectionNew;
+			} else {
+				section.params.push(param);
+			}
+		}
+		rHTable.push(section);
+		return rHTable;
+	}
+	function makeHTableVis(iHTable: tHTableSection[]): tHTableVis {
+		const rVis: tHTableVis = {};
+		for (const section of iHTable) {
+			rVis[section.sectionID] = section.sectionVisible;
+		}
+		return rVis;
+	}
+	let htable = makeHTable(pDef.params);
+	let htableVis = makeHTableVis(htable);
+	$: {
+		htable = makeHTable(pDef.params);
+		htableVis = makeHTableVis(htable);
+	}
 </script>
 
 <section>
@@ -292,23 +341,22 @@
 					<td>Step</td>
 				</tr>
 			</thead>
-			<tbody>
-				{#each pDef.params as param, pidx}
-					{#if param.pType === PType.eSeparator}
-						<tr class="separator">
-							<td>{pidx + 1}</td>
-							<td colspan="5">{param.name}</td>
-							<td colspan="2">
-								<select bind:value={$storePV[pDef.partName][param.name]}>
-									{#each ['Off', 'On'] as one, idx}
-										<option value={idx}>{one}</option>
-									{/each}
-								</select>
-							</td>
-						</tr>
-					{:else}
+			{#each htable as sect, sidx}
+				<tr class="separator">
+					<td>{sidx + 1}</td>
+					<td colspan="5">{sect.sectionName}</td>
+					<td colspan="2">
+						<select bind:value={htableVis[sect.sectionID]}>
+							{#each ['Off', 'On'] as one, idx}
+								<option value={idx}>{one}</option>
+							{/each}
+						</select>
+					</td>
+				</tr>
+				<tbody>
+					{#each sect.params as param, pidx}
 						<tr class:changed={$storePV[pDef.partName][param.name] !== param.init}>
-							<td>{pidx + 1}</td>
+							<td>{sidx + 1}.{pidx + 1}</td>
 							<td
 								><button on:click={() => paramPict(param.name)}>{param.name}</button
 								></td
@@ -354,9 +402,9 @@
 							<td>{param.max}</td>
 							<td>{param.step}</td>
 						</tr>
-					{/if}
-				{/each}
-			</tbody>
+					{/each}
+				</tbody>
+			{/each}
 		</table>
 		<div class="comment">
 			<label for="inComment">Comment:</label>
@@ -442,10 +490,11 @@
 	section > main > table > tbody > tr.changed {
 		background-color: colors.$table-line-changed;
 	}
-	section > main > table > tbody > tr.separator {
+	section > main > table > tr.separator {
 		background-color: colors.$table-line-separator;
 	}
 	section > main > table > thead > tr > td,
+	section > main > table > tr > td,
 	section > main > table > tbody > tr > td {
 		padding-left: 0.4rem;
 		padding-right: 0.4rem;
