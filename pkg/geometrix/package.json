@@ -41,7 +41,7 @@
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
-		"@zip.js/zip.js": "^2.7.37"
+		"@zip.js/zip.js": "^2.7.40"
 	},
 	"devDependencies": {
 		"@types/node": "^20.11.25",
