@@ -199,8 +199,8 @@ function pSectionSeparator(name: string): tParam {
 		unit: 'section-separator',
 		init: 0,
 		min: 0,
-		max: 1,
-		step: 1,
+		max: 0,
+		step: 0,
 		dropdown: [],
 		pType: PType.eSectionSeparator
 	};

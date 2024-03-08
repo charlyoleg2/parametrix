@@ -501,6 +501,9 @@
 		font-weight: 700;
 		background-color: colors.$table-line-separator;
 	}
+	tr.separator > td {
+		text-align: center;
+	}
 	tr.separator > td > label > input[type='checkbox'] {
 		display: none;
 	}
