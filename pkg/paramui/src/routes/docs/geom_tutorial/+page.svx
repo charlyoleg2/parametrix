@@ -45,11 +45,14 @@ API:
 - *dropdown* parameter
 - *checkbox* parameter
 
+*myPartB* also illustrates the usage of *section-separator* for grouping the parameters into sections. Those sections helps understanding the parameters. Each section can be hidden for enhancing the *user-experience*. The first section is created automatically (you don't need to declare it) and is called *main*.
+
 API:
 
 - <a href="{base}/docs/apidoc/functions/geometrix.pNumber.html" rel="external">pNumber()</a>
 - <a href="{base}/docs/apidoc/functions/geometrix.pDropdown.html" rel="external">pDropdown()</a>
 - <a href="{base}/docs/apidoc/functions/geometrix.pCheckbox.html" rel="external">pCheckbox()</a>
+- <a href="{base}/docs/apidoc/functions/geometrix.pSectionSeparator.html" rel="external">pSectionSeparator()</a>
 
 
 ### Extrusion and 3D construction
@@ -204,6 +207,8 @@ API:
 - <a href="{base}/docs/apidoc/functions/geometrix.prefixLog.html" rel="external">prefixLog()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#mergeFigure" rel="external">.mergeFigure()</a>
 - <a href="{base}/docs/apidoc/types/geometrix.tSubDesign.html" rel="external">tSubDesign</a>
+
+Those functions are alternatives to *normal* javascript libraries that could also be used for sharing figures among several designs.
 
 
 ### Assembly of 3D-parts
