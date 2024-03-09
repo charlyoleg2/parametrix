@@ -19,6 +19,7 @@ import {
 	pNumber,
 	//pCheckbox,
 	//pDropdown,
+	pSectionSeparator,
 	initGeom,
 	EExtrude,
 	EBVolume
@@ -33,6 +34,7 @@ const pDef: tParamDef = {
 		pNumber('H1', 'mm', 8000, 10, 40000, 10),
 		pNumber('E1', 'mm', 5, 1, 80, 1),
 		pNumber('E2', 'mm', 30, 1, 80, 1),
+		pSectionSeparator('base holes'),
 		pNumber('N1', '', 24, 3, 100, 1),
 		pNumber('D3', 'mm', 40, 1, 100, 1),
 		pNumber('L1', 'mm', 45, 1, 300, 1)
