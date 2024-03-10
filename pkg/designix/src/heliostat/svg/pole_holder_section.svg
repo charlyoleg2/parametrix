@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="0.74835468"
-     inkscape:cx="252.55404"
-     inkscape:cy="276.60681"
+     inkscape:zoom="1.4967094"
+     inkscape:cx="296.65078"
+     inkscape:cy="603.99168"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -400,7 +400,10 @@
        width="116.69471"
        height="74.844215"
        x="5.6969051"
-       y="28.042583" />
+       y="28.042583"
+       inkscape:export-filename="pole_holder_section.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <rect
        style="fill:none;stroke:#000000;stroke-width:0.264583;stroke-linejoin:bevel"
        id="rect3-5"
@@ -417,7 +420,7 @@
        d="M 35.412017,69.927467 12.862779,61.258177"
        id="path3-2" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
        d="m 21.532067,38.708938 -8.66929,22.549238"
        id="path3-2-7" />
     <path
@@ -429,11 +432,11 @@
        d="M 29.264814,93.446348 37.934104,70.89711"
        id="path3-61" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide-9)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide-9)"
        d="M 38.786553,96.957579 29.264814,93.446348"
        id="path3-2-7-2" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide-9-5)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide-9-5)"
        d="m 17.220988,88.965474 9.521739,3.511231"
        id="path3-2-7-2-2" />
     <path
@@ -441,7 +444,7 @@
        d="M 35.412015,69.927466 V 48.354641"
        id="path4" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
        d="m 35.437858,52.818943 c 0,0 2.02571,-1.011499 3.089103,-0.883883 1.142783,0.137144 3.000716,1.70838 3.000716,1.70838"
        id="path5"
        sodipodi:nodetypes="cac" />
@@ -513,19 +516,19 @@
        d="M 114.68825,87.734259 V 59.137668"
        id="path4-3-9-4-5-4" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide-9-5)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide-9-5)"
        d="M 62.032559,82.247681 H 92.275765"
        id="path7" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-4);marker-end:url(#ArrowWide-9-5-0)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-4);marker-end:url(#ArrowWide-9-5-0)"
        d="M 39.614372,87.646315 H 114.56607"
        id="path7-6" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43);marker-end:url(#ArrowWide-9-5-4)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43);marker-end:url(#ArrowWide-9-5-4)"
        d="m 62.322179,72.551421 h 4.531953"
        id="path7-0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43-9);marker-end:url(#ArrowWide-9-5-4-6)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43-9);marker-end:url(#ArrowWide-9-5-4-6)"
        d="M 59.382603,36.361591 H 64.58443"
        id="path7-0-9" />
     <text
@@ -535,7 +538,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7);display:inline"><tspan
          x="277.20703"
          y="395.83206"
-         id="tspan2">PHD1</tspan></text>
+         id="tspan1">PHD1</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-1.493966,-13.266205)"
@@ -543,7 +546,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7-4);display:inline"><tspan
          x="277.20703"
          y="395.83206"
-         id="tspan3">PHD2</tspan></text>
+         id="tspan2">PHD2</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-15.754468,-70.375079)"
@@ -551,7 +554,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7-4-2);display:inline"><tspan
          x="277.20703"
          y="395.83206"
-         id="tspan4">PHD3</tspan></text>
+         id="tspan3">PHD3</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-17.978052,53.588198)"
@@ -559,7 +562,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect8);display:inline"><tspan
          x="304.75"
          y="87.091827"
-         id="tspan5">PHR4</tspan></text>
+         id="tspan4">PHR4</tspan></text>
     <path
        style="fill:none;stroke:#b3b3b3;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 74.391876,60.674852 H 66.967693"
@@ -569,7 +572,7 @@
        d="M 74.391876,57.934414 H 66.967693"
        id="path4-3-9-4-2-6-4" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43-91);marker-end:url(#ArrowWide-9-5-4-7)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43-91);marker-end:url(#ArrowWide-9-5-4-7)"
        d="m 74.391876,57.934414 v 2.722048"
        id="path7-0-5" />
     <text
@@ -579,7 +582,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9);display:inline"><tspan
          x="270.82422"
          y="201.4844"
-         id="tspan6">PHE1</tspan></text>
+         id="tspan5">PHE1</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,3.9329362,-1.8955157)"
@@ -587,7 +590,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect10);display:inline"><tspan
          x="57.289062"
          y="378.3594"
-         id="tspan7">PHE2</tspan></text>
+         id="tspan6">PHE2</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-1.9794156,12.192758)"
@@ -595,7 +598,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11);display:inline"><tspan
          x="135.77539"
          y="146.11526"
-         id="tspan8">PHA</tspan></text>
+         id="tspan7">PHA</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,4.5941225,1.9742366)"
@@ -603,9 +606,9 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect12);display:inline"><tspan
          x="8.4882812"
          y="181.11136"
-         id="tspan9">PHL1</tspan></text>
+         id="tspan8">PHL1</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43-7);marker-end:url(#ArrowWide-9-5-4-73)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43-7);marker-end:url(#ArrowWide-9-5-4-73)"
        d="m 57.283758,72.551421 h 4.531953"
        id="path7-0-3" />
     <path
@@ -635,7 +638,7 @@
        d="M 97.147737,54.32087 H 90.686964"
        id="path4-3-9-4-2-6-3" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43-91-6);marker-end:url(#ArrowWide-9-5-4-7-1)"
+       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide-43-91-6);marker-end:url(#ArrowWide-9-5-4-7-1)"
        d="m 92.143477,54.474165 v 3.072571"
        id="path7-0-5-8" />
     <text
@@ -645,6 +648,6 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect9-1);display:inline"><tspan
          x="270.82422"
          y="201.4844"
-         id="tspan10">PHH1</tspan></text>
+         id="tspan9">PHH1</tspan></text>
   </g>
 </svg>
