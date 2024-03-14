@@ -21,7 +21,6 @@
 	"scripts": {
 		"geometrix:dev": "npm -w geometrix run dev",
 		"geometrix:ci": "npm -w geometrix run ci",
-		"geometrix:svgo": "npm -w geometrix run svgo",
 		"geometrix:clean": "npm -w geometrix run clean",
 		"geometrix:version": "npm -w geometrix version patch",
 		"geometrix:publish": "npm -w geometrix publish --provenance",
@@ -66,7 +65,7 @@
 		"ci": "run-s ci-lib ci-app apidoc",
 		"ci2": "run-s designix:ci designix-ui:ci",
 		"ci3": "run-s designix:ci designix-cli:ci",
-		"svgo": "run-s geometrix:svgo designix:svgo paramui:svgo",
+		"svgo": "run-s designix:svgo paramui:svgo",
 		"clean-root": "shx rm -fr tmp output output2 build",
 		"clean-lib": "run-s geometrix:clean designix:clean geomui:clean geomcli:clean",
 		"clean-app": "run-s paramui:clean designix-ui:clean designix-script-ts:clean designix-script-js:clean designix-cli:clean designix-uis:clean",
