@@ -14,5 +14,6 @@ yarn.lock
 
 # ignore recommended by eslint
 vitest.config.ts
+svgo.config.js
 dist/
 dist2/
