@@ -67,7 +67,7 @@
 		}
 	},
 	"bin": {
-		"designix": "dist/designix-cli.js"
+		"designix-cli": "dist/designix-cli.js"
 	},
 	"files": [
 		"dist/",

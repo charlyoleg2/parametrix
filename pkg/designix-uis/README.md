@@ -20,8 +20,8 @@ Installation
 
 ```bash
 npm i -D designix-uis
-npx designix-ui --help
-npm designux-ui
+npx designix-uis --help
+npx designux-uis
 ```
 
 
@@ -37,6 +37,6 @@ Usage without installation
 --------------------------
 
 ```bash
-npx --package=designix-uis designix-ui
-npx --package=designix-uis designix-ui --help
+npx --package=designix-uis designix-uis
+npx --package=designix-uis designix-uis --help
 ```

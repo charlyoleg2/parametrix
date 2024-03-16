@@ -7,7 +7,7 @@
 	"main": "./dist/designix-uis.js",
 	"types": "./dist/designix-uis.d.ts",
 	"bin": {
-		"designix-ui": "dist/designix-uis.js"
+		"designix-uis": "dist/designix-uis.js"
 	},
 	"files": [
 		"dist/",
