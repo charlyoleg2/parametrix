@@ -1,7 +1,7 @@
 // ring.ts
 
 import type {
-	tContour,
+	//tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -80,23 +80,24 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		for (let i = 0; i < param.N2; i++) {
 			const posX = posR * Math.cos(i * posA);
 			const posY = posR * Math.sin(i * posA);
-			figRingBase.addMain(contourCircle(0, 0, R2));
+			figRingBase.addMain(contourCircle(posX, posY, R2));
 		}
 		// figRingTeeth
-		const tR1 = R3 - param.L1;
-		const tR2 = tR1 - param.L2;
+		const tR1 = R3 - param.L2;
+		const tR2 = tR1 - param.L3;
 		const tA = (2 * Math.PI) / (2 * param.N1);
 		figRingTeeth.addMain(contourCircle(0, 0, R3));
 		const ctrTeeth = contour(tR1, 0);
 		for (let i = 0; i < param.N1; i++) {
-			const ti1 = 2 * i;
-			const ti2 = 2 * i + 1;
+			const ti1 = 2 * i + 1;
+			const ti2 = 2 * i + 2;
 			const p1X = tR2 * Math.cos(ti1 * tA);
 			const p1Y = tR2 * Math.sin(ti1 * tA);
 			const p2X = tR1 * Math.cos(ti2 * tA);
 			const p2Y = tR1 * Math.sin(ti2 * tA);
 			ctrTeeth.addSegStrokeA(p1X, p1Y).addSegStrokeA(p2X, p2Y);
 		}
+		figRingTeeth.addMain(ctrTeeth);
 		// final figure list
 		rGeome.fig = {
 			faceRingBase: figRingBase,
