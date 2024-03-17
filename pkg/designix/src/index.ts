@@ -9,6 +9,7 @@ export * from './heliostat/base';
 export * from './heliostat/pole_static';
 export * from './heliostat/pole_rotor';
 export * from './heliostat/ring';
+export * from './heliostat/pole_holder';
 export * from './heliostat/rake';
 export * from './heliostat/rake_stopper';
 export * from './heliostat/spider';
