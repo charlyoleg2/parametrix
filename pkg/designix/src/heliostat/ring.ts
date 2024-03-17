@@ -1,7 +1,7 @@
 // ring.ts
 
 import type {
-	//tContour,
+	tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -65,28 +65,31 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const rGeome = initGeom(pDef.partName + suffix);
 	const figRingBase = figure();
 	const figRingTeeth = figure();
+	const figSection = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
+		// step-4 : some preparation calculation
 		const R1 = param.D1 / 2;
 		const R2 = param.D2 / 2;
 		const R3 = param.D3 / 2;
 		const ringHeight = param.H1 + param.H2;
-		rGeome.logstr += `ring-height: ${ffix(ringHeight)} mm\n`;
-		// figRingBase
-		figRingBase.addMain(contourCircle(0, 0, R3));
-		figRingBase.addMain(contourCircle(0, 0, R1));
-		const posR = R1 + param.L1;
-		const posA = (2 * Math.PI) / param.N2;
-		for (let i = 0; i < param.N2; i++) {
-			const posX = posR * Math.cos(i * posA);
-			const posY = posR * Math.sin(i * posA);
-			figRingBase.addMain(contourCircle(posX, posY, R2));
+		// step-5 : checks on the parameter values
+		if (param.L1 < R2) {
+			throw `err203: L1 ${param.L1} too small compare to D2 ${param.D2}`;
 		}
-		// figRingTeeth
+		if (R1 + param.L1 + R2 > R3 - param.L2 - param.L3) {
+			throw `err204: D3 ${param.D3} too small compare to D1 ${param.D1}, L1 ${param.L1}, L2 ${param.L2}, L3 ${param.L3}`;
+		}
+		if (2 * Math.atan2(R2, R1 + param.L1) > (2 * Math.PI) / param.N2) {
+			throw `err205: D2 ${param.D2} too large compare to N2 ${param.N2}`;
+		}
+		// step-6 : any logs
+		rGeome.logstr += `ring-height: ${ffix(ringHeight)} mm\n`;
+		// step-7 : drawing of the figures
+		// ctrTeeth
 		const tR1 = R3 - param.L2;
 		const tR2 = tR1 - param.L3;
 		const tA = (2 * Math.PI) / (2 * param.N1);
-		figRingTeeth.addMain(contourCircle(0, 0, R3));
 		const ctrTeeth = contour(tR1, 0);
 		for (let i = 0; i < param.N1; i++) {
 			const ti1 = 2 * i + 1;
@@ -97,11 +100,66 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			const p2Y = tR1 * Math.sin(ti2 * tA);
 			ctrTeeth.addSegStrokeA(p1X, p1Y).addSegStrokeA(p2X, p2Y);
 		}
+		// figRingBase
+		figRingBase.addMain(contourCircle(0, 0, R3));
+		figRingBase.addMain(contourCircle(0, 0, R1));
+		const posR = R1 + param.L1;
+		const posA = (2 * Math.PI) / param.N2;
+		for (let i = 0; i < param.N2; i++) {
+			const posX = posR * Math.cos(i * posA);
+			const posY = posR * Math.sin(i * posA);
+			figRingBase.addMain(contourCircle(posX, posY, R2));
+			figRingTeeth.addSecond(contourCircle(posX, posY, R2));
+		}
+		figRingBase.addSecond(ctrTeeth);
+		// figRingTeeth
+		figRingTeeth.addMain(contourCircle(0, 0, R3));
 		figRingTeeth.addMain(ctrTeeth);
+		figRingTeeth.addSecond(contourCircle(0, 0, R1));
+		// figSection
+		const ctrInner = contour(R1, 0)
+			.addSegStrokeA(-R1, 0)
+			.addSegStrokeA(-R1, -param.H1)
+			.addSegStrokeA(R1, -param.H1)
+			.closeSegStroke();
+		const ctrScrewHole = function (rnl: number): tContour {
+			const rCtr = contour(rnl * (R1 + param.L1) + R2, 0)
+				.addSegStrokeR(-2 * R2, 0)
+				.addSegStrokeR(0, -param.H1)
+				.addSegStrokeR(2 * R2, 0)
+				.closeSegStroke();
+			return rCtr;
+		};
+		const ctrGearTeeth = function (rnl: number): tContour {
+			const rCtr = contour(rnl * (R3 - param.L2), -param.H1)
+				.addSegStrokeR(-rnl * param.L3, 0)
+				.addSegStrokeR(0, -param.H2)
+				.addSegStrokeR(rnl * param.L3, 0)
+				.closeSegStroke();
+			return rCtr;
+		};
+		const ctrL = function (rnl: number): tContour {
+			const rCtr = contour(rnl * R3, 0)
+				.addSegStrokeR(-rnl * (R3 - R1), 0)
+				.addSegStrokeR(0, -param.H1)
+				.addSegStrokeR(rnl * (R3 - param.L2 - param.L3 - R1), 0)
+				.addSegStrokeR(0, -param.H2)
+				.addSegStrokeR(rnl * (param.L2 + param.L3), 0)
+				.closeSegStroke();
+			return rCtr;
+		};
+		figSection.addSecond(ctrInner);
+		figSection.addSecond(ctrScrewHole(1));
+		figSection.addSecond(ctrScrewHole(-1));
+		figSection.addSecond(ctrGearTeeth(1));
+		figSection.addSecond(ctrGearTeeth(-1));
+		figSection.addMain(ctrL(1));
+		figSection.addSecond(ctrL(-1));
 		// final figure list
 		rGeome.fig = {
 			faceRingBase: figRingBase,
-			faceRingTeeth: figRingTeeth
+			faceRingTeeth: figRingTeeth,
+			faceSection: figSection
 		};
 		const designName = rGeome.partName;
 		rGeome.vol = {
