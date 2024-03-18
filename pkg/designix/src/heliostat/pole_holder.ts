@@ -256,13 +256,34 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					length: param.PHE1,
 					rotate: [0, 0, 0],
 					translate: [0, 0, -param.PHE1 / 2]
+				},
+				{
+					outName: `subpax_${designName}_buttress1`,
+					face: `${designName}_faceButtress1`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: param.PHE3,
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, param.PHE3 / 2, 0]
+				},
+				{
+					outName: `subpax_${designName}_buttress2`,
+					face: `${designName}_faceButtress2`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: param.PHE3,
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, param.PHE3 / 2, 0]
 				}
 			],
 			volumes: [
 				{
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eUnion,
-					inList: [`subpax_${designName}_outer`, `subpax_${designName}_petal`]
+					inList: [
+						`subpax_${designName}_petal`,
+						`subpax_${designName}_outer`,
+						`subpax_${designName}_buttress1`,
+						`subpax_${designName}_buttress2`
+					]
 				}
 			]
 		};

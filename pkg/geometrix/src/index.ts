@@ -24,5 +24,7 @@ export * from './write_dxf';
 export * from './aaExportFile';
 export * from './paramFile';
 
+export * from './transform3d';
+
 export * from './version_details';
 export * from './dynamicImport';
