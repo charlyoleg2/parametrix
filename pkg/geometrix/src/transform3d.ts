@@ -125,7 +125,26 @@ function t3dGetTranslation(tm: tT3dMatrix): tVec3 {
 }
 
 function t3dGetRotation(tm: tT3dMatrix): tVec3 {
-	const rVR: tVec3 = [tm[0][3], tm[1][3], tm[2][3]];
+	// found on stackOverflow and baeldung
+	let ax = 0;
+	let ay = 0;
+	let az = 0;
+	const tm20 = tm[2][0];
+	const yota = 10 ** -5;
+	if (Math.abs(tm20 - 1) < yota) {
+		az = 0; // arbitrary set to 0, could be any number
+		ay = -Math.PI / 2;
+		ax = -az + Math.atan2(-tm[0][1], -tm[0][2]);
+	} else if (Math.abs(tm20 + 1) < yota) {
+		az = 0; // arbitray set to 0
+		ay = Math.PI / 2;
+		ax = az + Math.atan2(tm[0][1], tm[0][2]);
+	} else {
+		ax = Math.atan2(tm[2][1], tm[2][2]);
+		ay = Math.atan2(-tm[2][0], Math.sqrt(tm[2][1] ** 2 + tm[2][2] ** 2));
+		az = Math.atan2(tm[1][0], tm[0][0]);
+	}
+	const rVR: tVec3 = [ax, ay, az];
 	return rVR;
 }
 
