@@ -37,7 +37,7 @@ const pDef: tParamDef = {
 		pSectionSeparator('screw holes'),
 		pNumber('PHD3', 'mm', 40, 2, 100, 1),
 		pNumber('PHR4', 'mm', 40, 2, 100, 1),
-		pNumber('PHL2', 'mm', 60, 5, 200, 1),
+		pNumber('PHL2', 'mm', 120, 5, 400, 1),
 		pNumber('PHR6', 'mm', 20, 1, 400, 1),
 		pSectionSeparator('section'),
 		pNumber('PHE1', 'mm', 10, 1, 80, 1),
@@ -74,6 +74,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const rGeome = initGeom(pDef.partName + suffix);
 	const figOuter = figure();
 	const figPetal = figure();
+	const figButtress1 = figure();
+	const figButtress2 = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// step-4 : some preparation calculation
@@ -92,6 +94,13 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const petalA1 = 2 * Math.asin(param.PHR4 / R1);
 		const petalA2 = 2 * Math.asin(param.PHL2 / (2 * R5));
 		const hollowA = (2 * Math.PI) / param.PHN1 - petalA2;
+		const lCD = param.PHL2 / 2;
+		const lAD = Math.sqrt(R5 ** 2 - lCD ** 2) - R1;
+		const lAC = Math.sqrt(lCD ** 2 + lAD ** 2);
+		const aDAC = Math.acos(lAD / lAC);
+		const aCAB = Math.acos(param.PHR4 / lAC);
+		const aTan = Math.PI - aDAC - aCAB;
+		const R2next = R2 - param.PHE2 / Math.cos(outerA);
 		// step-5 : checks on the parameter values
 		if (innerR < R5) {
 			throw `err210: PHD5 ${param.PHD5} too large compare to PHE2 ${param.PHE2} or PHA ${param.PHA}`;
@@ -105,6 +114,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		if (param.PHD3 > 2 * param.PHR4) {
 			throw `err213: PHD3 ${param.PHD3} too large compare to PHR4 ${param.PHR4}`;
 		}
+		if (aTan > Math.PI / 2 - petalA1) {
+			rGeome.logstr += `warn345: PHL2 is quiet small ${ffix(param.PHL2)} mm\n`;
+		}
 		// step-6 : any logs
 		rGeome.logstr += `pole_holder's height: ${ffix(poleHolderHeight)} mm\n`;
 		rGeome.logstr += `pole_holder outerD1: ${ffix(2 * outerR1)} mm\n`;
@@ -112,6 +124,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `pole_holder innerD: ${ffix(param.PHD1 - 2 * param.PHR4)} mm\n`;
 		rGeome.logstr += `petal angle: ${ffix(radToDeg(petalA2))} degree\n`;
 		rGeome.logstr += `hollow angle: ${ffix(radToDeg(hollowA))} degree\n`;
+		rGeome.logstr += `pole_holder D2-next: ${ffix(2 * R2next)} mm\n`;
 		// step-7 : drawing of the figures
 		// figOuter
 		const ctrOuter = function (rnl: number): tContour {
@@ -148,6 +161,35 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figOuter.addSecond(ctrLegHole(1));
 		figOuter.addSecond(ctrLeg(-1));
 		figOuter.addSecond(ctrLegHole(-1));
+		const ctrButtress1 = function (rnl: number): tContour {
+			const rCtr = contour(rnl * (R1 + param.PHR4), -param.PHE1 / 2)
+				.addSegStrokeA(rnl * innerR1, -param.PHE1 / 2)
+				.addSegStrokeRP(-Math.PI / 2 + rnl * outerA, innerL2)
+				.closeSegStroke();
+			return rCtr;
+		};
+		const ctrButtress2 = function (rnl: number): tContour {
+			const rCtr = contour(rnl * (R1 + param.PHR4), param.PHE1 / 2)
+				.addSegStrokeA(rnl * innerR2, param.PHE1 / 2)
+				.addSegStrokeRP(Math.PI / 2 + rnl * outerA, innerL2)
+				.addSegStrokeA(rnl * (R1 + param.PHR4), param.PHE1 + param.PHH1)
+				.closeSegStroke();
+			return rCtr;
+		};
+		figOuter.addSecond(ctrButtress1(-1));
+		figOuter.addSecond(ctrButtress2(-1));
+		// create figButtress1 and figButtress2 from figOuter
+		figButtress1.mergeFigure(figOuter, true);
+		figButtress2.mergeFigure(figOuter, true);
+		// complete figOuter
+		figOuter.addSecond(ctrButtress1(1));
+		figOuter.addSecond(ctrButtress2(1));
+		// figButtress1
+		figButtress1.addMain(ctrButtress1(1));
+		figButtress1.addSecond(ctrButtress2(1));
+		// figButtress2
+		figButtress2.addSecond(ctrButtress1(1));
+		figButtress2.addMain(ctrButtress2(1));
 		// figPetal
 		figPetal.addMain(contourCircle(0, 0, innerR));
 		figPetal.addSecond(contourCircle(0, 0, R2));
@@ -158,8 +200,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const p3 = point(R1, 0);
 		const p10 = point(R1, 0);
 		const p11 = point(R1 - param.PHR4, 0);
-		const p12 = p11.rotate(p10, Math.PI / 2 - petalA1);
-		const p13 = p11.rotate(p10, -Math.PI / 2 + petalA1);
+		//const p12 = p11.rotate(p10, Math.PI / 2 - petalA1);
+		//const p13 = p11.rotate(p10, -Math.PI / 2 + petalA1);
+		const p12 = p11.rotate(p10, aTan);
+		const p13 = p11.rotate(p10, -aTan);
 		const ctrPetalPartial = contour(p2.cx, p2.cy)
 			.addCornerRounded(param.PHR6)
 			.addSegStrokeA(p12.cx, p12.cy)
@@ -180,10 +224,20 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			const p4 = p3.rotate(p0, i * (petalA2 + hollowA));
 			figPetal.addMain(contourCircle(p4.cx, p4.cy, param.PHD3 / 2));
 		}
+		const ctrButtress = contour(R1 + param.PHR4, -param.PHE3)
+			.addSegStrokeA(innerR, -param.PHE3)
+			.addSegStrokeA(innerR, param.PHE3)
+			.addSegStrokeA(R1 + param.PHR4, param.PHE3)
+			.closeSegStroke();
+		for (let i = 0; i < param.PHN1; i++) {
+			figPetal.addSecond(ctrButtress.rotate(0, 0, i * (petalA2 + hollowA)));
+		}
 		// final figure list
 		rGeome.fig = {
+			facePetal: figPetal,
 			faceOuter: figOuter,
-			facePetal: figPetal
+			faceButtress1: figButtress1,
+			faceButtress2: figButtress2
 		};
 		const designName = rGeome.partName;
 		rGeome.vol = {
