@@ -5,9 +5,11 @@ import type {
 	tParamDef,
 	tParamVal,
 	tGeom,
+	tExtrude,
+	//tSubInst,
+	//tSubDesign,
+	//tVec3,
 	tPageDef
-	//tSubInst
-	//tSubDesign
 } from 'geometrix';
 import {
 	point,
@@ -22,6 +24,11 @@ import {
 	//pDropdown,
 	pSectionSeparator,
 	initGeom,
+	t3dRotate,
+	t3dTranslate,
+	t3dCombine,
+	t3dGetTranslation,
+	t3dGetRotation,
 	EExtrude,
 	EBVolume
 } from 'geometrix';
@@ -216,12 +223,13 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addPointAP(petalA2 / 2 + hollowA, R5)
 			.addSegArc2();
 		const ctrPetal = contour(p2.cx, p2.cy);
-		for (let i = 0; i < param.PHN1; i++) {
-			ctrPetal.addPartial(ctrPetalPartial.rotate(0, 0, i * (petalA2 + hollowA)));
+		const petalAngles = [...Array(param.PHN1).keys()].map((i) => i * (petalA2 + hollowA));
+		for (const rota of petalAngles) {
+			ctrPetal.addPartial(ctrPetalPartial.rotate(0, 0, rota));
 		}
 		figPetal.addMain(ctrPetal);
-		for (let i = 0; i < param.PHN1; i++) {
-			const p4 = p3.rotate(p0, i * (petalA2 + hollowA));
+		for (const rota of petalAngles) {
+			const p4 = p3.rotate(p0, rota);
 			figPetal.addMain(contourCircle(p4.cx, p4.cy, param.PHD3 / 2));
 		}
 		const ctrButtress = contour(R1 + param.PHR4, -param.PHE3)
@@ -229,8 +237,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegStrokeA(innerR, param.PHE3)
 			.addSegStrokeA(R1 + param.PHR4, param.PHE3)
 			.closeSegStroke();
-		for (let i = 0; i < param.PHN1; i++) {
-			figPetal.addSecond(ctrButtress.rotate(0, 0, i * (petalA2 + hollowA)));
+		for (const rota of petalAngles) {
+			figPetal.addSecond(ctrButtress.rotate(0, 0, rota));
 		}
 		// final figure list
 		rGeome.fig = {
@@ -240,6 +248,48 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			faceButtress2: figButtress2
 		};
 		const designName = rGeome.partName;
+		// 3D preparations
+		const t3dm1 = t3dRotate(Math.PI / 2, 0, 0);
+		const t3dm2 = t3dTranslate(0, param.PHE3 / 2, 0);
+		const preExtrude1 = petalAngles.map((rota, idx) => {
+			const t3dm3 = t3dRotate(0, 0, rota);
+			const t3dmC = t3dCombine([t3dm1, t3dm2, t3dm3]);
+			const v3R = t3dGetRotation(t3dmC);
+			const v3T = t3dGetTranslation(t3dmC);
+			const rElem: tExtrude = {
+				outName: `subpax_${designName}_b1_${idx}`,
+				face: `${designName}_faceButtress1`,
+				extrudeMethod: EExtrude.eLinearOrtho,
+				length: param.PHE3,
+				rotate: v3R,
+				translate: v3T
+			};
+			return rElem;
+		});
+		const preExtrude2 = petalAngles.map((rota, idx) => {
+			const t3dm3 = t3dRotate(0, 0, rota);
+			const t3dmC = t3dCombine([t3dm1, t3dm2, t3dm3]);
+			const v3R = t3dGetRotation(t3dmC);
+			const v3T = t3dGetTranslation(t3dmC);
+			const rElem: tExtrude = {
+				outName: `subpax_${designName}_b2_${idx}`,
+				face: `${designName}_faceButtress2`,
+				extrudeMethod: EExtrude.eLinearOrtho,
+				length: param.PHE3,
+				rotate: v3R,
+				translate: v3T
+			};
+			return rElem;
+		});
+		const b1List = petalAngles.map((elem, idx) => {
+			const subElem = `subpax_${designName}_b1_${idx}`;
+			return subElem;
+		});
+		const b2List = petalAngles.map((elem, idx) => {
+			const subElem = `subpax_${designName}_b2_${idx}`;
+			return subElem;
+		});
+		// 3D definition
 		rGeome.vol = {
 			extrudes: [
 				{
@@ -257,22 +307,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					rotate: [0, 0, 0],
 					translate: [0, 0, -param.PHE1 / 2]
 				},
-				{
-					outName: `subpax_${designName}_buttress1`,
-					face: `${designName}_faceButtress1`,
-					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.PHE3,
-					rotate: [Math.PI / 2, 0, 0],
-					translate: [0, param.PHE3 / 2, 0]
-				},
-				{
-					outName: `subpax_${designName}_buttress2`,
-					face: `${designName}_faceButtress2`,
-					extrudeMethod: EExtrude.eLinearOrtho,
-					length: param.PHE3,
-					rotate: [Math.PI / 2, 0, 0],
-					translate: [0, param.PHE3 / 2, 0]
-				}
+				...preExtrude1,
+				...preExtrude2
 			],
 			volumes: [
 				{
@@ -281,8 +317,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					inList: [
 						`subpax_${designName}_petal`,
 						`subpax_${designName}_outer`,
-						`subpax_${designName}_buttress1`,
-						`subpax_${designName}_buttress2`
+						...b1List,
+						...b2List
 					]
 				}
 			]
