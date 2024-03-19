@@ -45,7 +45,7 @@ const pDef: tParamDef = {
 		pNumber('PHD3', 'mm', 40, 2, 100, 1),
 		pNumber('PHR4', 'mm', 40, 2, 100, 1),
 		pNumber('PHL2', 'mm', 120, 5, 400, 1),
-		pNumber('PHR6', 'mm', 20, 1, 400, 1),
+		pNumber('PHR6', 'mm', 20, 0, 400, 1),
 		pSectionSeparator('section'),
 		pNumber('PHE1', 'mm', 10, 1, 80, 1),
 		pNumber('PHH1', 'mm', 50, 1, 200, 1),

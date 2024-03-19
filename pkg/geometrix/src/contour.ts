@@ -192,13 +192,15 @@ class Contour extends AContour {
 			const p0p2middle = p0.middlePoint(p2);
 			const a0 = p0p2middle.angleToPoint(p0);
 			const a1 = p0p2middle.angleToPoint(p1);
-			const a3 = p0p2middle.angleToPoint(p3);
 			const a01 = withinPiPi(a1 - a0);
-			const a03 = withinPiPi(a3 - a0);
 			let large = false;
 			let ccw = false;
-			if (Math.sign(a03) * Math.sign(a01) > 0) {
-				large = true;
+			if (!p0p2middle.isEqual(p3)) {
+				const a3 = p0p2middle.angleToPoint(p3);
+				const a03 = withinPiPi(a3 - a0);
+				if (Math.sign(a03) * Math.sign(a01) > 0) {
+					large = true;
+				}
 			}
 			if (Math.sign(a01) > 0) {
 				ccw = true;
