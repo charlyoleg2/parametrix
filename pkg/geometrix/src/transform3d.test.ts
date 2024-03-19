@@ -78,4 +78,30 @@ describe('Transform-3D suit', () => {
 		expect(vR[1]).toBeCloseTo(-Math.PI / 2);
 		expect(vR[2]).toBeCloseTo(0);
 	});
+	it('combination rotation translation', () => {
+		const tm = transform3d();
+		tm.addRotation(0.7, 1.1, 0.4);
+		tm.addTranslation(1, 2, 3);
+		const vR = tm.getRotation();
+		const vT = tm.getTranslation();
+		expect(vR[0]).toBeCloseTo(0.7);
+		expect(vR[1]).toBeCloseTo(1.1);
+		expect(vR[2]).toBeCloseTo(0.4);
+		expect(vT[0]).toBeCloseTo(1);
+		expect(vT[1]).toBeCloseTo(2);
+		expect(vT[2]).toBeCloseTo(3);
+	});
+	it('combination translation rotation', () => {
+		const tm = transform3d();
+		tm.addTranslation(1, 2, 3);
+		tm.addRotation(0.7, 1.1, 0.4);
+		const vR = tm.getRotation();
+		const vT = tm.getTranslation();
+		expect(vR[0]).toBeCloseTo(0.7);
+		expect(vR[1]).toBeCloseTo(1.1);
+		expect(vR[2]).toBeCloseTo(0.4);
+		expect(vT[0]).toBeCloseTo(3.5158101030078583);
+		expect(vT[1]).toBeCloseTo(1.0489557817907154);
+		expect(vT[2]).toBeCloseTo(0.7340102774728061);
+	});
 });
