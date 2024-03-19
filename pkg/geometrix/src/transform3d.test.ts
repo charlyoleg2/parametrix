@@ -74,9 +74,19 @@ describe('Transform-3D suit', () => {
 		tm.addRotation(0, 0, Math.PI / 2);
 		tm.addRotation(Math.PI / 2, 0, 0);
 		const vR = tm.getRotation();
-		expect(vR[0]).toBeCloseTo(Math.PI / 2); // weird
+		expect(vR[0]).toBeCloseTo(Math.PI / 2);
 		expect(vR[1]).toBeCloseTo(-Math.PI / 2);
 		expect(vR[2]).toBeCloseTo(0);
+		const v1: tVec3 = [1, 0, 0]; // x,y,z
+		const v2 = tm.transform(v1);
+		expect(v2[0]).toBeCloseTo(0);
+		expect(v2[1]).toBeCloseTo(0);
+		expect(v2[2]).toBeCloseTo(1);
+		const v3: tVec3 = [0, 1, 0]; // x,y,z
+		const v4 = tm.transform(v3);
+		expect(v4[0]).toBeCloseTo(-1);
+		expect(v4[1]).toBeCloseTo(0);
+		expect(v4[2]).toBeCloseTo(0);
 	});
 	it('combination rotation translation', () => {
 		const tm = transform3d();
