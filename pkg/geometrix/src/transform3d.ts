@@ -15,16 +15,6 @@ function t3dInitNull(): tT3dMatrix {
 	return rM;
 }
 
-function t3dInitZero(): tT3dMatrix {
-	const rM: tT3dMatrix = [
-		[0, 0, 0, 0],
-		[0, 0, 0, 0],
-		[0, 0, 0, 0],
-		[0, 0, 0, 1]
-	];
-	return rM;
-}
-
 function t3dInitIdentity(): tT3dMatrix {
 	const rM: tT3dMatrix = [
 		[1, 0, 0, 0],
@@ -36,10 +26,10 @@ function t3dInitIdentity(): tT3dMatrix {
 }
 
 function t3dRotateX(ax: number): tT3dMatrix {
-	const rM = t3dInitZero();
+	const rM = t3dInitIdentity();
 	const cos = Math.cos(ax);
 	const sin = Math.sin(ax);
-	rM[0][0] = 1;
+	//rM[0][0] = 1;
 	rM[1][1] = cos;
 	rM[2][2] = cos;
 	rM[2][1] = sin;
@@ -48,10 +38,10 @@ function t3dRotateX(ax: number): tT3dMatrix {
 }
 
 function t3dRotateY(ay: number): tT3dMatrix {
-	const rM = t3dInitZero();
+	const rM = t3dInitIdentity();
 	const cos = Math.cos(ay);
 	const sin = Math.sin(ay);
-	rM[1][1] = 1;
+	//rM[1][1] = 1;
 	rM[0][0] = cos;
 	rM[2][2] = cos;
 	rM[0][2] = sin;
@@ -60,10 +50,10 @@ function t3dRotateY(ay: number): tT3dMatrix {
 }
 
 function t3dRotateZ(az: number): tT3dMatrix {
-	const rM = t3dInitZero();
+	const rM = t3dInitIdentity();
 	const cos = Math.cos(az);
 	const sin = Math.sin(az);
-	rM[2][2] = 1;
+	//rM[2][2] = 1;
 	rM[0][0] = cos;
 	rM[1][1] = cos;
 	rM[0][1] = -sin;
@@ -103,6 +93,16 @@ function t3dTranslate(ax: number, ay: number, az: number): tT3dMatrix {
 	rM[0][3] = ax;
 	rM[1][3] = ay;
 	rM[2][3] = az;
+	return rM;
+}
+
+function t3dCopyMatrix(tm: tT3dMatrix): tT3dMatrix {
+	const rM = t3dInitNull();
+	for (let i = 0; i < 4; i++) {
+		for (let j = 0; j < 4; j++) {
+			rM[i][j] = tm[i][j];
+		}
+	}
 	return rM;
 }
 
@@ -148,5 +148,40 @@ function t3dGetRotation(tm: tT3dMatrix): tVec3 {
 	return rVR;
 }
 
+class Transform3d {
+	mmat: tT3dMatrix;
+	constructor(iMat: tT3dMatrix) {
+		this.mmat = t3dCopyMatrix(iMat);
+	}
+	addRotation(ax: number, ay: number, az: number) {
+		const mR = t3dRotate(ax, ay, az);
+		this.mmat = t3dCombine([this.mmat, mR]);
+	}
+	addTranslation(ax: number, ay: number, az: number) {
+		const mT = t3dTranslate(ax, ay, az);
+		this.mmat = t3dCombine([this.mmat, mT]);
+	}
+	getMatrix(): tT3dMatrix {
+		return this.mmat;
+	}
+	getRotation(): tVec3 {
+		const rVR = t3dGetRotation(this.mmat);
+		return rVR;
+	}
+	getTranslation(): tVec3 {
+		const rVT = t3dGetTranslation(this.mmat);
+		return rVT;
+	}
+	transform(iv: tVec3): tVec3 {
+		const rV = t3dApply(this.mmat, iv);
+		return rV;
+	}
+}
+
+const initMid = t3dInitIdentity();
+function transform3d(initM = initMid): Transform3d {
+	return new Transform3d(initM);
+}
+
 export type { tT3dMatrix, tVec3 };
-export { t3dRotate, t3dTranslate, t3dCombine, t3dApply, t3dGetTranslation, t3dGetRotation };
+export { Transform3d, transform3d };

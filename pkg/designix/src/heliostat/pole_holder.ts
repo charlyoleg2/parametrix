@@ -24,11 +24,7 @@ import {
 	//pDropdown,
 	pSectionSeparator,
 	initGeom,
-	t3dRotate,
-	t3dTranslate,
-	t3dCombine,
-	t3dGetTranslation,
-	t3dGetRotation,
+	transform3d,
 	EExtrude,
 	EBVolume
 } from 'geometrix';
@@ -249,35 +245,32 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		};
 		const designName = rGeome.partName;
 		// 3D preparations
-		const t3dm1 = t3dRotate(Math.PI / 2, 0, 0);
-		const t3dm2 = t3dTranslate(0, param.PHE3 / 2, 0);
+		const tm = transform3d();
+		tm.addRotation(Math.PI / 2, 0, 0);
+		tm.addTranslation(0, param.PHE3 / 2, 0);
 		const preExtrude1 = petalAngles.map((rota, idx) => {
-			const t3dm3 = t3dRotate(0, 0, rota);
-			const t3dmC = t3dCombine([t3dm1, t3dm2, t3dm3]);
-			const v3R = t3dGetRotation(t3dmC);
-			const v3T = t3dGetTranslation(t3dmC);
+			const tm1 = transform3d(tm.getMatrix());
+			tm1.addRotation(0, 0, rota);
 			const rElem: tExtrude = {
 				outName: `subpax_${designName}_b1_${idx}`,
 				face: `${designName}_faceButtress1`,
 				extrudeMethod: EExtrude.eLinearOrtho,
 				length: param.PHE3,
-				rotate: v3R,
-				translate: v3T
+				rotate: tm1.getRotation(),
+				translate: tm1.getTranslation()
 			};
 			return rElem;
 		});
 		const preExtrude2 = petalAngles.map((rota, idx) => {
-			const t3dm3 = t3dRotate(0, 0, rota);
-			const t3dmC = t3dCombine([t3dm1, t3dm2, t3dm3]);
-			const v3R = t3dGetRotation(t3dmC);
-			const v3T = t3dGetTranslation(t3dmC);
+			const tm2 = transform3d(tm.getMatrix());
+			tm2.addRotation(0, 0, rota);
 			const rElem: tExtrude = {
 				outName: `subpax_${designName}_b2_${idx}`,
 				face: `${designName}_faceButtress2`,
 				extrudeMethod: EExtrude.eLinearOrtho,
 				length: param.PHE3,
-				rotate: v3R,
-				translate: v3T
+				rotate: tm2.getRotation(),
+				translate: tm2.getTranslation()
 			};
 			return rElem;
 		});
