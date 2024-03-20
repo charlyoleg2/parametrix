@@ -168,10 +168,17 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const pG = pF.rotate(pO, -aE2);
 		const pH = pF.translatePolar(a1, param.L2);
 		const pI = pH.translatePolar(a1 + Math.PI / 2, param.E1);
-		const ctrSpring = contour(pG.cx, pG.cy)
-			.addSegStrokeA(pI.cx, pI.cy)
-			.addSegStrokeA(pH.cx, pH.cy)
-			.addSegStrokeA(pF.cx, pF.cy);
+		const pH2 = pF.translatePolar(a1, param.L2 - param.L3 + param.L4);
+		const pI2 = pH2.translatePolar(a1 + Math.PI / 2, param.E1);
+		const ctrSpring = contour(pG.cx, pG.cy).addSegStrokeA(pI.cx, pI.cy);
+		if (param.N3 > 0) {
+			ctrSpring.addSegStrokeA(pH.cx, pH.cy).addSegStrokeA(pF.cx, pF.cy);
+		} else {
+			ctrSpring
+				.addSegStrokeA(pI2.cx, pI2.cy)
+				.addSegStrokeA(pH2.cx, pH2.cy)
+				.addSegStrokeA(pF.cx, pF.cy);
+		}
 		for (let i = 0; i < param.N2; i++) {
 			ctrInner
 				.addPointAP(i * stepA2 + iarcA2, R6)
