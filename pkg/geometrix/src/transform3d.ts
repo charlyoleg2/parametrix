@@ -183,5 +183,5 @@ function transform3d(initM = initMid): Transform3d {
 	return new Transform3d(initM);
 }
 
-export type { tT3dMatrix, tVec3 };
+export type { tT3dMatrix, tVec4, tVec3 };
 export { Transform3d, transform3d };

@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="0.74835468"
-     inkscape:cx="240.52766"
-     inkscape:cy="1122.4624"
+     inkscape:zoom="1.0583333"
+     inkscape:cx="240.00001"
+     inkscape:cy="1154.6457"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -145,12 +145,12 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
-       d="m 44.704874,332.88651 c 0,0 4.279046,-1.70953 5.3916,-3.55176 1.039948,-1.72201 0.592285,-6.00586 0.592285,-6.00586"
+       d="m 41.046672,316.57884 c 0,0 4.937282,-1.30826 6.531248,0.17579 1.472321,1.37079 0.592285,6.00586 0.592285,6.00586"
        id="path40"
        sodipodi:nodetypes="cac" />
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,-46.0295,71.941709)"
+       transform="matrix(0.26458333,0,0,0.26458333,-50.339787,56.636824)"
        id="text40"
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect40);display:inline"><tspan
          x="371.08398"
@@ -404,7 +404,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect50);display:inline"><tspan
          x="364.51758"
          y="1270.9766"
-         id="tspan8">N2</tspan></text>
+         id="tspan8">N3</tspan></text>
     <path
        style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
        d="m 79.963864,313.083 16.881837,17.58301 10.449219,-24.30468"
