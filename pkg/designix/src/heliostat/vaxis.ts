@@ -1,4 +1,4 @@
-// pole_rotor.ts
+// vaxis.ts
 
 import type {
 	tContour,
@@ -26,7 +26,7 @@ import {
 } from 'geometrix';
 
 const pDef: tParamDef = {
-	partName: 'pole_rotor',
+	partName: 'vaxis',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('D1', 'mm', 600, 1, 4000, 1),
@@ -40,14 +40,14 @@ const pDef: tParamDef = {
 		pNumber('L1', 'mm', 45, 1, 300, 1)
 	],
 	paramSvg: {
-		D1: 'pole_rotor_cut.svg',
-		D2: 'pole_rotor_cut.svg',
-		H1: 'pole_rotor_cut.svg',
-		E1: 'pole_rotor_cut.svg',
-		E2: 'pole_rotor_cut.svg',
-		N1: 'pole_rotor_ends.svg',
-		D3: 'pole_rotor_ends.svg',
-		L1: 'pole_rotor_ends.svg'
+		D1: 'vaxis_cut.svg',
+		D2: 'vaxis_cut.svg',
+		H1: 'vaxis_cut.svg',
+		E1: 'vaxis_cut.svg',
+		E2: 'vaxis_cut.svg',
+		N1: 'vaxis_ends.svg',
+		D3: 'vaxis_ends.svg',
+		L1: 'vaxis_ends.svg'
 	},
 	sim: {
 		tMax: 180,
@@ -68,7 +68,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const R1 = param.D1 / 2;
 		const R2 = param.D2 / 2;
 		const R3 = param.D3 / 2;
-		rGeome.logstr += `pole-height: ${ffix(param.H1)} mm\n`;
+		rGeome.logstr += `vaxis-height: ${ffix(param.H1)} mm\n`;
 		// figCut
 		const ctrCylinder = contour(R1, 0)
 			.addSegStrokeA(R1, param.H1)
@@ -148,7 +148,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// sub-design
 		rGeome.sub = {};
 		// finalize
-		rGeome.logstr += 'pole_rotor drawn successfully!\n';
+		rGeome.logstr += 'V-Axis drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;
@@ -157,11 +157,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	return rGeome;
 }
 
-const poleRotorDef: tPageDef = {
-	pTitle: 'Heliostat pole rotor',
+const vaxisDef: tPageDef = {
+	pTitle: 'Heliostat V-Axis',
 	pDescription: 'The vertical axis inside the pole of an heliostat',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { poleRotorDef };
+export { vaxisDef };

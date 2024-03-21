@@ -7,7 +7,7 @@ export * from './heliostat/heliostat';
 export * from './heliostat/heliostat_2';
 export * from './heliostat/base';
 export * from './heliostat/pole_static';
-export * from './heliostat/pole_rotor';
+export * from './heliostat/vaxis';
 export * from './heliostat/ring';
 export * from './heliostat/pole_holder';
 export * from './heliostat/ring_guidance';
