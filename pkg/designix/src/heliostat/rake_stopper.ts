@@ -407,7 +407,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 
 const rakeStopperDef: tPageDef = {
 	pTitle: 'Heliostat rake with stopper',
-	pDescription: 'The rake-stopper on top of the pole-rotor of the heliostat',
+	pDescription: 'The rake-stopper on top of the V-Axis of the heliostat',
 	pDef: pDef,
 	pGeom: pGeom
 };

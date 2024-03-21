@@ -1,5 +1,5 @@
 // pole_guidance.ts
-// guidance-part for supporting the pole-rotor of the heliostat
+// guidance-part for supporting the V-Axis of the heliostat
 
 // step-1 : import from geometrix
 import type {
@@ -246,7 +246,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 // step-11 : definiton of the final object that gathers the precedent object and function
 const poleGuidanceDef: tPageDef = {
 	pTitle: 'Pole-guidance',
-	pDescription: 'The guidance of the pole-rotor for the heliostat azimuth',
+	pDescription: 'The guidance of the V-Axis for the heliostat azimuth',
 	pDef: pDef,
 	pGeom: pGeom
 };
