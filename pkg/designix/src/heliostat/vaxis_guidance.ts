@@ -26,7 +26,7 @@ import {
 	ffix,
 	pNumber,
 	//pCheckbox,
-	pDropdown,
+	//pDropdown,
 	pSectionSeparator,
 	initGeom,
 	EExtrude,
@@ -50,7 +50,6 @@ const pDef: tParamDef = {
 		pNumber('D6', 'mm', 540, 1, 1000, 1),
 		pNumber('N2', 'springs', 6, 1, 24, 1),
 		pNumber('R7', 'mm', 10, 0, 100, 1),
-		pDropdown('orientation', ['ccw', 'cw', 'alt']),
 		pNumber('a1', 'degree', 0, -45, 45, 1),
 		pNumber('E2', 'mm', 50, 1, 200, 1),
 		pNumber('E1', 'mm', 10, 1, 200, 1),
@@ -60,7 +59,8 @@ const pDef: tParamDef = {
 		pNumber('N3', 'loops', 2, 0, 8, 1),
 		pNumber('L4', 'mm', 40, 0, 900, 1),
 		pSectionSeparator('thickness'),
-		pNumber('T1', 'mm', 10, 1, 200, 1)
+		pNumber('T1', 'mm', 10, 1, 200, 1),
+		pNumber('Dvaxis', 'mm', 260, 5, 1000, 1)
 	],
 	paramSvg: {
 		D1: 'vaxis_guidance_top.svg',
@@ -73,7 +73,6 @@ const pDef: tParamDef = {
 		D6: 'vaxis_guidance_top.svg',
 		N2: 'vaxis_guidance_top.svg',
 		R7: 'vaxis_guidance_top.svg',
-		orientation: 'vaxis_guidance_top.svg',
 		a1: 'vaxis_guidance_spring.svg',
 		E2: 'vaxis_guidance_top.svg',
 		E1: 'vaxis_guidance_spring.svg',
@@ -82,7 +81,8 @@ const pDef: tParamDef = {
 		L3: 'vaxis_guidance_spring.svg',
 		N3: 'vaxis_guidance_spring.svg',
 		L4: 'vaxis_guidance_spring.svg',
-		T1: 'vaxis_guidance_top.svg'
+		T1: 'vaxis_guidance_top.svg',
+		Dvaxis: 'vaxis_guidance_top.svg'
 	},
 	sim: {
 		tMax: 100,
@@ -242,6 +242,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.addCornerRounded(param.R7);
 		}
 		figTop.addMain(ctrInner);
+		figTop.addSecond(contourCircle(0, 0, param.Dvaxis / 2));
 		// figSection
 		const rect = function (xbl: number, ybl: number, width: number, height: number): tContour {
 			const rCtr = contour(xbl, ybl)
