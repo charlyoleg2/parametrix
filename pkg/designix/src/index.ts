@@ -11,7 +11,7 @@ export * from './heliostat/vaxis';
 export * from './heliostat/ring';
 export * from './heliostat/vaxis_holder';
 export * from './heliostat/ring_guidance';
-export * from './heliostat/pole_guidance';
+export * from './heliostat/vaxis_guidance';
 export * from './heliostat/rake';
 export * from './heliostat/rake_stopper';
 export * from './heliostat/spider';

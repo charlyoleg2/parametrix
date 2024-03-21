@@ -1,4 +1,4 @@
-// pole_guidance.ts
+// vaxis_guidance.ts
 // guidance-part for supporting the V-Axis of the heliostat
 
 // step-1 : import from geometrix
@@ -35,7 +35,7 @@ import {
 
 // step-2 : definition of the parameters and more (part-name, svg associated to each parameter, simulation parameters)
 const pDef: tParamDef = {
-	partName: 'pole_guidance',
+	partName: 'vaxis_guidance',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('D1', 'mm', 700, 100, 2500, 1),
@@ -63,26 +63,26 @@ const pDef: tParamDef = {
 		pNumber('T1', 'mm', 10, 1, 200, 1)
 	],
 	paramSvg: {
-		D1: 'pole_guidance_top.svg',
-		N1: 'pole_guidance_top.svg',
-		D2: 'pole_guidance_top.svg',
-		D3: 'pole_guidance_top.svg',
-		D4: 'pole_guidance_top.svg',
-		L1: 'pole_guidance_top.svg',
-		R5: 'pole_guidance_top.svg',
-		D6: 'pole_guidance_top.svg',
-		N2: 'pole_guidance_top.svg',
-		R7: 'pole_guidance_top.svg',
-		orientation: 'pole_guidance_top.svg',
-		a1: 'pole_guidance_spring.svg',
-		E2: 'pole_guidance_top.svg',
-		E1: 'pole_guidance_spring.svg',
-		W1: 'pole_guidance_spring.svg',
-		L2: 'pole_guidance_spring.svg',
-		L3: 'pole_guidance_spring.svg',
-		N3: 'pole_guidance_spring.svg',
-		L4: 'pole_guidance_spring.svg',
-		T1: 'pole_guidance_top.svg'
+		D1: 'vaxis_guidance_top.svg',
+		N1: 'vaxis_guidance_top.svg',
+		D2: 'vaxis_guidance_top.svg',
+		D3: 'vaxis_guidance_top.svg',
+		D4: 'vaxis_guidance_top.svg',
+		L1: 'vaxis_guidance_top.svg',
+		R5: 'vaxis_guidance_top.svg',
+		D6: 'vaxis_guidance_top.svg',
+		N2: 'vaxis_guidance_top.svg',
+		R7: 'vaxis_guidance_top.svg',
+		orientation: 'vaxis_guidance_top.svg',
+		a1: 'vaxis_guidance_spring.svg',
+		E2: 'vaxis_guidance_top.svg',
+		E1: 'vaxis_guidance_spring.svg',
+		W1: 'vaxis_guidance_spring.svg',
+		L2: 'vaxis_guidance_spring.svg',
+		L3: 'vaxis_guidance_spring.svg',
+		N3: 'vaxis_guidance_spring.svg',
+		L4: 'vaxis_guidance_spring.svg',
+		T1: 'vaxis_guidance_top.svg'
 	},
 	sim: {
 		tMax: 100,
@@ -132,7 +132,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			throw `err466: D6 ${param.D6} is too large compare to D2 ${param.D2}`;
 		}
 		// step-6 : any logs
-		rGeome.logstr += `pole_guidance: Dmax ${ffix(param.D1 + 2 * R4)} mm\n`;
+		rGeome.logstr += `vaxis_guidance: Dmax ${ffix(param.D1 + 2 * R4)} mm\n`;
 		// step-7 : drawing of the figures
 		// figTop
 		//figTop.addMain(contourCircle(0, 0, R2));
@@ -234,7 +234,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.sub = {};
 		// step-10 : final log message
 		// finalize
-		rGeome.logstr += 'pole_guidance drawn successfully!\n';
+		rGeome.logstr += 'vaxis_guidance drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;
@@ -244,12 +244,12 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 }
 
 // step-11 : definiton of the final object that gathers the precedent object and function
-const poleGuidanceDef: tPageDef = {
-	pTitle: 'Pole-guidance',
+const vaxisGuidanceDef: tPageDef = {
+	pTitle: 'Vaxis-guidance',
 	pDescription: 'The guidance of the V-Axis for the heliostat azimuth',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
 // step-12 : export the final object
-export { poleGuidanceDef };
+export { vaxisGuidanceDef };
