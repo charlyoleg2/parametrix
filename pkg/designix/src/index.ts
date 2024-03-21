@@ -9,7 +9,7 @@ export * from './heliostat/base';
 export * from './heliostat/pole_static';
 export * from './heliostat/vaxis';
 export * from './heliostat/ring';
-export * from './heliostat/pole_holder';
+export * from './heliostat/vaxis_holder';
 export * from './heliostat/ring_guidance';
 export * from './heliostat/pole_guidance';
 export * from './heliostat/rake';

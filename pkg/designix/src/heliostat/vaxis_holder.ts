@@ -1,4 +1,4 @@
-// pole_holder.ts
+// vaxis_holder.ts
 
 import type {
 	tContour,
@@ -30,7 +30,7 @@ import {
 } from 'geometrix';
 
 const pDef: tParamDef = {
-	partName: 'pole_holder',
+	partName: 'vaxis_holder',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('PHD1', 'mm', 700, 1, 2000, 1),
@@ -51,20 +51,20 @@ const pDef: tParamDef = {
 		pNumber('PHE3', 'mm', 10, 1, 80, 1)
 	],
 	paramSvg: {
-		PHD1: 'pole_holder_top.svg',
-		PHD2: 'pole_holder_top.svg',
-		PHD5: 'pole_holder_top.svg',
-		PHD3: 'pole_holder_top.svg',
-		PHR4: 'pole_holder_top.svg',
-		PHN1: 'pole_holder_top.svg',
-		PHL2: 'pole_holder_top.svg',
-		PHR6: 'pole_holder_top.svg',
-		PHE1: 'pole_holder_section.svg',
-		PHH1: 'pole_holder_section.svg',
-		PHA: 'pole_holder_section.svg',
-		PHL1: 'pole_holder_section.svg',
-		PHE2: 'pole_holder_section.svg',
-		PHE3: 'pole_holder_top.svg'
+		PHD1: 'vaxis_holder_top.svg',
+		PHD2: 'vaxis_holder_top.svg',
+		PHD5: 'vaxis_holder_top.svg',
+		PHD3: 'vaxis_holder_top.svg',
+		PHR4: 'vaxis_holder_top.svg',
+		PHN1: 'vaxis_holder_top.svg',
+		PHL2: 'vaxis_holder_top.svg',
+		PHR6: 'vaxis_holder_top.svg',
+		PHE1: 'vaxis_holder_section.svg',
+		PHH1: 'vaxis_holder_section.svg',
+		PHA: 'vaxis_holder_section.svg',
+		PHL1: 'vaxis_holder_section.svg',
+		PHE2: 'vaxis_holder_section.svg',
+		PHE3: 'vaxis_holder_top.svg'
 	},
 	sim: {
 		tMax: 180,
@@ -89,7 +89,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const R5 = param.PHD5 / 2;
 		const outerR1 = R2 + (param.PHL1 / 2) * Math.sin(outerA);
 		const outerR2 = R2 - (param.PHL1 / 2) * Math.sin(outerA);
-		const poleHolderHeight = param.PHL1 * Math.cos(outerA);
+		const vaxisHolderHeight = param.PHL1 * Math.cos(outerA);
 		const innerR1 = R2 - param.PHE2 / Math.cos(outerA) + (param.PHE1 / 2) * Math.tan(outerA);
 		const innerR2 = R2 - param.PHE2 / Math.cos(outerA) - (param.PHE1 / 2) * Math.tan(outerA);
 		const innerR = Math.min(innerR1, innerR2);
@@ -121,13 +121,13 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			rGeome.logstr += `warn345: PHL2 is quiet small ${ffix(param.PHL2)} mm\n`;
 		}
 		// step-6 : any logs
-		rGeome.logstr += `pole_holder's height: ${ffix(poleHolderHeight)} mm\n`;
-		rGeome.logstr += `pole_holder outerD1: ${ffix(2 * outerR1)} mm\n`;
-		rGeome.logstr += `pole_holder outerD2: ${ffix(2 * outerR2)} mm\n`;
-		rGeome.logstr += `pole_holder innerD: ${ffix(param.PHD1 - 2 * param.PHR4)} mm\n`;
+		rGeome.logstr += `vaxis_holder's height: ${ffix(vaxisHolderHeight)} mm\n`;
+		rGeome.logstr += `vaxis_holder outerD1: ${ffix(2 * outerR1)} mm\n`;
+		rGeome.logstr += `vaxis_holder outerD2: ${ffix(2 * outerR2)} mm\n`;
+		rGeome.logstr += `vaxis_holder innerD: ${ffix(param.PHD1 - 2 * param.PHR4)} mm\n`;
 		rGeome.logstr += `petal angle: ${ffix(radToDeg(petalA2))} degree\n`;
 		rGeome.logstr += `hollow angle: ${ffix(radToDeg(hollowA))} degree\n`;
-		rGeome.logstr += `pole_holder D2-next: ${ffix(2 * R2next)} mm\n`;
+		rGeome.logstr += `vaxis_holder D2-next: ${ffix(2 * R2next)} mm\n`;
 		// step-7 : drawing of the figures
 		// figOuter
 		const ctrOuter = function (rnl: number): tContour {
@@ -319,7 +319,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// sub-design
 		rGeome.sub = {};
 		// finalize
-		rGeome.logstr += 'pole_holder drawn successfully!\n';
+		rGeome.logstr += 'vaxis_holder drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;
@@ -328,11 +328,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	return rGeome;
 }
 
-const poleHolderDef: tPageDef = {
-	pTitle: 'Heliostat pole_holder',
+const vaxisHolderDef: tPageDef = {
+	pTitle: 'Heliostat vaxis_holder',
 	pDescription: 'The holders of the guidance mechanism for azimuth motion',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { poleHolderDef };
+export { vaxisHolderDef };
