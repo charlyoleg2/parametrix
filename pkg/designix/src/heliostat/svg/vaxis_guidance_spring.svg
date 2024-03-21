@@ -119,6 +119,10 @@
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <path
+       style="fill:none;stroke:#cccccc;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 127.36336,266.31439 -14.23607,3.60799"
+       id="path38-6-5-8-5" />
+    <path
        style="fill:none;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 19.839445,323.07681 v 25.23901"
        id="path37" />
@@ -339,7 +343,7 @@
        id="path45-6" />
     <path
        style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
-       d="M 130.73856,285.20637 119.5491,241.86657"
+       d="m 125.521,266.51706 -6.102,-24.57721"
        id="path38-7-4-4-3-0" />
     <path
        style="fill:none;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -351,7 +355,7 @@
        id="path38-6-5-1-0-6" />
     <path
        style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
-       d="m 106.97636,291.25433 -4.78911,-18.75379"
+       d="m 106.98463,291.24991 -4.65132,-18.26549"
        id="path38-7-4-8-1-8" />
     <path
        style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
@@ -410,5 +414,9 @@
        d="m 79.963864,313.083 16.881837,17.58301 10.449219,-24.30468"
        id="path50"
        sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#cccccc;stroke-width:0.264582px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 114.87095,269.47671 -14.23607,3.60799"
+       id="path38-6-5-8-2" />
   </g>
 </svg>
