@@ -26,6 +26,7 @@
 		"geometrix:publish": "npm -w geometrix publish --provenance",
 		"designix:dev": "npm -w designix run dev",
 		"designix:ci": "npm -w designix run ci",
+		"designix:ci2": "npm -w designix run ci2",
 		"designix:svgo": "npm -w designix run svgo",
 		"designix:clean": "npm -w designix run clean",
 		"designix:version": "npm -w designix version patch",
