@@ -44,7 +44,7 @@
 		"@zip.js/zip.js": "^2.7.40"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.28",
+		"@types/node": "^20.11.30",
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
 		"@typescript-eslint/parser": "^7.0.1",
 		"eslint": "^8.57.0",
@@ -53,7 +53,7 @@
 		"prettier": "^3.2.5",
 		"shx": "^0.3.4",
 		"tsup": "^8.0.2",
-		"typescript": "^5.4.2",
+		"typescript": "^5.4.3",
 		"vitest": "^1.4.0"
 	},
 	"exports": {
