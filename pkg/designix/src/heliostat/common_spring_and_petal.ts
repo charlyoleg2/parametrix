@@ -1,13 +1,7 @@
 // common_spring_and_petal.ts
 
 import type { tParamVal, tContour } from 'geometrix';
-import {
-	point,
-	contour,
-	//degToRad,
-	radToDeg,
-	ffix
-} from 'geometrix';
+import { point, contour, degToRad, radToDeg, ffix } from 'geometrix';
 
 // used in vaxis_holder
 function ctrHolderPetal(param: tParamVal): [string, tContour, number[]] {
@@ -121,4 +115,103 @@ function ctrGuidanceOuter(param: tParamVal): [string, tContour, number] {
 	return [rLog, rCtr, stepA1];
 }
 
-export { ctrHolderPetal, ctrGuidanceOuter };
+// used invaxis_guidance
+function ctrGuidanceInner(param: tParamVal): [string, tContour] {
+	const rLog = '';
+	// step-4 : some preparation calculation
+	const R6 = param.D6 / 2;
+	// spring base
+	const stepA2 = (2 * Math.PI) / param.N2;
+	const E22 = param.E2 / 2;
+	const aE2 = 2 * Math.asin(E22 / R6);
+	const iarcA2 = (stepA2 - aE2) / 2;
+	const a1Plus = param.N2 < 3 ? 0 : Math.PI / (2 * param.N2);
+	const a1 = Math.PI / 2 + a1Plus + degToRad(param.a1);
+	// step-5 : checks on the parameter values
+	if (iarcA2 < 0) {
+		throw `err564: N2 ${param.N2} is too large compare to D6 ${param.D6}, E2 ${param.E2}`;
+	}
+	// step-6 : any logs
+	// step-7 : drawing of the figures
+	//figTop.addMain(contourCircle(0, 0, R6));
+	const rCtr = contour(R6, 0);
+	const pF = point(0, -R6);
+	const pO = point(0, 0);
+	const pG = pF.rotate(pO, -aE2);
+	const pH = pF.translatePolar(a1, param.L2);
+	const pI = pH.translatePolar(a1 + Math.PI / 2, param.E1);
+	const pH2 = pF.translatePolar(a1, param.L2 + param.L4);
+	const pI2 = pH2.translatePolar(a1 + Math.PI / 2, param.E1);
+	const ctrSpring = contour(pG.cx, pG.cy).addSegStrokeA(pI.cx, pI.cy);
+	if (param.N3 > 0) {
+		//ctrSpring.addSegStrokeA(pH.cx, pH.cy).addSegStrokeA(pF.cx, pF.cy);
+		let pK1 = pI;
+		const W12 = param.W1 / 2;
+		const E1W12 = param.E1 + W12;
+		for (let i = 0; i < param.N3; i++) {
+			const pK1b = pK1.translatePolar(a1 - Math.PI / 2, E1W12);
+			const pK2 = pK1b.translatePolar(a1, E1W12);
+			const pK3 = pK1.translatePolar(a1 - Math.PI / 2, 2 * E1W12);
+			const pK4 = pK3.translatePolar(a1 + Math.PI, param.L3);
+			const pK4b = pK4.translatePolar(a1 - Math.PI / 2, W12);
+			const pK5 = pK4b.translatePolar(a1 + Math.PI, W12);
+			const pK6 = pK4.translatePolar(a1 - Math.PI / 2, 2 * W12);
+			let L4end = 0;
+			if (i === param.N3 - 1) {
+				L4end = param.L4;
+			}
+			const pK7 = pK6.translatePolar(a1, param.L3 + L4end);
+			ctrSpring
+				.addPointA(pK2.cx, pK2.cy)
+				.addPointA(pK3.cx, pK3.cy)
+				.addSegArc2()
+				.addSegStrokeA(pK4.cx, pK4.cy)
+				.addPointA(pK5.cx, pK5.cy)
+				.addPointA(pK6.cx, pK6.cy)
+				.addSegArc2()
+				.addSegStrokeA(pK7.cx, pK7.cy);
+			pK1 = pK7;
+		}
+		const pK8 = pK1.translatePolar(a1 - Math.PI / 2, param.E1);
+		ctrSpring.addSegStrokeA(pK8.cx, pK8.cy);
+		pK1 = pK8;
+		for (let i = 0; i < param.N3; i++) {
+			let L4end = 0;
+			if (i === 0) {
+				L4end = param.L4;
+			}
+			const pK2 = pK1.translatePolar(a1 + Math.PI, param.L3 + L4end);
+			const pK2b = pK2.translatePolar(a1 + Math.PI / 2, E1W12);
+			const pK3 = pK2b.translatePolar(a1 + Math.PI, E1W12);
+			const pK4 = pK2.translatePolar(a1 + Math.PI / 2, 2 * E1W12);
+			const pK5 = pK4.translatePolar(a1, param.L3);
+			const pK5b = pK5.translatePolar(a1 + Math.PI / 2, W12);
+			const pK6 = pK5b.translatePolar(a1, W12);
+			const pK7 = pK5.translatePolar(a1 + Math.PI / 2, 2 * W12);
+			ctrSpring
+				.addSegStrokeA(pK2.cx, pK2.cy)
+				.addPointA(pK3.cx, pK3.cy)
+				.addPointA(pK4.cx, pK4.cy)
+				.addSegArc2()
+				.addSegStrokeA(pK5.cx, pK5.cy)
+				.addPointA(pK6.cx, pK6.cy)
+				.addPointA(pK7.cx, pK7.cy)
+				.addSegArc2();
+			pK1 = pK7;
+		}
+	} else {
+		ctrSpring.addSegStrokeA(pI2.cx, pI2.cy).addSegStrokeA(pH2.cx, pH2.cy);
+	}
+	ctrSpring.addSegStrokeA(pF.cx, pF.cy);
+	for (let i = 0; i < param.N2; i++) {
+		rCtr.addPointAP(i * stepA2 + iarcA2, R6)
+			.addPointAP(i * stepA2 + 2 * iarcA2, R6)
+			.addSegArc2()
+			.addCornerRounded(param.R7)
+			.addPartial(ctrSpring.rotate(0, 0, Math.PI / 2 + (i + 1) * stepA2))
+			.addCornerRounded(param.R7);
+	}
+	return [rLog, rCtr];
+}
+
+export { ctrHolderPetal, ctrGuidanceOuter, ctrGuidanceInner };

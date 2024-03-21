@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="1.0583333"
-     inkscape:cx="240.00001"
-     inkscape:cy="1305.8268"
+     inkscape:cx="425.19686"
+     inkscape:cy="1154.6457"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -40,12 +40,6 @@
        width="46.922985"
        height="30.295277"
        id="rect2" />
-    <rect
-       x="295.79474"
-       y="718.28406"
-       width="208.85922"
-       height="82.618744"
-       id="rect36" />
     <rect
        x="326.9725"
        y="322.1651"
@@ -732,25 +726,12 @@
        id="path35" />
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,46.63314,-57.901272)"
-       id="text35"
-       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect36);display:inline"><tspan
-         x="295.79492"
-         y="731.2598"
-         id="tspan18">cw / ccw / alt</tspan></text>
-    <path
-       style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#ArrowWide)"
-       d="m 102.09683,126.0984 29.80206,5.06714 -16.33803,-21.41483"
-       id="path36"
-       sodipodi:nodetypes="ccc" />
-    <text
-       xml:space="preserve"
        transform="scale(0.26458333)"
        id="text2"
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2);display:inline"><tspan
          x="385.04688"
          y="579.2305"
-         id="tspan19">R7</tspan></text>
+         id="tspan18">R7</tspan></text>
     <path
        style="fill:none;stroke:#0000ff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#ArrowWide)"
        d="M 79.044923,136.34961 100.44824,149.5459"
