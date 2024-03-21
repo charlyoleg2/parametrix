@@ -50,7 +50,7 @@ const pDef: tParamDef = {
 		pNumber('D6', 'mm', 540, 1, 1000, 1),
 		pNumber('N2', 'springs', 6, 1, 24, 1),
 		pNumber('R7', 'mm', 10, 0, 100, 1),
-		pDropdown('orientation', ['cw', 'ccw', 'alt']),
+		pDropdown('orientation', ['ccw', 'cw', 'alt']),
 		pNumber('a1', 'degree', 0, -45, 45, 1),
 		pNumber('E2', 'mm', 50, 1, 200, 1),
 		pNumber('E1', 'mm', 10, 1, 200, 1),
@@ -228,13 +228,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					.addSegArc2();
 				pK1 = pK7;
 			}
-			ctrSpring.addSegStrokeA(pF.cx, pF.cy);
 		} else {
-			ctrSpring
-				.addSegStrokeA(pI2.cx, pI2.cy)
-				.addSegStrokeA(pH2.cx, pH2.cy)
-				.addSegStrokeA(pF.cx, pF.cy);
+			ctrSpring.addSegStrokeA(pI2.cx, pI2.cy).addSegStrokeA(pH2.cx, pH2.cy);
 		}
+		ctrSpring.addSegStrokeA(pF.cx, pF.cy);
 		for (let i = 0; i < param.N2; i++) {
 			ctrInner
 				.addPointAP(i * stepA2 + iarcA2, R6)
