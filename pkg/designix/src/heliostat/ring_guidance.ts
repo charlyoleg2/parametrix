@@ -16,7 +16,7 @@ import {
 	//designParam,
 	//checkGeom,
 	//prefixLog,
-	point,
+	//point,
 	//ShapePoint,
 	contour,
 	contourCircle,
@@ -32,6 +32,8 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
+
+import { ctrGuidanceOuter } from './common_spring_and_petal'; // externalized contour
 
 // step-2 : definition of the parameters and more (part-name, svg associated to each parameter, simulation parameters)
 const pDef: tParamDef = {
@@ -84,22 +86,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	try {
 		// step-4 : some preparation calculation
 		const R1 = param.D1 / 2;
-		const R2 = param.D2 / 2;
 		const R3 = param.D3 / 2;
 		const R4 = param.D4 / 2;
 		const R6 = param.D6 / 2;
 		const R7 = param.D7 / 2;
 		const stepA2 = (2 * Math.PI) / param.N2;
-		const stepA1 = (2 * Math.PI) / param.N1;
-		const L12 = param.L1 / 2;
-		const L3b = Math.sqrt(R2 ** 2 - L12 ** 2);
-		const aAOD = Math.asin(L12 / R2);
-		const L3 = R1 - L3b;
-		const aABD = Math.atan2(L12, L3);
-		const lBD = Math.sqrt(L12 ** 2 + L3 ** 2);
-		const aDBC = Math.acos(R4 / lBD);
-		const aABC = aABD + aDBC;
-		const larcA2 = (stepA1 - 2 * aAOD) / 2;
 		// step-5 : checks on the parameter values
 		if (R7 > param.L2) {
 			throw `err461: D7 ${param.D7} is too large compare to L2 ${param.L2}`;
@@ -110,16 +101,14 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		if (param.D2 < param.D6 + 2 * param.L2 + 2 * R7) {
 			throw `err463: D2 ${param.D2} is too small compare to D6 ${param.D6}, L2 ${param.L2} and D7 ${param.D7}`;
 		}
-		if (larcA2 < 0) {
-			throw `err464: N1 ${param.N1} is too large compare to D2 ${param.D2}, L1 ${param.L1}`;
-		}
-		if (R1 < R2) {
-			throw `err465: D2 ${param.D2} is too large compare to D1 ${param.D1}`;
-		}
 		// step-6 : any logs
 		rGeome.logstr += `ring_guidance: Dmax ${ffix(param.D1 + 2 * R4)} mm\n`;
 		// step-7 : drawing of the figures
 		// figTop
+		//figTop.addMain(contourCircle(0, 0, R2));
+		const [outerLog, outerCtr, stepA1] = ctrGuidanceOuter(param);
+		rGeome.logstr += outerLog;
+		figTop.addMain(outerCtr);
 		figTop.addMain(contourCircle(0, 0, R6));
 		for (let i = 0; i < param.N2; i++) {
 			figTop.addMain(contourCircle(R6 + param.L2, 0, R7).rotate(0, 0, i * stepA2));
@@ -127,30 +116,6 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		for (let i = 0; i < param.N1; i++) {
 			figTop.addMain(contourCircle(R1, 0, R3).rotate(0, 0, i * stepA1));
 		}
-		//figTop.addMain(contourCircle(0, 0, R2));
-		const ctrOuter = contour(L3b, -L12);
-		const pO = point(0, 0);
-		const pA = point(R2, 0);
-		const pB = point(R1, 0);
-		const pE = point(R1 - R4, 0);
-		const pC = pE.rotate(pB, aABC);
-		const pA2 = pA.rotate(pO, aAOD + larcA2);
-		const pA3 = pA.rotate(pO, stepA1 - aAOD);
-		const ctrOuterPartial = contour(L3b, -L12)
-			.addCornerRounded(param.R5)
-			.addSegStrokeA(pC.cx, pC.cy)
-			.addPointA(R1 + R4, 0)
-			.addPointA(pC.cx, -pC.cy)
-			.addSegArc2()
-			.addSegStrokeA(L3b, L12)
-			.addCornerRounded(param.R5)
-			.addPointA(pA2.cx, pA2.cy)
-			.addPointA(pA3.cx, pA3.cy)
-			.addSegArc2();
-		for (let i = 0; i < param.N1; i++) {
-			ctrOuter.addPartial(ctrOuterPartial.rotate(0, 0, i * stepA1));
-		}
-		figTop.addMain(ctrOuter);
 		// figSection
 		const rect = function (xbl: number, ybl: number, width: number, height: number): tContour {
 			const rCtr = contour(xbl, ybl)
