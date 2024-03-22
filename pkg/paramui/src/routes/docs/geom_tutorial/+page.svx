@@ -446,6 +446,22 @@ API:
 *myPartV* re-exports *myPartK*, which is itself an assembly of other designs.
 
 
+### Computing the 3D-rotation and 3D-translation of an extrusion with transform3d
+
+- [myPartW source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup8/myPartW.ts)
+- [myPartW page](https://charlyoleg2.github.io/parame53/desi53b/myPartWDef)
+
+*myPartW* illustrate the usage of *transform3d* for computing the 3D-rotation and 3D-translation to apply to an extrusion sub-part. *transform3d* helps to combine a list of 3D-rotation and 3D-translation into a single 3D-rotation and a single 3D-translation.
+
+API:
+
+- <a href="{base}/docs/apidoc/functions/geometrix.transform3d-1.html" rel="external">transform3d()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#addRotation" rel="external">.addRotation()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#addTranslation" rel="external">.addTranslation()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#getRotation" rel="external">.getRotation()</a>
+- <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#getTranslation" rel="external">.getTranslation()</a>
+
+
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
