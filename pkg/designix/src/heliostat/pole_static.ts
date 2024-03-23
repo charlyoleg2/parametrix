@@ -72,10 +72,10 @@ const pDef: tParamDef = {
 		pNumber('PHE1B', 'mm', 10, 1, 50, 1),
 		pNumber('PHH1B', 'mm', 10, 1, 50, 1),
 		pSectionSeparator('holder-A'),
-		pNumber('PHD5A', 'mm', 600, 10, 4000, 1),
+		pNumber('PHD5A', 'mm', 900, 10, 4000, 1),
 		pNumber('PHR4A', 'mm', 30, 3, 400, 1),
 		pNumber('PHD3A', 'mm', 40, 3, 400, 1),
-		pNumber('PHL2A', 'mm', 140, 3, 400, 1),
+		pNumber('PHL2A', 'mm', 200, 3, 400, 1),
 		pNumber('PHE3A', 'mm', 10, 1, 50, 1),
 		pNumber('PHR6A', 'mm', 20, 0, 400, 1),
 		pNumber('PHE1A', 'mm', 10, 1, 50, 1),
@@ -144,6 +144,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const figHolderB2Top = figure();
 	const figHolderB1Section = figure();
 	const figHolderB1Top = figure();
+	const figHolderASection = figure();
+	const figHolderATop = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// step-4 : some preparation calculation
@@ -159,6 +161,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const hb2PosH = param.H1 + param.H2 - param.PHL1B / 2;
 		const hb1R2 = R2 + (param.PHL1B / 2 + param.PHB) * Math.tan(coneAngle);
 		const hb1PosH = param.H1 + param.H2 - param.PHL1B / 2 - param.PHB;
+		const phl1a = param.PHL1A / Math.cos(coneAngle);
+		const haR2 = R1 - (param.PHL1A / 2) * Math.tan(coneAngle);
+		const haPosH = param.H1 + param.PHL1A / 2;
 		// step-5 : checks on the parameter values
 		if (R2 > R1) {
 			throw `err091: D2 ${param.D2} is larger than D1 ${param.D1}`;
@@ -175,7 +180,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// step-6 : any logs
 		rGeome.logstr += `pole-height: ${ffix(poleHeight)} mm\n`;
 		rGeome.logstr += `cone-half-angle: ${ffix(radToDeg(coneAngle))} degree\n`;
-		rGeome.logstr += `holder position: B1: ${ffix(hb1PosH)} B2: ${ffix(hb2PosH)} mm\n`;
+		rGeome.logstr += `holder position: A: ${ffix(haPosH)}  B1: ${ffix(hb1PosH)}  B2: ${ffix(hb2PosH)} mm\n`;
 		// step-7 : drawing of the figures
 		// figCut
 		ctrPoleProfile = function (orient: number, withR3: boolean): tContour {
@@ -273,7 +278,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			vaxisHolderB2Param.setVal('PHD3', param.PHD3B);
 			vaxisHolderB2Param.setVal('PHR4', param.PHR4B);
 			vaxisHolderB2Param.setVal('PHL2', param.PHL2B);
-			vaxisHolderB2Param.setVal('PHR6', param.PHR6);
+			vaxisHolderB2Param.setVal('PHR6', param.PHR6B);
 			vaxisHolderB2Param.setVal('PHE1', param.PHE1B);
 			vaxisHolderB2Param.setVal('PHH1', param.PHH1B);
 			vaxisHolderB2Param.setVal('PHA', radToDeg(coneAngle));
@@ -310,7 +315,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			vaxisHolderB1Param.setVal('PHD3', param.PHD3B);
 			vaxisHolderB1Param.setVal('PHR4', param.PHR4B);
 			vaxisHolderB1Param.setVal('PHL2', param.PHL2B);
-			vaxisHolderB1Param.setVal('PHR6', param.PHR6);
+			vaxisHolderB1Param.setVal('PHR6', param.PHR6B);
 			vaxisHolderB1Param.setVal('PHE1', param.PHE1B);
 			vaxisHolderB1Param.setVal('PHH1', param.PHH1B);
 			vaxisHolderB1Param.setVal('PHA', radToDeg(coneAngle));
@@ -338,6 +343,43 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			};
 			inheritList.push(inheritHb1);
 			inheritNames.push(`inpax_${designName}_hB1`);
+			// holderA
+			const vaxisHolderAParam = designParam(vaxisHolderDef.pDef, 'A');
+			vaxisHolderAParam.setVal('PHD1', param.PHD1A);
+			vaxisHolderAParam.setVal('PHD2', 2 * haR2);
+			vaxisHolderAParam.setVal('PHD5', param.PHD5A);
+			vaxisHolderAParam.setVal('PHN1', param.PHN1AB);
+			vaxisHolderAParam.setVal('PHD3', param.PHD3A);
+			vaxisHolderAParam.setVal('PHR4', param.PHR4A);
+			vaxisHolderAParam.setVal('PHL2', param.PHL2A);
+			vaxisHolderAParam.setVal('PHR6', param.PHR6A);
+			vaxisHolderAParam.setVal('PHE1', param.PHE1A);
+			vaxisHolderAParam.setVal('PHH1', param.PHH1A);
+			vaxisHolderAParam.setVal('PHA', radToDeg(coneAngle));
+			vaxisHolderAParam.setVal('PHL1', phl1a);
+			vaxisHolderAParam.setVal('PHE2', param.E2);
+			vaxisHolderAParam.setVal('PHE3', param.PHE3A);
+			const vaxisHolderAGeom = vaxisHolderDef.pGeom(
+				0,
+				vaxisHolderAParam.getParamVal(),
+				vaxisHolderAParam.getSuffix()
+			);
+			checkGeom(vaxisHolderAGeom);
+			rGeome.logstr += prefixLog(
+				vaxisHolderAGeom.logstr,
+				vaxisHolderAParam.getPartNameSuffix()
+			);
+			figHolderASection.mergeFigure(vaxisHolderAGeom.fig.faceOuter);
+			figHolderATop.mergeFigure(vaxisHolderAGeom.fig.facePetal);
+			const inheritHa: tInherit = {
+				outName: `inpax_${designName}_hA`,
+				subdesign: 'pax_vaxis_holderA',
+				subgeom: vaxisHolderAGeom,
+				rotate: [0, 0, 0],
+				translate: [0, 0, haPosH]
+			};
+			inheritList.push(inheritHa);
+			inheritNames.push(`inpax_${designName}_hA`);
 		}
 		// final figure list
 		rGeome.fig = {
@@ -349,7 +391,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			holderB2Section: figHolderB2Section,
 			holderB2Top: figHolderB2Top,
 			holderB1Section: figHolderB1Section,
-			holderB1Top: figHolderB1Top
+			holderB1Top: figHolderB1Top,
+			holderASection: figHolderASection,
+			holderATop: figHolderATop
 		};
 		rGeome.vol = {
 			inherits: inheritList,
