@@ -58,7 +58,7 @@ const pDef: tParamDef = {
 		pCheckbox('holders', true),
 		pNumber('PHL1A', 'mm', 400, 10, 1000, 1),
 		pNumber('PHL1B', 'mm', 400, 10, 1000, 1),
-		pNumber('PHB', 'mm', 2000, 10, 20000, 1),
+		pNumber('PHB', 'mm', 1500, 10, 20000, 1),
 		pNumber('PHD1A', 'mm', 600, 10, 4000, 1),
 		pNumber('PHD1B', 'mm', 380, 10, 4000, 1),
 		pNumber('PHN1AB', 'petal', 6, 1, 24, 1),
@@ -128,13 +128,8 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr1 = (orient: number, withR3: boolean) => tContour;
-type tCtr2 = (pL2: number) => tContour;
-
 function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const rGeome = initGeom(pDef.partName + suffix);
-	let ctrPoleProfile: tCtr1;
-	let ctrDoorFace: tCtr2;
 	const figCut = figure();
 	const figFace = figure();
 	const figBottom = figure();
@@ -175,7 +170,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			throw `err131: PHB ${param.PHB} is too small compare to PHL1B ${param.PHL1B}`;
 		}
 		if (param.PHB > param.H2 - param.PHL1B - param.PHL1A) {
-			throw `err131: PHB ${param.PHB} is too large compare to H2 ${param.H2}, PHL1B ${param.PHL1B} and PHL1A ${param.PHL1A}`;
+			throw `err132: PHB ${param.PHB} is too large compare to H2 ${param.H2}, PHL1B ${param.PHL1B} and PHL1A ${param.PHL1A}`;
 		}
 		// step-6 : any logs
 		rGeome.logstr += `pole-height: ${ffix(poleHeight)} mm\n`;
@@ -183,7 +178,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `holder position: A: ${ffix(haPosH)}  B1: ${ffix(hb1PosH)}  B2: ${ffix(hb2PosH)} mm\n`;
 		// step-7 : drawing of the figures
 		// figCut
-		ctrPoleProfile = function (orient: number, withR3: boolean): tContour {
+		const ctrPoleProfile = function (orient: number, withR3: boolean): tContour {
 			const rPoleProfile = contour(orient * R1, 0)
 				.addSegStrokeA(orient * R1, param.H1)
 				.addSegStrokeA(orient * R2, poleHeight)
@@ -215,7 +210,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		if (R4 - param.L2 < 0) {
 			throw `err121: D4 ${param.D4} is too small compare to L2 ${param.L2}`;
 		}
-		ctrDoorFace = function (pL2: number): tContour {
+		const ctrDoorFace = function (pL2: number): tContour {
 			const R4b = R4 - pL2;
 			const H3b = param.H3 + R4;
 			const rCtrDoorFace = contour(R4b, H3b + doorStraightLenght)
