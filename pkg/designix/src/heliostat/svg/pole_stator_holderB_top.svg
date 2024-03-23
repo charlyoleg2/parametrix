@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
      inkscape:zoom="0.7483547"
-     inkscape:cx="200.43971"
-     inkscape:cy="2553.6019"
+     inkscape:cx="276.6068"
+     inkscape:cy="3301.9102"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -127,8 +127,8 @@
     <rect
        x="104.83415"
        y="471.82153"
-       width="61.849224"
-       height="33.015137"
+       width="75.812149"
+       height="35.066513"
        id="rect30-5" />
     <rect
        x="291.50146"
@@ -155,7 +155,7 @@
        height="90.867363"
        x="21.784567"
        y="840.16614"
-       inkscape:export-filename="vaxis_holder_top.svg"
+       inkscape:export-filename="pole_stator_holderB_top.svg"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
     <circle
@@ -380,7 +380,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect30-5);display:inline"><tspan
          x="104.83398"
          y="484.79886"
-         id="tspan6">PHN1B</tspan></text>
+         id="tspan6">PHN1AB</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,10.057957,724.34082)"
