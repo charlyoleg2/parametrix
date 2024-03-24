@@ -144,6 +144,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		poleStaticParam.setVal('D4', param.H1 / 4);
 		poleStaticParam.setVal('L2', param.H1 / 80);
 		poleStaticParam.setVal('E3', param.H1 / 80);
+		poleStaticParam.setVal('holders', 0); // disable holders
 		rakeParam.setVal('H1', param.H4);
 		rakeParam.setVal('H2', param.H5);
 		rakeParam.setVal('H3', param.H4 - 2 * param.E1);

@@ -58,7 +58,7 @@ const pDef: tParamDef = {
 		pCheckbox('holders', true),
 		pNumber('PHL1A', 'mm', 400, 10, 1000, 1),
 		pNumber('PHL1B', 'mm', 400, 10, 1000, 1),
-		pNumber('PHB', 'mm', 1500, 10, 20000, 1),
+		pNumber('PHB', 'mm', 5000, 10, 20000, 1),
 		pNumber('PHD1A', 'mm', 600, 10, 4000, 1),
 		pNumber('PHD1B', 'mm', 380, 10, 4000, 1),
 		pNumber('PHN1AB', 'petal', 6, 1, 24, 1),
@@ -166,11 +166,13 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		if (R3 + param.E2 > R1) {
 			throw `err095: D3 ${param.D3} and E2 ${param.E2} are too large compare to D1 ${param.D1}`;
 		}
-		if (param.PHB < param.PHL1B) {
-			throw `err131: PHB ${param.PHB} is too small compare to PHL1B ${param.PHL1B}`;
-		}
-		if (param.PHB > param.H2 - param.PHL1B - param.PHL1A) {
-			throw `err132: PHB ${param.PHB} is too large compare to H2 ${param.H2}, PHL1B ${param.PHL1B} and PHL1A ${param.PHL1A}`;
+		if (param.holders) {
+			if (param.PHB < param.PHL1B) {
+				throw `err131: PHB ${param.PHB} is too small compare to PHL1B ${param.PHL1B}`;
+			}
+			if (param.PHB > param.H2 - param.PHL1B - param.PHL1A) {
+				throw `err132: PHB ${param.PHB} is too large compare to H2 ${param.H2}, PHL1B ${param.PHL1B} and PHL1A ${param.PHL1A}`;
+			}
 		}
 		// step-6 : any logs
 		rGeome.logstr += `pole-height: ${ffix(poleHeight)} mm\n`;
