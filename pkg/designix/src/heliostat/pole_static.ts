@@ -178,6 +178,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `holder position: A: ${ffix(haPosH)}  B1: ${ffix(hb1PosH)}  B2: ${ffix(hb2PosH)} mm\n`;
 		// step-7 : drawing of the figures
 		// figCut
+		const innerX = function (posY: number): number {
+			let rPosX = R2 - param.E2 * Math.cos(coneAngle);
+			rPosX += (poleHeight - param.E2 * Math.sin(coneAngle) - posY) * Math.tan(coneAngle);
+			return rPosX;
+		};
 		const ctrPoleProfile = function (orient: number, withR3: boolean): tContour {
 			const rPoleProfile = contour(orient * R1, 0)
 				.addSegStrokeA(orient * R1, param.H1)
@@ -185,8 +190,29 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.addSegStrokeR(
 					-orient * param.E2 * Math.cos(coneAngle),
 					-param.E2 * Math.sin(coneAngle)
-				)
-				.addSegStrokeA(orient * (R1 - param.E2), H1b);
+				);
+			if (withR3 && param.holders) {
+				const py1 = param.H1 + param.PHL1A / 2 - param.PHE1A / 2;
+				const py2 = py1 + param.PHE1A;
+				const py6 = poleHeight - param.PHL1B / 2 + param.PHE1B / 2;
+				const py5 = py6 - param.PHE1B;
+				const py4 = py6 - param.PHB;
+				const py3 = py4 - param.PHE1B;
+				rPoleProfile
+					.addSegStrokeA(orient * innerX(py6), py6)
+					.addSegStrokeA(orient * (param.PHD1B / 2 - param.PHR4B), py6)
+					.addSegStrokeA(orient * (param.PHD1B / 2 - param.PHR4B), py5)
+					.addSegStrokeA(orient * innerX(py5), py5)
+					.addSegStrokeA(orient * innerX(py4), py4)
+					.addSegStrokeA(orient * (param.PHD1B / 2 - param.PHR4B), py4)
+					.addSegStrokeA(orient * (param.PHD1B / 2 - param.PHR4B), py3)
+					.addSegStrokeA(orient * innerX(py3), py3)
+					.addSegStrokeA(orient * innerX(py2), py2)
+					.addSegStrokeA(orient * (param.PHD1A / 2 - param.PHR4A), py2)
+					.addSegStrokeA(orient * (param.PHD1A / 2 - param.PHR4A), py1)
+					.addSegStrokeA(orient * innerX(py1), py1);
+			}
+			rPoleProfile.addSegStrokeA(orient * (R1 - param.E2), H1b);
 			if (withR3) {
 				rPoleProfile
 					.addSegStrokeA(orient * (R1 - param.E2), param.E1)
