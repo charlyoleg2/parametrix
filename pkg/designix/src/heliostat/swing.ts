@@ -10,6 +10,7 @@ import type {
 	//tSubDesign
 } from 'geometrix';
 import {
+	point,
 	contour,
 	contourCircle,
 	figure,
@@ -45,6 +46,9 @@ const pDef: tParamDef = {
 		pNumber('H1', 'mm', 100, 1, 400, 1),
 		pNumber('H3', 'mm', 100, 1, 400, 1),
 		pNumber('E3', 'mm', 3, 1, 80, 1),
+		pSectionSeparator('buttress'),
+		pNumber('S1', 'mm', 300, 0, 1000, 1),
+		pNumber('R2', 'mm', 100, 0, 1000, 1),
 		pSectionSeparator('rod overlay'),
 		pNumber('rod1', '', 10, 1, 40, 1),
 		pNumber('rod2', 'mm', 1300, 10, 4000, 10),
@@ -66,6 +70,8 @@ const pDef: tParamDef = {
 		E1: 'swing_side.svg',
 		E2: 'swing_side.svg',
 		E3: 'swing_face.svg',
+		S1: 'swing_buttress.svg',
+		R2: 'swing_buttress.svg',
 		rod1: 'swing_with_rod.svg',
 		rod2: 'swing_with_rod.svg',
 		rod3: 'swing_with_rod.svg',
@@ -88,11 +94,16 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const figSide = figure();
 	const figFace = figure();
 	const figTop = figure();
+	const figButtress = figure();
 	const figTopWithRod = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
+		// step-4 : some preparation calculation
+		// step-5 : checks on the parameter values
 		const R1 = param.D1 / 2;
+		// step-6 : any logs
 		rGeome.logstr += `swing size: L1 ${ffix(param.L1)} x L2 ${ffix(param.L2)} mm\n`;
+		// step-7 : drawing of the figures
 		ctrRectangle = function (px: number, py: number, lx: number, ly: number): tContour {
 			const rRect = contour(px, py)
 				.addSegStrokeA(px + lx, py)
@@ -170,6 +181,29 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			figTop.addSecond(ctrRectangle(-param.L1 / 2, py, param.L1, param.H2));
 		}
 		figTop.addSecond(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
+		// figButtress
+		//const lAC = Math.sqrt(R1**2 + param.S1**2);
+		//const aBAC = Math.acos(R1 / lAC);
+		const aBAC = Math.atan2(param.S1, R1);
+		const aDAB = 2 * aBAC; // aBAC = aCAD
+		const pA = point(0, 0);
+		const pB = point(0, R1);
+		const pD = pB.rotate(pA, aDAB);
+		const ctrButtress = contour(-param.L3, R1)
+			.addSegStrokeA(-param.S1, R1)
+			.addCornerRounded(param.R2)
+			.addSegStrokeA(pD.cx, pD.cy)
+			.addPointA(0, -R1)
+			.addPointA(-pD.cx, pD.cy)
+			.addSegArc2()
+			.addSegStrokeA(param.S1, R1)
+			.addCornerRounded(param.R2)
+			.addSegStrokeA(param.L3, R1)
+			.addSegStrokeA(param.L3, R1 + param.E3)
+			.addSegStrokeA(-param.L3, R1 + param.E3)
+			.closeSegStroke();
+		figButtress.addMain(ctrButtress);
+		figButtress.addMain(contourCircle(0, 0, R1 - param.E1));
 		// figTopWithRod
 		for (const px of facePx) {
 			figTopWithRod.addMain(ctrRectangle(px, -param.L2 / 2, param.H1, param.L2));
@@ -198,6 +232,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			faceSide: figSide,
 			faceFace: figFace,
 			faceTop: figTop,
+			faceButtress: figButtress,
 			faceTopWithRods: figTopWithRod
 		};
 		const designName = rGeome.partName;
