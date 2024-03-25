@@ -3,7 +3,7 @@
 
 // step-1 : import from geometrix
 import type {
-	tContour,
+	//tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -18,8 +18,9 @@ import {
 	//prefixLog,
 	//point,
 	//ShapePoint,
-	contour,
+	//contour,
 	contourCircle,
+	ctrRectangle,
 	figure,
 	//degToRad,
 	//radToDeg,
@@ -127,19 +128,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figTop.addMain(innerCtr);
 		figTop.addSecond(contourCircle(0, 0, param.Dvaxis / 2));
 		// figSection
-		const rect = function (xbl: number, ybl: number, width: number, height: number): tContour {
-			const rCtr = contour(xbl, ybl)
-				.addSegStrokeR(width, 0)
-				.addSegStrokeR(0, height)
-				.addSegStrokeR(-width, 0)
-				.closeSegStroke();
-			return rCtr;
-		};
 		const w1 = R1 - R6 + R4;
-		figSection.addMain(rect(R6, 0, w1, param.T1));
-		figSection.addMain(rect(-R6 - w1, 0, w1, param.T1));
-		figSection.addSecond(rect(R1 - R3, 0, 2 * R3, param.T1));
-		figSection.addSecond(rect(-R1 - R3, 0, 2 * R3, param.T1));
+		figSection.addMain(ctrRectangle(R6, 0, w1, param.T1));
+		figSection.addMain(ctrRectangle(-R6 - w1, 0, w1, param.T1));
+		figSection.addSecond(ctrRectangle(R1 - R3, 0, 2 * R3, param.T1));
+		figSection.addSecond(ctrRectangle(-R1 - R3, 0, 2 * R3, param.T1));
 		// final figure list
 		rGeome.fig = {
 			faceTop: figTop,
