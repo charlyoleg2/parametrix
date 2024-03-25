@@ -1,7 +1,7 @@
 // swing.ts
 
 import type {
-	tContour,
+	//tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -13,6 +13,7 @@ import {
 	point,
 	contour,
 	contourCircle,
+	ctrRectangle,
 	figure,
 	//degToRad,
 	//radToDeg,
@@ -84,13 +85,8 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr1 = (px: number, py: number, lx: number, ly: number) => tContour;
-type tCtr2 = (px: number, py: number, lx: number, ly: number, round: number) => tContour;
-
 function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const rGeome = initGeom(pDef.partName + suffix);
-	let ctrRectangle: tCtr1;
-	let ctrRectRound: tCtr2;
 	const figSide = figure();
 	const figFace = figure();
 	const figTop = figure();
@@ -104,32 +100,6 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// step-6 : any logs
 		rGeome.logstr += `swing size: L1 ${ffix(param.L1)} x L2 ${ffix(param.L2)} mm\n`;
 		// step-7 : drawing of the figures
-		ctrRectangle = function (px: number, py: number, lx: number, ly: number): tContour {
-			const rRect = contour(px, py)
-				.addSegStrokeA(px + lx, py)
-				.addSegStrokeA(px + lx, py + ly)
-				.addSegStrokeA(px, py + ly)
-				.closeSegStroke();
-			return rRect;
-		};
-		ctrRectRound = function (
-			px: number,
-			py: number,
-			lx: number,
-			ly: number,
-			round: number
-		): tContour {
-			const rRect = contour(px, py)
-				.addCornerRounded(round)
-				.addSegStrokeA(px + lx, py)
-				.addCornerRounded(round)
-				.addSegStrokeA(px + lx, py + ly)
-				.addCornerRounded(round)
-				.addSegStrokeA(px, py + ly)
-				.addCornerRounded(round)
-				.closeSegStroke();
-			return rRect;
-		};
 		// figSide
 		figSide.addMain(contourCircle(0, 0, R1));
 		figSide.addMain(contourCircle(0, 0, R1 - param.E1));
@@ -223,7 +193,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			figTopWithRod.addSecond(ctrRectangle(px + rodOffset, rodPy0, param.rod4, rodLength));
 			for (let j = 0; j < 4; j++) {
 				figTopWithRod.addSecond(
-					ctrRectRound(px, rodPy0 + j * rodPyStep, param.rod3, rodPlateH, rodPlateH / 4)
+					ctrRectangle(px, rodPy0 + j * rodPyStep, param.rod3, rodPlateH, rodPlateH / 4)
 				);
 			}
 		}
