@@ -64,7 +64,7 @@
 		"url": "https://github.com/charlyoleg2/parametrix/issues"
 	},
 	"dependencies": {
-		"express": "^4.19.1",
+		"express": "^4.19.2",
 		"fs-extra": "^11.2.0",
 		"get-port": "^7.1.0",
 		"open": "^10.1.0",
@@ -81,7 +81,7 @@
 		"shx": "^0.3.4",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.3",
-		"typescript-eslint": "^7.3.1",
+		"typescript-eslint": "^7.4.0",
 		"vitest": "^1.4.0"
 	},
 	"prettier": {
