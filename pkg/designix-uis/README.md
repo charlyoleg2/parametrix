@@ -5,7 +5,7 @@ README of designix-uis
 Presentation
 ------------
 
-*designix-uis* is the static server of *design-ui*. It is a *nodejs* package for distribution the static website *design-ui*. On top of the web content, it provides a mini static-web-server.
+*designix-uis* is the static server of *designix-ui*. It is a *nodejs* package for distribution the static website *designix-ui*. On top of the web content, it provides a mini static-web-server.
 
 
 Requirements
@@ -27,7 +27,7 @@ Usage
 -----
 
 ```bash
-npx designux-uis
+npx designix-uis
 npx designix-uis --help
 ```
 
