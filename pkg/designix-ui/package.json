@@ -22,12 +22,12 @@
 		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg"
 	},
 	"dependencies": {
-		"designix": "^0.5.26",
-		"geometrix": "^0.5.25",
-		"geomui": "^0.5.27"
+		"designix": "^0.5.27",
+		"geometrix": "^0.5.26",
+		"geomui": "^0.5.28"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.1.1",
+		"@sveltejs/adapter-auto": "^3.2.0",
 		"@sveltejs/adapter-static": "^3.0.1",
 		"@sveltejs/kit": "^2.5.4",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
