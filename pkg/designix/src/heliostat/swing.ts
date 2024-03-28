@@ -5,9 +5,10 @@ import type {
 	tParamDef,
 	tParamVal,
 	tGeom,
+	tExtrude,
+	//tSubInst,
+	//tSubDesign,
 	tPageDef
-	//tSubInst
-	//tSubDesign
 } from 'geometrix';
 import {
 	point,
@@ -174,6 +175,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.closeSegStroke();
 		figButtress.addMain(ctrButtress);
 		figButtress.addMain(contourCircle(0, 0, R1 - param.E1));
+		figSide.addSecond(ctrButtress);
 		// figTopWithRod
 		for (const px of facePx) {
 			figTopWithRod.addMain(ctrRectangle(px, -param.L2 / 2, param.H1, param.L2));
@@ -223,13 +225,31 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					length: param.L2,
 					rotate: [0, Math.PI / 2, 0],
 					translate: [-param.L2 / 2, 0, 0]
-				}
+				},
+				...facePx.map((pz, idx) => {
+					const rElem: tExtrude = {
+						outName: `subpax_${designName}_buttress_${idx}`,
+						face: `${designName}_faceButtress`,
+						extrudeMethod: EExtrude.eLinearOrtho,
+						length: param.H1,
+						rotate: [0, 0, 0],
+						translate: [0, 0, pz]
+					};
+					return rElem;
+				})
 			],
 			volumes: [
 				{
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eUnion,
-					inList: [`subpax_${designName}_side`, `subpax_${designName}_face`]
+					inList: [
+						`subpax_${designName}_side`,
+						`subpax_${designName}_face`,
+						...facePx.map((pz, idx) => {
+							const subElem = `subpax_${designName}_buttress_${idx}`;
+							return subElem;
+						})
+					]
 				}
 			]
 		};
