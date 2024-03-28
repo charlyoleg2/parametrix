@@ -20,8 +20,6 @@ Installation
 
 ```bash
 npm i -D designix-cli
-npx designix-cli --help
-npx designix-cli
 ```
 
 
@@ -30,12 +28,14 @@ Usage
 
 ```bash
 npx designix-cli --help
+npx designix-cli
 ```
 
 Usage without installation
 --------------------------
 
 ```bash
+npx designix-cli
 npx --package=designix-cli designix-cli --help
 npx --package=designix-cli designix-cli versions
 npx --package=designix-cli designix-cli list-designs

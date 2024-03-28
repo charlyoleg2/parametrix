@@ -36,6 +36,7 @@ Usage without installation
 --------------------------
 
 ```bash
+npx designix-uis
 npx --package=designix-uis designix-uis
 npx --package=designix-uis designix-uis --help
 ```
