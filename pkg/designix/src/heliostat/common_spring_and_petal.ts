@@ -187,7 +187,7 @@ function ctrSpring(param: tParamVal, startOuter: boolean): [string, Contour] {
 
 // used in vaxis_guidance
 function ctrGuidanceInner(param: tParamVal): [string, tContour] {
-	const rLog = '';
+	let rLog = '';
 	// step-4 : some preparation calculation
 	const R6 = param.D6 / 2;
 	// spring base
@@ -195,8 +195,9 @@ function ctrGuidanceInner(param: tParamVal): [string, tContour] {
 	const E22 = param.E2 / 2;
 	const aE2 = 2 * Math.asin(E22 / R6);
 	const iarcA2 = (stepA2 - aE2) / 2;
-	const a1Plus = param.N2 < 3 ? 0 : Math.PI / (2 * param.N2);
-	const a1 = -Math.PI / 2 + a1Plus + degToRad(param.SA1);
+	const a1Plus = param.N2 < 3 ? 0 : Math.PI / param.N2;
+	const ar1 = -a1Plus - degToRad(param.SA1);
+	const ab1 = Math.PI / 2 + ar1;
 	// spring top
 	const SR1 = param.SD1 / 2;
 	// step-5 : checks on the parameter values
@@ -206,33 +207,37 @@ function ctrGuidanceInner(param: tParamVal): [string, tContour] {
 	// step-6 : any logs
 	// step-7 : drawing of the figures
 	//figTop.addMain(contourCircle(0, 0, R6));
+	const [spring1Log, spring1Ctr] = ctrSpring(param, false);
+	rLog += spring1Log;
 	const rCtr = contour(R6, 0);
 	const pF = point(0, -R6);
 	const pO = point(0, 0);
-	const pG = pF.rotate(pO, -aE2);
+	const pG = pF.rotate(pO, aE2);
 	const pH = pF.translate(0, param.L2);
-	const pIc = pH.translate(SR1, 0);
+	const pIc = pH.translate(-SR1, 0);
 	const pJ = pIc.translate(0, SR1);
-	const pK = pJ.rotate(pIc, a1);
+	//const pK = pJ.rotate(pIc, ab1);
 	const pM = pIc.translate(0, SR1 + param.SE1);
-	const pL = pM.rotate(pIc, a1);
-	const pN = pH.translate(0, SR1 + param.SE1).translate(-param.SE1, 0);
+	const pL = pM.rotate(pIc, ab1);
+	const pN = pH.translate(0, SR1 + param.SE1).translate(param.SE1, 0);
 	const ctrSpringBase = contour(pG.cx, pG.cy)
 		.addSegStrokeA(pN.cx, pN.cy)
 		.addSegStrokeA(pM.cx, pM.cy)
 		.addPointA(pL.cx, pL.cy)
-		.addSegArc(SR1 + param.SE1, false, false)
-		.addSegStrokeA(pK.cx, pK.cy)
+		.addSegArc(SR1 + param.SE1, false, true);
+	//ctrSpringBase.addSegStrokeA(pK.cx, pK.cy);
+	ctrSpringBase.addPartial(spring1Ctr.rotate(0, 0, ar1).translate(pL.cx, pL.cy));
+	ctrSpringBase
 		.addPointA(pJ.cx, pJ.cy)
 		.addPointA(pH.cx, pH.cy)
 		.addSegArc2()
 		.addSegStrokeA(pF.cx, pF.cy);
 	for (let i = 0; i < param.N2; i++) {
-		rCtr.addPointAP(i * stepA2 + iarcA2, R6)
-			.addPointAP(i * stepA2 + 2 * iarcA2, R6)
+		rCtr.addPointAP(-i * stepA2 - iarcA2, R6)
+			.addPointAP(-i * stepA2 - 2 * iarcA2, R6)
 			.addSegArc2()
 			.addCornerRounded(param.R7)
-			.addPartial(ctrSpringBase.rotate(0, 0, Math.PI / 2 + (i + 1) * stepA2))
+			.addPartial(ctrSpringBase.rotate(0, 0, Math.PI / 2 - (i + 1) * stepA2))
 			.addCornerRounded(param.R7);
 	}
 	return [rLog, rCtr];
