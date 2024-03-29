@@ -16,13 +16,13 @@ import {
 	//designParam,
 	//checkGeom,
 	//prefixLog,
-	//point,
+	point,
 	//ShapePoint,
 	contour,
 	contourCircle,
 	ctrRectangle,
 	figure,
-	//degToRad,
+	degToRad,
 	//radToDeg,
 	ffix,
 	pNumber,
@@ -99,6 +99,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const Rinner = R5 + param.E5;
 		const Rinner2 = R8 - param.E8;
 		const aLeg = 2 * Math.asin(param.L5 / (2 * Rinner));
+		const sA = Math.PI / 2 + degToRad(param.SA1);
 		// step-5 : checks on the parameter values
 		if (Rinner + SR1 + param.SE1 > Rinner2) {
 			throw `err411: D8 ${param.D8} is too small compare to D5 ${param.D5}, E5 ${param.D5}, E8 ${param.E8}`;
@@ -115,14 +116,45 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// figProfile
 		figProfile.addSecond(contourCircle(0, 0, R5));
 		figProfile.addSecond(contourCircle(0, 0, R8));
+		const Ai1 = Math.PI / 2 - aLeg;
+		const Ai2 = -Math.PI / 6 + aLeg;
+		const p0 = point(0, 0);
+		const p11 = p0.translatePolar(Ai1, Rinner + param.SE1 + SR1);
+		const p12c = p11.translatePolar(Ai1 - Math.PI / 2, SR1);
+		const p13 = p12c.translatePolar(Ai1 + Math.PI, SR1 + param.SE1);
+		const p14 = p12c.translatePolar(Ai1 + Math.PI, SR1);
+		const p15 = p13.rotate(p12c, sA);
+		const p16 = p14.rotate(p12c, sA);
+		const p21 = p0.translatePolar(Ai2, Rinner + param.SE1 + SR1);
+		const p22c = p21.translatePolar(Ai2 + Math.PI / 2, SR1);
+		const p23 = p22c.translatePolar(Ai2 + Math.PI, SR1 + param.SE1);
+		const p24 = p22c.translatePolar(Ai2 + Math.PI, SR1);
+		const p25 = p23.rotate(p22c, -sA);
+		const p26 = p24.rotate(p22c, -sA);
 		const ctrProfile = contour(0, Rinner)
-			.addSegStrokeAP(Math.PI / 2 - aLeg, Rinner)
-			.addSegStrokeAP(Math.PI / 2 - aLeg, Rinner2)
+			//.addSegStrokeAP(Ai1, Rinner)
+			.addSegStrokeA(p13.cx, p13.cy)
+			.addPointA(p15.cx, p15.cy)
+			.addSegArc(SR1 + param.SE1, false, true);
+		ctrProfile.addSegStrokeA(p16.cx, p16.cy);
+		ctrProfile
+			.addPointA(p14.cx, p14.cy)
+			.addPointA(p11.cx, p11.cy)
+			.addSegArc2()
+			.addSegStrokeAP(Ai1, Rinner2)
 			.addCornerRounded(param.R9)
-			.addPointAP(-Math.PI / 6 + aLeg, Rinner2)
+			.addPointAP(Ai2, Rinner2)
 			.addSegArc(Rinner2, false, false)
 			.addCornerRounded(param.R9)
-			.addSegStrokeAP(-Math.PI / 6 + aLeg, Rinner)
+			//.addSegStrokeAP(Ai2, Rinner)
+			.addSegStrokeA(p21.cx, p21.cy)
+			.addPointA(p24.cx, p24.cy)
+			.addPointA(p26.cx, p26.cy)
+			.addSegArc2();
+		ctrProfile.addSegStrokeA(p25.cx, p25.cy);
+		ctrProfile
+			.addPointA(p23.cx, p23.cy)
+			.addSegArc(SR1 + param.SE1, false, true)
 			.addSegStrokeAP(-Math.PI / 6, Rinner)
 			.addSegStrokeAP(-Math.PI / 6, R8)
 			.addPointAP(Math.PI / 2, R8)
