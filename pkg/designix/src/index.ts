@@ -14,6 +14,7 @@ export * from './heliostat/ring_guidance';
 export * from './heliostat/vaxis_guidance';
 export * from './heliostat/rake';
 export * from './heliostat/rake_stopper';
+export * from './heliostat/haxis_guidance';
 export * from './heliostat/spider';
 export * from './heliostat/swing';
 export * from './heliostat/rod';
