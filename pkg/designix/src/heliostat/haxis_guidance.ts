@@ -111,14 +111,15 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		}
 		// step-6 : any logs
 		rGeome.logstr += `haxis_guidance: Dinner ${ffix(2 * Rinner)} mm\n`;
-		rGeome.logstr += `dbg454: sA2: ${ffix(sA2)}  sA: ${ffix(sA)} rad\n`;
+		//rGeome.logstr += `dbg454: sA2: ${ffix(sA2)}  sA: ${ffix(sA)} rad\n`;
 		// step-7 : drawing of the figures
 		// figProfile
 		figProfile.addSecond(contourCircle(0, 0, R5));
 		figProfile.addSecond(contourCircle(0, 0, R8));
-		const [springLog, springCtr] = ctrSpring(param, false);
-		rGeome.logstr += springLog;
-		//figProfile.addSecond(springCtr);
+		const [spring1Log, spring1Ctr] = ctrSpring(param, false);
+		const [, spring2Ctr] = ctrSpring(param, true);
+		rGeome.logstr += spring1Log;
+		//figProfile.addSecond(spring1Ctr);
 		const Ai1 = Math.PI / 2 - aLeg;
 		const Ai2 = -Math.PI / 6 + aLeg;
 		const p0 = point(0, 0);
@@ -134,14 +135,14 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const p24 = p22c.translatePolar(Ai2 + Math.PI, SR1);
 		//const p25 = p23.rotate(p22c, -sA);
 		const p26 = p24.rotate(p22c, -sA);
-		const tmpCtr = contour(0, 0).addSegStrokeR(param.SE1, 0);
+		//const tmpCtr = contour(0, 0).addSegStrokeR(param.SE1, 0);
 		const ctrProfile = contour(0, Rinner)
 			//.addSegStrokeAP(Ai1, Rinner)
 			.addSegStrokeA(p13.cx, p13.cy)
 			.addPointA(p15.cx, p15.cy)
 			.addSegArc(SR1 + param.SE1, false, true);
 		//ctrProfile.addSegStrokeA(p16.cx, p16.cy);
-		ctrProfile.addPartial(tmpCtr.rotate(0, 0, sA1).translate(p15.cx, p15.cy));
+		ctrProfile.addPartial(spring1Ctr.rotate(0, 0, sA1).translate(p15.cx, p15.cy));
 		ctrProfile
 			.addPointA(p14.cx, p14.cy)
 			.addPointA(p11.cx, p11.cy)
@@ -157,7 +158,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addPointA(p26.cx, p26.cy)
 			.addSegArc2();
 		//ctrProfile.addSegStrokeA(p25.cx, p25.cy);
-		ctrProfile.addPartial(springCtr.rotate(0, 0, sA2).translate(p26.cx, p26.cy));
+		ctrProfile.addPartial(spring2Ctr.rotate(0, 0, sA2).translate(p26.cx, p26.cy));
 		ctrProfile
 			.addPointA(p23.cx, p23.cy)
 			.addSegArc(SR1 + param.SE1, false, true)

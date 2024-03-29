@@ -221,34 +221,38 @@ function ctrSpring(param: tParamVal, startOuter: boolean): [string, Contour] {
 	const SR2 = param.SD2 / 2;
 	const SR2l = SR2 + param.SE1;
 	const SD2l = 2 * SR2l;
+	let ticCCW = false;
+	let ticR = -SR2;
+	let tocR = -SR2l;
+	if (startOuter) {
+		ticCCW = true;
+		ticR = SR2l;
+		tocR = SR2;
+	}
 	// step-5 : checks on the parameter values
 	if (param.SL2 < SR2l) {
 		throw `err421: SL2 ${param.SL2} is too small compare to SD2 ${param.SD2} and SE1 ${param.SE1}`;
 	}
 	// step-6 : any logs
-	rLog += `info309: spring startOuter: ${startOuter} height: ${ffix(param.SL1 + SD2l)} length: ${ffix(param.SN1 * 2 * (param.SD2 + param.SE1))}\n`;
+	rLog += `info309: spring height: ${ffix(param.SL1 + SD2l)} length: ${ffix(param.SN1 * 2 * (param.SD2 + param.SE1))}\n`;
 	// step-7 : drawing of the figures
 	const rCtr = contour(0, 0);
-	if (startOuter) {
-		rCtr.addSegStrokeR(param.SE1, 0);
-	} else {
-		for (let i = 0; i < param.SN1; i++) {
-			rCtr.addSegStrokeR(0, -param.SL1)
-				.addPointR(SD2l, 0)
-				.addSegArc(SR2l, false, true)
-				.addSegStrokeR(0, param.SL1)
-				.addPointR(param.SD2, 0)
-				.addSegArc(SR2, false, false);
-		}
-		rCtr.addSegStrokeR(param.SE1, 0);
-		for (let i = 0; i < param.SN1; i++) {
-			rCtr.addPointR(-SD2l, 0)
-				.addSegArc(SR2l, false, true)
-				.addSegStrokeR(0, -param.SL1)
-				.addPointR(-param.SD2, 0)
-				.addSegArc(SR2, false, false)
-				.addSegStrokeR(0, param.SL1);
-		}
+	for (let i = 0; i < param.SN1; i++) {
+		rCtr.addSegStrokeR(0, -param.SL1)
+			.addPointR(2 * ticR, 0)
+			.addSegArc(Math.abs(ticR), false, ticCCW)
+			.addSegStrokeR(0, param.SL1)
+			.addPointR(2 * tocR, 0)
+			.addSegArc(Math.abs(tocR), false, !ticCCW);
+	}
+	rCtr.addSegStrokeR(param.SE1, 0);
+	for (let i = 0; i < param.SN1; i++) {
+		rCtr.addPointR(-2 * ticR, 0)
+			.addSegArc(Math.abs(ticR), false, ticCCW)
+			.addSegStrokeR(0, -param.SL1)
+			.addPointR(-2 * tocR, 0)
+			.addSegArc(Math.abs(tocR), false, !ticCCW)
+			.addSegStrokeR(0, param.SL1);
 	}
 	return [rLog, rCtr];
 }
