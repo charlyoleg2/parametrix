@@ -88,6 +88,10 @@ class Contour extends AContour {
 	getLastPoint(): Point {
 		return this.lastPoint;
 	}
+	getFirstPoint(): Point {
+		const rpfirst = point(this.segments[0].px, this.segments[0].py);
+		return rpfirst;
+	}
 	addPointA(ax: number, ay: number): Contour {
 		if (this.points.length > 2) {
 			throw `err311: contour add too much point ${ax} ${ay}`;

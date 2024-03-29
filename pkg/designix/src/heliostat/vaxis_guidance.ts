@@ -55,7 +55,7 @@ const pDef: tParamDef = {
 		pDropdown('orientation', ['ccw', 'cw', 'alt']),
 		pNumber('R7', 'mm', 10, 0, 100, 1),
 		pNumber('L2', 'mm', 100, 1, 900, 1),
-		pNumber('E2', 'mm', 50, 1, 200, 1),
+		pNumber('E2', 'mm', 20, 1, 200, 1),
 		pSectionSeparator('spring'),
 		pNumber('SA1', 'degree', 0, -45, 45, 1),
 		pNumber('SE1', 'mm', 10, 1, 200, 1),

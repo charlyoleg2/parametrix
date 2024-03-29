@@ -196,20 +196,24 @@ function ctrGuidanceInner(param: tParamVal): [string, tContour] {
 	const aE2 = 2 * Math.asin(E22 / R6);
 	const iarcA2 = (stepA2 - aE2) / 2;
 	const a1Plus = param.N2 < 3 ? 0 : Math.PI / param.N2;
-	const ar1 = -a1Plus - degToRad(param.SA1);
-	const ab1 = Math.PI / 2 + ar1;
+	const ar1 = a1Plus + degToRad(param.SA1);
+	const ab1 = Math.PI / 2 - ar1;
+	const ab2 = -Math.PI / 2 + ar1;
 	// spring top
 	const SR1 = param.SD1 / 2;
 	// step-5 : checks on the parameter values
 	if (iarcA2 < 0) {
 		throw `err564: N2 ${param.N2} is too large compare to D6 ${param.D6}, E2 ${param.E2}`;
 	}
+	if (param.orientation === 2 && param.N2 % 2 === 1) {
+		throw `err565: N2 ${param.N2} is odd and orientation is alt`;
+	}
 	// step-6 : any logs
 	// step-7 : drawing of the figures
 	//figTop.addMain(contourCircle(0, 0, R6));
 	const [spring1Log, spring1Ctr] = ctrSpring(param, false);
+	const [, spring2Ctr] = ctrSpring(param, true);
 	rLog += spring1Log;
-	const rCtr = contour(R6, 0);
 	const pF = point(0, -R6);
 	const pO = point(0, 0);
 	const pG = pF.rotate(pO, aE2);
@@ -220,25 +224,75 @@ function ctrGuidanceInner(param: tParamVal): [string, tContour] {
 	const pM = pIc.translate(0, SR1 + param.SE1);
 	const pL = pM.rotate(pIc, ab1);
 	const pN = pH.translate(0, SR1 + param.SE1).translate(param.SE1, 0);
-	const ctrSpringBase = contour(pG.cx, pG.cy)
+	// orientation-2
+	const pG2 = pF.rotate(pO, -aE2);
+	const pIc2 = pH.translate(SR1, 0);
+	const pJ2 = pIc2.translate(0, SR1);
+	const pK2 = pJ2.rotate(pIc2, ab2);
+	const pM2 = pIc2.translate(0, SR1 + param.SE1);
+	//const pL2 = pM2.rotate(pIc2, ab2);
+	const pN2 = pH.translate(0, SR1 + param.SE1).translate(-param.SE1, 0);
+	// ctrSpringBase1
+	const ctrSpringBase1 = contour(pG.cx, pG.cy)
 		.addSegStrokeA(pN.cx, pN.cy)
-		.addSegStrokeA(pM.cx, pM.cy)
+		.addSegStrokeA(pM.cx, pM.cy);
+	const ctrSpringBase1b = contour(pM.cx, pM.cy)
 		.addPointA(pL.cx, pL.cy)
 		.addSegArc(SR1 + param.SE1, false, true);
-	//ctrSpringBase.addSegStrokeA(pK.cx, pK.cy);
-	ctrSpringBase.addPartial(spring1Ctr.rotate(0, 0, ar1).translate(pL.cx, pL.cy));
-	ctrSpringBase
+	//ctrSpringBase1b.addSegStrokeA(pK.cx, pK.cy);
+	ctrSpringBase1b.addPartial(spring1Ctr.rotate(0, 0, -ar1).translate(pL.cx, pL.cy));
+	ctrSpringBase1b
 		.addPointA(pJ.cx, pJ.cy)
 		.addPointA(pH.cx, pH.cy)
 		.addSegArc2()
 		.addSegStrokeA(pF.cx, pF.cy);
-	for (let i = 0; i < param.N2; i++) {
-		rCtr.addPointAP(-i * stepA2 - iarcA2, R6)
-			.addPointAP(-i * stepA2 - 2 * iarcA2, R6)
-			.addSegArc2()
-			.addCornerRounded(param.R7)
-			.addPartial(ctrSpringBase.rotate(0, 0, Math.PI / 2 - (i + 1) * stepA2))
-			.addCornerRounded(param.R7);
+	ctrSpringBase1.addPartial(ctrSpringBase1b);
+	// ctrSpringBase2
+	const ctrSpringBase2a = contour(pF.cx, pF.cy)
+		.addSegStrokeA(pH.cx, pH.cy)
+		.addPointA(pJ2.cx, pJ2.cy)
+		.addPointA(pK2.cx, pK2.cy)
+		.addSegArc2();
+	//ctrSpringBase2a.addSegStrokeA(pL2.cx, pL2.cy);
+	ctrSpringBase2a.addPartial(spring2Ctr.rotate(0, 0, ar1).translate(pK2.cx, pK2.cy));
+	ctrSpringBase2a.addPointA(pM2.cx, pM2.cy).addSegArc(SR1 + param.SE1, false, true);
+	const ctrSpringBase2b = contour(pM2.cx, pM2.cy)
+		.addSegStrokeA(pN2.cx, pN2.cy)
+		.addSegStrokeA(pG2.cx, pG2.cy);
+	const ctrSpringBase2 = contour(pF.cx, pF.cy)
+		.addPartial(ctrSpringBase2a)
+		.addPartial(ctrSpringBase2b);
+	const rCtr = contour(R6, 0);
+	if (param.orientation === 2) {
+		for (let i = 0; i < param.N2 / 2; i++) {
+			rCtr.addPointAP(-2 * i * stepA2 - 2 * iarcA2, R6)
+				.addPointAP(-2 * i * stepA2 - 4 * iarcA2, R6)
+				.addSegArc2();
+			rCtr.addCornerRounded(param.R7);
+			const ar1b = Math.PI / 2 - (2 * i + 2) * stepA2;
+			const ar2a = ar1b + 2 * aE2;
+			rCtr.addPartial(ctrSpringBase2a.rotate(0, 0, ar2a));
+			const ctrSB1 = ctrSpringBase1b.rotate(0, 0, ar1b);
+			const pt1 = ctrSB1.getFirstPoint();
+			rCtr.addCornerRounded(param.R7);
+			rCtr.addSegStrokeA(pt1.cx, pt1.cy);
+			rCtr.addCornerRounded(param.R7);
+			rCtr.addPartial(ctrSB1);
+			rCtr.addCornerRounded(param.R7);
+		}
+	} else {
+		for (let i = 0; i < param.N2; i++) {
+			rCtr.addPointAP(-i * stepA2 - iarcA2, R6)
+				.addPointAP(-i * stepA2 - 2 * iarcA2, R6)
+				.addSegArc2()
+				.addCornerRounded(param.R7);
+			if (param.orientation === 0) {
+				rCtr.addPartial(ctrSpringBase2.rotate(0, 0, Math.PI / 2 - (i + 1) * stepA2 + aE2));
+			} else if (param.orientation === 1) {
+				rCtr.addPartial(ctrSpringBase1.rotate(0, 0, Math.PI / 2 - (i + 1) * stepA2));
+			}
+			rCtr.addCornerRounded(param.R7);
+		}
 	}
 	return [rLog, rCtr];
 }
