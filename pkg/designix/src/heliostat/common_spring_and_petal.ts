@@ -240,17 +240,44 @@ function ctrSpring(param: tParamVal, startOuter: boolean): [string, Contour] {
 	for (let i = 0; i < param.SN1; i++) {
 		rCtr.addSegStrokeR(0, -param.SL1)
 			.addPointR(2 * ticR, 0)
-			.addSegArc(Math.abs(ticR), false, ticCCW)
-			.addSegStrokeR(0, param.SL1)
-			.addPointR(2 * tocR, 0)
-			.addSegArc(Math.abs(tocR), false, !ticCCW);
+			.addSegArc(Math.abs(ticR), false, ticCCW);
+		if (i < param.SN1 - 1) {
+			// last turn
+			rCtr.addSegStrokeR(0, param.SL1)
+				.addPointR(2 * tocR, 0)
+				.addSegArc(Math.abs(tocR), false, !ticCCW);
+		} else if (param.Send === 1) {
+			// pike
+			rCtr.addSegStrokeR(0, param.SL2);
+		} else {
+			// round
+			rCtr.addSegStrokeR(0, param.SL2 - SR2l)
+				.addPointR(2 * tocR, 0)
+				.addSegArc(Math.abs(tocR), false, !ticCCW);
+		}
 	}
-	rCtr.addSegStrokeR(param.SE1, 0);
+	if (param.Send === 1) {
+		// pike
+		rCtr.addSegStrokeR(-param.SE1, 0);
+	} else {
+		// round
+		rCtr.addSegStrokeR(param.SE1, 0);
+	}
 	for (let i = 0; i < param.SN1; i++) {
-		rCtr.addPointR(-2 * ticR, 0)
-			.addSegArc(Math.abs(ticR), false, ticCCW)
-			.addSegStrokeR(0, -param.SL1)
-			.addPointR(-2 * tocR, 0)
+		if (i > 0) {
+			rCtr.addPointR(-2 * ticR, 0)
+				.addSegArc(Math.abs(ticR), false, ticCCW)
+				.addSegStrokeR(0, -param.SL1);
+		} else if (param.Send === 1) {
+			// pike
+			rCtr.addSegStrokeR(0, -param.SL2);
+		} else {
+			// round
+			rCtr.addPointR(-2 * ticR, 0)
+				.addSegArc(Math.abs(ticR), false, ticCCW)
+				.addSegStrokeR(0, -param.SL2 + SR2l);
+		}
+		rCtr.addPointR(-2 * tocR, 0)
 			.addSegArc(Math.abs(tocR), false, !ticCCW)
 			.addSegStrokeR(0, param.SL1);
 	}

@@ -53,10 +53,10 @@ const pDef: tParamDef = {
 		pNumber('SE1', 'mm', 2, 0.1, 100, 0.1),
 		pNumber('SD1', 'mm', 20, 1, 200, 1),
 		pNumber('SD2', 'mm', 10, 1, 200, 1),
-		pNumber('SN1', 'springs', 5, 1, 24, 1),
+		pNumber('SN1', 'springs', 7, 1, 24, 1),
 		pNumber('SL1', 'mm', 60, 0, 500, 1),
 		pNumber('SL2', 'mm', 100, 0, 500, 1),
-		pDropdown('Send', ['pike', 'round']),
+		pDropdown('Send', ['round', 'pike']),
 		pSectionSeparator('thickness'),
 		pNumber('L4', 'mm', 400, 1, 2000, 1)
 	],
