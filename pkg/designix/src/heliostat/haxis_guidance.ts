@@ -34,7 +34,7 @@ import {
 	EBVolume
 } from 'geometrix';
 
-//import { ctrSpring } from './common_spring_and_petal'; // externalized contour
+import { ctrSpring } from './common_spring_and_petal'; // externalized contour
 
 // step-2 : definition of the parameters and more (part-name, svg associated to each parameter, simulation parameters)
 const pDef: tParamDef = {
@@ -53,9 +53,9 @@ const pDef: tParamDef = {
 		pNumber('SE1', 'mm', 2, 0.1, 100, 0.1),
 		pNumber('SD1', 'mm', 20, 1, 200, 1),
 		pNumber('SD2', 'mm', 10, 1, 200, 1),
-		pNumber('SN1', 'springs', 3, 1, 24, 1),
-		pNumber('SL1', 'mm', 10, 0, 500, 1),
-		pNumber('SL2', 'mm', 10, 0, 500, 1),
+		pNumber('SN1', 'springs', 5, 1, 24, 1),
+		pNumber('SL1', 'mm', 60, 0, 500, 1),
+		pNumber('SL2', 'mm', 100, 0, 500, 1),
 		pDropdown('Send', ['pike', 'round']),
 		pSectionSeparator('thickness'),
 		pNumber('L4', 'mm', 400, 1, 2000, 1)
@@ -95,11 +95,13 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const R5 = param.D5 / 2;
 		const R8 = param.D8 / 2;
 		const SR1 = param.SD1 / 2;
-		const SR2 = param.SD2 / 2;
 		const Rinner = R5 + param.E5;
 		const Rinner2 = R8 - param.E8;
 		const aLeg = 2 * Math.asin(param.L5 / (2 * Rinner));
-		const sA = Math.PI / 2 + degToRad(param.SA1);
+		const sA0 = Math.PI / 12 + degToRad(param.SA1);
+		const sA = Math.PI / 2 + aLeg - sA0;
+		const sA1 = Math.PI - sA0;
+		const sA2 = Math.PI / 2 - Math.PI / 6 + sA0;
 		// step-5 : checks on the parameter values
 		if (Rinner + SR1 + param.SE1 > Rinner2) {
 			throw `err411: D8 ${param.D8} is too small compare to D5 ${param.D5}, E5 ${param.D5}, E8 ${param.E8}`;
@@ -107,15 +109,16 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		if ((2 * Math.PI) / 3 - 2 * aLeg < param.R9 / Rinner2) {
 			throw `err412: L5 ${param.L5} is too large compare to R9 ${param.R9}`;
 		}
-		if (param.SL2 < SR2 + param.SE1) {
-			throw `err421: SL2 ${param.SL2} is too small compare to SD2 ${param.SD2} and SE1 ${param.SE1}`;
-		}
 		// step-6 : any logs
 		rGeome.logstr += `haxis_guidance: Dinner ${ffix(2 * Rinner)} mm\n`;
+		rGeome.logstr += `dbg454: sA2: ${ffix(sA2)}  sA: ${ffix(sA)} rad\n`;
 		// step-7 : drawing of the figures
 		// figProfile
 		figProfile.addSecond(contourCircle(0, 0, R5));
 		figProfile.addSecond(contourCircle(0, 0, R8));
+		const [springLog, springCtr] = ctrSpring(param, false);
+		rGeome.logstr += springLog;
+		//figProfile.addSecond(springCtr);
 		const Ai1 = Math.PI / 2 - aLeg;
 		const Ai2 = -Math.PI / 6 + aLeg;
 		const p0 = point(0, 0);
@@ -124,19 +127,21 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const p13 = p12c.translatePolar(Ai1 + Math.PI, SR1 + param.SE1);
 		const p14 = p12c.translatePolar(Ai1 + Math.PI, SR1);
 		const p15 = p13.rotate(p12c, sA);
-		const p16 = p14.rotate(p12c, sA);
+		//const p16 = p14.rotate(p12c, sA);
 		const p21 = p0.translatePolar(Ai2, Rinner + param.SE1 + SR1);
 		const p22c = p21.translatePolar(Ai2 + Math.PI / 2, SR1);
 		const p23 = p22c.translatePolar(Ai2 + Math.PI, SR1 + param.SE1);
 		const p24 = p22c.translatePolar(Ai2 + Math.PI, SR1);
-		const p25 = p23.rotate(p22c, -sA);
+		//const p25 = p23.rotate(p22c, -sA);
 		const p26 = p24.rotate(p22c, -sA);
+		const tmpCtr = contour(0, 0).addSegStrokeR(param.SE1, 0);
 		const ctrProfile = contour(0, Rinner)
 			//.addSegStrokeAP(Ai1, Rinner)
 			.addSegStrokeA(p13.cx, p13.cy)
 			.addPointA(p15.cx, p15.cy)
 			.addSegArc(SR1 + param.SE1, false, true);
-		ctrProfile.addSegStrokeA(p16.cx, p16.cy);
+		//ctrProfile.addSegStrokeA(p16.cx, p16.cy);
+		ctrProfile.addPartial(tmpCtr.rotate(0, 0, sA1).translate(p15.cx, p15.cy));
 		ctrProfile
 			.addPointA(p14.cx, p14.cy)
 			.addPointA(p11.cx, p11.cy)
@@ -151,7 +156,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addPointA(p24.cx, p24.cy)
 			.addPointA(p26.cx, p26.cy)
 			.addSegArc2();
-		ctrProfile.addSegStrokeA(p25.cx, p25.cy);
+		//ctrProfile.addSegStrokeA(p25.cx, p25.cy);
+		ctrProfile.addPartial(springCtr.rotate(0, 0, sA2).translate(p26.cx, p26.cy));
 		ctrProfile
 			.addPointA(p23.cx, p23.cy)
 			.addSegArc(SR1 + param.SE1, false, true)
@@ -161,9 +167,6 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegArc(R8, false, true)
 			.closeSegStroke();
 		figProfile.addMain(ctrProfile);
-		//const [outerLog, outerCtr, stepA1] = ctrSpring(param);
-		//rGeome.logstr += outerLog;
-		//figProfile.addMain(outerCtr);
 		// figSide
 		const R8plus = R8 * Math.sin(Math.PI / 6);
 		figSide.addMain(ctrRectangle(0, -R8plus, param.L4, R8 + R8plus));
