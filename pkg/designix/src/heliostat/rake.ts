@@ -16,6 +16,7 @@ import {
 	contourCircle,
 	ctrRectangle,
 	ctrRectRot,
+	ctrTrapezoid,
 	figure,
 	degToRad,
 	radToDeg,
@@ -228,15 +229,14 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegStrokeA(R1 - param.E1, param.H1 - param.H3)
 			.addSegStrokeA(0, param.H1 - param.H3)
 			.closeSegStroke();
-		const ctrDoor = contour(doorLowX, param.H1 + param.H6)
-			.addCornerRounded(param.R9)
-			.addSegStrokeA(doorHighX, param.H1 + param.H6 + param.H7)
-			.addCornerRounded(param.R9)
-			.addSegStrokeA(-doorHighX, param.H1 + param.H6 + param.H7)
-			.addCornerRounded(param.R9)
-			.addSegStrokeA(-doorLowX, param.H1 + param.H6)
-			.addCornerRounded(param.R9)
-			.closeSegStroke();
+		const ctrDoor = ctrTrapezoid(
+			-doorLowX,
+			param.H1 + param.H6,
+			param.L9,
+			2 * doorHighX,
+			param.H7,
+			param.R9
+		);
 		figCone.addMain(ctrCone(1));
 		figCone.addSecond(ctrConePlus(1));
 		figCone.addSecond(ctrConePlus(-1));
