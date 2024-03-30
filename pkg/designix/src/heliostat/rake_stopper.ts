@@ -357,12 +357,20 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			faceStopperFaceBH: figStopperFaceBH,
 			faceLowStopperHolder: figLowStopperHolder
 		};
+		// step-8 : recipes of the 3D construction
 		const designName = rGeome.partName;
 		rGeome.vol = {
 			inherits: [
 				{
 					outName: `inpax_${designName}_rake`,
 					subdesign: 'pax_rake',
+					subgeom: rakeGeom,
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
+				},
+				{
+					outName: `inpax_${designName}_coneHollow`,
+					subdesign: 'subpax_rake_coneHollow',
 					subgeom: rakeGeom,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
@@ -416,6 +424,14 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					length: stopper3L,
 					rotate: [Math.PI / 2 - stopper3A, 0, Math.PI / 2],
 					translate: [0, 0, stopper3H]
+				},
+				{
+					outName: `subpax_${designName}_lowSH`,
+					face: `${designName}_faceLowStopperHolder`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: lowSHL,
+					rotate: [Math.PI / 2, 0, -Math.PI / 2],
+					translate: [0, 0, 0]
 				}
 			],
 			volumes: [
@@ -425,13 +441,15 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					inList: [
 						`subpax_${designName}_stpSide`,
 						`subpax_${designName}_stpFaceT`,
-						`subpax_${designName}_stpFaceB`
+						`subpax_${designName}_stpFaceB`,
+						`subpax_${designName}_lowSH`
 					]
 				},
 				{
 					outName: `ipax_${designName}_hollow`,
 					boolMethod: EBVolume.eUnion,
 					inList: [
+						`inpax_${designName}_coneHollow`,
 						`subpax_${designName}_stpSideH`,
 						`subpax_${designName}_stpFaceTH`,
 						`subpax_${designName}_stpFaceBH`
@@ -449,8 +467,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				}
 			]
 		};
+		// step-9 : optional sub-design parameter export
 		// sub-design
 		rGeome.sub = {};
+		// step-10 : final log message
 		// finalize
 		rGeome.logstr += 'heliostat-rake drawn successfully!\n';
 		rGeome.calcErr = false;
@@ -461,6 +481,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	return rGeome;
 }
 
+// step-11 : definiton of the final object that gathers the precedent object and function
 const rakeStopperDef: tPageDef = {
 	pTitle: 'Heliostat rake with stopper',
 	pDescription: 'The rake-stopper on top of the V-Axis of the heliostat',
@@ -468,4 +489,5 @@ const rakeStopperDef: tPageDef = {
 	pGeom: pGeom
 };
 
+// step-12 : export the final object
 export { rakeStopperDef };
