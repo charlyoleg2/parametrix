@@ -2,7 +2,7 @@
 
 // step-1 : import from geometrix
 import type {
-	tContour,
+	//tContour,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -18,7 +18,7 @@ import {
 	//contour,
 	contourCircle,
 	ctrRectangle,
-	ctrRectangleRot,
+	ctrRectRot,
 	figure,
 	//degToRad,
 	radToDeg,
@@ -202,16 +202,6 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
 		rGeome.logstr += `cone-height total: ${ffix(H1H5)} mm\n`;
 		// step-7 : drawing of the figures
-		const ctrRect = function (
-			width: number,
-			height: number,
-			xpos: number,
-			ypos: number,
-			angle: number
-		): tContour {
-			const rCtr = ctrRectangleRot(xpos, ypos, width, height, angle);
-			return rCtr;
-		};
 		//figLowStopperHolderPre
 		figLowStopperHolderPre.addSecond(ctrRectangle(-L5h, lowSPosY, param.L5, param.S1));
 		figLowStopperHolderPre.addSecond(ctrRectangle(-L5h, lowSPosY + param.E7, param.L5, S1h));
@@ -265,18 +255,18 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figDoor.mergeFigure(figLowStopperHolderPre, true);
 		// figStopperTop
 		figStopperTop.mergeFigure(rakeGeom.fig.faceDisc, true);
-		figStopperTop.addMain(ctrRect(param.S1, param.L5, lowStopperTopPosX, -L5h, 0));
-		figStopperTop.addMain(ctrRect(S1h, param.L5, lowStopperTopPosX + param.E7, -L5h, 0));
-		figStopperTop.addMain(ctrRect(param.S1, param.L5, param.S2 - param.S1, -L5h, 0));
-		figStopperTop.addMain(ctrRect(S1h, param.L5, param.S2 - param.E7 - S1h, -L5h, 0));
-		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, -L5h, 0));
-		figStopperTop.addMain(ctrRect(S2s, S1h, 0, -L5h + param.E7, 0));
-		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, L5h - param.S1, 0));
-		figStopperTop.addMain(ctrRect(S2s, S1h, 0, L5h - param.S1 + param.E7, 0));
-		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, -R1 - param.S1, 0));
-		figStopperTop.addMain(ctrRect(S2s, S1h, 0, -R1 - param.S1 + param.E7, 0));
-		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, R1, 0));
-		figStopperTop.addMain(ctrRect(S2s, S1h, 0, R1 + param.E7, 0));
+		figStopperTop.addMain(ctrRectangle(lowStopperTopPosX, -L5h, param.S1, param.L5));
+		figStopperTop.addMain(ctrRectangle(lowStopperTopPosX + param.E7, -L5h, S1h, param.L5));
+		figStopperTop.addMain(ctrRectangle(param.S2 - param.S1, -L5h, param.S1, param.L5));
+		figStopperTop.addMain(ctrRectangle(param.S2 - param.E7 - S1h, -L5h, S1h, param.L5));
+		figStopperTop.addMain(ctrRectangle(0, -L5h, S2s, param.S1));
+		figStopperTop.addMain(ctrRectangle(0, -L5h + param.E7, S2s, S1h));
+		figStopperTop.addMain(ctrRectangle(0, L5h - param.S1, S2s, param.S1));
+		figStopperTop.addMain(ctrRectangle(0, L5h - param.S1 + param.E7, S2s, S1h));
+		figStopperTop.addMain(ctrRectangle(0, -R1 - param.S1, S2s, param.S1));
+		figStopperTop.addMain(ctrRectangle(0, -R1 - param.S1 + param.E7, S2s, S1h));
+		figStopperTop.addMain(ctrRectangle(0, R1, S2s, param.S1));
+		figStopperTop.addMain(ctrRectangle(0, R1 + param.E7, S2s, S1h));
 		figStopperTop.addSecond(ctrRectangle(-lowSHL, -param.JL1 / 2 - JR1, lowSHL, 2 * JR1));
 		figStopperTop.addSecond(ctrRectangle(-lowSHL, -param.JL1 / 2 - JR1H, lowSHL, 2 * JR1H));
 		figStopperTop.addSecond(ctrRectangle(-lowSHL, param.JL1 / 2 - JR1, lowSHL, 2 * JR1));
@@ -287,8 +277,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figStopperSide.addMain(contourCircle(-R1 - param.JS1, stopper1H, S1hr));
 		figStopperSide.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
 		figStopperSide.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1hr));
-		figStopperSide.addSecond(ctrRect(S2s, param.S1, 0, stopper2H, 0));
-		figStopperSide.addSecond(ctrRect(S2s, S1h, 0, stopper2H + param.E7, 0));
+		figStopperSide.addSecond(ctrRectangle(0, stopper2H, S2s, param.S1));
+		figStopperSide.addSecond(ctrRectangle(0, stopper2H + param.E7, S2s, S1h));
 		const stopper3Ly = stopper2H + param.S1 / 2 - stopper3H;
 		const stopper3L = Math.sqrt(S2s ** 2 + stopper3Ly ** 2);
 		const stopper3A = Math.atan2(stopper3Ly, S2s);
@@ -298,11 +288,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const stp3posdX = S1r * Math.sin(stopper3A);
 		const stp3posdY = S1r * Math.cos(stopper3A);
 		const stp3posY = stopper3H - stp3posdY;
-		figStopperSide.addSecond(ctrRect(stopper3L, param.S1, stp3posdX, stp3posY, stopper3A));
+		figStopperSide.addSecond(ctrRectRot(stp3posdX, stp3posY, stopper3L, param.S1, stopper3A));
 		const stp3posdX2 = S1hr * Math.sin(stopper3A);
 		const stp3posdY2 = S1hr * Math.cos(stopper3A);
 		const stp3posY2 = stopper3H - stp3posdY2;
-		figStopperSide.addSecond(ctrRect(stopper3L, S1h, stp3posdX2, stp3posY2, stopper3A));
+		figStopperSide.addSecond(ctrRectRot(stp3posdX2, stp3posY2, stopper3L, S1h, stopper3A));
 		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1, lowSHL, 2 * JR1));
 		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1H, lowSHL, 2 * JR1H));
 		// figStopperSideH

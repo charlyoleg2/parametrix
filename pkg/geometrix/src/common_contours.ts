@@ -23,7 +23,7 @@ function ctrRectangle(
 	return rCtr;
 }
 
-function ctrRectangleRot(
+function ctrRectRot(
 	ox: number,
 	oy: number,
 	width: number,
@@ -35,4 +35,4 @@ function ctrRectangleRot(
 	return rCtr;
 }
 
-export { ctrRectangle, ctrRectangleRot };
+export { ctrRectangle, ctrRectRot };
