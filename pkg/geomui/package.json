@@ -16,8 +16,6 @@
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
