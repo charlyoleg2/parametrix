@@ -14,7 +14,9 @@ Below a list of libraries of 3D-part-designs based on *Geometrix*:
 
 1. designix : [src](https://github.com/charlyoleg2/parametrix) -
 	[ui](https://charlyoleg2.github.io/parametrix/) -
-	[pkg](https://www.npmjs.com/package/designix) :
+	[pkg](https://www.npmjs.com/package/designix) -
+	[pkg-cli](https://www.npmjs.com/package/designix-cli) -
+	[pkg-uis](https://www.npmjs.com/package/designix-uis) :
 	The first and reference design library. *Geometrix* features were selected to support those designs
 2. desi51 : [src](https://github.com/charlyoleg2/parame51) -
 	[ui](https://charlyoleg2.github.io/parame51/) -
