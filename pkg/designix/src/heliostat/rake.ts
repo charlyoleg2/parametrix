@@ -17,7 +17,7 @@ import {
 	ctrRectangle,
 	ctrRectRot,
 	figure,
-	//degToRad,
+	degToRad,
 	radToDeg,
 	ffix,
 	pNumber,
@@ -98,7 +98,7 @@ const pDef: tParamDef = {
 		H7: 'rake_door.svg',
 		L9: 'rake_door.svg',
 		R9: 'rake_door.svg',
-		doorOrientation: 'rake_door.svg',
+		doorOrientation: 'rake_door.svg'
 	},
 	sim: {
 		tMax: 180,
