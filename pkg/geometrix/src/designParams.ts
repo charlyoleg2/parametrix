@@ -80,9 +80,11 @@ class DesignParam {
 	}
 	constructor(iparamDef: tParamDef, suffix = '') {
 		for (const pi of iparamDef.params) {
-			this.paramVal[pi.name] = pi.init;
-			this.paramInit[pi.name] = pi.init;
-			this.paramChanged[pi.name] = false;
+			if (pi.pType !== PType.eSectionSeparator) {
+				this.paramVal[pi.name] = pi.init;
+				this.paramInit[pi.name] = pi.init;
+				this.paramChanged[pi.name] = false;
+			}
 		}
 		this.suffix = suffix;
 		this.partName = iparamDef.partName;

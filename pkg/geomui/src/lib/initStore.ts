@@ -1,6 +1,6 @@
 // initStore
 
-import type { tParamVal, tPageDef, tAllPageDef } from 'geometrix';
+import type { PType, tParamVal, tPageDef, tAllPageDef } from 'geometrix';
 import type { tStorePVal } from './storePVal';
 import { storePV } from './storePVal';
 import { get } from 'svelte/store';
@@ -10,7 +10,9 @@ function initStore(designDefs: tAllPageDef) {
 	for (const design of Object.keys(designDefs)) {
 		const designParam: tParamVal = {};
 		for (const param of designDefs[design].pDef.params) {
-			designParam[param.name] = param.init;
+			if (param.pType !== PType.eSectionSeparator) {
+				designParam[param.name] = param.init;
+			}
 		}
 		iniPV[design] = designParam;
 	}
@@ -43,7 +45,9 @@ function incrStore(oneDesignDef: tPageDef) {
 	const dName = oneDesignDef.pDef.partName;
 	const dParams: tParamVal = {};
 	for (const param of oneDesignDef.pDef.params) {
-		dParams[param.name] = param.init;
+		if (param.pType !== PType.eSectionSeparator) {
+			dParams[param.name] = param.init;
+		}
 	}
 	updateStore(dName, dParams, false);
 }
