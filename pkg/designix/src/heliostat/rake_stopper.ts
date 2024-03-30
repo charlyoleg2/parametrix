@@ -77,7 +77,7 @@ const pDef: tParamDef = {
 		pSectionSeparator('stoppers'),
 		pNumber('S1', 'mm', 100, 1, 300, 1),
 		pNumber('S2', 'mm', 2000, 1, 8000, 1),
-		pNumber('S3', 'mm', 1000, 0, 8000, 1),
+		pNumber('S3', 'mm', 100, 0, 8000, 1),
 		pNumber('E7', 'mm', 5, 1, 80, 1),
 		pSectionSeparator('low stopper'),
 		pNumber('JD1', 'mm', 200, 1, 500, 1),
@@ -491,6 +491,30 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					length: lowSHL,
 					rotate: [Math.PI / 2, 0, -Math.PI / 2],
 					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_Hi1SH1`,
+					face: `${designName}_faceHi1StopperHolder`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: Hi1SHL,
+					rotate: [Math.PI / 2, 0, 0],
+					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_Hi1SH2`,
+					face: `${designName}_faceHi1StopperHolder`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: Hi1SHL,
+					rotate: [Math.PI / 2, 0, Math.PI],
+					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_Hi2SH`,
+					face: `${designName}_faceHi2StopperHolder`,
+					extrudeMethod: EExtrude.eLinearOrtho,
+					length: Hi2SHL,
+					rotate: [0, 0, 0],
+					translate: [0, 0, Hi2SHpz]
 				}
 			],
 			volumes: [
@@ -501,7 +525,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 						`subpax_${designName}_stpSide`,
 						`subpax_${designName}_stpFaceT`,
 						`subpax_${designName}_stpFaceB`,
-						`subpax_${designName}_lowSH`
+						`subpax_${designName}_lowSH`,
+						`subpax_${designName}_Hi1SH1`,
+						`subpax_${designName}_Hi1SH2`,
+						`subpax_${designName}_Hi2SH`
 					]
 				},
 				{
