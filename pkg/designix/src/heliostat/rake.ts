@@ -1,5 +1,6 @@
 // rake.ts
 
+// step-1 : import from geometrix
 import type {
 	tContour,
 	tParamDef,
@@ -13,6 +14,8 @@ import type {
 import {
 	contour,
 	contourCircle,
+	//ctrRectangle,
+	ctrRectRot,
 	figure,
 	//degToRad,
 	radToDeg,
@@ -26,6 +29,7 @@ import {
 	EBVolume
 } from 'geometrix';
 
+// step-2 : definition of the parameters and more (part-name, svg associated to each parameter, simulation parameters)
 const pDef: tParamDef = {
 	partName: 'rake',
 	params: [
@@ -100,14 +104,9 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr1 = (orient: number) => tContour;
-type tCtr2 = (width: number, height: number, xpos: number, ypos: number, angle: number) => tContour;
-
+// step-3 : definition of the function that creates from the parameter-values the figures and construct the 3D
 function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const rGeome = initGeom(pDef.partName + suffix);
-	let ctrCone: tCtr1;
-	let ctrConePlus: tCtr1;
-	let ctrRect: tCtr2;
 	const figCone = figure();
 	const figBeam = figure();
 	const figBeamHollow = figure();
@@ -118,6 +117,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const figDoor = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
+		// step-4 : some preparation calculation
 		const R1 = param.D1 / 2;
 		const R2 = param.D2 / 2;
 		const R3 = param.D3 / 2;
@@ -128,8 +128,33 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const R8 = param.D8 / 2;
 		const H1H2 = param.H1 + param.H2;
 		const H1H5 = H1H2 - param.H4 + param.H5;
-		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
-		rGeome.logstr += `cone-height total: ${ffix(H1H5)} mm\n`;
+		const beamL = 4 * param.L4 + param.L5 + 2 * param.L6;
+		const beamH = param.H1 + param.H2 - param.H4;
+		const handLowX = R4 * Math.cos(Math.PI / 6);
+		const handLowY = R4 * Math.sin(Math.PI / 6);
+		const handHighXint = R5 * Math.cos(Math.PI / 6);
+		const handHighYint = R5 * Math.sin(Math.PI / 6);
+		const handHighXext = R8 * Math.cos(Math.PI / 6);
+		const handHighYext = R8 * Math.sin(Math.PI / 6);
+		const handPos = [-beamL / 2, -param.L5 / 2 - param.L4, param.L5 / 2, beamL / 2 - param.L4];
+		const wingLy = param.H2 - param.L8 - param.H4 - R4;
+		const coneAngle = Math.atan2(R1 - R2, param.H2);
+		const wingLx = beamL / 2 - param.L7 - R1 + param.L8 * Math.tan(coneAngle);
+		const wingL = Math.sqrt(wingLx ** 2 + wingLy ** 2);
+		const wingAngle = Math.atan2(wingLx, wingLy);
+		const wingLPre = param.E1 / Math.sin(wingAngle + coneAngle);
+		const wingL2 = wingL + param.E4 / Math.cos(wingAngle) + wingLPre;
+		const wingPosX = R1 - param.L8 * Math.tan(coneAngle) - wingLPre * Math.sin(wingAngle);
+		const wingPosY = param.H1 + param.L8 - wingLPre * Math.cos(wingAngle);
+		const wingCPosX = wingPosX - R6 * Math.cos(wingAngle);
+		const wingCPosY = wingPosY + R6 * Math.sin(wingAngle);
+		const wingHR = R6 - param.E6;
+		const wingHPosX = wingPosX - param.E6 * Math.cos(wingAngle);
+		const wingHPosY = wingPosY + param.E6 * Math.sin(wingAngle);
+		const wingAngleC = Math.PI / 2 - wingAngle;
+		const doorLowX = param.L9 / 2;
+		const doorHighX = doorLowX - param.H7 * Math.tan(coneAngle);
+		// step-5 : checks on the parameter values
 		if (param.D2 > param.D1) {
 			throw `err110: D2 ${param.D2} is larger than D1 ${param.D1}`;
 		}
@@ -148,48 +173,26 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		if (param.D8 <= param.D5) {
 			throw `err146: D8 ${param.D8} is too small compare to D5 ${param.D5}`;
 		}
-		const beamL = 4 * param.L4 + param.L5 + 2 * param.L6;
-		const beamH = param.H1 + param.H2 - param.H4;
-		const handLowX = R4 * Math.cos(Math.PI / 6);
-		const handLowY = R4 * Math.sin(Math.PI / 6);
-		const handHighXint = R5 * Math.cos(Math.PI / 6);
-		const handHighYint = R5 * Math.sin(Math.PI / 6);
-		const handHighXext = R8 * Math.cos(Math.PI / 6);
-		const handHighYext = R8 * Math.sin(Math.PI / 6);
-		const handPos = [-beamL / 2, -param.L5 / 2 - param.L4, param.L5 / 2, beamL / 2 - param.L4];
-		const wingLy = param.H2 - param.L8 - param.H4 - R4;
 		if (wingLy < 0) {
 			throw `err140: H2 ${param.H2} too small compare to L8 ${param.L8}, H4 ${param.H4} and D4 ${param.D4}`;
 		}
-		const coneAngle = Math.atan2(R1 - R2, param.H2);
-		rGeome.logstr += `cone-angle: ${ffix(radToDeg(coneAngle))} degree\n`;
-		const wingLx = beamL / 2 - param.L7 - R1 + param.L8 * Math.tan(coneAngle);
-		const wingL = Math.sqrt(wingLx ** 2 + wingLy ** 2);
-		const wingAngle = Math.atan2(wingLx, wingLy);
-		rGeome.logstr += `wing-angle: ${ffix(radToDeg(wingAngle))} degree\n`;
-		const wingLPre = param.E1 / Math.sin(wingAngle + coneAngle);
-		const wingL2 = wingL + param.E4 / Math.cos(wingAngle) + wingLPre;
-		const wingPosX = R1 - param.L8 * Math.tan(coneAngle) - wingLPre * Math.sin(wingAngle);
-		const wingPosY = param.H1 + param.L8 - wingLPre * Math.cos(wingAngle);
-		const wingCPosX = wingPosX - R6 * Math.cos(wingAngle);
-		const wingCPosY = wingPosY + R6 * Math.sin(wingAngle);
-		const wingHR = R6 - param.E6;
-		const wingHPosX = wingPosX - param.E6 * Math.cos(wingAngle);
-		const wingHPosY = wingPosY + param.E6 * Math.sin(wingAngle);
-		const wingAngleC = Math.PI / 2 - wingAngle;
-		const doorLowX = param.L9 / 2;
-		const doorHighX = doorLowX - param.H7 * Math.tan(coneAngle);
 		if (doorHighX < param.R9) {
 			throw `err177: R9 ${param.R9} too large compare to doorHighX ${doorHighX} and L9 ${param.L9}`;
 		}
 		if (param.L9 > param.D1) {
 			throw `err180: L9 ${param.L9} too large compare to D1 ${param.D1}`;
 		}
+		// step-6 : any logs
+		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
+		rGeome.logstr += `cone-height total: ${ffix(H1H5)} mm\n`;
+		rGeome.logstr += `cone-angle: ${ffix(radToDeg(coneAngle))} degree\n`;
+		rGeome.logstr += `wing-angle: ${ffix(radToDeg(wingAngle))} degree\n`;
+		// step-7 : drawing of the figures
 		// figCone
 		const coneSlopeX = param.E1 * Math.cos(coneAngle);
 		const coneSlopeY = param.E1 * Math.sin(coneAngle);
 		const coneFC = param.E1 * Math.tan(coneAngle / 2);
-		ctrCone = function (orient: number): tContour {
+		const ctrCone = function (orient: number): tContour {
 			const rCtr = contour(orient * R1, 0)
 				.addSegStrokeA(orient * R1, param.H1)
 				.addSegStrokeA(orient * R2, H1H2)
@@ -199,7 +202,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.closeSegStroke();
 			return rCtr;
 		};
-		ctrConePlus = function (orient: number): tContour {
+		const ctrConePlus = function (orient: number): tContour {
 			const rCtr = contour(orient * R1, 0)
 				.addSegStrokeA(orient * R1, param.H1)
 				.addSegStrokeA(orient * R2, H1H2)
@@ -213,22 +216,14 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.closeSegStroke();
 			return rCtr;
 		};
-		ctrRect = function (
+		const ctrRect = function (
 			width: number,
 			height: number,
 			xpos: number,
 			ypos: number,
 			angle: number
 		): tContour {
-			const xWidth = width * Math.cos(angle);
-			const yWidth = width * Math.sin(angle);
-			const xHeight = -height * Math.sin(angle);
-			const yHeight = height * Math.cos(angle);
-			const rCtr = contour(xpos, ypos)
-				.addSegStrokeA(xpos + xWidth, ypos + yWidth)
-				.addSegStrokeA(xpos + xWidth + xHeight, ypos + yWidth + yHeight)
-				.addSegStrokeA(xpos + xHeight, ypos + yHeight)
-				.closeSegStroke();
+			const rCtr = ctrRectRot(xpos, ypos, width, height, angle);
 			return rCtr;
 		};
 		const ctrDoor = contour(doorLowX, param.H1 + param.H6)
@@ -349,6 +344,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			faceWingHollow: figWingHollow,
 			faceDoor: figDoor
 		};
+		// step-8 : recipes of the 3D construction
 		const designName = rGeome.partName;
 		const preExtrude = handPos.map((posX, idx) => {
 			const rHand: tExtrude = {
@@ -469,8 +465,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				}
 			]
 		};
+		// step-9 : optional sub-design parameter export
 		// sub-design
 		rGeome.sub = {};
+		// step-10 : final log message
 		// finalize
 		rGeome.logstr += 'heliostat-rake drawn successfully!\n';
 		rGeome.calcErr = false;
@@ -481,6 +479,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	return rGeome;
 }
 
+// step-11 : definiton of the final object that gathers the precedent object and function
 const rakeDef: tPageDef = {
 	pTitle: 'Heliostat rake',
 	pDescription: 'The rake on top of the V-Axis of the heliostat',
@@ -488,4 +487,5 @@ const rakeDef: tPageDef = {
 	pGeom: pGeom
 };
 
+// step-12 : export the final object
 export { rakeDef };
