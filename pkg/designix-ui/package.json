@@ -22,14 +22,14 @@
 		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg"
 	},
 	"dependencies": {
-		"designix": "^0.5.27",
-		"geometrix": "^0.5.26",
-		"geomui": "^0.5.28"
+		"designix": "^0.5.29",
+		"geometrix": "^0.5.28",
+		"geomui": "^0.5.30"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.0",
 		"@sveltejs/adapter-static": "^3.0.1",
-		"@sveltejs/kit": "^2.5.4",
+		"@sveltejs/kit": "^2.5.5",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
 		"@typescript-eslint/parser": "^7.0.1",
@@ -45,7 +45,7 @@
 		"svelte-check": "^3.6.8",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.3",
-		"vite": "^5.2.6",
+		"vite": "^5.2.7",
 		"vitest": "^1.4.0"
 	},
 	"type": "module"
