@@ -25,6 +25,7 @@ import {
 	//pDropdown,
 	pSectionSeparator,
 	initGeom,
+	//transform3d,
 	EExtrude,
 	EBVolume
 } from 'geometrix';
@@ -65,7 +66,8 @@ const pDef: tParamDef = {
 		pNumber('H6', 'mm', 100, 1, 1000, 10),
 		pNumber('H7', 'mm', 600, 10, 2000, 10),
 		pNumber('L9', 'mm', 300, 1, 1000, 10),
-		pNumber('R9', 'mm', 50, 0, 300, 1)
+		pNumber('R9', 'mm', 50, 0, 300, 1),
+		pNumber('doorOrientation', 'degree', 0, -180, 180, 1)
 	],
 	paramSvg: {
 		D1: 'rake_face.svg',
@@ -95,7 +97,8 @@ const pDef: tParamDef = {
 		H6: 'rake_door.svg',
 		H7: 'rake_door.svg',
 		L9: 'rake_door.svg',
-		R9: 'rake_door.svg'
+		R9: 'rake_door.svg',
+		doorOrientation: 'rake_door.svg',
 	},
 	sim: {
 		tMax: 180,
@@ -417,7 +420,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					face: `${designName}_faceDoor`,
 					extrudeMethod: EExtrude.eLinearOrtho,
 					length: param.D1,
-					rotate: [Math.PI / 2, 0, Math.PI / 2],
+					rotate: [Math.PI / 2, 0, -Math.PI / 2 + degToRad(param.doorOrientation)],
 					translate: [0, 0, 0]
 				},
 				...preExtrude

@@ -72,6 +72,7 @@ const pDef: tParamDef = {
 		pNumber('H7', 'mm', 600, 1, 2000, 1),
 		pNumber('L9', 'mm', 300, 1, 1000, 1),
 		pNumber('R9', 'mm', 50, 0, 300, 1),
+		pNumber('doorOrientation', 'degree', 0, -180, 180, 1),
 		pSectionSeparator('stoppers'),
 		pNumber('S1', 'mm', 100, 1, 300, 1),
 		pNumber('S2', 'mm', 2000, 1, 8000, 1),
@@ -113,6 +114,7 @@ const pDef: tParamDef = {
 		H7: 'rake_door.svg',
 		L9: 'rake_door.svg',
 		R9: 'rake_door.svg',
+		doorOrientation: 'rake_door.svg',
 		S1: 'rake_side_stopper.svg',
 		S2: 'rake_top_stopper.svg',
 		E7: 'rake_side_stopper.svg',
@@ -239,6 +241,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rakeParam.setVal('H7', param.H7);
 		rakeParam.setVal('L9', param.L9);
 		rakeParam.setVal('R9', param.R9);
+		rakeParam.setVal('doorOrientation', param.doorOrientation);
 		const rakeGeom = rakeDef.pGeom(0, rakeParam.getParamVal(), rakeParam.getSuffix());
 		checkGeom(rakeGeom);
 		rGeome.logstr += prefixLog(rakeGeom.logstr, rakeParam.getPartNameSuffix());
