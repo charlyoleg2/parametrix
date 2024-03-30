@@ -2,7 +2,20 @@
 	"name": "designix",
 	"version": "0.5.29",
 	"description": "The first designs made with parametrix",
+	"type": "module",
 	"private": false,
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.map",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
@@ -66,18 +79,12 @@
 		"typescript": "^5.4.3",
 		"vitest": "^1.4.0"
 	},
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
-		}
-	},
-	"files": [
-		"dist",
-		"!dist/**/*.map",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
-	"types": "./dist/index.d.ts",
-	"type": "module"
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true,
+		"trailingComma": "none",
+		"printWidth": 100,
+		"plugins": [],
+		"overrides": []
+	}
 }

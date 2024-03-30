@@ -2,6 +2,7 @@
 	"name": "paramui",
 	"version": "0.5.9",
 	"description": "The webapp-UI of Parametrix",
+	"type": "module",
 	"private": true,
 	"repository": {
 		"type": "git",
@@ -66,5 +67,12 @@
 		"vite": "^5.2.7",
 		"vitest": "^1.4.0"
 	},
-	"type": "module"
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true,
+		"trailingComma": "none",
+		"printWidth": 100,
+		"plugins": ["prettier-plugin-svelte"],
+		"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+	}
 }
