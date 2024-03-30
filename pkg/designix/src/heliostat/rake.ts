@@ -14,7 +14,7 @@ import type {
 import {
 	contour,
 	contourCircle,
-	//ctrRectangle,
+	ctrRectangle,
 	ctrRectRot,
 	figure,
 	//degToRad,
@@ -216,16 +216,6 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.closeSegStroke();
 			return rCtr;
 		};
-		const ctrRect = function (
-			width: number,
-			height: number,
-			xpos: number,
-			ypos: number,
-			angle: number
-		): tContour {
-			const rCtr = ctrRectRot(xpos, ypos, width, height, angle);
-			return rCtr;
-		};
 		const ctrDoor = contour(doorLowX, param.H1 + param.H6)
 			.addCornerRounded(param.R9)
 			.addSegStrokeA(doorHighX, param.H1 + param.H6 + param.H7)
@@ -240,19 +230,19 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figCone.addSecond(ctrConePlus(-1));
 		//figCone.addSecond(contourCircle(0, beamH, R4));
 		//figCone.addSecond(contourCircle(0, beamH, R4 - param.E4));
-		figCone.addSecond(ctrRect(beamL, param.D4, -beamL / 2, beamH - R4, 0)); // beam-ext
+		figCone.addSecond(ctrRectangle(-beamL / 2, beamH - R4, beamL, param.D4)); // beam-ext
 		figCone.addSecond(
-			ctrRect(beamL, param.D4 - 2 * param.E4, -beamL / 2, beamH - R4 + param.E4, 0)
+			ctrRectangle(-beamL / 2, beamH - R4 + param.E4, beamL, param.D4 - 2 * param.E4)
 		); // beam-int
 		for (const posX of handPos) {
 			figCone.addSecond(
-				ctrRect(param.L4, param.H5 - handLowY - handHighYint, posX, beamH + handLowY, 0)
+				ctrRectangle(posX, beamH + handLowY, param.L4, param.H5 - handLowY - handHighYint)
 			);
 		}
-		figCone.addSecond(ctrRect(wingL2, 2 * R6, wingPosX, wingPosY, wingAngleC)); // wing-right
-		figCone.addSecond(ctrRect(wingL2, 2 * wingHR, wingHPosX, wingHPosY, wingAngleC));
-		figCone.addSecond(ctrRect(2 * R6, wingL2, -wingPosX, wingPosY, wingAngle)); // wing-left
-		figCone.addSecond(ctrRect(2 * wingHR, wingL2, -wingHPosX, wingHPosY, wingAngle));
+		figCone.addSecond(ctrRectRot(wingPosX, wingPosY, wingL2, 2 * R6, wingAngleC)); // wing-right
+		figCone.addSecond(ctrRectRot(wingHPosX, wingHPosY, wingL2, 2 * wingHR, wingAngleC));
+		figCone.addSecond(ctrRectRot(-wingPosX, wingPosY, 2 * R6, wingL2, wingAngle)); // wing-left
+		figCone.addSecond(ctrRectRot(-wingHPosX, wingHPosY, 2 * wingHR, wingL2, wingAngle));
 		figCone.addSecond(ctrDoor);
 		// figBeam
 		const ctrHand = contour(handLowX, beamH + handLowY)
@@ -269,8 +259,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figBeam.addSecond(ctrConePlus(-1));
 		figBeam.addSecond(ctrHand);
 		figBeam.addSecond(contourCircle(0, beamH + param.H5, R5));
-		figBeam.addSecond(ctrRect(2 * R6, wingLy, -R6, param.H1 + param.L8, 0)); // wing
-		figBeam.addSecond(ctrRect(2 * wingHR, wingLy, -wingHR, param.H1 + param.L8, 0));
+		figBeam.addSecond(ctrRectangle(-R6, param.H1 + param.L8, 2 * R6, wingLy)); // wing
+		figBeam.addSecond(ctrRectangle(-wingHR, param.H1 + param.L8, 2 * wingHR, wingLy));
 		figBeam.addSecond(ctrDoor);
 		// figBeamHollow
 		figBeamHollow.addMain(contourCircle(0, beamH, R4 - param.E4));
@@ -288,22 +278,22 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		}
 		figDisc.addSecond(contourCircle(0, 0, R1 - param.E1));
 		figDisc.addSecond(contourCircle(0, 0, R2));
-		figDisc.addSecond(ctrRect(param.D4, beamL, -R4, -beamL / 2, 0)); // beam-ext
-		figDisc.addSecond(ctrRect(param.D4 - 2 * param.E4, beamL, -R4 + param.E4, -beamL / 2, 0)); // beam-int
+		figDisc.addSecond(ctrRectangle(-R4, -beamL / 2, param.D4, beamL)); // beam-ext
+		figDisc.addSecond(ctrRectangle(-R4 + param.E4, -beamL / 2, param.D4 - 2 * param.E4, beamL)); // beam-int
 		for (const posX of handPos) {
-			figDisc.addSecond(ctrRect(2 * handLowX, param.L4, -handLowX, posX, 0));
-			figDisc.addSecond(ctrRect(2 * handHighXint, param.L4, -handHighXint, posX, 0));
-			figDisc.addSecond(ctrRect(2 * handHighXext, param.L4, -handHighXext, posX, 0));
+			figDisc.addSecond(ctrRectangle(-handLowX, posX, 2 * handLowX, param.L4));
+			figDisc.addSecond(ctrRectangle(-handHighXint, posX, 2 * handHighXint, param.L4));
+			figDisc.addSecond(ctrRectangle(-handHighXext, posX, 2 * handHighXext, param.L4));
 		}
-		figDisc.addSecond(ctrRect(2 * R6, wingLx, -R6, R1 - param.L8 * Math.tan(coneAngle), 0)); // wing-right
+		figDisc.addSecond(ctrRectangle(-R6, R1 - param.L8 * Math.tan(coneAngle), 2 * R6, wingLx)); // wing-right
 		figDisc.addSecond(
-			ctrRect(2 * wingHR, wingLx, -wingHR, R1 - param.L8 * Math.tan(coneAngle), 0)
+			ctrRectangle(-wingHR, R1 - param.L8 * Math.tan(coneAngle), 2 * wingHR, wingLx)
 		);
 		figDisc.addSecond(
-			ctrRect(2 * R6, wingLx, -R6, -R1 + param.L8 * Math.tan(coneAngle) - wingLx, 0)
+			ctrRectangle(-R6, -R1 + param.L8 * Math.tan(coneAngle) - wingLx, 2 * R6, wingLx)
 		); // wing-left
 		figDisc.addSecond(
-			ctrRect(2 * wingHR, wingLx, -wingHR, -R1 + param.L8 * Math.tan(coneAngle) - wingLx, 0)
+			ctrRectangle(-wingHR, -R1 + param.L8 * Math.tan(coneAngle) - wingLx, 2 * wingHR, wingLx)
 		);
 		// figHand
 		figHand.addMain(ctrHand);
@@ -320,19 +310,19 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figDoor.addMain(ctrDoor);
 		figDoor.addSecond(ctrConePlus(1));
 		figDoor.addSecond(ctrConePlus(-1));
-		figDoor.addSecond(ctrRect(beamL, param.D4, -beamL / 2, beamH - R4, 0)); // beam-ext
+		figDoor.addSecond(ctrRectangle(-beamL / 2, beamH - R4, beamL, param.D4)); // beam-ext
 		figDoor.addSecond(
-			ctrRect(beamL, param.D4 - 2 * param.E4, -beamL / 2, beamH - R4 + param.E4, 0)
+			ctrRectangle(-beamL / 2, beamH - R4 + param.E4, beamL, param.D4 - 2 * param.E4)
 		); // beam-int
 		for (const posX of handPos) {
 			figDoor.addSecond(
-				ctrRect(param.L4, param.H5 - handLowY - handHighYint, posX, beamH + handLowY, 0)
+				ctrRectangle(posX, beamH + handLowY, param.L4, param.H5 - handLowY - handHighYint)
 			);
 		}
-		figDoor.addSecond(ctrRect(wingL2, 2 * R6, wingPosX, wingPosY, wingAngleC)); // wing-right
-		figDoor.addSecond(ctrRect(wingL2, 2 * wingHR, wingHPosX, wingHPosY, wingAngleC));
-		figDoor.addSecond(ctrRect(2 * R6, wingL2, -wingPosX, wingPosY, wingAngle)); // wing-left
-		figDoor.addSecond(ctrRect(2 * wingHR, wingL2, -wingHPosX, wingHPosY, wingAngle));
+		figDoor.addSecond(ctrRectRot(wingPosX, wingPosY, wingL2, 2 * R6, wingAngleC)); // wing-right
+		figDoor.addSecond(ctrRectRot(wingHPosX, wingHPosY, wingL2, 2 * wingHR, wingAngleC));
+		figDoor.addSecond(ctrRectRot(-wingPosX, wingPosY, 2 * R6, wingL2, wingAngle)); // wing-left
+		figDoor.addSecond(ctrRectRot(-wingHPosX, wingHPosY, 2 * wingHR, wingL2, wingAngle));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
