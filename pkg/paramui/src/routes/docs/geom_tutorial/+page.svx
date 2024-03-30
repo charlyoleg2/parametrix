@@ -453,7 +453,7 @@ API:
 
 *myPartW* illustrates the usage of *transform3d* for computing the 3D-rotation and 3D-translation to apply to an extrusion sub-part. *transform3d* helps to combine a list of 3D-rotation and 3D-translation into a single 3D-rotation and a single 3D-translation.
 
-*myPartW* also illustrates the usage of *ctrRectangle* for drawing a rectangle.
+*myPartW* also illustrates the usage of *ctrRectangle* and *ctrRectRot* for drawing a rectangle.
 
 API:
 
@@ -463,6 +463,7 @@ API:
 - <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#getRotation" rel="external">.getRotation()</a>
 - <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#getTranslation" rel="external">.getTranslation()</a>
 - <a href="{base}/docs/apidoc/functions/geometrix.ctrRectangle.html" rel="external">ctrRectangle()</a>
+- <a href="{base}/docs/apidoc/functions/geometrix.ctrRectRot.html" rel="external">ctrRectRot()</a>
 
 
 <style lang="scss">
