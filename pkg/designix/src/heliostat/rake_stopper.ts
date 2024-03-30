@@ -18,7 +18,10 @@ import {
 	//contour,
 	contourCircle,
 	ctrRectangle,
-	ctrRectRot,
+	//ctrRectRot,
+	ctrRectRot2,
+	//ctrTrapezoid,
+	//ctrTrapezoidRot2,
 	figure,
 	//degToRad,
 	radToDeg,
@@ -323,14 +326,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const stp3L = Math.sqrt(S2s ** 2 + stopper3Ly ** 2);
 		const stp3A = Math.atan2(stopper3Ly, S2s);
 		rGeome.logstr += `stopper-rod: L ${ffix(stp3L)} mm, A ${ffix(radToDeg(stp3A))} degree\n`;
-		const stp3posdX = S1r * Math.sin(stp3A);
-		const stp3posdY = S1r * Math.cos(stp3A);
-		const stp3posY = stopper3H - stp3posdY;
-		figStopperSide.addSecond(ctrRectRot(stp3posdX, stp3posY, stp3L, param.S1, stp3A));
-		const stp3posdX2 = S1hr * Math.sin(stp3A);
-		const stp3posdY2 = S1hr * Math.cos(stp3A);
-		const stp3posY2 = stopper3H - stp3posdY2;
-		figStopperSide.addSecond(ctrRectRot(stp3posdX2, stp3posY2, stp3L, S1h, stp3A));
+		figStopperSide.addSecond(ctrRectRot2(0, stopper3H, stp3L, param.S1, stp3A));
+		figStopperSide.addSecond(ctrRectRot2(0, stopper3H, stp3L, S1h, stp3A));
 		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1, lowSHL, 2 * JR1));
 		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1H, lowSHL, 2 * JR1H));
 		figStopperSide.addSecond(contourCircle(0, stopper3H, param.JD3 / 2));
