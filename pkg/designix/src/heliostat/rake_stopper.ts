@@ -17,6 +17,7 @@ import {
 	prefixLog,
 	contour,
 	contourCircle,
+	ctrRectangle,
 	figure,
 	//degToRad,
 	radToDeg,
@@ -156,6 +157,12 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const stopper1H = H1H5 - param.S2;
 		const stopper2H = param.H1 + param.H2 - param.H4 + param.D4 / 2;
 		const stopper3H = param.H1 + param.L8 - param.S1;
+		const L5h = param.L5 / 2;
+		const S1r = param.S1 / 2;
+		const S1h = param.S1 - 2 * param.E7;
+		const S1hr = S1h / 2;
+		const lowStopperTopPosX = -R1 - param.S1 / 2 - param.JS1;
+		const S2s = param.S2 - param.S1 / 2;
 		// step-5 : checks on the parameter values
 		if (2 * param.E7 >= param.S1) {
 			throw `err135: E7 ${param.E7} too large compare to S1 ${param.S1}`;
@@ -171,6 +178,15 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		}
 		if (param.JE1 > param.JD1 / 2) {
 			throw `err145: JE1 ${param.JE1} too large compare to JD1 ${param.JD1}`;
+		}
+		if (param.JL1 > param.D1) {
+			throw `err146: JL1 ${param.JL1} too large compare to D1 ${param.D1}`;
+		}
+		if (param.JL1 < param.JD1) {
+			throw `err147: JL1 ${param.JL1} too small compare to JD1 ${param.JD1}`;
+		}
+		if (Math.abs(param.JH1) > param.JD1 / 2 + S1r) {
+			throw `err148: JH1 ${param.JH1} too large compare to JD1 ${param.JD1} and S1 ${param.S1}`;
 		}
 		// step-6 : any logs
 		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
@@ -238,16 +254,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figDoor.mergeFigure(rakeGeom.fig.faceDoor);
 		// figStopperTop
 		figStopperTop.mergeFigure(rakeGeom.fig.faceDisc, true);
-		const L5h = param.L5 / 2;
-		const S1r = param.S1 / 2;
-		const S1h = param.S1 - 2 * param.E7;
-		const S1hr = S1h / 2;
-		const lowStopperTopPosX = -R1 - param.S1 / 2 - param.JS1;
 		figStopperTop.addMain(ctrRect(param.S1, param.L5, lowStopperTopPosX, -L5h, 0));
 		figStopperTop.addMain(ctrRect(S1h, param.L5, lowStopperTopPosX + param.E7, -L5h, 0));
 		figStopperTop.addMain(ctrRect(param.S1, param.L5, param.S2 - param.S1, -L5h, 0));
 		figStopperTop.addMain(ctrRect(S1h, param.L5, param.S2 - param.E7 - S1h, -L5h, 0));
-		const S2s = param.S2 - param.S1 / 2;
 		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, -L5h, 0));
 		figStopperTop.addMain(ctrRect(S2s, S1h, 0, -L5h + param.E7, 0));
 		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, L5h - param.S1, 0));
@@ -309,10 +319,17 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figStopperFaceBH.addSecond(contourCircle(R1 + S1r, 0, S1r));
 		figStopperFaceBH.addMain(contourCircle(R1 + S1r, 0, S1hr));
 		// figLowStopperHolder
-		figLowStopperHolder.addMain(contourCircle(-param.JL1 / 2, 0, param.JD1 / 2));
-		figLowStopperHolder.addMain(contourCircle(-param.JL1 / 2, 0, param.JD1 / 2 - param.JE1));
-		figLowStopperHolder.addMain(contourCircle(param.JL1 / 2, 0, param.JD1 / 2));
-		figLowStopperHolder.addMain(contourCircle(param.JL1 / 2, 0, param.JD1 / 2 - param.JE1));
+		figLowStopperHolder.mergeFigure(rakeGeom.fig.faceCone, true);
+		const lowSPosY = stopper1H - S1r;
+		const lowSHPosY = stopper1H - param.JH1;
+		const lowSHR = param.JD1 / 2;
+		const lowSHRH = lowSHR - param.JE1;
+		figLowStopperHolder.addSecond(ctrRectangle(-L5h, lowSPosY, param.L5, param.S1));
+		figLowStopperHolder.addSecond(ctrRectangle(-L5h, lowSPosY + param.E7, param.L5, S1h));
+		figLowStopperHolder.addMain(contourCircle(-param.JL1 / 2, lowSHPosY, lowSHR));
+		figLowStopperHolder.addMain(contourCircle(-param.JL1 / 2, lowSHPosY, lowSHRH));
+		figLowStopperHolder.addMain(contourCircle(param.JL1 / 2, lowSHPosY, lowSHR));
+		figLowStopperHolder.addMain(contourCircle(param.JL1 / 2, lowSHPosY, lowSHRH));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
