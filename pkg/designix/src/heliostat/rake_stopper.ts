@@ -221,6 +221,12 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		if (param.S3 > param.H2 - param.H4) {
 			throw `err150: S3 ${param.S3} too large compare to H2 ${param.H2} and H4 ${param.H4}`;
 		}
+		if (param.JE3 > param.JD3 / 2) {
+			throw `err151: JE3 ${param.JE3} too large compare to JD3 ${param.JD3}`;
+		}
+		if (param.JE4 > param.JD4 / 2) {
+			throw `err152: JE4 ${param.JE4} too large compare to JD4 ${param.JD4}`;
+		}
 		// step-6 : any logs
 		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
 		rGeome.logstr += `cone-height total: ${ffix(H1H5)} mm\n`;
