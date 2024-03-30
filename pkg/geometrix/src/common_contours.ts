@@ -52,8 +52,8 @@ function ctrRectRot2(
 	angle: number,
 	cornerRounded = 0
 ): tContour {
-	const dpx = height / 2 * Math.sin(angle);
-	const dpy = -height / 2 * Math.cos(angle);
+	const dpx = (height / 2) * Math.sin(angle);
+	const dpy = (-height / 2) * Math.cos(angle);
 	const rCtr = ctrRectRot(ox + dpx, oy + dpy, width, height, angle, cornerRounded);
 	return rCtr;
 }
@@ -95,8 +95,8 @@ function ctrTrapezoidRot2(
 	cornerRounded = 0
 ): tContour {
 	const dw2 = (rightSide - leftSide) / 2;
-	const dpx = leftSide / 2 * Math.sin(angle);
-	const dpy = leftSide / 2 * Math.cos(angle);
+	const dpx = (leftSide / 2) * Math.sin(angle);
+	const dpy = (leftSide / 2) * Math.cos(angle);
 	const ctr1 = contour(ox, oy)
 		.addCornerRounded(cornerRounded)
 		.addSegStrokeR(0, -leftSide)
