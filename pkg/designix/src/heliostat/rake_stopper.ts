@@ -141,8 +141,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const figDoor = figure();
 	const figStopperTop = figure();
 	const figStopperSide = figure();
+	const figStopperSideH = figure();
 	const figStopperFaceT = figure();
+	const figStopperFaceTH = figure();
 	const figStopperFaceB = figure();
+	const figStopperFaceBH = figure();
 	const figLowStopperHolder = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
@@ -275,18 +278,36 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const stp3posdY2 = S1hr * Math.cos(stopper3A);
 		const stp3posY2 = stopper3H - stp3posdY2;
 		figStopperSide.addSecond(ctrRect(stopper3L, S1h, stp3posdX2, stp3posY2, stopper3A));
+		// figStopperSideH
+		figStopperSideH.mergeFigure(rakeGeom.fig.faceBeam, true);
+		figStopperSideH.addSecond(contourCircle(-R1 - S1r - param.JS1, stopper1H, S1r));
+		figStopperSideH.addMain(contourCircle(-R1 - S1r - param.JS1, stopper1H, S1hr));
+		figStopperSideH.addSecond(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
+		figStopperSideH.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1hr));
 		// figStopperFaceT
 		figStopperFaceT.mergeFigure(rakeGeom.fig.faceCone, true);
 		figStopperFaceT.addMain(contourCircle(-param.L5 / 2 + S1r, stopper2H + S1r, S1r));
 		figStopperFaceT.addMain(contourCircle(-param.L5 / 2 + S1r, stopper2H + S1r, S1hr));
 		figStopperFaceT.addMain(contourCircle(param.L5 / 2 - S1r, stopper2H + S1r, S1r));
 		figStopperFaceT.addMain(contourCircle(param.L5 / 2 - S1r, stopper2H + S1r, S1hr));
+		// figStopperFaceTH
+		figStopperFaceTH.mergeFigure(rakeGeom.fig.faceCone, true);
+		figStopperFaceTH.addSecond(contourCircle(-param.L5 / 2 + S1r, stopper2H + S1r, S1r));
+		figStopperFaceTH.addMain(contourCircle(-param.L5 / 2 + S1r, stopper2H + S1r, S1hr));
+		figStopperFaceTH.addSecond(contourCircle(param.L5 / 2 - S1r, stopper2H + S1r, S1r));
+		figStopperFaceTH.addMain(contourCircle(param.L5 / 2 - S1r, stopper2H + S1r, S1hr));
 		// figStopperFaceB
 		figStopperFaceB.mergeFigure(rakeGeom.fig.faceCone, true);
 		figStopperFaceB.addMain(contourCircle(-R1 - S1r, 0, S1r));
 		figStopperFaceB.addMain(contourCircle(-R1 - S1r, 0, S1hr));
 		figStopperFaceB.addMain(contourCircle(R1 + S1r, 0, S1r));
 		figStopperFaceB.addMain(contourCircle(R1 + S1r, 0, S1hr));
+		// figStopperFaceBH
+		figStopperFaceBH.mergeFigure(rakeGeom.fig.faceCone, true);
+		figStopperFaceBH.addSecond(contourCircle(-R1 - S1r, 0, S1r));
+		figStopperFaceBH.addMain(contourCircle(-R1 - S1r, 0, S1hr));
+		figStopperFaceBH.addSecond(contourCircle(R1 + S1r, 0, S1r));
+		figStopperFaceBH.addMain(contourCircle(R1 + S1r, 0, S1hr));
 		// figLowStopperHolder
 		figLowStopperHolder.addMain(contourCircle(-param.JL1 / 2, 0, param.JD1 / 2));
 		figLowStopperHolder.addMain(contourCircle(-param.JL1 / 2, 0, param.JD1 / 2 - param.JE1));
@@ -304,8 +325,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			faceDoor: figDoor,
 			faceStopperTop: figStopperTop,
 			faceStopperSide: figStopperSide,
+			faceStopperSideH: figStopperSideH,
 			faceStopperFaceT: figStopperFaceT,
+			faceStopperFaceTH: figStopperFaceTH,
 			faceStopperFaceB: figStopperFaceB,
+			faceStopperFaceBH: figStopperFaceBH,
 			faceLowStopperHolder: figLowStopperHolder
 		};
 		const designName = rGeome.partName;
