@@ -23,4 +23,16 @@ function ctrRectangle(
 	return rCtr;
 }
 
-export { ctrRectangle };
+function ctrRectangleRot(
+	ox: number,
+	oy: number,
+	width: number,
+	height: number,
+	angle: number,
+	cornerRounded = 0
+): tContour {
+	const rCtr = ctrRectangle(ox, oy, width, height, cornerRounded).rotate(ox, oy, angle);
+	return rCtr;
+}
+
+export { ctrRectangle, ctrRectangleRot };
