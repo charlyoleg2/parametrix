@@ -77,6 +77,7 @@ const pDef: tParamDef = {
 		pSectionSeparator('stoppers'),
 		pNumber('S1', 'mm', 100, 1, 300, 1),
 		pNumber('S2', 'mm', 2000, 1, 8000, 1),
+		pNumber('S3', 'mm', 1000, 0, 8000, 1),
 		pNumber('E7', 'mm', 5, 1, 80, 1),
 		pSectionSeparator('low stopper'),
 		pNumber('JD1', 'mm', 200, 1, 500, 1),
@@ -84,7 +85,14 @@ const pDef: tParamDef = {
 		pNumber('JL1', 'mm', 260, 1, 2000, 1),
 		pNumber('JH1', 'mm', 20, -500, 500, 1),
 		pNumber('JS1', 'mm', 100, 1, 500, 1),
-		pNumber('JS2', 'mm', 200, 1, 500, 1)
+		pNumber('JS2', 'mm', 200, 1, 500, 1),
+		pSectionSeparator('high stopper'),
+		pNumber('JD3', 'mm', 200, 1, 500, 1),
+		pNumber('JE3', 'mm', 5, 1, 80, 1),
+		pNumber('JS3', 'mm', 120, 1, 500, 1),
+		pNumber('JD4', 'mm', 200, 1, 500, 1),
+		pNumber('JE4', 'mm', 5, 1, 80, 1),
+		pNumber('JS4', 'mm', 120, 1, 500, 1)
 	],
 	paramSvg: {
 		D1: 'rake_face.svg',
@@ -118,13 +126,20 @@ const pDef: tParamDef = {
 		doorOrientation: 'rake_door.svg',
 		S1: 'rake_side_stopper.svg',
 		S2: 'rake_top_stopper.svg',
+		S3: 'rake_side_stopper.svg',
 		E7: 'rake_side_stopper.svg',
 		JD1: 'rake_low_stopper_holder.svg',
 		JE1: 'rake_low_stopper_holder.svg',
 		JL1: 'rake_low_stopper_holder.svg',
 		JH1: 'rake_low_stopper_holder.svg',
 		JS1: 'rake_side_stopper.svg',
-		JS2: 'rake_top_stopper.svg'
+		JS2: 'rake_top_stopper.svg',
+		JD3: 'rake_side_stopper.svg',
+		JE3: 'rake_side_stopper.svg',
+		JS3: 'rake_top_stopper.svg',
+		JD4: 'rake_top_stopper.svg',
+		JE4: 'rake_top_stopper.svg',
+		JS4: 'rake_side_stopper.svg'
 	},
 	sim: {
 		tMax: 180,
@@ -161,13 +176,13 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const H1H5 = H1H2 - param.H4 + param.H5;
 		const stopper1H = H1H5 - param.S2;
 		const stopper2H = param.H1 + param.H2 - param.H4 + param.D4 / 2;
-		const stopper3H = param.H1 + param.L8 - param.S1;
+		const stopper3H = param.H1 + param.S3;
 		const L5h = param.L5 / 2;
 		const S1r = param.S1 / 2;
 		const S1h = param.S1 - 2 * param.E7;
 		const S1hr = S1h / 2;
 		const lowStopperTopPosX = -R1 - param.S1 / 2 - param.JS1;
-		const S2s = param.S2 - param.S1 / 2;
+		const S2s = param.S2 - S1r;
 		const lowSPosY = stopper1H - S1r;
 		const lowSHPosZ = stopper1H - param.JH1;
 		const JR1 = param.JD1 / 2;
@@ -200,6 +215,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		}
 		if (param.JS2 < param.JS1 - S1r) {
 			throw `err149: JS2 ${param.JS2} too small compare to JS1 ${param.JS1} and S1 ${param.S1}`;
+		}
+		if (param.S3 > param.H2 - param.H4) {
+			throw `err150: S3 ${param.S3} too large compare to H2 ${param.H2} and H4 ${param.H4}`;
 		}
 		// step-6 : any logs
 		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
@@ -279,34 +297,28 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figStopperSide.mergeFigure(rakeGeom.fig.faceBeam, true);
 		figStopperSide.addMain(contourCircle(-R1 - param.JS1, stopper1H, S1r));
 		figStopperSide.addMain(contourCircle(-R1 - param.JS1, stopper1H, S1hr));
-		figStopperSide.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
-		figStopperSide.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1hr));
+		figStopperSide.addMain(contourCircle(S2s, stopper2H + S1r, S1r));
+		figStopperSide.addMain(contourCircle(S2s, stopper2H + S1r, S1hr));
 		figStopperSide.addSecond(ctrRectangle(0, stopper2H, S2s, param.S1));
 		figStopperSide.addSecond(ctrRectangle(0, stopper2H + param.E7, S2s, S1h));
-		const stopper3Ly = stopper2H + param.S1 / 2 - stopper3H;
-		const stopper3L = Math.sqrt(S2s ** 2 + stopper3Ly ** 2);
-		const stopper3A = Math.atan2(stopper3Ly, S2s);
-		rGeome.logstr += `stopper-rod: L ${ffix(stopper3L)} mm, A ${ffix(
-			radToDeg(stopper3A)
-		)} degree\n`;
-		const stp3posdX = S1r * Math.sin(stopper3A);
-		const stp3posdY = S1r * Math.cos(stopper3A);
+		const stopper3Ly = stopper2H + S1r - stopper3H;
+		const stp3L = Math.sqrt(S2s ** 2 + stopper3Ly ** 2);
+		const stp3A = Math.atan2(stopper3Ly, S2s);
+		rGeome.logstr += `stopper-rod: L ${ffix(stp3L)} mm, A ${ffix(radToDeg(stp3A))} degree\n`;
+		const stp3posdX = S1r * Math.sin(stp3A);
+		const stp3posdY = S1r * Math.cos(stp3A);
 		const stp3posY = stopper3H - stp3posdY;
-		figStopperSide.addSecond(ctrRectRot(stp3posdX, stp3posY, stopper3L, param.S1, stopper3A));
-		const stp3posdX2 = S1hr * Math.sin(stopper3A);
-		const stp3posdY2 = S1hr * Math.cos(stopper3A);
+		figStopperSide.addSecond(ctrRectRot(stp3posdX, stp3posY, stp3L, param.S1, stp3A));
+		const stp3posdX2 = S1hr * Math.sin(stp3A);
+		const stp3posdY2 = S1hr * Math.cos(stp3A);
 		const stp3posY2 = stopper3H - stp3posdY2;
-		figStopperSide.addSecond(ctrRectRot(stp3posdX2, stp3posY2, stopper3L, S1h, stopper3A));
+		figStopperSide.addSecond(ctrRectRot(stp3posdX2, stp3posY2, stp3L, S1h, stp3A));
 		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1, lowSHL, 2 * JR1));
 		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1H, lowSHL, 2 * JR1H));
 		// figStopperSideH
-		figStopperSideH.mergeFigure(rakeGeom.fig.faceBeam, true);
-		figStopperSideH.addSecond(contourCircle(-R1 - param.JS1, stopper1H, S1r));
+		figStopperSideH.mergeFigure(figStopperSide, true);
 		figStopperSideH.addMain(contourCircle(-R1 - param.JS1, stopper1H, S1hr));
-		figStopperSideH.addSecond(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
 		figStopperSideH.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1hr));
-		figStopperSideH.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1, lowSHL, 2 * JR1));
-		figStopperSideH.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1H, lowSHL, 2 * JR1H));
 		// figStopperFaceT
 		figStopperFaceT.mergeFigure(rakeGeom.fig.faceCone, true);
 		figStopperFaceT.mergeFigure(figLowStopperHolderPre, true);
@@ -413,16 +425,16 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					outName: `subpax_${designName}_stpFaceB`,
 					face: `${designName}_faceStopperFaceB`,
 					extrudeMethod: EExtrude.eLinearOrtho,
-					length: stopper3L,
-					rotate: [Math.PI / 2 - stopper3A, 0, Math.PI / 2],
+					length: stp3L,
+					rotate: [Math.PI / 2 - stp3A, 0, Math.PI / 2],
 					translate: [0, 0, stopper3H]
 				},
 				{
 					outName: `subpax_${designName}_stpFaceBH`,
 					face: `${designName}_faceStopperFaceBH`,
 					extrudeMethod: EExtrude.eLinearOrtho,
-					length: stopper3L,
-					rotate: [Math.PI / 2 - stopper3A, 0, Math.PI / 2],
+					length: stp3L,
+					rotate: [Math.PI / 2 - stp3A, 0, Math.PI / 2],
 					translate: [0, 0, stopper3H]
 				},
 				{
