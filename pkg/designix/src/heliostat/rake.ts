@@ -111,6 +111,7 @@ const pDef: tParamDef = {
 function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const rGeome = initGeom(pDef.partName + suffix);
 	const figCone = figure();
+	const figConeHollow = figure();
 	const figBeam = figure();
 	const figBeamHollow = figure();
 	const figDisc = figure();
@@ -219,6 +220,14 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.closeSegStroke();
 			return rCtr;
 		};
+		const coneHollowHeight2 = beamH - R4 - (param.H1 - coneFC);
+		const coneHollowR2 = R1 - param.E1 - Math.tan(coneAngle) * coneHollowHeight2;
+		const ctrConeHollow = contour(0, beamH - R4)
+			.addSegStrokeA(coneHollowR2, beamH - R4)
+			.addSegStrokeA(R1 - param.E1, param.H1 - coneFC)
+			.addSegStrokeA(R1 - param.E1, param.H1 - param.H3)
+			.addSegStrokeA(0, param.H1 - param.H3)
+			.closeSegStroke();
 		const ctrDoor = contour(doorLowX, param.H1 + param.H6)
 			.addCornerRounded(param.R9)
 			.addSegStrokeA(doorHighX, param.H1 + param.H6 + param.H7)
@@ -247,6 +256,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figCone.addSecond(ctrRectRot(-wingPosX, wingPosY, 2 * R6, wingL2, wingAngle)); // wing-left
 		figCone.addSecond(ctrRectRot(-wingHPosX, wingHPosY, 2 * wingHR, wingL2, wingAngle));
 		figCone.addSecond(ctrDoor);
+		// figConeHollow
+		figConeHollow.mergeFigure(figCone, true);
+		figConeHollow.addMain(ctrConeHollow);
 		// figBeam
 		const ctrHand = contour(handLowX, beamH + handLowY)
 			.addSegStrokeA(handHighXext, beamH + param.H5 - handHighYext)
@@ -329,6 +341,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
+			faceConeHollow: figConeHollow,
 			faceBeam: figBeam,
 			faceBeamHollow: figBeamHollow,
 			faceDisc: figDisc,
@@ -355,6 +368,13 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				{
 					outName: `subpax_${designName}_cone`,
 					face: `${designName}_faceCone`,
+					extrudeMethod: EExtrude.eRotate,
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
+				},
+				{
+					outName: `subpax_${designName}_coneHollow`,
+					face: `${designName}_faceConeHollow`,
 					extrudeMethod: EExtrude.eRotate,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
@@ -445,6 +465,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					outName: `ipax_${designName}_hollow`,
 					boolMethod: EBVolume.eUnion,
 					inList: [
+						`subpax_${designName}_coneHollow`,
 						`subpax_${designName}_beamHollow`,
 						`subpax_${designName}_wing_hollow_right`,
 						`subpax_${designName}_wing_hollow_left`,
