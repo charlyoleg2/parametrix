@@ -2,7 +2,23 @@
 	"name": "designix-cli",
 	"version": "0.5.20",
 	"description": "The application cli as frontend of geometrix and designix",
+	"type": "module",
 	"private": false,
+	"exports": {
+		".": {
+			"types": "./dist/designix-cli.d.ts",
+			"default": "./dist/designix-cli.js"
+		}
+	},
+	"bin": {
+		"designix-cli": "dist/designix-cli.js"
+	},
+	"files": [
+		"dist/",
+		"!dist/**/*.map",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
@@ -60,20 +76,12 @@
 		"typescript": "^5.4.3",
 		"vitest": "^1.4.0"
 	},
-	"exports": {
-		".": {
-			"types": "./dist/designix-cli.d.ts",
-			"default": "./dist/designix-cli.js"
-		}
-	},
-	"bin": {
-		"designix-cli": "dist/designix-cli.js"
-	},
-	"files": [
-		"dist/",
-		"!dist/**/*.map",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
-	"type": "module"
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true,
+		"trailingComma": "none",
+		"printWidth": 100,
+		"plugins": [],
+		"overrides": []
+	}
 }

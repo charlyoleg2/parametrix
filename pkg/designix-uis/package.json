@@ -4,8 +4,12 @@
 	"description": "mini-server for static content of designix-ui",
 	"type": "module",
 	"private": false,
-	"main": "./dist/designix-uis.js",
-	"types": "./dist/designix-uis.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/designix-uis.d.ts",
+			"default": "./dist/designix-uis.js"
+		}
+	},
 	"bin": {
 		"designix-uis": "dist/designix-uis.js"
 	},
@@ -24,8 +28,8 @@
 		],
 		"format": "esm",
 		"splitting": false,
-		"dts": true,
-		"sourcemap": true,
+		"dts": false,
+		"sourcemap": false,
 		"clean": true
 	},
 	"scripts": {
