@@ -7,7 +7,7 @@ import type {
 	tGeom,
 	tInherit,
 	//tSubInst,
-	//tSubDesign,
+	tSubDesign,
 	tPageDef
 } from 'geometrix';
 import {
@@ -289,8 +289,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figEmptyDoor.addMain(ctrDoorFace(param.L2));
 		// holders
 		const designName = rGeome.partName;
-		const inheritList = [];
-		const inheritNames = [];
+		const inheritList: tInherit[] = [];
+		const inheritNames: string[] = [];
+		let subDesignObj: tSubDesign = {};
 		if (param.holders) {
 			// holderB2
 			const vaxisHolderB2Param = designParam(vaxisHolderDef.pDef, 'B2');
@@ -403,6 +404,27 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			};
 			inheritList.push(inheritHa);
 			inheritNames.push(`inpax_${designName}_hA`);
+			// sub-designs
+			subDesignObj = {
+				vaxis_holder_B2: {
+					partName: vaxisHolderB2Param.getPartName(),
+					dparam: vaxisHolderB2Param.getDesignParamList(),
+					orientation: [0, 0, 0],
+					position: [0, 0, hb2PosH]
+				},
+				vaxis_holder_B1: {
+					partName: vaxisHolderB1Param.getPartName(),
+					dparam: vaxisHolderB1Param.getDesignParamList(),
+					orientation: [0, 0, 0],
+					position: [0, 0, hb1PosH]
+				},
+				vaxis_holder_A: {
+					partName: vaxisHolderAParam.getPartName(),
+					dparam: vaxisHolderAParam.getDesignParamList(),
+					orientation: [0, 0, 0],
+					position: [0, 0, haPosH]
+				}
+			};
 		}
 		// final figure list
 		rGeome.fig = {
@@ -486,7 +508,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			]
 		};
 		// sub-design
-		rGeome.sub = {};
+		rGeome.sub = subDesignObj;
 		// finalize
 		rGeome.logstr += 'pole_static drawn successfully!\n';
 		rGeome.calcErr = false;
