@@ -90,7 +90,7 @@ function ctrTrapezoidRot2(
 	oy: number,
 	leftSide: number,
 	rightSide: number,
-	hlength: number,
+	Hlength: number,
 	angle: number,
 	cornerRounded = 0
 ): tContour {
@@ -101,7 +101,7 @@ function ctrTrapezoidRot2(
 		.addCornerRounded(cornerRounded)
 		.addSegStrokeR(0, -leftSide)
 		.addCornerRounded(cornerRounded)
-		.addSegStrokeR(-dw2, hlength)
+		.addSegStrokeR(-dw2, Hlength)
 		.addCornerRounded(cornerRounded)
 		.addSegStrokeR(0, rightSide)
 		.addCornerRounded(cornerRounded)
@@ -110,4 +110,30 @@ function ctrTrapezoidRot2(
 	return rCtr;
 }
 
-export { ctrRectangle, ctrRectRot, ctrRectRot2, ctrTrapezoid, ctrTrapezoidRot2 };
+/**
+ * The oblong-origin is middle-left.
+ */
+function ctrOblong(
+	ox: number,
+	oy: number,
+	Vwidth: number,
+	Hlength: number,
+	angle: number
+): tContour {
+	if (Hlength < Vwidth) {
+		throw `err821: Hlength ${Hlength} is too small compare to Vwidth ${Vwidth}`;
+	}
+	const dpy = Vwidth / 2;
+	const dpx = Hlength - Vwidth;
+	const ctr1 = contour(dpy + dpx, -dpy)
+		.addPointA(dpy + dpx, dpy)
+		.addSegArc(dpy, false, true)
+		.addSegStrokeA(dpy, dpy)
+		.addPointA(dpy, -dpy)
+		.addSegArc(dpy, false, true)
+		.closeSegStroke();
+	const rCtr = ctr1.rotate(0, 0, angle).translate(ox, oy);
+	return rCtr;
+}
+
+export { ctrRectangle, ctrRectRot, ctrRectRot2, ctrTrapezoid, ctrTrapezoidRot2, ctrOblong };

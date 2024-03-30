@@ -16,6 +16,8 @@ import {
 	prefixLog,
 	contour,
 	contourCircle,
+	//ctrRectangle,
+	ctrOblong,
 	figure,
 	//degToRad,
 	radToDeg,
@@ -240,18 +242,13 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		}
 		const ctrDoorFace = function (pL2: number): tContour {
 			const R4b = R4 - pL2;
-			const H3b = param.H3 + R4;
-			const rCtrDoorFace = contour(R4b, H3b + doorStraightLenght)
-				//.addPointR(-R4b, R4b)
-				//.addSegArc(R4b, false, true)
-				.addPointR(-2 * R4b, 0)
-				.addSegArc(R4b, false, true)
-				.addSegStrokeR(0, -doorStraightLenght)
-				//.addPointR(R4b, -R4b)
-				///.addSegArc(R4b, false, true)
-				.addPointR(2 * R4b, 0)
-				.addSegArc(R4b, false, true)
-				.closeSegStroke();
+			const rCtrDoorFace = ctrOblong(
+				0,
+				param.H3 + R4 - R4b,
+				2 * R4b,
+				doorStraightLenght + 2 * R4b,
+				Math.PI / 2
+			);
 			return rCtrDoorFace;
 		};
 		figFace.addMain(ctrDoorFace(0));
