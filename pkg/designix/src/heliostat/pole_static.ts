@@ -242,14 +242,14 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			const R4b = R4 - pL2;
 			const H3b = param.H3 + R4;
 			const rCtrDoorFace = contour(R4b, H3b + doorStraightLenght)
-				.addPointR(-R4b, R4b)
-				.addSegArc(R4b, false, true)
-				.addPointR(-R4b, -R4b)
+				//.addPointR(-R4b, R4b)
+				//.addSegArc(R4b, false, true)
+				.addPointR(-2 * R4b, 0)
 				.addSegArc(R4b, false, true)
 				.addSegStrokeR(0, -doorStraightLenght)
-				.addPointR(R4b, -R4b)
-				.addSegArc(R4b, false, true)
-				.addPointR(R4b, R4b)
+				//.addPointR(R4b, -R4b)
+				///.addSegArc(R4b, false, true)
+				.addPointR(2 * R4b, 0)
 				.addSegArc(R4b, false, true)
 				.closeSegStroke();
 			return rCtrDoorFace;
