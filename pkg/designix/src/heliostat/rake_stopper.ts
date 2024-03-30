@@ -68,10 +68,17 @@ const pDef: tParamDef = {
 		pNumber('H7', 'mm', 600, 1, 2000, 1),
 		pNumber('L9', 'mm', 300, 1, 1000, 1),
 		pNumber('R9', 'mm', 50, 0, 300, 1),
-		pSectionSeparator('stopper'),
+		pSectionSeparator('stoppers'),
 		pNumber('S1', 'mm', 100, 1, 300, 1),
 		pNumber('S2', 'mm', 2000, 1, 8000, 1),
-		pNumber('E7', 'mm', 5, 1, 80, 1)
+		pNumber('E7', 'mm', 5, 1, 80, 1),
+		pSectionSeparator('low stopper'),
+		pNumber('JD1', 'mm', 200, 1, 500, 1),
+		pNumber('JE1', 'mm', 5, 1, 80, 1),
+		pNumber('JL1', 'mm', 400, 1, 2000, 1),
+		pNumber('JH1', 'mm', 20, -500, 500, 1),
+		pNumber('JS1', 'mm', 100, 1, 500, 1),
+		pNumber('JS2', 'mm', 200, 1, 500, 1)
 	],
 	paramSvg: {
 		D1: 'rake_face.svg',
@@ -104,7 +111,13 @@ const pDef: tParamDef = {
 		R9: 'rake_door.svg',
 		S1: 'rake_side_stopper.svg',
 		S2: 'rake_top_stopper.svg',
-		E7: 'rake_side_stopper.svg'
+		E7: 'rake_side_stopper.svg',
+		JD1: 'rake_low_stopper_holder.svg',
+		JE1: 'rake_low_stopper_holder.svg',
+		JL1: 'rake_low_stopper_holder.svg',
+		JH1: 'rake_low_stopper_holder.svg',
+		JS1: 'rake_side_stopper.svg',
+		JS2: 'rake_top_stopper.svg'
 	},
 	sim: {
 		tMax: 180,
