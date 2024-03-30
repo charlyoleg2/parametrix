@@ -78,7 +78,7 @@ const pDef: tParamDef = {
 		pSectionSeparator('low stopper'),
 		pNumber('JD1', 'mm', 200, 1, 500, 1),
 		pNumber('JE1', 'mm', 5, 1, 80, 1),
-		pNumber('JL1', 'mm', 400, 1, 2000, 1),
+		pNumber('JL1', 'mm', 260, 1, 2000, 1),
 		pNumber('JH1', 'mm', 20, -500, 500, 1),
 		pNumber('JS1', 'mm', 100, 1, 500, 1),
 		pNumber('JS2', 'mm', 200, 1, 500, 1)
@@ -165,9 +165,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const lowStopperTopPosX = -R1 - param.S1 / 2 - param.JS1;
 		const S2s = param.S2 - param.S1 / 2;
 		const lowSPosY = stopper1H - S1r;
-		const lowSHPosY = stopper1H - param.JH1;
+		const lowSHPosZ = stopper1H - param.JH1;
 		const JR1 = param.JD1 / 2;
 		const JR1H = JR1 - param.JE1;
+		const lowSHL = R1 + param.JS2;
 		// step-5 : checks on the parameter values
 		if (2 * param.E7 >= param.S1) {
 			throw `err135: E7 ${param.E7} too large compare to S1 ${param.S1}`;
@@ -192,6 +193,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		}
 		if (Math.abs(param.JH1) > param.JD1 / 2 + S1r) {
 			throw `err148: JH1 ${param.JH1} too large compare to JD1 ${param.JD1} and S1 ${param.S1}`;
+		}
+		if (param.JS2 < param.JS1 - S1r) {
+			throw `err149: JS2 ${param.JS2} too small compare to JS1 ${param.JS1} and S1 ${param.S1}`;
 		}
 		// step-6 : any logs
 		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
@@ -218,10 +222,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		//figLowStopperHolderPre
 		figLowStopperHolderPre.addSecond(ctrRectangle(-L5h, lowSPosY, param.L5, param.S1));
 		figLowStopperHolderPre.addSecond(ctrRectangle(-L5h, lowSPosY + param.E7, param.L5, S1h));
-		figLowStopperHolderPre.addMain(contourCircle(-param.JL1 / 2, lowSHPosY, JR1));
-		figLowStopperHolderPre.addMain(contourCircle(-param.JL1 / 2, lowSHPosY, JR1H));
-		figLowStopperHolderPre.addMain(contourCircle(param.JL1 / 2, lowSHPosY, JR1));
-		figLowStopperHolderPre.addMain(contourCircle(param.JL1 / 2, lowSHPosY, JR1H));
+		figLowStopperHolderPre.addMain(contourCircle(-param.JL1 / 2, lowSHPosZ, JR1));
+		figLowStopperHolderPre.addMain(contourCircle(-param.JL1 / 2, lowSHPosZ, JR1H));
+		figLowStopperHolderPre.addMain(contourCircle(param.JL1 / 2, lowSHPosZ, JR1));
+		figLowStopperHolderPre.addMain(contourCircle(param.JL1 / 2, lowSHPosZ, JR1H));
 		// sub-design rake
 		const rakeParam = designParam(rakeDef.pDef);
 		rakeParam.setVal('D1', param.D1);
@@ -280,10 +284,14 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figStopperTop.addMain(ctrRect(S2s, S1h, 0, -R1 - param.S1 + param.E7, 0));
 		figStopperTop.addMain(ctrRect(S2s, param.S1, 0, R1, 0));
 		figStopperTop.addMain(ctrRect(S2s, S1h, 0, R1 + param.E7, 0));
+		figStopperTop.addSecond(ctrRectangle(-lowSHL, -param.JL1 / 2 - JR1, lowSHL, 2 * JR1));
+		figStopperTop.addSecond(ctrRectangle(-lowSHL, -param.JL1 / 2 - JR1H, lowSHL, 2 * JR1H));
+		figStopperTop.addSecond(ctrRectangle(-lowSHL, param.JL1 / 2 - JR1, lowSHL, 2 * JR1));
+		figStopperTop.addSecond(ctrRectangle(-lowSHL, param.JL1 / 2 - JR1H, lowSHL, 2 * JR1H));
 		// figStopperSide
 		figStopperSide.mergeFigure(rakeGeom.fig.faceBeam, true);
-		figStopperSide.addMain(contourCircle(-R1 - S1r - param.JS1, stopper1H, S1r));
-		figStopperSide.addMain(contourCircle(-R1 - S1r - param.JS1, stopper1H, S1hr));
+		figStopperSide.addMain(contourCircle(-R1 - param.JS1, stopper1H, S1r));
+		figStopperSide.addMain(contourCircle(-R1 - param.JS1, stopper1H, S1hr));
 		figStopperSide.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
 		figStopperSide.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1hr));
 		figStopperSide.addSecond(ctrRect(S2s, param.S1, 0, stopper2H, 0));
@@ -302,12 +310,16 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const stp3posdY2 = S1hr * Math.cos(stopper3A);
 		const stp3posY2 = stopper3H - stp3posdY2;
 		figStopperSide.addSecond(ctrRect(stopper3L, S1h, stp3posdX2, stp3posY2, stopper3A));
+		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1, lowSHL, 2 * JR1));
+		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1H, lowSHL, 2 * JR1H));
 		// figStopperSideH
 		figStopperSideH.mergeFigure(rakeGeom.fig.faceBeam, true);
-		figStopperSideH.addSecond(contourCircle(-R1 - S1r - param.JS1, stopper1H, S1r));
-		figStopperSideH.addMain(contourCircle(-R1 - S1r - param.JS1, stopper1H, S1hr));
+		figStopperSideH.addSecond(contourCircle(-R1 - param.JS1, stopper1H, S1r));
+		figStopperSideH.addMain(contourCircle(-R1 - param.JS1, stopper1H, S1hr));
 		figStopperSideH.addSecond(contourCircle(param.S2 - S1r, stopper2H + S1r, S1r));
 		figStopperSideH.addMain(contourCircle(param.S2 - S1r, stopper2H + S1r, S1hr));
+		figStopperSideH.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1, lowSHL, 2 * JR1));
+		figStopperSideH.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1H, lowSHL, 2 * JR1H));
 		// figStopperFaceT
 		figStopperFaceT.mergeFigure(rakeGeom.fig.faceCone, true);
 		figStopperFaceT.mergeFigure(figLowStopperHolderPre, true);
