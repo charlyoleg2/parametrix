@@ -15,9 +15,10 @@ import {
 	designParam,
 	checkGeom,
 	prefixLog,
-	contour,
+	//contour,
 	contourCircle,
 	ctrRectangle,
+	ctrRectangleRot,
 	figure,
 	//degToRad,
 	radToDeg,
@@ -208,15 +209,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			ypos: number,
 			angle: number
 		): tContour {
-			const xWidth = width * Math.cos(angle);
-			const yWidth = width * Math.sin(angle);
-			const xHeight = -height * Math.sin(angle);
-			const yHeight = height * Math.cos(angle);
-			const rCtr = contour(xpos, ypos)
-				.addSegStrokeA(xpos + xWidth, ypos + yWidth)
-				.addSegStrokeA(xpos + xWidth + xHeight, ypos + yWidth + yHeight)
-				.addSegStrokeA(xpos + xHeight, ypos + yHeight)
-				.closeSegStroke();
+			const rCtr = ctrRectangleRot(xpos, ypos, width, height, angle);
 			return rCtr;
 		};
 		//figLowStopperHolderPre
