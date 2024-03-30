@@ -1,5 +1,6 @@
 // rake_stopper.ts
 
+// step-1 : import from geometrix
 import type {
 	tContour,
 	tParamDef,
@@ -32,6 +33,7 @@ import {
 // design import
 import { rakeDef } from './rake';
 
+// step-2 : definition of the parameters and more (part-name, svg associated to each parameter, simulation parameters)
 const pDef: tParamDef = {
 	partName: 'rake_stopper',
 	params: [
@@ -126,11 +128,9 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr2 = (width: number, height: number, xpos: number, ypos: number, angle: number) => tContour;
-
+// step-3 : definition of the function that creates from the parameter-values the figures and construct the 3D
 function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const rGeome = initGeom(pDef.partName + suffix);
-	let ctrRect: tCtr2;
 	const figCone = figure();
 	const figBeam = figure();
 	const figBeamHollow = figure();
@@ -146,26 +146,34 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const figStopperFaceTH = figure();
 	const figStopperFaceB = figure();
 	const figStopperFaceBH = figure();
+	const figLowStopperHolder = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
+		// step-4 : some preparation calculation
 		const R1 = param.D1 / 2;
 		const H1H2 = param.H1 + param.H2;
 		const H1H5 = H1H2 - param.H4 + param.H5;
-		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
-		rGeome.logstr += `cone-height total: ${ffix(H1H5)} mm\n`;
+		const stopper1H = H1H5 - param.S2;
+		const stopper2H = param.H1 + param.H2 - param.H4 + param.D4 / 2;
+		const stopper3H = param.H1 + param.L8 - param.S1;
+		// step-5 : checks on the parameter values
 		if (2 * param.E7 >= param.S1) {
 			throw `err135: E7 ${param.E7} too large compare to S1 ${param.S1}`;
 		}
 		if (param.L5 < param.D2) {
 			throw `err138: L5 ${param.L5} too small compare to D2 ${param.D2}`;
 		}
-		const stopper1H = H1H5 - param.S2;
 		if (stopper1H < 0) {
 			throw `err143: S2 ${param.S2} too large compare to H1H5 ${ffix(H1H5)}`;
 		}
-		const stopper2H = param.H1 + param.H2 - param.H4 + param.D4 / 2;
-		const stopper3H = param.H1 + param.L8 - param.S1;
-		ctrRect = function (
+		if (param.JS1 < param.S1 / 2) {
+			throw `err144: JS1 ${param.JS1} too small compare to S1 ${param.S1}`;
+		}
+		// step-6 : any logs
+		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
+		rGeome.logstr += `cone-height total: ${ffix(H1H5)} mm\n`;
+		// step-7 : drawing of the figures
+		const ctrRect = function (
 			width: number,
 			height: number,
 			xpos: number,
@@ -231,8 +239,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const S1r = param.S1 / 2;
 		const S1h = param.S1 - 2 * param.E7;
 		const S1hr = S1h / 2;
-		figStopperTop.addMain(ctrRect(param.S1, param.L5, -R1 - param.S1, -L5h, 0));
-		figStopperTop.addMain(ctrRect(S1h, param.L5, -R1 - param.E7 - S1h, -L5h, 0));
+		const lowStopperTopPosX = -R1 - param.S1 / 2 - param.JS1;
+		figStopperTop.addMain(ctrRect(param.S1, param.L5, lowStopperTopPosX, -L5h, 0));
+		figStopperTop.addMain(ctrRect(S1h, param.L5, lowStopperTopPosX + param.E7, -L5h, 0));
 		figStopperTop.addMain(ctrRect(param.S1, param.L5, param.S2 - param.S1, -L5h, 0));
 		figStopperTop.addMain(ctrRect(S1h, param.L5, param.S2 - param.E7 - S1h, -L5h, 0));
 		const S2s = param.S2 - param.S1 / 2;
@@ -296,6 +305,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figStopperFaceBH.addMain(contourCircle(-R1 - S1r, 0, S1hr));
 		figStopperFaceBH.addSecond(contourCircle(R1 + S1r, 0, S1r));
 		figStopperFaceBH.addMain(contourCircle(R1 + S1r, 0, S1hr));
+		// figLowStopperHolder
+		figLowStopperHolder.addMain(contourCircle(-param.JL1 / 2, 0, param.JD1 / 2));
+		figLowStopperHolder.addMain(contourCircle(-param.JL1 / 2, 0, param.JD1 / 2 - param.JE1));
+		figLowStopperHolder.addMain(contourCircle(param.JL1 / 2, 0, param.JD1 / 2));
+		figLowStopperHolder.addMain(contourCircle(param.JL1 / 2, 0, param.JD1 / 2 - param.JE1));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
@@ -312,7 +326,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			faceStopperFaceT: figStopperFaceT,
 			faceStopperFaceTH: figStopperFaceTH,
 			faceStopperFaceB: figStopperFaceB,
-			faceStopperFaceBH: figStopperFaceBH
+			faceStopperFaceBH: figStopperFaceBH,
+			faceLowStopperHolder: figLowStopperHolder
 		};
 		const designName = rGeome.partName;
 		rGeome.vol = {
