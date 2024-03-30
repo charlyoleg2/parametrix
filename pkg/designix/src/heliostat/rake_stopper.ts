@@ -168,6 +168,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const figStopperFaceBH = figure();
 	const figLowStopperHolderPre = figure();
 	const figLowStopperHolder = figure();
+	const figHi1StopperHolder = figure();
+	const figHi2StopperHolder = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// step-4 : some preparation calculation
@@ -315,6 +317,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figStopperSide.addSecond(ctrRectRot(stp3posdX2, stp3posY2, stp3L, S1h, stp3A));
 		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1, lowSHL, 2 * JR1));
 		figStopperSide.addSecond(ctrRectangle(-lowSHL, lowSHPosZ - JR1H, lowSHL, 2 * JR1H));
+		figStopperSide.addSecond(contourCircle(0, stopper3H, param.JD3 / 2));
+		figStopperSide.addSecond(contourCircle(0, stopper3H, param.JD3 / 2 - param.JE3));
 		// figStopperSideH
 		figStopperSideH.mergeFigure(figStopperSide, true);
 		figStopperSideH.addMain(contourCircle(-R1 - param.JS1, stopper1H, S1hr));
@@ -350,6 +354,18 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// figLowStopperHolder
 		figLowStopperHolder.mergeFigure(rakeGeom.fig.faceCone, true);
 		figLowStopperHolder.mergeFigure(figLowStopperHolderPre);
+		// figHi1StopperHolder
+		figHi1StopperHolder.mergeFigure(figStopperSide, true);
+		figHi1StopperHolder.addMain(contourCircle(0, stopper3H, param.JD3 / 2));
+		figHi1StopperHolder.addMain(contourCircle(0, stopper3H, param.JD3 / 2 - param.JE3));
+		// figHi2StopperHolder
+		figHi2StopperHolder.mergeFigure(figStopperTop, true);
+		const JR4 = param.JD4 / 2;
+		const Hi1SHpy = L5h - S1r;
+		figHi2StopperHolder.addMain(contourCircle(0, -Hi1SHpy, JR4));
+		figHi2StopperHolder.addMain(contourCircle(0, -Hi1SHpy, JR4 - param.JE4));
+		figHi2StopperHolder.addMain(contourCircle(0, Hi1SHpy, JR4));
+		figHi2StopperHolder.addMain(contourCircle(0, Hi1SHpy, JR4 - param.JE4));
 		// final figure list
 		rGeome.fig = {
 			faceCone: figCone,
@@ -367,7 +383,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			faceStopperFaceTH: figStopperFaceTH,
 			faceStopperFaceB: figStopperFaceB,
 			faceStopperFaceBH: figStopperFaceBH,
-			faceLowStopperHolder: figLowStopperHolder
+			faceLowStopperHolder: figLowStopperHolder,
+			faceHi1StopperHolder: figHi1StopperHolder,
+			faceHi2StopperHolder: figHi2StopperHolder
 		};
 		// step-8 : recipes of the 3D construction
 		const designName = rGeome.partName;
