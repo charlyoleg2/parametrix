@@ -1,6 +1,7 @@
 // initStore
 
-import type { PType, tParamVal, tPageDef, tAllPageDef } from 'geometrix';
+import type { tParamVal, tPageDef, tAllPageDef } from 'geometrix';
+import { PType } from 'geometrix';
 import type { tStorePVal } from './storePVal';
 import { storePV } from './storePVal';
 import { get } from 'svelte/store';
