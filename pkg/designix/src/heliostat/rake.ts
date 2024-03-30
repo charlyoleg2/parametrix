@@ -7,9 +7,9 @@ import type {
 	tParamVal,
 	tGeom,
 	tExtrude,
+	//tSubInst,
+	//tSubDesign,
 	tPageDef
-	//tSubInst
-	//tSubDesign
 } from 'geometrix';
 import {
 	contour,

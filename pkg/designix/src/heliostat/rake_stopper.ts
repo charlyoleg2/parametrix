@@ -7,9 +7,9 @@ import type {
 	tParamVal,
 	tGeom,
 	//tExtrude,
+	//tSubInst,
+	//tSubDesign,
 	tPageDef
-	//tSubInst
-	//tSubDesign
 } from 'geometrix';
 import {
 	designParam,
@@ -28,6 +28,7 @@ import {
 	//pDropdown,
 	pSectionSeparator,
 	initGeom,
+	//transform3d,
 	EExtrude,
 	EBVolume
 } from 'geometrix';
