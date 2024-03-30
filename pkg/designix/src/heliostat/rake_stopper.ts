@@ -433,6 +433,13 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					subgeom: rakeGeom,
 					rotate: [0, 0, 0],
 					translate: [0, 0, 0]
+				},
+				{
+					outName: `inpax_${designName}_beamHollow`,
+					subdesign: 'subpax_rake_beamHollow',
+					subgeom: rakeGeom,
+					rotate: [0, 0, 0],
+					translate: [0, 0, 0]
 				}
 			],
 			extrudes: [
@@ -536,6 +543,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					boolMethod: EBVolume.eUnion,
 					inList: [
 						`inpax_${designName}_coneHollow`,
+						`inpax_${designName}_beamHollow`,
 						`subpax_${designName}_stpSideH`,
 						`subpax_${designName}_stpFaceTH`,
 						`subpax_${designName}_stpFaceBH`
