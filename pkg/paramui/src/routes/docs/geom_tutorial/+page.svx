@@ -453,7 +453,7 @@ API:
 
 *myPartW* illustrates the usage of *transform3d* for computing the 3D-rotation and 3D-translation to apply to an extrusion sub-part. *transform3d* helps to combine a list of 3D-rotation and 3D-translation into a single 3D-rotation and a single 3D-translation.
 
-*myPartW* also illustrates the usage of *ctrRectangle* and *ctrRectRot* for drawing a rectangle.
+*myPartW* also illustrates the usage of *ctrRectangle* and *ctrRectRot* for drawing rectangles.
 
 API:
 
