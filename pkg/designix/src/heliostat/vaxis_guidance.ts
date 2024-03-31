@@ -41,9 +41,9 @@ const pDef: tParamDef = {
 	partName: 'vaxis_guidance',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('D1', 'mm', 700, 100, 2500, 1),
+		pNumber('D1', 'mm', 700, 5, 2500, 1),
 		pNumber('N1', 'legs', 6, 1, 24, 1),
-		pNumber('D2', 'mm', 600, 100, 2000, 1),
+		pNumber('D2', 'mm', 600, 5, 2000, 1),
 		pSectionSeparator('leg details'),
 		pNumber('D3', 'mm', 30, 1, 200, 1),
 		pNumber('D4', 'mm', 50, 1, 200, 1),
@@ -58,7 +58,7 @@ const pDef: tParamDef = {
 		pNumber('E2', 'mm', 20, 1, 200, 1),
 		pSectionSeparator('spring'),
 		pNumber('SA1', 'degree', 0, -45, 45, 1),
-		pNumber('SE1', 'mm', 10, 1, 200, 1),
+		pNumber('SE1', 'mm', 10, 0.1, 200, 0.1),
 		pNumber('SD1', 'mm', 20, 1, 200, 1),
 		pNumber('SD2', 'mm', 10, 1, 200, 1),
 		pNumber('SN1', 'loops', 2, 0, 8, 1),
