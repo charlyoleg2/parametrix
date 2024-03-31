@@ -50,7 +50,13 @@ function radius2canvas(iRadius: number, iAdjust: tCanvasAdjust): number {
 	if (roundZero(iAdjust.scaleX - Math.abs(iAdjust.scaleY)) !== 0) {
 		throw `err683: iAdjust.scaleX and scaleY differ ${iAdjust.scaleX} ${iAdjust.scaleY}`;
 	}
+	if (iAdjust.scaleX < 0) {
+		throw `err684: iAdjust.scaleX ${iAdjust.scaleX} is negative`;
+	}
 	const rRadius = iRadius * iAdjust.scaleX;
+	if (rRadius < 0) {
+		throw `err685: rRadius for canvas ${rRadius} is negative`;
+	}
 	return rRadius;
 }
 

@@ -193,6 +193,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		if (param.L9 > param.D1) {
 			throw `err180: L9 ${param.L9} too large compare to D1 ${param.D1}`;
 		}
+		if (param.E6 > param.D6 / 2) {
+			throw `err197: E6 ${param.E6} is too large compare to D6 ${param.D6}`;
+		}
 		// step-6 : any logs
 		rGeome.logstr += `rake-L4: ${ffix(param.L4)} mm (compare with swing)\n`;
 		rGeome.logstr += `rake-L5: ${ffix(param.L5)} mm (compare with swing)\n`;

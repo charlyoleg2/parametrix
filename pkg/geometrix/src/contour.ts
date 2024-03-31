@@ -760,6 +760,9 @@ class ContourCircle extends AContour {
 		this.py = iy;
 		this.radius = iRadius;
 		this.imposedColor = icolor;
+		if (iRadius < 0) {
+			throw `err432: iRadius ${iRadius} is negative at circle ix ${ix}, iy ${iy}`;
+		}
 	}
 	/** @internal */
 	clone(): ContourCircle {
