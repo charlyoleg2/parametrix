@@ -105,7 +105,7 @@ const pDef: tParamDef = {
 		PHB: 'pole_stator_holders.svg',
 		PHD1A: 'pole_stator_holders.svg',
 		PHD1B: 'pole_stator_holders.svg',
-		PHN1AB: 'pole_stator_holders.svg',
+		PHN1AB: 'pole_stator_holderB_top.svg',
 		PHD5A: 'pole_stator_holderB_top.svg',
 		PHR4A: 'pole_stator_holderB_top.svg',
 		PHD3A: 'pole_stator_holderB_top.svg',
