@@ -96,10 +96,18 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// step-4 : some preparation calculation
-		// step-5 : checks on the parameter values
 		const R1 = param.D1 / 2;
+		const rakeBeamL = 4 * param.L4 + param.L5 + 2 * param.L6 - 2 * param.H1;
+		const rakeL4 = param.L4 - 2 * param.H1;
+		const rakeL5 = param.L5 + 2 * param.H1;
+		const rakeL6 = param.L6 + 2 * param.H1;
+		// step-5 : checks on the parameter values
 		// step-6 : any logs
 		rGeome.logstr += `swing size: L1 ${ffix(param.L1)} x L2 ${ffix(param.L2)} mm\n`;
+		rGeome.logstr += `rake-L4: ${ffix(rakeL4)} mm (compare with rake)\n`;
+		rGeome.logstr += `rake-L5: ${ffix(rakeL5)} mm (compare with rake)\n`;
+		rGeome.logstr += `rake-L6: ${ffix(rakeL6)} mm (compare with rake)\n`;
+		rGeome.logstr += `rake-beamL: (4*L4+L5+2*L6-2*H1) ${ffix(rakeBeamL)} mm (compare with rake)\n`;
 		// step-7 : drawing of the figures
 		// figSide
 		figSide.addMain(contourCircle(0, 0, R1));

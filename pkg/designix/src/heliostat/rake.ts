@@ -194,6 +194,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			throw `err180: L9 ${param.L9} too large compare to D1 ${param.D1}`;
 		}
 		// step-6 : any logs
+		rGeome.logstr += `rake-L4: ${ffix(param.L4)} mm (compare with swing)\n`;
+		rGeome.logstr += `rake-L5: ${ffix(param.L5)} mm (compare with swing)\n`;
+		rGeome.logstr += `rake-L6: ${ffix(param.L6)} mm (compare with swing)\n`;
+		rGeome.logstr += `rake-beamL (4*L4+L5+2*L6): ${ffix(beamL)} mm (compare with swing)\n`;
 		rGeome.logstr += `cone-height: ${ffix(H1H2)} mm\n`;
 		rGeome.logstr += `cone-height total: ${ffix(H1H5)} mm\n`;
 		rGeome.logstr += `cone-angle: ${ffix(radToDeg(coneAngle))} degree\n`;
