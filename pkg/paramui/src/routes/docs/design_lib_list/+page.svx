@@ -48,16 +48,15 @@ Below a list of libraries of 3D-part-designs based on *Geometrix*:
 	The designs of a junior developer
 
 
-### Glossary
+Glossary:
 
-- **designer**: Author of a design-libray. He writes javascript using *geometrix*. *Parametrix* generates web-pages from that javascript.
-- **maker**: He uses those web-pages, chooses the parameter values, exports the design as 3D-scripts and then 3D-files (.stl, .brep).
-
-- **src**: The git-repository of the javascript for the design-library. [open-source]
-- **ui**: The web-pages of the design-library. [for makers]
-- **pkg**: The design-library published on *npmjs.com*. So those designs can be re-used in further design. [for other designers]
-- **pkg-cli**: The design-library embedded in a *command-line-tool*. Useful for automation. [for makers (working with scripts)]
-- **pkg-ui**: The design-library embedded in a *local web-server*. Useful for offline work. [for makers]
+- designer : Author of a design-libray. He writes javascript using *geometrix*. *Parametrix* generates web-pages from that javascript.
+- maker : He uses those web-pages, chooses the parameter values, exports the design as 3D-scripts and then 3D-files (.stl, .brep).
+- **src** : The git-repository of the javascript for the design-library. [open-source]
+- **ui** : The web-pages of the design-library. [for makers]
+- **pkg** : The design-library published on *npmjs.com*. So those designs can be re-used in further designs. [for other designers]
+- **pkg-cli** : The design-library embedded in a *command-line-tool*. Useful for automation. [for makers (working with scripts)]
+- **pkg-ui** : The design-library embedded in a *local web-server*. Useful for offline work. [for makers]
 
 
 If you want to get your *geometrix design library* in this list, please, create a [Github issue](https://github.com/charlyoleg2/parametrix/issues) with a link to your library.
