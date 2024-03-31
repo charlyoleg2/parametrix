@@ -73,7 +73,7 @@ const pDef: tParamDef = {
 	],
 	paramSvg: {
 		D1: 'rake_face.svg',
-		D2: 'rake_face.svg',
+		D2: 'rake_side.svg',
 		D3: 'rake_face.svg',
 		H1: 'rake_face.svg',
 		H2: 'rake_face.svg',
