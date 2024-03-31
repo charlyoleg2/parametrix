@@ -170,6 +170,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rakeParam.setVal('E1', param.E1);
 		rakeParam.setVal('E3', param.E1);
 		rakeParam.setVal('E4', param.E1);
+		rakeParam.setVal('E6', param.E1);
 		const rakeD3 = param.D2 * 0.6;
 		const rakeN1 = 24;
 		const rakeD7 = rakeD3 / (rakeN1 * 4);
@@ -226,6 +227,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
 		swingParam.setVal('L3', param.D7);
+		swingParam.setVal('S1', param.D6 / 2);
+		swingParam.setVal('R2', 0);
 		const poleStaticGeom = poleStaticDef.pGeom(
 			0,
 			poleStaticParam.getParamVal(),
