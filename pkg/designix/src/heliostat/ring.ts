@@ -87,8 +87,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `ring-height: ${ffix(ringHeight)} mm\n`;
 		// step-7 : drawing of the figures
 		// ctrTeeth
-		const tR1 = R3 - param.L2;
-		const tR2 = tR1 - param.L3;
+		const tR1 = R3 - param.L3;
+		const tR2 = tR1 - param.L2;
 		const tA = (2 * Math.PI) / (2 * param.N1);
 		const ctrTeeth = contour(tR1, 0);
 		for (let i = 0; i < param.N1; i++) {
@@ -131,10 +131,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			return rCtr;
 		};
 		const ctrGearTeeth = function (rnl: number): tContour {
-			const rCtr = contour(rnl * (R3 - param.L2), -param.H1)
-				.addSegStrokeR(-rnl * param.L3, 0)
+			const rCtr = contour(rnl * (R3 - param.L3), -param.H1)
+				.addSegStrokeR(-rnl * param.L2, 0)
 				.addSegStrokeR(0, -param.H2)
-				.addSegStrokeR(rnl * param.L3, 0)
+				.addSegStrokeR(rnl * param.L2, 0)
 				.closeSegStroke();
 			return rCtr;
 		};
