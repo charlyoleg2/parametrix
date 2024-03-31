@@ -40,9 +40,9 @@ const pDef: tParamDef = {
 	partName: 'ring_guidance',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('D1', 'mm', 700, 100, 2500, 1),
+		pNumber('D1', 'mm', 700, 5, 2500, 1),
 		pNumber('N1', 'legs', 6, 1, 24, 1),
-		pNumber('D2', 'mm', 600, 100, 2000, 1),
+		pNumber('D2', 'mm', 600, 5, 2000, 1),
 		pSectionSeparator('leg details'),
 		pNumber('D3', 'mm', 30, 1, 200, 1),
 		pNumber('D4', 'mm', 50, 1, 200, 1),
