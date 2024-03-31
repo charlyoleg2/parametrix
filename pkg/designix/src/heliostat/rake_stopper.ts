@@ -43,11 +43,11 @@ const pDef: tParamDef = {
 	partName: 'rake_stopper',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('D1', 'mm', 600, 10, 4000, 10),
-		pNumber('D2', 'mm', 400, 10, 4000, 10),
+		pNumber('D1', 'mm', 600, 10, 4000, 1),
+		pNumber('D2', 'mm', 400, 10, 4000, 1),
 		pNumber('D3', 'mm', 400, 1, 4000, 1),
 		pNumber('H1', 'mm', 800, 1, 4000, 1),
-		pNumber('H2', 'mm', 3000, 20, 6000, 10),
+		pNumber('H2', 'mm', 3000, 20, 6000, 1),
 		pNumber('H3', 'mm', 400, 0, 4000, 1),
 		pNumber('E1', 'mm', 20, 1, 80, 1),
 		pNumber('E3', 'mm', 30, 1, 80, 1),
