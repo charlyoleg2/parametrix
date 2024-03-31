@@ -189,6 +189,20 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rakeParam.setVal('L6', param.L6 + 2 * param.L3);
 		rakeParam.setVal('S1', param.S1);
 		rakeParam.setVal('S2', param.L2 / 2);
+		rakeParam.setVal('S3', 0);
+		rakeParam.setVal('S3', 0);
+		rakeParam.setVal('JD1', param.D3 / 4);
+		rakeParam.setVal('JE1', param.E1);
+		rakeParam.setVal('JL1', param.D3 / 3);
+		rakeParam.setVal('JH1', 0);
+		rakeParam.setVal('JS1', param.S1 / 2);
+		rakeParam.setVal('JS2', param.S1 / 2);
+		rakeParam.setVal('JD3', param.D4 / 4);
+		rakeParam.setVal('JE3', param.E1);
+		rakeParam.setVal('JS3', param.D4 / 4);
+		rakeParam.setVal('JD4', param.D4 / 4);
+		rakeParam.setVal('JE4', param.E1);
+		rakeParam.setVal('JS4', param.D4 / 4);
 		swingParam.setVal('L2', param.L2);
 		swingParam.setVal('D1', param.D6);
 		swingParam.setVal('H3', param.H9);
@@ -203,6 +217,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		swingParam.setVal('L5', param.L5);
 		swingParam.setVal('L6', param.L6);
 		swingParam.setVal('L3', param.D7);
+		swingParam.setVal('S1', param.D6 / 2);
+		swingParam.setVal('R2', 0);
 		const poleStaticGeom = poleStaticDef.pGeom(
 			0,
 			poleStaticParam.getParamVal(),
