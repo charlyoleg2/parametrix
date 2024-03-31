@@ -104,7 +104,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const sA2 = Math.PI / 2 - Math.PI / 6 + sA0;
 		// step-5 : checks on the parameter values
 		if (Rinner + SR1 + param.SE1 > Rinner2) {
-			throw `err411: D8 ${param.D8} is too small compare to D5 ${param.D5}, E5 ${param.D5}, E8 ${param.E8}`;
+			throw `err411: D8 ${param.D8} is too small compare to D5 ${param.D5}, E5 ${param.E5}, E8 ${param.E8}`;
 		}
 		if ((2 * Math.PI) / 3 - 2 * aLeg < param.R9 / Rinner2) {
 			throw `err412: L5 ${param.L5} is too large compare to R9 ${param.R9}`;
