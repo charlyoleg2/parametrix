@@ -142,6 +142,12 @@
        width="83.221634"
        height="29.630106"
        id="rect14" />
+    <rect
+       x="469.47"
+       y="530.85986"
+       width="70.957748"
+       height="43.211983"
+       id="rect26-7" />
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -352,7 +358,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect26);display:inline"><tspan
          x="469.4707"
          y="543.83597"
-         id="tspan3">PHD5B</tspan></text>
+         id="tspan3">PHD5B1</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,14.861784,727.03804)"
@@ -413,5 +419,13 @@
          x="243.57812"
          y="424.62698"
          id="tspan8">PHL2B</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,5.1707651,719.47041)"
+       id="text26-3"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect26-7);display:inline"><tspan
+         x="469.4707"
+         y="543.83597"
+         id="tspan9">PHD5B2</tspan></text>
   </g>
 </svg>

@@ -58,26 +58,27 @@ const pDef: tParamDef = {
 		pNumber('E3', 'mm', 40, 1, 100, 1),
 		pSectionSeparator('holders'),
 		pCheckbox('holders', true),
-		pNumber('PHL1A', 'mm', 400, 10, 1000, 1),
-		pNumber('PHL1B', 'mm', 400, 10, 1000, 1),
-		pNumber('PHB', 'mm', 5000, 10, 20000, 1),
-		pNumber('PHD1A', 'mm', 600, 10, 4000, 1),
-		pNumber('PHD1B', 'mm', 380, 10, 4000, 1),
+		pNumber('PHL1A', 'mm', 400, 1, 1000, 1),
+		pNumber('PHL1B', 'mm', 400, 1, 1000, 1),
+		pNumber('PHB', 'mm', 5000, 1, 20000, 1),
+		pNumber('PHD1A', 'mm', 600, 1, 4000, 1),
+		pNumber('PHD1B', 'mm', 380, 1, 4000, 1),
 		pNumber('PHN1AB', 'petal', 6, 1, 24, 1),
 		pSectionSeparator('holder-B'),
-		pNumber('PHD5B', 'mm', 600, 10, 4000, 1),
-		pNumber('PHR4B', 'mm', 30, 3, 400, 1),
-		pNumber('PHD3B', 'mm', 40, 3, 400, 1),
-		pNumber('PHL2B', 'mm', 140, 3, 400, 1),
+		pNumber('PHD5B2', 'mm', 600, 1, 4000, 1),
+		pNumber('PHD5B1', 'mm', 600, 1, 4000, 1),
+		pNumber('PHR4B', 'mm', 30, 1, 400, 1),
+		pNumber('PHD3B', 'mm', 40, 1, 400, 1),
+		pNumber('PHL2B', 'mm', 140, 1, 400, 1),
 		pNumber('PHE3B', 'mm', 10, 1, 50, 1),
 		pNumber('PHR6B', 'mm', 20, 0, 400, 1),
 		pNumber('PHE1B', 'mm', 10, 1, 50, 1),
 		pNumber('PHH1B', 'mm', 10, 1, 50, 1),
 		pSectionSeparator('holder-A'),
-		pNumber('PHD5A', 'mm', 900, 10, 4000, 1),
-		pNumber('PHR4A', 'mm', 30, 3, 400, 1),
-		pNumber('PHD3A', 'mm', 40, 3, 400, 1),
-		pNumber('PHL2A', 'mm', 200, 3, 400, 1),
+		pNumber('PHD5A', 'mm', 900, 1, 4000, 1),
+		pNumber('PHR4A', 'mm', 30, 1, 400, 1),
+		pNumber('PHD3A', 'mm', 40, 1, 400, 1),
+		pNumber('PHL2A', 'mm', 200, 1, 400, 1),
 		pNumber('PHE3A', 'mm', 10, 1, 50, 1),
 		pNumber('PHR6A', 'mm', 20, 0, 400, 1),
 		pNumber('PHE1A', 'mm', 10, 1, 50, 1),
@@ -114,7 +115,8 @@ const pDef: tParamDef = {
 		PHR6A: 'pole_stator_holderB_top.svg',
 		PHE1A: 'pole_stator_holderB_section.svg',
 		PHH1A: 'pole_stator_holderB_section.svg',
-		PHD5B: 'pole_stator_holderB_top.svg',
+		PHD5B1: 'pole_stator_holderB_top.svg',
+		PHD5B2: 'pole_stator_holderB_top.svg',
 		PHR4B: 'pole_stator_holderB_top.svg',
 		PHD3B: 'pole_stator_holderB_top.svg',
 		PHL2B: 'pole_stator_holderB_top.svg',
@@ -294,7 +296,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			const vaxisHolderB2Param = designParam(vaxisHolderDef.pDef, 'B2');
 			vaxisHolderB2Param.setVal('PHD1', param.PHD1B);
 			vaxisHolderB2Param.setVal('PHD2', 2 * hb2R2);
-			vaxisHolderB2Param.setVal('PHD5', param.PHD5B);
+			vaxisHolderB2Param.setVal('PHD5', param.PHD5B2);
 			vaxisHolderB2Param.setVal('PHN1', param.PHN1AB);
 			vaxisHolderB2Param.setVal('PHD3', param.PHD3B);
 			vaxisHolderB2Param.setVal('PHR4', param.PHR4B);
@@ -331,7 +333,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			const vaxisHolderB1Param = designParam(vaxisHolderDef.pDef, 'B1');
 			vaxisHolderB1Param.setVal('PHD1', param.PHD1B);
 			vaxisHolderB1Param.setVal('PHD2', 2 * hb1R2);
-			vaxisHolderB1Param.setVal('PHD5', param.PHD5B);
+			vaxisHolderB1Param.setVal('PHD5', param.PHD5B1);
 			vaxisHolderB1Param.setVal('PHN1', param.PHN1AB);
 			vaxisHolderB1Param.setVal('PHD3', param.PHD3B);
 			vaxisHolderB1Param.setVal('PHR4', param.PHR4B);
