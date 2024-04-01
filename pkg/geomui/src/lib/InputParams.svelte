@@ -229,10 +229,16 @@
 			paramSvg = `${base}/pgdsvg/${pDef.paramSvg[keyName]}`;
 		}
 	}
+	// TODO: solve properly this workaround (avoiding weird re-trigger)
+	let prePartName = '';
 	function paramPict2(idx: number, pDef_page: string) {
-		const paramNb = Object.keys($storePV[pDef_page]).length;
-		if (idx < paramNb) {
-			paramPict(Object.keys($storePV[pDef_page])[idx]);
+		//console.log(`dbg283: ${pDef_page}`);
+		if (prePartName !== pDef.partName) {
+			// workaround for avoiding weird re-trigger
+			const paramNb = Object.keys($storePV[pDef_page]).length;
+			if (idx < paramNb) {
+				paramPict(Object.keys($storePV[pDef_page])[idx]);
+			}
 		}
 	}
 	$: paramPict2(0, pDef.partName);
@@ -286,7 +292,8 @@
 	}
 	let htable: tHTableSection[];
 	let htableVis: tHTableVis;
-	let prePartName = '';
+	// TODO: second workaround to be solved properly
+	//let prePartName = '';
 	$: {
 		htable = makeHTable(pDef.params);
 		if (prePartName !== pDef.partName) {
