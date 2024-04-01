@@ -7,7 +7,7 @@
    viewBox="0 0 128.87376 128.98431"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3.1 (1:1.3.1+202311172155+91b66b0783)"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
    sodipodi:docname="heliostat.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="0.52916665"
-     inkscape:cx="437.48033"
-     inkscape:cy="3541.4174"
+     inkscape:zoom="0.74835465"
+     inkscape:cx="358.11897"
+     inkscape:cy="803.09516"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -1430,17 +1430,17 @@
        id="path4-4-8-5-8-4-6-8-8-5-2-1-0-6" />
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,23.881836,-11.014648)"
+       transform="matrix(0.26458333,0,0,0.26458333,36.942596,-4.3413275)"
        id="text75"
-       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect76)"><tspan
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect76);display:inline"><tspan
          x="0"
          y="2771.875"
          id="tspan27">L7</tspan></text>
     <text
        xml:space="preserve"
-       transform="matrix(0.26458333,0,0,0.26458333,9.8349609,-12.880859)"
+       transform="matrix(0.26458333,0,0,0.26458333,-2.1768779,-20.277859)"
        id="text76"
-       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect77)"><tspan
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect77);display:inline"><tspan
          x="101.57812"
          y="2805.9512"
          id="tspan28">L8</tspan></text>
