@@ -133,6 +133,7 @@ class Contour extends AContour {
 				this.addSeg(seg);
 				this.setLastPoint(p1.cx, p1.cy);
 			}
+			// TODO : check this weirdness!
 			// else no warning in order to avoid warning in gears
 		} else {
 			throw `err284: contour p1 is undefined`;
