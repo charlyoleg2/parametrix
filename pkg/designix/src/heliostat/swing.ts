@@ -32,8 +32,8 @@ const pDef: tParamDef = {
 	partName: 'swing',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('L1', 'mm', 12500, 100, 40000, 10),
-		pNumber('L2', 'mm', 6000, 100, 40000, 10),
+		pNumber('L1', 'mm', 12500, 100, 40000, 1),
+		pNumber('L2', 'mm', 6000, 100, 40000, 1),
 		pSectionSeparator('radial'),
 		pNumber('D1', 'mm', 400, 1, 1000, 1),
 		pNumber('E1', 'mm', 5, 1, 80, 1),
@@ -53,8 +53,8 @@ const pDef: tParamDef = {
 		pNumber('R2', 'mm', 100, 0, 1000, 1),
 		pSectionSeparator('rod overlay'),
 		pNumber('rod1', '', 10, 1, 40, 1),
-		pNumber('rod2', 'mm', 1300, 10, 4000, 10),
-		pNumber('rod3', 'mm', 400, 10, 1000, 10),
+		pNumber('rod2', 'mm', 1300, 10, 4000, 1),
+		pNumber('rod3', 'mm', 400, 10, 1000, 1),
 		pNumber('rod4', 'mm', 100, 1, 400, 1)
 	],
 	paramSvg: {
