@@ -16,6 +16,7 @@ Parametrix is a web-app to generate 2D designs.
 
 ### Overview
 
+![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
 ![users_around_parametrix.svg]({base}/puisvg/users_around_parametrix.svg)
 
 The user of Parametrix gets:
