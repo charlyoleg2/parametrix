@@ -14,13 +14,13 @@ category: documentation
 
 The creation of a 3D part with *Parametrix* is composed by the following steps:
 
-1. **Concept:** brainstorming of the general ideas on a white-board
-2. **Design:** With [Inkscape](https://inkscape.org/) draw all relevant faces and sections of the parts and define the parameters
+1. **Idea:** brainstorming of the general ideas on a white-board
+2. **Concept:** With [Inkscape](https://inkscape.org/) draw all relevant faces and sections of the parts and define the parameters
 3. **Architecture:** Using the *Geometrix* library, describe in *javascrit* the 3D parts from the parameters
 4. **Sizing:** Compute the optimal values of the parameters for your use-case
 5. **Export:** Apply the parameter values and export the 3D parts
 
-In the traditional approach, the steps 2, 3 and 4 are usually merged together.
+In the traditional approach, the steps 2, 3 and 4 might be merged together. The *Parametrix* workflow forces addressing those phases separately.
 
 
 ## Javascript description
