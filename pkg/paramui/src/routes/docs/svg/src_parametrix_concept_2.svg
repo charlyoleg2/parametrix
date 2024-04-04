@@ -23,9 +23,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="0.74835468"
-     inkscape:cx="463.68388"
-     inkscape:cy="243.20019"
+     inkscape:zoom="1.0583333"
+     inkscape:cx="336.37795"
+     inkscape:cy="1921.8898"
      inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
@@ -35,6 +35,24 @@
      showguides="false" />
   <defs
      id="defs1">
+    <rect
+       x="234.95817"
+       y="1909.2187"
+       width="219.81053"
+       height="85.03937"
+       id="rect28" />
+    <rect
+       x="157.59227"
+       y="1859.3984"
+       width="195.99286"
+       height="63.373523"
+       id="rect25" />
+    <rect
+       x="81.167569"
+       y="1809.7921"
+       width="157.58489"
+       height="40.556102"
+       id="rect24" />
     <rect
        x="695.89642"
        y="1141.3424"
@@ -395,6 +413,37 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583;stroke-linejoin:bevel"
+       id="rect30"
+       width="90.995117"
+       height="55.092773"
+       x="31.484375"
+       y="477.6777"
+       inkscape:export-filename="parametrix_3D_shape_subset.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#fff6d5;stroke:#d4aa00;stroke-width:0.264583;stroke-linejoin:bevel"
+       id="rect29-5-2"
+       width="81.974609"
+       height="45.632812"
+       x="36.875713"
+       y="482.67102" />
+    <rect
+       style="fill:#dde9af;stroke:#008000;stroke-width:0.264583;stroke-linejoin:bevel"
+       id="rect29-5"
+       width="68.979492"
+       height="34.832031"
+       x="46.727669"
+       y="491.66559" />
+    <rect
+       style="fill:#d5f6ff;stroke:#006680;stroke-width:0.264583;stroke-linejoin:bevel"
+       id="rect29"
+       width="53.370117"
+       height="20.257812"
+       x="59.515621"
+       y="502.79688" />
+    <rect
        style="fill:#ffffff;stroke:#ffffff;stroke-width:0.529167;stroke-linejoin:bevel"
        id="rect90"
        width="156.37695"
@@ -579,7 +628,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1);display:inline"><tspan
          x="9.5664062"
          y="20.978545"
-         id="tspan26">src_parametrix_concept_2.svg</tspan></text>
+         id="tspan1">src_parametrix_concept_2.svg</tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458333)"
@@ -599,7 +648,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4);display:inline"><tspan
          x="172.28906"
          y="264.5762"
-         id="tspan32">Parametrix</tspan></text>
+         id="tspan2">Parametrix</tspan></text>
     <rect
        style="fill:#c6e9af;stroke:#008000;stroke-width:0.264583;stroke-linejoin:bevel"
        id="rect3-5-2"
@@ -614,7 +663,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6);display:inline"><tspan
          x="300.2207"
          y="274.31253"
-         id="tspan35">Geomui</tspan></text>
+         id="tspan3">Geomui</tspan></text>
     <rect
        style="fill:#c6e9af;stroke:#008000;stroke-width:0.264583;stroke-linejoin:bevel"
        id="rect3-5-7"
@@ -629,7 +678,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7);display:inline"><tspan
          x="207.04102"
          y="311.42581"
-         id="tspan88">paxApps</tspan></text>
+         id="tspan4">paxApps</tspan></text>
     <rect
        style="fill:#aade87;stroke:#008000;stroke-width:0.264583;stroke-linejoin:bevel"
        id="rect3-5"
@@ -644,7 +693,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect5);display:inline"><tspan
          x="120.0293"
          y="270.7305"
-         id="tspan89">Geometrix</tspan></text>
+         id="tspan5">Geometrix</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-8.2919318,1.6507064)"
@@ -654,11 +703,11 @@
        y="0"><tspan
          x="56.972202"
          y="275.84769"
-         id="tspan90">concept design
+         id="tspan6">concept design
 </tspan><tspan
          x="97.724575"
          y="294.18106"
-         id="tspan91">.svg</tspan></text>
+         id="tspan7">.svg</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-33.125678,3.7485861)"
@@ -668,11 +717,11 @@
        y="0"><tspan
          x="212.50895"
          y="347.87894"
-         id="tspan92">architecture design
+         id="tspan8">architecture design
 </tspan><tspan
          x="254.16009"
          y="366.21231"
-         id="tspan93">.js or .ts</tspan></text>
+         id="tspan9">.js or .ts</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-7.2968398,65.07454)"
@@ -680,7 +729,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect10);display:inline"><tspan
          x="343.24805"
          y="298.75003"
-         id="tspan94">desiABC</tspan></text>
+         id="tspan10">desiABC</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-16.361477,41.217028)"
@@ -688,7 +737,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect11);display:inline"><tspan
          x="358.94141"
          y="228.51956"
-         id="tspan95">npm-packages</tspan></text>
+         id="tspan11">npm-packages</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-21.089344,-2.3823421)"
@@ -698,11 +747,11 @@
        y="0"><tspan
          x="420.13865"
          y="291.71487"
-         id="tspan96">UI
+         id="tspan12">UI
 </tspan><tspan
          x="387.72224"
          y="310.04825"
-         id="tspan97">web-pages</tspan></text>
+         id="tspan13">web-pages</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-12.27973,-15.867089)"
@@ -710,7 +759,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect13);display:inline"><tspan
          x="352.80078"
          y="483.49808"
-         id="tspan98">desiABC-uis</tspan></text>
+         id="tspan14">desiABC-uis</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-13.073844,-10.03622)"
@@ -718,7 +767,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect14);display:inline"><tspan
          x="356.22461"
          y="526.00003"
-         id="tspan99">desiABC-cli</tspan></text>
+         id="tspan15">desiABC-cli</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-7.4881503,2.4279176)"
@@ -726,7 +775,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect15);display:inline"><tspan
          x="88.224609"
          y="571.84378"
-         id="tspan100">designer</tspan></text>
+         id="tspan16">designer</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,36.911656,6.4617632)"
@@ -734,7 +783,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect16);display:inline"><tspan
          x="389.83984"
          y="645.6094"
-         id="tspan101">maker</tspan></text>
+         id="tspan17">maker</tspan></text>
     <path
        style="fill:#dee3db;stroke:#bec8b7;stroke-width:0.52916667;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 16.215275,147.62944 11.806394,0.0194 -0.06962,-2.69452 -2.153925,-0.90944 -2.831843,-0.7751 0.41769,-2.02215 1.703085,0.0783 1.222408,-3.15068 1.962484,0.47267 -2.486254,-3.84029 c 0,0 0.631407,-1.06013 0.329013,-1.49417 -1.056163,-1.51598 -3.888977,-2.00338 -5.863415,-1.54804 -1.817195,0.41907 -3.232842,2.02615 -3.866126,3.56085 -0.563519,1.36563 0.341446,4.34099 0.341446,4.34099 l 2.631285,1.04233 0.342274,2.35978 -3.511419,1.16588 z"
@@ -752,7 +801,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect15-1);display:inline"><tspan
          x="88.224609"
          y="571.84378"
-         id="tspan102">other designer</tspan></text>
+         id="tspan18">other designer</tspan></text>
     <path
        style="fill:#dee3db;stroke:#bec8b7;stroke-width:0.52916667;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 58.442332,173.46253 -11.806394,0.0194 0.06962,-2.69452 2.153925,-0.90944 2.831843,-0.7751 -0.41769,-2.02215 -1.703085,0.0783 -1.222408,-3.15068 -1.962484,0.47267 2.486254,-3.84029 c 0,0 -0.631407,-1.06013 -0.329013,-1.49417 1.056163,-1.51598 3.888977,-2.00338 5.863415,-1.54804 1.817195,0.41907 3.232842,2.02615 3.866126,3.56085 0.563519,1.36563 -0.341446,4.34099 -0.341446,4.34099 l -2.631285,1.04233 -0.342274,2.35978 3.511419,1.16588 z"
@@ -770,7 +819,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect20);display:inline"><tspan
          x="666.68164"
          y="236.66605"
-         id="tspan103">import</tspan></text>
+         id="tspan19">import</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-160.73145,22.300103)"
@@ -780,15 +829,15 @@
        y="0"><tspan
          x="625.89453"
          y="346.52542"
-         id="tspan104">free hand
+         id="tspan20">free hand
 </tspan><tspan
          x="625.89453"
          y="364.85879"
-         id="tspan105">drawing
+         id="tspan21">drawing
 </tspan><tspan
          x="625.89453"
          y="383.19217"
-         id="tspan106">(eg; inkscape)</tspan></text>
+         id="tspan22">(eg; inkscape)</tspan></text>
     <path
        style="fill:none;stroke:#d5fff6;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide)"
        d="m 14.733488,134.81709 c 0,0 -7.9818438,-4.16093 -9.5955454,-8.38722 C 2.3716068,119.18482 1.3377817,107.18476 7.076546,102.80393 12.089445,98.977221 21.942409,82.594398 21.942409,82.594398"
@@ -817,7 +866,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect26);display:inline"><tspan
          x="663.85742"
          y="681.43167"
-         id="tspan107">re-use</tspan></text>
+         id="tspan23">re-use</tspan></text>
     <path
        style="fill:none;stroke:#d5fff6;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide)"
        d="m 27.788467,134.10446 c 0,0 10.143704,-3.00734 12.758307,-7.11527 4.11231,-6.46106 1.642686,-22.91743 1.642686,-22.91743"
@@ -832,11 +881,11 @@
        y="0"><tspan
          x="232.98983"
          y="820.14847"
-         id="tspan108">javascript
+         id="tspan26">javascript
 </tspan><tspan
          x="244.27631"
          y="838.48184"
-         id="tspan109">coding</tspan></text>
+         id="tspan27">coding</tspan></text>
     <path
        style="fill:none;stroke:#d5fff6;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide)"
        d="m 32.749262,139.20612 c 0,0 15.698086,-7.26138 21.517038,-13.38393 8.296154,-8.729 11.024993,-21.45231 17.498131,-31.607119 2.644447,-4.148505 8.687861,-11.931044 8.687861,-11.931044"
@@ -861,7 +910,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect32);display:inline"><tspan
          x="730.12695"
          y="518.19339"
-         id="tspan110">publish</tspan></text>
+         id="tspan29">publish</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.52916667;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker30)"
        d="m 29.541044,82.355842 1.983213,6.700941"
@@ -888,7 +937,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect35);display:inline"><tspan
          x="722.18359"
          y="582.85355"
-         id="tspan111">3D-scripts</tspan></text>
+         id="tspan30">3D-scripts</tspan></text>
     <rect
        style="fill:#ffeeaa;stroke:#6f917c;stroke-width:0.264584;stroke-linejoin:bevel"
        id="rect40-0"
@@ -903,7 +952,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect36);display:inline"><tspan
          x="705.46875"
          y="414.10745"
-         id="tspan112">.stl, .brep, .stp</tspan></text>
+         id="tspan31">.stl, .brep, .stp</tspan></text>
     <rect
        style="fill:#ffeeaa;stroke:#6f917c;stroke-width:0.264584;stroke-linejoin:bevel"
        id="rect40-0-0"
@@ -920,11 +969,11 @@
        y="0"><tspan
          x="789.20992"
          y="434.32815"
-         id="tspan113">slicer
+         id="tspan32">slicer
 </tspan><tspan
          x="766.22516"
          y="452.66153"
-         id="tspan114">(orca, cura)</tspan></text>
+         id="tspan33">(orca, cura)</tspan></text>
     <rect
        style="fill:#ffeeaa;stroke:#6f917c;stroke-width:0.264584;stroke-linejoin:bevel"
        id="rect40-0-0-0"
@@ -939,7 +988,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect38);display:inline"><tspan
          x="681.375"
          y="333.15823"
-         id="tspan115">3D-printing</tspan></text>
+         id="tspan34">3D-printing</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-33.990844,-22.342481)"
@@ -947,7 +996,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect39);display:inline"><tspan
          x="666.76562"
          y="404.47073"
-         id="tspan116">G-code</tspan></text>
+         id="tspan35">G-code</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.52916667;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker30)"
        d="M 106.82088,127.68448 125.70182,141.797"
@@ -986,11 +1035,11 @@
        y="0"><tspan
          x="729.72646"
          y="671.86526"
-         id="tspan117">parametrize
+         id="tspan36">parametrize
 </tspan><tspan
          x="747.55853"
          y="690.19864"
-         id="tspan118">(sizing)</tspan></text>
+         id="tspan37">(sizing)</tspan></text>
     <path
        style="fill:none;stroke:#aa8800;stroke-width:0.529167;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker30)"
        d="M 119.37158,120.17702 106.76723,106.39696"
@@ -1008,11 +1057,11 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect47);display:inline"><tspan
          x="705.04688"
          y="513.02347"
-         id="tspan119">freecad
+         id="tspan38">freecad
 </tspan><tspan
          x="705.04688"
          y="531.35684"
-         id="tspan120">openscad</tspan></text>
+         id="tspan39">openscad</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,0,37.041684)"
@@ -1020,9 +1069,9 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect49);display:inline"><tspan
          x="51.541016"
          y="787.38297"
-         id="tspan122"><tspan
+         id="tspan41"><tspan
            style="font-weight:bold;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold'"
-           id="tspan121">3D part idea</tspan></tspan></text>
+           id="tspan40">3D part idea</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="scale(0.26458333)"
@@ -1040,23 +1089,23 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect52);display:inline"><tspan
          x="292.46484"
          y="885.40641"
-         id="tspan125"><tspan
+         id="tspan44"><tspan
            style="font-weight:bold;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold'"
-           id="tspan123">Concept</tspan><tspan
+           id="tspan42">Concept</tspan><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan124">
+           id="tspan43">
 </tspan></tspan><tspan
          x="292.46484"
          y="903.97428"
-         id="tspan127"><tspan
+         id="tspan46"><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan126">- inkscape
+           id="tspan45">- inkscape
 </tspan></tspan><tspan
          x="292.46484"
          y="922.54215"
-         id="tspan129"><tspan
+         id="tspan48"><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan128">- svg-editor</tspan></tspan></text>
+           id="tspan47">- svg-editor</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,98.651063,-15.435618)"
@@ -1064,23 +1113,23 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect55);display:inline"><tspan
          x="72.919922"
          y="996.04508"
-         id="tspan132"><tspan
+         id="tspan51"><tspan
            style="font-weight:bold;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold'"
-           id="tspan130">Architecture</tspan><tspan
+           id="tspan49">Architecture</tspan><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan131">
+           id="tspan50">
 </tspan></tspan><tspan
          x="72.919922"
          y="1014.613"
-         id="tspan134"><tspan
+         id="tspan53"><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan133">- javascript
+           id="tspan52">- javascript
 </tspan></tspan><tspan
          x="72.919922"
          y="1033.1808"
-         id="tspan136"><tspan
+         id="tspan55"><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan135">import geometrix</tspan></tspan></text>
+           id="tspan54">import geometrix</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,0.1795391,31.765138)"
@@ -1088,29 +1137,29 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect56);display:inline"><tspan
          x="270.15039"
          y="954.54703"
-         id="tspan138"><tspan
+         id="tspan57"><tspan
    style="font-weight:bold;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold'"
-   id="tspan137">Publishing</tspan>
+   id="tspan56">Publishing</tspan>
 </tspan><tspan
          x="270.15039"
          y="972.8804"
-         id="tspan139">- web-site (online use without installation)
+         id="tspan58">- web-site (online use without installation)
 </tspan><tspan
          x="270.15039"
          y="991.21377"
-         id="tspan140">- npm-packages
+         id="tspan59">- npm-packages
 </tspan><tspan
          x="270.15039"
          y="1009.5471"
-         id="tspan141">  - pkg (for re-use in other designs)
+         id="tspan60">  - pkg (for re-use in other designs)
 </tspan><tspan
          x="270.15039"
          y="1027.8805"
-         id="tspan142">  - pkg-uis (for offline use after npm install)
+         id="tspan61">  - pkg-uis (for offline use after npm install)
 </tspan><tspan
          x="270.15039"
          y="1046.2139"
-         id="tspan143">  - pkg-cli (for script automation)</tspan></text>
+         id="tspan62">  - pkg-cli (for script automation)</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-20.61311,-16.54756)"
@@ -1118,7 +1167,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect62);display:inline"><tspan
          x="169.33594"
          y="1191.4844"
-         id="tspan144">list of parameters</tspan></text>
+         id="tspan63">list of parameters</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-0.31488349,8.608763)"
@@ -1126,29 +1175,29 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect63);display:inline"><tspan
          x="31.876953"
          y="1148.8693"
-         id="tspan147"><tspan
+         id="tspan66"><tspan
            style="font-weight:bold;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold'"
-           id="tspan145">sizing</tspan><tspan
+           id="tspan64">sizing</tspan><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan146">
+           id="tspan65">
 </tspan></tspan><tspan
          x="31.876953"
          y="1167.4372"
-         id="tspan149"><tspan
+         id="tspan68"><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan148">- hand work
+           id="tspan67">- hand work
 </tspan></tspan><tspan
          x="31.876953"
          y="1186.005"
-         id="tspan151"><tspan
+         id="tspan70"><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan150">- spreadsheet
+           id="tspan69">- spreadsheet
 </tspan></tspan><tspan
          x="31.876953"
          y="1204.5729"
-         id="tspan153"><tspan
+         id="tspan72"><tspan
            style="font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans'"
-           id="tspan152">- scripts</tspan></tspan></text>
+           id="tspan71">- scripts</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,11.153505,2.8317593)"
@@ -1156,7 +1205,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect64);display:inline"><tspan
          x="132.32617"
          y="1206.1563"
-         id="tspan154">parametrization</tspan></text>
+         id="tspan73">parametrization</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,7.2561309,37.1444)"
@@ -1164,9 +1213,9 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect65);display:inline"><tspan
          x="353.34375"
          y="1162.9826"
-         id="tspan156"><tspan
+         id="tspan75"><tspan
            style="font-weight:bold;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold'"
-           id="tspan155">3D-scripts</tspan></tspan></text>
+           id="tspan74">3D-scripts</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,0,36.512517)"
@@ -1174,7 +1223,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect66);display:inline"><tspan
          x="36.382812"
          y="1263.627"
-         id="tspan157">Freecad</tspan></text>
+         id="tspan76">Freecad</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,2.2138519,39.509436)"
@@ -1182,7 +1231,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect67);display:inline"><tspan
          x="190.99219"
          y="1253.6465"
-         id="tspan158">OpenScad</tspan></text>
+         id="tspan77">OpenScad</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,5.2916669,36.512517)"
@@ -1190,7 +1239,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect68);display:inline"><tspan
          x="357.10156"
          y="1261.377"
-         id="tspan159">JsCad</tspan></text>
+         id="tspan78">JsCad</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,19.603168,39.673784)"
@@ -1198,7 +1247,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect69);display:inline"><tspan
          x="430.62695"
          y="1250.9903"
-         id="tspan160">ThreeJS</tspan></text>
+         id="tspan79">ThreeJS</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,22.266958,34.316618)"
@@ -1206,7 +1255,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect70);display:inline"><tspan
          x="144.23828"
          y="1354.0586"
-         id="tspan161">.stl, .brep, .stp</tspan></text>
+         id="tspan80">.stl, .brep, .stp</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,6.9067204,37.077374)"
@@ -1216,11 +1265,11 @@
        y="0"><tspan
          x="239.90978"
          y="1403.1348"
-         id="tspan162">slicers
+         id="tspan81">slicers
 </tspan><tspan
          x="193.26709"
          y="1421.4682"
-         id="tspan163">(Orca, Cura, Slic3r)</tspan></text>
+         id="tspan82">(Orca, Cura, Slic3r)</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,12.987563,43.499487)"
@@ -1228,7 +1277,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect72);display:inline"><tspan
          x="194.53125"
          y="1467.9922"
-         id="tspan164">3D-printing</tspan></text>
+         id="tspan83">3D-printing</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker30)"
        d="m 41.983085,244.67485 25.786218,0.1168"
@@ -1302,7 +1351,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect89);display:inline"><tspan
          x="406.90234"
          y="780.7969"
-         id="tspan165">Parametrix involved</tspan></text>
+         id="tspan84">Parametrix involved</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-81.952571,-22.842864)"
@@ -1310,7 +1359,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect23)"><tspan
          x="673.70117"
          y="1016.4492"
-         id="tspan166">import</tspan></text>
+         id="tspan85">import</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-56.386932,-13.111859)"
@@ -1318,7 +1367,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect27)"><tspan
          x="682.60938"
          y="1077.8907"
-         id="tspan167">generate</tspan></text>
+         id="tspan86">generate</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,-71.602848,22.242099)"
@@ -1326,6 +1375,37 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect33)"><tspan
          x="695.89648"
          y="1154.3184"
-         id="tspan168">export</tspan></text>
+         id="tspan87">export</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,17.649414,5.7089844)"
+       id="text17"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect24)"><tspan
+         x="81.167969"
+         y="1822.7696"
+         id="tspan88">any solid 3D shapes</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,7.4697265,1.2304687)"
+       id="text24"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect25)"><tspan
+         x="157.5918"
+         y="1872.375"
+         id="tspan89">technical 3D shapes</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text25"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect28)"><tspan
+         x="234.95898"
+         y="1922.1953"
+         id="tspan90">Parametrix 3D shapes
+</tspan><tspan
+         x="234.95898"
+         y="1940.5287"
+         id="tspan91">(combination of extrudes </tspan><tspan
+         x="234.95898"
+         y="1958.8621"
+         id="tspan92">orthogonal or rotated)</tspan></text>
   </g>
 </svg>

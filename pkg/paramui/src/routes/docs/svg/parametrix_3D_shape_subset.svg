@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="344.91855"
+   height="209.22473"
+   viewBox="0 0 91.259699 55.357377"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
+   sodipodi:docname="src_parametrix_concept_2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.74835468"
+     inkscape:cx="463.68388"
+     inkscape:cy="243.20019"
+     inkscape:window-width="1370"
+     inkscape:window-height="836"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs1">
+    <rect
+       x="234.95818"
+       y="1909.2188"
+       width="219.81053"
+       height="85.039368"
+       id="rect28" />
+    <rect
+       x="157.59227"
+       y="1859.3984"
+       width="195.99286"
+       height="63.373524"
+       id="rect25" />
+    <rect
+       x="81.167572"
+       y="1809.7921"
+       width="157.58488"
+       height="40.556103"
+       id="rect24" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-31.352083,-477.54541)">
+    <rect
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583;stroke-linejoin:bevel"
+       id="rect30"
+       width="90.995117"
+       height="55.092773"
+       x="31.484375"
+       y="477.6777" />
+    <rect
+       style="fill:#fff6d5;stroke:#d4aa00;stroke-width:0.264583;stroke-linejoin:bevel"
+       id="rect29-5-2"
+       width="81.974609"
+       height="45.632812"
+       x="36.875713"
+       y="482.67102" />
+    <rect
+       style="fill:#dde9af;stroke:#008000;stroke-width:0.264583;stroke-linejoin:bevel"
+       id="rect29-5"
+       width="68.979492"
+       height="34.832031"
+       x="46.727669"
+       y="491.66559" />
+    <rect
+       style="fill:#d5f6ff;stroke:#006680;stroke-width:0.264583;stroke-linejoin:bevel"
+       id="rect29"
+       width="53.370117"
+       height="20.257812"
+       x="59.515621"
+       y="502.79688" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,17.649414,5.7089844)"
+       id="text17"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect24)"><tspan
+         x="81.167969"
+         y="1822.7696"
+         id="tspan1">any solid 3D shapes</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,7.4697265,1.2304687)"
+       id="text24"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect25)"><tspan
+         x="157.5918"
+         y="1872.375"
+         id="tspan2">technical 3D shapes</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text25"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect28)"><tspan
+         x="234.95898"
+         y="1922.1953"
+         id="tspan3">Parametrix 3D shapes
+</tspan><tspan
+         x="234.95898"
+         y="1940.5287"
+         id="tspan4">(combination of extrudes </tspan><tspan
+         x="234.95898"
+         y="1958.8621"
+         id="tspan5">orthogonal or rotated)</tspan></text>
+  </g>
+</svg>

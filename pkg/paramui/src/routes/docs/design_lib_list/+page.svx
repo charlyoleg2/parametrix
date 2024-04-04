@@ -62,6 +62,7 @@ Glossary:
 If you want to get your *geometrix design library* in this list, please, create a [Github issue](https://github.com/charlyoleg2/parametrix/issues) with a link to your library.
 
 ![designer_maker_interfaces.svg]({base}/puisvg/designer_maker_interfaces.svg)
+![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
 
 
 <style lang="scss">
