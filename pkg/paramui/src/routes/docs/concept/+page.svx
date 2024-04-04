@@ -12,7 +12,7 @@ category: documentation
 
 ## Parametrix presentation
 
-Parametrix is a web-app to generate 2D designs.
+Parametrix is a web-app for generating 2D shapes and 3D shapes.
 
 ### Overview
 
@@ -21,7 +21,7 @@ Parametrix is a web-app to generate 2D designs.
 ![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
 
 
-#### designers and makers
+#### Designers and makers
 
 ![designer_maker_interfaces.svg]({base}/puisvg/designer_maker_interfaces.svg)
 
@@ -31,7 +31,7 @@ Parametrix is a web-app to generate 2D designs.
 ![parametrix_3D_shape_subset.svg]({base}/puisvg/parametrix_3D_shape_subset.svg)
 
 
-#### more explanations
+#### More explanations
 
 The user of Parametrix gets:
 - 2D
