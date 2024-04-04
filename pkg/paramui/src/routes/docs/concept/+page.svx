@@ -164,7 +164,13 @@ In 2023 the eco-system for developing web-apps is mature.
 
 ![users_around_parametrix.svg]({base}/puisvg/users_around_parametrix.svg)
 
-### npm-packages
+
+### repos and packages overview
+
+![repos_and_packages.svg]({base}/puisvg/repos_and_packages.svg)
+
+
+### npm-packages of parametrix
 
 - geometrix
 - designix
@@ -176,6 +182,14 @@ In 2023 the eco-system for developing web-apps is mature.
 - paramui
 - designix-script-js
 - designix-script-ts
+
+
+### npm-packages of parame_paxApps
+
+- paxScr
+- desiXY-cli
+- desiXY-ui
+- desiXY-uis
 
 
 <style lang="scss">
