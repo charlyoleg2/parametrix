@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="541.75562"
-   height="507.77249"
-   viewBox="0 0 143.33951 134.34815"
-   version="1.1"
+   sodipodi:docname="src_parametrix_concept.svg"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
    id="svg5"
-   inkscape:version="1.2.2 (1:1.2.2+202305151914+b0a8486541)"
-   sodipodi:docname="parametrix_concept.svg"
+   version="1.1"
+   viewBox="0 0 143.33949 134.34815"
+   height="507.77249"
+   width="541.75555"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,10 +24,10 @@
      inkscape:document-units="px"
      showgrid="false"
      units="px"
-     inkscape:zoom="0.74118968"
-     inkscape:cx="476.93594"
-     inkscape:cy="6533.4153"
-     inkscape:window-width="1366"
+     inkscape:zoom="1.4823794"
+     inkscape:cx="221.94048"
+     inkscape:cy="124.79936"
+     inkscape:window-width="1370"
      inkscape:window-height="836"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -266,7 +266,8 @@
        height="12.537025"
        x="57.948544"
        y="1094.5608"
-       ry="3.9321795" />
+       ry="3.9321795"
+       rx="3.9321795" />
     <rect
        style="fill:#ffe6d5;stroke:#cccccc;stroke-width:0.264584"
        id="rect1717-5"
@@ -274,7 +275,8 @@
        height="12.537025"
        x="17.187181"
        y="1075.6464"
-       ry="3.9321795" />
+       ry="3.9321795"
+       rx="3.9321795" />
     <rect
        style="fill:#ffccaa;stroke:#cccccc;stroke-width:0.264584"
        id="rect1717"
@@ -282,7 +284,8 @@
        height="12.537025"
        x="65.752747"
        y="1059.015"
-       ry="3.9321795" />
+       ry="3.9321795"
+       rx="3.9321795" />
     <path
        style="fill:#cccccc;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 35.829467,1144.4178 14.802494,-0.1725 c 0,0 0.287877,-2.3214 -0.444569,-3.0347 -1.324752,-1.2901 -5.508165,-0.6582 -5.508165,-0.6582 l -1.336046,-3.0806 c 0,0 2.736798,0.14 3.799648,-0.6074 0.986864,-0.6937 1.592996,-1.9835 1.827497,-3.2015 0.429602,-2.2315 0.42465,-4.9672 -0.917156,-6.7608 -1.468252,-1.9626 -4.266246,-2.481 -6.630639,-2.8069 -1.855504,-0.2558 -3.973153,-0.257 -5.572616,0.7173 -1.205004,0.734 -1.911634,2.1611 -2.405955,3.4827 -0.543846,1.454 -0.847106,3.1113 -0.517345,4.6282 0.298168,1.3716 1.079205,2.7209 2.162915,3.6129 0.842656,0.6936 3.080162,1.1104 3.080162,1.1104 l -1.289017,3.0546 c 0,0 -3.834193,-0.059 -5.019746,1.2425 -0.66822,0.7331 -0.530149,2.9856 -0.530149,2.9856 z"
@@ -295,13 +298,13 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1389);display:inline"><tspan
          x="233.01758"
          y="4028.5469"
-         id="tspan9513"><tspan
+         id="tspan2"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan9511">Geometrix</tspan>
+   id="tspan1">Geometrix</tspan>
 </tspan><tspan
          x="233.01758"
          y="4046.8804"
-         id="tspan9515">geometry engine</tspan></text>
+         id="tspan3">geometry engine</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,2.988742,-11.876889)"
@@ -309,13 +312,13 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1395);display:inline"><tspan
          x="66.929688"
          y="4129.9903"
-         id="tspan9519"><tspan
+         id="tspan5"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan9517">Designix</tspan>
+   id="tspan4">Designix</tspan>
 </tspan><tspan
          x="66.929688"
          y="4148.3238"
-         id="tspan9521">serie of 2D designs</tspan></text>
+         id="tspan6">serie of 2D designs</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-1.6908275,-12.922051)"
@@ -323,13 +326,13 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1401);display:inline"><tspan
          x="246.50586"
          y="4205.1621"
-         id="tspan9525"><tspan
+         id="tspan8"><tspan
    style="font-weight:bold;-inkscape-font-specification:'sans-serif Bold'"
-   id="tspan9523">Parametrix</tspan>
+   id="tspan7">Paramui</tspan>
 </tspan><tspan
          x="246.50586"
          y="4223.4956"
-         id="tspan9527">UI for Designix</tspan></text>
+         id="tspan9">UI for Designix</tspan></text>
     <path
        style="fill:#cccccc;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 51.532817,1059.3292 -14.802494,-0.1725 c 0,0 -0.201741,-2.2655 0.444569,-3.0347 1.035128,-1.232 4.522162,-1.3691 4.522162,-1.3691 l 2.322049,-2.3697 c 0,0 -2.736798,0.14 -3.799648,-0.6074 -0.986864,-0.6937 -1.592996,-1.9835 -1.827497,-3.2015 -0.429602,-2.2315 -0.42465,-4.9672 0.917156,-6.7608 1.468252,-1.9626 4.266246,-2.481 6.630639,-2.8069 1.855504,-0.2558 3.973153,-0.257 5.572616,0.7173 1.205004,0.734 1.911634,2.1611 2.405955,3.4827 0.543846,1.454 0.847106,3.1113 0.517345,4.6282 -0.298168,1.3716 -1.079205,2.7209 -2.162915,3.6129 -0.842656,0.6936 -3.080162,1.1104 -3.080162,1.1104 l 1.289017,3.0546 c 0,0 3.834193,-0.059 5.019746,1.2425 0.66822,0.7331 0.530149,2.9856 0.530149,2.9856 z"
@@ -342,25 +345,25 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1413);display:inline"><tspan
          x="39.685547"
          y="4309.25"
-         id="tspan9529">Designix developer
+         id="tspan10">Designix developer
 </tspan><tspan
          x="39.685547"
          y="4327.5835"
-         id="tspan9533"><tspan
+         id="tspan12"><tspan
            style="font-size:12px"
-           id="tspan9531">competences:
+           id="tspan11">competences:
 </tspan></tspan><tspan
          x="39.685547"
          y="4345.917"
-         id="tspan9537"><tspan
+         id="tspan14"><tspan
            style="font-size:12px"
-           id="tspan9535">- mechanics
+           id="tspan13">- mechanics
 </tspan></tspan><tspan
          x="39.685547"
          y="4364.2505"
-         id="tspan9541"><tspan
+         id="tspan16"><tspan
            style="font-size:12px"
-           id="tspan9539">- programming</tspan></tspan></text>
+           id="tspan15">- programming</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-17.672948,-31.609763)"
@@ -368,25 +371,25 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1419);display:inline"><tspan
          x="114.02148"
          y="4353.9766"
-         id="tspan9543">Parametrix user
+         id="tspan17">Parametrix user
 </tspan><tspan
          x="114.02148"
          y="4372.3101"
-         id="tspan9547"><tspan
+         id="tspan19"><tspan
            style="font-size:12px"
-           id="tspan9545">competences:
+           id="tspan18">competences:
 </tspan></tspan><tspan
          x="114.02148"
          y="4390.6436"
-         id="tspan9551"><tspan
+         id="tspan21"><tspan
            style="font-size:12px"
-           id="tspan9549">- mechanics
+           id="tspan20">- mechanics
 </tspan></tspan><tspan
          x="114.02148"
          y="4408.9771"
-         id="tspan9555"><tspan
+         id="tspan23"><tspan
    style="font-size:12px"
-   id="tspan9553">- CAM</tspan>
+   id="tspan22">- CAM</tspan>
 </tspan></text>
     <text
        xml:space="preserve"
@@ -395,7 +398,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1449);display:inline"><tspan
          x="317.51562"
          y="4334.0196"
-         id="tspan9557">FreeCAD</tspan></text>
+         id="tspan24">FreeCAD</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,4.4509842,-21.984404)"
@@ -403,7 +406,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1455);display:inline"><tspan
          x="304.00977"
          y="4402.0938"
-         id="tspan9559">CAM tools</tspan></text>
+         id="tspan25">CAM tools</tspan></text>
     <path
        style="fill:#cccccc;stroke:#cccccc;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 141.35504,1058.2205 -14.8025,-0.1725 c 0,0 -0.24123,-2.2765 0.44457,-3.0347 1.28044,-1.4157 5.55451,-1.3928 5.55451,-1.3928 l 1.2897,-2.346 c 0,0 -2.73679,0.14 -3.79964,-0.6074 -0.98687,-0.6937 -1.593,-1.9835 -1.8275,-3.2015 -0.4296,-2.2315 -0.42465,-4.9672 0.91716,-6.7608 1.46825,-1.9626 4.24464,-2.5471 6.63063,-2.8069 1.8393,-0.2003 3.87275,0.058 5.45726,1.0131 1.16006,0.6993 2.00593,1.9342 2.52132,3.1869 0.59064,1.4356 0.8471,3.1113 0.51734,4.6282 -0.29817,1.3716 -1.0792,2.7209 -2.16291,3.6129 -0.84266,0.6936 -3.08017,1.1104 -3.08017,1.1104 l 0.52339,2.7435 c 0,0 4.43589,0.082 5.78538,1.5536 0.68311,0.745 0.53015,2.9856 0.53015,2.9856 z"
@@ -416,7 +419,8 @@
        height="7.7243457"
        x="85.46492"
        y="1119.405"
-       ry="2.4227049" />
+       ry="2.4227049"
+       rx="2.4227049" />
     <rect
        style="fill:none;stroke:#cccccc;stroke-width:0.264584"
        id="rect1717-56-2"
@@ -424,7 +428,8 @@
        height="7.7243457"
        x="82.118912"
        y="1137.5698"
-       ry="2.4227049" />
+       ry="2.4227049"
+       rx="2.4227049" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
        d="m 131.55168,1058.8985 -23.31108,5.4862"
@@ -447,7 +452,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;white-space:pre;shape-inside:url(#rect2906);display:inline"><tspan
          x="459.91797"
          y="4373.8867"
-         id="tspan9561">uses</tspan></text>
+         id="tspan26">uses</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,9.8246997,-57.646155)"
@@ -455,7 +460,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2912);display:inline"><tspan
          x="435.44141"
          y="4259.7637"
-         id="tspan9563">develops</tspan></text>
+         id="tspan27">develops</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,-91.815006,-60.800731)"
@@ -463,7 +468,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2912-6);display:inline"><tspan
          x="435.44141"
          y="4259.7637"
-         id="tspan9565">develops</tspan></text>
+         id="tspan28">develops</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend-09-7)"
        d="m 51.962813,1130.2121 22.7461,-22.5598"
@@ -486,7 +491,7 @@
        style="font-size:12px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4687);display:inline"><tspan
          x="208.22852"
          y="4449.0352"
-         id="tspan9567">dependencies</tspan></text>
+         id="tspan29">dependencies</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,3.1356564,-21.681701)"
@@ -494,7 +499,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect4801);display:inline"><tspan
          x="27.365234"
          y="4470.0196"
-         id="tspan9569">users around Parametrix</tspan></text>
+         id="tspan30">users around Parametrix</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458334,0,0,0.26458334,44.97944,-104.80276)"
@@ -502,26 +507,26 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1407);display:inline"><tspan
          x="226.94531"
          y="4315.5469"
-         id="tspan9573"><tspan
+         id="tspan32"><tspan
    style="-inkscape-font-specification:sans-serif"
-   id="tspan9571">Parametrix developer</tspan>
+   id="tspan31">Parametrix developer</tspan>
 </tspan><tspan
          x="226.94531"
          y="4333.8804"
-         id="tspan9577"><tspan
+         id="tspan34"><tspan
            style="font-size:12px;-inkscape-font-specification:sans-serif"
-           id="tspan9575">competences:
+           id="tspan33">competences:
 </tspan></tspan><tspan
          x="226.94531"
          y="4352.2139"
-         id="tspan9581"><tspan
+         id="tspan36"><tspan
            style="font-size:12px;-inkscape-font-specification:sans-serif"
-           id="tspan9579">- math
+           id="tspan35">- math
 </tspan></tspan><tspan
          x="226.94531"
          y="4370.5474"
-         id="tspan9585"><tspan
+         id="tspan38"><tspan
            style="font-size:12px;-inkscape-font-specification:sans-serif"
-           id="tspan9583">- programming</tspan></tspan></text>
+           id="tspan37">- programming</tspan></tspan></text>
   </g>
 </svg>
