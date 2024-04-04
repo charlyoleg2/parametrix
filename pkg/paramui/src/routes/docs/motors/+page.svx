@@ -10,14 +10,13 @@ category: documentation
 
 # {title}
 
-## Electrical motors
 
-### Types of electrical motors
+## Types of electrical motors
 
 ![classification_of_electrical_motors.svg]({base}/puisvg/classification_of_electrical_motors.svg)
 
 
-### Controller of electrical motors
+## Controller of electrical motors
 
 An optimal BLDC motor control enables:
 - better dynamics
@@ -29,7 +28,7 @@ An optimal BLDC motor control enables:
 The project [SimpleFOC](https://simplefoc.com/) (Field Orientation Control) provides a solution for this problematic.
 
 
-### Embedded electronics
+## Embedded electronics
 
 Embedded key technologies:
 - Powerful microcontroller like STM32
@@ -45,7 +44,7 @@ Enable motor synchronization for:
 - mechanical joint with multi-motors
 
 
-### multi-motor joint
+## multi-motor joint
 
 ![multi_motor_joint.svg]({base}/puisvg/multi_motor_joint.svg)
 
@@ -63,7 +62,7 @@ advantages of mechanical join with multi-motors
 - [+] improve split between small standard high-tech and large low cost
 
 
-### Gimbal
+## Gimbal
 
 Gimbal is a two axis mechanism for controlling pan and tilt orientation. It is used to stabilize and orientate camera (100g), as articulation of arm-bot (5kg) or to orientate solar panel (2000kg).
 
