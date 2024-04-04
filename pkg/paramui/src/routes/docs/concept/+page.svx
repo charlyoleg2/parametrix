@@ -16,10 +16,22 @@ Parametrix is a web-app to generate 2D designs.
 
 ### Overview
 
+#### Parametrix workflow
+
 ![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
+
+
+#### designers and makers
+
 ![designer_maker_interfaces.svg]({base}/puisvg/designer_maker_interfaces.svg)
+
+
+#### Parametrix scope
+
 ![parametrix_3D_shape_subset.svg]({base}/puisvg/parametrix_3D_shape_subset.svg)
-![users_around_parametrix.svg]({base}/puisvg/users_around_parametrix.svg)
+
+
+#### more explanations
 
 The user of Parametrix gets:
 - 2D
@@ -80,6 +92,30 @@ Extruded-2D-design is good enough for 90% of technical parts
 ![gui_vs_programmatic.svg]({base}/puisvg/gui_vs_programmatic.svg)
 
 
+### Parametrix versus traditional CAD tools
+
+#### Pros of Parametrix
+
+- Use standard software toold and flow
+- branch and history provided by git
+- very accurate modification tracking
+- design-input via text-editor
+- design shared through url/web-page
+- explicit list of parameters
+- possibility to implement complex logic
+- 2D drawings are free
+- run in the browser (lightweight)
+- can be scripted
+
+
+#### Cons of Parametrix
+
+- No straight method for managing assembly
+- No export with dimensions
+- 2D drawings are free and can contains bugs
+- no direct 3D rendering
+
+
 ### Future tools around Parametrix
 
 ![parametrix_galaxi.svg]({base}/puisvg/parametrix_galaxi.svg)
@@ -122,77 +158,24 @@ In 2023 the eco-system for developing web-apps is mature.
 [ESM-link]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
 
 
-## Electrical motors
+## Development
 
-### Types of electrical motors
+### actors
 
-![classification_of_electrical_motors.svg]({base}/puisvg/classification_of_electrical_motors.svg)
+![users_around_parametrix.svg]({base}/puisvg/users_around_parametrix.svg)
 
+### npm-packages
 
-### Controller of electrical motors
-
-An optimal BLDC motor control enables:
-- better dynamics
-- no missing steps
-- energy efficient
-- backdrivable
-- enable motor synchronization (CNC or multi-motor-joint)
-
-The project [SimpleFOC](https://simplefoc.com/) (Field Orientation Control) provides a solution for this problematic.
-
-
-### Embedded electronics
-
-Embedded key technologies:
-- Powerful microcontroller like STM32
-- ROS2 maturity
-- mROS: micro-ROS without agent
-- Zephyr-OS, Tock-OS
-- Ethernet 10BASE-T1S and 100BASE-T1
-- SimpleFOC (Field Orientation Control)
-
-Enable motor synchronization for:
-- CNC
-- robot
-- mechanical joint with multi-motors
-
-
-### multi-motor joint
-
-![multi_motor_joint.svg]({base}/puisvg/multi_motor_joint.svg)
-
-advantages of mechanical join with multi-motors
-- [+] distributed efforts
-- [+] spread thermic, better cooling
-- [+] scalable
-- [+] use standard high-tech/mid-range components
-- [+] easier maintenance
-- [+] easier manufacturing standardization
-- [+] smoother control
-- [+] no backlash
-- [-] complex motor driver
-- [+] distributed power
-- [+] improve split between small standard high-tech and large low cost
-
-
-### Gimbal
-
-Gimbal is a two axis mechanism for controlling pan and tilt orientation. It is used to stabilize and orientate camera (100g), as articulation of arm-bot (5kg) or to orientate solar panel (2000kg).
-
-Advantages of heliostats (aka solar tracker):
-- optimized radiation quantity
-- ensure ray perpendicular to the panel
-- enable more efficient photovoltaic micro-lense technology
-- enable concentrators for solar thermic panel
-
-
-## Roadmap
-
-- Parametrix
-- gears
-- gimbal
-- heliostat
-
+- geometrix
+- designix
+- geomui
+- geomcli
+- designix-cli
+- designix-ui
+- designix-uis
+- paramui
+- designix-script-js
+- designix-script-ts
 
 
 <style lang="scss">

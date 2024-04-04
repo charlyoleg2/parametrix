@@ -1,0 +1,76 @@
+---
+title: Electrical motors
+category: documentation
+---
+
+<script lang="ts">
+	import { base } from '$app/paths';
+</script>
+
+
+# {title}
+
+## Electrical motors
+
+### Types of electrical motors
+
+![classification_of_electrical_motors.svg]({base}/puisvg/classification_of_electrical_motors.svg)
+
+
+### Controller of electrical motors
+
+An optimal BLDC motor control enables:
+- better dynamics
+- no missing steps
+- energy efficient
+- backdrivable
+- enable motor synchronization (CNC or multi-motor-joint)
+
+The project [SimpleFOC](https://simplefoc.com/) (Field Orientation Control) provides a solution for this problematic.
+
+
+### Embedded electronics
+
+Embedded key technologies:
+- Powerful microcontroller like STM32
+- ROS2 maturity
+- mROS: micro-ROS without agent
+- Zephyr-OS, Tock-OS
+- Ethernet 10BASE-T1S and 100BASE-T1
+- SimpleFOC (Field Orientation Control)
+
+Enable motor synchronization for:
+- CNC
+- robot
+- mechanical joint with multi-motors
+
+
+### multi-motor joint
+
+![multi_motor_joint.svg]({base}/puisvg/multi_motor_joint.svg)
+
+advantages of mechanical join with multi-motors
+- [+] distributed efforts
+- [+] spread thermic, better cooling
+- [+] scalable
+- [+] use standard high-tech/mid-range components
+- [+] easier maintenance
+- [+] easier manufacturing standardization
+- [+] smoother control
+- [+] no backlash
+- [-] complex motor driver
+- [+] distributed power
+- [+] improve split between small standard high-tech and large low cost
+
+
+### Gimbal
+
+Gimbal is a two axis mechanism for controlling pan and tilt orientation. It is used to stabilize and orientate camera (100g), as articulation of arm-bot (5kg) or to orientate solar panel (2000kg).
+
+
+
+
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
+</style>
