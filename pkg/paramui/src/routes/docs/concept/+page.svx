@@ -12,7 +12,7 @@ category: documentation
 
 ## Parametrix presentation
 
-Parametrix is a web-app for generating 2D shapes and 3D shapes.
+Parametrix is a generator of web-apps for designing 2D shapes and 3D shapes. 2D shapes are defined via the 2D-engine API, called *geometrix*. 3D shapes are combinations (union, intersection, substration) of extrusions of the previously defined 2D shapes.
 
 ### Overview
 
@@ -101,6 +101,7 @@ Extruded-2D-design is good enough for 90% of technical parts
 - very accurate modification tracking
 - design-input via text-editor
 - design shared through url/web-page
+- extensive parametrization eases design re-use
 - explicit list of parameters
 - possibility to implement complex logic
 - 2D drawings are free
@@ -114,6 +115,13 @@ Extruded-2D-design is good enough for 90% of technical parts
 - No export with dimensions
 - 2D drawings are free and can contains bugs
 - no direct 3D rendering
+
+
+### Shape description
+
+In *Parametrix*, a 2D-figures is a collection of 2D-contours. A 2D-contour is a close-path made out of a *straight strokes* and *arcs of circle*. A 2D-contour might describe the outer shape or inner holes of the final part. Each 2D-shape describes the final part from a specific direction according to the *technical drawing* methodology. The 3D-shape is the recipe of how to extrude the 2D-shapes and how to combine (boolean operations: union, intersection, substration) them to create the final part.
+
+![geometry_descriptive.svg]({base}/puisvg/geometry_descriptive.svg)
 
 
 ### Future tools around Parametrix
