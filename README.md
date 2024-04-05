@@ -66,6 +66,7 @@ npm run preview
 
 Other useful commands:
 ```bash
+npm run ci2
 npm run clean
 npm run ls-pkg
 npm -w geometrix run check
