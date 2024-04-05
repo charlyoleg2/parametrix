@@ -119,9 +119,13 @@ Extruded-2D-design is good enough for 90% of technical parts
 
 ### Shape description
 
-In *Parametrix*, a 2D-figures is a collection of 2D-contours. A 2D-contour is a close-path made out of a *straight strokes* and *arcs of circle*. A 2D-contour might describe the outer shape or inner holes of the final part. Each 2D-shape describes the final part from a specific direction according to the *technical drawing* methodology. The 3D-shape is the recipe of how to extrude the 2D-shapes and how to combine (boolean operations: union, intersection, substration) them to create the final part.
-
 ![geometry_descriptive.svg]({base}/puisvg/geometry_descriptive.svg)
+
+In *Parametrix*, a 2D-figure is a collection of 2D-contours. A 2D-contour is a close-path made out of a *straight strokes* and *arcs of circle*. A 2D-contour might describe the outer shape or inner holes of the final part. Each 2D-figure describes the final part from a specific direction according to the *technical drawing* methodology. The 3D-shape is the recipe of how to extrude the 2D-figures and how to combine (boolean operations: union, intersection, substration) them to create the final part.
+
+![shape_description_tree.svg]({base}/puisvg/shape_description_tree.svg)
+
+In *Parametrix*, a *design* is a 3D-shape. This 3D-shape is defined by a recipe and a collection of 2D-figures. Each 2D-figure consists of the following layers: *main*, *second*, *dynamics*, *points*, *lines* and *vectors*. Only the layer *main* is used in the final 3D-shape. The other layers are only helpers for debugging and simulation. The layers *main*, *second* and *dynamics* are collections of *Contours*. A *Contour* can be either a *circle* or a *close-path*. A close-path is made out of *straight strokes* and *arcs-of-circle*.
 
 
 ### Future tools around Parametrix
