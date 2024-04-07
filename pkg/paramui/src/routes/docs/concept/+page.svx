@@ -204,6 +204,36 @@ In 2023 the eco-system for developing web-apps is mature.
 - desiXY-uis
 
 
+## Generalization of the design-webapp concept
+
+The concept of *Parametrix* for generating webapp can be extended to other disciplines like:
+- electronic
+- digital-design/FPGA-design
+- simple-software state-machine
+- music
+
+![concept_of_webapp_generator.svg]({base}/puisvg/concept_of_webapp_generator.svg)
+
+For each of those domains, an *author* creates designs in *javascript*. From there the framework generates a webapp. Finally the end-user parametrises a design and gets his customized instance of the design.
+
+![helper_apps_for_design_webapp.svg]({base}/puisvg/helper_apps_for_design_webapp.svg)
+
+The *authors* generate many independant webapp for exposing there designs. 3 helper-apps could complete the offer:
+
+- A search-engine for selecting/finding the wished design
+- A visualizer for displaying a parametrized design
+- An assembler for managing the parameters and the combination of several designs
+
+![distribution_of_design_apps.svg]({base}/puisvg/distribution_of_design_apps.svg)
+
+A *javascript* design library can be distributed in several ways:
+
+- as a website publised on internet
+- as a local website, distributed via npm-packages
+- as a local command-line-interface, distributed via npm-packages
+- as npm-package being imported in other javascripts
+
+
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
