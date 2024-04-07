@@ -99,6 +99,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	try {
 		// step-4 : some preparation calculation
 		const R1 = param.D1 / 2;
+		const lAE = R1 + param.S2;
 		const rakeBeamL = 4 * param.L4 + param.L5 + 2 * param.L6 - 2 * param.H1;
 		const rakeL4 = param.L4 - 2 * param.H1;
 		const rakeL5 = param.L5 + 2 * param.H1;
@@ -116,17 +117,17 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figSide.addMain(contourCircle(0, 0, R1 - param.E1));
 		const sidePx = [-param.L2 / 2, -param.L3 - param.H2, param.L3, param.L2 / 2 - param.H2];
 		for (const px of sidePx) {
-			figSide.addMain(ctrRectangle(px, R1 - param.H4, param.H2, param.H4));
+			figSide.addMain(ctrRectangle(px, lAE - param.H4, param.H2, param.H4));
 			figSide.addMain(
 				ctrRectangle(
 					px + param.E2,
-					R1 - param.H4 + param.E2,
+					lAE - param.H4 + param.E2,
 					param.H2 - 2 * param.E2,
 					param.H4 - 2 * param.E2
 				)
 			);
 		}
-		figSide.addSecond(ctrRectangle(-param.L2 / 2, R1, param.L2, param.H3));
+		figSide.addSecond(ctrRectangle(-param.L2 / 2, lAE, param.L2, param.H3));
 		// figFace
 		const facePx: number[] = [];
 		facePx.push(-param.L1 / 2);
@@ -142,18 +143,18 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			}
 		}
 		for (const px of facePx) {
-			figFace.addMain(ctrRectangle(px, R1, param.H1, param.H3));
+			figFace.addMain(ctrRectangle(px, lAE, param.H1, param.H3));
 			figFace.addMain(
 				ctrRectangle(
 					px + param.E3,
-					R1 + param.E3,
+					lAE + param.E3,
 					param.H1 - 2 * param.E3,
 					param.H3 - 2 * param.E3
 				)
 			);
 		}
 		figFace.addSecond(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
-		figFace.addSecond(ctrRectangle(-param.L1 / 2, R1 - param.H4, param.L1, param.H4));
+		figFace.addSecond(ctrRectangle(-param.L1 / 2, lAE - param.H4, param.L1, param.H4));
 		// figTop
 		for (const px of facePx) {
 			figTop.addSecond(ctrRectangle(px, -param.L2 / 2, param.H1, param.L2));
@@ -163,25 +164,24 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		}
 		figTop.addSecond(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
 		// figButtress
-		//const lAC = Math.sqrt(R1**2 + param.S1**2);
-		//const aBAC = Math.acos(R1 / lAC);
-		const aBAC = Math.atan2(param.S1, R1);
-		const aDAB = 2 * aBAC; // aBAC = aCAD
+		const lAC = Math.sqrt(lAE ** 2 + param.S1 ** 2);
+		const aBAC = Math.acos(R1 / lAC);
+		const aEAC = Math.atan2(param.S1, lAE);
 		const pA = point(0, 0);
-		const pB = point(0, R1);
-		const pD = pB.rotate(pA, aDAB);
-		const ctrButtress = contour(-param.L3, R1)
-			.addSegStrokeA(-param.S1, R1)
+		const pF = pA.translatePolar(Math.PI / 2 + aEAC, R1);
+		const pD = pF.rotate(pA, aBAC);
+		const ctrButtress = contour(-param.L3, lAE)
+			.addSegStrokeA(-param.S1, lAE)
 			.addCornerRounded(param.R2)
 			.addSegStrokeA(pD.cx, pD.cy)
 			.addPointA(0, -R1)
 			.addPointA(-pD.cx, pD.cy)
 			.addSegArc2()
-			.addSegStrokeA(param.S1, R1)
+			.addSegStrokeA(param.S1, lAE)
 			.addCornerRounded(param.R2)
-			.addSegStrokeA(param.L3, R1)
-			.addSegStrokeA(param.L3, R1 + param.E3)
-			.addSegStrokeA(-param.L3, R1 + param.E3)
+			.addSegStrokeA(param.L3, lAE)
+			.addSegStrokeA(param.L3, lAE + param.E3)
+			.addSegStrokeA(-param.L3, lAE + param.E3)
 			.closeSegStroke();
 		figButtress.addMain(ctrButtress);
 		figButtress.addMain(contourCircle(0, 0, R1 - param.E1));
