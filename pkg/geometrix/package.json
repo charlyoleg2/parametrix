@@ -54,10 +54,10 @@
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
-		"@zip.js/zip.js": "^2.7.40"
+		"@zip.js/zip.js": "^2.7.41"
 	},
 	"devDependencies": {
-		"@types/node": "^20.12.2",
+		"@types/node": "^20.12.5",
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
 		"@typescript-eslint/parser": "^7.0.1",
 		"eslint": "^8.57.0",
@@ -66,7 +66,7 @@
 		"prettier": "^3.2.5",
 		"shx": "^0.3.4",
 		"tsup": "^8.0.2",
-		"typescript": "^5.4.3",
+		"typescript": "^5.4.4",
 		"vitest": "^1.4.0"
 	},
 	"prettier": {

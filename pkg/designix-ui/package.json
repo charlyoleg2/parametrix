@@ -23,9 +23,9 @@
 		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg"
 	},
 	"dependencies": {
-		"designix": "^0.5.29",
-		"geometrix": "^0.5.28",
-		"geomui": "^0.5.30"
+		"designix": "^0.5.34",
+		"geometrix": "^0.5.33",
+		"geomui": "^0.5.35"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.0",
@@ -40,13 +40,13 @@
 		"npm-run-all": "^4.1.5",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.2",
-		"sass": "^1.72.0",
+		"sass": "^1.74.1",
 		"shx": "^0.3.4",
 		"svelte": "^4.2.12",
-		"svelte-check": "^3.6.8",
+		"svelte-check": "^3.6.9",
 		"tslib": "^2.6.2",
-		"typescript": "^5.4.3",
-		"vite": "^5.2.7",
+		"typescript": "^5.4.4",
+		"vite": "^5.2.8",
 		"vitest": "^1.4.0"
 	},
 	"prettier": {

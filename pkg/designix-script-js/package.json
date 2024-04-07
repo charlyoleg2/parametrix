@@ -37,9 +37,9 @@
 		"clean": "shx rm -fr build dist node_modules output"
 	},
 	"dependencies": {
-		"designix": "^0.5.29",
-		"geomcli": "^0.5.31",
-		"geometrix": "^0.5.28"
+		"designix": "^0.5.34",
+		"geomcli": "^0.5.36",
+		"geometrix": "^0.5.33"
 	},
 	"devDependencies": {
 		"bats": "^1.11.0",
