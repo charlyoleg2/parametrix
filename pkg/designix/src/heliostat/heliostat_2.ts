@@ -68,6 +68,7 @@ const pDef: tParamDef = {
 		pNumber('L5', 'mm', 2000, 10, 6000, 1),
 		pNumber('L6', 'mm', 2000, 1, 6000, 1),
 		pNumber('H9', 'mm', 100, 1, 400, 1),
+		pNumber('S2', 'mm', 10, 0, 2000, 1),
 		pSectionSeparator('motion amplitude'),
 		pNumber('al', 'degree', 80, 0, 95, 1)
 	],
@@ -97,8 +98,9 @@ const pDef: tParamDef = {
 		L6: 'heliostat2_face_sizing.svg',
 		L7: 'heliostat2_face_sizing.svg',
 		L8: 'heliostat2_face_sizing.svg',
-		al: 'heliostat2_side_sizing.svg',
-		S1: 'heliostat2_side_sizing.svg'
+		S1: 'heliostat2_side_sizing.svg',
+		S2: 'heliostat2_side_sizing.svg',
+		al: 'heliostat2_side_sizing.svg'
 	},
 	sim: {
 		tMax: 100,
@@ -218,6 +220,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		swingParam.setVal('L6', param.L6);
 		swingParam.setVal('L3', param.D7);
 		swingParam.setVal('S1', param.D6 / 2);
+		swingParam.setVal('S2', param.S2);
 		swingParam.setVal('R2', 0);
 		const poleStaticGeom = poleStaticDef.pGeom(
 			0,
