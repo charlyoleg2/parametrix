@@ -16,7 +16,52 @@ category: documentation
 ![classification_of_electrical_motors.svg]({base}/puisvg/classification_of_electrical_motors.svg)
 
 
-## Controller of electrical motors
+## Brushed motor classification (a.k.a. Universal motor)
+
+For brushed motor, the windings can be on rotor or stator or both (avoiding magnets).
+Usually it is composed of stationary magnets and rotor coils.
+
+- rotor with armature
+- ironless rotor (for better acceleration)
+
+
+## Brushless motor classifications
+
+A brushless motor is composed of stationary windings and magnetic rotor.
+
+
+### Magnetic forces
+
+- Permanent Magnet Synchronous Motor (PMSM)
+  - Surface Mounted (SM) (27.2 Nm/Kg)
+  - Internal Permanent Magnet (IPM) (56.6 Nm/Kg)
+- Switched Reluctance Motor (SRM) (8400 Nm/m3)
+
+IPM can be considered as hybrid as it takes advantage of magnet and reluctance.
+
+
+### Magnetic field orientation
+
+- radial (traditional)
+- axial (smaller diameter, higher torque)
+
+
+### Switched Reluctance Motor
+
+- Pros
+  - Good at high speed
+  - No rare earth
+- Cons
+  - Torque ripple
+  - Lower torque in quasi-static mode
+  - Less efficient than Permanent Magnet Motor
+
+
+## Controller of brushless electrical motors
+
+For generating the turning field, the driver could be either:
+- 3 half H-bridge (i.e. three phases)
+- 2 full H-bridge
 
 An optimal BLDC motor control enables:
 - better dynamics
