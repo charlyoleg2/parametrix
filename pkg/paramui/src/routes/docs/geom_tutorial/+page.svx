@@ -402,7 +402,7 @@ API:
 ### Expose external design
 
 - [myPartT source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup7/myPartT.ts)
-- [myPartT page](https://charlyoleg2.github.io/parame53/desi53b/myPartT)
+- [myPartT page](https://charlyoleg2.github.io/parame53/desi53b/myPartA)
 
 *myPartT* is a re-export and rename of *myPartA* of the library *desi51*.
 
