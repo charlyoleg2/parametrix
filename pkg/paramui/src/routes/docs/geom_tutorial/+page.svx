@@ -232,7 +232,7 @@ API:
 ### Generic UI-app and CLI-app
 
 - [myPartL source](https://github.com/charlyoleg2/parame52/blob/main/desi52/src/pointedCorners/myPartL.ts)
-- [myPartL page](https://charlyoleg2.github.io/parame52/desi52/myPartLDef)
+- [myPartL page](https://charlyoleg2.github.io/parame52/desi52/myPartL)
 
 *myPartL* is a simple design of Maltese cross to showcase how to use the generic UI-app and CLI-app.
 
@@ -282,7 +282,7 @@ For starting a new *geometrix design library*, use [parame52](https://github.com
 ### Contour with arcs
 
 - [myPartM source](https://github.com/charlyoleg2/parame52/blob/main/desi52/src/pointedCorners/myPartM.ts)
-- [myPartM page](https://charlyoleg2.github.io/parame52/desi52/myPartMDef)
+- [myPartM page](https://charlyoleg2.github.io/parame52/desi52/myPartM)
 
 *myPartM* illustrates how to define arcs. *Geometrix* offers three ways to define arcs.
 
@@ -301,7 +301,7 @@ API:
 ### Contour with arcs and modified corners
 
 - [myPartN source](https://github.com/charlyoleg2/parame52/blob/main/desi52/src/modifiedCorners/myPartN.ts)
-- [myPartN page](https://charlyoleg2.github.io/parame52/desi52/myPartNDef)
+- [myPartN page](https://charlyoleg2.github.io/parame52/desi52/myPartN)
 
 *myPartN* illustrates a design with arcs and modified corners.
 
@@ -316,7 +316,7 @@ API:
 ### Contour with double-arcs
 
 - [myPartO source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup5/myPartO.ts)
-- [myPartO page](https://charlyoleg2.github.io/parame53/desi53/myPartODef)
+- [myPartO page](https://charlyoleg2.github.io/parame53/desi53/myPartO)
 
 *myPartO* illustrates double-arcs. Use double-arcs where you want to ensure the continuity of the derivate (i.e. tangent).
 
@@ -331,7 +331,7 @@ API:
 ### Functions defining a Contour
 
 - [myPartP source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup5/myPartP.ts)
-- [myPartP page](https://charlyoleg2.github.io/parame53/desi53/myPartPDef)
+- [myPartP page](https://charlyoleg2.github.io/parame53/desi53/myPartP)
 
 *myPartP* shows how to use a function for creating a contour.
 
@@ -344,7 +344,7 @@ API:
 ### Add points, lines, vectors and dynamics decorations
 
 - [myPartQ source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup6/myPartQ.ts)
-- [myPartQ page](https://charlyoleg2.github.io/parame53/desi53/myPartQDef)
+- [myPartQ page](https://charlyoleg2.github.io/parame53/desi53/myPartQ)
 
 *myPartQ* shows how to use the extra layers for second contours, dynamics contours, points, lines and vectors.
 
@@ -371,7 +371,7 @@ API:
 ### Just 2D drawings
 
 - [myPartR source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53/src/myGroup6/myPartR.ts)
-- [myPartR page](https://charlyoleg2.github.io/parame53/desi53/myPartRDef)
+- [myPartR page](https://charlyoleg2.github.io/parame53/desi53/myPartR)
 
 *myPartR* shows a serie of 2D designs without 3D volume. The property *vol* of the object *rGeome* of type *tGeom* has been commented out.
 
@@ -386,7 +386,7 @@ API:
 ### A serie of blade profiles
 
 - [myPartS source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup7/myPartS.ts)
-- [myPartS page](https://charlyoleg2.github.io/parame53/desi53b/myPartSDef)
+- [myPartS page](https://charlyoleg2.github.io/parame53/desi53b/myPartS)
 
 *myPartS* shows a serie of blade profiles. Wing is a complex shape that cannot be described with *Parametrix*. But a serie of 2D profiles can approximate the ideal shape description.
 
@@ -402,7 +402,7 @@ API:
 ### Expose external design
 
 - [myPartT source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup7/myPartT.ts)
-- [myPartT page](https://charlyoleg2.github.io/parame53/desi53b/myPartTDef)
+- [myPartT page](https://charlyoleg2.github.io/parame53/desi53b/myPartT)
 
 *myPartT* is a re-export and rename of *myPartA* of the library *desi51*.
 
@@ -420,7 +420,7 @@ API:
 ### Assembly using external design
 
 - [myPartU source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup8/myPartU.ts)
-- [myPartU page](https://charlyoleg2.github.io/parame53/desi53b/myPartUDef)
+- [myPartU page](https://charlyoleg2.github.io/parame53/desi53b/myPartU)
 
 *myPartU* is an assembly of external design *myPartA* of the library *desi51*.
 
@@ -441,7 +441,7 @@ API:
 ### Transitive reuse of designs
 
 - [myPartV source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup8/myPartV.ts)
-- [myPartV page](https://charlyoleg2.github.io/parame53/desi53b/myPartVDef)
+- [myPartV page](https://charlyoleg2.github.io/parame53/desi53b/myPartV)
 
 *myPartV* re-exports *myPartK*, which is itself an assembly of other designs.
 
@@ -449,7 +449,7 @@ API:
 ### Computing the 3D-rotation and 3D-translation of an extrusion with transform3d
 
 - [myPartW source](https://github.com/charlyoleg2/parame53/blob/main/pkg/desi53b/src/myGroup8/myPartW.ts)
-- [myPartW page](https://charlyoleg2.github.io/parame53/desi53b/myPartWDef)
+- [myPartW page](https://charlyoleg2.github.io/parame53/desi53b/myPartW)
 
 *myPartW* illustrates the usage of *transform3d* for computing the 3D-rotation and 3D-translation to apply to an extrusion sub-part. *transform3d* helps to combine a list of 3D-rotation and 3D-translation into a single 3D-rotation and a single 3D-translation.
 
