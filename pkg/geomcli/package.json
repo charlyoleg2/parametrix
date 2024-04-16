@@ -54,7 +54,7 @@
 		"clean": "shx rm -fr build dist node_modules"
 	},
 	"dependencies": {
-		"geometrix": "^0.5.33",
+		"geometrix": "^0.5.34",
 		"yargs": "^17.7.2"
 	},
 	"devDependencies": {
@@ -67,8 +67,8 @@
 		"prettier": "^3.2.5",
 		"shx": "^0.3.4",
 		"tsup": "^8.0.2",
-		"typescript": "^5.4.4",
-		"vitest": "^1.4.0"
+		"typescript": "^5.4.5",
+		"vitest": "^1.5.0"
 	},
 	"prettier": {
 		"useTabs": true,

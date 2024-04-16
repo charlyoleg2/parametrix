@@ -37,35 +37,35 @@
 		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg static/puisvg"
 	},
 	"dependencies": {
-		"designix": "^0.5.34",
-		"geometrix": "^0.5.33",
-		"geomui": "^0.5.35"
+		"designix": "^0.5.35",
+		"geometrix": "^0.5.34",
+		"geomui": "^0.5.36"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.0",
 		"@sveltejs/adapter-static": "^3.0.1",
-		"@sveltejs/kit": "^2.5.5",
-		"@sveltejs/vite-plugin-svelte": "^3.0.2",
+		"@sveltejs/kit": "^2.5.6",
+		"@sveltejs/vite-plugin-svelte": "^3.1.0",
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
 		"@typescript-eslint/parser": "^7.0.1",
 		"chart.js": "^4.4.2",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.35.1",
+		"eslint-plugin-svelte": "^2.37.0",
 		"mathlifier": "^1.3.5",
 		"mdsvex": "^0.11.0",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^3.2.5",
-		"prettier-plugin-svelte": "^3.2.2",
-		"sass": "^1.74.1",
+		"prettier-plugin-svelte": "^3.2.3",
+		"sass": "^1.75.0",
 		"shx": "^0.3.4",
-		"svelte": "^4.2.12",
+		"svelte": "^4.2.14",
 		"svelte-check": "^3.6.9",
 		"svgo": "^3.2.0",
 		"tslib": "^2.6.2",
-		"typescript": "^5.4.4",
-		"vite": "^5.2.8",
-		"vitest": "^1.4.0"
+		"typescript": "^5.4.5",
+		"vite": "^5.2.9",
+		"vitest": "^1.5.0"
 	},
 	"prettier": {
 		"useTabs": true,
