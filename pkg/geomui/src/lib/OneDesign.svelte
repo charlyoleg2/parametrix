@@ -12,7 +12,7 @@
 </script>
 
 <h1>{pageDef.pTitle}</h1>
-<article>{pageDef.pDescription}</article>
+<article>[{pageDef.pDef.partName}]: {pageDef.pDescription}</article>
 <DrawingList pDef={pageDef.pDef} />
 <ParamDrawExport pDef={pageDef.pDef} fgeom={pageDef.pGeom} {pLink} />
 
