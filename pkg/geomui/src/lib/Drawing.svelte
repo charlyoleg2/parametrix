@@ -27,6 +27,7 @@
 	export let fgeom: tGeomFunc;
 	export let optFaces: string[];
 	export let selFace: string;
+	export let zAdjust: tCanvasAdjust;
 	export let simTime = 0;
 
 	const c_ParametrixAll = 'ParametrixAll';
@@ -38,7 +39,7 @@
 	// Canavas Figures
 	let aFigure: Figure;
 	let cAdjust: tCanvasAdjust;
-	let zAdjust: tCanvasAdjust;
+	//let zAdjust: tCanvasAdjust;
 	function canvasRedrawFull(iLayers: tLayers) {
 		const ctx1 = canvasFull.getContext('2d')!;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);

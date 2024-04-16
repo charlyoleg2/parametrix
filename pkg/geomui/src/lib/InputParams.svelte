@@ -5,8 +5,8 @@
 	import LocStorWrite from './LocStorWrite.svelte';
 	import LocStorRead from './LocStorRead.svelte';
 	import SimpleDrawing from './SimpleDrawing.svelte';
-	import type { tParam, tParamDef, tParamVal, tGeomFunc } from 'geometrix';
-	import { PType, parseParamFile, createParamFile } from 'geometrix';
+	import type { tParam, tParamDef, tParamVal, tGeomFunc, tCanvasAdjust } from 'geometrix';
+	import { PType, parseParamFile, createParamFile, adjustZero } from 'geometrix';
 	import { storePV } from './storePVal';
 	import { downloadParams, generateUrl } from './downloadParams';
 	import { onMount, createEventDispatcher } from 'svelte';
@@ -19,8 +19,10 @@
 	export let pDef: tParamDef;
 	export let fgeom: tGeomFunc;
 	export let selFace: string;
+	export let zAdjust: tCanvasAdjust;
 	export let simTime = 0;
 
+	const cAdjustZero = adjustZero();
 	let inputComment = '';
 
 	// initialization
@@ -444,7 +446,10 @@
 		<img src={paramSvg} alt={paramSvg} />
 	</button>
 	<div class="mini-canvas">
-		<SimpleDrawing pageName={pDef.partName} {fgeom} {selFace} {simTime} />
+		<SimpleDrawing pageName={pDef.partName} {fgeom} {selFace} zAdjust={cAdjustZero} {simTime} />
+	</div>
+	<div class="mini-canvas">
+		<SimpleDrawing pageName={pDef.partName} {fgeom} {selFace} {zAdjust} {simTime} />
 	</div>
 </section>
 

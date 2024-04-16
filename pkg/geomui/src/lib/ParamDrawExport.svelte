@@ -1,4 +1,5 @@
 <script lang="ts">
+	//import type { tParamDef, tGeomFunc, tSubDesign, tAllLink, tCanvasAdjust } from 'geometrix';
 	import type { tParamDef, tGeomFunc, tSubDesign, tAllLink } from 'geometrix';
 	import {
 		EFormat,
@@ -6,7 +7,8 @@
 		fileTextContent,
 		fileSuffix,
 		fileMime,
-		fileBin
+		fileBin,
+		adjustZero
 	} from 'geometrix';
 	import InputParams from './InputParams.svelte';
 	import Drawing from './Drawing.svelte';
@@ -29,6 +31,7 @@
 	let exportFace: string;
 	let selFace: string;
 	let simTime = 0;
+	let zAdjust = adjustZero();
 	// log and paramChange
 	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
 	let calcErr = false;
@@ -142,7 +145,7 @@
 	}
 </script>
 
-<InputParams {pDef} on:paramChg={paramChange} {fgeom} {selFace} {simTime} />
+<InputParams {pDef} on:paramChg={paramChange} {fgeom} {selFace} {zAdjust} {simTime} />
 <section>
 	<h2>Log</h2>
 	<textarea
@@ -155,7 +158,7 @@
 		class:colorWarn={calcWarn}
 	/>
 </section>
-<Drawing {pDef} {fgeom} {optFaces} bind:selFace bind:simTime />
+<Drawing {pDef} {fgeom} {optFaces} bind:selFace bind:zAdjust bind:simTime />
 <section>
 	<h2>Export</h2>
 	<select bind:value={exportFace}>

@@ -9,6 +9,7 @@
 	export let pageName: string;
 	export let fgeom: tGeomFunc;
 	export let selFace: string;
+	export let zAdjust: tCanvasAdjust;
 	export let simTime = 0;
 
 	let canvasMini: HTMLCanvasElement;
@@ -22,7 +23,12 @@
 		const ctx1 = canvasMini.getContext('2d')!;
 		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 		try {
-			mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
+			if (zAdjust.init === 0) {
+				// mini-full with zAdjust set to adjustZero()
+				mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
+			} else {
+				mAdjust = zAdjust;
+			}
 			aFigure.draw(ctx1, mAdjust, sLayers);
 		} catch (emsg) {
 			//rGeome.logstr += emsg;
