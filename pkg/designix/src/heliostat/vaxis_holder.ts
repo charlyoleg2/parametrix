@@ -32,6 +32,7 @@ import {
 import { ctrHolderPetal } from './common_spring_and_petal'; // externalized contour
 
 const pDef: tParamDef = {
+	// partName is used in URL. Choose a name without slash, backslash and space.
 	partName: 'vaxis_holder',
 	params: [
 		//pNumber(name, unit, init, min, max, step)

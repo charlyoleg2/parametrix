@@ -34,6 +34,7 @@ import {
 
 // step-2 : definition of the parameters and more (part-name, svg associated to each parameter, simulation parameters)
 const pDef: tParamDef = {
+	// partName is used in URL. Choose a name without slash, backslash and space.
 	partName: 'rake',
 	params: [
 		//pNumber(name, unit, init, min, max, step)

@@ -37,6 +37,7 @@ import { ctrGuidanceOuter } from './common_spring_and_petal'; // externalized co
 
 // step-2 : definition of the parameters and more (part-name, svg associated to each parameter, simulation parameters)
 const pDef: tParamDef = {
+	// partName is used in URL. Choose a name without slash, backslash and space.
 	partName: 'ring_guidance',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
