@@ -37,6 +37,8 @@ Below a list of libraries of 3D-part-designs based on *Geometrix*:
 6. desi78 : [src](https://github.com/charlyoleg2/parame78) -
 	[ui](https://charlyoleg2.github.io/parame78/) -
 	[pkg](https://www.npmjs.com/package/desi78) :
+	[pkg-cli](https://www.npmjs.com/package/desi78-cli) -
+	[pkg-uis](https://www.npmjs.com/package/desi78-uis) :
 	The designs of Charlyoleg
 7. desi82 : [src](https://github.com/charlyoleg2/parame82) -
 	[ui](https://charlyoleg2.github.io/parame82/) -
