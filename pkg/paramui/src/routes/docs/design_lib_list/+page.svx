@@ -43,6 +43,8 @@ Below a list of libraries of 3D-part-designs based on *Geometrix*:
 7. desi82 : [src](https://github.com/charlyoleg2/parame82) -
 	[ui](https://charlyoleg2.github.io/parame82/) -
 	[pkg](https://www.npmjs.com/package/desi82) :
+	[pkg-cli](https://www.npmjs.com/package/desi82-cli) -
+	[pkg-uis](https://www.npmjs.com/package/desi82-uis) :
 	The designs of a friend
 8. desi15L : [src](https://github.com/charlyoleg2/parame15L) -
 	[ui](https://charlyoleg2.github.io/parame15L/) -
@@ -62,6 +64,14 @@ Glossary:
 
 
 If you want to get your *geometrix design library* in this list, please, create a [Github issue](https://github.com/charlyoleg2/parametrix/issues) with a link to your library.
+
+
+#### List of maker-repositories
+
+1. [ustensile](https://github.com/charlyoleg2/ustensile)
+2. [gears_and_springs](https://github.com/charlyoleg2/gears_and_springs)
+3. [cabane](https://github.com/charlyoleg2/cabane)
+4. [heliostat_model_50cm](https://github.com/charlyoleg2/heliostat_model_50cm)
 
 
 #### Designers and makers
