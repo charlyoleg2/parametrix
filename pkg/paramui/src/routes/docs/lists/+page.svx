@@ -10,6 +10,11 @@ category: documentation
 
 # {title}
 
+In this page; you find a couple of lists related to *Parametrix*.
+
+
+#### List of design-libraries
+
 Below a list of libraries of 3D-part-designs based on *Geometrix*:
 
 1. designix : [src](https://github.com/charlyoleg2/parametrix) -
@@ -82,6 +87,17 @@ If you want to get your *geometrix design library* in this list, please, create 
 #### Parametrix workflow
 
 ![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
+
+
+#### Todo-list
+
+1. Create your own design-library (like *param78* or *param82*)
+2. Create a website for finding *designer-libraries* and *maker-repositories*
+3. Develop *Vizpax*
+4. Find a good concept for assembling 3D-parts
+5. Develop an headless ModelView as an alternative to the svelte-component *OneDesign*
+6. Port *geomui* to Svelte-v5
+7. Find a better concept than *parame_paxApps*
 
 
 <style lang="scss">
