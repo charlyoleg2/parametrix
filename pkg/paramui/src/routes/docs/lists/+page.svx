@@ -1,5 +1,5 @@
 ---
-title: List of geometrix design libraries
+title: Lists of stuff
 category: documentation
 ---
 
