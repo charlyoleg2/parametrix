@@ -79,16 +79,6 @@ If you want to get your *geometrix design library* in this list, please, create 
 4. [heliostat_model_50cm](https://github.com/charlyoleg2/heliostat_model_50cm)
 
 
-#### Designers and makers
-
-![designer_maker_interfaces.svg]({base}/puisvg/designer_maker_interfaces.svg)
-
-
-#### Parametrix workflow
-
-![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
-
-
 #### Todo-list
 
 1. Create your own design-library (like *param78* or *param82*)
@@ -98,6 +88,18 @@ If you want to get your *geometrix design library* in this list, please, create 
 5. Develop an headless ModelView as an alternative to the svelte-component *OneDesign*
 6. Port *geomui* to Svelte-5
 7. Find a better concept than *parame_paxApps*
+8. Extend *geometrix* for exporting more 3D-scripts
+9. Start a new parametric-design-engine for an other area (music, electric circuit, chemistry, optic, ...)
+
+
+#### Designers and makers
+
+![designer_maker_interfaces.svg]({base}/puisvg/designer_maker_interfaces.svg)
+
+
+#### Parametrix workflow
+
+![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
 
 
 <style lang="scss">
