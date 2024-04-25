@@ -10,7 +10,7 @@ category: documentation
 
 # {title}
 
-In this page; you find a couple of lists related to *Parametrix*.
+In this page, you find a couple of lists related to *Parametrix*.
 
 
 #### List of design-libraries
@@ -96,7 +96,7 @@ If you want to get your *geometrix design library* in this list, please, create 
 3. Develop *Vizpax*
 4. Find a good concept for assembling 3D-parts
 5. Develop an headless ModelView as an alternative to the svelte-component *OneDesign*
-6. Port *geomui* to Svelte-v5
+6. Port *geomui* to Svelte-5
 7. Find a better concept than *parame_paxApps*
 
 
