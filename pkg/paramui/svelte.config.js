@@ -1,8 +1,8 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
-//import { join } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
+//import { fileURLToPath } from 'url';
 
 const basePath = process.env.BASE_PATH;
 const dev = process.argv.includes('dev') || basePath === undefined;
