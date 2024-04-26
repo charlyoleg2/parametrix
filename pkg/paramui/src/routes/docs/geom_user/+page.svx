@@ -94,6 +94,19 @@ git diff --name-only d1517c13^..d566729d
 An other way of embedding the svg-files in the design library would be to create a companion nodejs-CLI-tool that contains the svg-files and writes them in the target WebUI. So each design library would consist of the *browser/nodejs* library and the companion nodejs-cli-app for transferring the svg-files.
 
 
+## design-library organisation
+
+The npm-package of a design-library is stored in mono-repo even if we have a single library. This is because *paxApps* added with *degit* will bring additional npm-packages (paxScr, desiXY-cli, desiXY-ui and desiXY-uis).
+
+In a design library, you can create sub-folders. Each folder has its own *svg* folder.
+
+![file_structure_single.svg]({base}/puisvg/file_structure_single.svg)
+
+If you have many designs and you want to distribute them in several packages, then you can create several design-libraries in your *mono-repo*.
+
+![file_structure_several.svg]({base}/puisvg/file_structure_several.svg)
+
+
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
