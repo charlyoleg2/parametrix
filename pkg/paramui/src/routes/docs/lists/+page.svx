@@ -82,14 +82,15 @@ If you want to get your *geometrix design library* in this list, please, create 
 #### Todo-list
 
 1. Create your own design-library (like *param78* or *param82*)
-2. Create a website for finding *designer-libraries* and *maker-repositories*
-3. Develop *Vizpax*
-4. Find a good concept for assembling 3D-parts
-5. Develop an headless ModelView as an alternative to the svelte-component *OneDesign*
-6. Port *geomui* to Svelte-5
-7. Find a better concept than *parame_paxApps*
-8. Extend *geometrix* for exporting more 3D-scripts
-9. Start a new parametric-design-engine for an other area (music, electric circuit, chemistry, optic, ...)
+2. Fix CSS for compatibility with all browsers (currently only Ubuntu/Firefox is tested)
+3. Create a website for finding *designer-libraries* and *maker-repositories*
+4. Develop *Vizpax*
+5. Find a good concept for assembling 3D-parts
+6. Develop an headless ModelView as an alternative to the svelte-component *OneDesign*
+7. Port *geomui* to Svelte-5
+8. Find a better concept than *parame_paxApps*
+9. Extend *geometrix* for exporting more 3D-scripts
+10. Start a new parametric-design-engine for an other area (music, electric circuit, chemistry, optic, ...)
 
 
 #### Designers and makers
