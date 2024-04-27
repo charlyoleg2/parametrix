@@ -2,8 +2,24 @@
 	"name": "designix-cli",
 	"version": "0.5.27",
 	"description": "The application cli as frontend of geometrix and designix",
-	"type": "module",
 	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/charlyoleg2/parametrix.git"
+	},
+	"homepage": "https://charlyoleg2.github.io/parametrix/",
+	"author": "charlyoleg",
+	"license": "ISC",
+	"keywords": [
+		"cad",
+		"programmatic",
+		"2D",
+		"circle",
+		"stroke",
+		"arc",
+		"gear"
+	],
+	"type": "module",
 	"exports": {
 		".": {
 			"types": "./dist/designix-cli.d.ts",
@@ -19,21 +35,6 @@
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/charlyoleg2/parametrix.git"
-	},
-	"homepage": "https://charlyoleg2.github.io/parametrix/",
-	"keywords": [
-		"cad",
-		"programmatic",
-		"2D",
-		"circle",
-		"stroke",
-		"arc",
-		"gear"
-	],
-	"author": "charlyoleg",
 	"tsup": {
 		"entry": [
 			"src/designix-cli.ts"
@@ -43,6 +44,14 @@
 		"dts": false,
 		"sourcemap": false,
 		"clean": true
+	},
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true,
+		"trailingComma": "none",
+		"printWidth": 100,
+		"plugins": [],
+		"overrides": []
 	},
 	"scripts": {
 		"dev": "tsup --watch",
@@ -75,13 +84,5 @@
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.5",
 		"vitest": "^1.5.0"
-	},
-	"prettier": {
-		"useTabs": true,
-		"singleQuote": true,
-		"trailingComma": "none",
-		"printWidth": 100,
-		"plugins": [],
-		"overrides": []
 	}
 }

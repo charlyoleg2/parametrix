@@ -2,19 +2,14 @@
 	"name": "designix-script-js",
 	"version": "0.5.7",
 	"description": "A sample code showcasing the usage of geometrix and designix",
-	"type": "module",
 	"private": true,
-	"exports": {
-		".": {
-			"default": "./src/index.js"
-		}
-	},
-	"bin": "./src/index.js",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/charlyoleg2/parametrix.git"
 	},
 	"homepage": "https://charlyoleg2.github.io/parametrix/",
+	"author": "charlyoleg",
+	"license": "ISC",
 	"keywords": [
 		"cad",
 		"programmatic",
@@ -24,7 +19,21 @@
 		"arc",
 		"gear"
 	],
-	"author": "charlyoleg",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./src/index.js"
+		}
+	},
+	"bin": "./src/index.js",
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true,
+		"trailingComma": "none",
+		"printWidth": 100,
+		"plugins": [],
+		"overrides": []
+	},
 	"scripts": {
 		"pretty": "prettier --check .",
 		"format": "prettier --write .",
@@ -49,13 +58,5 @@
 		"prettier": "^3.2.5",
 		"shx": "^0.3.4",
 		"vitest": "^1.5.0"
-	},
-	"prettier": {
-		"useTabs": true,
-		"singleQuote": true,
-		"trailingComma": "none",
-		"printWidth": 100,
-		"plugins": [],
-		"overrides": []
 	}
 }

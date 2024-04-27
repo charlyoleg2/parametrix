@@ -8,11 +8,21 @@ Presentation
 *designix-cli* is a *command line interface* application for using *designix*.
 
 
+Links
+-----
+
+- [sources](https://github.com/charlyoleg2/parametrix)
+- [ui](https://charlyoleg2.github.io/parametrix/)
+- [pkg](https://www.npmjs.com/package/designix)
+- [pkg-cli](https://www.npmjs.com/package/designix-cli)
+- [pkg-uis](https://www.npmjs.com/package/designix-uis)
+
+
 Requirements
 ------------
 
 - [node](https://nodejs.org) > 20.10.0
-- [npm](https://docs.npmjs.com/cli) > 10.1.0
+- [npm](https://docs.npmjs.com/cli) > 10.5.0
 
 
 Installation

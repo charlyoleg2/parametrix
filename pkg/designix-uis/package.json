@@ -2,8 +2,28 @@
 	"name": "designix-uis",
 	"version": "0.5.17",
 	"description": "mini-server for static content of designix-ui",
-	"type": "module",
 	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/charlyoleg2/parametrix.git"
+	},
+	"homepage": "https://charlyoleg2.github.io/parametrix/",
+	"author": "charlyoleg",
+	"license": "ISC",
+	"keywords": [
+		"cad",
+		"programmatic",
+		"2D",
+		"circle",
+		"stroke",
+		"arc",
+		"gear",
+		"ui"
+	],
+	"type": "module",
+	"engines": {
+		"node": ">=20.10.0"
+	},
 	"exports": {
 		".": {
 			"types": "./dist/designix-uis.d.ts",
@@ -19,9 +39,6 @@
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
-	"engines": {
-		"node": ">=20.10.0"
-	},
 	"tsup": {
 		"entry": [
 			"src/designix-uis.ts"
@@ -31,6 +48,14 @@
 		"dts": false,
 		"sourcemap": false,
 		"clean": true
+	},
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true,
+		"trailingComma": "none",
+		"printWidth": 100,
+		"plugins": [],
+		"overrides": []
 	},
 	"scripts": {
 		"dev": "tsup --watch",
@@ -48,26 +73,6 @@
 		"run": "node dist/designix-uis.js",
 		"run-help": "node dist/designix-uis.js --help",
 		"clean": "shx rm -fr node_modules build dist tmp"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/charlyoleg2/parametrix.git"
-	},
-	"homepage": "https://charlyoleg2.github.io/parametrix/",
-	"keywords": [
-		"cad",
-		"programmatic",
-		"2D",
-		"circle",
-		"stroke",
-		"arc",
-		"gear",
-		"ui"
-	],
-	"author": "charlyoleg",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/charlyoleg2/parametrix/issues"
 	},
 	"dependencies": {
 		"express": "^4.19.2",
@@ -89,13 +94,5 @@
 		"typescript": "^5.4.5",
 		"typescript-eslint": "^7.7.0",
 		"vitest": "^1.5.0"
-	},
-	"prettier": {
-		"useTabs": true,
-		"singleQuote": true,
-		"trailingComma": "none",
-		"printWidth": 100,
-		"plugins": [],
-		"overrides": []
 	}
 }

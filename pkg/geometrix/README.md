@@ -17,7 +17,7 @@ Getting started
 git clone https://github.com/charlyoleg2/parametrix
 cd parametrix
 npm -w geometrix install
-npm -w geometrix ci
+npm -w geometrix run ci
 ```
 
 Dependencies

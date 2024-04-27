@@ -2,8 +2,24 @@
 	"name": "geomui",
 	"version": "0.5.37",
 	"description": "The svelte-library of the webapp-UI of Parametrix",
-	"type": "module",
 	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/charlyoleg2/parametrix.git"
+	},
+	"homepage": "https://charlyoleg2.github.io/parametrix/",
+	"author": "charlyoleg",
+	"license": "ISC",
+	"keywords": [
+		"cad",
+		"programmatic",
+		"2D",
+		"circle",
+		"stroke",
+		"arc",
+		"gear"
+	],
+	"type": "module",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -16,21 +32,23 @@
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/charlyoleg2/parametrix.git"
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true,
+		"trailingComma": "none",
+		"printWidth": 100,
+		"plugins": [
+			"prettier-plugin-svelte"
+		],
+		"overrides": [
+			{
+				"files": "*.svelte",
+				"options": {
+					"parser": "svelte"
+				}
+			}
+		]
 	},
-	"homepage": "https://charlyoleg2.github.io/parametrix/",
-	"keywords": [
-		"cad",
-		"programmatic",
-		"2D",
-		"circle",
-		"stroke",
-		"arc",
-		"gear"
-	],
-	"author": "charlyoleg",
 	"scripts": {
 		"cp_pgdsvg": "shx cp -r ../../node_modules/designix/dist/pgdsvg static/",
 		"dev": "vite dev",
@@ -78,22 +96,5 @@
 		"typescript": "^5.4.5",
 		"vite": "^5.2.9",
 		"vitest": "^1.5.0"
-	},
-	"prettier": {
-		"useTabs": true,
-		"singleQuote": true,
-		"trailingComma": "none",
-		"printWidth": 100,
-		"plugins": [
-			"prettier-plugin-svelte"
-		],
-		"overrides": [
-			{
-				"files": "*.svelte",
-				"options": {
-					"parser": "svelte"
-				}
-			}
-		]
 	}
 }
