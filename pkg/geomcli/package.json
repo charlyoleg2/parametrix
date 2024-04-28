@@ -63,7 +63,7 @@
 		"clean": "shx rm -fr build dist node_modules"
 	},
 	"dependencies": {
-		"geometrix": "^0.5.34",
+		"geometrix": "^0.5.35",
 		"yargs": "^17.7.2"
 	},
 	"devDependencies": {
@@ -77,6 +77,6 @@
 		"shx": "^0.3.4",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.5",
-		"vitest": "^1.5.0"
+		"vitest": "^1.5.2"
 	}
 }

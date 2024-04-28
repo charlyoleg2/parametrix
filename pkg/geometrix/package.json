@@ -63,7 +63,7 @@
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
-		"@zip.js/zip.js": "^2.7.41"
+		"@zip.js/zip.js": "^2.7.43"
 	},
 	"devDependencies": {
 		"@types/node": "^20.12.7",
@@ -76,6 +76,6 @@
 		"shx": "^0.3.4",
 		"tsup": "^8.0.2",
 		"typescript": "^5.4.5",
-		"vitest": "^1.5.0"
+		"vitest": "^1.5.2"
 	}
 }
