@@ -47,6 +47,7 @@ A contour should never cross itself or an other contour.
 Two contours are either side-by-side or one-include-the-other.
 
 Depending on the arrangement of the contours, we can define 4 types of figures:
+
 ![types_of_contour_arrangements.svg]({base}/puisvg/types_of_contour_arrangements.svg)
 
 
@@ -79,12 +80,25 @@ librecad path/to/my/exported/file.dxf
 ```bash
 openscad path/to/my/exported/file.scad
 openscad -o path/to/my3Dfile.stl path/to/my/exported/file.scad
+meshlab path/to/my3Dfile.stl
 ```
 
 
 ### OpenJSCAD
 
-Open the exported script with [OpenJSCAD](https://openjscad.xyz/)
+Open the exported script with [OpenJSCAD](https://openjscad.xyz/) or use the CLI.
+
+```bash
+mkdir work_with_jscad
+cd work_with_jscad
+npm install -D @jscad/cli
+npx jscad -v
+npx jscad
+npx jscad path/to/my/exported/file.js
+npx jscad path/to/my/exported/file.js -o path/to/my3Dfile.stl
+meshlab path/to/my3Dfile.stl
+```
+OpenJSCAD doesn't support *parallel contours*.
 
 
 ### glTF
