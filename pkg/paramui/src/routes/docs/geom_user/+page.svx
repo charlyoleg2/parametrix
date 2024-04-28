@@ -40,21 +40,46 @@ In the traditional approach, the steps 2, 3 and 4 might be merged together. The 
 2. a figures consists of one or several contours
 3. a contour is either a circle or a closed path made of lines and arcs
 
+## Arrangement of contours
+
+A figure is collection of contours.
+A contour should never cross itself or an other contour.
+Two contours are either side-by-side or one-include-the-other.
+
+Depending on the arrangement of the contours, we can define 4 types of figures:
+![types_of_contour_arrangements.svg]({base}/puisvg/types_of_contour_arrangements.svg)
+
+
 ## Export options
 
 ### SVG
 
 A 2D drawing of one of the figures. It can be visualized and edited by [inkscape](https://inkscape.org/).
 
+```bash
+inkscape path/to/my/exported/file.svg
+```
+
+
 ### DXF
 
 A 2D drawing of one of the figures. It can be visualized and edited by [librecad](https://librecad.org/).
+
+```bash
+librecad path/to/my/exported/file.dxf
+```
+
 
 ### OpenSCAD
 
 1. install [OpenSCAD](https://openscad.org/)
 2. run the exported script: `openscad path/to/exported-script.scad`
 3. press *F6* or click on the menu *design>render*
+
+```bash
+openscad path/to/my/exported/file.scad
+openscad -o path/to/my3Dfile.stl path/to/my/exported/file.scad
+```
 
 
 ### OpenJSCAD
