@@ -98,7 +98,7 @@ npx jscad path/to/my/exported/file.js
 npx jscad path/to/my/exported/file.js -o path/to/my3Dfile.stl
 meshlab path/to/my3Dfile.stl
 ```
-OpenJSCAD doesn't support *parallel contours*.
+OpenJSCAD doesn't support *parallel contours*. If a figure contains several *outer contours*, they must be extruded one by one independently and then combined together with *union*.
 
 
 ### glTF

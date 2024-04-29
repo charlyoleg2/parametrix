@@ -48,6 +48,10 @@
 						<a href="https://github.com/Haskell-Things/ImplicitCAD">ImplicitCAD</a>
 						<small>Programmatic CAD program, implemented in Haskell</small>
 					</li>
+					<li>
+						<a href="https://f3d.app/">f3d</a>
+						<small>Fast and minimalist 3D viewer</small>
+					</li>
 				</MyUl>
 			</li>
 			<li>
@@ -85,6 +89,10 @@
 					<li>
 						<a href="https://solvespace.com/">SolveSpace</a>
 						<small>Light weight GUI based on GTK</small>
+					</li>
+					<li>
+						<a href="https://github.com/fougue/mayo">Mayo</a>
+						<small>3D CAD viewer and converter based on Qt + OpenCascade</small>
 					</li>
 					<li>
 						<MyUl checkboxId="toggle_pythonocc" labelText="pythonOCC">
