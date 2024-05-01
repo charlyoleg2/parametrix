@@ -20,7 +20,7 @@
 	@use '$lib/style/colors.scss';
 
 	:global(body) {
-		font-family: 'Lucida Console', 'Monaco', 'Verdana';
+		font-family: 'Helvetica', 'Arial', 'Verdana';
 		margin: 0;
 		background-color: colors.$main-bg;
 	}
