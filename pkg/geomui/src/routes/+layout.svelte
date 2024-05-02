@@ -35,7 +35,7 @@
 
 <style lang="scss">
 	:global(body) {
-		font-family: 'Lucida Console', 'Monaco', 'Verdana';
+		font-family: 'Helvetica', 'Arial', 'Verdana';
 		margin: 0;
 		background-color: DarkCyan;
 	}
