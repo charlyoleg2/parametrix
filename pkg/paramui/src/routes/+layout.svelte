@@ -20,7 +20,7 @@
 	@use '$lib/style/colors.scss';
 
 	:global(body) {
-		font-family: 'Helvetica', 'Arial', 'Verdana';
+		font-family: 'Courier New', 'Helvetica', 'Arial', 'Verdana';
 		margin: 0;
 		background-color: colors.$main-bg;
 	}
