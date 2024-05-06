@@ -101,6 +101,8 @@ function fileMime(exportFormat: EFormat): string {
 		rMime = 'image/svg+xml';
 	} else if (exportFormat === EFormat.eDXF || exportFormat === EFormat.eDXFALL) {
 		rMime = 'application/dxf';
+	} else if (exportFormat === EFormat.eTXTLOG) {
+		rMime = 'text/plain';
 	} else if (exportFormat === EFormat.ePAX) {
 		rMime = 'application/json';
 		//rMime = 'text/plain';
@@ -122,6 +124,8 @@ function fileSuffix(exportFormat: EFormat): string {
 		rSuffix = '.svg';
 	} else if (exportFormat === EFormat.eDXF || exportFormat === EFormat.eDXFALL) {
 		rSuffix = '.dxf';
+	} else if (exportFormat === EFormat.eTXTLOG) {
+		rSuffix = '.log';
 	} else if (exportFormat === EFormat.ePAX) {
 		rSuffix = '.pax.json';
 	} else if (exportFormat === EFormat.eOPENSCAD) {
