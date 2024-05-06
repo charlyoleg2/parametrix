@@ -28,7 +28,7 @@ function createParamFile(
 
 function parseParamFile(fContentStr: string): [tParamValInFile, string] {
 	//const wholeJson = JSON.parse(fContentStr) as tParamValInFile;
-	const wholeJson = JSON5.parse(fContentStr) as tParamValInFile;
+	const wholeJson = JSON5.parse<tParamValInFile>(fContentStr);
 	const lastModifKey = 'lastModif';
 	const partNameKey = 'partName';
 	const pValKey = 'pVal';
