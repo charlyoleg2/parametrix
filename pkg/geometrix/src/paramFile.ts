@@ -1,6 +1,7 @@
 // paramFile.ts
 
 import type { tParamVal } from './designParams';
+import JSON5 from 'json5';
 
 interface tParamValInFile {
 	lastModif: string;
@@ -26,7 +27,8 @@ function createParamFile(
 }
 
 function parseParamFile(fContentStr: string): [tParamValInFile, string] {
-	const wholeJson = JSON.parse(fContentStr) as tParamValInFile;
+	//const wholeJson = JSON.parse(fContentStr) as tParamValInFile;
+	const wholeJson = JSON5.parse(fContentStr) as tParamValInFile;
 	const lastModifKey = 'lastModif';
 	const partNameKey = 'partName';
 	const pValKey = 'pVal';
