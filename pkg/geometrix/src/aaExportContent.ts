@@ -142,6 +142,13 @@ function figureToDxf(aCtr: tContour[]): string {
 	return rDxf;
 }
 
+// TXTLOG
+function makeLog(geome0: tGeom): string {
+	let rStr = '';
+	rStr += geome0.logstr;
+	return rStr;
+}
+
 // PAX
 function makePax(paramVal: tParamVal, geome0: tGeom, ipDef: tParamDef): string {
 	const rStr = paxWrite().getPaxStr(paramVal, geome0, ipDef);
@@ -212,4 +219,4 @@ async function makeZip(
 	return rFileContent;
 }
 
-export { figureToSvg, figureToDxf, makePax, makeOpenscad, makeOpenjscad, makeZip };
+export { figureToSvg, figureToDxf, makeLog, makePax, makeOpenscad, makeOpenjscad, makeZip };

@@ -5,6 +5,7 @@ import type { tGeomFunc } from './aaParamGeom';
 import {
 	figureToSvg,
 	figureToDxf,
+	makeLog,
 	makePax,
 	makeOpenscad,
 	makeOpenjscad,
@@ -17,6 +18,7 @@ enum EFormat {
 	eSVGALL,
 	eDXF,
 	eDXFALL,
+	eTXTLOG,
 	ePAX,
 	eOPENSCAD,
 	eJSCAD,
@@ -54,6 +56,8 @@ function fileTextContent(
 		} else if (exportFormat === EFormat.eDXFALL) {
 			const figu = mergeFaces(geome0.fig);
 			rFileContent = figureToDxf(figu.mainList);
+		} else if (exportFormat === EFormat.eTXTLOG) {
+			rFileContent = makeLog(geome0);
 		} else if (exportFormat === EFormat.ePAX) {
 			rFileContent = makePax(paramVal, geome0, ipDef);
 		} else if (exportFormat === EFormat.eOPENSCAD) {

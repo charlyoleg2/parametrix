@@ -154,6 +154,7 @@ const c_fileFormat = [
 	'json_param',
 	'svg_all_figures',
 	'dxf_all_figures',
+	'compute_log',
 	'pax_all',
 	'scad_3d_openscad',
 	'js_3d_openjscad',
@@ -227,6 +228,10 @@ function decompose_outopt(outopt: string): tEFormat {
 				break;
 			case 'dxf_all_figures':
 				rFormat = EFormat.eDXFALL;
+				rWrite = EWrite.eOTHERS;
+				break;
+			case 'compute_log':
+				rFormat = EFormat.eTXTLOG;
 				rWrite = EWrite.eOTHERS;
 				break;
 			case 'pax_all':
@@ -670,6 +675,7 @@ async function geom_cli(
 					oOpt.eFormat, // output-format
 					//EFormat.eSVG,
 					//EFormat.eDXF,
+					//EFormat.eTXTLOG,
 					//EFormat.ePAX,
 					//EFormat.eOPENSCAD,
 					//EFormat.eJSCAD,
