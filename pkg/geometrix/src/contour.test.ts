@@ -39,14 +39,43 @@ describe('Contour suit 3', () => {
 	const ctr4 = contour(0, 0).addPointA(10, 25).addPointA(20, 0).addSegArc2().closeSegStroke();
 	const ctr5 = contour(0, 0).addPointA(10, -5).addPointA(20, 0).addSegArc2().closeSegStroke();
 	const ctr6 = contour(0, 0).addPointA(10, -25).addPointA(20, 0).addSegArc2().closeSegStroke();
-	const ctr7 = contour(0, 0).addPointA(10, 5).addPointA(20, 0).addSegArc2().addCornerRounded(2).closeSegStroke();
-	it('getPerimeter1', () => { expect(ctr1.getPerimeter()).toBeCloseTo(40); });
-	it('getPerimeter2', () => { expect(ctr2.getPerimeter()).toBeCloseTo(Math.PI * 10 + 20); });
-	it('getPerimeter3', () => { expect(ctr3.getPerimeter()).toBeCloseTo(43.18238); });
-	it('getPerimeter4', () => { expect(ctr4.getPerimeter()).toBeCloseTo(89.036817); });
-	it('getPerimeter5', () => { expect(ctr5.getPerimeter()).toBeCloseTo(43.18238); });
-	it('getPerimeter6', () => { expect(ctr6.getPerimeter()).toBeCloseTo(89.036817); });
-	it('getPerimeter7', () => { expect(ctr7.getPerimeter()).toBeCloseTo(36.966259); });
+	const ctr7 = contour(0, 0)
+		.addPointA(10, 5)
+		.addPointA(20, 0)
+		.addSegArc2()
+		.addCornerRounded(2)
+		.closeSegStroke();
+	const ctr8 = contour(0, 0)
+		.addCornerRounded(2)
+		.addPointA(10, -4.01)
+		.addPointA(20, 0)
+		.addSegArc2()
+		.addCornerRounded(2)
+		.closeSegStroke();
+	it('getPerimeter1', () => {
+		expect(ctr1.getPerimeter()).toBeCloseTo(40);
+	});
+	it('getPerimeter2', () => {
+		expect(ctr2.getPerimeter()).toBeCloseTo(Math.PI * 10 + 20);
+	});
+	it('getPerimeter3', () => {
+		expect(ctr3.getPerimeter()).toBeCloseTo(43.18238);
+	});
+	it('getPerimeter4', () => {
+		expect(ctr4.getPerimeter()).toBeCloseTo(89.036817);
+	});
+	it('getPerimeter5', () => {
+		expect(ctr5.getPerimeter()).toBeCloseTo(43.18238);
+	});
+	it('getPerimeter6', () => {
+		expect(ctr6.getPerimeter()).toBeCloseTo(89.036817);
+	});
+	it('getPerimeter7', () => {
+		expect(ctr7.getPerimeter()).toBeCloseTo(36.966259);
+	});
+	it('getPerimeter8', () => {
+		expect(ctr8.getPerimeter()).toBeCloseTo(14.56414);
+	});
 });
 
 describe('ContourCircle suit', () => {
