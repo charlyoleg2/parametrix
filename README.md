@@ -75,3 +75,13 @@ npm -w paramui run dev
 ```
 
 
+Publish a new release
+---------------------
+
+```bash
+npm run versions
+git commit -am 'increment sub-package versions'
+npm version patch
+git push
+git push origin v0.5.6
+```
