@@ -104,6 +104,8 @@
 			exportFormat = EFormat.eSVGALL;
 		} else if (iExportFace === 'alldxf') {
 			exportFormat = EFormat.eDXFALL;
+		} else if (iExportFace === 'compute_log') {
+			exportFormat = EFormat.eTXTLOG;
 		} else if (iExportFace === 'pax') {
 			exportFormat = EFormat.ePAX;
 		} else if (iExportFace === 'oscad') {
@@ -170,6 +172,7 @@
 			<option value="dxf_{optFace}">face {optFace} as dxf</option>
 		{/each}
 		<option value="alldxf">all faces merged as dxf</option>
+		<option value="compute_log">compute.log as log-file</option>
 		<option value="pax">all faces as pax.json</option>
 		<option value="oscad">all faces as openscad.scad</option>
 		<option value="ojscad">all faces as OpenJScad.js</option>
