@@ -10,7 +10,7 @@ import {
 	//degToRad,
 	//radToDeg,
 	roundZero,
-	//withinZero2Pi,
+	withinZero2Pi,
 	withinPiPi,
 	//withinZeroPi,
 	//withinHPiHPi,
@@ -50,6 +50,7 @@ abstract class AContour {
 	abstract toSvg(yCeiling: number, color?: string): string;
 	abstract toDxfSeg(): DxfSeg[];
 	abstract toPax(): tPaxContour;
+	abstract getPerimeter(): number;
 }
 
 /**
@@ -742,6 +743,34 @@ class Contour extends AContour {
 		const rPaxC = pPath.toJson();
 		return rPaxC;
 	}
+	getPerimeter(): number {
+		let rPerimeter = 0;
+		const ctrG = this.generateContour();
+		let plx = 0;
+		let ply = 0;
+		for (const seg of ctrG.segments) {
+			if (seg.sType === segLib.SegEnum.eStart) {
+				plx = seg.px;
+				ply = seg.py;
+			} else if (seg.sType === segLib.SegEnum.eStroke) {
+				const segLen = Math.sqrt((seg.px - plx) ** 2 + (seg.py - ply) ** 2);
+				plx = seg.px;
+				ply = seg.py;
+				rPerimeter += segLen;
+			} else if (seg.sType === segLib.SegEnum.eArc) {
+				const seg2 = segLib.arcSeg1To2(plx, ply, seg);
+				const daCcw = withinZero2Pi(seg2.a2 - seg2.a1);
+				const da = seg2.arcCcw ? daCcw : withinZero2Pi(2 * Math.PI - daCcw);
+				const segLen = seg.radius * da;
+				plx = seg.px;
+				ply = seg.py;
+				rPerimeter += segLen;
+			} else {
+				console.log(`err760: contour.getPerimeter has unknown segment type ${seg.sType}`);
+			}
+		}
+		return rPerimeter;
+	}
 }
 
 /**
@@ -828,6 +857,10 @@ class ContourCircle extends AContour {
 	toPax(): tPaxContourCircle {
 		const rPaxC = paxCircle(this.px, this.py, this.radius);
 		return rPaxC;
+	}
+	getPerimeter(): number {
+		const rPerimeter = 2 * Math.PI * this.radius;
+		return rPerimeter;
 	}
 }
 
