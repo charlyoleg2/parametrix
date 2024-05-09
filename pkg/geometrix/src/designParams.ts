@@ -182,11 +182,15 @@ function pCheckbox(name: string, init: boolean): tParam {
 	};
 	return rParam;
 }
-function pDropdown(name: string, values: string[]): tParam {
+function pDropdown(name: string, values: string[], iInit = 0): tParam {
+	let init = 0;
+	if (iInit < values.length) {
+		init = iInit;
+	}
 	const rParam: tParam = {
 		name: name,
 		unit: 'dropdown',
-		init: 0,
+		init: init,
 		min: 0,
 		max: values.length - 1,
 		step: 1,
