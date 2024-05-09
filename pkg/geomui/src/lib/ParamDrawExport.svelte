@@ -37,22 +37,22 @@
 	let calcErr = false;
 	let calcWarn = false;
 	let subD: tSubDesign = {};
-	function paramChange2(iPageName: string) {
+	function paramChange2(iPageName: string, iSimTime: number) {
 		const mydate = new Date().toLocaleTimeString();
 		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
-		const geome = fgeom(simTime, $storePV[pDef.partName]);
+		const geome = fgeom(iSimTime, $storePV[pDef.partName]);
 		logValue += geome.logstr;
 		calcErr = geome.calcErr;
 		calcWarn = checkWarn(geome.logstr);
 		optFaces = Object.keys(geome.fig);
 		exportFace = 'zip';
-		//geomRedraw(simTime);
+		//geomRedraw(iSimTime);
 		subD = geome.sub;
 	}
 	function paramChange() {
-		paramChange2(pDef.partName);
+		paramChange2(pDef.partName, simTime);
 	}
-	$: paramChange2(pDef.partName); // for reactivity on page change
+	$: paramChange2(pDef.partName, simTime); // for reactivity on page change and simTime
 	// export drawings
 	function download_binFile(fName: string, fContent: Blob) {
 		//create temporary an invisible element
