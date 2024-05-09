@@ -70,7 +70,7 @@
 		"svelte": "^4.0.0"
 	},
 	"dependencies": {
-		"geometrix": "^0.5.35"
+		"geometrix": "^0.5.36"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.0",
@@ -80,7 +80,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
 		"@typescript-eslint/parser": "^7.0.1",
-		"designix": "^0.5.36",
+		"designix": "^0.5.37",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.38.0",
