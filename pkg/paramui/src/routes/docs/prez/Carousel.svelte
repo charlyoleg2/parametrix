@@ -11,28 +11,24 @@
 		const elems = carousContent?.children;
 		if (elems === undefined) {
 			throw 'err309: error by getting the carousContent children';
-		} else {
-			return elems;
 		}
+		return elems;
 	}
-	function getOneSlide(elems: HTMLCollection, idx: number): HTMLElement {
+	function getOneSlide(elems: HTMLCollection, idx: number): Element {
 		const oneElem = elems.item(idx);
 		if (oneElem === null) {
 			throw `dbg892: ${idx} : this is a null element`;
-		} else if (oneElem.nodeName === 'ARTICLE') {
-			//console.log(`dbg745: ${idx} : this is a ARTICLE`);
-			return oneElem;
-		} else {
+		} else if (oneElem.nodeName !== 'ARTICLE') {
 			console.log(`dbg893: ${idx} : this is something else`);
 		}
+		return oneElem;
 	}
 	function getPrezArticle(): HTMLElement {
 		const elem = document.getElementById('prezId');
 		if (elem === null) {
 			throw 'dbg192: elem with preyId is a null element';
-		} else {
-			return elem;
 		}
+		return elem;
 	}
 
 	function equipSlides(elems: HTMLCollection) {
@@ -77,7 +73,9 @@
 			// add new content
 			elem.appendChild(newSlide);
 			// remove style-class
-			elem.firstChild.className = '';
+			//if (elem.firstChild !== null) {
+			//	elem.firstChild.className = '';
+			//}
 		} catch (err) {
 			console.log(err);
 		}
