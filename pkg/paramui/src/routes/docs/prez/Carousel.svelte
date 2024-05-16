@@ -27,7 +27,7 @@
 		}
 	}
 	function getPrezArticle(): HTMLElement {
-		const elem = document.getElementById("prezId");
+		const elem = document.getElementById('prezId');
 		if (elem === null) {
 			throw 'dbg192: elem with preyId is a null element';
 		} else {
@@ -46,7 +46,7 @@
 					prezActive = true;
 				});
 			}
-		} catch(err) {
+		} catch (err) {
 			console.log(err);
 		}
 	}
@@ -55,7 +55,7 @@
 		try {
 			const elems = getSlides();
 			equipSlides(elems);
-		} catch(err) {
+		} catch (err) {
 			console.log(err);
 		}
 	});
@@ -78,7 +78,7 @@
 			elem.appendChild(newSlide);
 			// remove style-class
 			elem.firstChild.className = '';
-		} catch(err) {
+		} catch (err) {
 			console.log(err);
 		}
 	}
