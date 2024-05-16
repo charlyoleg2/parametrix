@@ -7,48 +7,97 @@
 	let slideIdx = 0;
 	let prezActive = false;
 
+	function getSlides(): HTMLCollection {
+		const elems = carousContent?.children;
+		if (elems === undefined) {
+			throw 'err309: error by getting the carousContent children';
+		} else {
+			return elems;
+		}
+	}
+	function getOneSlide(elems: HTMLCollection, idx: number): HTMLElement {
+		const oneElem = elems.item(idx);
+		if (oneElem === null) {
+			throw `dbg892: ${idx} : this is a null element`;
+		} else if (oneElem.nodeName === 'ARTICLE') {
+			//console.log(`dbg745: ${idx} : this is a ARTICLE`);
+			return oneElem;
+		} else {
+			console.log(`dbg893: ${idx} : this is something else`);
+		}
+	}
+	function getPrezArticle(): HTMLElement {
+		const elem = document.getElementById("prezId");
+		if (elem === null) {
+			throw 'dbg192: elem with preyId is a null element';
+		} else {
+			return elem;
+		}
+	}
+
 	function equipSlides(elems: HTMLCollection) {
 		slideNb = elems.length;
 		//console.log(`dbg449: slideNb: ${slideNb}`);
-		for (let idx = 0; idx < slideNb; idx++) {
-			const oneElem = elems.item(idx);
-			if (oneElem === null) {
-				console.log(`dbg892: ${idx} : this is a null element`);
-			} else if (oneElem.nodeName === 'ARTICLE') {
-				//console.log(`dbg745: ${idx} : this is a ARTICLE`);
+		try {
+			for (let idx = 0; idx < slideNb; idx++) {
+				const oneElem = getOneSlide(elems, idx);
 				oneElem.addEventListener('click', function () {
 					slideIdx = idx;
 					prezActive = true;
 				});
-			} else {
-				console.log(`dbg893: ${idx} : this is something else`);
 			}
+		} catch(err) {
+			console.log(err);
 		}
 	}
 
 	onMount(() => {
-		const elems = carousContent?.children;
-		if (elems !== undefined) {
+		try {
+			const elems = getSlides();
 			equipSlides(elems);
-		} else {
-			console.log('dbg298: elems is undefined!');
+		} catch(err) {
+			console.log(err);
 		}
 	});
 
+	function cloneSlide(idx: number) {
+		const elems = getSlides();
+		const oneElem = getOneSlide(elems, idx);
+		return oneElem.cloneNode(true);
+	}
+	function updateSlide(idx: number) {
+		try {
+			const elem = getPrezArticle();
+			const newSlide = cloneSlide(idx);
+			// remove all content of elem
+			elem.textContent = '';
+			while (elem.firstChild) {
+				elem.removeChild(elem.firstChild);
+			}
+			// add new content
+			elem.appendChild(newSlide);
+			// remove style-class
+			elem.firstChild.className = '';
+		} catch(err) {
+			console.log(err);
+		}
+	}
 	function stopPrez() {
 		prezActive = false;
 	}
 	function goPrev() {
 		slideIdx = Math.max(0, slideIdx - 1);
+		updateSlide(slideIdx);
 	}
 	function goNext() {
 		slideIdx = Math.min(slideNb - 1, slideIdx + 1);
+		updateSlide(slideIdx);
 	}
 </script>
 
 {#if prezActive}
 	<aside class="backdrop">
-		<article>{slideIdx}</article>
+		<article id="prezId">{slideIdx}</article>
 		<button on:click={goPrev}>&#60;&#60;&#60;</button><button class="mid" on:click={stopPrez}
 			>Stop</button
 		><button on:click={goNext}>&#62;&#62;&#62;</button>
