@@ -9,7 +9,7 @@
 
 	function equipSlides(elems: HTMLCollection) {
 		slideNb = elems.length;
-		console.log(`dbg449: slideNb: ${slideNb}`);
+		//console.log(`dbg449: slideNb: ${slideNb}`);
 		for (let idx = 0; idx < slideNb; idx++) {
 			const oneElem = elems.item(idx);
 			if (oneElem === null) {
