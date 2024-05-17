@@ -13,6 +13,7 @@
 		height: 18rem;
 		width: 30rem;
 		margin: 2rem;
+		font-size: 0.8rem;
 		color: colors.$prezText;
 		background-color: colors.$prezArticle;
 	}
