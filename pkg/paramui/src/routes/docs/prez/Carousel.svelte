@@ -3,6 +3,7 @@
 	import { onMount, onDestroy } from 'svelte';
 
 	let carousContent: HTMLElement;
+	let slideContent: HTMLElement;
 	let slideNb = 0;
 	let slideIdx = 0;
 	let prezActive = false;
@@ -32,43 +33,33 @@
 		}
 		return rElem as HTMLElement;
 	}
-	function getPrezArticle(): HTMLElement {
-		const elem = document.getElementById('prezId');
-		if (elem === null) {
-			throw 'dbg192: elem with preyId is a null element';
-		}
-		return elem;
-	}
 
-	function cloneSlide(idx: number) {
+	function cloneSlide(idx: number): HTMLElement {
 		const elems = getSlides();
 		const oneElem = getOneSlideContent(elems, idx);
-		return oneElem.cloneNode(true);
+		return oneElem.cloneNode(true) as HTMLElement;
 	}
-	function removeSlide() {
+	function removeSlide(iElem: HTMLElement) {
 		try {
-			const elem = getPrezArticle();
-			// remove all content of elem
-			elem.textContent = '';
-			while (elem.firstChild) {
-				elem.removeChild(elem.firstChild);
+			if (iElem === undefined) {
+				throw 'dbg543: iElem is undefined';
+			}
+			// remove all content of iElem
+			iElem.textContent = '';
+			while (iElem.firstChild) {
+				iElem.removeChild(iElem.firstChild);
 			}
 		} catch (err) {
 			console.log(err);
 		}
 	}
-	function updateSlide(idx: number) {
+	function updateSlide(iElem: HTMLElement, idx: number) {
 		try {
 			// remove Old
-			removeSlide();
+			removeSlide(iElem);
 			// add new Slide
-			const elem = getPrezArticle();
 			const newSlide = cloneSlide(idx);
-			elem.appendChild(newSlide);
-			// remove style-class
-			//if (elem.firstChild !== null) {
-			//	elem.firstChild.className = '';
-			//}
+			iElem.appendChild(newSlide);
 		} catch (err) {
 			console.log(err);
 		}
@@ -83,7 +74,7 @@
 				oneElem.addEventListener('click', function () {
 					slideIdx = idx;
 					prezActive = true;
-					updateSlide(slideIdx);
+					updateSlide(slideContent, slideIdx);
 				});
 			}
 		} catch (err) {
@@ -96,11 +87,11 @@
 	}
 	function goPrev() {
 		slideIdx = Math.max(0, slideIdx - 1);
-		updateSlide(slideIdx);
+		updateSlide(slideContent, slideIdx);
 	}
 	function goNext() {
 		slideIdx = Math.min(slideNb - 1, slideIdx + 1);
-		updateSlide(slideIdx);
+		updateSlide(slideContent, slideIdx);
 	}
 
 	onMount(() => {
@@ -113,7 +104,9 @@
 	});
 	onDestroy(() => {
 		try {
-			removeSlide();
+			if (slideContent !== undefined) {
+				removeSlide(slideContent);
+			}
 		} catch (err) {
 			console.log(err);
 		}
@@ -121,7 +114,7 @@
 </script>
 
 <aside class="backdrop" class:prezOn={prezActive}>
-	<article id="prezId">{slideIdx}</article>
+	<article bind:this={slideContent}></article>
 	<button on:click={goPrev}>&#60;&#60;&#60;</button><button class="mid" on:click={stopPrez}
 		>[ {slideIdx + 1} / {slideNb} ] Stop</button
 	><button on:click={goNext}>&#62;&#62;&#62;</button>
