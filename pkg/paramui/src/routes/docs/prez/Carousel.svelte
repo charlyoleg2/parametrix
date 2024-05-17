@@ -14,14 +14,23 @@
 		}
 		return elems;
 	}
-	function getOneSlide(elems: HTMLCollection, idx: number): Element {
+	function getOneSlide(elems: HTMLCollection, idx: number): HTMLElement {
 		const oneElem = elems.item(idx);
 		if (oneElem === null) {
-			throw `dbg892: ${idx} : this is a null element`;
-		} else if (oneElem.nodeName !== 'ARTICLE') {
-			console.log(`dbg893: ${idx} : this is something else`);
+			throw `dbg890: ${idx} : this is a null element`;
+		} else if (oneElem.nodeName !== 'DIV') {
+			throw `dbg891: ${idx} : this is not a DIV`;
 		}
-		return oneElem;
+		return oneElem as HTMLElement;
+	}
+	function getOneSlideContent(elems: HTMLCollection, idx: number): HTMLElement {
+		const rElem = getOneSlide(elems, idx).firstChild;
+		if (rElem === null) {
+			throw `dbg892: ${idx} : the firstChild is a null element`;
+		} else if (rElem.nodeName !== 'ARTICLE') {
+			throw `dbg893: ${idx} : this is not an article`;
+		}
+		return rElem as HTMLElement;
 	}
 	function getPrezArticle(): HTMLElement {
 		const elem = document.getElementById('prezId');
@@ -58,7 +67,7 @@
 
 	function cloneSlide(idx: number) {
 		const elems = getSlides();
-		const oneElem = getOneSlide(elems, idx);
+		const oneElem = getOneSlideContent(elems, idx);
 		return oneElem.cloneNode(true);
 	}
 	function updateSlide(idx: number) {
@@ -97,7 +106,7 @@
 	<aside class="backdrop">
 		<article id="prezId">{slideIdx}</article>
 		<button on:click={goPrev}>&#60;&#60;&#60;</button><button class="mid" on:click={stopPrez}
-			>Stop</button
+			>[ {slideIdx + 1} / {slideNb} ] Stop</button
 		><button on:click={goNext}>&#62;&#62;&#62;</button>
 	</aside>
 {/if}
@@ -124,12 +133,15 @@
 		background-color: rgba(0, 0, 0, 0.4);
 	}
 	aside > article {
-		display: block;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		width: 100%;
 		height: 90%;
 		margin: 0;
 		border: none;
 		padding: 0;
+		font-size: 3rem;
 		color: colors.$prezText;
 		background-color: colors.$prezArticle;
 	}

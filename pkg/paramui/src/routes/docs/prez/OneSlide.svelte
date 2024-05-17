@@ -1,14 +1,19 @@
-<article>
-	<slot />
-</article>
+<div>
+	<article>
+		<slot />
+	</article>
+</div>
 
 <style lang="scss">
-	/*@use '$lib/style/colors.scss';*/
-	article {
+	@use '$lib/style/colors.scss';
+	div {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		height: 18rem;
 		width: 30rem;
 		margin: 2rem;
-		color: grey;
-		background-color: black;
+		color: colors.$prezText;
+		background-color: colors.$prezArticle;
 	}
 </style>
