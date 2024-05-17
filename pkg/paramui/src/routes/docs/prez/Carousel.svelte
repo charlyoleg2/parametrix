@@ -1,6 +1,6 @@
 <script lang="ts">
 	//import OneSlide from './OneSlide.svelte';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	let carousContent: HTMLElement;
 	let slideNb = 0;
@@ -40,46 +40,30 @@
 		return elem;
 	}
 
-	function equipSlides(elems: HTMLCollection) {
-		slideNb = elems.length;
-		//console.log(`dbg449: slideNb: ${slideNb}`);
-		try {
-			for (let idx = 0; idx < slideNb; idx++) {
-				const oneElem = getOneSlide(elems, idx);
-				oneElem.addEventListener('click', function () {
-					slideIdx = idx;
-					prezActive = true;
-				});
-			}
-		} catch (err) {
-			console.log(err);
-		}
-	}
-
-	onMount(() => {
-		try {
-			const elems = getSlides();
-			equipSlides(elems);
-		} catch (err) {
-			console.log(err);
-		}
-	});
-
 	function cloneSlide(idx: number) {
 		const elems = getSlides();
 		const oneElem = getOneSlideContent(elems, idx);
 		return oneElem.cloneNode(true);
 	}
-	function updateSlide(idx: number) {
+	function removeSlide() {
 		try {
 			const elem = getPrezArticle();
-			const newSlide = cloneSlide(idx);
 			// remove all content of elem
 			elem.textContent = '';
 			while (elem.firstChild) {
 				elem.removeChild(elem.firstChild);
 			}
-			// add new content
+		} catch (err) {
+			console.log(err);
+		}
+	}
+	function updateSlide(idx: number) {
+		try {
+			// remove Old
+			removeSlide();
+			// add new Slide
+			const elem = getPrezArticle();
+			const newSlide = cloneSlide(idx);
 			elem.appendChild(newSlide);
 			// remove style-class
 			//if (elem.firstChild !== null) {
@@ -89,6 +73,24 @@
 			console.log(err);
 		}
 	}
+
+	function equipSlides(elems: HTMLCollection) {
+		slideNb = elems.length;
+		//console.log(`dbg449: slideNb: ${slideNb}`);
+		try {
+			for (let idx = 0; idx < slideNb; idx++) {
+				const oneElem = getOneSlide(elems, idx);
+				oneElem.addEventListener('click', function () {
+					slideIdx = idx;
+					prezActive = true;
+					updateSlide(slideIdx);
+				});
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
 	function stopPrez() {
 		prezActive = false;
 	}
@@ -100,16 +102,30 @@
 		slideIdx = Math.min(slideNb - 1, slideIdx + 1);
 		updateSlide(slideIdx);
 	}
+
+	onMount(() => {
+		try {
+			const elems = getSlides();
+			equipSlides(elems);
+		} catch (err) {
+			console.log(err);
+		}
+	});
+	onDestroy(() => {
+		try {
+			removeSlide();
+		} catch (err) {
+			console.log(err);
+		}
+	});
 </script>
 
-{#if prezActive}
-	<aside class="backdrop">
-		<article id="prezId">{slideIdx}</article>
-		<button on:click={goPrev}>&#60;&#60;&#60;</button><button class="mid" on:click={stopPrez}
-			>[ {slideIdx + 1} / {slideNb} ] Stop</button
-		><button on:click={goNext}>&#62;&#62;&#62;</button>
-	</aside>
-{/if}
+<aside class="backdrop" class:prezOn={prezActive}>
+	<article id="prezId">{slideIdx}</article>
+	<button on:click={goPrev}>&#60;&#60;&#60;</button><button class="mid" on:click={stopPrez}
+		>[ {slideIdx + 1} / {slideNb} ] Stop</button
+	><button on:click={goNext}>&#62;&#62;&#62;</button>
+</aside>
 
 <div class="carousel-container" bind:this={carousContent}>
 	<slot />
@@ -129,8 +145,11 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		display: block;
+		display: none;
 		background-color: rgba(0, 0, 0, 0.4);
+	}
+	aside.backdrop.prezOn {
+		display: block;
 	}
 	aside > article {
 		display: flex;
