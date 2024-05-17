@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import Carousel from './Carousel.svelte';
-	import OneSlide from './OneSlide.svelte';
+	import Carousel from '$lib/Carousel.svelte';
+	import OneSlide from '$lib/OneSlide.svelte';
 </script>
 
 <h1>Prez of Parametrix</h1>
@@ -34,7 +34,7 @@ Go through the design-UI
 	<OneSlide>
 		<img
 			src="{base}/puisvg/concept_of_webapp_generator.svg"
-			width="450"
+			style="width:28em;"
 			alt="designer and maker"
 		/>
 	</OneSlide>
