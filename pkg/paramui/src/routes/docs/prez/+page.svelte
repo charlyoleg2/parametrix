@@ -7,10 +7,26 @@
 <h1>Prez of Parametrix</h1>
 <Carousel>
 	<OneSlide>
+		<center
+			><img
+				src="{base}/favicon.svg"
+				style="width: 9em; display: inline-block;"
+				alt="Parametrix logo"
+			/></center
+		>
+		<div>
+			<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
+			<center
+				><i style="color: lightSkyBlue;">Geometrix</i>
+				<i style="color: pink;">Designix</i></center
+			>
+		</div>
+	</OneSlide>
+	<OneSlide>
 		<pre>
-- Parametrix framework
-- Geometrix library
-- design-library
+- framework / eco-system : Parametrix
+- core library: Geometrix
+- design-libraries: Designix, Desi78, Desi82, ...
 		</pre>
 	</OneSlide>
 	<OneSlide>
