@@ -34,7 +34,7 @@ Go through the design-UI
 	<OneSlide>
 		<img
 			src="{base}/puisvg/concept_of_webapp_generator.svg"
-			style="width:28em;"
+			style="width: 28em;"
 			alt="designer and maker"
 		/>
 	</OneSlide>

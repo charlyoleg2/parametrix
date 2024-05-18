@@ -114,20 +114,20 @@
 </script>
 
 <aside class="backdrop" class:prezOn={prezActive}>
-	<article bind:this={slideContent}></article>
+	<div bind:this={slideContent}></div>
 	<button on:click={goPrev}>&#60;&#60;&#60;</button><button class="mid" on:click={stopPrez}
 		>[ {slideIdx + 1} / {slideNb} ] Stop</button
 	><button on:click={goNext}>&#62;&#62;&#62;</button>
 </aside>
 
-<div class="carousel-container" bind:this={carousContent}>
+<section class="carousel-container" bind:this={carousContent}>
 	<slot />
-</div>
+</section>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
 
-	div.carousel-container {
+	section.carousel-container {
 		display: flex;
 		flex-wrap: wrap;
 	}
@@ -144,7 +144,7 @@
 	aside.backdrop.prezOn {
 		display: block;
 	}
-	aside > article {
+	aside > div {
 		display: flex;
 		align-items: center;
 		justify-content: center;
