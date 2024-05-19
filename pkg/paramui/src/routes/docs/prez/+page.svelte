@@ -54,15 +54,6 @@
 	>
 	<OneSlide>
 		<pre>
-framework / eco-system : Parametrix
-
-          core library : Geometrix
-
-      design-libraries : Designix, Desi78, Desi82, ...
-		</pre>
-	</OneSlide>
-	<OneSlide>
-		<pre>
 Parametrix main characteristics:
 
 1. free and open-source
@@ -73,6 +64,15 @@ Parametrix main characteristics:
 
 3. JavaScript
     for designing 3D shapes (similar to OpenSCAD)
+		</pre>
+	</OneSlide>
+	<OneSlide>
+		<pre>
+framework / eco-system : Parametrix
+
+          core library : Geometrix
+
+      design-libraries : Designix, Desi78, Desi82, ...
 		</pre>
 	</OneSlide>
 	<OneSlide>
