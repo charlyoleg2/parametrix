@@ -10,7 +10,9 @@
 		<center
 			><img
 				src="{base}/favicon.svg"
-				style="width: 9em; display: inline-block;"
+				style="width: 9em; display: inline-block; transition: transform 0.5s;"
+				onmouseover="this.style.transform = 'scale(1.25)'"
+				onmouseout="this.style.transform = 'scale(1.0)'"
 				alt="Parametrix logo"
 			/></center
 		>
