@@ -10,7 +10,7 @@
 		<center
 			><img
 				src="{base}/favicon.svg"
-				style="width: 9em; display: inline-block;"
+				style="width: 9em;"
 				alt="Parametrix logo"
 			/></center
 		>
@@ -24,11 +24,8 @@
 		</div>
 	</OneSlide>
 	<OneSlide>
-		<pre>
-- framework / eco-system : Parametrix
-- core library: Geometrix
-- design-libraries: Designix, Desi78, Desi82, ...
-		</pre>
+		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
+		<pre style="margin:0;">a JavaScript solution for creating 3D shapes</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre>
@@ -37,10 +34,19 @@ Pictures of 3D shapes
 	</OneSlide>
 	<OneSlide>
 		<pre>
+framework / eco-system : Parametrix
+
+          core library : Geometrix
+
+      design-libraries : Designix, Desi78, Desi82, ...
+		</pre>
+	</OneSlide>
+	<OneSlide>
+		<pre>
 Parametrix main characteristics:
-- free and open-source (like Freecad or SolveSpace)
-- HTML page for parametrization and generating the 3D scripts
-- Create the design with Javascript (similar to OpenSCAD)
+1. free and open-source (like Freecad or SolveSpace)
+2. HTML page for parametrization and generating the 3D scripts
+3. Create the design with Javascript (similar to OpenSCAD)
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -56,9 +62,19 @@ Go through the design-UI
 		/>
 	</OneSlide>
 	<OneSlide>
+		<center
+			><img
+				src="{base}/puisvg/parametrix_3D_shape_subset.svg"
+				style="width: 14em;"
+				alt="3D shape subsets"
+			/></center
+		>
 		<pre>
-Design of 3D shape created with the Geometrix API
-
+The Geometrix API for designing a 3D shape
+		</pre>
+	</OneSlide>
+	<OneSlide>
+		<pre>
 The Geometrix API in a nutshell
 		</pre>
 	</OneSlide>
@@ -111,7 +127,7 @@ Corner rework:
 		<pre>
 - Define a list of figures
 - Attach the contours to figures
-	- as main, second or dynamics
+    - as main, second or dynamics
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -119,16 +135,26 @@ Corner rework:
 Define the 3D shape
 - Extrude figures as LinearOrtho or Rotate
 - Rotate, translate and combine sub-element
-	- Union
-	- InterOneSlide
-	- Substraction
+    - Union
+    - Intersection
+    - Substraction
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre></pre>
+		<pre>
+Parametrix generates 3D scripts for:
+- OpenSCAD &#10004;
+- OpenJsCad &#10004;
+- Freecad
+- Solvespace
+- pythonOCC
+- CadQuery
+- OpenCascade.js
+- glTF
+		</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre></pre>
+		<pre>Thank you!</pre>
 	</OneSlide>
 </Carousel>
 
