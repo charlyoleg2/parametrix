@@ -124,10 +124,18 @@ The Geometrix API in a nutshell
 Create contour with:
 - strokes
 - arcs of circles
+
 Optimal for generating G-code
 		</pre>
 	</OneSlide>
 	<OneSlide>
+		<center
+			><img
+				src="{base}/puisvg/prez_absolute_relative.svg"
+				style="width: 22em;"
+				alt="absolute relative cartesian polar"
+			/></center
+		>
 		<pre>
 Next destination-point in contour-definition:
 - Cartesian or Polar
@@ -135,6 +143,13 @@ Next destination-point in contour-definition:
 		</pre>
 	</OneSlide>
 	<OneSlide>
+		<center
+			><img
+				src="{base}/puisvg/prez_arcs.svg"
+				style="width: 22em;"
+				alt="three ways for defining arcs"
+			/></center
+		>
 		<pre>
 3 options for defining an arc of circle:
 - radius with large/small and ccw/cw
@@ -143,12 +158,26 @@ Next destination-point in contour-definition:
 		</pre>
 	</OneSlide>
 	<OneSlide>
+		<center
+			><img
+				src="{base}/puisvg/prez_curve_approximation.svg"
+				style="width: 22em;"
+				alt="curve approximation"
+			/></center
+		>
 		<pre>
 Complex curve approximation:
 Double arcs defined with start and end tangents
 		</pre>
 	</OneSlide>
 	<OneSlide>
+		<center
+			><img
+				src="{base}/puisvg/prez_corner_modifications.svg"
+				style="width: 15em;"
+				alt="corner modifications"
+			/></center
+		>
 		<pre>
 Corner rework:
 - Rounded
@@ -157,6 +186,17 @@ Corner rework:
 		</pre>
 	</OneSlide>
 	<OneSlide>
+		<center
+			><img
+				src="{base}/puisvg/prez_design_structure.svg"
+				style="width: 14em;"
+				alt="design structure"
+			/>&nbsp;<img
+				src="{base}/puisvg/prez_figure_layers.svg"
+				style="width: 10em;"
+				alt="figure layers"
+			/></center
+		>
 		<pre>
 - Define a list of figures
 - Attach the contours to figures
@@ -164,14 +204,27 @@ Corner rework:
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre>
+		<center
+			><img
+				src="{base}/puisvg/prez_extrudes.svg"
+				style="width: 12em;"
+				alt="extrudes"
+			/></center
+		>
+		<pre style="margin: 0.5em;">
 Define the 3D shape
 - Extrude figures as LinearOrtho or Rotate
 - Rotate, translate and combine sub-element
     - Union
     - Intersection
-    - Substraction
-		</pre>
+    - Substraction</pre>
+		<center
+			><img
+				src="{base}/puisvg/prez_boolean_operations.svg"
+				style="width: 16em;"
+				alt="boolean operations"
+			/></center
+		>
 	</OneSlide>
 	<OneSlide>
 		<pre>
