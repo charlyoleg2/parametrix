@@ -38,9 +38,15 @@ framework / eco-system : Parametrix
 	<OneSlide>
 		<pre>
 Parametrix main characteristics:
-1. free and open-source (like Freecad or SolveSpace)
-2. HTML page for parametrization and generating the 3D scripts
-3. Create the design with Javascript (similar to OpenSCAD)
+
+1. free and open-source
+    (like Freecad or SolveSpace)
+
+2. HTML page
+    for parametrization and generating the 3D scripts
+
+3. JavaScript
+    for designing 3D shapes (similar to OpenSCAD)
 		</pre>
 	</OneSlide>
 	<OneSlide>
