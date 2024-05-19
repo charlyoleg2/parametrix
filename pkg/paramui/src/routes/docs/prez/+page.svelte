@@ -113,6 +113,13 @@ The Geometrix API in a nutshell
 		</pre>
 	</OneSlide>
 	<OneSlide>
+		<center
+			><img
+				src="{base}/puisvg/prez_stroke_and_arc.svg"
+				style="width: 9em;"
+				alt="stroke and arcs"
+			/></center
+		>
 		<pre>
 Create contour with:
 - strokes
