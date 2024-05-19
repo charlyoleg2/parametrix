@@ -22,10 +22,36 @@
 		<pre style="margin:0;">a JavaScript solution for creating 3D shapes</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre>
-Pictures of 3D shapes
-		</pre>
+		<img src="{base}/screen_gear.png" style="width: 16em;" alt="screenshot of a gear" />
+		<img
+			src="{base}/screen_helio_rake.png"
+			style="width: 16em;"
+			alt="screenshot of the heliostat rake"
+		/>
 	</OneSlide>
+	<OneSlide>
+		<p>
+			<img src="{base}/screen_cabane.png" style="height: 9em;" alt="screenshot of a cabane" />
+			<img
+				src="{base}/screen_doorstop.png"
+				style="width: 9em;"
+				alt="screenshot of a doorstop"
+			/>
+		</p>
+		<p>
+			<img
+				src="{base}/screen_trapeze.png"
+				style="width: 9em;"
+				alt="screenshot of a trapeze"
+			/>
+			<img
+				src="{base}/screen_reinforced_tube.png"
+				style="width: 9em;"
+				alt="screenshot of a reinforced tube"
+			/>
+		</p>
+		<p></p></OneSlide
+	>
 	<OneSlide>
 		<pre>
 framework / eco-system : Parametrix
