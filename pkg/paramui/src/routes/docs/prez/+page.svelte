@@ -10,17 +10,16 @@
 		<center
 			><img
 				src="{base}/favicon.svg"
-				style="width: 9em; display: inline-block; transition: transform 0.5s;"
-				onmouseover="this.style.transform = 'scale(1.25)'"
-				onmouseout="this.style.transform = 'scale(1.0)'"
+				style="width: 9em; display: inline-block;"
 				alt="Parametrix logo"
 			/></center
 		>
 		<div>
 			<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
 			<center
-				><i style="color: lightSkyBlue;">Geometrix</i>
-				<i style="color: pink;">Designix</i></center
+				><i style="color: lightSkyBlue;">Geometrix</i>&nbsp;<i style="color: pink;"
+					>Designix</i
+				></center
 			>
 		</div>
 	</OneSlide>
