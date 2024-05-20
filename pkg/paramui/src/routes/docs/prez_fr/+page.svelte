@@ -4,7 +4,7 @@
 	import OneSlide from '$lib/OneSlide.svelte';
 </script>
 
-<h1>Prez of Parametrix</h1>
+<h1>La prèz de Paramétrix</h1>
 <Carousel>
 	<OneSlide>
 		<center><img src="{base}/favicon.svg" style="width: 9em;" alt="Parametrix logo" /></center>
@@ -54,30 +54,30 @@
 	>
 	<OneSlide>
 		<pre>
-Parametrix main characteristics:
+Les caractéristiques principales de Parametrix:
 
-1. free and open-source
-    (like Freecad or SolveSpace)
+1. Logiciel libre
+    (comme Freecad ou SolveSpace)
 
-2. HTML page
-    for parametrization and generating the 3D scripts
+2. Génère des pages HTML
+    pour paramétriser et générer des scripts 3D
 
 3. JavaScript
-    for designing 3D shapes (similar to OpenSCAD)
+    pour designer les formes 3D (comme avec OpenSCAD)
 		</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre>
-framework / eco-system : Parametrix
+framework / éco-système : Parametrix
 
-          core library : Geometrix
+   librairie principale : Geometrix
 
-      design-libraries : Designix, Desi78, Desi82, ...
+  librairies de designs : Designix, Desi78, Desi82, ...
 		</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre>
-Go through the design-UI
+Passage en revue de l'interface graphique
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -96,18 +96,18 @@ Go through the design-UI
 			/></center
 		>
 		<pre>
-The Geometrix API for designing a 3D shape
+L'API de Geometrix pour designer des formes 3D
 		</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre>
-The Geometrix API in a nutshell
+L'API de Geometrix en bref
 		</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre>
-3 types of parameters
-- number
+3 types de paramètres
+- nombre
 - checkbox (i.e. boolean)
 - dropdown (i.e. enum)
 		</pre>
@@ -121,11 +121,11 @@ The Geometrix API in a nutshell
 			/></center
 		>
 		<pre>
-Create contour with:
-- strokes
-- arcs of circles
+Les contours sont composées exclusivement de:
+- segments de droite
+- arcs de cercle
 
-Optimal for generating G-code
+Idéal pour générer le G-code
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -137,9 +137,10 @@ Optimal for generating G-code
 			/></center
 		>
 		<pre>
-Next destination-point in contour-definition:
-- Cartesian or Polar
-- Relative or Absolute
+Options possibles pour définir le prochain point
+                   dans la définition d'un contour:
+- Cartésien ou Polair
+- Relative ou Absolue
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -151,10 +152,10 @@ Next destination-point in contour-definition:
 			/></center
 		>
 		<pre>
-3 options for defining an arc of circle:
-- radius with large/small and ccw/cw
-- intermediate point
-- tangent at the begining or the end
+3 possibilités pour définir un arc de cercle:
+- le rayon avec les booléens large/small et ccw/cw
+- un point intermédiaire
+- l'angle de la tangente au début ou à la fin de l'arc
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -166,8 +167,11 @@ Next destination-point in contour-definition:
 			/></center
 		>
 		<pre>
-Complex curve approximation:
-Double arcs defined with start and end tangents
+Approximation des courbes quelconques:
+
+double arcs de cercles définis avec
+  leur angles de tangentes de début
+  et de fin de segment de courbe
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -179,10 +183,10 @@ Double arcs defined with start and end tangents
 			/></center
 		>
 		<pre>
-Corner rework:
-- Rounded
-- Widened
-- WideAcc
+Modifications des angles d'un contour:
+- Arrondi [Rounded]
+- Elargissement [Widened]
+- Elargissement avec l'accès [WideAcc]
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -198,9 +202,11 @@ Corner rework:
 			/></center
 		>
 		<pre>
-- Define a list of figures
-- Attach the contours to figures
-    - as main, second or dynamics
+- Définition d'une liste de figures
+- Attacher chaque contour à une figure en tant que:
+    - principal [main]
+    - secondaire [second]
+    - ou dynamique [dynamics]
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -212,12 +218,12 @@ Corner rework:
 			/></center
 		>
 		<pre style="margin: 0.5em;">
-Define the 3D shape
-- Extrude figures as LinearOrtho or Rotate
-- Rotate, translate and combine sub-element
+Définition  d'une forme 3D
+- Extrusion d'une figure orthogonalement ou en révolution
+- Pivoter, translater puis combiner les sous-éléments
     - Union
     - Intersection
-    - Substraction</pre>
+    - Soustraction</pre>
 		<center
 			><img
 				src="{base}/puisvg/prez_boolean_operations.svg"
@@ -228,7 +234,7 @@ Define the 3D shape
 	</OneSlide>
 	<OneSlide>
 		<pre>
-Parametrix generates 3D scripts for:
+Parametrix génère des scripts 3D pour:
 - OpenSCAD <span style="color: green;">&#10004;</span>
 - OpenJsCad <span style="color: green;">&#10004;</span>
 - Freecad
@@ -241,16 +247,16 @@ Parametrix generates 3D scripts for:
 	</OneSlide>
 	<OneSlide>
 		<pre>
-   End of
-     the
-presentation
-     of
+   Fin de
+     la
+présentation
+     de
  Parametrix
 		</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre>
-Ready for creating your <i>own</i> design-library?
+Prêt pour créer votre <i>propre</i> librairie de designs?
 		</pre>
 	</OneSlide>
 </Carousel>
