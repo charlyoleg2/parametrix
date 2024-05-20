@@ -229,10 +229,10 @@ Define the 3D shape
 	<OneSlide>
 		<pre>
 Parametrix generates 3D scripts for:
-- OpenSCAD &#10004;
-- OpenJsCad &#10004;
+- OpenSCAD <span style="color: green;">&#10004;</span>
+- OpenJsCad <span style="color: green;">&#10004;</span>
 - Freecad
-- Solvespace
+- SolveSpace
 - pythonOCC
 - CadQuery
 - OpenCascade.js
@@ -240,7 +240,18 @@ Parametrix generates 3D scripts for:
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre>Thank you!</pre>
+		<pre>
+   End of
+     the
+presentation
+     of
+ Parametrix
+		</pre>
+	</OneSlide>
+	<OneSlide>
+		<pre>
+Ready for creating your <i>own</i> design-library?
+		</pre>
 	</OneSlide>
 </Carousel>
 
