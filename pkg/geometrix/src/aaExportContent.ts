@@ -112,7 +112,7 @@ function figureToSvg(aCtr: tContour[]): string {
 }
 function figureToSvgDeco(fig: Figure) {
 	const sw2 = svgWriter2();
-	sw2.addAContour(fig.mainList, 'main', colors.main);
+	sw2.addAContour(fig.mainListC(), 'main', colors.mainInner);
 	sw2.addAContour(fig.mainBList, 'mainB', colors.mainB);
 	sw2.addAContour(fig.secondList, 'second', colors.second);
 	sw2.addAContour(fig.secondBList, 'secondB', colors.secondB);
@@ -197,9 +197,9 @@ async function makeZip(
 	const zLog1 = new zip.TextReader(geome1.logstr);
 	await zipWriter.add(`geom_${partName}_t${tSim}_log.txt`, zLog1);
 	for (const face in geome0.fig) {
-		const svgOne = new zip.TextReader(figureToSvg(geome0.fig[face].mainList));
+		const svgOne = new zip.TextReader(figureToSvg(geome0.fig[face].mainListC()));
 		await zipWriter.add(`face_${partName}_${face}.svg`, svgOne);
-		const dxfOne = new zip.TextReader(figureToDxf(geome0.fig[face].mainList));
+		const dxfOne = new zip.TextReader(figureToDxf(geome0.fig[face].mainListC()));
 		await zipWriter.add(`face_${partName}_${face}.dxf`, dxfOne);
 		const svgOneDeco = new zip.TextReader(figureToSvgDeco(geome0.fig[face]));
 		await zipWriter.add(`deco_${partName}_${face}.svg`, svgOneDeco);
@@ -207,9 +207,9 @@ async function makeZip(
 		await zipWriter.add(`deco_${partName}_${face}_t${tSim}.svg`, svgOneDecoT);
 	}
 	const mergedFace = mergeFaces(geome0.fig);
-	const svgMerged = new zip.TextReader(figureToSvg(mergedFace.mainList));
+	const svgMerged = new zip.TextReader(figureToSvg(mergedFace.mainListC()));
 	await zipWriter.add(`face_${partName}_all_merged.svg`, svgMerged);
-	const dxfMerged = new zip.TextReader(figureToDxf(mergedFace.mainList));
+	const dxfMerged = new zip.TextReader(figureToDxf(mergedFace.mainListC()));
 	await zipWriter.add(`face_${partName}_all_merged.dxf`, dxfMerged);
 	const svgMergedDeco = new zip.TextReader(figureToSvgDeco(mergedFace));
 	await zipWriter.add(`deco_${partName}_all_merged.svg`, svgMergedDeco);

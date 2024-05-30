@@ -27,11 +27,13 @@ interface tLayers {
 	refframe: boolean;
 }
 
+type tFace = tContour[];
+
 class Figure {
 	pointList: Point[];
 	lineList: Line[];
 	vectorList: Vector[];
-	mainList: tContour[];
+	mainList: tFace[];
 	mainBList: tContour[];
 	secondList: tContour[];
 	secondBList: tContour[];
@@ -74,13 +76,18 @@ class Figure {
 	addVector(ivector: Vector) {
 		this.vectorList.push(ivector);
 	}
-	addMain(icontour: tContour) {
-		const roundedContour = icontour.generateContour();
-		this.addPoints(roundedContour.generatePoints());
-		//this.addPoints(icontour.generatePoints()); // points of the skeleton
-		this.addLines(roundedContour.generateLines());
-		this.mainList.push(roundedContour);
-		this.mainBList.push(icontour.extractSkeleton());
+	// add one outer contour and several inner contours
+	addMain(iFace: tFace) {
+		const oneFace: tFace = [];
+		for (const oneCtr of iFace) {
+			const roundedContour = oneCtr.generateContour();
+			this.addPoints(roundedContour.generatePoints());
+			//this.addPoints(oneCtr.generatePoints()); // points of the skeleton
+			this.addLines(roundedContour.generateLines());
+			oneFace.push(roundedContour);
+			this.mainBList.push(oneCtr.extractSkeleton());
+		}
+		this.mainList.push(oneFace);
 	}
 	addSecond(icontour: tContour) {
 		const roundedContour = icontour.generateContour();
@@ -106,8 +113,12 @@ class Figure {
 		for (const vec of this.vectorList) {
 			rfig.addVector(vec.translate(ix, iy));
 		}
-		for (const ctr of this.mainList) {
-			rfig.addMain(ctr.translate(ix, iy));
+		for (const face of this.mainList) {
+			const oneFace: tFace = [];
+			for (const ctr of face) {
+				oneFace.push(ctr.translate(ix, iy));
+			}
+			rfig.addMain(oneFace);
 		}
 		for (const ctr of this.secondList) {
 			rfig.addSecond(ctr.translate(ix, iy));
@@ -132,8 +143,12 @@ class Figure {
 		for (const vec of this.vectorList) {
 			rfig.addVector(vec.rotate(pt0, ia));
 		}
-		for (const ctr of this.mainList) {
-			rfig.addMain(ctr.rotate(ix, iy, ia));
+		for (const face of this.mainList) {
+			const oneFace: tFace = [];
+			for (const ctr of face) {
+				oneFace.push(ctr.rotate(ix, iy, ia));
+			}
+			rfig.addMain(oneFace);
 		}
 		for (const ctr of this.secondList) {
 			rfig.addSecond(ctr.rotate(ix, iy, ia));
@@ -153,11 +168,17 @@ class Figure {
 		for (const vec of ifig.vectorList) {
 			this.addVector(vec.clone());
 		}
-		for (const ctr of ifig.mainList) {
+		for (const face of ifig.mainList) {
+			const oneFace: tFace = [];
+			for (const ctr of face) {
+				oneFace.push(ctr.clone());
+			}
 			if (mainToSecond) {
-				this.addSecond(ctr.clone());
+				for (const ctr of oneFace) {
+					this.addSecond(ctr);
+				}
 			} else {
-				this.addMain(ctr.clone());
+				this.addMain(oneFace);
 			}
 		}
 		for (const ctr of ifig.secondList) {
@@ -166,6 +187,15 @@ class Figure {
 		for (const ctr of ifig.dynamicsList) {
 			this.addDynamics(ctr.clone());
 		}
+	}
+	mainListC(): tContour[] {
+		const rListC: tContour[] = [];
+		for (const face of this.mainList) {
+			for (const ctr of face) {
+				rListC.push(ctr);
+			}
+		}
+		return rListC;
 	}
 	clear() {
 		this.pointList = [];
@@ -265,8 +295,14 @@ class Figure {
 			}
 		}
 		if (layers.main) {
-			for (const li of this.mainList) {
-				li.draw(ctx, adjust, colors.main);
+			for (const face of this.mainList) {
+				for (const [idx, li] of face.entries()) {
+					let ctrColor = colors.mainOuter;
+					if (idx > 0) {
+						ctrColor = colors.mainInner;
+					}
+					li.draw(ctx, adjust, ctrColor);
+				}
 			}
 		}
 		if (layers.mainB) {
@@ -308,13 +344,13 @@ function figure() {
 	return new Figure();
 }
 
-type tFaces = Record<string, Figure>;
+type tFigures = Record<string, Figure>;
 
 /** For cli-app and ui-app */
-function mergeFaces(iFaces: tFaces): Figure {
+function mergeFaces(iFigures: tFigures): Figure {
 	const rfig = figure();
-	for (const face in iFaces) {
-		const fig = iFaces[face];
+	for (const ifig in iFigures) {
+		const fig = iFigures[ifig];
 		for (const ipoint of fig.pointList) {
 			rfig.pointList.push(ipoint);
 		}
@@ -324,8 +360,8 @@ function mergeFaces(iFaces: tFaces): Figure {
 		for (const ivector of fig.vectorList) {
 			rfig.vectorList.push(ivector);
 		}
-		for (const ctr of fig.mainList) {
-			rfig.mainList.push(ctr);
+		for (const face of fig.mainList) {
+			rfig.mainList.push(face);
 		}
 		for (const ctr of fig.mainBList) {
 			rfig.mainBList.push(ctr);
@@ -376,5 +412,5 @@ function copyLayers(iLayers: tLayers): tLayers {
 
 /* export */
 
-export type { Point, tContour, tLayers, Figure, tFaces };
+export type { Point, tContour, tLayers, Figure, tFace, tFigures };
 export { figure, mergeFaces, initLayers, copyLayers };

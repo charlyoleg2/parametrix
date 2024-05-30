@@ -41,23 +41,23 @@ function fileTextContent(
 		if (exportFormat === EFormat.eSVG) {
 			if (figList.includes(eFace)) {
 				const figu = geome0.fig[eFace];
-				rFileContent = figureToSvg(figu.mainList);
+				rFileContent = figureToSvg(figu.mainListC());
 			} else {
 				console.log(`err749: fileTextContent eFace ${eFace} invalid`);
 			}
 		} else if (exportFormat === EFormat.eSVGALL) {
 			const figu = mergeFaces(geome0.fig);
-			rFileContent = figureToSvg(figu.mainList);
+			rFileContent = figureToSvg(figu.mainListC());
 		} else if (exportFormat === EFormat.eDXF) {
 			if (figList.includes(eFace)) {
 				const figu = geome0.fig[eFace];
-				rFileContent = figureToDxf(figu.mainList);
+				rFileContent = figureToDxf(figu.mainListC());
 			} else {
 				console.log(`err759: fileTextContent eFace ${eFace} invalid`);
 			}
 		} else if (exportFormat === EFormat.eDXFALL) {
 			const figu = mergeFaces(geome0.fig);
-			rFileContent = figureToDxf(figu.mainList);
+			rFileContent = figureToDxf(figu.mainListC());
 		} else if (exportFormat === EFormat.eTXTLOG) {
 			rFileContent = makeLog(geome0);
 		} else if (exportFormat === EFormat.ePAX) {

@@ -1,21 +1,21 @@
 // write_pax.ts
 
 import * as segLib from './segment';
-import type { tFaces } from './figure';
+import type { tFace, tFigures } from './figure';
 import type { tVolume } from './volume';
 import type { tSubDesign } from './sub_design';
 import type { tParamDef, tParamVal } from './designParams';
 import type { tGeom } from './aaParamGeom';
-import type { tPaxContour } from './prepare_pax';
+import type { tPaxFace } from './prepare_pax';
 import { PSeg } from './prepare_pax';
-import type { tContour } from './contour';
+//import type { tContour } from './contour';
 
-type tPaxFaces = Record<string, tPaxContour[]>;
+type tPaxFigures = Record<string, tPaxFace[]>;
 interface tPaxJson {
 	partName: string;
 	pDef: tParamDef;
 	params: tParamVal;
-	faces: tPaxFaces;
+	figures: tPaxFigures;
 	volume: tVolume;
 	subs: tSubDesign;
 	log: string;
@@ -23,15 +23,19 @@ interface tPaxJson {
 
 class PaxWrite {
 	//constructor() {}
-	figureToPaxF(aCtr: tContour[]): tPaxContour[] {
-		const rPaxF: tPaxContour[] = [];
-		for (const ctr of aCtr) {
-			rPaxF.push(ctr.toPax());
+	figureToPaxF(aFaces: tFace[]): tPaxFace[] {
+		const rPaxF: tPaxFace[] = [];
+		for (const face of aFaces) {
+			const oneFace: tPaxFace = [];
+			for (const ctr of face) {
+				oneFace.push(ctr.toPax());
+			}
+			rPaxF.push(oneFace);
 		}
 		return rPaxF;
 	}
-	getFigures(figs: tFaces): tPaxFaces {
-		const figFaces: tPaxFaces = {};
+	getFigures(figs: tFigures): tPaxFigures {
+		const figFaces: tPaxFigures = {};
 		for (const face in figs) {
 			const figu = this.figureToPaxF(figs[face].mainList);
 			figFaces[face] = figu;
@@ -43,7 +47,7 @@ class PaxWrite {
 			partName: geome0.partName,
 			pDef: ipDef,
 			params: paramVal,
-			faces: this.getFigures(geome0.fig),
+			figures: this.getFigures(geome0.fig),
 			volume: geome0.vol,
 			subs: geome0.sub,
 			log: geome0.logstr
@@ -71,5 +75,5 @@ function convTypePaxToSeg1(paxType: PSeg): segLib.SegEnum {
 	return rType;
 }
 
-export type { tPaxFaces, tPaxJson };
+export type { tPaxFigures, tPaxJson };
 export { paxWrite, convTypePaxToSeg1 };

@@ -2,14 +2,15 @@
 
 import * as segLib from './segment';
 import type {
-	tPaxContour,
+	//tPaxContour,
+	tPaxFace,
 	tPaxContourCircle,
 	tPaxContourPath,
 	tPaxSeg,
 	tPaxSegArc
 } from './prepare_pax';
 import { PSeg } from './prepare_pax';
-import type { tPaxFaces, tPaxJson } from './write_pax';
+import type { tPaxFigures, tPaxJson } from './write_pax';
 import { convTypePaxToSeg1, paxWrite } from './write_pax';
 import { zeroPDef } from './designParams';
 import type { tVolume, tInherit, tExtrude, tBVolume } from './volume';
@@ -138,23 +139,26 @@ const main = () => {
 `;
 		return rStr;
 	}
-	getOneFigure(aCtr: tPaxContour[], faceId: string): string {
+	getOneFigure(aFaces: tPaxFace[], faceId: string): string {
 		const ojscadWF = new OjscadWriteFigure();
-		for (const paxCtr of aCtr) {
-			if (paxCtr.circle === true) {
-				const paxCircle = paxCtr as tPaxContourCircle;
-				const ojscadSeg = ojscadSegCircle(paxCircle.cx, paxCircle.cy, paxCircle.radius);
-				ojscadWF.addContour(ojscadSeg);
-			} else {
-				const paxPath = paxCtr as tPaxContourPath;
-				const ojscadSeg = toOpenjscadSeg(paxPath.seg);
-				ojscadWF.addContour(ojscadSeg);
+		for (const paxFace of aFaces) {
+			// TODO: extrude each outer-contour individually
+			for (const paxCtr of paxFace) {
+				if (paxCtr.circle === true) {
+					const paxCircle = paxCtr as tPaxContourCircle;
+					const ojscadSeg = ojscadSegCircle(paxCircle.cx, paxCircle.cy, paxCircle.radius);
+					ojscadWF.addContour(ojscadSeg);
+				} else {
+					const paxPath = paxCtr as tPaxContourPath;
+					const ojscadSeg = toOpenjscadSeg(paxPath.seg);
+					ojscadWF.addContour(ojscadSeg);
+				}
 			}
 		}
 		const rOjscadF = ojscadWF.getFigure(faceId);
 		return rOjscadF;
 	}
-	getAllFigures(faces: tPaxFaces, partName: string): string {
+	getAllFigures(faces: tPaxFigures, partName: string): string {
 		let rStr = '';
 		for (const face in faces) {
 			const figu = this.getOneFigure(faces[face], `${partName}_${face}`);
@@ -252,7 +256,7 @@ const ${inherit.outName} =
 			const subGeoms = this.getAllSubGeoms(vol.inherits);
 			for (const oneGeom of subGeoms) {
 				const paxJson = paxWrite().getPaxJson({}, oneGeom, zeroPDef);
-				rStr += this.getAllFigures(paxJson.faces, paxJson.partName);
+				rStr += this.getAllFigures(paxJson.figures, paxJson.partName);
 				rStr += this.getVolume(oneGeom.vol);
 			}
 			rStr += this.getAllInherits(vol.inherits);
@@ -271,7 +275,7 @@ module.exports = { main };
 	}
 	getExportFile(pax: tPaxJson) {
 		let rStr = this.getHeader();
-		rStr += this.getAllFigures(pax.faces, pax.partName);
+		rStr += this.getAllFigures(pax.figures, pax.partName);
 		rStr += this.getVolume(pax.volume);
 		rStr += this.getFooter(pax.partName);
 		return rStr;

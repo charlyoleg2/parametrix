@@ -41,6 +41,7 @@ interface tPaxContourPath {
 	seg: tPaxSeg[];
 }
 type tPaxContour = tPaxContourPath | tPaxContourCircle;
+type tPaxFace = tPaxContour[];
 
 function paxCircle(cx: number, cy: number, radius: number): tPaxContourCircle {
 	const rPax: tPaxContourCircle = {
@@ -98,5 +99,13 @@ function paxPath(): PaxPath {
 	return rPaxPath;
 }
 
-export type { tPaxSegSt, tPaxSegArc, tPaxSeg, tPaxContourPath, tPaxContourCircle, tPaxContour };
+export type {
+	tPaxSegSt,
+	tPaxSegArc,
+	tPaxSeg,
+	tPaxContourPath,
+	tPaxContourCircle,
+	tPaxContour,
+	tPaxFace
+};
 export { PaxPath, PSeg, paxPath, paxCircle };

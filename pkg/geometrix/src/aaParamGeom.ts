@@ -1,7 +1,7 @@
 // aaParamGeom.ts
 
 import type { tParamDef, tParamVal } from './designParams';
-import type { tFaces } from './figure';
+import type { tFigures } from './figure';
 import type { tVolume } from './volume';
 import type { tSubDesign } from './sub_design';
 
@@ -9,7 +9,7 @@ interface tGeom {
 	partName: string;
 	calcErr: boolean;
 	logstr: string;
-	fig: tFaces;
+	fig: tFigures;
 	vol: tVolume;
 	sub: tSubDesign;
 }
