@@ -2,6 +2,7 @@
 
 import type {
 	//tContour,
+	tFace,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -50,13 +51,15 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// figFace
+		const face1: tFace = [];
 		const ctrPoleFace = contour(-param.H1 / 2, -param.H2 / 2)
 			.addSegStrokeA(param.H1 / 2, -param.H2 / 2)
 			.addSegStrokeA(param.H1 / 2, param.H2 / 2)
 			.addSegStrokeA(-param.H1 / 2, param.H2 / 2)
 			.closeSegStroke();
-		figFace.addMain(ctrPoleFace);
-		figFace.addMain(contourCircle(0, 0, param.radius));
+		face1.push(ctrPoleFace);
+		face1.push(contourCircle(0, 0, param.radius));
+		figFace.addMainOI(face1);
 		// final figure list
 		rGeome.fig = {
 			poleFace: figFace

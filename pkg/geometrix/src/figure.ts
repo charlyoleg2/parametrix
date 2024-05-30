@@ -76,8 +76,8 @@ class Figure {
 	addVector(ivector: Vector) {
 		this.vectorList.push(ivector);
 	}
-	// add one outer contour and several inner contours
-	addMain(iFace: tFace) {
+	// add one Outer contour and several Inner contours
+	addMainOI(iFace: tFace) {
 		const oneFace: tFace = [];
 		for (const oneCtr of iFace) {
 			const roundedContour = oneCtr.generateContour();
@@ -88,6 +88,11 @@ class Figure {
 			this.mainBList.push(oneCtr.extractSkeleton());
 		}
 		this.mainList.push(oneFace);
+	}
+	// TODO: remove this temporary method
+	addMain(icontour: tContour) {
+		const face: tFace = [icontour];
+		this.addMainOI(face);
 	}
 	addSecond(icontour: tContour) {
 		const roundedContour = icontour.generateContour();
@@ -118,7 +123,7 @@ class Figure {
 			for (const ctr of face) {
 				oneFace.push(ctr.translate(ix, iy));
 			}
-			rfig.addMain(oneFace);
+			rfig.addMainOI(oneFace);
 		}
 		for (const ctr of this.secondList) {
 			rfig.addSecond(ctr.translate(ix, iy));
@@ -148,7 +153,7 @@ class Figure {
 			for (const ctr of face) {
 				oneFace.push(ctr.rotate(ix, iy, ia));
 			}
-			rfig.addMain(oneFace);
+			rfig.addMainOI(oneFace);
 		}
 		for (const ctr of this.secondList) {
 			rfig.addSecond(ctr.rotate(ix, iy, ia));
@@ -178,7 +183,7 @@ class Figure {
 					this.addSecond(ctr);
 				}
 			} else {
-				this.addMain(oneFace);
+				this.addMainOI(oneFace);
 			}
 		}
 		for (const ctr of ifig.secondList) {

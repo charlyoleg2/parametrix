@@ -1,6 +1,6 @@
 // gear_wheel_wheel.ts
 
-import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
+import type { tFace, tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 //import { contour, contourCircle, figure, degToRad } from 'geometrix';
 import {
 	contour,
@@ -149,6 +149,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// Figure One
+		const fOne: tFace = [];
 		// re-arrange parameters
 		const gp1 = gwHelper.gwProfile();
 		const gp2 = gwHelper.gwProfile();
@@ -201,7 +202,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const gp1p = gp1.getProfile();
 		rGeome.logstr += gp1.getMsg();
 		rGeome.logstr += gp1p.check();
-		figOne.addMain(gp1p);
+		fOne.push(gp1p);
 		if (param.centralAxis === 1) {
 			const g1axis = welem.axisTorque(
 				gp1.cx,
@@ -215,7 +216,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				initAngle1
 			);
 			rGeome.logstr += g1axis.check();
-			figOne.addMain(g1axis);
+			fOne.push(g1axis);
 		}
 		if (param.hollow === 1) {
 			const materialHeightExtMax = gp1.br;
@@ -239,13 +240,15 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			);
 			for (const g1hollowE of g1hollow) {
 				rGeome.logstr += g1hollowE.check();
-				figOne.addMain(g1hollowE);
+				fOne.push(g1hollowE);
 			}
 		}
+		figOne.addMainOI(fOne);
 		const gp2p = gp2.getProfile();
 		rGeome.logstr += gp2p.check();
 		figOne.addSecond(gp2p);
 		// Figure Two
+		const fTwo: tFace = [];
 		const wheelRadius = gp1.ar + param.wheelRadiusExtra;
 		if (param.wheelAxis === 1) {
 			const ctrAxisProfile_right = welem.axisProfile(
@@ -272,7 +275,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				param.wheelExtraRound,
 				false
 			);
-			figTwo.addMain(ctrAxisProfile_right);
+			fTwo.push(ctrAxisProfile_right);
 			figTwo.addSecond(ctrAxisProfile_left);
 		} else {
 			const ctrAxisProfile_right = contour(0, -param.wheelHeight / 2)
@@ -285,7 +288,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.addSegStrokeR(-wheelRadius, 0)
 				.addSegStrokeR(0, -param.wheelHeight)
 				.closeSegStroke();
-			figTwo.addMain(ctrAxisProfile_right);
+			fTwo.push(ctrAxisProfile_right);
+			figTwo.addMainOI(fTwo);
 			figTwo.addSecond(ctrAxisProfile_left);
 		}
 		rGeome.fig = { teethProfile: figOne, axisProfile: figTwo };
