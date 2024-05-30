@@ -23,6 +23,7 @@ import {
 	surfaceDef,
 	circlesDef,
 	rectangleDef,
+	voilaDef,
 	verifyPoint1Def,
 	verifyPoint2Def,
 	verifyLine1Def,
@@ -80,7 +81,8 @@ const menuList: tMenuList = [
 		category: 'Junk designs',
 		pages: [
 			{ path: '/junk/circles', page: circlesDef, svg: 'page_circles.svg' },
-			{ path: '/junk/rectangle', page: rectangleDef, svg: 'page_rectangle.svg' }
+			{ path: '/junk/rectangle', page: rectangleDef, svg: 'page_rectangle.svg' },
+			{ path: '/junk/voila', page: voilaDef, svg: 'page_rectangle.svg' }
 		]
 	},
 	{

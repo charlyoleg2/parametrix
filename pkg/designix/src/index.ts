@@ -24,6 +24,7 @@ export * from './heliostat/surface';
 export * from './dummy/circles';
 export * from './dummy/rectangle';
 export * from './dummy/pole_static';
+export * from './dummy/voila';
 
 export * from './geometrix_verification/verify_point';
 export * from './geometrix_verification/verify_point_2';

@@ -1,6 +1,6 @@
 // verify_contour_2.ts
 
-import type { tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
+import type { tFace, tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 import { degToRad, contour, figure, pNumber, initGeom } from 'geometrix';
 
 const pDef: tParamDef = {
@@ -29,6 +29,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const rGeome = initGeom(pDef.partName + suffix);
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
+		const fOne: tFace = [];
 		const figOne = figure();
 		const r1 = param.r1 + t;
 		const ata = param.a1 + t;
@@ -60,7 +61,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		ctr1.addPointA(20, 40).addSegArc(r1, false, false);
 		ctr1.closeSegStroke();
 		ctr1.check(); // throw an exception if any error
-		figOne.addMain(ctr1);
+		fOne.push(ctr1);
+		figOne.addMainOI(fOne);
 		const ctr2 = contour(20, -20);
 		ctr2.addSegStrokeA(40, -40);
 		ctr2.addPointA(60, -60).addSegArc(r1, true, true);
@@ -170,7 +172,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegStrokeR(-20, 0)
 			.closeSegStroke();
 		ctr2.check(); // throw an exception if any error
-		figOne.addMain(ctr2);
+		figOne.addMainOI([ctr2]);
 		const ctr3 = contour(200, 200)
 			.addSegStrokeR(20, 0)
 			.addPointR(20, 0)
@@ -201,7 +203,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegArc3(degToRad(ata), false)
 			.addSegStrokeR(0, -20);
 		ctr3.check(); // throw an exception if any error
-		figOne.addMain(ctr3);
+		figOne.addMainOI([ctr3]);
 		const ctr4 = contour(600, 200)
 			.addSegStrokeR(20, 20)
 			.addPointR(20, 20)
@@ -232,7 +234,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegArc3(degToRad(ata), false)
 			.addSegStrokeR(20, -20);
 		ctr4.check(); // throw an exception if any error
-		figOne.addMain(ctr4);
+		figOne.addMainOI([ctr4]);
 		const ctr5 = contour(100, 500);
 		for (let i = 0; i < 8; i++) {
 			const adir = i * 45;
@@ -246,7 +248,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.addSegStrokeRP(adirRad, 20);
 		}
 		ctr5.check(); // throw an exception if any error
-		figOne.addMain(ctr5);
+		figOne.addMainOI([ctr5]);
 		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_contour_2 drawn successfully!\n';
 		rGeome.calcErr = false;
