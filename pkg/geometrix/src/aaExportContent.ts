@@ -14,6 +14,7 @@ import { dxfWriter } from './write_dxf';
 import { paxWrite } from './write_pax';
 import { oscadWrite } from './write_openscad';
 import { ojscadWrite } from './write_openjscad';
+import { freecadWrite } from './write_freecad';
 import * as zip from '@zip.js/zip.js';
 
 // SVG
@@ -169,6 +170,13 @@ function makeOpenjscad(geome0: tGeom): string {
 	return rStr;
 }
 
+// Freecad
+function makeFreecad(geome0: tGeom): string {
+	const paxJson = paxWrite().getPaxJson({}, geome0, zeroPDef);
+	const rStr = freecadWrite().getExportFile(paxJson);
+	return rStr;
+}
+
 // ZIP
 async function makeZip(
 	paramVal: tParamVal,
@@ -213,10 +221,21 @@ async function makeZip(
 	await zipWriter.add(`${partName}_noarc_openscad.scad`, zSCad);
 	const zJScad = new zip.TextReader(makeOpenjscad(geome0));
 	await zipWriter.add(`${partName}_noarc_jscad.js`, zJScad);
+	const zFreecad = new zip.TextReader(makeFreecad(geome0));
+	await zipWriter.add(`${partName}_freecad.py`, zFreecad);
 	// zip writer finalization
 	await zipWriter.close();
 	const rFileContent = await zipFileWriter.getData();
 	return rFileContent;
 }
 
-export { figureToSvg, figureToDxf, makeLog, makePax, makeOpenscad, makeOpenjscad, makeZip };
+export {
+	figureToSvg,
+	figureToDxf,
+	makeLog,
+	makePax,
+	makeOpenscad,
+	makeOpenjscad,
+	makeFreecad,
+	makeZip
+};

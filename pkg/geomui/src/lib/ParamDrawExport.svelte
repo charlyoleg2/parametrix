@@ -112,6 +112,8 @@
 			exportFormat = EFormat.eOPENSCAD;
 		} else if (iExportFace === 'ojscad') {
 			exportFormat = EFormat.eJSCAD;
+		} else if (iExportFace === 'freecad') {
+			exportFormat = EFormat.eFREECAD;
 		} else if (iExportFace === 'zip') {
 			exportFormat = EFormat.eZIP;
 		} else {
@@ -176,6 +178,7 @@
 		<option value="pax">all faces as pax.json</option>
 		<option value="oscad">all faces as openscad.scad</option>
 		<option value="ojscad">all faces as OpenJScad.js</option>
+		<option value="freecad">all faces as Freecad.py</option>
 		<option value="zip">all faces and more as zip</option>
 	</select>
 	<button on:click={downloadExport2}>Save to File</button>

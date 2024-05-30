@@ -158,6 +158,7 @@ const c_fileFormat = [
 	'pax_all',
 	'scad_3d_openscad',
 	'js_3d_openjscad',
+	'py_3d_freecad',
 	'zip_all'
 ];
 
@@ -244,6 +245,10 @@ function decompose_outopt(outopt: string): tEFormat {
 				break;
 			case 'js_3d_openjscad':
 				rFormat = EFormat.eJSCAD;
+				rWrite = EWrite.eOTHERS;
+				break;
+			case 'py_3d_freecad':
+				rFormat = EFormat.eFREECAD;
 				rWrite = EWrite.eOTHERS;
 				break;
 			case 'zip_all':
@@ -679,6 +684,7 @@ async function geom_cli(
 					//EFormat.ePAX,
 					//EFormat.eOPENSCAD,
 					//EFormat.eJSCAD,
+					//EFormat.eFREECAD,
 					//EFormat.eZIP,
 					oOpt.eFace, // selected-2d-face
 					iOutDir, // output-directory

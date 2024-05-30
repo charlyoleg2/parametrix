@@ -9,6 +9,7 @@ import {
 	makePax,
 	makeOpenscad,
 	makeOpenjscad,
+	makeFreecad,
 	makeZip
 } from './aaExportContent';
 import { mergeFaces } from './figure';
@@ -22,6 +23,7 @@ enum EFormat {
 	ePAX,
 	eOPENSCAD,
 	eJSCAD,
+	eFREECAD,
 	eZIP
 }
 
@@ -64,6 +66,8 @@ function fileTextContent(
 			rFileContent = makeOpenscad(geome0);
 		} else if (exportFormat === EFormat.eJSCAD) {
 			rFileContent = makeOpenjscad(geome0);
+		} else if (exportFormat === EFormat.eFREECAD) {
+			rFileContent = makeFreecad(geome0);
 		} else {
 			console.log(`err912: unknown exportFormat ${exportFormat}`);
 		}
@@ -110,6 +114,8 @@ function fileMime(exportFormat: EFormat): string {
 		rMime = 'text/plain';
 	} else if (exportFormat === EFormat.eJSCAD) {
 		rMime = 'text/plain';
+	} else if (exportFormat === EFormat.eFREECAD) {
+		rMime = 'text/plain';
 	} else if (exportFormat === EFormat.eZIP) {
 		rMime = 'application/zip';
 		//} else {
@@ -132,6 +138,8 @@ function fileSuffix(exportFormat: EFormat): string {
 		rSuffix = '_noarc_openscad.scad';
 	} else if (exportFormat === EFormat.eJSCAD) {
 		rSuffix = '_noarc_jscad.js';
+	} else if (exportFormat === EFormat.eFREECAD) {
+		rSuffix = '_freecad.py';
 	} else if (exportFormat === EFormat.eZIP) {
 		rSuffix = '.zip';
 		//} else {
