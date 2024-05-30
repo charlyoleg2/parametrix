@@ -289,9 +289,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.addSegStrokeR(0, -param.wheelHeight)
 				.closeSegStroke();
 			fTwo.push(ctrAxisProfile_right);
-			figTwo.addMainOI(fTwo);
 			figTwo.addSecond(ctrAxisProfile_left);
 		}
+		figTwo.addMainOI(fTwo);
 		rGeome.fig = { teethProfile: figOne, axisProfile: figTwo };
 		const designName = rGeome.partName;
 		const axisHLength =
