@@ -24,8 +24,8 @@ import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
 
 type tOpenscadSeg = tAtsPoints;
 
-const approxMaxAngle = Math.PI / 8;
-const approxMaxLength = 20.0;
+const approxMaxAngle = Math.PI / 100;
+const approxMaxLength = 0.5;
 
 function oscadSegLine(p2x: number, p2y: number): tOpenscadSeg {
 	const rSeg: tOpenscadSeg = [[p2x, p2y]];
@@ -93,7 +93,7 @@ function toOpenscadSeg(paxCtr: tPaxSeg[]): tOpenscadSeg {
 
 // floating precision for OpenScad export
 function ff(ifloat: number): string {
-	return ifloat.toFixed(4);
+	return ifloat.toFixed(10);
 }
 
 class OpenscadWriteFigure {
