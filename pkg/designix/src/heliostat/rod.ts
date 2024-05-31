@@ -69,13 +69,8 @@ const pDef: tParamDef = {
 	}
 };
 
-type tCtr1 = (py: number) => tContour[];
-type tCtr2 = (py: number, ly: number) => tContour;
-
 function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const rGeome = initGeom(pDef.partName + suffix);
-	let ctrPlate: tCtr1;
-	let ctrRod: tCtr2;
 	const figCut = figure();
 	const figPlate = figure();
 	const figTop = figure();
@@ -87,7 +82,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `rod-length: ${ffix(param.L1)} mm\n`;
 		const space_length = (param.L1 - param.L3) / (param.N1 - 1);
 		rGeome.logstr += `space-length: ${ffix(space_length)} mm\n`;
-		ctrPlate = function (py: number): tContour[] {
+		const ctrPlate = function (py: number): tOuterInner {
 			const rPlate: tContour[] = [];
 			const plateExt = contour(param.L4 / 2, py)
 				.addCornerRounded(param.R3)
@@ -111,7 +106,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			}
 			return rPlate;
 		};
-		ctrRod = function (py: number, ly: number): tContour {
+		const ctrRod = function (py: number, ly: number): tContour {
 			const rRod = contour(param.L2 / 2, py)
 				.addSegStrokeA(param.L2 / 2, py + ly)
 				.addSegStrokeA(-param.L2 / 2, py + ly)
@@ -145,12 +140,12 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figCut.addSecond(ctrPlateSide);
 		figCut.addMainOI(fCut);
 		// figPlate
-		ctrPlate(0).forEach((ctr) => figPlate.addMainO(ctr));
+		figPlate.addMainOI(ctrPlate(0));
 		figPlate.addSecond(ctrRod(-param.L3 / 2, 2 * param.L3));
 		// figTop
 		const plateStep = (param.L1 - param.L3) / (param.N1 - 1);
 		for (let i = 0; i < param.N1; i++) {
-			ctrPlate(i * plateStep).forEach((ctr) => figTop.addMainO(ctr));
+			figPlate.addMainOI(ctrPlate(i * plateStep));
 		}
 		figTop.addSecond(ctrRod(0, param.L1));
 		// final figure list

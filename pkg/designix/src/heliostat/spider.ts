@@ -168,15 +168,16 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figLegs.addSecond(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
 		figLegs.addMainOI(fLegs);
 		// figTube
-		const fTube: tOuterInner = [];
-		fTube.push(contourCircle(0, 0, R1));
-		fTube.push(contourCircle(0, 0, R1 - param.E1));
-		fTube.push(ctrSquare(squareX, squareY, param.L3));
-		fTube.push(ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3));
-		fTube.push(ctrSquare(-squareX, squareY, param.L3));
-		fTube.push(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
+		figTube.addMainOI([contourCircle(0, 0, R1), contourCircle(0, 0, R1 - param.E1)]);
+		figTube.addMainOI([
+			ctrSquare(squareX, squareY, param.L3),
+			ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3)
+		]);
+		figTube.addMainOI([
+			ctrSquare(-squareX, squareY, param.L3),
+			ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3)
+		]);
 		figTube.addSecond(ctrLeg);
-		figTube.addMainOI(fTube);
 		// figBody
 		figBody.addSecond(ctrRect(param.L5, param.D1, 0, -param.D1 / 2));
 		figBody.addSecond(ctrRect(param.L5, param.L3, 0, -param.L4 - param.L3));
