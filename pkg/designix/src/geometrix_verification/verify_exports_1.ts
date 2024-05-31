@@ -43,7 +43,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const figOne = figure();
 		if (param.circle === 1) {
 			const theCircle = contourCircle(0, 0, param['circle-size']);
-			figOne.addMain(theCircle);
+			figOne.addMainO(theCircle);
 		}
 		if (param.contour === 1) {
 			const csize = param['contour-size'];
@@ -53,7 +53,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.addPointA(csize, csize)
 				.addSegArc(csize * 0.8, carcl, true)
 				.closeSegStroke();
-			figOne.addMain(ctr1);
+			figOne.addMainO(ctr1);
 		}
 		rGeome.fig = { one: figOne };
 		const designName = rGeome.partName;

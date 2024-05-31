@@ -52,10 +52,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		ctr1.addSegStrokeA(0, h1);
 		ctr1.closeSegStroke();
 		ctr1.check();
-		figOne.addMain(ctr1);
-		figOne.addMain(contourCircle(w12, c1, r1));
-		figOne.addMain(contourCircle(w12, c2, r1 + t));
-		figOne.addMain(contourCircle(w12, c3, r1));
+		figOne.addMainO(ctr1);
+		figOne.addMainO(contourCircle(w12, c1, r1));
+		figOne.addMainO(contourCircle(w12, c2, r1 + t));
+		figOne.addMainO(contourCircle(w12, c3, r1));
 		const ctr2 = contourCircle(w1 + r2, 3 * c1, r2);
 		ctr2.check();
 		figOne.addSecond(ctr2);

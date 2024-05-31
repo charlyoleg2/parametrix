@@ -2,6 +2,7 @@
 
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -147,6 +148,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			return rCtr;
 		};
 		// figFrame
+		const fFrame: tOuterInner = [];
 		if (param.R1 > param.L1 / 4 || param.R1 > param.L2 / 4) {
 			throw `err614: R1 ${param.R1} too large compare to L1 ${param.L1} or L2 ${param.L2}`;
 		}
@@ -183,8 +185,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addCornerRounded(param.R3)
 			.closeSegStroke()
 			.addCornerRounded(param.R3);
-		figFrame.addMain(ctrFrameExt);
-		figFrame.addMain(ctrFrameInt);
+		fFrame.push(ctrFrameExt);
+		fFrame.push(ctrFrameInt);
 		figFrame.addSecond(ctrPlate);
 		const step1 = param.L1 / (param.N1 + 1);
 		const step2 = param.L2 / (param.N2 + 1);
@@ -234,11 +236,12 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			);
 		}
 		lFrameHole.forEach((ctr) => {
-			figFrame.addMain(ctr);
+			fFrame.push(ctr);
 		});
 		lPlateHole.forEach((ctr) => {
 			figFrame.addSecond(ctr);
 		});
+		figFrame.addMainOI(fFrame);
 		const lRodFP: tContour[] = [];
 		lRodFP.push(ctrRodFootprint(param.L2 / 2 - pad1, param.L1 / 2 - pad1, rod_xy_angle));
 		lRodFP.push(ctrRodFootprint(param.L4 / 2 - pad3, param.L3 / 2 - pad3, rod_xy_angle));
@@ -268,9 +271,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			figFrame.addSecond(ctr);
 		});
 		// figPlate
-		figPlate.addMain(ctrPlate);
+		const fPlate: tOuterInner = [];
+		fPlate.push(ctrPlate);
 		lPlateHole.forEach((ctr) => {
-			figPlate.addMain(ctr);
+			fPlate.push(ctr);
 		});
 		figPlate.addSecond(ctrFrameExt);
 		figPlate.addSecond(ctrFrameInt);
@@ -283,14 +287,15 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		lRod.forEach((ctr) => {
 			figPlate.addSecond(ctr);
 		});
+		figPlate.addMainOI(fPlate);
 		// figRod
 		if (param.D4 >= param.D3) {
 			throw `err218: D4 ${param.D4} larger than D3 ${param.D3}`;
 		}
-		figRod.addMain(contourCircle(0, 0, param.D3 / 2));
+		figRod.addMainO(contourCircle(0, 0, param.D3 / 2));
 		figRod.addSecond(contourCircle(0, 0, param.D4 / 2));
 		// figRodHollow
-		figRodHollow.addMain(contourCircle(0, 0, param.D4 / 2));
+		figRodHollow.addMainO(contourCircle(0, 0, param.D4 / 2));
 		figRodHollow.addSecond(contourCircle(0, 0, param.D3 / 2));
 		// figCutRod
 		const rodFootprintHeight = param.D3 * Math.cos(rod_slope_angle);
@@ -305,7 +310,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegStrokeA(-cutL, -cutL)
 			.addSegStrokeA(cutL, -cutL)
 			.closeSegStroke();
-		figCutRod.addMain(ctrCutRod);
+		figCutRod.addMainO(ctrCutRod);
 		// final figure list
 		rGeome.fig = {
 			faceFrame: figFrame,

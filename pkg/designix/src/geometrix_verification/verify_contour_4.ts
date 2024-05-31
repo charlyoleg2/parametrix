@@ -51,14 +51,14 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		//	console.log(`dbg212: ${i} ${ctr1.segments[i].sType} ${ctr1.segments[i].radius} ${ctr1.segments[i].px} ${ctr1.segments[i].py}`);
 		//}
 		rGeome.logstr += ctr1.check();
-		figOne.addMain(ctr1);
+		figOne.addMainO(ctr1);
 		const ctr5 = contour(l1, 0);
 		for (let i = 0; i < n1; i++) {
 			ctr5.addPartial(ctr1b.rotate(0, 0, i * 3 * as).scale(0, 0, 1 + i * 0.2, false));
 		}
 		ctr5.closeSegStroke();
 		rGeome.logstr += ctr5.check();
-		figOne.addMain(ctr5.translate(-10 * l1, 0));
+		figOne.addMainO(ctr5.translate(-10 * l1, 0));
 		const ctr2c = ctr2b.generateContour();
 		const ctr2 = ctr2c.clone();
 		for (let i = 1; i < n1; i++) {
@@ -67,10 +67,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		ctr2.closeSegStroke();
 		const ctr3 = ctr2.translate(10 * l1, 0);
 		rGeome.logstr += ctr3.check();
-		figOne.addMain(ctr3);
+		figOne.addMainO(ctr3);
 		const ctr4 = ctr2.translatePolar(Math.PI / 3, 10 * l1);
 		rGeome.logstr += ctr4.check();
-		figOne.addMain(ctr4);
+		figOne.addMainO(ctr4);
 		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_contour_4 drawn successfully!\n';
 		rGeome.calcErr = false;

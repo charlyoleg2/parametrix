@@ -2,6 +2,7 @@
 
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -149,11 +150,12 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.closeSegArc(RL2, false, true);
 			return rHollow;
 		};
-		figCut.addMain(ctrBaseCut1(1));
+		figCut.addMainO(ctrBaseCut1(1));
 		figCut.addSecond(ctrBaseCut2(1));
 		figCut.addSecond(ctrBaseCut2(-1));
 		figCut.addSecond(ctrHollow(1));
 		// figTop
+		const fTop: tOuterInner = [];
 		if (R3 + param.L1 + R5 > R1 - param.E2) {
 			throw `err127: D3 ${param.D3} too large compare to D1 ${param.D1}, E2 ${param.E2}, L1 ${param.L1}, R5 ${param.D5}`;
 		}
@@ -164,20 +166,21 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		if (param.N1 * holeAngle > 2 * Math.PI) {
 			throw `err134: N1 ${param.N1} too large compare to D5 ${param.D5}, L1 ${param.L1}, D2 ${param.D2}`;
 		}
-		figTop.addMain(contourCircle(0, 0, R1));
-		figTop.addMain(contourCircle(0, 0, R3));
+		fTop.push(contourCircle(0, 0, R1));
+		fTop.push(contourCircle(0, 0, R3));
 		const posR = R3 + param.L1;
 		const posA = (2 * Math.PI) / param.N1;
 		for (let i = 0; i < param.N1; i++) {
 			const posX = posR * Math.cos(i * posA);
 			const posY = posR * Math.sin(i * posA);
-			figTop.addMain(contourCircle(posX, posY, R5));
+			fTop.push(contourCircle(posX, posY, R5));
 		}
+		figTop.addMainOI(fTop);
 		figTop.addSecond(contourCircle(0, 0, R1 - param.E1));
 		figTop.addSecond(contourCircle(0, 0, R2));
 		figTop.addSecond(contourCircle(0, 0, R4));
 		// figHollow
-		figHollow.addMain(ctrHollow(1));
+		figHollow.addMainO(ctrHollow(1));
 		figHollow.addSecond(ctrBaseCut2(1));
 		figHollow.addSecond(ctrBaseCut2(-1));
 		// final figure list
