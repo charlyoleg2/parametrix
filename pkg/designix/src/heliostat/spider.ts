@@ -2,6 +2,7 @@
 
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -137,6 +138,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `spide leg number: ${param.N1}\n`;
 		rGeome.logstr += `spide position angle: ${ffix(radToDeg(posAngle))} degree\n`;
 		// figLegs
+		const fLegs: tOuterInner = [];
 		const ctrLeg = contour(legE2, -legStartY)
 			.addCornerRounded(param.R2)
 			.addSegStrokeA(legE2, -param.L1)
@@ -158,20 +160,23 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegStrokeA(-legE2, -legStartY)
 			.addCornerRounded(param.R2)
 			.closeSegArc(R1, true, false);
-		figLegs.addMain(ctrLeg);
-		figLegs.addMain(contourCircle(0, 0, R1 - param.E1));
+		fLegs.push(ctrLeg);
+		fLegs.push(contourCircle(0, 0, R1 - param.E1));
 		figLegs.addSecond(ctrSquare(squareX, squareY, param.L3));
 		figLegs.addSecond(ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3));
 		figLegs.addSecond(ctrSquare(-squareX, squareY, param.L3));
 		figLegs.addSecond(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
+		figLegs.addMainOI(fLegs);
 		// figTube
-		figTube.addMain(contourCircle(0, 0, R1));
-		figTube.addMain(contourCircle(0, 0, R1 - param.E1));
-		figTube.addMain(ctrSquare(squareX, squareY, param.L3));
-		figTube.addMain(ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3));
-		figTube.addMain(ctrSquare(-squareX, squareY, param.L3));
-		figTube.addMain(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
+		const fTube: tOuterInner = [];
+		fTube.push(contourCircle(0, 0, R1));
+		fTube.push(contourCircle(0, 0, R1 - param.E1));
+		fTube.push(ctrSquare(squareX, squareY, param.L3));
+		fTube.push(ctrSquare(squareX, squareY2, param.L3 - 2 * param.E3));
+		fTube.push(ctrSquare(-squareX, squareY, param.L3));
+		fTube.push(ctrSquare(-squareX, squareY2, param.L3 - 2 * param.E3));
 		figTube.addSecond(ctrLeg);
+		figTube.addMainOI(fTube);
 		// figBody
 		figBody.addSecond(ctrRect(param.L5, param.D1, 0, -param.D1 / 2));
 		figBody.addSecond(ctrRect(param.L5, param.L3, 0, -param.L4 - param.L3));

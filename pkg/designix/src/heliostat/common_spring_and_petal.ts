@@ -210,7 +210,7 @@ function ctrGuidanceInner(param: tParamVal): [string, tContour] {
 	}
 	// step-6 : any logs
 	// step-7 : drawing of the figures
-	//figTop.addMain(contourCircle(0, 0, R6));
+	//figTop.addMainO(contourCircle(0, 0, R6));
 	const [spring1Log, spring1Ctr] = ctrSpring(param, false);
 	const [, spring2Ctr] = ctrSpring(param, true);
 	rLog += spring1Log;

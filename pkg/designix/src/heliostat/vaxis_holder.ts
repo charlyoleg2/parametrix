@@ -2,6 +2,7 @@
 
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -138,7 +139,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				.closeSegStroke();
 			return rCtr;
 		};
-		figOuter.addMain(ctrOuter(1));
+		figOuter.addMainO(ctrOuter(1));
 		figOuter.addSecond(ctrOuter(-1));
 		figOuter.addSecond(ctrLeg(1));
 		figOuter.addSecond(ctrLegHole(1));
@@ -168,21 +169,22 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figOuter.addSecond(ctrButtress1(1));
 		figOuter.addSecond(ctrButtress2(1));
 		// figButtress1
-		figButtress1.addMain(ctrButtress1(1));
+		figButtress1.addMainO(ctrButtress1(1));
 		figButtress1.addSecond(ctrButtress2(1));
 		// figButtress2
 		figButtress2.addSecond(ctrButtress1(1));
-		figButtress2.addMain(ctrButtress2(1));
+		figButtress2.addMainO(ctrButtress2(1));
 		// figPetal
-		figPetal.addMain(contourCircle(0, 0, innerR));
+		const fPetal: tOuterInner = [];
+		fPetal.push(contourCircle(0, 0, innerR));
 		figPetal.addSecond(contourCircle(0, 0, R2));
 		figPetal.addSecond(contourCircle(0, 0, Math.max(outerR1, outerR2)));
 		const [petalLog, petalCtr, petalAngles] = ctrHolderPetal(param); // using the externalized contour
 		rGeome.logstr += petalLog;
-		figPetal.addMain(petalCtr);
+		fPetal.push(petalCtr);
 		for (const rota of petalAngles) {
 			const p4 = point(0, 0).translatePolar(rota, R1);
-			figPetal.addMain(contourCircle(p4.cx, p4.cy, param.PHD3 / 2));
+			fPetal.push(contourCircle(p4.cx, p4.cy, param.PHD3 / 2));
 		}
 		const ctrButtress = contour(R1 + param.PHR4, -param.PHE3)
 			.addSegStrokeA(innerR, -param.PHE3)
@@ -192,6 +194,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		for (const rota of petalAngles) {
 			figPetal.addSecond(ctrButtress.rotate(0, 0, rota));
 		}
+		figPetal.addMainOI(fPetal);
 		// final figure list
 		rGeome.fig = {
 			facePetal: figPetal,
