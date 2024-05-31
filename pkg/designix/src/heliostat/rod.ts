@@ -145,7 +145,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// figTop
 		const plateStep = (param.L1 - param.L3) / (param.N1 - 1);
 		for (let i = 0; i < param.N1; i++) {
-			figPlate.addMainOI(ctrPlate(i * plateStep));
+			figTop.addMainOI(ctrPlate(i * plateStep));
 		}
 		figTop.addSecond(ctrRod(0, param.L1));
 		// final figure list
