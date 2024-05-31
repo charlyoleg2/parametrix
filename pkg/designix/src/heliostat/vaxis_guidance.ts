@@ -4,6 +4,7 @@
 // step-1 : import from geometrix
 import type {
 	//tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -123,22 +124,24 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `vaxis_guidance: Dmax ${ffix(param.D1 + 2 * R4)} mm\n`;
 		// step-7 : drawing of the figures
 		// figTop
-		//figTop.addMain(contourCircle(0, 0, R2));
+		const fTop: tOuterInner = [];
+		//fTop.push(contourCircle(0, 0, R2));
 		const [outerLog, outerCtr, stepA1] = ctrGuidanceOuter(param);
 		rGeome.logstr += outerLog;
-		figTop.addMain(outerCtr);
+		fTop.push(outerCtr);
 		for (let i = 0; i < param.N1; i++) {
-			figTop.addMain(contourCircle(R1, 0, R3).rotate(0, 0, i * stepA1));
+			fTop.push(contourCircle(R1, 0, R3).rotate(0, 0, i * stepA1));
 		}
-		//figTop.addMain(contourCircle(0, 0, R6));
+		//fTop.push(contourCircle(0, 0, R6));
 		const [innerLog, innerCtr] = ctrGuidanceInner(param);
 		rGeome.logstr += innerLog;
-		figTop.addMain(innerCtr);
+		fTop.push(innerCtr);
 		figTop.addSecond(contourCircle(0, 0, param.Dvaxis / 2));
+		figTop.addMainOI(fTop);
 		// figSection
 		const w1 = R1 - R6 + R4;
-		figSection.addMain(ctrRectangle(R6, 0, w1, param.T1));
-		figSection.addMain(ctrRectangle(-R6 - w1, 0, w1, param.T1));
+		figSection.addMainO(ctrRectangle(R6, 0, w1, param.T1));
+		figSection.addMainO(ctrRectangle(-R6 - w1, 0, w1, param.T1));
 		figSection.addSecond(ctrRectangle(R1 - R3, 0, 2 * R3, param.T1));
 		figSection.addSecond(ctrRectangle(-R1 - R3, 0, 2 * R3, param.T1));
 		// final figure list

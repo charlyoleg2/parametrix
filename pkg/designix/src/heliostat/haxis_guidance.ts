@@ -4,6 +4,7 @@
 // step-1 : import from geometrix
 import type {
 	//tContour,
+	//tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -168,10 +169,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addPointAP(Math.PI / 2, R8)
 			.addSegArc(R8, false, true)
 			.closeSegStroke();
-		figProfile.addMain(ctrProfile);
+		figProfile.addMainO(ctrProfile);
 		// figSide
 		const R8plus = R8 * Math.sin(Math.PI / 6);
-		figSide.addMain(ctrRectangle(0, -R8plus, param.L4, R8 + R8plus));
+		figSide.addMainO(ctrRectangle(0, -R8plus, param.L4, R8 + R8plus));
 		figSide.addSecond(ctrRectangle(0, -R8, param.L4, 2 * R8));
 		figSide.addSecond(ctrRectangle(0, -R5, param.L4, 2 * R5));
 		// final figure list

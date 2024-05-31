@@ -2,6 +2,7 @@
 
 import type {
 	//tContour,
+	//tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -114,19 +115,18 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `rake-beamL: (4*L4+L5+2*L6-2*H1) ${ffix(rakeBeamL)} mm (compare with rake)\n`;
 		// step-7 : drawing of the figures
 		// figSide
-		figSide.addMain(contourCircle(0, 0, R1));
-		figSide.addMain(contourCircle(0, 0, R1 - param.E1));
+		figSide.addMainOI([contourCircle(0, 0, R1), contourCircle(0, 0, R1 - param.E1)]);
 		const sidePx = [-param.L2 / 2, -param.L3 - param.H2, param.L3, param.L2 / 2 - param.H2];
 		for (const px of sidePx) {
-			figSide.addMain(ctrRectangle(px, lAE - param.H4, param.H2, param.H4));
-			figSide.addMain(
+			figSide.addMainOI([
+				ctrRectangle(px, lAE - param.H4, param.H2, param.H4),
 				ctrRectangle(
 					px + param.E2,
 					lAE - param.H4 + param.E2,
 					param.H2 - 2 * param.E2,
 					param.H4 - 2 * param.E2
 				)
-			);
+			]);
 		}
 		figSide.addSecond(ctrRectangle(-param.L2 / 2, lAE, param.L2, param.H3));
 		// figFace
@@ -144,15 +144,15 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			}
 		}
 		for (const px of facePx) {
-			figFace.addMain(ctrRectangle(px, lAE, param.H1, param.H3));
-			figFace.addMain(
+			figFace.addMainOI([
+				ctrRectangle(px, lAE, param.H1, param.H3),
 				ctrRectangle(
 					px + param.E3,
 					lAE + param.E3,
 					param.H1 - 2 * param.E3,
 					param.H3 - 2 * param.E3
 				)
-			);
+			]);
 		}
 		figFace.addSecond(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
 		figFace.addSecond(ctrRectangle(-param.L1 / 2, lAE - param.H4, param.L1, param.H4));
@@ -184,17 +184,16 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegStrokeA(param.L3, lAE + param.E3)
 			.addSegStrokeA(-param.L3, lAE + param.E3)
 			.closeSegStroke();
-		figButtress.addMain(ctrButtress);
-		figButtress.addMain(contourCircle(0, 0, R1 - param.E1));
+		figButtress.addMainOI([ctrButtress, contourCircle(0, 0, R1 - param.E1)]);
 		figSide.addSecond(ctrButtress);
 		// figTopWithRod
 		for (const px of facePx) {
-			figTopWithRod.addMain(ctrRectangle(px, -param.L2 / 2, param.H1, param.L2));
+			figTopWithRod.addMainO(ctrRectangle(px, -param.L2 / 2, param.H1, param.L2));
 		}
 		for (const py of sidePx) {
-			figTopWithRod.addMain(ctrRectangle(-param.L1 / 2, py, param.L1, param.H2));
+			figTopWithRod.addMainO(ctrRectangle(-param.L1 / 2, py, param.L1, param.H2));
 		}
-		figTopWithRod.addMain(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
+		figTopWithRod.addMainO(ctrRectangle(-param.L1 / 2, -R1, param.L1, param.D1));
 		const rodPx0 = -((param.rod1 - 1) * param.rod2 + param.rod3) / 2;
 		const rodOffset = (param.rod3 - param.rod4) / 2;
 		const rodPlateH = param.rod3 / 2;

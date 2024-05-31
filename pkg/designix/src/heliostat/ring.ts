@@ -2,6 +2,7 @@
 
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -102,21 +103,25 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			ctrTeeth.addSegStrokeA(p1X, p1Y).addSegStrokeA(p2X, p2Y);
 		}
 		// figRingBase
-		figRingBase.addMain(contourCircle(0, 0, R3));
-		figRingBase.addMain(contourCircle(0, 0, R1));
+		const fRingBase: tOuterInner = [];
+		fRingBase.push(contourCircle(0, 0, R3));
+		fRingBase.push(contourCircle(0, 0, R1));
 		const posR = R1 + param.L1;
 		const posA = (2 * Math.PI) / param.N2;
 		for (let i = 0; i < param.N2; i++) {
 			const posX = posR * Math.cos(i * posA);
 			const posY = posR * Math.sin(i * posA);
-			figRingBase.addMain(contourCircle(posX, posY, R2));
+			fRingBase.push(contourCircle(posX, posY, R2));
 			figRingTeeth.addSecond(contourCircle(posX, posY, R2));
 		}
 		figRingBase.addSecond(ctrTeeth);
+		figRingBase.addMainOI(fRingBase);
 		// figRingTeeth
-		figRingTeeth.addMain(contourCircle(0, 0, R3));
-		figRingTeeth.addMain(ctrTeeth);
+		const fRingTeeth: tOuterInner = [];
+		fRingTeeth.push(contourCircle(0, 0, R3));
+		fRingTeeth.push(ctrTeeth);
 		figRingTeeth.addSecond(contourCircle(0, 0, R1));
+		figRingTeeth.addMainOI(fRingTeeth);
 		// figSection
 		const ctrInner = contour(R1, 0)
 			.addSegStrokeA(-R1, 0)
@@ -154,7 +159,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figSection.addSecond(ctrScrewHole(-1));
 		figSection.addSecond(ctrGearTeeth(1));
 		figSection.addSecond(ctrGearTeeth(-1));
-		figSection.addMain(ctrL(1));
+		figSection.addMainO(ctrL(1));
 		figSection.addSecond(ctrL(-1));
 		// final figure list
 		rGeome.fig = {

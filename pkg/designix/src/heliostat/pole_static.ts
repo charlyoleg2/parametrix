@@ -2,6 +2,7 @@
 
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -231,7 +232,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			rPoleProfile.closeSegStroke();
 			return rPoleProfile;
 		};
-		figCut.addMain(ctrPoleProfile(1, false));
+		figCut.addMainO(ctrPoleProfile(1, false));
 		figCut.addSecond(ctrPoleProfile(1, true));
 		figCut.addSecond(ctrPoleProfile(-1, true));
 		// figFace
@@ -254,8 +255,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			);
 			return rCtrDoorFace;
 		};
-		figFace.addMain(ctrDoorFace(0));
-		figFace.addMain(ctrDoorFace(param.L2));
+		figFace.addMainOI([ctrDoorFace(0), ctrDoorFace(param.L2)]);
 		const ctrPoleFace = contour(R1, 0)
 			.addSegStrokeA(R1, param.H1)
 			.addSegStrokeA(R2, poleHeight)
@@ -271,22 +271,26 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.closeSegStroke();
 		figFace.addSecond(ctrDoorSide);
 		// figBottom
-		figBottom.addMain(contourCircle(0, 0, R1));
-		figBottom.addMain(contourCircle(0, 0, R3));
+		const fBottom: tOuterInner = [];
+		fBottom.push(contourCircle(0, 0, R1));
+		fBottom.push(contourCircle(0, 0, R3));
 		const posR = R3 + param.L1;
 		const posA = (2 * Math.PI) / param.N1;
 		for (let i = 0; i < param.N1; i++) {
 			const posX = posR * Math.cos(i * posA);
 			const posY = posR * Math.sin(i * posA);
-			figBottom.addMain(contourCircle(posX, posY, param.D5 / 2));
+			fBottom.push(contourCircle(posX, posY, param.D5 / 2));
 		}
 		figBottom.addSecond(contourCircle(0, 0, R2));
 		figBottom.addSecond(contourCircle(0, 0, R1 - param.E2));
+		figBottom.addMainOI(fBottom);
 		// figEmptyPole
-		figEmptyPole.addMain(contourCircle(0, 0, R1 + param.E3));
-		figEmptyPole.addMain(contourCircle(0, 0, R1 - param.E2));
+		figEmptyPole.addMainOI([
+			contourCircle(0, 0, R1 + param.E3),
+			contourCircle(0, 0, R1 - param.E2)
+		]);
 		// figEmptyDoor
-		figEmptyDoor.addMain(ctrDoorFace(param.L2));
+		figEmptyDoor.addMainO(ctrDoorFace(param.L2));
 		// holders
 		const designName = rGeome.partName;
 		const inheritList: tInherit[] = [];
