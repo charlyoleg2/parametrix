@@ -27,13 +27,16 @@ interface tLayers {
 	refframe: boolean;
 }
 
-type tFace = tContour[];
+/**
+ * The face-type is a list of contour. The first contour is the outer, the remaining are the inner contours
+ */
+type tOuterInner = tContour[];
 
 class Figure {
 	pointList: Point[];
 	lineList: Line[];
 	vectorList: Vector[];
-	mainList: tFace[];
+	mainList: tOuterInner[];
 	mainBList: tContour[];
 	secondList: tContour[];
 	secondBList: tContour[];
@@ -76,9 +79,12 @@ class Figure {
 	addVector(ivector: Vector) {
 		this.vectorList.push(ivector);
 	}
-	// add one Outer contour and several Inner contours
-	addMainOI(iFace: tFace) {
-		const oneFace: tFace = [];
+	/**
+	 * add one Outer contour and several Inner contours to the Main Layer
+	 * @param {tOuterInner} iFace - the Face (i.e one Outer and several Inner contours) to be added
+	 */
+	addMainOI(iFace: tOuterInner) {
+		const oneFace: tOuterInner = [];
 		for (const oneCtr of iFace) {
 			const roundedContour = oneCtr.generateContour();
 			this.addPoints(roundedContour.generatePoints());
@@ -89,9 +95,17 @@ class Figure {
 		}
 		this.mainList.push(oneFace);
 	}
+	/**
+	 * add one Outer contour to the Main Layer
+	 * @param {tContour} iFace - the Face (without inner contours) to be added
+	 */
+	addMainO(iFace: tContour) {
+		const face: tOuterInner = [iFace];
+		this.addMainOI(face);
+	}
 	// TODO: remove this temporary method
 	addMain(icontour: tContour) {
-		const face: tFace = [icontour];
+		const face: tOuterInner = [icontour];
 		this.addMainOI(face);
 	}
 	addSecond(icontour: tContour) {
@@ -119,7 +133,7 @@ class Figure {
 			rfig.addVector(vec.translate(ix, iy));
 		}
 		for (const face of this.mainList) {
-			const oneFace: tFace = [];
+			const oneFace: tOuterInner = [];
 			for (const ctr of face) {
 				oneFace.push(ctr.translate(ix, iy));
 			}
@@ -149,7 +163,7 @@ class Figure {
 			rfig.addVector(vec.rotate(pt0, ia));
 		}
 		for (const face of this.mainList) {
-			const oneFace: tFace = [];
+			const oneFace: tOuterInner = [];
 			for (const ctr of face) {
 				oneFace.push(ctr.rotate(ix, iy, ia));
 			}
@@ -174,7 +188,7 @@ class Figure {
 			this.addVector(vec.clone());
 		}
 		for (const face of ifig.mainList) {
-			const oneFace: tFace = [];
+			const oneFace: tOuterInner = [];
 			for (const ctr of face) {
 				oneFace.push(ctr.clone());
 			}
@@ -417,5 +431,5 @@ function copyLayers(iLayers: tLayers): tLayers {
 
 /* export */
 
-export type { Point, tContour, tLayers, Figure, tFace, tFigures };
+export type { Point, tContour, tLayers, Figure, tOuterInner, tFigures };
 export { figure, mergeFaces, initLayers, copyLayers };

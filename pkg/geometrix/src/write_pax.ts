@@ -1,7 +1,7 @@
 // write_pax.ts
 
 import * as segLib from './segment';
-import type { tFace, tFigures } from './figure';
+import type { tOuterInner, tFigures } from './figure';
 import type { tVolume } from './volume';
 import type { tSubDesign } from './sub_design';
 import type { tParamDef, tParamVal } from './designParams';
@@ -23,7 +23,7 @@ interface tPaxJson {
 
 class PaxWrite {
 	//constructor() {}
-	figureToPaxF(aFaces: tFace[]): tPaxFace[] {
+	figureToPaxF(aFaces: tOuterInner[]): tPaxFace[] {
 		const rPaxF: tPaxFace[] = [];
 		for (const face of aFaces) {
 			const oneFace: tPaxFace = [];

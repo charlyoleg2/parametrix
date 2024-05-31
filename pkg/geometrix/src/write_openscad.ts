@@ -1,7 +1,7 @@
 // write_openscad.ts
 
 //import type { tContour } from './contour';
-//import type { tFace } from './figure';
+//import type { tOuterInner } from './figure';
 import * as segLib from './segment';
 import type {
 	//tPaxContour,
