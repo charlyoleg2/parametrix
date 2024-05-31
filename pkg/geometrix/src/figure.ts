@@ -103,11 +103,6 @@ class Figure {
 		const face: tOuterInner = [iFace];
 		this.addMainOI(face);
 	}
-	// TODO: remove this temporary method
-	addMain(icontour: tContour) {
-		const face: tOuterInner = [icontour];
-		this.addMainOI(face);
-	}
 	addSecond(icontour: tContour) {
 		const roundedContour = icontour.generateContour();
 		this.addPoints(roundedContour.generatePoints());
