@@ -28,7 +28,7 @@ interface tLayers {
 }
 
 /**
- * The face-type is a list of contour. The first contour is the outer, the remaining are the inner contours
+ * The face-type is a list of contours. The first contour is the outer, the remaining are the inner contours
  */
 type tOuterInner = tContour[];
 
