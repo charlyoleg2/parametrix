@@ -4,6 +4,7 @@
 // step-1 : import from geometrix
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -106,17 +107,19 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += `ring_guidance: Dmax ${ffix(param.D1 + 2 * R4)} mm\n`;
 		// step-7 : drawing of the figures
 		// figTop
-		//figTop.addMain(contourCircle(0, 0, R2));
+		const fTop: tOuterInner = [];
+		//fTop.push(contourCircle(0, 0, R2));
 		const [outerLog, outerCtr, stepA1] = ctrGuidanceOuter(param);
 		rGeome.logstr += outerLog;
-		figTop.addMain(outerCtr);
-		figTop.addMain(contourCircle(0, 0, R6));
+		fTop.push(outerCtr);
+		fTop.push(contourCircle(0, 0, R6));
 		for (let i = 0; i < param.N2; i++) {
-			figTop.addMain(contourCircle(R6 + param.L2, 0, R7).rotate(0, 0, i * stepA2));
+			fTop.push(contourCircle(R6 + param.L2, 0, R7).rotate(0, 0, i * stepA2));
 		}
 		for (let i = 0; i < param.N1; i++) {
-			figTop.addMain(contourCircle(R1, 0, R3).rotate(0, 0, i * stepA1));
+			fTop.push(contourCircle(R1, 0, R3).rotate(0, 0, i * stepA1));
 		}
+		figTop.addMainOI(fTop);
 		// figSection
 		const rect = function (xbl: number, ybl: number, width: number, height: number): tContour {
 			const rCtr = contour(xbl, ybl)
@@ -127,8 +130,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			return rCtr;
 		};
 		const w1 = R1 - R6 + R4;
-		figSection.addMain(rect(R6, 0, w1, param.T1));
-		figSection.addMain(rect(-R6 - w1, 0, w1, param.T1));
+		figSection.addMainO(rect(R6, 0, w1, param.T1));
+		figSection.addMainO(rect(-R6 - w1, 0, w1, param.T1));
 		figSection.addSecond(rect(R1 - R3, 0, 2 * R3, param.T1));
 		figSection.addSecond(rect(-R1 - R3, 0, 2 * R3, param.T1));
 		const px2 = R6 + param.L2;

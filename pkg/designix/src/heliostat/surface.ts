@@ -2,6 +2,7 @@
 
 import type {
 	tContour,
+	//tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -271,10 +272,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			}
 		});
 		for (const pos of panelPositions) {
-			figSurface.addMain(ctrPanelProfile(pos[0], pos[1]));
+			figSurface.addMainO(ctrPanelProfile(pos[0], pos[1]));
 		}
 		// figOnePanel
-		figOnePanel.addMain(ctrPanelProfile(0, 0));
+		figOnePanel.addMainO(ctrPanelProfile(0, 0));
 		// final figure list
 		rGeome.fig = {
 			faceSurface: figSurface,

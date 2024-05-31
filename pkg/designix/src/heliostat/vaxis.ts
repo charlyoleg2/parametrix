@@ -2,6 +2,7 @@
 
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -76,7 +77,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegStrokeA(R1 - param.E1, param.H1)
 			.addSegStrokeA(R1 - param.E1, 0)
 			.closeSegStroke();
-		figCut.addMain(ctrCylinder);
+		figCut.addMainO(ctrCylinder);
 		ctrPoleProfile = function (orient: number): tContour {
 			const rPoleProfile = contour(orient * R1, 0)
 				.addSegStrokeA(orient * R1, param.H1)
@@ -92,16 +93,18 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figCut.addSecond(ctrPoleProfile(1));
 		figCut.addSecond(ctrPoleProfile(-1));
 		// figBottom
-		figBottom.addMain(contourCircle(0, 0, R1));
-		figBottom.addMain(contourCircle(0, 0, R2));
+		const fBottom: tOuterInner = [];
+		fBottom.push(contourCircle(0, 0, R1));
+		fBottom.push(contourCircle(0, 0, R2));
 		const posR = R2 + param.L1;
 		const posA = (2 * Math.PI) / param.N1;
 		for (let i = 0; i < param.N1; i++) {
 			const posX = posR * Math.cos(i * posA);
 			const posY = posR * Math.sin(i * posA);
-			figBottom.addMain(contourCircle(posX, posY, R3));
+			fBottom.push(contourCircle(posX, posY, R3));
 		}
 		figBottom.addSecond(contourCircle(0, 0, R1 - param.E1));
+		figBottom.addMainOI(fBottom);
 		// final figure list
 		rGeome.fig = {
 			faceCut: figCut,

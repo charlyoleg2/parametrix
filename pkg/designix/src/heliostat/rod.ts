@@ -2,6 +2,7 @@
 
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -119,6 +120,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			return rRod;
 		};
 		// figCut
+		const fCut: tOuterInner = [];
 		const L2h = param.L2 / 2;
 		const L4h = param.L4 / 2;
 		const L2hi = (param.L2 - 2 * param.E1) / 2;
@@ -138,16 +140,17 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegStrokeA(-L4h, param.H1 + param.E2)
 			.addSegStrokeA(-L4h, param.H1)
 			.closeSegStroke();
-		figCut.addMain(ctrRodExt);
-		figCut.addMain(ctrRodInt);
+		fCut.push(ctrRodExt);
+		fCut.push(ctrRodInt);
 		figCut.addSecond(ctrPlateSide);
+		figCut.addMainOI(fCut);
 		// figPlate
-		ctrPlate(0).forEach((ctr) => figPlate.addMain(ctr));
+		ctrPlate(0).forEach((ctr) => figPlate.addMainO(ctr));
 		figPlate.addSecond(ctrRod(-param.L3 / 2, 2 * param.L3));
 		// figTop
 		const plateStep = (param.L1 - param.L3) / (param.N1 - 1);
 		for (let i = 0; i < param.N1; i++) {
-			ctrPlate(i * plateStep).forEach((ctr) => figTop.addMain(ctr));
+			ctrPlate(i * plateStep).forEach((ctr) => figTop.addMainO(ctr));
 		}
 		figTop.addSecond(ctrRod(0, param.L1));
 		// final figure list

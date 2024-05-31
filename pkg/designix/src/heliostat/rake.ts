@@ -3,6 +3,7 @@
 // step-1 : import from geometrix
 import type {
 	tContour,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -251,7 +252,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			param.H7,
 			param.R9
 		);
-		figCone.addMain(ctrCone(1));
+		figCone.addMainO(ctrCone(1));
 		figCone.addSecond(ctrConePlus(1));
 		figCone.addSecond(ctrConePlus(-1));
 		//figCone.addSecond(contourCircle(0, beamH, R4));
@@ -270,8 +271,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figCone.addSecond(ctrDoor);
 		// figConeHollow
 		figConeHollow.mergeFigure(figCone, true);
-		figConeHollow.addMain(ctrConeHollow);
+		figConeHollow.addMainO(ctrConeHollow);
 		// figBeam
+		const fBeam: tOuterInner = [];
 		const ctrHand = contour(handLowX, beamH + handLowY)
 			.addSegStrokeA(handHighXext, beamH + param.H5 - handHighYext)
 			.addSegStrokeA(handHighXint, beamH + param.H5 - handHighYint)
@@ -280,8 +282,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			.addSegStrokeA(-handHighXext, beamH + param.H5 - handHighYext)
 			.addSegStrokeA(-handLowX, beamH + handLowY)
 			.closeSegArc(R4, false, false);
-		figBeam.addMain(contourCircle(0, beamH, R4));
-		figBeam.addMain(contourCircle(0, beamH, R4 - param.E4));
+		fBeam.push(contourCircle(0, beamH, R4));
+		fBeam.push(contourCircle(0, beamH, R4 - param.E4));
 		figBeam.addSecond(ctrConePlus(1));
 		figBeam.addSecond(ctrConePlus(-1));
 		figBeam.addSecond(ctrHand);
@@ -289,19 +291,21 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figBeam.addSecond(ctrRectRot2(0, param.H1 + param.L8, wingLy, 2 * R6, vertiT)); // wing
 		figBeam.addSecond(ctrRectRot2(0, param.H1 + param.L8, wingLy, 2 * wingHR, vertiT));
 		figBeam.addSecond(ctrDoor);
+		figBeam.addMainOI(fBeam);
 		// figBeamHollow
-		figBeamHollow.addMain(contourCircle(0, beamH, R4 - param.E4));
+		figBeamHollow.addMainO(contourCircle(0, beamH, R4 - param.E4));
 		figBeamHollow.addSecond(contourCircle(0, beamH, R4));
 		figBeamHollow.addSecond(ctrHand);
 		// figDisc
-		figDisc.addMain(contourCircle(0, 0, R1));
-		figDisc.addMain(contourCircle(0, 0, R3));
+		const fDisc: tOuterInner = [];
+		fDisc.push(contourCircle(0, 0, R1));
+		fDisc.push(contourCircle(0, 0, R3));
 		const posR = R3 + param.L1;
 		const posA = (2 * Math.PI) / param.N1;
 		for (let i = 0; i < param.N1; i++) {
 			const posX = posR * Math.cos(i * posA);
 			const posY = posR * Math.sin(i * posA);
-			figDisc.addMain(contourCircle(posX, posY, R7));
+			fDisc.push(contourCircle(posX, posY, R7));
 		}
 		figDisc.addSecond(contourCircle(0, 0, R1 - param.E1));
 		figDisc.addSecond(contourCircle(0, 0, R2));
@@ -317,19 +321,22 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		figDisc.addSecond(ctrRectRot2(0, py9, wingLx, 2 * wingHR, vertiT));
 		figDisc.addSecond(ctrRectRot2(0, -py9, wingLx, 2 * R6, vertiB)); // wing-left
 		figDisc.addSecond(ctrRectRot2(0, -py9, wingLx, 2 * wingHR, vertiB));
+		figDisc.addMainOI(fDisc);
 		// figHand
-		figHand.addMain(ctrHand);
+		figHand.addMainO(ctrHand);
 		figHand.addSecond(contourCircle(0, beamH, R4));
 		figHand.addSecond(contourCircle(0, beamH, R4 - param.E4));
 		figHand.addSecond(contourCircle(0, beamH + param.H5, R5));
 		// figWing
-		figWing.addMain(contourCircle(0, 0, R6));
-		figWing.addMain(contourCircle(0, 0, wingHR));
+		const fWing: tOuterInner = [];
+		fWing.push(contourCircle(0, 0, R6));
+		fWing.push(contourCircle(0, 0, wingHR));
+		figWing.addMainOI(fWing);
 		// figWingHollow
 		figWingHollow.addSecond(contourCircle(0, 0, R6));
-		figWingHollow.addMain(contourCircle(0, 0, wingHR));
+		figWingHollow.addMainO(contourCircle(0, 0, wingHR));
 		// figDoor
-		figDoor.addMain(ctrDoor);
+		figDoor.addMainO(ctrDoor);
 		figDoor.addSecond(ctrConePlus(1));
 		figDoor.addSecond(ctrConePlus(-1));
 		figDoor.addSecond(ctrRectRot2(-beamL / 2, beamH, beamL, param.D4, horiR)); // beam-ext
