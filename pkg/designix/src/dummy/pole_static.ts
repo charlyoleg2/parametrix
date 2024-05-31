@@ -2,7 +2,7 @@
 
 import type {
 	//tContour,
-	tFace,
+	tOuterInner,
 	tParamDef,
 	tParamVal,
 	tGeom,
@@ -51,7 +51,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// figFace
-		const face1: tFace = [];
+		const face1: tOuterInner = [];
 		const ctrPoleFace = contour(-param.H1 / 2, -param.H2 / 2)
 			.addSegStrokeA(param.H1 / 2, -param.H2 / 2)
 			.addSegStrokeA(param.H1 / 2, param.H2 / 2)

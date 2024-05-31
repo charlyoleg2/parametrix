@@ -1,6 +1,6 @@
 // gear_wheel_wheel.ts
 
-import type { tFace, tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
+import type { tOuterInner, tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 //import { contour, contourCircle, figure, degToRad } from 'geometrix';
 import {
 	contour,
@@ -149,7 +149,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// Figure One
-		const fOne: tFace = [];
+		const fOne: tOuterInner = [];
 		// re-arrange parameters
 		const gp1 = gwHelper.gwProfile();
 		const gp2 = gwHelper.gwProfile();
@@ -248,7 +248,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		rGeome.logstr += gp2p.check();
 		figOne.addSecond(gp2p);
 		// Figure Two
-		const fTwo: tFace = [];
+		const fTwo: tOuterInner = [];
 		const wheelRadius = gp1.ar + param.wheelRadiusExtra;
 		if (param.wheelAxis === 1) {
 			const ctrAxisProfile_right = welem.axisProfile(
