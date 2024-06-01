@@ -40,7 +40,7 @@ function fcFaceCircle(cx: number, cy: number, radius: number, outName: string): 
 	aWire = Part.Wire(aCircle)
 	rFace = Part.Face(aWire)
 	return rFace
-`;
+\n`;
 	return rStr;
 }
 
@@ -56,8 +56,8 @@ function fcFaceContour(paxCtr: tPaxSeg[], outName: string): string {
 			pIdx += 1;
 		} else if (seg.typ === PSeg.eStroke) {
 			rStr += `	P${fid(pIdx)} = App.Vector(${ff(seg.px)}, ${ff(seg.py)}, 0)\n`;
-			pIdx += 1;
 			rStr += `	S${fid(sIdx)} = Part.LineSegment(P${fid(pIdx - 1)}, P${fid(pIdx)})\n`;
+			pIdx += 1;
 			sIdx += 1;
 		} else if (seg.typ === PSeg.eArc) {
 			try {
@@ -69,8 +69,8 @@ function fcFaceContour(paxCtr: tPaxSeg[], outName: string): string {
 				console.log('err730: ' + (emsg as string));
 			}
 			rStr += `	P${fid(pIdx)} = App.Vector(${ff(seg.px)}, ${ff(seg.py)}, 0)\n`;
-			pIdx += 1;
 			rStr += `	S${fid(sIdx)} = Part.Arc(P${fid(pIdx - 2)}, P${fid(pIdx - 1)}), P${fid(pIdx)})\n`;
+			pIdx += 1;
 			sIdx += 1;
 			//} else {
 			//	throw `err725: write_freecad has unknown segment type ${seg.typ}`;
@@ -80,49 +80,54 @@ function fcFaceContour(paxCtr: tPaxSeg[], outName: string): string {
 		py1 = seg.py;
 	}
 	const segList = Array.from({ length: sIdx }, (v, i) => `S${fid(i)}`);
-	rStr += `
-	aShape = Part.Shape([${segList.join(', ')}])
+	rStr += `	aShape = Part.Shape([${segList.join(', ')}])
 	aWire = Part.Wire(aShape.Edges)
 	subFace = Part.Face(aWire)
 	subFace.check()
 	return subFace
-`;
+\n`;
 	return rStr;
 }
 
 function fcOneFace(ctrNames: string[], outName: string): string {
 	let rStr = `def ${outName}():\n`;
-	for (const ctr of ctrNames) {
-		rStr += `	a${ctr} = ${ctr}()\n`;
+	const ctrShorts: string[] = [];
+	for (const [idx, ctr] of ctrNames.entries()) {
+		const short = `FC${fid(idx)}`;
+		rStr += `	${short} = ${ctr}()\n`;
+		ctrShorts.push(short);
 	}
-	const outer = ctrNames[0];
-	const inner = ctrNames.slice(1);
+	const outer = ctrShorts[0];
+	const inner = ctrShorts.slice(1);
 	if (inner.length > 0) {
-		rStr += `	rOneFace = a${outer}.cut(${inner.join(', ')})\n`;
+		rStr += `	rOneFace = ${outer}.cut(${inner.join(', ')})\n`;
 	} else {
-		rStr += `	rOneFace = a${outer}\n`;
+		rStr += `	rOneFace = ${outer}\n`;
 	}
 	rStr += `	rOneFace.check()
 	return rOneFace
-`;
+\n`;
 	return rStr;
 }
 
 function fcOneFig(faceNames: string[], outName: string): string {
 	let rStr = `def ${outName}():\n`;
-	for (const face of faceNames) {
-		rStr += `	a${face} = ${face}()\n`;
+	const faceShorts: string[] = [];
+	for (const [idx, face] of faceNames.entries()) {
+		const short = `FA${fid(idx)}`;
+		rStr += `	${short} = ${face}()\n`;
+		faceShorts.push(short);
 	}
-	const firstFace = faceNames[0];
-	const otherFace = faceNames.slice(1);
+	const firstFace = faceShorts[0];
+	const otherFace = faceShorts.slice(1);
 	if (otherFace.length > 0) {
-		rStr += `	rOneFig = a${firstFace}.fuse(${otherFace.join(', ')})\n`;
+		rStr += `	rOneFig = ${firstFace}.fuse(${otherFace.join(', ')})\n`;
 	} else {
-		rStr += `	rOneFig = a${firstFace}\n`;
+		rStr += `	rOneFig = ${firstFace}\n`;
 	}
 	rStr += `	rOneFig.check()
 	return rOneFig
-`;
+\n`;
 	return rStr;
 }
 
@@ -135,7 +140,7 @@ class FreecadWrite {
 
 import FreeCAD as App
 import Part
-`;
+\n`;
 		return rStr;
 	}
 	getOneFigure(aFaces: tPaxFace[], figName: string): string {
@@ -170,21 +175,23 @@ import Part
 		return rStr;
 	}
 	getOneExtrude(extrud: tExtrude): string {
-		let rStr = '';
+		let rStr = `FIG_${extrud.face} = ${extrud.face}()\n`;
 		if (extrud.extrudeMethod === EExtrude.eLinearOrtho) {
 			if (extrud.length === undefined) {
 				throw `err103: ${extrud.face} ${extrud.outName} design error: eLinearOrtho length undefined!`;
 			}
-			rStr += `VEX_${extrud.face} = ${extrud.face}.extrude(App.Vector(0, 0, ${extrud.length}))\n`;
+			rStr += `VEX_${extrud.face} = FIG_${extrud.face}.extrude(App.Vector(0, 0, ${extrud.length}))\n`;
 		} else if (extrud.extrudeMethod === EExtrude.eRotate) {
-			rStr += `VEX_${extrud.face} = ${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), 90).revolve(App.Vector(0, 0, 0), App.Vector(0, 0, 1), 360)\n`;
+			rStr += `VEX_${extrud.face} = FIG_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), 90).revolve(App.Vector(0, 0, 0), App.Vector(0, 0, 1), 360)\n`;
 			//} else {
 			//	throw `err185: unknown extrude-method ${extrud.extrudeMethod}`;
 		}
-		rStr += `VR1_${extrud.face} = VEX_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${extrud.rotate[0]})\n`;
-		rStr += `VR2_${extrud.face} = VR1_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${extrud.rotate[1]})\n`;
-		rStr += `VR3_${extrud.face} = VR2_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${extrud.rotate[2]})\n`;
-		rStr += `${extrud.outName} = VR3_${extrud.face}.translate(App.Vector(${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]}))\n`;
+		rStr += `
+VR1_${extrud.face} = VEX_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${extrud.rotate[0]})
+VR2_${extrud.face} = VR1_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${extrud.rotate[1]})
+VR3_${extrud.face} = VR2_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${extrud.rotate[2]})
+${extrud.outName} = VR3_${extrud.face}.translate(App.Vector(${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]}))
+\n`;
 		return rStr;
 	}
 	getAllExtrudes(extrudes: tExtrude[]): string {
@@ -200,7 +207,7 @@ import Part
 		if (volum.inList.length === 0) {
 			throw `err215: ${volum.outName} has an empty inList`;
 		} else if (volum.inList.length === 1) {
-			rStr += `${volum.outName} = volum.inList[0]\n`;
+			rStr += `${volum.outName} = ${volum.inList[0]}\n`;
 		} else {
 			const firstV = volum.inList[0];
 			const othersV = volum.inList.slice(1);
@@ -244,7 +251,7 @@ IVR1_${inherit.subdesign} = ${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App
 IVR2_${inherit.subdesign} = IVR1_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${inherit.rotate[1]})
 IVR3_${inherit.subdesign} = IVR2_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${inherit.rotate[2]})
 ${inherit.outName} = IVR3_${inherit.subdesign}.translate(App.Vector(${inherit.translate[0]}, ${inherit.translate[1]}, ${inherit.translate[2]}))
-`;
+\n`;
 		return rStr;
 	}
 	getAllInherits(inherits: tInherit[]): string {
@@ -277,7 +284,7 @@ pax_${partName}.check()
 #pax_${partName}.exportIges("${partName}.igs")
 #pax_${partName}.exportStep("${partName}.stp")
 pax_${partName}.exportStl("${partName}.stl")
-`;
+\n`;
 		return rStr;
 	}
 	getExportFile(pax: tPaxJson) {
