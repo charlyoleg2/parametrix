@@ -2,7 +2,8 @@
 
 //import type { tContour } from './contour';
 //import type { tOuterInner } from './figure';
-import * as segLib from './segment';
+//import * as segLib from './segment';
+import { midArcPoint } from './contour';
 import type {
 	//tPaxContour,
 	tPaxFace,
@@ -13,185 +14,177 @@ import type {
 } from './prepare_pax';
 import { PSeg } from './prepare_pax';
 import type { tPaxFigures, tPaxJson } from './write_pax';
-import { convTypePaxToSeg1, paxWrite } from './write_pax';
+import { convPaxToSeg1, paxWrite } from './write_pax';
 import { zeroPDef } from './designParams';
 import type { tGeom } from './aaParamGeom';
 import type { tVolume, tInherit, tExtrude, tBVolume } from './volume';
 import { EExtrude, EBVolume } from './volume';
 //import { withinZero2Pi, radToDeg } from './angle_utils';
-import { radToDeg } from './angle_utils';
-import type { tAtsPoints } from './arc_to_stroke';
-import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
+//import { radToDeg } from './angle_utils';
+//import type { tAtsPoints } from './arc_to_stroke';
+//import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
 
-type tOpenscadSeg = tAtsPoints;
-
-const approxMaxAngle = Math.PI / 8;
-const approxMaxLength = 20.0;
-
-function oscadSegLine(p2x: number, p2y: number): tOpenscadSeg {
-	const rSeg: tOpenscadSeg = [[p2x, p2y]];
-	return rSeg;
+// format floating for export precision
+function ff(ifloat: number): string {
+	return ifloat.toFixed(4);
 }
-function oscadSegArc(
-	cx: number,
-	cy: number,
-	radius: number,
-	aa1: number,
-	aa2: number,
-	arcCcw: boolean
-): tOpenscadSeg {
-	const rSeg = arc_to_stroke(cx, cy, radius, aa1, aa2, arcCcw, approxMaxAngle, approxMaxLength);
-	return rSeg;
-}
-function oscadSegCircle(cx: number, cy: number, radius: number): tOpenscadSeg {
-	const rSeg = circle_to_stroke(cx, cy, radius, approxMaxAngle, approxMaxLength);
-	return rSeg;
+// format index
+function fid(iIdx: number): string {
+	return iIdx.toString().padStart(3, '0');
 }
 
-function toOpenscadSeg(paxCtr: tPaxSeg[]): tOpenscadSeg {
-	const rOscadSeg: tOpenscadSeg = [];
+function fcFaceCircle(cx: number, cy: number, radius: number, outName: string): string {
+	const rStr = `def ${outName}():
+	# Radius, XYZ-position, orientation
+	aCircle = Part.makeCircle(${ff(radius)}, App.Vector(${ff(cx)}, ${ff(cy)}, 0), App.Vector(0, 0, 1))
+	aWire = Part.Wire(aCircle)
+	rFace = Part.Face(aWire)
+	return rFace
+`;
+	return rStr;
+}
+
+function fcFaceContour(paxCtr: tPaxSeg[], outName: string): string {
+	let rStr = `def ${outName}():\n`;
 	let px1 = 0;
 	let py1 = 0;
+	let pIdx = 0;
+	let sIdx = 0;
 	for (const seg of paxCtr) {
 		if (seg.typ === PSeg.eStart) {
-			rOscadSeg.push(...oscadSegLine(seg.px, seg.py));
+			rStr += `	P${fid(pIdx)} = App.Vector(${ff(seg.px)}, ${ff(seg.py)}, 0)\n`;
+			pIdx += 1;
 		} else if (seg.typ === PSeg.eStroke) {
-			rOscadSeg.push(...oscadSegLine(seg.px, seg.py));
+			rStr += `	P${fid(pIdx)} = App.Vector(${ff(seg.px)}, ${ff(seg.py)}, 0)\n`;
+			pIdx += 1;
+			rStr += `	S${fid(sIdx)} = Part.LineSegment(P${fid(pIdx - 1)}, P${fid(pIdx)})\n`;
+			sIdx += 1;
 		} else if (seg.typ === PSeg.eArc) {
 			try {
-				const sega = seg as tPaxSegArc;
-				const seg1 = new segLib.Segment1(
-					convTypePaxToSeg1(sega.typ),
-					sega.px,
-					sega.py,
-					sega.radius,
-					sega.large,
-					sega.ccw
-				);
-				const seg2 = segLib.arcSeg1To2(px1, py1, seg1);
-				rOscadSeg.push(
-					...oscadSegArc(
-						seg2.pc.cx,
-						seg2.pc.cy,
-						seg1.radius,
-						seg2.a1,
-						seg2.a2,
-						seg2.arcCcw
-					)
-				);
+				const seg1 = convPaxToSeg1(seg as tPaxSegArc);
+				const p4 = midArcPoint(px1, py1, seg1);
+				rStr += `	P${fid(pIdx)} = App.Vector(${ff(p4.cx)}, ${ff(p4.cy)}, 0)\n`;
+				pIdx += 1;
 			} catch (emsg) {
 				console.log('err730: ' + (emsg as string));
 			}
+			rStr += `	P${fid(pIdx)} = App.Vector(${ff(seg.px)}, ${ff(seg.py)}, 0)\n`;
+			pIdx += 1;
+			rStr += `	S${fid(sIdx)} = Part.Arc(P${fid(pIdx - 2)}, P${fid(pIdx - 1)}), P${fid(pIdx)})\n`;
+			sIdx += 1;
 			//} else {
-			//	console.log(`err725: write_openscad toOpenscadSeg has unknown segment type ${seg.typ}`);
+			//	throw `err725: write_freecad has unknown segment type ${seg.typ}`;
 		}
 		// all segements of Pax must update the last point
 		px1 = seg.px;
 		py1 = seg.py;
 	}
-	return rOscadSeg;
+	const segList = Array.from({ length: sIdx }, (v, i) => `S${fid(i)}`);
+	rStr += `
+	aShape = Part.Shape([${segList.join(', ')}])
+	aWire = Part.Wire(aShape.Edges)
+	subFace = Part.Face(aWire)
+	subFace.check()
+	return subFace
+`;
+	return rStr;
 }
 
-// floating precision for OpenScad export
-function ff(ifloat: number): string {
-	return ifloat.toFixed(4);
+function fcOneFace(ctrNames: string[], outName: string): string {
+	let rStr = `def ${outName}():\n`;
+	for (const ctr of ctrNames) {
+		rStr += `	a${ctr} = ${ctr}()\n`;
+	}
+	const outer = ctrNames[0];
+	const inner = ctrNames.slice(1);
+	if (inner.length > 0) {
+		rStr += `	rOneFace = a${outer}.cut(${inner.join(', ')})\n`;
+	} else {
+		rStr += `	rOneFace = a${outer}\n`;
+	}
+	rStr += `	rOneFace.check()
+	return rOneFace
+`;
+	return rStr;
 }
 
-class OpenscadWriteFigure {
-	pts: string[];
-	ptIdx: string[];
-	idx: number;
-	constructor() {
-		this.pts = [];
-		this.ptIdx = [];
-		this.idx = 0;
+function fcOneFig(faceNames: string[], outName: string): string {
+	let rStr = `def ${outName}():\n`;
+	for (const face of faceNames) {
+		rStr += `	a${face} = ${face}()\n`;
 	}
-	addContour(ictr: tOpenscadSeg) {
-		const pts2: string[] = [];
-		const ptIdx2: string[] = [];
-		for (const pt of ictr) {
-			const [px, py] = pt;
-			pts2.push(`[ ${ff(px)}, ${ff(py)} ]`);
-			ptIdx2.push(` ${this.idx}`);
-			this.idx += 1;
-		}
-		const ptStr = `[ ${pts2.join(',')} ]`;
-		const ptIdxStr = `[ ${ptIdx2.join(',')} ]`;
-		this.pts.push(ptStr);
-		this.ptIdx.push(ptIdxStr);
+	const firstFace = faceNames[0];
+	const otherFace = faceNames.slice(1);
+	if (otherFace.length > 0) {
+		rStr += `	rOneFig = a${firstFace}.fuse(${otherFace.join(', ')})\n`;
+	} else {
+		rStr += `	rOneFig = a${firstFace}\n`;
 	}
-	getFigure(faceId: string): string {
-		let rStr = '';
-		const aList: string[] = [];
-		const bList: string[] = [];
-		for (const idx of this.pts.keys()) {
-			const aId = `ca_${faceId}_${idx}`;
-			const bId = `cb_${faceId}_${idx}`;
-			rStr += `${aId} = ${this.pts[idx]};\n`;
-			rStr += `${bId} = ${this.ptIdx[idx]};\n`;
-			aList.push(aId);
-			bList.push(bId);
-		}
-		const aListStr = aList.join(', ');
-		const bListStr = bList.join(', ');
-		rStr += `a_${faceId} = concat(${aListStr});\n`;
-		rStr += `b_${faceId} = [${bListStr}];\n`;
-		return rStr;
-	}
+	rStr += `	rOneFig.check()
+	return rOneFig
+`;
+	return rStr;
 }
 
 class FreecadWrite {
 	//constructor() {}
 	getHeader(): string {
-		const rStr = '// Generated by Parametrix\n';
+		const rStr = `# freecad-python generated by Parametrix
+# run the script with:
+# freecad.cmd myScript.py
+
+import FreeCAD as App
+import Part
+`;
 		return rStr;
 	}
-	getOneFigure(aFaces: tPaxFace[], faceId: string): string {
-		const oscadWF = new OpenscadWriteFigure();
-		for (const paxFace of aFaces) {
-			// TODO: extrude each outer-contour individually
-			for (const paxCtr of paxFace) {
+	getOneFigure(aFaces: tPaxFace[], figName: string): string {
+		let rStr = '';
+		const figFaceList: string[] = [];
+		for (const [faceIdx, paxFace] of aFaces.entries()) {
+			const faceName = `face_${figName}_Fa${faceIdx}`;
+			const faceCtrList: string[] = [];
+			for (const [ctrIdx, paxCtr] of paxFace.entries()) {
+				const subFaceName = `ctr_${faceName}_Ctr${ctrIdx}`;
 				if (paxCtr.circle === true) {
 					const paxCircle = paxCtr as tPaxContourCircle;
-					const oscadSeg = oscadSegCircle(paxCircle.cx, paxCircle.cy, paxCircle.radius);
-					oscadWF.addContour(oscadSeg);
+					rStr += fcFaceCircle(paxCircle.cx, paxCircle.cy, paxCircle.radius, subFaceName);
 				} else {
 					const paxPath = paxCtr as tPaxContourPath;
-					const oscadSeg = toOpenscadSeg(paxPath.seg);
-					oscadWF.addContour(oscadSeg);
+					rStr += fcFaceContour(paxPath.seg, subFaceName);
 				}
+				faceCtrList.push(subFaceName);
 			}
+			rStr += fcOneFace(faceCtrList, faceName);
+			figFaceList.push(faceName);
 		}
-		const rOscadF = oscadWF.getFigure(faceId);
-		return rOscadF;
+		rStr += fcOneFig(figFaceList, figName);
+		return rStr;
 	}
-	getAllFigures(faces: tPaxFigures, partName: string): string {
+	getAllFigures(figs: tPaxFigures, partName: string): string {
 		let rStr = '';
-		for (const face in faces) {
-			const figu = this.getOneFigure(faces[face], `${partName}_${face}`);
+		for (const ifig in figs) {
+			const figu = this.getOneFigure(figs[ifig], `${partName}_${ifig}`);
 			rStr += figu;
 		}
 		return rStr;
 	}
 	getOneExtrude(extrud: tExtrude): string {
-		let extrudMethod = 'rotate_extrude';
-		let extrudOption = '';
+		let rStr = '';
 		if (extrud.extrudeMethod === EExtrude.eLinearOrtho) {
 			if (extrud.length === undefined) {
-				console.log('err103: design error: scad-linear_extrude length undefined!');
+				throw `err103: ${extrud.face} ${extrud.outName} design error: eLinearOrtho length undefined!`;
 			}
-			extrudMethod = 'linear_extrude';
-			extrudOption = `height = ${extrud.length}`;
+			rStr += `VEX_${extrud.face} = ${extrud.face}.extrude(App.Vector(0, 0, ${extrud.length}))\n`;
+		} else if (extrud.extrudeMethod === EExtrude.eRotate) {
+			rStr += `VEX_${extrud.face} = ${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), 90).revolve(App.Vector(0, 0, 0), App.Vector(0, 0, 1), 360)\n`;
+			//} else {
+			//	throw `err185: unknown extrude-method ${extrud.extrudeMethod}`;
 		}
-		const rStr = `
-module ${extrud.outName} () {
-	translate( [ ${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]} ])
-		rotate( [ ${radToDeg(extrud.rotate[0])}, ${radToDeg(extrud.rotate[1])}, ${radToDeg(
-			extrud.rotate[2]
-		)} ])
-			   ${extrudMethod}(${extrudOption}) polygon(a_${extrud.face}, b_${extrud.face});
-}
-`;
+		rStr += `VR1_${extrud.face} = VEX_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${extrud.rotate[0]})\n`;
+		rStr += `VR2_${extrud.face} = VR1_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${extrud.rotate[1]})\n`;
+		rStr += `VR3_${extrud.face} = VR2_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${extrud.rotate[2]})\n`;
+		rStr += `${extrud.outName} = VR3_${extrud.face}.translate(App.Vector(${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]}))\n`;
 		return rStr;
 	}
 	getAllExtrudes(extrudes: tExtrude[]): string {
@@ -203,36 +196,28 @@ module ${extrud.outName} () {
 		return rStr;
 	}
 	getOneVolume(volum: tBVolume): string {
-		let vMethod = 'identity';
-		switch (volum.boolMethod) {
-			case EBVolume.eIntersection:
-				vMethod = 'intersection';
-				break;
-			case EBVolume.eUnion:
-				vMethod = 'union';
-				break;
-			case EBVolume.eSubstraction:
-				vMethod = 'difference';
-				break;
-		}
-		const inList2 = [];
-		for (const elem of volum.inList) {
-			inList2.push(`${elem}();`);
-		}
-		const inList3 = inList2.join('\n');
-		let rStr = `
-module ${volum.outName} () {
-	${vMethod} () {
-		${inList3}
-	}
-}
-`;
-		if (volum.boolMethod === EBVolume.eIdentity) {
-			rStr = `
-module ${volum.outName} () {
-	${inList3}
-}
-`;
+		let rStr = '';
+		if (volum.inList.length === 0) {
+			throw `err215: ${volum.outName} has an empty inList`;
+		} else if (volum.inList.length === 1) {
+			rStr += `${volum.outName} = volum.inList[0]\n`;
+		} else {
+			const firstV = volum.inList[0];
+			const othersV = volum.inList.slice(1);
+			switch (volum.boolMethod) {
+				case EBVolume.eIdentity:
+					rStr += `${volum.outName} = ${firstV}\n`;
+					break;
+				case EBVolume.eIntersection:
+					rStr += `${volum.outName} = ${firstV}.common(${othersV.join(', ')})\n`;
+					break;
+				case EBVolume.eUnion:
+					rStr += `${volum.outName} = ${firstV}.fuse(${othersV.join(', ')})\n`;
+					break;
+				case EBVolume.eSubstraction:
+					rStr += `${volum.outName} = ${firstV}.cut(${othersV.join(', ')})\n`;
+					break;
+			}
 		}
 		return rStr;
 	}
@@ -255,13 +240,10 @@ module ${volum.outName} () {
 	}
 	getOneInherit(inherit: tInherit): string {
 		const rStr = `
-module ${inherit.outName} () {
-	translate( [ ${inherit.translate[0]}, ${inherit.translate[1]}, ${inherit.translate[2]} ])
-		rotate( [ ${radToDeg(inherit.rotate[0])}, ${radToDeg(inherit.rotate[1])}, ${radToDeg(
-			inherit.rotate[2]
-		)} ])
-			   ${inherit.subdesign}();
-}
+IVR1_${inherit.subdesign} = ${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${inherit.rotate[0]})
+IVR2_${inherit.subdesign} = IVR1_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${inherit.rotate[1]})
+IVR3_${inherit.subdesign} = IVR2_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${inherit.rotate[2]})
+${inherit.outName} = IVR3_${inherit.subdesign}.translate(App.Vector(${inherit.translate[0]}, ${inherit.translate[1]}, ${inherit.translate[2]}))
 `;
 		return rStr;
 	}
@@ -290,7 +272,11 @@ module ${inherit.outName} () {
 	}
 	getFooter(partName: string): string {
 		const rStr = `
-pax_${partName}();
+pax_${partName}.check()
+#pax_${partName}.exportBrep("${partName}.brep")
+#pax_${partName}.exportIges("${partName}.igs")
+#pax_${partName}.exportStep("${partName}.stp")
+pax_${partName}.exportStl("${partName}.stl")
 `;
 		return rStr;
 	}

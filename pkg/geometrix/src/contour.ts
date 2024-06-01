@@ -53,6 +53,18 @@ abstract class AContour {
 	abstract getPerimeter(): number;
 }
 
+function midArcPoint(px1: number, py1: number, seg: segLib.Segment1): Point {
+	const seg2 = segLib.arcSeg1To2(px1, py1, seg);
+	const p3 = point(seg2.pc.cx, seg2.pc.cy);
+	const a12h = withinPiPi((seg2.a2 - seg2.a1) / 2);
+	let a3 = seg2.a1 + a12h;
+	if ((Math.sign(a12h) > 0 && !seg.arcCcw) || (Math.sign(a12h) < 0 && seg.arcCcw)) {
+		a3 += Math.PI;
+	}
+	const p4 = p3.translatePolar(a3, seg.radius);
+	return p4;
+}
+
 /**
  * class `Contour`
  *
@@ -625,17 +637,7 @@ class Contour extends AContour {
 		for (const seg of this.segments) {
 			if (seg.sType === segLib.SegEnum.eArc) {
 				try {
-					const seg2 = segLib.arcSeg1To2(px1, py1, seg);
-					const p3 = point(seg2.pc.cx, seg2.pc.cy);
-					const a12h = withinPiPi((seg2.a2 - seg2.a1) / 2);
-					let a3 = seg2.a1 + a12h;
-					if (
-						(Math.sign(a12h) > 0 && !seg.arcCcw) ||
-						(Math.sign(a12h) < 0 && seg.arcCcw)
-					) {
-						a3 += Math.PI;
-					}
-					const p4 = p3.translatePolar(a3, seg.radius);
+					const p4 = midArcPoint(px1, py1, seg);
 					rPoints.push(p4);
 				} catch (emsg) {
 					console.log('err453: ' + (emsg as string));
@@ -875,4 +877,4 @@ function contourCircle(ix: number, iy: number, iRadius: number, icolor = ''): Co
 type tContour = Contour | ContourCircle;
 
 export type { tContour };
-export { Contour, ContourCircle, contour, contourCircle };
+export { Contour, ContourCircle, contour, contourCircle, midArcPoint };

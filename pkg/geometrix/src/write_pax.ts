@@ -6,7 +6,7 @@ import type { tVolume } from './volume';
 import type { tSubDesign } from './sub_design';
 import type { tParamDef, tParamVal } from './designParams';
 import type { tGeom } from './aaParamGeom';
-import type { tPaxFace } from './prepare_pax';
+import type { tPaxFace, tPaxSegArc } from './prepare_pax';
 import { PSeg } from './prepare_pax';
 //import type { tContour } from './contour';
 
@@ -75,5 +75,17 @@ function convTypePaxToSeg1(paxType: PSeg): segLib.SegEnum {
 	return rType;
 }
 
+function convPaxToSeg1(seg: tPaxSegArc): segLib.Segment1 {
+	const rSeg1 = new segLib.Segment1(
+		convTypePaxToSeg1(seg.typ),
+		seg.px,
+		seg.py,
+		seg.radius,
+		seg.large,
+		seg.ccw
+	);
+	return rSeg1;
+}
+
 export type { tPaxFigures, tPaxJson };
-export { paxWrite, convTypePaxToSeg1 };
+export { paxWrite, convTypePaxToSeg1, convPaxToSeg1 };
