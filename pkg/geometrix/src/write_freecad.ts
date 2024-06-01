@@ -175,22 +175,25 @@ import Part
 		return rStr;
 	}
 	getOneExtrude(extrud: tExtrude): string {
-		let rStr = `FIG_${extrud.face} = ${extrud.face}()\n`;
+		let rStr = `def fex_${extrud.outName}():
+	FIG = ${extrud.face}()\n`;
 		if (extrud.extrudeMethod === EExtrude.eLinearOrtho) {
 			if (extrud.length === undefined) {
 				throw `err103: ${extrud.face} ${extrud.outName} design error: eLinearOrtho length undefined!`;
 			}
-			rStr += `VEX_${extrud.face} = FIG_${extrud.face}.extrude(App.Vector(0, 0, ${extrud.length}))\n`;
+			rStr += `\tVEX = FIG.extrude(App.Vector(0, 0, ${extrud.length}))`;
 		} else if (extrud.extrudeMethod === EExtrude.eRotate) {
-			rStr += `VEX_${extrud.face} = FIG_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), 90).revolve(App.Vector(0, 0, 0), App.Vector(0, 0, 1), 360)\n`;
+			rStr += `\tVEX = FIG.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), 90).revolve(App.Vector(0, 0, 0), App.Vector(0, 0, 1), 360)`;
 			//} else {
 			//	throw `err185: unknown extrude-method ${extrud.extrudeMethod}`;
 		}
 		rStr += `
-VR1_${extrud.face} = VEX_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${extrud.rotate[0]})
-VR2_${extrud.face} = VR1_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${extrud.rotate[1]})
-VR3_${extrud.face} = VR2_${extrud.face}.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${extrud.rotate[2]})
-${extrud.outName} = VR3_${extrud.face}.translate(App.Vector(${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]}))
+	VR1 = VEX.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${extrud.rotate[0]})
+	VR2 = VR1.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${extrud.rotate[1]})
+	VR3 = VR2.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${extrud.rotate[2]})
+	VFP = VR3.translate(App.Vector(${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]}))
+	return VFP
+${extrud.outName} = fex_${extrud.outName}()
 \n`;
 		return rStr;
 	}
