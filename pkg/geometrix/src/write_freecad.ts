@@ -100,7 +100,7 @@ function fcOneFace(ctrNames: string[], outName: string): string {
 	const outer = ctrShorts[0];
 	const inner = ctrShorts.slice(1);
 	if (inner.length > 0) {
-		rStr += `	rOneFace = ${outer}.cut(${inner.join(', ')})\n`;
+		rStr += `	rOneFace = ${outer}.cut([${inner.join(', ')}])\n`;
 	} else {
 		rStr += `	rOneFace = ${outer}\n`;
 	}
@@ -121,7 +121,7 @@ function fcOneFig(faceNames: string[], outName: string): string {
 	const firstFace = faceShorts[0];
 	const otherFace = faceShorts.slice(1);
 	if (otherFace.length > 0) {
-		rStr += `	rOneFig = ${firstFace}.fuse(${otherFace.join(', ')})\n`;
+		rStr += `	rOneFig = ${firstFace}.fuse([${otherFace.join(', ')}])\n`;
 	} else {
 		rStr += `	rOneFig = ${firstFace}\n`;
 	}
@@ -216,13 +216,13 @@ ${extrud.outName} = VR3_${extrud.face}.translate(App.Vector(${extrud.translate[0
 					rStr += `${volum.outName} = ${firstV}\n`;
 					break;
 				case EBVolume.eIntersection:
-					rStr += `${volum.outName} = ${firstV}.common(${othersV.join(', ')})\n`;
+					rStr += `${volum.outName} = ${firstV}.common([${othersV.join(', ')}])\n`;
 					break;
 				case EBVolume.eUnion:
-					rStr += `${volum.outName} = ${firstV}.fuse(${othersV.join(', ')})\n`;
+					rStr += `${volum.outName} = ${firstV}.fuse([${othersV.join(', ')}])\n`;
 					break;
 				case EBVolume.eSubstraction:
-					rStr += `${volum.outName} = ${firstV}.cut(${othersV.join(', ')})\n`;
+					rStr += `${volum.outName} = ${firstV}.cut([${othersV.join(', ')}])\n`;
 					break;
 			}
 		}
