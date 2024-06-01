@@ -69,7 +69,7 @@ function fcFaceContour(paxCtr: tPaxSeg[], outName: string): string {
 				console.log('err730: ' + (emsg as string));
 			}
 			rStr += `	P${fid(pIdx)} = App.Vector(${ff(seg.px)}, ${ff(seg.py)}, 0)\n`;
-			rStr += `	S${fid(sIdx)} = Part.Arc(P${fid(pIdx - 2)}, P${fid(pIdx - 1)}), P${fid(pIdx)})\n`;
+			rStr += `	S${fid(sIdx)} = Part.Arc(P${fid(pIdx - 2)}, P${fid(pIdx - 1)}, P${fid(pIdx)})\n`;
 			pIdx += 1;
 			sIdx += 1;
 			//} else {
