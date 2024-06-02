@@ -73,7 +73,7 @@ function fcFaceContour(paxCtr: tPaxSeg[], outName: string): string {
 			pIdx += 1;
 			sIdx += 1;
 			//} else {
-			//	throw `err725: write_freecad has unknown segment type ${seg.typ}`;
+			//	console.log(`err725: write_freecad has unknown segment type ${seg.typ}`);
 		}
 		// all segements of Pax must update the last point
 		px1 = seg.px;
@@ -185,13 +185,15 @@ print(f"outFileName: {outFileName}")
 	FIG = ${extrud.face}()\n`;
 		if (extrud.extrudeMethod === EExtrude.eLinearOrtho) {
 			if (extrud.length === undefined) {
-				throw `err103: ${extrud.face} ${extrud.outName} design error: eLinearOrtho length undefined!`;
+				console.log(
+					`err103: ${extrud.face} ${extrud.outName} design error: eLinearOrtho length undefined!`
+				);
 			}
 			rStr += `\tVEX = FIG.extrude(App.Vector(0, 0, ${extrud.length}))`;
 		} else if (extrud.extrudeMethod === EExtrude.eRotate) {
 			rStr += `\tVEX = FIG.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), 90).revolve(App.Vector(0, 0, 0), App.Vector(0, 0, 1), 360)`;
 			//} else {
-			//	throw `err185: unknown extrude-method ${extrud.extrudeMethod}`;
+			//	console.log(`err185: unknown extrude-method ${extrud.extrudeMethod}`);
 		}
 		rStr += `
 	VR1 = VEX.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${radToDeg(extrud.rotate[0])})
@@ -214,7 +216,7 @@ ${extrud.outName} = fex_${extrud.outName}()
 	getOneVolume(volum: tBVolume): string {
 		let rStr = '';
 		if (volum.inList.length === 0) {
-			throw `err215: ${volum.outName} has an empty inList`;
+			console.log(`err215: ${volum.outName} has an empty inList`);
 		} else if (volum.inList.length === 1) {
 			rStr += `${volum.outName} = ${volum.inList[0]}\n`;
 		} else {
