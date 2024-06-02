@@ -20,7 +20,7 @@ import type { tGeom } from './aaParamGeom';
 import type { tVolume, tInherit, tExtrude, tBVolume } from './volume';
 import { EExtrude, EBVolume } from './volume';
 //import { withinZero2Pi, radToDeg } from './angle_utils';
-//import { radToDeg } from './angle_utils';
+import { radToDeg } from './angle_utils';
 //import type { tAtsPoints } from './arc_to_stroke';
 //import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
 
@@ -194,9 +194,9 @@ print(f"outFileName: {outFileName}")
 			//	throw `err185: unknown extrude-method ${extrud.extrudeMethod}`;
 		}
 		rStr += `
-	VR1 = VEX.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${extrud.rotate[0]})
-	VR2 = VR1.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${extrud.rotate[1]})
-	VR3 = VR2.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${extrud.rotate[2]})
+	VR1 = VEX.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${radToDeg(extrud.rotate[0])})
+	VR2 = VR1.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${radToDeg(extrud.rotate[1])})
+	VR3 = VR2.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${radToDeg(extrud.rotate[2])})
 	VFP = VR3.translate(App.Vector(${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]}))
 	return VFP
 ${extrud.outName} = fex_${extrud.outName}()
@@ -256,9 +256,9 @@ ${extrud.outName} = fex_${extrud.outName}()
 	}
 	getOneInherit(inherit: tInherit): string {
 		const rStr = `
-IVR1_${inherit.subdesign} = ${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${inherit.rotate[0]})
-IVR2_${inherit.subdesign} = IVR1_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${inherit.rotate[1]})
-IVR3_${inherit.subdesign} = IVR2_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${inherit.rotate[2]})
+IVR1_${inherit.subdesign} = ${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${radToDeg(inherit.rotate[0])})
+IVR2_${inherit.subdesign} = IVR1_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${radToDeg(inherit.rotate[1])})
+IVR3_${inherit.subdesign} = IVR2_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${radToDeg(inherit.rotate[2])})
 ${inherit.outName} = IVR3_${inherit.subdesign}.translate(App.Vector(${inherit.translate[0]}, ${inherit.translate[1]}, ${inherit.translate[2]}))
 \n`;
 		return rStr;
