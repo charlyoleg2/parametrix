@@ -191,7 +191,7 @@ print(f"outFileName: {outFileName}")
 			}
 			rStr += `\tVEX = FIG.extrude(App.Vector(0, 0, ${extrud.length}))`;
 		} else if (extrud.extrudeMethod === EExtrude.eRotate) {
-			rStr += `\tVEX = FIG.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), 90).revolve(App.Vector(0, 0, 0), App.Vector(0, 0, 1), 360)`;
+			rStr += `\tVEX = FIG.revolve(App.Vector(0, 0, 0), App.Vector(0, 1, 0), 360).rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), 90)`;
 			//} else {
 			//	console.log(`err185: unknown extrude-method ${extrud.extrudeMethod}`);
 		}
