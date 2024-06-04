@@ -228,25 +228,37 @@ ${extrud.outName} = fex_${extrud.outName}()
 		let rStr = '';
 		if (volum.inList.length === 0) {
 			console.log(`err215: ${volum.outName} has an empty inList`);
-		} else if (volum.inList.length === 1) {
+		} else if (volum.inList.length === 1 || volum.boolMethod === EBVolume.eIdentity) {
 			rStr += `${volum.outName} = ${volum.inList[0]}\n`;
 		} else {
 			const firstV = volum.inList[0];
 			const othersV = volum.inList.slice(1);
+			let combMethod = 'dbg897';
 			switch (volum.boolMethod) {
-				case EBVolume.eIdentity:
-					rStr += `${volum.outName} = ${firstV}\n`;
-					break;
 				case EBVolume.eIntersection:
-					rStr += `${volum.outName} = ${firstV}.common([${othersV.join(', ')}])\n`;
+					//rStr += `${volum.outName} = ${firstV}.common([${othersV.join(', ')}])\n`;
+					combMethod = 'common';
 					break;
 				case EBVolume.eUnion:
-					rStr += `${volum.outName} = ${firstV}.fuse([${othersV.join(', ')}])\n`;
+					//rStr += `${volum.outName} = ${firstV}.fuse([${othersV.join(', ')}])\n`;
+					combMethod = 'fuse';
 					break;
 				case EBVolume.eSubstraction:
-					rStr += `${volum.outName} = ${firstV}.cut([${othersV.join(', ')}])\n`;
+					//rStr += `${volum.outName} = ${firstV}.cut([${othersV.join(', ')}])\n`;
+					combMethod = 'cut';
 					break;
 			}
+			rStr += `def fvol_${volum.outName}():
+	V000 = ${firstV}\n`;
+			let vidx = 0;
+			for (const vol of othersV) {
+				rStr += `\tV${fid(vidx + 1)} = V${fid(vidx)}.${combMethod}(${vol})\n`;
+				vidx += 1;
+			}
+			rStr += `\tVFC = V${fid(vidx)}.removeSplitter()
+	return VFC
+${volum.outName} = fvol_${volum.outName}()
+\n`;
 		}
 		return rStr;
 	}
