@@ -49,14 +49,20 @@ function fcFaceContour(paxCtr: tPaxSeg[], outName: string): string {
 	let px1 = 0;
 	let py1 = 0;
 	let pIdx = 0;
+	let pIdxLast = 0;
 	let sIdx = 0;
-	for (const seg of paxCtr) {
+	for (const [segIdx, seg] of paxCtr.entries()) {
 		if (seg.typ === PSeg.eStart) {
 			rStr += `	P${fid(pIdx)} = App.Vector(${ff(seg.px)}, ${ff(seg.py)}, 0)\n`;
 			pIdx += 1;
 		} else if (seg.typ === PSeg.eStroke) {
 			rStr += `	P${fid(pIdx)} = App.Vector(${ff(seg.px)}, ${ff(seg.py)}, 0)\n`;
-			rStr += `	S${fid(sIdx)} = Part.LineSegment(P${fid(pIdx - 1)}, P${fid(pIdx)})\n`;
+			if (segIdx < paxCtr.length - 1) {
+				pIdxLast = pIdx;
+			} else {
+				pIdxLast = 0;
+			}
+			rStr += `	S${fid(sIdx)} = Part.LineSegment(P${fid(pIdx - 1)}, P${fid(pIdxLast)})\n`;
 			pIdx += 1;
 			sIdx += 1;
 		} else if (seg.typ === PSeg.eArc) {
@@ -69,7 +75,12 @@ function fcFaceContour(paxCtr: tPaxSeg[], outName: string): string {
 				console.log('err730: ' + (emsg as string));
 			}
 			rStr += `	P${fid(pIdx)} = App.Vector(${ff(seg.px)}, ${ff(seg.py)}, 0)\n`;
-			rStr += `	S${fid(sIdx)} = Part.Arc(P${fid(pIdx - 2)}, P${fid(pIdx - 1)}, P${fid(pIdx)})\n`;
+			if (segIdx < paxCtr.length - 1) {
+				pIdxLast = pIdx;
+			} else {
+				pIdxLast = 0;
+			}
+			rStr += `	S${fid(sIdx)} = Part.Arc(P${fid(pIdx - 2)}, P${fid(pIdx - 1)}, P${fid(pIdxLast)})\n`;
 			pIdx += 1;
 			sIdx += 1;
 			//} else {
@@ -196,10 +207,10 @@ print(f"outFileName: {outFileName}")
 			//	console.log(`err185: unknown extrude-method ${extrud.extrudeMethod}`);
 		}
 		rStr += `
-	VR1 = VEX.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${radToDeg(extrud.rotate[0])})
-	VR2 = VR1.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${radToDeg(extrud.rotate[1])})
-	VR3 = VR2.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${radToDeg(extrud.rotate[2])})
-	VFP = VR3.translate(App.Vector(${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]}))
+	VR1 = VEX.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${ff(radToDeg(extrud.rotate[0]))})
+	VR2 = VR1.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${ff(radToDeg(extrud.rotate[1]))})
+	VR3 = VR2.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${ff(radToDeg(extrud.rotate[2]))})
+	VFP = VR3.translate(App.Vector(${ff(extrud.translate[0])}, ${ff(extrud.translate[1])}, ${ff(extrud.translate[2])}))
 	return VFP
 ${extrud.outName} = fex_${extrud.outName}()
 \n`;
@@ -257,11 +268,13 @@ ${extrud.outName} = fex_${extrud.outName}()
 		return rGeoms;
 	}
 	getOneInherit(inherit: tInherit): string {
-		const rStr = `
-IVR1_${inherit.subdesign} = ${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${radToDeg(inherit.rotate[0])})
-IVR2_${inherit.subdesign} = IVR1_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${radToDeg(inherit.rotate[1])})
-IVR3_${inherit.subdesign} = IVR2_${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${radToDeg(inherit.rotate[2])})
-${inherit.outName} = IVR3_${inherit.subdesign}.translate(App.Vector(${inherit.translate[0]}, ${inherit.translate[1]}, ${inherit.translate[2]}))
+		const rStr = `def finh_${inherit.outName}():
+	IVR1 = ${inherit.subdesign}.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), ${ff(radToDeg(inherit.rotate[0]))})
+	IVR2 = IVR1.rotate(App.Vector(0, 0, 0), App.Vector(0, 1, 0), ${ff(radToDeg(inherit.rotate[1]))})
+	IVR3 = IVR2.rotate(App.Vector(0, 0, 0), App.Vector(0, 0, 1), ${ff(radToDeg(inherit.rotate[2]))})
+	IVF = IVR3.translate(App.Vector(${ff(inherit.translate[0])}, ${ff(inherit.translate[1])}, ${ff(inherit.translate[2])}))
+	return IVF
+${inherit.outName} = finh_${inherit.outName}()
 \n`;
 		return rStr;
 	}
