@@ -70,7 +70,7 @@
 		"svelte": "^4.0.0"
 	},
 	"dependencies": {
-		"geometrix": "^0.5.41"
+		"geometrix": "^0.5.42"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.1",
@@ -80,7 +80,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
 		"@typescript-eslint/parser": "^7.0.1",
-		"designix": "^0.5.42",
+		"designix": "^0.5.43",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.39.0",
@@ -92,7 +92,7 @@
 		"shx": "^0.3.4",
 		"svelte": "^4.2.17",
 		"svelte-check": "^3.8.0",
-		"tslib": "^2.6.2",
+		"tslib": "^2.6.3",
 		"typescript": "^5.4.5",
 		"vite": "^5.2.12",
 		"vitest": "^1.6.0"

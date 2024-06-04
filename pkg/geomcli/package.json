@@ -63,7 +63,7 @@
 		"clean": "shx rm -fr build dist node_modules"
 	},
 	"dependencies": {
-		"geometrix": "^0.5.41",
+		"geometrix": "^0.5.42",
 		"yargs": "^17.7.2"
 	},
 	"devDependencies": {

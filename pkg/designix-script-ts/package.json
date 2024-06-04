@@ -60,9 +60,9 @@
 		"clean": "shx rm -fr build dist node_modules output"
 	},
 	"dependencies": {
-		"designix": "^0.5.42",
-		"geomcli": "^0.5.44",
-		"geometrix": "^0.5.41"
+		"designix": "^0.5.43",
+		"geomcli": "^0.5.45",
+		"geometrix": "^0.5.42"
 	},
 	"devDependencies": {
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
