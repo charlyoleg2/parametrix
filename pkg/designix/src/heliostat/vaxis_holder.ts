@@ -83,6 +83,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	const figPetal = figure();
 	const figButtress1 = figure();
 	const figButtress2 = figure();
+	const figButtress12 = figure();
 	rGeome.logstr += `${rGeome.partName} simTime: ${t}\n`;
 	try {
 		// step-4 : some preparation calculation
@@ -157,7 +158,26 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			const rCtr = contour(rnl * (R1 + param.PHR4), param.PHE1 / 2)
 				.addSegStrokeA(rnl * innerR2, param.PHE1 / 2)
 				.addSegStrokeRP(Math.PI / 2 + rnl * outerA, innerL2)
-				.addSegStrokeA(rnl * (R1 + param.PHR4), param.PHE1 + param.PHH1)
+				.addSegStrokeA(rnl * (R1 + param.PHR4), param.PHE1 / 2 + param.PHH1)
+				.closeSegStroke();
+			return rCtr;
+		};
+		const ctrButtress12 = function (rnl: number): tContour {
+			const pA = point(rnl * innerR2, param.PHE1 / 2).translatePolar(
+				Math.PI / 2 + rnl * outerA,
+				innerL2
+			);
+			const pB = point(rnl * innerR1, -param.PHE1 / 2).translatePolar(
+				-Math.PI / 2 + rnl * outerA,
+				innerL2
+			);
+			const innerRb = R2 - param.PHE2 / 2;
+			const rCtr = contour(rnl * innerRb, 0)
+				.addSegStrokeA(pA.cx, pA.cy)
+				.addSegStrokeA(rnl * (R1 + param.PHR4), param.PHE1 / 2 + param.PHH1)
+				.addSegStrokeA(rnl * (R1 + param.PHR4), param.PHE1 / 2)
+				.addSegStrokeA(rnl * (R1 + param.PHR4), -param.PHE1 / 2)
+				.addSegStrokeA(pB.cx, pB.cy)
 				.closeSegStroke();
 			return rCtr;
 		};
@@ -166,6 +186,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// create figButtress1 and figButtress2 from figOuter
 		figButtress1.mergeFigure(figOuter, true);
 		figButtress2.mergeFigure(figOuter, true);
+		figButtress12.mergeFigure(figOuter, true);
 		// complete figOuter
 		figOuter.addSecond(ctrButtress1(1));
 		figOuter.addSecond(ctrButtress2(1));
@@ -175,6 +196,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// figButtress2
 		figButtress2.addSecond(ctrButtress1(1));
 		figButtress2.addMainO(ctrButtress2(1));
+		// figButtress12
+		figButtress12.addMainO(ctrButtress12(1));
 		// figPetal
 		const fPetal: tOuterInner = [];
 		fPetal.push(contourCircle(0, 0, innerR));
@@ -201,32 +224,33 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			facePetal: figPetal,
 			faceOuter: figOuter,
 			faceButtress1: figButtress1,
-			faceButtress2: figButtress2
+			faceButtress2: figButtress2,
+			faceButtress12: figButtress12
 		};
 		const designName = rGeome.partName;
 		// 3D preparations
 		const tm = transform3d();
 		tm.addRotation(Math.PI / 2, 0, 0);
 		tm.addTranslation(0, param.PHE3 / 2, 0);
-		const preExtrude1 = petalAngles.map((rota, idx) => {
-			const tm1 = transform3d(tm.getMatrix());
-			tm1.addRotation(0, 0, rota);
-			const rElem: tExtrude = {
-				outName: `subpax_${designName}_b1_${idx}`,
-				face: `${designName}_faceButtress1`,
-				extrudeMethod: EExtrude.eLinearOrtho,
-				length: param.PHE3,
-				rotate: tm1.getRotation(),
-				translate: tm1.getTranslation()
-			};
-			return rElem;
-		});
+		//const preExtrude1 = petalAngles.map((rota, idx) => {
+		//	const tm1 = transform3d(tm.getMatrix());
+		//	tm1.addRotation(0, 0, rota);
+		//	const rElem: tExtrude = {
+		//		outName: `subpax_${designName}_b1_${idx}`,
+		//		face: `${designName}_faceButtress1`,
+		//		extrudeMethod: EExtrude.eLinearOrtho,
+		//		length: param.PHE3,
+		//		rotate: tm1.getRotation(),
+		//		translate: tm1.getTranslation()
+		//	};
+		//	return rElem;
+		//});
 		const preExtrude2 = petalAngles.map((rota, idx) => {
 			const tm2 = transform3d(tm.getMatrix());
 			tm2.addRotation(0, 0, rota);
 			const rElem: tExtrude = {
 				outName: `subpax_${designName}_b2_${idx}`,
-				face: `${designName}_faceButtress2`,
+				face: `${designName}_faceButtress12`,
 				extrudeMethod: EExtrude.eLinearOrtho,
 				length: param.PHE3,
 				rotate: tm2.getRotation(),
@@ -234,10 +258,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			};
 			return rElem;
 		});
-		const b1List = petalAngles.map((elem, idx) => {
-			const subElem = `subpax_${designName}_b1_${idx}`;
-			return subElem;
-		});
+		//const b1List = petalAngles.map((elem, idx) => {
+		//	const subElem = `subpax_${designName}_b1_${idx}`;
+		//	return subElem;
+		//});
 		const b2List = petalAngles.map((elem, idx) => {
 			const subElem = `subpax_${designName}_b2_${idx}`;
 			return subElem;
@@ -260,7 +284,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					rotate: [0, 0, 0],
 					translate: [0, 0, -param.PHE1 / 2]
 				},
-				...preExtrude1,
+				//...preExtrude1,
 				...preExtrude2
 			],
 			volumes: [
@@ -270,7 +294,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					inList: [
 						`subpax_${designName}_petal`,
 						`subpax_${designName}_outer`,
-						...b1List,
+						//...b1List,
 						...b2List
 					]
 				}
