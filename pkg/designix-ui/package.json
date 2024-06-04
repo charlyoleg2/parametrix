@@ -52,9 +52,9 @@
 		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg"
 	},
 	"dependencies": {
-		"designix": "^0.5.41",
-		"geometrix": "^0.5.40",
-		"geomui": "^0.5.42"
+		"designix": "^0.5.42",
+		"geometrix": "^0.5.41",
+		"geomui": "^0.5.43"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.1",
