@@ -112,14 +112,15 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// step-7 : drawing of the figures
 		// figOuter
 		const ctrOuter = function (rnl: number): tContour {
-			const rCtr = contour(rnl * R5, -param.PHE1 / 2)
-				.addSegStrokeR(rnl * (innerR1 - R5), 0)
+			const R5b = R5 + (innerR1 - R5) / 2; // fix for freecad: avoiding superposing two skins
+			const rCtr = contour(rnl * R5b, -param.PHE1 / 2)
+				.addSegStrokeR(rnl * (innerR1 - R5b), 0)
 				.addSegStrokeRP(-Math.PI / 2 + rnl * outerA, innerL2)
 				.addSegStrokeRP(-Math.PI / 2 + rnl * (Math.PI / 2 + outerA), param.PHE2)
 				.addSegStrokeRP(Math.PI / 2 + rnl * outerA, param.PHL1)
 				.addSegStrokeRP(Math.PI / 2 + rnl * (Math.PI / 2 + outerA), param.PHE2)
 				.addSegStrokeRP(-Math.PI / 2 + rnl * outerA, innerL2)
-				.addSegStrokeA(rnl * R5, param.PHE1 / 2)
+				.addSegStrokeA(rnl * R5b, param.PHE1 / 2)
 				.closeSegStroke();
 			return rCtr;
 		};
