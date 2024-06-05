@@ -297,6 +297,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const inheritNames: string[] = [];
 		let subDesignObj: tSubDesign = {};
 		if (param.holders) {
+			const withOuterCone = 1;
+			//const withOuterCone = 0; // workaround for freecad
 			// holderB2
 			const vaxisHolderB2Param = designParam(vaxisHolderDef.pDef, 'B2');
 			vaxisHolderB2Param.setVal('PHD1', param.PHD1B);
@@ -313,7 +315,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			vaxisHolderB2Param.setVal('PHL1', phl1b);
 			vaxisHolderB2Param.setVal('PHE2', param.E2);
 			vaxisHolderB2Param.setVal('PHE3', param.PHE3B);
-			vaxisHolderB2Param.setVal('withOuterCone', 0);
+			vaxisHolderB2Param.setVal('withOuterCone', withOuterCone);
 			const vaxisHolderB2Geom = vaxisHolderDef.pGeom(
 				0,
 				vaxisHolderB2Param.getParamVal(),
@@ -351,7 +353,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			vaxisHolderB1Param.setVal('PHL1', phl1b);
 			vaxisHolderB1Param.setVal('PHE2', param.E2);
 			vaxisHolderB1Param.setVal('PHE3', param.PHE3B);
-			vaxisHolderB1Param.setVal('withOuterCone', 0);
+			vaxisHolderB1Param.setVal('withOuterCone', withOuterCone);
 			const vaxisHolderB1Geom = vaxisHolderDef.pGeom(
 				0,
 				vaxisHolderB1Param.getParamVal(),
@@ -389,7 +391,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			vaxisHolderAParam.setVal('PHL1', phl1a);
 			vaxisHolderAParam.setVal('PHE2', param.E2);
 			vaxisHolderAParam.setVal('PHE3', param.PHE3A);
-			vaxisHolderAParam.setVal('withOuterCone', 0);
+			vaxisHolderAParam.setVal('withOuterCone', withOuterCone);
 			const vaxisHolderAGeom = vaxisHolderDef.pGeom(
 				0,
 				vaxisHolderAParam.getParamVal(),
