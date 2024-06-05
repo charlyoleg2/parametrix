@@ -21,7 +21,7 @@ import {
 	//radToDeg,
 	ffix,
 	pNumber,
-	//pCheckbox,
+	pCheckbox,
 	//pDropdown,
 	pSectionSeparator,
 	initGeom,
@@ -52,7 +52,9 @@ const pDef: tParamDef = {
 		pNumber('PHA', 'degree', 5, -45, 45, 0.1),
 		pNumber('PHL1', 'mm', 300, 1, 500, 1),
 		pNumber('PHE2', 'mm', 10, 1, 80, 1),
-		pNumber('PHE3', 'mm', 10, 1, 80, 1)
+		pNumber('PHE3', 'mm', 10, 1, 80, 1),
+		pSectionSeparator('for reuse'),
+		pCheckbox('withOuterCone', true)
 	],
 	paramSvg: {
 		PHD1: 'vaxis_holder_top.svg',
@@ -68,7 +70,8 @@ const pDef: tParamDef = {
 		PHA: 'vaxis_holder_section.svg',
 		PHL1: 'vaxis_holder_section.svg',
 		PHE2: 'vaxis_holder_section.svg',
-		PHE3: 'vaxis_holder_top.svg'
+		PHE3: 'vaxis_holder_top.svg',
+		withOuterCone: 'vaxis_holder_section.svg'
 	},
 	sim: {
 		tMax: 180,
@@ -266,6 +269,8 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			const subElem = `subpax_${designName}_b2_${idx}`;
 			return subElem;
 		});
+		// option outer-cone
+		const optCone: string[] = param.withOuterCone ? [`subpax_${designName}_outer`] : [];
 		// 3D definition
 		rGeome.vol = {
 			extrudes: [
@@ -293,7 +298,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					boolMethod: EBVolume.eUnion,
 					inList: [
 						`subpax_${designName}_petal`,
-						`subpax_${designName}_outer`,
+						...optCone,
 						//...b1List,
 						...b2List
 					]
