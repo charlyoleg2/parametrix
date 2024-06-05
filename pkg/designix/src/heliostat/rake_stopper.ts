@@ -581,6 +581,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				{
 					outName: `ipax_${designName}_stopper`,
 					boolMethod: EBVolume.eSubstraction,
+					//boolMethod: EBVolume.eIdentity, // simplification for freecad
 					inList: [`ipax_${designName}_plus`, `ipax_${designName}_hollow`]
 				},
 				{

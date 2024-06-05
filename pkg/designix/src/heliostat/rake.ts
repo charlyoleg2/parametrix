@@ -488,6 +488,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 					outName: `pax_${designName}`,
 					boolMethod: EBVolume.eSubstraction,
 					inList: [`ipax_${designName}_plus`, `ipax_${designName}_hollow`]
+					//inList: [`ipax_${designName}_plus`, `subpax_${designName}_door`] // simplification for freecad
 				}
 			]
 		};
