@@ -231,12 +231,13 @@ Define the 3D shape
 Parametrix generates 3D scripts for:
 - OpenSCAD <span style="color: green;">&#10004;</span>
 - OpenJsCad <span style="color: green;">&#10004;</span>
-- Freecad
+- Freecad <span style="color: green;">&#10004;</span>
 - SolveSpace
 - pythonOCC
 - CadQuery
 - OpenCascade.js
 - glTF
+- X3D
 		</pre>
 	</OneSlide>
 	<OneSlide>

@@ -237,12 +237,13 @@ Définition  d'une forme 3D
 Parametrix génère des scripts 3D pour:
 - OpenSCAD <span style="color: green;">&#10004;</span>
 - OpenJsCad <span style="color: green;">&#10004;</span>
-- Freecad
+- Freecad <span style="color: green;">&#10004;</span>
 - SolveSpace
 - pythonOCC
 - CadQuery
 - OpenCascade.js
 - glTF
+- X3D
 		</pre>
 	</OneSlide>
 	<OneSlide>
