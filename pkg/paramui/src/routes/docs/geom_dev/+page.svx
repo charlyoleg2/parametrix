@@ -182,7 +182,7 @@ A *Figure* object consists in several lists:
 1. list of points
 1. list of lines
 1. list of vectors
-1. list of contours called *main*
+1. list of lists of contours called *main*
 1. list of contours called *mainB* or *main-skeleton*
 1. list of contours called *second*
 1. list of contours called *secondB* or *second-skeleton*

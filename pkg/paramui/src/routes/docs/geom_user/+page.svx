@@ -42,11 +42,17 @@ In the traditional approach, the steps 2, 3 and 4 might be merged together. The 
 
 ## Arrangement of contours
 
-A figure is collection of contours.
+A figure is collection of faces.
+A face is a collection of contours.
+The first contour of a face is the outer contour.
+The remaining contours of the face are the inner contours.
+Finally the figure is a list of lists of contours.
 A contour should never cross itself or an other contour.
 Two contours are either side-by-side or one-include-the-other.
 
-Depending on the arrangement of the contours, we can define 4 types of figures:
+![figure_face_contour.svg]({base}/puisvg/figure_face_contour.svg)
+
+The 4 types of figures:
 
 ![types_of_contour_arrangements.svg]({base}/puisvg/types_of_contour_arrangements.svg)
 
