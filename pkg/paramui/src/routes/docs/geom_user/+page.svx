@@ -56,6 +56,16 @@ The 4 types of figures:
 
 ![types_of_contour_arrangements.svg]({base}/puisvg/types_of_contour_arrangements.svg)
 
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addMainOI" rel="external">.addMainOI()</a> : method to add a face to a figure.
+- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addMainO" rel="external">.addMainO()</a> : method to add an outer contour (without holes) to a figure.
+
+```javascript
+faceA = [ctrOuter, ctrInner1, ctrInner2];
+myFigure.addMainOI(faceA);
+myFigure.addMainOI([fBctrO, fBctrI1, fBctrI2, fBctrI3]);
+myFigure.addMainOI([fCctrO]);
+myFigure.addMainO(fDctrO);
+```
 
 ## Export options
 

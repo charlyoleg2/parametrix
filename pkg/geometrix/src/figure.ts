@@ -80,7 +80,7 @@ class Figure {
 		this.vectorList.push(ivector);
 	}
 	/**
-	 * add one Outer contour and several Inner contours to the Main Layer
+	 * add one face (one Outer contour and several Inner contours) to the Main Layer
 	 * @param {tOuterInner} iFace - the Face (i.e one Outer and several Inner contours) to be added
 	 */
 	addMainOI(iFace: tOuterInner) {
@@ -96,7 +96,7 @@ class Figure {
 		this.mainList.push(oneFace);
 	}
 	/**
-	 * add one Outer contour to the Main Layer
+	 * add a simple face (one Outer contour) to the Main Layer
 	 * @param {tContour} iFace - the Face (without inner contours) to be added
 	 */
 	addMainO(iFace: tContour) {
