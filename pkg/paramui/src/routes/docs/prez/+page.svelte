@@ -53,17 +53,31 @@
 		<p></p></OneSlide
 	>
 	<OneSlide>
+		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
+		<img
+			src="{base}/puisvg/cad_flow_with_parametrix.svg"
+			style="height: 9em;"
+			alt="cad_flow_with_parametrix.svg"
+		/>
+		<pre style="margin:0;">&gt; a JavaScript solution for creating 3D shapes</pre>
+		<pre style="margin:0;">&gt; a frontend that abstract the CAD solution</pre>
+		<pre style="margin:0;">&gt; a generator of WebUI for parametrizing your designs</pre>
+	</OneSlide>
+	<OneSlide>
 		<pre>
 Parametrix main characteristics:
 
 1. free and open-source
     (like Freecad or SolveSpace)
 
-2. HTML page
-    for parametrization and generating the 3D scripts
-
-3. JavaScript
+2. JavaScript
     for designing 3D shapes (similar to OpenSCAD)
+
+3. CAD tool abstraction
+    for keeping your 3D-shapes agnostic to CAD vendors
+
+4. HTML page
+    for parametrization and generating the 3D scripts
 		</pre>
 	</OneSlide>
 	<OneSlide>

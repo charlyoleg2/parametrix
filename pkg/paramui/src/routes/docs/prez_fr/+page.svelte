@@ -53,17 +53,31 @@
 		<p></p></OneSlide
 	>
 	<OneSlide>
+		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
+		<img
+			src="{base}/puisvg/cad_flow_with_parametrix.svg"
+			style="height: 9em;"
+			alt="cad_flow_with_parametrix.svg"
+		/>
+		<pre style="margin:0;">&gt; Des formes 3D décrites en JavaScript</pre>
+		<pre style="margin:0;">&gt; un frontend qui abstrait les outils de CAD</pre>
+		<pre style="margin:0;">&gt; un générateur de siteweb pour paramétriser les designs</pre>
+	</OneSlide>
+	<OneSlide>
 		<pre>
 Les caractéristiques principales de Parametrix:
 
 1. Logiciel libre
     (comme Freecad ou SolveSpace)
 
-2. Génère des pages HTML
-    pour paramétriser et générer des scripts 3D
-
-3. JavaScript
+2. JavaScript
     pour designer les formes 3D (comme avec OpenSCAD)
+
+3. Une abstraction des outil de CAD
+    Pour assurer la pérénité de ses designs 3D
+
+4. Génère des pages HTML
+    pour paramétriser et générer des scripts 3D
 		</pre>
 	</OneSlide>
 	<OneSlide>
