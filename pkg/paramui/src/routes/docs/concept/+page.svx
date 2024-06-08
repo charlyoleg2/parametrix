@@ -16,6 +16,23 @@ Parametrix is a generator of web-apps for designing 2D shapes and 3D shapes. 2D 
 
 ### Overview
 
+#### CAD Flow
+
+##### Traditional CAD Flow
+
+![cad_flow_traditional.svg]({base}/puisvg/cad_flow_traditional.svg)
+
+When you design your 3D-shape within a CAD tool, your work-product depends on this tool. If this tool becomes unavailable because technical, legal or commercial raison, you lose your work.
+
+##### CAD Flow with Parametrix
+
+![cad_flow_with_parametrix.svg]({base}/puisvg/cad_flow_with_parametrix.svg)
+
+The 3 main advantages of the *parametrix* flow:
+- *Parametrix* helps keeping your work persistent because it is agnostic to any CAD solution. Your 3D-shape is described in *Javascript* with a dependency on the small library *geometrix*.
+- The intermediate step of *webui* gives more autonomy to the *maker*. He can adjust sizings of the design himself without asking the *designer*.
+- Having the 3D-shape described in *Javascript* helps providing high quality 3D-data and let you benefit from all the software developer tools including *git* for versioning and sharing.
+
 #### Parametrix workflow
 
 ![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
