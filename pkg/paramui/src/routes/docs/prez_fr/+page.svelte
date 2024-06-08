@@ -60,8 +60,8 @@
 			alt="cad_flow_with_parametrix.svg"
 		/>
 		<pre style="margin:0;">&gt; Des formes 3D décrites en JavaScript</pre>
-		<pre style="margin:0;">&gt; un frontend qui abstrait les outils de CAD</pre>
-		<pre style="margin:0;">&gt; un générateur de siteweb pour paramétriser les designs</pre>
+		<pre style="margin:0;">&gt; Un frontend qui abstrait les outils de CAD</pre>
+		<pre style="margin:0;">&gt; Un générateur de siteweb pour paramétriser les designs</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre>
