@@ -22,8 +22,8 @@ import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
 
 type tOpenjscadSeg = tAtsPoints;
 
-const approxMaxAngle = Math.PI / 8;
-const approxMaxLength = 20.0;
+const approxMaxAngle = Math.PI / 16;
+const approxMaxLength = 2.0;
 
 function ojscadSegLine(p2x: number, p2y: number): tOpenjscadSeg {
 	const rSeg: tOpenjscadSeg = [[p2x, p2y]];
@@ -105,7 +105,7 @@ class OjscadWriteFigure {
 			const [px, py] = pt;
 			pts2.push(`[ ${ff(px)}, ${ff(py)} ]`);
 		}
-		const ptStr = `[ ${pts2.join(',')} ]`;
+		const ptStr = `[ ${pts2.join(',\n\t')} ]`;
 		this.pts.push(ptStr);
 	}
 	getFigure(faceId: string): string {
