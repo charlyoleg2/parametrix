@@ -193,7 +193,7 @@ const main = () => {
 	getAllFigures(figs: tPaxFigures, partName: string): string {
 		let rStr = '';
 		for (const ifig in figs) {
-			const figu = this.getOneFigure(figs[ifig], `${partName}_${ifig}`);
+			const figu = this.getOneFigure(figs[ifig], `fig_${partName}_${ifig}`);
 			rStr += figu;
 		}
 		return rStr;
@@ -212,7 +212,7 @@ const main = () => {
 const ${extrud.outName} =
 	translate( [ ${extrud.translate[0]}, ${extrud.translate[1]}, ${extrud.translate[2]}, ],
 		rotate( [ ${extrud.rotate[0]}, ${extrud.rotate[1]}, ${extrud.rotate[2]}, ],
-			   ${extrudMethod}( ${extrudOption}, face_${extrud.face} )
+			   ${extrudMethod}( ${extrudOption}, fig_${extrud.face} )
 		)
 	);
 \n`;
