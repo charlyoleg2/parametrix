@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="324.68848"
-   height="271.93015"
-   viewBox="0 0 85.907159 71.948183"
+   width="600"
+   height="2000"
+   viewBox="0 0 158.75 529.16666"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
-   sodipodi:docname="dummy_pole_static.svg"
+   inkscape:version="1.3.2 (1:1.3.2+202404261509+091e20ef0f)"
+   sodipodi:docname="voila.svg"
    inkscape:export-filename="dummy_pole_static_face.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -26,11 +26,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     inkscape:zoom="1.0583333"
-     inkscape:cx="190.39371"
+     inkscape:zoom="2.1166666"
+     inkscape:cx="190.86615"
      inkscape:cy="183.30709"
-     inkscape:window-width="1370"
-     inkscape:window-height="836"
+     inkscape:window-width="1854"
+     inkscape:window-height="1131"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -59,27 +59,27 @@
     </marker>
     <rect
        x="197.14075"
-       y="325.03568"
+       y="325.03569"
        width="49.598919"
-       height="31.959892"
+       height="31.959893"
        id="rect3" />
     <rect
        x="12.224409"
-       y="258.19635"
+       y="258.19636"
        width="62.042938"
-       height="37.147514"
+       height="37.147515"
        id="rect7" />
     <rect
        x="15.298967"
-       y="180.79539"
-       width="48.781372"
-       height="32.225639"
+       y="180.7954"
+       width="48.781373"
+       height="32.22564"
        id="rect6" />
     <rect
-       x="180.64777"
-       y="59.141853"
+       x="180.64776"
+       y="59.141855"
        width="60.527805"
-       height="30.721581"
+       height="30.72158"
        id="rect5" />
     <marker
        style="overflow:visible"
@@ -100,6 +100,12 @@
          style="fill:context-stroke;fill-rule:evenodd;stroke:none"
          id="path8" />
     </marker>
+    <rect
+       x="20.621309"
+       y="18.59498"
+       width="254.25074"
+       height="36.95374"
+       id="rect1" />
     <marker
        style="overflow:visible"
        id="RoundedArrow-3"
@@ -143,8 +149,7 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-22.231966,-19.863804)">
+     id="layer1">
     <rect
        style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583;stroke-linejoin:bevel"
        id="rect8"
@@ -152,9 +157,17 @@
        height="71.683594"
        x="22.364258"
        y="19.996094"
-       inkscape:export-filename="dummy_pole_static_face.svg"
+       inkscape:export-filename="voila_face.svg"
        inkscape:export-xdpi="96"
        inkscape:export-ydpi="96" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text1"
+       style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1)"><tspan
+         x="20.621094"
+         y="31.94057"
+         id="tspan3">voila.svg</tspan></text>
     <rect
        style="fill:none;stroke:#008000;stroke-width:0.264583;stroke-linejoin:bevel"
        id="rect2"
@@ -204,7 +217,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect5)"><tspan
          x="180.64844"
          y="72.487445"
-         id="tspan1">H1</tspan></text>
+         id="tspan7">H1</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,95.940917,6.309082)"
@@ -212,7 +225,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6)"><tspan
          x="15.298828"
          y="194.13979"
-         id="tspan2">H2</tspan></text>
+         id="tspan8">H2</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,59.398474,-19.460009)"
@@ -220,7 +233,7 @@
        style="font-size:14.6667px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect7)"><tspan
          x="12.224609"
          y="271.54213"
-         id="tspan4">radius</tspan></text>
+         id="tspan9">radius</tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,11.5625,0.90039065)"
@@ -228,7 +241,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.6667px;line-height:normal;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:pre;shape-inside:url(#rect3);shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"><tspan
          x="197.14062"
          y="338.08526"
-         id="tspan5">Rc</tspan></text>
+         id="tspan10">Rc</tspan></text>
     <path
        style="fill:#ffffff;stroke:#999999;stroke-width:0.264583;marker-start:url(#ArrowWide)"
        d="m 29.052736,77.897464 33.88623,10.344725"

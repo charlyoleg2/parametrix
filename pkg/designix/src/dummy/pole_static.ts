@@ -34,9 +34,9 @@ const pDef: tParamDef = {
 		pNumber('radius', 'mm', 1000, 100, 40000, 10)
 	],
 	paramSvg: {
-		H1: 'dummy_pole_static_face.svg',
-		H2: 'dummy_pole_static_face.svg',
-		radius: 'dummy_pole_static_face.svg'
+		H1: 'voila_face.svg',
+		H2: 'voila_face.svg',
+		radius: 'voila_face.svg'
 	},
 	sim: {
 		tMax: 180,

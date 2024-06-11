@@ -37,10 +37,10 @@ const pDef: tParamDef = {
 		pNumber('Rc', 'mm', 10, 0, 400, 1)
 	],
 	paramSvg: {
-		H1: 'dummy_pole_static_face.svg',
-		H2: 'dummy_pole_static_face.svg',
-		radius: 'dummy_pole_static_face.svg',
-		Rc: 'dummy_pole_static_face.svg'
+		H1: 'voila_face.svg',
+		H2: 'voila_face.svg',
+		radius: 'voila_face.svg',
+		Rc: 'voila_face.svg'
 	},
 	sim: {
 		tMax: 180,
