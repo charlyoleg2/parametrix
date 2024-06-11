@@ -20,6 +20,7 @@ import {
 	pNumber,
 	//pCheckbox,
 	//pDropdown,
+	pSectionSeparator,
 	EExtrude,
 	EBVolume,
 	initGeom
@@ -29,14 +30,17 @@ const pDef: tParamDef = {
 	partName: 'voila',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
-		pNumber('H1', 'mm', 4000, 100, 40000, 10),
-		pNumber('H2', 'mm', 5000, 100, 40000, 10),
-		pNumber('radius', 'mm', 1000, 100, 40000, 10)
+		pNumber('H1', 'mm', 40, 1, 4000, 1),
+		pNumber('H2', 'mm', 50, 1, 4000, 1),
+		pNumber('radius', 'mm', 10, 1, 4000, 1),
+		pSectionSeparator('corners'),
+		pNumber('Rc', 'mm', 10, 0, 400, 1)
 	],
 	paramSvg: {
 		H1: 'dummy_pole_static_face.svg',
 		H2: 'dummy_pole_static_face.svg',
-		radius: 'dummy_pole_static_face.svg'
+		radius: 'dummy_pole_static_face.svg',
+		Rc: 'dummy_pole_static_face.svg'
 	},
 	sim: {
 		tMax: 180,
@@ -53,8 +57,10 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// figFace
 		const face1: tOuterInner = [];
 		const ctrPoleFace = contour(-param.H1 / 2, -param.H2 / 2)
+			.addCornerRounded(param.Rc)
 			.addSegStrokeA(param.H1 / 2, -param.H2 / 2)
 			.addSegStrokeA(param.H1 / 2, param.H2 / 2)
+			.addCornerRounded(param.Rc)
 			.addSegStrokeA(-param.H1 / 2, param.H2 / 2)
 			.closeSegStroke();
 		face1.push(ctrPoleFace);
