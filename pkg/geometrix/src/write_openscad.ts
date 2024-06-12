@@ -149,7 +149,7 @@ class OpenscadWrite {
 	getOneFigure(aFaces: tPaxFace[], faceId: string): string {
 		const oscadWF = new OpenscadWriteFigure();
 		for (const paxFace of aFaces) {
-			// TODO: rework for extruding each outer-contour
+			// TODO: rework for extruding each outer-contour, but OpenSCAD docs is not clear on how to fuse several faces in one figure
 			for (const paxCtr of paxFace) {
 				if (paxCtr.circle === true) {
 					const paxCircle = paxCtr as tPaxContourCircle;
