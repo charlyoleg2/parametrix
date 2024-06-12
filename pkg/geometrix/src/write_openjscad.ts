@@ -29,6 +29,16 @@ type tOpenjscadSeg = tAtsPoints;
 const approxMaxAngle = Math.PI / 16;
 const approxMaxLength = 2.0;
 
+// floating precision for OpenScad export
+function ff(ifloat: number): string {
+	return ifloat.toFixed(4);
+}
+
+// format index
+function fid(iIdx: number): string {
+	return iIdx.toString().padStart(3, '0');
+}
+
 function ojscadSegLine(p2x: number, p2y: number): tOpenjscadSeg {
 	const rSeg: tOpenjscadSeg = [[p2x, p2y]];
 	return rSeg;
@@ -92,16 +102,6 @@ function jcSegContour(paxCtr: tPaxSeg[]): tOpenjscadSeg {
 function jcSegCircle(cx: number, cy: number, radius: number): tOpenjscadSeg {
 	const rSeg = circle_to_stroke(cx, cy, radius, approxMaxAngle, approxMaxLength);
 	return rSeg;
-}
-
-// floating precision for OpenScad export
-function ff(ifloat: number): string {
-	return ifloat.toFixed(4);
-}
-
-// format index
-function fid(iIdx: number): string {
-	return iIdx.toString().padStart(3, '0');
 }
 
 function makeContourString(iCtr: tOpenjscadSeg, ctrId: string): string {
