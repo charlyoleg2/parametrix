@@ -25,8 +25,18 @@ import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
 
 type tOpenscadSeg = tAtsPoints;
 
-const approxMaxAngle = Math.PI / 8;
-const approxMaxLength = 20.0;
+const approxMaxAngle = Math.PI / 16;
+const approxMaxLength = 2.0;
+
+// floating precision for OpenScad export
+function ff(ifloat: number): string {
+	return ifloat.toFixed(4);
+}
+
+// format index
+function fid(iIdx: number): string {
+	return iIdx.toString().padStart(3, '0');
+}
 
 function oscadSegLine(p2x: number, p2y: number): tOpenscadSeg {
 	const rSeg: tOpenscadSeg = [[p2x, p2y]];
@@ -92,11 +102,6 @@ function toOpenscadSeg(paxCtr: tPaxSeg[]): tOpenscadSeg {
 	return rOscadSeg;
 }
 
-// floating precision for OpenScad export
-function ff(ifloat: number): string {
-	return ifloat.toFixed(4);
-}
-
 class OpenscadWriteFigure {
 	pts: string[];
 	ptIdx: string[];
@@ -125,8 +130,8 @@ class OpenscadWriteFigure {
 		const aList: string[] = [];
 		const bList: string[] = [];
 		for (const idx of this.pts.keys()) {
-			const aId = `ca_${faceId}_${idx}`;
-			const bId = `cb_${faceId}_${idx}`;
+			const aId = `ca_${faceId}_${fid(idx)}`;
+			const bId = `cb_${faceId}_${fid(idx)}`;
 			rStr += `${aId} = ${this.pts[idx]};\n`;
 			rStr += `${bId} = ${this.ptIdx[idx]};\n`;
 			aList.push(aId);
