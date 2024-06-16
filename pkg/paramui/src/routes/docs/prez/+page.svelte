@@ -250,6 +250,7 @@ Parametrix generates 3D scripts for:
 - pythonOCC
 - CadQuery
 - OpenCascade.js
+- Three.js
 - glTF
 - X3D
 		</pre>
