@@ -92,7 +92,7 @@
 		"svelte-check": "^3.8.4",
 		"svgo": "^3.3.2",
 		"tslib": "^2.6.3",
-		"typescript": "^5.5.3",
+		"typescript": "^5.5.4",
 		"vite": "^5.3.4",
 		"vitest": "^2.0.4"
 	}
