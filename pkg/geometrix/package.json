@@ -63,11 +63,11 @@
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
-		"@zip.js/zip.js": "^2.7.47",
+		"@zip.js/zip.js": "^2.7.48",
 		"json5": "^2.2.3"
 	},
 	"devDependencies": {
-		"@types/node": "^22.0.0",
+		"@types/node": "^22.0.2",
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
 		"@typescript-eslint/parser": "^7.0.1",
 		"eslint": "^8.57.0",
@@ -77,6 +77,6 @@
 		"shx": "^0.3.4",
 		"tsup": "^8.2.3",
 		"typescript": "^5.5.4",
-		"vitest": "^2.0.4"
+		"vitest": "^2.0.5"
 	}
 }
