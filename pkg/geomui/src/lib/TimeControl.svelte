@@ -67,7 +67,7 @@
 		speed = 0;
 	}
 	onDestroy(() => {
-		clearInterval2;
+		clearInterval2();
 	});
 </script>
 
