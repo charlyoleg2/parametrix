@@ -2,6 +2,7 @@
 
 import eslint from '@eslint/js';
 import globals from 'globals';
+import prettier from 'eslint-config-prettier';
 
 export default [
 	{
@@ -14,5 +15,6 @@ export default [
 				...globals.node
 			}
 		}
-	}
+	},
+	prettier
 ];
