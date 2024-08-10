@@ -3,7 +3,6 @@
 import type { tMenuList } from './menuListType';
 import {
 	gearWheelWheelDef,
-	simplifiedGearWheelDef,
 	heliostatDef,
 	heliostat_2Def,
 	baseDef,
@@ -47,12 +46,7 @@ const menuList: tMenuList = [
 	{
 		category: 'Gears',
 		pages: [
-			{ path: '/gear/gear_wheel_wheel', page: gearWheelWheelDef, svg: 'page_gears.svg' },
-			{
-				path: '/gear/simplified_gear_wheel',
-				page: simplifiedGearWheelDef,
-				svg: 'page_gears.svg'
-			}
+			{ path: '/gear/gear_wheel_wheel', page: gearWheelWheelDef, svg: 'page_gears.svg' }
 		]
 	},
 	{
