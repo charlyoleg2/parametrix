@@ -45,9 +45,7 @@ const menuList: tMenuList = [
 	},
 	{
 		category: 'Gears',
-		pages: [
-			{ path: '/gear/gear_wheel_wheel', page: gearWheelWheelDef, svg: 'page_gears.svg' }
-		]
+		pages: [{ path: '/gear/gear_wheel_wheel', page: gearWheelWheelDef, svg: 'page_gears.svg' }]
 	},
 	{
 		category: 'Heliostat',
