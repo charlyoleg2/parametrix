@@ -11,6 +11,7 @@ import {
 	withinZero2Pi,
 	withinPiPi,
 	radToDeg,
+	degToRad,
 	roundZero,
 	ffix
 } from 'geometrix';
@@ -303,6 +304,8 @@ function baseCircles(
 	iblr1: number,
 	ibrr2: number,
 	iblr2: number,
+	iRightPressureAngle: number,
+	iLeftPressureAngle: number,
 	involSym: number,
 	involROpt: number,
 	involLOpt: number
@@ -313,25 +316,60 @@ function baseCircles(
 	let brr2 = ibrr2;
 	let blr1 = iblr1;
 	let blr2 = iblr2;
+	const c1c2 = gw1.pr + gw2.pr; // addInterAxis is ignored
 	const involROpt2: EInvolOpt = involROpt as EInvolOpt;
 	const involLOpt2: EInvolOpt = involLOpt as EInvolOpt;
-	if (involROpt2 === EInvolOpt.Optimum) {
-		if (gw2.TN > gw1.TN) {
-			brr1 = gw1.dr;
+	switch (involROpt2) {
+		case EInvolOpt.Optimum:
+			if (gw2.TN > gw1.TN) {
+				brr1 = gw1.dr;
+				brr2 = (brr1 * gw2.TN) / gw1.TN;
+			} else {
+				brr2 = gw2.dr;
+				brr1 = (brr2 * gw1.TN) / gw2.TN;
+			}
+			break;
+		case EInvolOpt.BaseCircle1:
 			brr2 = (brr1 * gw2.TN) / gw1.TN;
-		} else {
-			brr2 = gw2.dr;
+			break;
+		case EInvolOpt.BaseCircle2:
 			brr1 = (brr2 * gw1.TN) / gw2.TN;
-		}
+			break;
+		case EInvolOpt.PressionAngle:
+			brr1 = ((c1c2 * gw1.TN) / (gw1.TN + gw2.TN)) * Math.cos(degToRad(iRightPressureAngle));
+			brr2 = (brr1 * gw2.TN) / gw1.TN;
+			break;
+		case EInvolOpt.DisfunctioningTwoCircles:
+			// nothing to do. Just use the given brr1 and brr2
+			break;
+		default:
+			console.log(`err337: involROpt2 case ${involROpt2} is not implemented!`);
 	}
-	if (involLOpt2 === EInvolOpt.Optimum) {
-		if (gw2.TN > gw1.TN) {
-			blr1 = gw1.dr;
+	switch (involLOpt2) {
+		case EInvolOpt.Optimum:
+			if (gw2.TN > gw1.TN) {
+				blr1 = gw1.dr;
+				blr2 = (blr1 * gw2.TN) / gw1.TN;
+			} else {
+				blr2 = gw2.dr;
+				blr1 = (blr2 * gw1.TN) / gw2.TN;
+			}
+			break;
+		case EInvolOpt.BaseCircle1:
 			blr2 = (blr1 * gw2.TN) / gw1.TN;
-		} else {
-			blr2 = gw2.dr;
+			break;
+		case EInvolOpt.BaseCircle2:
 			blr1 = (blr2 * gw1.TN) / gw2.TN;
-		}
+			break;
+		case EInvolOpt.PressionAngle:
+			blr1 = ((c1c2 * gw1.TN) / (gw1.TN + gw2.TN)) * Math.cos(degToRad(iLeftPressureAngle));
+			blr2 = (blr1 * gw2.TN) / gw1.TN;
+			break;
+		case EInvolOpt.DisfunctioningTwoCircles:
+			// nothing to do. Just use the given blr1 and blr2
+			break;
+		default:
+			console.log(`err358: involLOpt2 case ${involLOpt2} is not implemented!`);
 	}
 	if (involSym === 1) {
 		blr1 = brr1;
