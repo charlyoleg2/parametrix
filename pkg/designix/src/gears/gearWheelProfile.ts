@@ -528,15 +528,14 @@ class ActionLine {
 			throw `dbg388: aFODl1 ${this.aFODl1} and aFODl1Alt ${aFODl1Alt} differ`;
 		}
 		const lDFl1 = lcFromLaLbAc(dOFl1, this.gw1.ar, this.aFODl1);
-		const aOFDl2 = aOFDr1;
+		const aOFDl2 = aOFDl1;
 		const aFDOl2 = aBFromLaLbAa(this.gw2.ar, dOFl2, aOFDl2);
 		this.aFODl2 = Math.PI - aOFDl2 - aFDOl2;
-		// TODO : fix unexpected error
-		//const aFODl2Alt = this.gw2.lua - this.apl + this.gw2.lwa;
+		const aFODl2Alt = this.gw2.lua - this.apl + this.gw2.lwa;
 		//this.aFODl2 = aFODl2Alt;
-		//if (roundZero(this.aFODl2 - aFODl2Alt) !== 0) {
-		//	throw `dbg389: aFODl2 ${this.aFODl2} and aFODl2Alt ${aFODl2Alt} differ`;
-		//}
+		if (roundZero(this.aFODl2 - aFODl2Alt) !== 0) {
+			throw `dbg389: aFODl2 ${this.aFODl2} and aFODl2Alt ${aFODl2Alt} differ`;
+		}
 		const lDFl2 = lcFromLaLbAc(dOFl2, this.gw2.ar, this.aFODl2);
 		const lall = lDFl1 + lDFl2;
 		const laUl1 = lall / this.gw1.blr;
