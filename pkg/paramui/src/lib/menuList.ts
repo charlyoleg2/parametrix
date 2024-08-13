@@ -2,9 +2,9 @@
 
 import type { tMenuList } from './menuListType';
 import {
-	gearWheelWheelDef,
-	gearBarWheelDef,
-	gearRingWheelDef,
+	gearWheelDef,
+	gearBarDef,
+	gearRingDef,
 	gearEpicycloidDef,
 	heliostatDef,
 	heliostat_2Def,
@@ -49,9 +49,9 @@ const menuList: tMenuList = [
 	{
 		category: 'Gears',
 		pages: [
-			{ path: '/gear/gear_wheel_wheel', page: gearWheelWheelDef, svg: 'page_gearwheel.svg' },
-			{ path: '/gear/gear_bar_wheel', page: gearBarWheelDef, svg: 'page_gearbar.svg' },
-			{ path: '/gear/gear_ring_wheel', page: gearRingWheelDef, svg: 'page_gearring.svg' },
+			{ path: '/gear/gear_wheel', page: gearWheelDef, svg: 'page_gearwheel.svg' },
+			{ path: '/gear/gear_bar', page: gearBarDef, svg: 'page_gearbar.svg' },
+			{ path: '/gear/gear_ring', page: gearRingDef, svg: 'page_gearring.svg' },
 			{ path: '/gear/gear_epicycloid', page: gearEpicycloidDef, svg: 'page_epicycloid.svg' }
 		]
 	},

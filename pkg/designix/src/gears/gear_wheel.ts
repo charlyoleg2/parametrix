@@ -1,4 +1,4 @@
-// gear_wheel_wheel.ts
+// gear_wheel.ts
 
 import type { tOuterInner, tParamDef, tParamVal, tGeom, tPageDef } from 'geometrix';
 //import { contour, contourCircle, figure, degToRad } from 'geometrix';
@@ -19,7 +19,7 @@ import * as gwHelper from './gearWheelProfile';
 import * as welem from './wheelElements';
 
 const pDef: tParamDef = {
-	partName: 'gear_wheel_wheel',
+	partName: 'gear_wheel',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('module', 'mm', 10, 0.1, 100, 0.1),
@@ -326,7 +326,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 				}
 			]
 		};
-		rGeome.logstr += 'gear_wheel_wheel drawn successfully!\n';
+		rGeome.logstr += 'gear_wheel drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;
@@ -335,11 +335,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	return rGeome;
 }
 
-const gearWheelWheelDef: tPageDef = {
-	pTitle: 'Gearwheel-gearwheel',
+const gearWheelDef: tPageDef = {
+	pTitle: 'Gearwheel',
 	pDescription: 'Gear-system with two wheels',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { gearWheelWheelDef };
+export { gearWheelDef };

@@ -1,8 +1,8 @@
 // index.ts : entry point
 
-export * from './gears/gear_wheel_wheel';
-export * from './gears/gear_bar_wheel';
-export * from './gears/gear_ring_wheel';
+export * from './gears/gear_wheel';
+export * from './gears/gear_bar';
+export * from './gears/gear_ring';
 export * from './gears/gear_epicycloid';
 
 export * from './heliostat/heliostat';

@@ -1,4 +1,4 @@
-// gear_bar_wheel.ts
+// gear_bar.ts
 
 import type {
 	//tContour,
@@ -27,7 +27,7 @@ import {
 } from 'geometrix';
 
 const pDef: tParamDef = {
-	partName: 'gear_bar_wheel',
+	partName: 'gear_bar',
 	params: [
 		//pNumber(name, unit, init, min, max, step)
 		pNumber('H1', 'mm', 40, 1, 4000, 1),
@@ -94,7 +94,7 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		// sub-design
 		rGeome.sub = {};
 		// finalize
-		rGeome.logstr += 'gear_bar_wheel drawn successfully!\n';
+		rGeome.logstr += 'gear_bar drawn successfully!\n';
 		rGeome.calcErr = false;
 	} catch (emsg) {
 		rGeome.logstr += emsg as string;
@@ -103,11 +103,11 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 	return rGeome;
 }
 
-const gearBarWheelDef: tPageDef = {
-	pTitle: 'Gearbar-gearwheel',
+const gearBarDef: tPageDef = {
+	pTitle: 'Gearbar',
 	pDescription: 'Gear-system with a bar and a wheel',
 	pDef: pDef,
 	pGeom: pGeom
 };
 
-export { gearBarWheelDef };
+export { gearBarDef };
