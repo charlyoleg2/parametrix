@@ -29,7 +29,7 @@ const pDef: tParamDef = {
 		pNumber('addInterAxis', 'mm', 0, 0, 100, 0.05),
 		pNumber('c1x', 'mm', 0, -200, 200, 1),
 		pNumber('c1y', 'mm', 0, -200, 200, 1),
-		pSectionSeparator('Tooth Profile'),
+		pSectionSeparator('Tooth addendum dedendum'),
 		pNumber('ah1', 'scalar', 1, 0.1, 2, 0.05),
 		pNumber('dh1', 'scalar', 1, 0.1, 2, 0.05),
 		pNumber('bh1', 'scalar', 0.25, 0.1, 2, 0.05),
@@ -40,13 +40,14 @@ const pDef: tParamDef = {
 		pNumber('bRound2', 'mm', 2, 0, 50, 0.1),
 		pNumber('at1', '%', 50, 10, 90, 0.5),
 		pNumber('at2', '%', 50, 10, 90, 0.5),
+		pSectionSeparator('Tooth involute of circle'),
 		pCheckbox('involSym', true),
 		pDropdown('involROpt', ['Optimum', 'Base-1', 'Base-2', 'PressureAngle', 'FreeBase-12']),
 		pDropdown('involLOpt', ['Optimum', 'Base-1', 'Base-2', 'PressureAngle', 'FreeBase-12']),
-		pNumber('brr1', 'mm', 50, 10, 2000, 0.05),
-		pNumber('brr2', 'mm', 50, 10, 2000, 0.05),
-		pNumber('blr1', 'mm', 50, 10, 2000, 0.05),
-		pNumber('blr2', 'mm', 50, 10, 2000, 0.05),
+		pNumber('brr1', 'mm', 102.9, 10, 2000, 0.05),
+		pNumber('blr1', 'mm', 102.9, 10, 2000, 0.05),
+		pNumber('brr2', 'mm', 85, 10, 2000, 0.05),
+		pNumber('blr2', 'mm', 85, 10, 2000, 0.05),
 		pNumber('involArcPairs1', 'scalar', 2, 1, 40, 1),
 		pNumber('involArcPairs2', 'scalar', 2, 1, 40, 1),
 		pNumber('skinThickness1', 'mm', 0, -3, 3, 0.01),
@@ -170,8 +171,9 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 			param.blr2,
 			param.involSym,
 			param.involROpt,
-			param.involROpt
+			param.involLOpt
 		);
+		rGeome.logstr += `base-circles: brr1: ${brr1.toFixed(2)}  blr1: ${blr1.toFixed(2)}  brr2: ${brr2.toFixed(2)}  blr2: ${blr2.toFixed(2)}\n`;
 		gp1.set4BaseCircles(brr1, blr1);
 		gp2.set4BaseCircles(brr2, blr2);
 		gp1.set5AddendumThickness(param.at1);
