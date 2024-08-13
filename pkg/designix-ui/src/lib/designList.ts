@@ -2,7 +2,10 @@
 
 import type { tAllPageDef } from 'geometrix';
 import {
-	gearWheelWheelDef,
+	gearWheelDef,
+	gearBarDef,
+	gearRingDef,
+	gearEpicycloidDef,
 	heliostatDef,
 	heliostat_2Def,
 	baseDef,
@@ -23,7 +26,10 @@ import {
 } from 'designix';
 
 const designList: tAllPageDef = {
-	'gear/gear_wheel_wheel': gearWheelWheelDef,
+	'gear/gear_wheel': gearWheelDef,
+	'gear/gear_bar': gearBarDef,
+	'gear/gear_ring': gearRingDef,
+	'gear/gear_epicycloid': gearEpicycloidDef,
 	'heliostat/heliostat': heliostatDef,
 	'heliostat/heliostat_2': heliostat_2Def,
 	'heliostat/base': baseDef,
