@@ -135,7 +135,7 @@ class GearWheelProfile {
 		if (this.dr > this.blr) {
 			this.lud = this.involuteL.uFromL(this.dr);
 		} else {
-			this.rud = 0;
+			this.lud = 0;
 		}
 		this.lup = this.involuteL.uFromL(this.pr);
 		this.lua = this.involuteL.uFromL(this.ar);
