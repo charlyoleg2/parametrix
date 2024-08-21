@@ -122,6 +122,7 @@ OpenJSCAD doesn't support *parallel contours*. If a figure contains several *out
 ### FreeCAD
 
 ```bash
+freecad
 freecad.cmd path/to/my/exported/file.py
 freecad.cmd path/to/my/exported/file.py my3Dfile
 f3d path/to/my3Dfile.stl
