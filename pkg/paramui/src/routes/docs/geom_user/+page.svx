@@ -97,6 +97,7 @@ librecad path/to/my/exported/file.dxf
 openscad path/to/my/exported/file.scad
 openscad -o path/to/my3Dfile.stl path/to/my/exported/file.scad
 meshlab path/to/my3Dfile.stl
+f3d path/to/my3Dfile.stl
 ```
 
 
@@ -113,8 +114,18 @@ npx jscad
 npx jscad path/to/my/exported/file.js
 npx jscad path/to/my/exported/file.js -o path/to/my3Dfile.stl
 meshlab path/to/my3Dfile.stl
+f3d path/to/my3Dfile.stl
 ```
 OpenJSCAD doesn't support *parallel contours*. If a figure contains several *outer contours*, they must be extruded one by one independently and then combined together with *union*.
+
+
+### FreeCAD
+
+```bash
+freecad.cmd path/to/my/exported/file.py
+freecad.cmd path/to/my/exported/file.py my3Dfile
+f3d path/to/my3Dfile.stl
+```
 
 
 ### glTF
