@@ -63,13 +63,13 @@
 		"clean": "shx rm -fr dist node_modules"
 	},
 	"dependencies": {
-		"@zip.js/zip.js": "^2.7.48",
+		"@zip.js/zip.js": "^2.7.51",
 		"json5": "^2.2.3"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.8.0",
 		"@types/eslint__js": "^8.42.3",
-		"@types/node": "^22.4.1",
+		"@types/node": "^22.5.0",
 		"eslint": "^9.9.0",
 		"eslint-config-prettier": "^9.1.0",
 		"npm-run-all": "^4.1.5",
