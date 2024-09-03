@@ -62,6 +62,10 @@
 		"get-katex-font4": "wget -N https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Caligraphic-Regular.woff2 -P ./static/fonts/",
 		"get-katex-font5": "wget -N https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/fonts/KaTeX_Size1-Regular.woff2 -P ./static/fonts/",
 		"get-katex": "run-s get-katex-css1 get-katex-font1 get-katex-font2 get-katex-font3 get-katex-font4 get-katex-font5",
+		"rm-temml": "shx rm -fr static/temml",
+		"get-temml-css1": "wget -N https://cdn.jsdelivr.net/npm/temml@0.10.29/dist/Temml-Latin-Modern.css -P ./static/temml/",
+		"get-temml-font1": "wget -N https://cdn.jsdelivr.net/npm/temml@0.10.29/dist/Temml.woff2 -P ./static/temml/",
+		"get-temml": "run-s get-temml-css1 get-temml-font1",
 		"github-pages-fix": "touch build/.nojekyll",
 		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg static/puisvg"
 	},
