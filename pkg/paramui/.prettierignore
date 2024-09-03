@@ -17,5 +17,5 @@ yarn.lock
 # TODO: remove those lines when prettier is stabilized
 src/app.html
 
-static/katex.min.css
+static/temml/*.css
 static/
