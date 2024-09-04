@@ -56,8 +56,10 @@
 		"svgo": "run-s svgo1 svgo4 svgo5",
 		"rm-temml": "shx rm -fr static/temml",
 		"get-temml-css1": "wget -N https://cdn.jsdelivr.net/npm/temml@0.10.29/dist/Temml-Latin-Modern.css -P ./static/temml/",
+		"get-temml-css2": "wget -N https://cdn.jsdelivr.net/npm/temml@0.10.29/dist/Temml-Local.css -P ./static/temml/",
 		"get-temml-font1": "wget -N https://cdn.jsdelivr.net/npm/temml@0.10.29/dist/Temml.woff2 -P ./static/temml/",
-		"get-temml": "run-s get-temml-css1 get-temml-font1",
+		"get-temml-font2": "wget -N https://github.com/stipub/stixfonts/raw/master/fonts/static_otf_woff2/STIXTwoMath-Regular.woff2 -P ./static/temml/",
+		"get-temml": "run-s get-temml-css1 get-temml-css2 get-temml-font1 get-temml-font2",
 		"github-pages-fix": "touch build/.nojekyll",
 		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg static/puisvg"
 	},
