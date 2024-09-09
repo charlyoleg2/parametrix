@@ -1,6 +1,6 @@
 {
 	"name": "geomui",
-	"version": "0.5.49",
+	"version": "0.5.50",
 	"description": "The svelte-library of the webapp-UI of Parametrix",
 	"private": false,
 	"repository": {
