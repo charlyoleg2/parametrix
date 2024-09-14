@@ -91,11 +91,10 @@ If you want to get your *geometrix design library* in this list, please, create 
 5. Find a good concept for assembling 3D-parts
 6. Develop an headless ModelView as an alternative to the svelte-component *OneDesign*
 7. Port *geomui* to Svelte-5
-8. Find a better concept than *parame_paxApps*
-9. Extend *geometrix* for exporting more 3D-scripts
-10. Enhance UI with better size, colors
-11. Enhance UX with two windows communicating via localStorage
-12. Start a new parametric-design-engine for an other area (music, electric circuit, chemistry, optic, ...)
+8. Extend *geometrix* for exporting more 3D-scripts
+9. Enhance UI with better size, colors
+10. Enhance UX with two windows communicating via localStorage
+11. Start a new parametric-design-engine for an other area (music, electric circuit, chemistry, optic, ...)
 
 
 #### Designers and makers
