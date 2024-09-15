@@ -243,7 +243,7 @@ When you develop your own 3D part library (like [parame51](https://github.com/ch
 - parameXYZ : your 3D part library
 - parameXYZ-cli : a CLI to export your work from command-line
 - parameXYZ-ui : the sveltekit project to visualize your work in a Web-UI (for github-page deployment)
-- parameXYZ-ui : a small static web-server that exposes *parameXYZ-ui* (for offline deployment)
+- parameXYZ-uis : a small static web-server that exposes *parameXYZ-ui* (for offline deployment)
 
 In *parameXYZ-ui* and *parameXYZ-cli* you define the list of designs you want to expose. Usually it corresponds to the list your 3D part library *parameXYZ* exports plus optionally ad-hoc external designs you want to expose as well in your UI-app or CLI-app.
 
@@ -257,6 +257,7 @@ In *parameXYZ-ui* and *parameXYZ-cli* you define the list of designs you want to
 For starting a new *geometrix design library*, use the scaffolding tool *create-parametrix*:
 ```bash
 npm create parametrix@latest
+# Or
 npm create parametrix@latest Sam08
 ```
 
