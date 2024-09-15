@@ -1,6 +1,6 @@
 {
 	"name": "designix-cli",
-	"version": "0.5.40",
+	"version": "0.5.41",
 	"description": "The application cli as frontend of geometrix and designix",
 	"private": false,
 	"repository": {
