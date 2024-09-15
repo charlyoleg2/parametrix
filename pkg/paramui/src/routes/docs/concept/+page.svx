@@ -213,12 +213,9 @@ In 2023 the eco-system for developing web-apps is mature.
 - designix-script-ts
 
 
-### npm-packages of parame_paxApps
+### npm-packages of create-parametrix
 
-- paxScr
-- desiXY-cli
-- desiXY-ui
-- desiXY-uis
+- create-parametrix
 
 
 ## Generalization of the design-webapp concept

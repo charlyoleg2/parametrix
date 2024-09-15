@@ -163,7 +163,7 @@ An other way of embedding the svg-files in the design library would be to create
 
 ## design-library organisation
 
-The npm-package of a design-library is stored in mono-repo even if we have a single library. This is because *paxApps* added with *degit* will bring additional npm-packages (paxScr, desiXY-cli, desiXY-ui and desiXY-uis).
+The npm-package of a design-library is stored in mono-repo even if we have a single library. This is because we also store in the repo the associated npm-packages (desiAbc-cli, desiAbc-ui and desiAbc-uis).
 
 In a design library, you can create sub-folders. Each folder has its own *svg* folder.
 
