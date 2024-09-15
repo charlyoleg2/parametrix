@@ -238,45 +238,29 @@ API:
 
 #### Context
 
-When you develop your own 3D part library (like [parame51](https://github.com/charlyoleg2/parame51)) you typically create 3 node-packages:
+When you develop your own 3D part library (like [parame51](https://github.com/charlyoleg2/parame51)) you typically create 4 node-packages:
 
 - parameXYZ : your 3D part library
-- parameXYZ-ui : the sveltekit project to visualize your work in a Web-UI
 - parameXYZ-cli : a CLI to export your work from command-line
+- parameXYZ-ui : the sveltekit project to visualize your work in a Web-UI (for github-page deployment)
+- parameXYZ-ui : a small static web-server that exposes *parameXYZ-ui* (for offline deployment)
 
 In *parameXYZ-ui* and *parameXYZ-cli* you define the list of designs you want to expose. Usually it corresponds to the list your 3D part library *parameXYZ* exports plus optionally ad-hoc external designs you want to expose as well in your UI-app or CLI-app.
 
 #### Solution
 
-In most cases you want to expose in UI-app and CLI-app all the designs defined in your library and you don't want to spend effort to create and maintain those UI-app and CLI-app. The helper repository [parame_paxApps](https://github.com/charlyoleg2/parame_paxApps) provides such generic UI-app and CLI-app, as well as an helper script, so you don't have to take care of the UI-app and CLI-app.
+*Parametrix* offers the helper npm-packages *geomui* and *geomocli* for creating your associated UI-app and CLI-app.
+*create-parametrix* boilerplates your UI-app and CLI-app. You can customize them afterward.
 
-#### HowTo
+#### Boilerplate
 
-Below the recipe to benefit from the generic UI-app and CLI-app for *geometrix design libraries*:
-
-- your repo is a monorepo that contains one or several sub-packages of your *geometrix design library*
-- degit https://github.com/charlyoleg2/parame_paxApps/paxApps in your repo
-- gitignore the directory *paxApps*
-- In the top-monorepo *package.json*:
-	- add the section *paxApps* for configuring those generic UI-app and CLI-app
-	- complete the scripts for build automation
-- build the all and you get all the designs of your library exposed in UI-app and CLI-app
-
-The section *paxApps* of the *package.json* looks like:
-
-```json
-"paxApps": {
-	"colorBg": "DarkCyan",
-	"colorTitle": "AquaMarine",
-	"libs": [
-		"desi52"
-	]
-}
+For starting a new *geometrix design library*, use the scaffolding tool *create-parametrix*:
+```bash
+npm create parametrix@latest
+npm create parametrix@latest Sam08
 ```
 
-#### Template recommendation
-
-For starting a new *geometrix design library*, use [parame52](https://github.com/charlyoleg2/parame52) as template. If you want to create several *geometrix design libraries* in your repo, use [parame53](https://github.com/charlyoleg2/parame53) as template.
+Alternatively, you can use [parame51](https://github.com/charlyoleg2/parame51) as template. Or if you want to create several *geometrix design libraries* in your repo, use [parame53](https://github.com/charlyoleg2/parame53) as template.
 
 
 ### Contour with arcs
