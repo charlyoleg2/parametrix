@@ -53,8 +53,28 @@ Prerequisite
 - [npm](https://docs.npmjs.com/cli/v7/commands/npm) version 10.2.4 or higher
 
 
-Getting started
----------------
+Startng a Parametrix project
+----------------------------
+
+The helper script *create-parametrix* generates the boilerplate for bootstraping a Parametrix project. The boilerplate is functional. It uses the *Parametrix* libraries *geometrix*, *geomcli* and *geomui*.
+
+```bash
+npm create parametrix@latest
+# or
+# npm create parametrix@latest Sam08
+cd parameBlabla
+npm install
+git init && git add -A && git commit -m "Initial commit" # optional
+inkscape desiBlabla/src/svg/src_myBox.svg # optional
+vim desiBlabla/src/myBox.ts # optional
+npm run ci
+npm run preview
+npm run clean # optional
+```
+
+
+Develop the Parametrix core libraries
+-------------------------------------
 
 ```bash
 git clone https://github.com/charlyoleg2/parametrix
