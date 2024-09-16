@@ -86,6 +86,18 @@ myFigure.addMainOI([fCctrO]);
 myFigure.addMainO(fDctrO);
 ```
 
+## Corners
+
+For each contour, *geometrix* lets you modify the shape of each corner individually as following:
+- pointed (a.k.a.  unchanged corner) [default]
+- rounded with radius R (a.k.a. smoothed corner)
+- widened with radius R (a.k.a. enlarged corner)
+- wideAcc with radius R (a.k.a. enlarged corner for complete accessibility)
+
+![corner_options.svg]({base}/puisvg/corner_options.svg)
+![contour_skeleton_final.svg]({base}/puisvg/contour_skeleton_final.svg)
+
+
 ## Export options
 
 ### SVG
@@ -165,7 +177,7 @@ Also the map (partName: link) will allow you defining a single link per partName
 
 ### SVG files
 
-The svg-files that describe a design and its parameters must be embedded in the *design* library. Per convention, those SVG-files are stored in the sub-directory *pgdsvg* along the code *index.js*.
+The svg-files that describe a design and its parameters must be embedded in the *design* library. Per convention, those SVG-files are stored in the sub-directory *pgdsvg* alongside the code *index.js*.
 
 Here the key-elements of the *package.json* of a design-library:
 ```json
