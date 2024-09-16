@@ -165,19 +165,53 @@ Also the map (partName: link) will allow you defining a single link per partName
 
 ### SVG files
 
-The svg-files that described a design and its parameters are not embedded in the *design* library. The SVG files associated to the designs you want to bind to your WebUI must be *manually* copy from the sources to the *static* folder of your *sveltekit* project.
+The svg-files that describe a design and its parameters must be embedded in the *design* library. Per convention, those SVG-files are stored in the sub-directory *pgdsvg* along the code *index.js*.
 
-#### Failed experiment of embedding the svg-files
-
-There was an attempt to *inline* those svg-files into the typescript-library using [svgfiles2js](https://www.npmjs.com/package/svgfiles2js). The size of the library becomes at least five time larger and *svelte* complained about the usage of *&#123@html &#125* and the size of the bundles. So this experiment has been abandonned and reverted (commit d1517c13^..d566729d).
-
-```bash
-git diff --name-only d1517c13^..d566729d
+Here the key-elements of the *package.json* of a design-library:
+```json
+{
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.map",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"scripts": {
+		"svgo1": "svgo --config ./svgo.config.js -f src/facade/svg -o dist/pgdsvg/",
+		"svgo2": "svgo --config ./svgo.config.js -f src/menuiserie/svg -o dist/pgdsvg/",
+		"svgo3": "svgo --config ./svgo.config.js -f src/chaudronnerie/svg -o dist/pgdsvg/",
+		"svgo": "run-s svgo1 svgo2 svgo3",
+		"clean": "shx rm -fr dist dist2 node_modules"
+	},
+	"dependencies": {
+		"geometrix": "^0.5.49"
+	},
+	"devDependencies": {
+		"shx": "^0.3.4",
+		"svgo": "^3.3.2",
+	}
+}
 ```
 
-#### Other idea for embedding the svg-files
-
-An other way of embedding the svg-files in the design library would be to create a companion nodejs-CLI-tool that contains the svg-files and writes them in the target WebUI. So each design library would consist of the *browser/nodejs* library and the companion nodejs-cli-app for transferring the svg-files.
+Here the key-elements of the *package.json* of the associated UI-library:
+```json
+{
+	"scripts": {
+		"cp_pgdsvg": "shx cp -r ../../node_modules/desi78/dist/pgdsvg static/",
+		"ci": "run-s cp_pgdsvg build lint check test:unit:once",
+		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg"
+	},
+	"devDependencies": {
+		"shx": "^0.3.4",
+	}
+}
+```
 
 
 ## design-library organisation
