@@ -53,10 +53,10 @@ Prerequisite
 - [npm](https://docs.npmjs.com/cli/v7/commands/npm) version 10.2.4 or higher
 
 
-Startng a Parametrix project
-----------------------------
+Starting a Parametrix project
+-----------------------------
 
-The helper script *create-parametrix* generates the boilerplate for bootstraping a Parametrix project. The boilerplate is functional. It uses the *Parametrix* libraries *geometrix*, *geomcli* and *geomui*.
+The helper script *create-parametrix* generates the boilerplate for bootstraping a *Parametrix* project. The boilerplate is functional. It uses the *Parametrix* libraries *geometrix*, *geomcli* and *geomui*.
 
 ```bash
 npm create parametrix@latest
