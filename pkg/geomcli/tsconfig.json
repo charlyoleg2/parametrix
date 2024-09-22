@@ -7,6 +7,7 @@
 		"resolveJsonModule": true,
 		"moduleResolution": "bundler",
 		"declaration": true,
+		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true
 	},
