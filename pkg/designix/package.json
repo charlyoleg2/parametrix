@@ -67,7 +67,7 @@
 		"svgo4": "svgo --config ./svgo.config.js -f src/geometrix_verification/svg -o dist/pgdsvg",
 		"svgo5": "svgo --config ./svgo.config.js -f src/heliostat/svg -o dist/pgdsvg",
 		"svgo": "run-s svgo1 svgo2 svgo3 svgo4 svgo5",
-		"browserBundleGearWheel": "esbuild src/gears/gear_wheel_wheel.ts --bundle --format=esm --outfile=dist2/gear_wheel_wheel.js",
+		"browserBundleGearWheel": "esbuild src/gears/gear_wheel.ts --bundle --format=esm --outfile=dist2/gear_wheel.js",
 		"browserBundleAll": "esbuild dist/index.js --bundle --format=esm --outfile=dist2/designix.js",
 		"clean": "shx rm -fr dist dist2 node_modules"
 	},
