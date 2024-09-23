@@ -111,20 +111,20 @@ const menuList: tMenuList = [
 			{ path: apidocPath, page: null, svg: 'page_about.svg' },
 			{ path: '/docs/readme', page: null, svg: 'page_readme.svg' },
 			{ path: '/docs/concept', page: null, svg: 'page_concept.svg' },
-			{ path: '/docs/geom_dev', page: null, svg: 'page_geom.svg' },
-			{ path: '/docs/geom_user', page: null, svg: 'page_geom.svg' },
-			{ path: '/docs/geom_tutorial', page: null, svg: 'page_geom.svg' },
+			{ path: '/docs/geom-dev', page: null, svg: 'page_geom.svg' },
+			{ path: '/docs/geom-user', page: null, svg: 'page_geom.svg' },
+			{ path: '/docs/geom-tutorial', page: null, svg: 'page_geom.svg' },
 			{ path: '/docs/ui', page: null, svg: 'page_ui.svg' },
 			{ path: '/docs/lists', page: null, svg: 'page_geom.svg' },
 			{ path: '/docs/prez', page: null, svg: 'page_concept.svg' },
-			{ path: '/docs/prez_fr', page: null, svg: 'page_concept.svg' },
-			{ path: '/docs/jsapp', page: null, svg: 'page_jsapp.svg' },
+			{ path: '/docs/prez-fr', page: null, svg: 'page_concept.svg' },
+			{ path: '/docs/js-app', page: null, svg: 'page_jsapp.svg' },
 			{ path: '/docs/motors', page: null, svg: 'page_gears.svg' },
 			{ path: '/docs/gears', page: null, svg: 'page_gears.svg' },
 			{ path: '/docs/involute', page: null, svg: 'page_gears.svg' },
 			{ path: '/docs/magnetic', page: null, svg: 'page_magnetic.svg' },
 			{ path: '/docs/axis', page: null, svg: 'page_axis.svg' },
-			{ path: '/docs/cad_ecosystem', page: null, svg: 'page_concept.svg' }
+			{ path: '/docs/cad-ecosystem', page: null, svg: 'page_concept.svg' }
 		]
 	},
 	{
