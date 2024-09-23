@@ -1,0 +1,30 @@
+---
+title: Javascript applications
+category: documentation
+---
+
+<script lang="ts">
+	import { base } from '$app/paths';
+</script>
+
+
+# {title}
+
+
+## Javascript environments
+
+![jsapp_environments.svg]({base}/puisvg/jsapp_environments.svg)
+![jsapp_libraries.svg]({base}/puisvg/jsapp_libraries.svg)
+
+
+## Browser-app
+
+
+## Nodejs-app
+
+
+
+<style lang="scss">
+	@use '$lib/style/colors.scss';
+
+</style>
