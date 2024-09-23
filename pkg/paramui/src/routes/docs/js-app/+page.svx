@@ -18,6 +18,8 @@ This page explains several concepts of *javascript* applications.
 ![jsapp_environments.svg]({base}/puisvg/jsapp_environments.svg)
 ![jsapp_libraries.svg]({base}/puisvg/jsapp_libraries.svg)
 
+*Javascript* can run in the browser when called from *html* or run in a local interpreter like [nodejs](https://nodejs.org), [deno](https://deno.com/) or [bun](https://bun.sh/).
+
 
 ## 1- Browser-app
 
