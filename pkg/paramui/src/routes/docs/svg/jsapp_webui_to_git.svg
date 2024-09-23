@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="518.39667"
+   height="102.25781"
+   viewBox="0 0 137.1591 27.055709"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (1:1.3.2+202404261509+091e20ef0f)"
+   sodipodi:docname="src_jsapp.svg"
+   inkscape:export-filename="jsapp_environments.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="1.1162328"
+     inkscape:cx="254.42722"
+     inkscape:cy="1335.7429"
+     inkscape:window-width="1854"
+     inkscape:window-height="1131"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker11"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path11" />
+    </marker>
+    <rect
+       x="94.833351"
+       y="706.20215"
+       width="125.47529"
+       height="74.638824"
+       id="rect11-3-5-0-7" />
+    <rect
+       x="108.11408"
+       y="851.24341"
+       width="152.70981"
+       height="46.305618"
+       id="rect25-0-9-6-5" />
+    <rect
+       x="243.24741"
+       y="961.21832"
+       width="225.01764"
+       height="74.250328"
+       id="rect32-2-1-3" />
+    <marker
+       style="overflow:visible"
+       id="marker11-2-5-5"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path11-8-5-6" />
+    </marker>
+    <rect
+       x="268.19794"
+       y="1306.0594"
+       width="184.81418"
+       height="30.988363"
+       id="rect34-6" />
+    <marker
+       style="overflow:visible"
+       id="marker11-23"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path11-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker11-2-6-5"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path11-8-1-9" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-5.1722336,-454.13004)">
+    <rect
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:0.264583"
+       id="rect13"
+       width="136.89452"
+       height="26.79114"
+       x="5.3045249"
+       y="454.26233"
+       inkscape:export-filename="./jsapp_webui_to_git.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <rect
+       style="fill:#e6e6e6;stroke:#999999;stroke-width:0.265"
+       id="rect29-2-3-7-9"
+       width="49.08289"
+       height="12.065099"
+       x="47.400932"
+       y="461.25027" />
+    <rect
+       style="fill:#aa8800;stroke:#d4aa00;stroke-width:0.264582"
+       id="rect10-1-5-2-2-6-6-1"
+       width="27.623114"
+       height="21.240286"
+       x="7.0777946"
+       y="456.66269" />
+    <rect
+       style="fill:#fff6d5;stroke:#d4aa00;stroke-width:0.264582"
+       id="rect10-1-5-6-1-5-2"
+       width="24.587849"
+       height="15.444087"
+       x="8.495019"
+       y="457.54794" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.2645833,0,0,0.2645833,-21.044258,275.37465)"
+       id="text8-1-2-6-7"
+       style="font-size:14.6667px;line-height:normal;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';text-align:center;text-decoration-color:#000000;white-space:pre;shape-inside:url(#rect11-3-5-0-7);display:inline;fill:#000000;stroke-width:1;-inkscape-stroke:none;stop-color:#000000"><tspan
+         x="131.16693"
+         y="719.25323"
+         id="tspan5">web-ui</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.2645833,0,0,0.2645833,-27.058628,248.16985)"
+       id="text25-7-9-3-0"
+       style="font-size:14.6667px;line-height:normal;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';text-align:center;text-decoration-color:#000000;white-space:pre;shape-inside:url(#rect25-0-9-6-5);display:inline;fill:#000000;stroke-width:1;-inkscape-stroke:none;stop-color:#000000"><tspan
+         x="153.66367"
+         y="864.29424"
+         id="tspan6">browser</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.2645833,0,0,0.2645833,-22.917075,207.62451)"
+       id="text32-3-4-9"
+       style="font-size:14.6667px;line-height:normal;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';text-align:center;text-decoration-color:#000000;white-space:pre;shape-inside:url(#rect32-2-1-3);display:inline;fill:#000000;stroke-width:1;-inkscape-stroke:none;stop-color:#000000"><tspan
+         x="302.94812"
+         y="974.26885"
+         id="tspan7">local server
+</tspan><tspan
+         x="267.74231"
+         y="992.60223"
+         id="tspan8">(e.g. issue-tracker)</tspan></text>
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;marker-start:url(#marker11);marker-end:url(#marker11-2-5-5)"
+       d="M 47.400925,467.28283 H 34.700913"
+       id="path32-4-2-3" />
+    <rect
+       style="fill:#ffe6d5;stroke:#ff6600;stroke-width:0.265"
+       id="rect29-2-3-5-61"
+       width="30.239815"
+       height="12.065099"
+       x="109.18385"
+       y="461.25027" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.2645833,0,0,0.2645833,29.009009,119.07704)"
+       id="text33-87"
+       style="font-size:14.6667px;line-height:normal;font-family:'Liberation Mono';-inkscape-font-specification:'Liberation Mono';text-align:center;text-decoration-color:#000000;white-space:pre;shape-inside:url(#rect34-6);display:inline;fill:#000000;stroke-width:1;-inkscape-stroke:none;stop-color:#000000"><tspan
+         x="316.59723"
+         y="1319.1087"
+         id="tspan9">git-server</tspan></text>
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.529167;stroke-dasharray:none;marker-start:url(#marker11-23);marker-end:url(#marker11-2-6-5)"
+       d="M 109.18385,467.28282 H 96.483826"
+       id="path32-4-6-2" />
+  </g>
+</svg>
