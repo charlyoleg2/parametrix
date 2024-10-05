@@ -12,7 +12,8 @@
 		<img class="img5 img-suite" src="{base}/favicon.svg" alt="Parametrix's logo" />
 	</section>
 	<article>
-		Technical drawing --- Dessin industriel --- 2D parametric designs --- Software defined modelling
+		Technical drawing --- Dessin industriel --- 2D parametric designs --- Software defined
+		modelling
 	</article>
 </header>
 
