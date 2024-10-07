@@ -14,17 +14,26 @@ category: documentation
 
 Parametrix is a generator of web-apps for designing 2D shapes and 3D shapes. 2D shapes are defined via the 2D-engine API, called *geometrix*. 3D shapes are combinations (union, intersection, substration) of extrusions of the previously defined 2D shapes.
 
-### Overview
+### Features
 
-#### CAD Flow
+1. Modern interface between *designers* and *makers*
+2. Automatic generation of CLI and UI
+3. Extendable for simulation (e.g. [optics simulator](https://charlyoleg2.github.io/parame78/desi78/lens_x3)) and design workbench (e.g. sheet metal)
+4. Optimized for G-code and common manufacturing process
+5. Built on top of several CAD tools (act also as unified API for the suported CAD tools)
+6. Simple deployment via [npm](https://www.npmjs.com/search?q=parametrix)
+7. Online and offline access
+8. Well integrated in git workflow (e.g. [heliostat_model_50cm](https://github.com/charlyoleg2/heliostat_model_50cm))
 
-##### Traditional CAD Flow
+### CAD Flow
+
+#### Traditional CAD Flow
 
 ![cad_flow_traditional.svg]({base}/puisvg/cad_flow_traditional.svg)
 
 When you design your 3D-shape within a CAD tool, your work-product depends on this tool. If this tool becomes unavailable because technical, legal or commercial raison, you lose your work.
 
-##### CAD Flow with Parametrix
+#### CAD Flow with Parametrix
 
 ![cad_flow_with_parametrix.svg]({base}/puisvg/cad_flow_with_parametrix.svg)
 
@@ -33,22 +42,22 @@ The 3 main advantages of the *parametrix* flow:
 - The intermediate step of *webui* gives more autonomy to the *maker*. He can adjust sizings of the design himself without asking the *designer*.
 - Having the 3D-shape described in *Javascript* helps providing high quality 3D-data and let you benefit from all the software developer tools including *git* for versioning and sharing.
 
-#### Parametrix workflow
+### Parametrix workflow
 
 ![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
 
 
-#### Designers and makers
+### Designers and makers
 
 ![designer_maker_interfaces.svg]({base}/puisvg/designer_maker_interfaces.svg)
 
 
-#### Parametrix scope
+### Parametrix scope
 
 ![parametrix_3D_shape_subset.svg]({base}/puisvg/parametrix_3D_shape_subset.svg)
 
 
-#### More explanations
+### More explanations
 
 The user of Parametrix gets:
 - 2D
