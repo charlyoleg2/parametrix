@@ -12,7 +12,7 @@ category: documentation
 
 ## Parametrix presentation
 
-Parametrix is a generator of web-apps for designing 2D shapes and 3D shapes. 2D shapes are defined via the 2D-engine API, called *geometrix*. 3D shapes are combinations (union, intersection, substration) of extrusions of the previously defined 2D shapes.
+Parametrix is programmatic CAD tool. It provides an API (called *geometrix*) for modelling 2D shapes and 3D shapes. When you are done with your desing, *Parametrix* generates a web-UI for exposing your design.
 
 ### Features
 
@@ -24,6 +24,8 @@ Parametrix is a generator of web-apps for designing 2D shapes and 3D shapes. 2D 
 6. Simple deployment via [npm](https://www.npmjs.com/search?q=parametrix)
 7. Online and offline access
 8. Well integrated in git workflow (e.g. [heliostat_model_50cm](https://github.com/charlyoleg2/heliostat_model_50cm))
+9. Powerful API for modelling including corner rounding feature
+10. The full power of *Javacript* for modelling your shapes
 
 ### CAD Flow
 
