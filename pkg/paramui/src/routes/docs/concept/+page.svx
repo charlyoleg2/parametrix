@@ -24,8 +24,10 @@ Parametrix is programmatic CAD tool. It provides an API (called *geometrix*) for
 6. Simple deployment via [npm](https://www.npmjs.com/search?q=parametrix)
 7. Online and offline access
 8. Well integrated in git workflow (e.g. [heliostat_model_50cm](https://github.com/charlyoleg2/heliostat_model_50cm))
-9. Powerful API for modelling including corner rounding feature
+9. Simple and powerful API for modelling including corner rounding feature
 10. The full power of *Javacript* for modelling your shapes
+11. Streamline core library of only 6000 lines of code easy to maintain
+
 
 ### CAD Flow
 
