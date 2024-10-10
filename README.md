@@ -65,8 +65,8 @@ npm create parametrix@latest
 cd parameBlabla
 npm install
 git init && git add -A && git commit -m "Initial commit" # optional
-inkscape desiBlabla/src/svg/src_myBox.svg # optional
-vim desiBlabla/src/myBox.ts # optional
+inkscape pkg/desiBlabla/src/myGroup1/svg/src_myBox.svg # optional
+vim pkg/desiBlabla/src/myGroup1/myBox.ts # optional
 npm run ci
 npm run preview
 npm run clean # optional
