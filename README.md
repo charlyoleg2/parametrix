@@ -95,6 +95,34 @@ npm -w paramui run dev
 ```
 
 
+Dev with Deno
+-------------
+
+You can also compile *Parametrix* with [Deno 2.0](https://deno.com/).
+
+```bash
+git clone https://github.com/charlyoleg2/parametrix
+cd parametrix
+deno install
+deno task ci
+deno task preview
+```
+
+
+Dev with Bun
+------------
+
+You can also compile *Parametrix* with [Bun](https://bun.sh/).
+
+```bash
+git clone https://github.com/charlyoleg2/parametrix
+cd parametrix
+bun install
+bun run ci
+bun run preview
+```
+
+
 Publish a new release
 ---------------------
 
