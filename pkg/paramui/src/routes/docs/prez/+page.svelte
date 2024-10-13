@@ -53,7 +53,20 @@
 		<p></p></OneSlide
 	>
 	<OneSlide>
-		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
+		<pre style="font-size:2.5em; margin:0;">Parametrix workflow</pre>
+		<img
+			src="{base}/puisvg/prez_parametrix_vs_classic_workflow.svg"
+			style="height: 9em;"
+			alt="prez_parametrix_vs_classic_workflow"
+		/>
+		<pre>
+Simplistic approach:
+- contour centric
+- no long workflow chain
+		</pre>
+	</OneSlide>
+	<OneSlide>
+		<pre style="font-size:2em; margin:0;">Generate 3D files</pre>
 		<img
 			src="{base}/puisvg/cad_flow_with_parametrix.svg"
 			style="height: 9em;"
@@ -116,6 +129,27 @@ The Geometrix API for designing a 3D shape
 	<OneSlide>
 		<pre>
 The Geometrix API in a nutshell
+		</pre>
+	</OneSlide>
+	<OneSlide>
+		<p>
+			<span style="font-size:2em">Code example</span>
+			<img
+				src="{base}/puisvg/codeExample1_contour.svg"
+				style="height: 7em; vertical-align: middle"
+				alt="codeExample1_contour.svg"
+			/>
+		</p>
+		<pre style="font-size:0.8em; padding-right: 5em">
+const ctr1 = contour(0, 0)
+	.addSegStrokeR(param.L2, 0)
+	.addSegStrokeRP(a3, param.L3)
+	.addPointAP(a4, param.L4)
+	.addSegArc(param.R34, true, true)
+	.addCornerRounded(param.R4)
+	.addPointA(0, param.L5)
+	.addSegArc3(a5, false)
+	.closeSegStroke();
 		</pre>
 	</OneSlide>
 	<OneSlide>
