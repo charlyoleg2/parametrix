@@ -53,7 +53,7 @@
 		<p></p></OneSlide
 	>
 	<OneSlide>
-		<pre style="font-size:2.5em; margin:0;">Parametrix workflow</pre>
+		<pre style="font-size:1.5em; margin:0;">Parametrix workflow</pre>
 		<img
 			src="{base}/puisvg/prez_parametrix_vs_classic_workflow.svg"
 			style="height: 9em;"
@@ -308,7 +308,7 @@ présentation
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre>
+		<pre style="color: orange">
 Prêt pour créer votre <i>propre</i> librairie de designs?
 		</pre>
 		<pre>
