@@ -61,7 +61,9 @@
 		/>
 		<pre>
 Approche simplifi&eacute;e:
-- centr&eacute;e sur la notion de contour
+- centr&eacute;e sur la notion de contour (c.a.d 2.5D)
+  - les proc&eacute;d&eacute;s de fabrication efficaces sont 2D
+  - les m&eacute;canismes robustes sont 2D
 - chaine d'outils CAO/FAO mieux controll&eacute;e
 		</pre>
 	</OneSlide>
@@ -308,6 +310,9 @@ présentation
 	<OneSlide>
 		<pre>
 Prêt pour créer votre <i>propre</i> librairie de designs?
+		</pre>
+		<pre>
+npm create parametrix@latest tom07
 		</pre>
 	</OneSlide>
 </Carousel>

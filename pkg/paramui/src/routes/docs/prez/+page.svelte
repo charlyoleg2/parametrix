@@ -61,7 +61,9 @@
 		/>
 		<pre>
 Simplistic approach:
-- contour centric
+- contour centric (i.e. 2.5D)
+  - cost efficient manufacturing process are 2D
+  - robust mechanisms are 2D
 - no long workflow chain
 		</pre>
 	</OneSlide>
@@ -302,6 +304,9 @@ presentation
 	<OneSlide>
 		<pre>
 Ready for creating your <i>own</i> design-library?
+		</pre>
+		<pre>
+npm create parametrix@latest tom07
 		</pre>
 	</OneSlide>
 </Carousel>
