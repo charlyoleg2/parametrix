@@ -293,6 +293,7 @@ Parametrix génère des scripts 3D pour:
 - Three.js
 - glTF
 - X3D
+- ManifoldCAD
 		</pre>
 	</OneSlide>
 	<OneSlide>
