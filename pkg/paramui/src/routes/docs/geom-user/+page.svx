@@ -199,14 +199,14 @@ Here the key-elements of the *package.json* of a design-library:
 		"svgo2": "svgo --config ./svgo.config.js -f src/menuiserie/svg -o dist/pgdsvg/",
 		"svgo3": "svgo --config ./svgo.config.js -f src/chaudronnerie/svg -o dist/pgdsvg/",
 		"svgo": "run-s svgo1 svgo2 svgo3",
-		"clean": "shx rm -fr dist dist2 node_modules"
+		"clean": "fse remove dist dist2 node_modules"
 	},
 	"dependencies": {
 		"geometrix": "^0.5.49"
 	},
 	"devDependencies": {
-		"shx": "^0.3.4",
-		"svgo": "^3.3.2",
+		"@ata060/fse-cli": "^0.1.9",
+		"svgo": "^3.3.2"
 	}
 }
 ```
@@ -215,12 +215,12 @@ Here the key-elements of the *package.json* of the associated UI-library:
 ```json
 {
 	"scripts": {
-		"cp_pgdsvg": "shx cp -r ../../node_modules/desi78/dist/pgdsvg static/",
+		"cp_pgdsvg": "fse copy ../../node_modules/desi78/dist/pgdsvg static/pgdsvg",
 		"ci": "run-s cp_pgdsvg build lint check test:unit:once",
-		"clean": "shx rm -fr .svelte-kit build node_modules static/pgdsvg"
+		"clean": "fse remove .svelte-kit build node_modules static/pgdsvg"
 	},
 	"devDependencies": {
-		"shx": "^0.3.4",
+		"@ata060/fse-cli": "^0.1.9"
 	}
 }
 ```
