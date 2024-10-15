@@ -72,7 +72,7 @@
 		"ci": "run-s ci-lib ci-app apidoc",
 		"ci2": "run-s designix:ci2 paramui:build",
 		"svgo": "run-s designix:svgo paramui:svgo",
-		"clean-root": "fse remove tmp output output2 build",
+		"clean-root": "rimraf tmp output output2 build",
 		"clean-lib": "run-s geometrix:clean designix:clean geomui:clean geomcli:clean",
 		"clean-app": "run-s paramui:clean designix-ui:clean designix-script-ts:clean designix-script-js:clean designix-cli:clean designix-uis:clean",
 		"clean": "run-s clean-root clean-lib clean-app",
@@ -89,6 +89,7 @@
 	"devDependencies": {
 		"@atao60/fse-cli": "^0.1.9",
 		"npm-run-all2": "^6.2.3",
+		"rimraf": "^6.0.1",
 		"serve": "^14.2.3",
 		"typedoc": "^0.26.9"
 	}

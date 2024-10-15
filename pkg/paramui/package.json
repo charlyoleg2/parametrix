@@ -54,14 +54,14 @@
 		"svgo4": "svgo --config ../designix/svgo.config.js -f src/routes/docs/svg -o static/puisvg",
 		"svgo5": "svgo --config ../designix/svgo.config.js -f ../geometrix/docs_svg -o static/puisvg",
 		"svgo": "run-s svgo1 svgo4 svgo5",
-		"rm-temml": "fse remove static/temml",
+		"rm-temml": "rimraf static/temml",
 		"get-temml-css1": "wget -N https://cdn.jsdelivr.net/npm/temml@0.10.29/dist/Temml-Latin-Modern.css -P ./static/temml/",
 		"get-temml-css2": "wget -N https://cdn.jsdelivr.net/npm/temml@0.10.29/dist/Temml-Local.css -P ./static/temml/",
 		"get-temml-font1": "wget -N https://cdn.jsdelivr.net/npm/temml@0.10.29/dist/Temml.woff2 -P ./static/temml/",
 		"get-temml-font2": "wget -N https://github.com/stipub/stixfonts/raw/master/fonts/static_otf_woff2/STIXTwoMath-Regular.woff2 -P ./static/temml/",
 		"get-temml": "run-s get-temml-css1 get-temml-css2 get-temml-font1 get-temml-font2",
 		"github-pages-fix": "touch build/.nojekyll",
-		"clean": "fse remove .svelte-kit build node_modules static/pgdsvg static/puisvg"
+		"clean": "rimraf .svelte-kit build node_modules static/pgdsvg static/puisvg"
 	},
 	"dependencies": {
 		"designix": "^0.5.50",
@@ -85,6 +85,7 @@
 		"npm-run-all2": "^6.2.3",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
+		"rimraf": "^6.0.1",
 		"sass": "^1.79.5",
 		"svelte": "^4.2.19",
 		"svelte-check": "^4.0.5",

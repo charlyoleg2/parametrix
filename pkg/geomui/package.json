@@ -63,7 +63,7 @@
 		"lint": "prettier --check . && eslint .",
 		"ci": "run-s cp_pgdsvg build lint check test:unit:once",
 		"format": "prettier --write .",
-		"clean": "fse remove .svelte-kit build node_modules dist static/pgdsvg"
+		"clean": "rimraf .svelte-kit build node_modules dist static/pgdsvg"
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "^2.0.3",
@@ -89,6 +89,7 @@
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
 		"publint": "^0.2.11",
+		"rimraf": "^6.0.1",
 		"sass": "^1.79.5",
 		"svelte": "^4.2.19",
 		"svelte-check": "^4.0.5",
