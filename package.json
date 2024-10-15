@@ -72,7 +72,7 @@
 		"ci": "run-s ci-lib ci-app apidoc",
 		"ci2": "run-s designix:ci2 paramui:build",
 		"svgo": "run-s designix:svgo paramui:svgo",
-		"clean-root": "shx rm -fr tmp output output2 build",
+		"clean-root": "fse remove tmp output output2 build",
 		"clean-lib": "run-s geometrix:clean designix:clean geomui:clean geomcli:clean",
 		"clean-app": "run-s paramui:clean designix-ui:clean designix-script-ts:clean designix-script-js:clean designix-cli:clean designix-uis:clean",
 		"clean": "run-s clean-root clean-lib clean-app",
@@ -80,16 +80,16 @@
 		"versions": "run-s geometrix:version designix:version geomui:version geomcli:version designix-cli:version designix-uis:version",
 		"gh-publish": "run-s geometrix:publish designix:publish geomui:publish geomcli:publish designix-cli:publish designix-uis:publish",
 		"gen_apidoc": "typedoc",
-		"cp_apidoc": "shx cp -r build/apidoc pkg/paramui/build/docs/",
+		"cp_apidoc": "fse copy build/apidoc pkg/paramui/build/docs/apidoc",
 		"apidoc": "run-s gen_apidoc cp_apidoc",
 		"serve_apidoc": "serve build/apidoc",
 		"serve_paramui": "serve pkg/paramui/build",
 		"ls-pkg": "ls -la pkg"
 	},
 	"devDependencies": {
+		"@atao60/fse-cli": "^0.1.9",
 		"npm-run-all2": "^6.2.3",
 		"serve": "^14.2.3",
-		"shx": "^0.3.4",
 		"typedoc": "^0.26.9"
 	}
 }

@@ -57,7 +57,7 @@
 		"test:bats": "bats test/test1.bats",
 		"ci": "run-s check build pretty lint test:unit:once test:bats",
 		"run": "build/index.js",
-		"clean": "shx rm -fr build dist node_modules output"
+		"clean": "fse remove build dist node_modules output"
 	},
 	"dependencies": {
 		"designix": "^0.5.50",
@@ -65,6 +65,7 @@
 		"geometrix": "^0.5.49"
 	},
 	"devDependencies": {
+		"@atao60/fse-cli": "^0.1.9",
 		"@eslint/js": "^9.10.0",
 		"@types/eslint__js": "^8.42.3",
 		"bats": "^1.11.0",
@@ -72,7 +73,6 @@
 		"eslint-config-prettier": "^9.1.0",
 		"npm-run-all2": "^6.2.3",
 		"prettier": "^3.3.3",
-		"shx": "^0.3.4",
 		"tsup": "^8.3.0",
 		"typescript": "^5.6.3",
 		"typescript-eslint": "^8.9.0",

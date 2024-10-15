@@ -60,13 +60,14 @@
 		"test:unit": "vitest",
 		"test:unit:once": "vitest --run",
 		"ci": "run-s check build pretty lint test:unit:once",
-		"clean": "shx rm -fr build dist node_modules"
+		"clean": "fse remove build dist node_modules"
 	},
 	"dependencies": {
 		"geometrix": "^0.5.49",
 		"yargs": "^17.7.2"
 	},
 	"devDependencies": {
+		"@atao60/fse-cli": "^0.1.9",
 		"@eslint/js": "^9.10.0",
 		"@types/eslint__js": "^8.42.3",
 		"@types/yargs": "^17.0.33",
@@ -74,7 +75,6 @@
 		"eslint-config-prettier": "^9.1.0",
 		"npm-run-all2": "^6.2.3",
 		"prettier": "^3.3.3",
-		"shx": "^0.3.4",
 		"tsup": "^8.3.0",
 		"typescript": "^5.6.3",
 		"typescript-eslint": "^8.9.0",

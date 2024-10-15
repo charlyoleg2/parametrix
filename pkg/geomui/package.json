@@ -50,7 +50,7 @@
 		]
 	},
 	"scripts": {
-		"cp_pgdsvg": "shx cp -r ../../node_modules/designix/dist/pgdsvg static/",
+		"cp_pgdsvg": "fse copy ../../node_modules/designix/dist/pgdsvg static/pgdsvg",
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",
@@ -63,7 +63,7 @@
 		"lint": "prettier --check . && eslint .",
 		"ci": "run-s cp_pgdsvg build lint check test:unit:once",
 		"format": "prettier --write .",
-		"clean": "shx rm -fr .svelte-kit build node_modules dist static/pgdsvg"
+		"clean": "fse remove .svelte-kit build node_modules dist static/pgdsvg"
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "^2.0.3",
@@ -73,6 +73,7 @@
 		"geometrix": "^0.5.49"
 	},
 	"devDependencies": {
+		"@atao60/fse-cli": "^0.1.9",
 		"@sveltejs/adapter-auto": "^3.2.5",
 		"@sveltejs/adapter-static": "^3.0.5",
 		"@sveltejs/kit": "^2.7.1",
@@ -89,7 +90,6 @@
 		"prettier-plugin-svelte": "^3.2.7",
 		"publint": "^0.2.11",
 		"sass": "^1.79.5",
-		"shx": "^0.3.4",
 		"svelte": "^4.2.19",
 		"svelte-check": "^4.0.5",
 		"typescript": "^5.6.3",
