@@ -19,6 +19,7 @@
 	</OneSlide>
 	<OneSlide>
 		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
+		<pre style="margin:0;">CAD as code for open-hardware</pre>
 		<pre style="margin:0;">a JavaScript solution for creating 3D shapes</pre>
 	</OneSlide>
 	<OneSlide>

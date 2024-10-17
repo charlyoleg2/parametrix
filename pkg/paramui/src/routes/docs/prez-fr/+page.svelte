@@ -19,6 +19,7 @@
 	</OneSlide>
 	<OneSlide>
 		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
+		<pre style="margin:0;">CAO en code pour l'open-hardware</pre>
 		<pre style="margin:0;">Une solution JavaScript pour cr&eacute;er des formes 3D</pre>
 	</OneSlide>
 	<OneSlide>
