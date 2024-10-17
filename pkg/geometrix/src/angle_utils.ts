@@ -7,11 +7,11 @@ const tolerance = 10 ** -4;
 /* utils for angles */
 
 function degToRad(degrees: number): number {
-	return degrees * (Math.PI / 180);
+	return (degrees * Math.PI) / 180;
 }
 
 function radToDeg(rad: number): number {
-	return rad / (Math.PI / 180);
+	return (180 * rad) / Math.PI;
 }
 
 function roundZero(ix: number): number {
