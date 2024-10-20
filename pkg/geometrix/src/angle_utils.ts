@@ -77,6 +77,21 @@ function isWithin(aNew: number, aStart: number, aStop: number, ccw: boolean): bo
 	return rYes;
 }
 
+/**
+ * Calculate the coordiantes [X,Y] of B, starting from A[x,y] and translate with angle aAB and length lAB
+ *
+ *  @param ax: X-coordiante of point A
+ *  @param ay: Y-coordiante of point A
+ *  @param aAB: angle of translation vector AB in radian
+ *  @param lAB: length of translation vector AB
+ *  @returns [Bx, By] coordinates of point B
+ */
+function pointCoord(ax: number, ay: number, aAB: number, lAB: number): [number, number] {
+	const rBx = ax + lAB * Math.cos(aAB);
+	const rBy = ay + lAB * Math.sin(aAB);
+	return [rBx, rBy];
+}
+
 function ffix(ifloat: number): string {
 	return ifloat.toFixed(2);
 }
@@ -94,5 +109,6 @@ export {
 	withinHPiHPi,
 	orientedArc,
 	isWithin,
+	pointCoord,
 	ffix
 };

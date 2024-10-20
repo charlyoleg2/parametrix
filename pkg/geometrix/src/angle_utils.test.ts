@@ -6,7 +6,8 @@ import {
 	withinZero2Pi,
 	withinPiPi,
 	withinZeroPi,
-	withinHPiHPi
+	withinHPiHPi,
+	pointCoord
 } from './angle_utils';
 
 describe('angle suit', () => {
@@ -79,5 +80,11 @@ describe('angle suit', () => {
 	});
 	it('withinHPiHPi 4', () => {
 		expect(withinHPiHPi((17 * Math.PI) / 9)).toBeCloseTo(-Math.PI / 9, 5);
+	});
+	it('pointCoord', () => {
+		expect(pointCoord(10, 20, Math.PI / 3, 40)).toEqual([
+			expect.closeTo(30, 4),
+			expect.closeTo(20 + 40 * 0.866025, 4)
+		]);
 	});
 });
