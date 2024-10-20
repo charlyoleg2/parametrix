@@ -80,10 +80,10 @@ function isWithin(aNew: number, aStart: number, aStop: number, ccw: boolean): bo
 /**
  * Calculate the coordiantes [X,Y] of B, starting from A[x,y] and translate with angle aAB and length lAB
  *
- *  @param ax: X-coordiante of point A
- *  @param ay: Y-coordiante of point A
- *  @param aAB: angle of translation vector AB in radian
- *  @param lAB: length of translation vector AB
+ *  @param ax - X-coordiante of point A
+ *  @param ay - Y-coordiante of point A
+ *  @param aAB - angle of translation vector AB in radian
+ *  @param lAB - length of translation vector AB
  *  @returns [Bx, By] coordinates of point B
  */
 function pointCoord(ax: number, ay: number, aAB: number, lAB: number): [number, number] {
