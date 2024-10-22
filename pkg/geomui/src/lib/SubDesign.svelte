@@ -66,7 +66,7 @@
 			<li>
 				<input type="checkbox" id="cb_{subInst}" class="toggle" checked={false} />
 				<label for="cb_{subInst}" class="label">
-					<div class="arrow" />
+					<div class="arrow"></div>
 					{subInst}
 				</label>
 				<button on:click={() => goToUrl(subInst)}

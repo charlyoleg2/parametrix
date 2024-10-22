@@ -156,11 +156,11 @@
 		rows="5"
 		cols="94"
 		readonly
-		wrap="off"
+		wrap="soft"
 		value={logValue}
 		class:colorErr={calcErr}
 		class:colorWarn={calcWarn}
-	/>
+	></textarea>
 </section>
 <Drawing {pDef} {fgeom} {optFaces} bind:selFace bind:zAdjust bind:simTime />
 <section>

@@ -82,7 +82,7 @@
 	</p>
 	<label for="loadDLib" class="fileUpload">Load design-file</label>
 	<input type="file" id="loadDLib" accept="text/javascript" on:change={loadDesignFile} />
-	<textarea rows="3" cols="80" readonly wrap="off" value={loadMsg} />
+	<textarea rows="3" cols="80" readonly wrap="soft" value={loadMsg}></textarea>
 </article>
 <article class:step2>
 	<h3>Select a design-page</h3>

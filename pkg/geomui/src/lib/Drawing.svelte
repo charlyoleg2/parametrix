@@ -302,7 +302,7 @@
 			on:mousedown={cFullMouseDn}
 			on:mouseup={cFullMouseUp}
 			on:mousemove={cFullMouseMove}
-		/>
+		></canvas>
 		<TimeControl
 			tMax={pDef.sim.tMax}
 			tStep={pDef.sim.tStep}
@@ -319,7 +319,7 @@
 			on:mousedown={cZoomMouseDn}
 			on:mousemove={cZoomMouseMove}
 			on:wheel|preventDefault={cZoomWheel}
-		/>
+		></canvas>
 		<ZoomControl on:myevent={zoomClick} />
 	</div>
 </section>

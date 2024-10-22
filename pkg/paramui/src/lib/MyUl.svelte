@@ -5,7 +5,7 @@
 
 <input type="checkbox" id={checkboxId} class="toggle" checked />
 <label for={checkboxId} class="label"
-	><div class="arrow" />
+	><div class="arrow"></div>
 	{labelText}</label
 >
 <slot name="top1" />

@@ -11,13 +11,27 @@
 </script>
 
 <nav>
-	<button on:click={() => theClick('zoomInit')}><div class="zero" /></button>
-	<button on:click={() => theClick('zoomIn')}><div class="zoomin" /></button>
-	<button on:click={() => theClick('zoomOut')}><div class="zoomout" /></button>
-	<button on:click={() => theClick('moveLeft')}><div class="arrowleft" /></button>
-	<button on:click={() => theClick('moveRight')}><div class="arrowright" /></button>
-	<button on:click={() => theClick('moveUp')}><div class="arrowup" /></button>
-	<button on:click={() => theClick('moveDown')}><div class="arrowdown" /></button>
+	<button aria-labelledby="zoomInit" on:click={() => theClick('zoomInit')}
+		><div class="zero"></div></button
+	>
+	<button aria-labelledby="zoomIn" on:click={() => theClick('zoomIn')}
+		><div class="zoomin"></div></button
+	>
+	<button aria-labelledby="zoomOut" on:click={() => theClick('zoomOut')}
+		><div class="zoomout"></div></button
+	>
+	<button aria-labelledby="moveLeft" on:click={() => theClick('moveLeft')}
+		><div class="arrowleft"></div></button
+	>
+	<button aria-labelledby="moveRight" on:click={() => theClick('moveRight')}
+		><div class="arrowright"></div></button
+	>
+	<button aria-labelledby="moveUp" on:click={() => theClick('moveUp')}
+		><div class="arrowup"></div></button
+	>
+	<button aria-labelledby="moveDown" on:click={() => theClick('moveDown')}
+		><div class="arrowdown"></div></button
+	>
 </nav>
 
 <style lang="scss">

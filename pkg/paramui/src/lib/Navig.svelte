@@ -20,7 +20,7 @@
 					>{menuItem.label}</a
 				>
 			{/if}
-			<div class="arrow" class:arrow-active={menuSelected === menuItem.path} />
+			<div class="arrow" class:arrow-active={menuSelected === menuItem.path}></div>
 		</div>
 	{/each}
 	{#if menuList.category}

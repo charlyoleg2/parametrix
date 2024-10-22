@@ -338,10 +338,10 @@
 			rows="3"
 			cols="80"
 			readonly
-			wrap="off"
+			wrap="soft"
 			value={loadMsg}
 			class:colorWarn={applyWarn}
-		/>
+		></textarea>
 		<table>
 			<thead>
 				<tr>
@@ -356,16 +356,18 @@
 				</tr>
 			</thead>
 			{#each htable as sect, sidx}
-				<tr class="separator">
-					<td>{sidx + 1}</td>
-					<td colspan="4">{sect.sectionName}</td>
-					<td colspan="3">
-						<label>
-							<input type="checkbox" bind:checked={htableVis[sect.sectionID]} />
-							<span> </span></label
-						>
-					</td>
-				</tr>
+				<tbody>
+					<tr class="separator">
+						<td>{sidx + 1}</td>
+						<td colspan="4">{sect.sectionName}</td>
+						<td colspan="3">
+							<label>
+								<input type="checkbox" bind:checked={htableVis[sect.sectionID]} />
+								<span> </span></label
+							>
+						</td>
+					</tr>
+				</tbody>
 				<tbody class:collaps={htableVis[sect.sectionID]}>
 					{#each sect.params as param, pidx}
 						<tr class:changed={$storePV[pDef.partName][param.name] !== param.init}>
@@ -509,7 +511,7 @@
 	section > main > table > tbody > tr.changed {
 		background-color: colors.$table-line-changed;
 	}
-	section > main > table > tr.separator {
+	section > main > table > tbody > tr.separator {
 		font-weight: 700;
 		background-color: colors.$table-line-separator;
 	}
@@ -546,7 +548,6 @@
 		left: 37px;
 	}
 	section > main > table > thead > tr > td,
-	section > main > table > tr > td,
 	section > main > table > tbody > tr > td {
 		padding-left: 0.4rem;
 		padding-right: 0.4rem;

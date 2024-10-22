@@ -530,120 +530,165 @@
 		</li>
 	</ul>
 	<table class="jump">
-		<tr>
-			<th>Material</th>
-			<th>Relative permeability</th>
-		</tr>
-		<tr>
-			<td>Air</td>
-			<td>1</td>
-		</tr>
-		<tr>
-			<td>Iron 99.95</td>
-			<td>200 000</td>
-		</tr>
-		<tr>
-			<td>Iron 99.8</td>
-			<td>5000</td>
-		</tr>
-		<tr>
-			<td>Soft iron</td>
-			<td>5000</td>
-		</tr>
-		<tr>
-			<td>Cobalt</td>
-			<td>250</td>
-		</tr>
-		<tr>
-			<td>Nickel</td>
-			<td>600</td>
-		</tr>
-		<tr>
-			<td>Cobalt-iron</td>
-			<td>18000</td>
-		</tr>
-		<tr>
-			<td>Mu-matierial</td>
-			<td>50 000</td>
-		</tr>
-		<tr>
-			<td>Permalloy (nickel-iron)</td>
-			<td>1000 000</td>
-		</tr>
+		<tbody>
+			<tr>
+				<th>Material</th>
+				<th>Relative permeability</th>
+			</tr>
+			<tr>
+				<td>Air</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>Iron 99.95</td>
+				<td>200 000</td>
+			</tr>
+			<tr>
+				<td>Iron 99.8</td>
+				<td>5000</td>
+			</tr>
+			<tr>
+				<td>Soft iron</td>
+				<td>5000</td>
+			</tr>
+			<tr>
+				<td>Cobalt</td>
+				<td>250</td>
+			</tr>
+			<tr>
+				<td>Nickel</td>
+				<td>600</td>
+			</tr>
+			<tr>
+				<td>Cobalt-iron</td>
+				<td>18000</td>
+			</tr>
+			<tr>
+				<td>Mu-matierial</td>
+				<td>50 000</td>
+			</tr>
+			<tr>
+				<td>Permalloy (nickel-iron)</td>
+				<td>1000 000</td>
+			</tr>
+		</tbody>
 	</table>
 	<table>
-		<tr>
-			<th>Symbol</th>
-			<th>Parameter</th>
-			<th>Value</th>
-			<th></th>
-		</tr>
-		<tr>
-			<td>{@html math('\\mu_r')}</td>
-			<td>Relative permeability</td>
-			<td><input type="number" bind:value={permeability} min="1" max="1000000" step="1" /></td
-			>
-			<td><input type="range" bind:value={permeability} min="1" max="1000000" step="1" /></td>
-		</tr>
-		<tr>
-			<td>R</td>
-			<td>Torus radius (mm)</td>
-			<td><input type="number" bind:value={torusRadius} min="3" max="100" step="0.5" /></td>
-			<td><input type="range" bind:value={torusRadius} min="3" max="100" step="0.5" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('S')}</td>
-			<td>Torus section area ({@html math('mm^2')})</td>
-			<td><input type="number" bind:value={sectionArea} min="1" max="1000" step="0.1" /></td>
-			<td><input type="range" bind:value={sectionArea} min="1" max="1000" step="0.1" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('N')}</td>
-			<td>Number of turns</td>
-			<td><input type="number" bind:value={turnNb} min="1" max="10000" step="1" /></td>
-			<td><input type="range" bind:value={turnNb} min="1" max="10000" step="1" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('i')}</td>
-			<td>Current in the winding (A)</td>
-			<td><input type="number" bind:value={current} min="0.01" max="20" step="0.01" /></td>
-			<td><input type="range" bind:value={current} min="0.01" max="20" step="0.01" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('L')}</td>
-			<td>Torus length (mm)</td>
-			<td>{torusLength.toFixed(1)} mm</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{F}')}</td>
-			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotive.toExponential(3)} A</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{R}')}</td>
-			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{torusReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\varPhi')}</td>
-			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{torusMagneticFlux.toExponential(3)} H.A</td>
-		</tr>
-		<tr>
-			<td>{@html math('B')}</td>
-			<td>Magnetic field ({@html math('T')})</td>
-			<td>{torusMagneticField.toExponential(3)} T</td>
-		</tr>
-		<tr>
-			<td>{@html math('E_m')}</td>
-			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{torusMagneticEnergy.toExponential(3)} J</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{L}')}</td>
-			<td>Inductance ({@html math('H')})</td>
-			<td>{torusInductance.toExponential(3)} H</td>
-		</tr>
+		<tbody>
+			<tr>
+				<th>Symbol</th>
+				<th>Parameter</th>
+				<th>Value</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>{@html math('\\mu_r')}</td>
+				<td>Relative permeability</td>
+				<td
+					><input
+						type="number"
+						bind:value={permeability}
+						min="1"
+						max="1000000"
+						step="1"
+					/></td
+				>
+				<td
+					><input
+						type="range"
+						bind:value={permeability}
+						min="1"
+						max="1000000"
+						step="1"
+					/></td
+				>
+			</tr>
+			<tr>
+				<td>R</td>
+				<td>Torus radius (mm)</td>
+				<td
+					><input
+						type="number"
+						bind:value={torusRadius}
+						min="3"
+						max="100"
+						step="0.5"
+					/></td
+				>
+				<td><input type="range" bind:value={torusRadius} min="3" max="100" step="0.5" /></td
+				>
+			</tr>
+			<tr>
+				<td>{@html math('S')}</td>
+				<td>Torus section area ({@html math('mm^2')})</td>
+				<td
+					><input
+						type="number"
+						bind:value={sectionArea}
+						min="1"
+						max="1000"
+						step="0.1"
+					/></td
+				>
+				<td
+					><input
+						type="range"
+						bind:value={sectionArea}
+						min="1"
+						max="1000"
+						step="0.1"
+					/></td
+				>
+			</tr>
+			<tr>
+				<td>{@html math('N')}</td>
+				<td>Number of turns</td>
+				<td><input type="number" bind:value={turnNb} min="1" max="10000" step="1" /></td>
+				<td><input type="range" bind:value={turnNb} min="1" max="10000" step="1" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('i')}</td>
+				<td>Current in the winding (A)</td>
+				<td><input type="number" bind:value={current} min="0.01" max="20" step="0.01" /></td
+				>
+				<td><input type="range" bind:value={current} min="0.01" max="20" step="0.01" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('L')}</td>
+				<td>Torus length (mm)</td>
+				<td>{torusLength.toFixed(1)} mm</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{F}')}</td>
+				<td>Magnetomotive force (A)</td>
+				<td>{magnetomotive.toExponential(3)} A</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{R}')}</td>
+				<td>Reluctance ({@html math('H^{-1}')})</td>
+				<td>{torusReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\varPhi')}</td>
+				<td>Magnetic flux ({@html math('H.A')})</td>
+				<td>{torusMagneticFlux.toExponential(3)} H.A</td>
+			</tr>
+			<tr>
+				<td>{@html math('B')}</td>
+				<td>Magnetic field ({@html math('T')})</td>
+				<td>{torusMagneticField.toExponential(3)} T</td>
+			</tr>
+			<tr>
+				<td>{@html math('E_m')}</td>
+				<td>Magnetic energy ({@html math('J')})</td>
+				<td>{torusMagneticEnergy.toExponential(3)} J</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{L}')}</td>
+				<td>Inductance ({@html math('H')})</td>
+				<td>{torusInductance.toExponential(3)} H</td>
+			</tr>
+		</tbody>
 	</table>
 </article>
 <h3>Torus with swelling</h3>
@@ -686,79 +731,81 @@
 		<li>{@html math('\\mathcal{L} = \\frac{\\mu N^2 S_1 S_2}{L_1 S_2 + L_2 S_1}')}</li>
 	</ul>
 	<table class="jump">
-		<tr>
-			<th>Symbol</th>
-			<th>Parameter</th>
-			<th>Value</th>
-			<th></th>
-		</tr>
-		<tr>
-			<td>{@html math('L_2')}</td>
-			<td>Percentage of torus with L2 (%)</td>
-			<td><input type="number" bind:value={percentL2} min="0" max="100" step="1" /></td>
-			<td><input type="range" bind:value={percentL2} min="0" max="100" step="1" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('S_2')}</td>
-			<td>Percentage of S2 compare to S1 (%)</td>
-			<td><input type="number" bind:value={percentS2} min="1" max="400" step="1" /></td>
-			<td><input type="range" bind:value={percentS2} min="1" max="400" step="1" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('L_1')}</td>
-			<td>Length of L1 ({@html math('mm')})</td>
-			<td>{swellingL1.toFixed(1)} mm</td>
-		</tr>
-		<tr>
-			<td>{@html math('S_1')}</td>
-			<td>Area of S1 ({@html math('mm^2')})</td>
-			<td>{swellingS1.toFixed(1)} {@html math('mm^2')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('L_2')}</td>
-			<td>Length of L2 ({@html math('mm')})</td>
-			<td>{swellingL2.toFixed(1)} mm</td>
-		</tr>
-		<tr>
-			<td>{@html math('S_2')}</td>
-			<td>Area of S2 ({@html math('mm^2')})</td>
-			<td>{swellingS2.toFixed(1)} {@html math('mm^2')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{F}')}</td>
-			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotive.toExponential(3)} A</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{R}')}</td>
-			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{swellingReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\varPhi')}</td>
-			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{swellingMagneticFlux.toExponential(3)} H.A</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_1')}</td>
-			<td>Magnetic field ({@html math('T')})</td>
-			<td>{swellingMagneticField1.toExponential(3)} T</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_2')}</td>
-			<td>Magnetic field ({@html math('T')})</td>
-			<td>{swellingMagneticField2.toExponential(3)} T</td>
-		</tr>
-		<tr>
-			<td>{@html math('E_m')}</td>
-			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{swellingMagneticEnergy.toExponential(3)} J</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{L}')}</td>
-			<td>Inductance ({@html math('H')})</td>
-			<td>{swellingInductance.toExponential(3)} H</td>
-		</tr>
+		<tbody>
+			<tr>
+				<th>Symbol</th>
+				<th>Parameter</th>
+				<th>Value</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>{@html math('L_2')}</td>
+				<td>Percentage of torus with L2 (%)</td>
+				<td><input type="number" bind:value={percentL2} min="0" max="100" step="1" /></td>
+				<td><input type="range" bind:value={percentL2} min="0" max="100" step="1" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('S_2')}</td>
+				<td>Percentage of S2 compare to S1 (%)</td>
+				<td><input type="number" bind:value={percentS2} min="1" max="400" step="1" /></td>
+				<td><input type="range" bind:value={percentS2} min="1" max="400" step="1" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('L_1')}</td>
+				<td>Length of L1 ({@html math('mm')})</td>
+				<td>{swellingL1.toFixed(1)} mm</td>
+			</tr>
+			<tr>
+				<td>{@html math('S_1')}</td>
+				<td>Area of S1 ({@html math('mm^2')})</td>
+				<td>{swellingS1.toFixed(1)} {@html math('mm^2')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('L_2')}</td>
+				<td>Length of L2 ({@html math('mm')})</td>
+				<td>{swellingL2.toFixed(1)} mm</td>
+			</tr>
+			<tr>
+				<td>{@html math('S_2')}</td>
+				<td>Area of S2 ({@html math('mm^2')})</td>
+				<td>{swellingS2.toFixed(1)} {@html math('mm^2')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{F}')}</td>
+				<td>Magnetomotive force (A)</td>
+				<td>{magnetomotive.toExponential(3)} A</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{R}')}</td>
+				<td>Reluctance ({@html math('H^{-1}')})</td>
+				<td>{swellingReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\varPhi')}</td>
+				<td>Magnetic flux ({@html math('H.A')})</td>
+				<td>{swellingMagneticFlux.toExponential(3)} H.A</td>
+			</tr>
+			<tr>
+				<td>{@html math('B_1')}</td>
+				<td>Magnetic field ({@html math('T')})</td>
+				<td>{swellingMagneticField1.toExponential(3)} T</td>
+			</tr>
+			<tr>
+				<td>{@html math('B_2')}</td>
+				<td>Magnetic field ({@html math('T')})</td>
+				<td>{swellingMagneticField2.toExponential(3)} T</td>
+			</tr>
+			<tr>
+				<td>{@html math('E_m')}</td>
+				<td>Magnetic energy ({@html math('J')})</td>
+				<td>{swellingMagneticEnergy.toExponential(3)} J</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{L}')}</td>
+				<td>Inductance ({@html math('H')})</td>
+				<td>{swellingInductance.toExponential(3)} H</td>
+			</tr>
+		</tbody>
 	</table>
 </article>
 <h3>Torus with air gap</h3>
@@ -791,53 +838,55 @@
 		<li>{@html math('\\mathcal{L} = \\frac{\\mu_r \\mu_0 S N^2}{L + \\mu_r G}')}</li>
 	</ul>
 	<table class="jump">
-		<tr>
-			<th>Symbol</th>
-			<th>Parameter</th>
-			<th>Value</th>
-			<th></th>
-		</tr>
-		<tr>
-			<td>{@html math('G')}</td>
-			<td>The thickness of air-gap ({@html math('m')})</td>
-			<td><input type="number" bind:value={airgapG} min="0" max="20" step="0.01" /></td>
-			<td><input type="range" bind:value={airgapG} min="0" max="20" step="0.01" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{F}')}</td>
-			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotive.toExponential(3)} A</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{R}')}</td>
-			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{airgapReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\varPhi')}</td>
-			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{airgapMagneticFlux.toExponential(3)} H.A</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_L')}</td>
-			<td>Magnetic field ({@html math('T')})</td>
-			<td>{airgapMagneticField.toExponential(3)} T</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_G')}</td>
-			<td>Magnetic field ({@html math('T')})</td>
-			<td>{airgapMagneticField.toExponential(3)} T</td>
-		</tr>
-		<tr>
-			<td>{@html math('E_m')}</td>
-			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{airgapMagneticEnergy.toExponential(3)} J</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{L}')}</td>
-			<td>Inductance ({@html math('H')})</td>
-			<td>{airgapInductance.toExponential(3)} H</td>
-		</tr>
+		<tbody>
+			<tr>
+				<th>Symbol</th>
+				<th>Parameter</th>
+				<th>Value</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>{@html math('G')}</td>
+				<td>The thickness of air-gap ({@html math('m')})</td>
+				<td><input type="number" bind:value={airgapG} min="0" max="20" step="0.01" /></td>
+				<td><input type="range" bind:value={airgapG} min="0" max="20" step="0.01" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{F}')}</td>
+				<td>Magnetomotive force (A)</td>
+				<td>{magnetomotive.toExponential(3)} A</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{R}')}</td>
+				<td>Reluctance ({@html math('H^{-1}')})</td>
+				<td>{airgapReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\varPhi')}</td>
+				<td>Magnetic flux ({@html math('H.A')})</td>
+				<td>{airgapMagneticFlux.toExponential(3)} H.A</td>
+			</tr>
+			<tr>
+				<td>{@html math('B_L')}</td>
+				<td>Magnetic field ({@html math('T')})</td>
+				<td>{airgapMagneticField.toExponential(3)} T</td>
+			</tr>
+			<tr>
+				<td>{@html math('B_G')}</td>
+				<td>Magnetic field ({@html math('T')})</td>
+				<td>{airgapMagneticField.toExponential(3)} T</td>
+			</tr>
+			<tr>
+				<td>{@html math('E_m')}</td>
+				<td>Magnetic energy ({@html math('J')})</td>
+				<td>{airgapMagneticEnergy.toExponential(3)} J</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{L}')}</td>
+				<td>Inductance ({@html math('H')})</td>
+				<td>{airgapInductance.toExponential(3)} H</td>
+			</tr>
+		</tbody>
 	</table>
 </article>
 <h3>Torus with shuttle</h3>
@@ -922,96 +971,98 @@
 		<li>{@html math('F_x = - \\frac{\\partial E_m}{\\partial x}')}</li>
 	</ul>
 	<table class="jump">
-		<tr>
-			<th>Symbol</th>
-			<th>Parameter</th>
-			<th>Value</th>
-			<th></th>
-		</tr>
-		<tr>
-			<td>{@html math('\\mu_r')}</td>
-			<td>Relative permeability of the shuttle</td>
-			<td><input type="number" bind:value={permeaG} min="1" max="1000000" step="1" /></td>
-			<td><input type="range" bind:value={permeaG} min="1" max="1000000" step="1" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('A')}</td>
-			<td>Length of the air-gap ({@html math('mm')})</td>
-			<td><input type="number" bind:value={airgapA} min="0.1" max="100" step="0.1" /></td>
-			<td><input type="range" bind:value={airgapA} min="0.1" max="100" step="0.1" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('B')}</td>
-			<td>Width of the air-gap ({@html math('mm')})</td>
-			<td><input type="number" bind:value={airgapB} min="0.1" max="100" step="0.1" /></td>
-			<td><input type="range" bind:value={airgapB} min="0.1" max="100" step="0.1" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('x')}</td>
-			<td>Shuttle position (%)</td>
-			<td><input type="number" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
-			<td><input type="range" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('S')}</td>
-			<td>Torus section area ({@html math('mm^2')})</td>
-			<td>{sectionAreaL.toFixed(1)} {@html math('mm^2')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('S_{air}')}</td>
-			<td>Air area ({@html math('mm^2')})</td>
-			<td>{sectionAreaAir.toFixed(1)} {@html math('mm^2')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('S_{shuttle}')}</td>
-			<td>Shuttle area ({@html math('mm^2')})</td>
-			<td>{sectionAreaShuttle.toFixed(1)} {@html math('mm^2')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{F}')}</td>
-			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotive.toExponential(3)} A</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{R}')}</td>
-			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{shuttleReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\varPhi')}</td>
-			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{shuttleMagneticFlux.toExponential(3)} H.A</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_L')}</td>
-			<td>Magnetic field in torus ({@html math('T')})</td>
-			<td>{shuttleMagneticFieldL.toExponential(3)} T</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_{Gair}')}</td>
-			<td>Magnetic field in air-gap ({@html math('T')})</td>
-			<td>{shuttleMagneticFieldG1.toExponential(3)} T</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_{Gshuttle}')}</td>
-			<td>Magnetic field in shuttle ({@html math('T')})</td>
-			<td>{shuttleMagneticFieldG2.toExponential(3)} T</td>
-		</tr>
-		<tr>
-			<td>{@html math('E_m')}</td>
-			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{shuttleMagneticEnergy.toExponential(3)} J</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{L}')}</td>
-			<td>Inductance ({@html math('H')})</td>
-			<td>{shuttleInductance.toExponential(3)} H</td>
-		</tr>
-		<tr>
-			<td>{@html math('F_x')}</td>
-			<td>Force ({@html math('N')})</td>
-			<td>{shuttleForce.toExponential(3)} N</td>
-		</tr>
+		<tbody>
+			<tr>
+				<th>Symbol</th>
+				<th>Parameter</th>
+				<th>Value</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>{@html math('\\mu_r')}</td>
+				<td>Relative permeability of the shuttle</td>
+				<td><input type="number" bind:value={permeaG} min="1" max="1000000" step="1" /></td>
+				<td><input type="range" bind:value={permeaG} min="1" max="1000000" step="1" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('A')}</td>
+				<td>Length of the air-gap ({@html math('mm')})</td>
+				<td><input type="number" bind:value={airgapA} min="0.1" max="100" step="0.1" /></td>
+				<td><input type="range" bind:value={airgapA} min="0.1" max="100" step="0.1" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('B')}</td>
+				<td>Width of the air-gap ({@html math('mm')})</td>
+				<td><input type="number" bind:value={airgapB} min="0.1" max="100" step="0.1" /></td>
+				<td><input type="range" bind:value={airgapB} min="0.1" max="100" step="0.1" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('x')}</td>
+				<td>Shuttle position (%)</td>
+				<td><input type="number" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
+				<td><input type="range" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('S')}</td>
+				<td>Torus section area ({@html math('mm^2')})</td>
+				<td>{sectionAreaL.toFixed(1)} {@html math('mm^2')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('S_{air}')}</td>
+				<td>Air area ({@html math('mm^2')})</td>
+				<td>{sectionAreaAir.toFixed(1)} {@html math('mm^2')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('S_{shuttle}')}</td>
+				<td>Shuttle area ({@html math('mm^2')})</td>
+				<td>{sectionAreaShuttle.toFixed(1)} {@html math('mm^2')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{F}')}</td>
+				<td>Magnetomotive force (A)</td>
+				<td>{magnetomotive.toExponential(3)} A</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{R}')}</td>
+				<td>Reluctance ({@html math('H^{-1}')})</td>
+				<td>{shuttleReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\varPhi')}</td>
+				<td>Magnetic flux ({@html math('H.A')})</td>
+				<td>{shuttleMagneticFlux.toExponential(3)} H.A</td>
+			</tr>
+			<tr>
+				<td>{@html math('B_L')}</td>
+				<td>Magnetic field in torus ({@html math('T')})</td>
+				<td>{shuttleMagneticFieldL.toExponential(3)} T</td>
+			</tr>
+			<tr>
+				<td>{@html math('B_{Gair}')}</td>
+				<td>Magnetic field in air-gap ({@html math('T')})</td>
+				<td>{shuttleMagneticFieldG1.toExponential(3)} T</td>
+			</tr>
+			<tr>
+				<td>{@html math('B_{Gshuttle}')}</td>
+				<td>Magnetic field in shuttle ({@html math('T')})</td>
+				<td>{shuttleMagneticFieldG2.toExponential(3)} T</td>
+			</tr>
+			<tr>
+				<td>{@html math('E_m')}</td>
+				<td>Magnetic energy ({@html math('J')})</td>
+				<td>{shuttleMagneticEnergy.toExponential(3)} J</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{L}')}</td>
+				<td>Inductance ({@html math('H')})</td>
+				<td>{shuttleInductance.toExponential(3)} H</td>
+			</tr>
+			<tr>
+				<td>{@html math('F_x')}</td>
+				<td>Force ({@html math('N')})</td>
+				<td>{shuttleForce.toExponential(3)} N</td>
+			</tr>
+		</tbody>
 	</table>
 </article>
 <h3>Torus with realistic shuttle</h3>
@@ -1080,59 +1131,61 @@
 		<li>{@html math('F_x = - \\frac{\\partial E_m}{\\partial x}')}</li>
 	</ul>
 	<table class="jump">
-		<tr>
-			<th>Symbol</th>
-			<th>Parameter</th>
-			<th>Value</th>
-			<th></th>
-		</tr>
-		<tr>
-			<td>{@html math('H')}</td>
-			<td>Thickness of slack ({@html math('mm')})</td>
-			<td><input type="number" bind:value={airgapH} min="0" max="1" step="0.01" /></td>
-			<td><input type="range" bind:value={airgapH} min="0" max="1" step="0.01" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('x')}</td>
-			<td>Shuttle position (%)</td>
-			<td><input type="number" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
-			<td><input type="range" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{F}')}</td>
-			<td>Magnetomotive force (A)</td>
-			<td>{magnetomotive.toExponential(3)} A</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{R}')}</td>
-			<td>Reluctance ({@html math('H^{-1}')})</td>
-			<td>{shuttlerReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\varPhi')}</td>
-			<td>Magnetic flux ({@html math('H.A')})</td>
-			<td>{shuttlerMagneticFlux.toExponential(3)} H.A</td>
-		</tr>
-		<tr>
-			<td>{@html math('B_L')}</td>
-			<td>Magnetic field in torus ({@html math('T')})</td>
-			<td>{shuttlerMagneticFieldL.toExponential(3)} T</td>
-		</tr>
-		<tr>
-			<td>{@html math('E_m')}</td>
-			<td>Magnetic energy ({@html math('J')})</td>
-			<td>{shuttlerEm.toExponential(3)} J</td>
-		</tr>
-		<tr>
-			<td>{@html math('\\mathcal{L}')}</td>
-			<td>Inductance ({@html math('H')})</td>
-			<td>{shuttlerInductance.toExponential(3)} H</td>
-		</tr>
-		<tr>
-			<td>{@html math('F_x')}</td>
-			<td>Force ({@html math('N')})</td>
-			<td>{shuttlerForce.toExponential(3)} N</td>
-		</tr>
+		<tbody>
+			<tr>
+				<th>Symbol</th>
+				<th>Parameter</th>
+				<th>Value</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>{@html math('H')}</td>
+				<td>Thickness of slack ({@html math('mm')})</td>
+				<td><input type="number" bind:value={airgapH} min="0" max="1" step="0.01" /></td>
+				<td><input type="range" bind:value={airgapH} min="0" max="1" step="0.01" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('x')}</td>
+				<td>Shuttle position (%)</td>
+				<td><input type="number" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
+				<td><input type="range" bind:value={shuttleX} min="0" max="100" step="0.1" /></td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{F}')}</td>
+				<td>Magnetomotive force (A)</td>
+				<td>{magnetomotive.toExponential(3)} A</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{R}')}</td>
+				<td>Reluctance ({@html math('H^{-1}')})</td>
+				<td>{shuttlerReluctance.toExponential(3)} {@html math('H^{-1}')}</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\varPhi')}</td>
+				<td>Magnetic flux ({@html math('H.A')})</td>
+				<td>{shuttlerMagneticFlux.toExponential(3)} H.A</td>
+			</tr>
+			<tr>
+				<td>{@html math('B_L')}</td>
+				<td>Magnetic field in torus ({@html math('T')})</td>
+				<td>{shuttlerMagneticFieldL.toExponential(3)} T</td>
+			</tr>
+			<tr>
+				<td>{@html math('E_m')}</td>
+				<td>Magnetic energy ({@html math('J')})</td>
+				<td>{shuttlerEm.toExponential(3)} J</td>
+			</tr>
+			<tr>
+				<td>{@html math('\\mathcal{L}')}</td>
+				<td>Inductance ({@html math('H')})</td>
+				<td>{shuttlerInductance.toExponential(3)} H</td>
+			</tr>
+			<tr>
+				<td>{@html math('F_x')}</td>
+				<td>Force ({@html math('N')})</td>
+				<td>{shuttlerForce.toExponential(3)} N</td>
+			</tr>
+		</tbody><tbody> </tbody>
 	</table>
 </article>
 <h3>Torus with realistic shuttle in charts</h3>

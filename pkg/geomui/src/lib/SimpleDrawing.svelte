@@ -63,7 +63,8 @@
 	}
 </script>
 
-<canvas class="mini" width={canvas_size_mini} height={canvas_size_mini} bind:this={canvasMini} />
+<canvas class="mini" width={canvas_size_mini} height={canvas_size_mini} bind:this={canvasMini}
+></canvas>
 
 <style lang="scss">
 	@use './style/colors.scss';

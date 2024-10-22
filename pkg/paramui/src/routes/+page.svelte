@@ -7,7 +7,7 @@
 <h1>Parametrix index</h1>
 <article>
 	{#each menuList2 as menuCategory, listIdx}
-		<div class="separation" />
+		<div class="separation"></div>
 		{#if menuCategory.category !== ''}
 			<h2>{listIdx} - {menuCategory.category}</h2>
 		{/if}
@@ -35,7 +35,7 @@
 				</li>
 			{/each}
 		</ul>
-		<div class="separation sepaStop" />
+		<div class="separation sepaStop"></div>
 	{/each}
 </article>
 

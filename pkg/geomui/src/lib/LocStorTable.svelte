@@ -102,7 +102,7 @@
 			<tr>
 				<td><input type="checkbox" bind:checked={globalDel} /></td>
 				<td class="instruction">delete all</td>
-				<td />
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>
