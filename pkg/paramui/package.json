@@ -80,7 +80,6 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.46.0",
 		"globals": "^15.11.0",
-		"i": "^0.3.7",
 		"mathlifier": "^2.0.2",
 		"mdsvex": "^0.12.3",
 		"npm-run-all2": "^7.0.0",
