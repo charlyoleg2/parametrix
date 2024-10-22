@@ -1,0 +1,1 @@
+import{b as c,E as s,e as i,h as r,d as h,o as d,g as p}from"./runtime.DvxED-OY.js";function u(o,t,f){r&&h();var n=o,a,e;c(()=>{a!==(a=t())&&(e&&(d(e),e=null),a&&(e=i(()=>f(n,a))))},s),r&&(n=p)}export{u as c};
