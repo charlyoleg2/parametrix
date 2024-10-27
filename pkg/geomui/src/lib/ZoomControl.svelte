@@ -11,25 +11,25 @@
 </script>
 
 <nav>
-	<button aria-labelledby="zoomInit" on:click={() => theClick('zoomInit')}
+	<button aria-labelledby="zoomInit" onclick={() => theClick('zoomInit')}
 		><div class="zero"></div></button
 	>
-	<button aria-labelledby="zoomIn" on:click={() => theClick('zoomIn')}
+	<button aria-labelledby="zoomIn" onclick={() => theClick('zoomIn')}
 		><div class="zoomin"></div></button
 	>
-	<button aria-labelledby="zoomOut" on:click={() => theClick('zoomOut')}
+	<button aria-labelledby="zoomOut" onclick={() => theClick('zoomOut')}
 		><div class="zoomout"></div></button
 	>
-	<button aria-labelledby="moveLeft" on:click={() => theClick('moveLeft')}
+	<button aria-labelledby="moveLeft" onclick={() => theClick('moveLeft')}
 		><div class="arrowleft"></div></button
 	>
-	<button aria-labelledby="moveRight" on:click={() => theClick('moveRight')}
+	<button aria-labelledby="moveRight" onclick={() => theClick('moveRight')}
 		><div class="arrowright"></div></button
 	>
-	<button aria-labelledby="moveUp" on:click={() => theClick('moveUp')}
+	<button aria-labelledby="moveUp" onclick={() => theClick('moveUp')}
 		><div class="arrowup"></div></button
 	>
-	<button aria-labelledby="moveDown" on:click={() => theClick('moveDown')}
+	<button aria-labelledby="moveDown" onclick={() => theClick('moveDown')}
 		><div class="arrowdown"></div></button
 	>
 </nav>
