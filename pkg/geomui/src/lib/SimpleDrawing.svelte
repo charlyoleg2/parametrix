@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	//import { colors } from 'geometrix';
 	import type { tCanvasAdjust, tLayers, Figure, tParamVal, tGeomFunc } from 'geometrix';
 	import { copyLayers, mergeFaces } from 'geometrix';
@@ -64,7 +62,7 @@
 		//paramChange();
 	});
 	// reactivity on simTime and $storePV
-	run(() => {
+	$effect(() => {
 		if (domInit === 1) {
 			geomRedraw(simTime, $storePV[pageName], selFace, $dLayers);
 		}

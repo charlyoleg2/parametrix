@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import LocStorTable from './LocStorTable.svelte';
 
 	interface Props {
@@ -38,7 +36,7 @@
 		checkWarning(storeName2);
 	}
 	// modify input
-	run(() => {
+	$effect(() => {
 		checkWarning(storeName);
 	});
 </script>

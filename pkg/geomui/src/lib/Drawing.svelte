@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import TimeControl from './TimeControl.svelte';
 	import ZoomControl from './ZoomControl.svelte';
 	import LabelCheckbox from './LabelCheckbox.svelte';
@@ -142,7 +140,7 @@
 		domInit = 1;
 	});
 	// reactivity on simTime, $storePV and layers
-	run(() => {
+	$effect(() => {
 		if (domInit === 1) {
 			geomRedrawSub(simTime, $storePV[pDef.partName], selFace, $dLayers);
 		}

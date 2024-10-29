@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import type { tParamDef } from 'geometrix';
 	import ModalImg from './ModalImg.svelte';
 	//import { onMount } from 'svelte';
@@ -38,7 +36,7 @@
 	// initialization
 	let lSvg: string[] = $state([]);
 	// reactivity
-	run(() => {
+	$effect(() => {
 		lSvg = getSvgList2(pDef.partName);
 	});
 	// modalImg

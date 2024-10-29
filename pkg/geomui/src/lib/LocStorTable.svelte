@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import ModalDiag from './ModalDiag.svelte';
 	import { browser } from '$app/environment';
 
@@ -67,7 +65,7 @@
 			localDel[k] = iGlobalDel;
 		}
 	}
-	run(() => {
+	$effect(() => {
 		setGlobalDel(globalDel);
 	});
 	// delete action

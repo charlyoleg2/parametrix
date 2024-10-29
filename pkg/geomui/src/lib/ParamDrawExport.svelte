@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	//import type { tParamDef, tGeomFunc, tSubDesign, tAllLink, tCanvasAdjust } from 'geometrix';
 	import type { tParamDef, tGeomFunc, tSubDesign, tAllLink } from 'geometrix';
 	import {
@@ -58,7 +56,7 @@
 	function paramChange() {
 		paramChange2(pDef.partName, simTime);
 	}
-	run(() => {
+	$effect(() => {
 		paramChange2(pDef.partName, simTime);
 	}); // for reactivity on page change and simTime
 	// export drawings

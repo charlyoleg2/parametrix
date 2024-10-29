@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import type { tPageDef, tAllLink } from 'geometrix';
 
 	import { incrStore } from './initStore';
@@ -14,7 +12,7 @@
 
 	let { pageDef, pLink }: Props = $props();
 
-	run(() => {
+	$effect(() => {
 		incrStore(pageDef);
 	});
 </script>

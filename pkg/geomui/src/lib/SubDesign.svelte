@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import type { tPosiOrien, tSubDesign, tAllLink } from 'geometrix';
 	import { ffix, radToDeg, paramListToVal } from 'geometrix';
 	//import { downloadParams, generateUrl } from './downloadParams';
@@ -21,7 +19,7 @@
 	let { subD = {}, origPartName = '', pLink }: Props = $props();
 
 	let subInsts: string[] = $state([]);
-	run(() => {
+	$effect(() => {
 		subInsts = Object.keys(subD);
 	});
 

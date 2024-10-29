@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import LocStorTable from './LocStorTable.svelte';
 
 	interface Props {
@@ -24,7 +22,7 @@
 		}
 		return rname;
 	}
-	run(() => {
+	$effect(() => {
 		storeName = defaultName(localKeys);
 	});
 	//$: console.log(`dbg994: ${storeName}`);

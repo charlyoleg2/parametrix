@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	//import type { tOkFunc } from './ModalDiag.svelte';
 	import ModalDiag from './ModalDiag.svelte';
 	import ModalImg from './ModalImg.svelte';
@@ -249,7 +247,7 @@
 			}
 		}
 	}
-	run(() => {
+	$effect(() => {
 		paramPict2(0, pDef.partName);
 	});
 	let modalImg = $state(false);
@@ -304,7 +302,7 @@
 	let htableVis: tHTableVis = $state({});
 	// TODO: second workaround to be solved properly
 	//let prePartName = '';
-	run(() => {
+	$effect(() => {
 		htable = makeHTable(pDef.params);
 		if (prePartName !== pDef.partName) {
 			// workaround for avoiding weird re-trigger
