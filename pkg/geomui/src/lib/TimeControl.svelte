@@ -8,12 +8,7 @@
 		simTime?: number;
 	}
 
-	let {
-		tMax = 10,
-		tStep = 0.1,
-		tUpdate = 500,
-		simTime = $bindable(0)
-	}: Props = $props();
+	let { tMax = 10, tStep = 0.1, tUpdate = 500, simTime = $bindable(0) }: Props = $props();
 
 	let intervalID: ReturnType<typeof setTimeout> | null = null;
 	let speed = 0;

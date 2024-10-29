@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { run, preventDefault } from 'svelte/legacy';
+	import { run } from 'svelte/legacy';
 
 	import TimeControl from './TimeControl.svelte';
 	import ZoomControl from './ZoomControl.svelte';
@@ -44,9 +44,9 @@
 	}: Props = $props();
 
 	const c_ParametrixAll = 'ParametrixAll';
-	let windowWidth: number = $state();
-	let canvasFull: HTMLCanvasElement = $state();
-	let canvasZoom: HTMLCanvasElement = $state();
+	let windowWidth: number | undefined = $state();
+	let canvasFull: HTMLCanvasElement | undefined = $state();
+	let canvasZoom: HTMLCanvasElement | undefined = $state();
 	const canvas_size_min = 400;
 
 	// Canavas Figures
@@ -54,39 +54,46 @@
 	let cAdjust: tCanvasAdjust;
 	//let zAdjust: tCanvasAdjust;
 	function canvasRedrawFull(iLayers: tLayers) {
-		const ctx1 = canvasFull.getContext('2d')!;
-		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
-		try {
-			cAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-			aFigure.draw(ctx1, cAdjust, iLayers);
-		} catch (emsg) {
-			//rGeome.logstr += emsg;
-			console.log(emsg);
+		if (canvasFull) {
+			const ctx1 = canvasFull.getContext('2d')!;
+			ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
+			try {
+				cAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
+				aFigure.draw(ctx1, cAdjust, iLayers);
+			} catch (emsg) {
+				//rGeome.logstr += emsg;
+				console.log(emsg);
+			}
+			// extra drawing
+			//point(5, 5).draw(ctx1, cAdjust, 'green');
+			//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
 		}
-		// extra drawing
-		//point(5, 5).draw(ctx1, cAdjust, 'green');
-		//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
 	}
 	function canvasRedrawZoom(iLayers: tLayers) {
-		const ctx2 = canvasZoom.getContext('2d')!;
-		ctx2.clearRect(0, 0, ctx2.canvas.width, ctx2.canvas.height);
-		try {
-			if (zAdjust === undefined || zAdjust.init === 0) {
-				zAdjust = aFigure.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
-				//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
+		if (canvasZoom) {
+			const ctx2 = canvasZoom.getContext('2d')!;
+			ctx2.clearRect(0, 0, ctx2.canvas.width, ctx2.canvas.height);
+			try {
+				if (zAdjust === undefined || zAdjust.init === 0) {
+					zAdjust = aFigure.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
+					//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
+				}
+				aFigure.draw(ctx2, zAdjust, iLayers);
+			} catch (emsg) {
+				//rGeome.logstr += emsg;
+				console.log(emsg);
 			}
-			aFigure.draw(ctx2, zAdjust, iLayers);
-		} catch (emsg) {
-			//rGeome.logstr += emsg;
-			console.log(emsg);
 		}
 	}
 	function canvasSetSize() {
 		//console.log(`windowWidth: ${windowWidth}`);
-		const ctx1 = canvasFull.getContext('2d')!;
-		const canvas_size = Math.max(0.4 * windowWidth, canvas_size_min);
-		ctx1.canvas.width = canvas_size;
-		ctx1.canvas.height = canvas_size;
+		if (canvasFull && windowWidth) {
+			// canvasFull and windowWidth must be defined
+			const ctx1 = canvasFull.getContext('2d')!;
+			const canvas_size = Math.max(0.4 * windowWidth, canvas_size_min);
+			ctx1.canvas.width = canvas_size;
+			ctx1.canvas.height = canvas_size;
+		}
 	}
 	function canvasResize() {
 		canvasSetSize();
@@ -227,25 +234,27 @@
 	// just drawing a rectangle to help zooming
 	function cFullMouseMove(eve: MouseEvent) {
 		//console.log(`dbg179: cFullMouseMove ${eve.offsetX} ${eve.offsetY} ${eve.buttons}`);
-		const ctx1 = canvasFull.getContext('2d')!;
-		// left click
-		if (eve.buttons === 1) {
-			const diffX = eve.offsetX - mouseF.offsetX;
-			const diffY = eve.offsetY - mouseF.offsetY;
-			canvasRedrawFull($dLayers);
-			//const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
-			ctx1.beginPath();
-			ctx1.rect(mouseF.offsetX, mouseF.offsetY, diffX, diffY);
-			ctx1.strokeStyle = colors.mouse;
-			ctx1.stroke();
-		}
-		// mouse position
-		if ($dLayers.ruler) {
-			const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
-			ctx1.clearRect(5, 5, 200, 25);
-			ctx1.font = '15px Arial';
-			ctx1.fillStyle = colors.ruler;
-			ctx1.fillText(`x: ${p1x.toFixed(4)} y: ${p1y.toFixed(4)}`, 5, 20);
+		if (canvasFull) {
+			const ctx1 = canvasFull.getContext('2d')!;
+			// left click
+			if (eve.buttons === 1) {
+				const diffX = eve.offsetX - mouseF.offsetX;
+				const diffY = eve.offsetY - mouseF.offsetY;
+				canvasRedrawFull($dLayers);
+				//const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
+				ctx1.beginPath();
+				ctx1.rect(mouseF.offsetX, mouseF.offsetY, diffX, diffY);
+				ctx1.strokeStyle = colors.mouse;
+				ctx1.stroke();
+			}
+			// mouse position
+			if ($dLayers.ruler) {
+				const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
+				ctx1.clearRect(5, 5, 200, 25);
+				ctx1.font = '15px Arial';
+				ctx1.fillStyle = colors.ruler;
+				ctx1.fillText(`x: ${p1x.toFixed(4)} y: ${p1y.toFixed(4)}`, 5, 20);
+			}
 		}
 	}
 	// translate Zoom drawing
@@ -274,7 +283,7 @@
 			canvasRedrawZoom($dLayers);
 		} else {
 			// mouse position
-			if ($dLayers.ruler) {
+			if ($dLayers.ruler && canvasZoom) {
 				const ctx2 = canvasZoom.getContext('2d')!;
 				const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, zAdjust);
 				ctx2.clearRect(5, 5, 200, 25);
@@ -285,6 +294,7 @@
 		}
 	}
 	function cZoomWheel(eve: WheelEvent) {
+		eve.preventDefault();
 		if (eve.deltaY > 0) {
 			zAdjust = adjustScale(0.7, zAdjust);
 		} else {
@@ -331,7 +341,7 @@
 			bind:this={canvasZoom}
 			onmousedown={cZoomMouseDn}
 			onmousemove={cZoomMouseMove}
-			onwheel={preventDefault(cZoomWheel)}
+			onwheel={cZoomWheel}
 		></canvas>
 		<ZoomControl on:myevent={zoomClick} />
 	</div>

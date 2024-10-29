@@ -16,15 +16,9 @@
 		simTime?: number;
 	}
 
-	let {
-		pageName,
-		fgeom,
-		selFace,
-		zAdjust,
-		simTime = 0
-	}: Props = $props();
+	let { pageName, fgeom, selFace, zAdjust, simTime = 0 }: Props = $props();
 
-	let canvasMini: HTMLCanvasElement = $state();
+	let canvasMini: HTMLCanvasElement | undefined = $state();
 	const canvas_size_mini = 200;
 
 	// Canavas Figures
@@ -32,23 +26,25 @@
 	function canvasRedrawMini(aFigure: Figure, iLayers: tLayers) {
 		const sLayers = copyLayers(iLayers);
 		sLayers.ruler = false;
-		const ctx1 = canvasMini.getContext('2d')!;
-		ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
-		try {
-			if (zAdjust.init === 0) {
-				// mini-full with zAdjust set to adjustZero()
-				mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-			} else {
-				mAdjust = zAdjust;
+		if (canvasMini) {
+			const ctx1 = canvasMini.getContext('2d')!;
+			ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
+			try {
+				if (zAdjust.init === 0) {
+					// mini-full with zAdjust set to adjustZero()
+					mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
+				} else {
+					mAdjust = zAdjust;
+				}
+				aFigure.draw(ctx1, mAdjust, sLayers);
+			} catch (emsg) {
+				//rGeome.logstr += emsg;
+				console.log(emsg);
 			}
-			aFigure.draw(ctx1, mAdjust, sLayers);
-		} catch (emsg) {
-			//rGeome.logstr += emsg;
-			console.log(emsg);
+			// extra drawing
+			//point(5, 5).draw(ctx1, mAdjust, 'green');
+			//point(5, 15).draw(ctx1, mAdjust, 'blue', 'rectangle');
 		}
-		// extra drawing
-		//point(5, 5).draw(ctx1, mAdjust, 'green');
-		//point(5, 15).draw(ctx1, mAdjust, 'blue', 'rectangle');
 	}
 	let domInit = $state(0);
 	function geomRedraw(iSimTime: number, ipVal: tParamVal, iFace: string, iLayers: tLayers) {

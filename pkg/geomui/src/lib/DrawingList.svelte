@@ -43,7 +43,7 @@
 	});
 	// modalImg
 	let modalImg = $state(false);
-	let svgPath: string = $state();
+	let svgPath: string = $state('');
 	function showSvg(iSvgPath: string) {
 		svgPath = iSvgPath;
 		//console.log(`dbg231: svgPath: ${svgPath}`);

@@ -34,8 +34,8 @@
 		return rWarn;
 	}
 	let optFaces: string[] = $state([]);
-	let exportFace: string = $state();
-	let selFace: string = $state();
+	let exportFace: string = $state('');
+	let selFace: string = $state('');
 	let simTime = $state(0);
 	let zAdjust = $state(adjustZero());
 	// log and paramChange

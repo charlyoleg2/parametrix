@@ -26,13 +26,7 @@
 		simTime?: number;
 	}
 
-	let {
-		pDef,
-		fgeom,
-		selFace,
-		zAdjust,
-		simTime = 0
-	}: Props = $props();
+	let { pDef, fgeom, selFace, zAdjust, simTime = 0 }: Props = $props();
 
 	const cAdjustZero = adjustZero();
 	let inputComment = $state('');
@@ -178,7 +172,7 @@
 		[loadMsg, applyWarn] = tolerantApply(pDef.partName, pInit);
 	}
 	// load parameters from localStorage
-	let locStorRname: string = $state();
+	let locStorRname: string = $state('');
 	function loadLocStor() {
 		if (locStorRname !== undefined && locStorRname !== '') {
 			const storeKey = `${pDef.partName}_${locStorRname}`;
@@ -198,7 +192,7 @@
 		}
 	}
 	// save parameters into localStorage
-	let locStorWname: string = $state();
+	let locStorWname: string = $state('');
 	//$: console.log(`dbg888: ${locStorWname}`);
 	function saveInLocStor() {
 		if (locStorWname !== undefined && locStorWname !== '') {
@@ -306,8 +300,8 @@
 		}
 		return rVis;
 	}
-	let htable: tHTableSection[] = $state();
-	let htableVis: tHTableVis = $state();
+	let htable: tHTableSection[] = $state([]);
+	let htableVis: tHTableVis = $state({});
 	// TODO: second workaround to be solved properly
 	//let prePartName = '';
 	run(() => {
