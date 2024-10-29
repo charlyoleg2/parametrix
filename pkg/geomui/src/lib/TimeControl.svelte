@@ -1,10 +1,19 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
 
-	export let tMax = 10;
-	export let tStep = 0.1;
-	export let tUpdate = 500; // ms
-	export let simTime = 0;
+	interface Props {
+		tMax?: number;
+		tStep?: number;
+		tUpdate?: number;
+		simTime?: number;
+	}
+
+	let {
+		tMax = 10,
+		tStep = 0.1,
+		tUpdate = 500,
+		simTime = $bindable(0)
+	}: Props = $props();
 
 	let intervalID: ReturnType<typeof setTimeout> | null = null;
 	let speed = 0;
@@ -72,12 +81,12 @@
 </script>
 
 <nav>
-	<button on:click={simZero}>0</button>
-	<button on:click={simPlayBackward}>&lt-</button>
-	<button on:click={simDecrem}>|&lt</button>
-	<button on:click={simPause}>||</button>
-	<button on:click={simIncrem}>&gt|</button>
-	<button on:click={simPlayForward}>-&gt</button>
+	<button onclick={simZero}>0</button>
+	<button onclick={simPlayBackward}>&lt-</button>
+	<button onclick={simDecrem}>|&lt</button>
+	<button onclick={simPause}>||</button>
+	<button onclick={simIncrem}>&gt|</button>
+	<button onclick={simPlayForward}>-&gt</button>
 	<input type="range" bind:value={simTime} min="0" max={tMax} step={tStep} />
 	<input type="number" bind:value={simTime} min="0" max={tMax} step={tStep} />
 </nav>

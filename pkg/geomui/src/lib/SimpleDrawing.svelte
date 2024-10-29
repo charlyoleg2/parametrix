@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	//import { colors } from 'geometrix';
 	import type { tCanvasAdjust, tLayers, Figure, tParamVal, tGeomFunc } from 'geometrix';
 	import { copyLayers, mergeFaces } from 'geometrix';
@@ -6,13 +8,23 @@
 	import { dLayers } from './drawingLayers';
 	import { onMount } from 'svelte';
 
-	export let pageName: string;
-	export let fgeom: tGeomFunc;
-	export let selFace: string;
-	export let zAdjust: tCanvasAdjust;
-	export let simTime = 0;
+	interface Props {
+		pageName: string;
+		fgeom: tGeomFunc;
+		selFace: string;
+		zAdjust: tCanvasAdjust;
+		simTime?: number;
+	}
 
-	let canvasMini: HTMLCanvasElement;
+	let {
+		pageName,
+		fgeom,
+		selFace,
+		zAdjust,
+		simTime = 0
+	}: Props = $props();
+
+	let canvasMini: HTMLCanvasElement = $state();
 	const canvas_size_mini = 200;
 
 	// Canavas Figures
@@ -38,7 +50,7 @@
 		//point(5, 5).draw(ctx1, mAdjust, 'green');
 		//point(5, 15).draw(ctx1, mAdjust, 'blue', 'rectangle');
 	}
-	let domInit = 0;
+	let domInit = $state(0);
 	function geomRedraw(iSimTime: number, ipVal: tParamVal, iFace: string, iLayers: tLayers) {
 		const FigList = fgeom(iSimTime, ipVal).fig;
 		if (Object.keys(FigList).includes(iFace)) {
@@ -56,11 +68,11 @@
 		//paramChange();
 	});
 	// reactivity on simTime and $storePV
-	$: {
+	run(() => {
 		if (domInit === 1) {
 			geomRedraw(simTime, $storePV[pageName], selFace, $dLayers);
 		}
-	}
+	});
 </script>
 
 <canvas class="mini" width={canvas_size_mini} height={canvas_size_mini} bind:this={canvasMini}

@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let svgPath: string;
-	export let modalOpen: boolean;
+	interface Props {
+		svgPath: string;
+		modalOpen: boolean;
+	}
+
+	let { svgPath, modalOpen = $bindable() }: Props = $props();
 
 	function mCancel() {
 		modalOpen = false;
@@ -10,7 +14,7 @@
 {#if modalOpen}
 	<aside class="backdrop">
 		<div class="dialog">
-			<button on:click={mCancel}>
+			<button onclick={mCancel}>
 				<img src={svgPath} alt={svgPath} />
 			</button>
 		</div>

@@ -1,10 +1,16 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import ModalDiag from './ModalDiag.svelte';
 	import { browser } from '$app/environment';
 
-	export let pageName: string;
-	export let storeName: string;
-	export let localKeys: string[];
+	interface Props {
+		pageName: string;
+		storeName: string;
+		localKeys: string[];
+	}
+
+	let { pageName, storeName = $bindable(), localKeys = $bindable() }: Props = $props();
 
 	// get the list of localStorage keys
 	function getLocalKey() {
@@ -24,7 +30,7 @@
 	}
 	// last modification date
 	type tLocalDate = Record<string, string>;
-	let localDate: tLocalDate = {};
+	let localDate: tLocalDate = $state({});
 	function getLocalDate(iKeys: string[]): tLocalDate {
 		let rLocalDate: tLocalDate = {};
 		if (browser) {
@@ -45,7 +51,7 @@
 	localDate = getLocalDate(localKeys);
 	// delete checkbox
 	type tLocalDel = Record<string, boolean>;
-	let localDel: tLocalDel = {};
+	let localDel: tLocalDel = $state({});
 	function getInitDel(iKeys: string[]): tLocalDel {
 		let rLocalDel: tLocalDel = {};
 		for (const k of iKeys) {
@@ -55,13 +61,15 @@
 	}
 	localDel = getInitDel(localKeys);
 	// global delete
-	let globalDel = false;
+	let globalDel = $state(false);
 	function setGlobalDel(iGlobalDel: boolean) {
 		for (const k of localKeys) {
 			localDel[k] = iGlobalDel;
 		}
 	}
-	$: setGlobalDel(globalDel);
+	run(() => {
+		setGlobalDel(globalDel);
+	});
 	// delete action
 	function actionDel() {
 		if (browser) {
@@ -75,12 +83,12 @@
 		}
 		localKeys = getLocalKey();
 	}
-	let modalDelConfirm = false;
+	let modalDelConfirm = $state(false);
 </script>
 
 <div class="deleteKeys">
 	<button
-		on:click={() => {
+		onclick={() => {
 			modalDelConfirm = true;
 		}}>Delete</button
 	>
@@ -109,7 +117,7 @@
 			{#each localKeys as kname}
 				<tr>
 					<td><input type="checkbox" bind:checked={localDel[kname]} /></td>
-					<td><button on:click={() => modifInput(kname)}>{kname}</button></td>
+					<td><button onclick={() => modifInput(kname)}>{kname}</button></td>
 					<td>{localDate[kname]}</td>
 				</tr>
 			{/each}

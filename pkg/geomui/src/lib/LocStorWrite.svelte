@@ -1,11 +1,16 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import LocStorTable from './LocStorTable.svelte';
-	//import { browser } from '$app/environment';
 
-	export let pageName: string;
-	export let storeName: string;
+	interface Props {
+		pageName: string;
+		storeName: string;
+	}
 
-	let localKeys: string[] = [];
+	let { pageName, storeName = $bindable() }: Props = $props();
+
+	let localKeys: string[] = $state([]);
 	// create a default key name
 	function defaultName(prefix: string) {
 		const re1 = /[-:]/g;
@@ -20,7 +25,7 @@
 	}
 	storeName = defaultName(pageName);
 	// check if the key already exist
-	let warn = false;
+	let warn = $state(false);
 	function checkWarning(iname: string) {
 		warn = localKeys.includes(iname);
 		//console.log(`dbg040: ${warn}`);
@@ -33,7 +38,9 @@
 		checkWarning(storeName2);
 	}
 	// modify input
-	$: checkWarning(storeName);
+	run(() => {
+		checkWarning(storeName);
+	});
 </script>
 
 <LocStorTable {pageName} bind:storeName bind:localKeys />
@@ -47,7 +54,7 @@
 		minlength="4"
 		maxlength="30"
 		size="32"
-		on:input={validInput}
+		oninput={validInput}
 	/>
 	{#if warn}
 		<p class="warnMsg">Warning: name {storeName} already used</p>

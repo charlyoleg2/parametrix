@@ -1,11 +1,17 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import type { tParamDef } from 'geometrix';
 	import ModalImg from './ModalImg.svelte';
 	//import { onMount } from 'svelte';
 	//import { browser } from '$app/environment';
 	import { base } from '$app/paths';
 
-	export let pDef: tParamDef;
+	interface Props {
+		pDef: tParamDef;
+	}
+
+	let { pDef }: Props = $props();
 
 	// helper function
 	function getSvgList(ipDef: tParamDef): string[] {
@@ -30,12 +36,14 @@
 		return rList2;
 	}
 	// initialization
-	let lSvg: string[] = [];
+	let lSvg: string[] = $state([]);
 	// reactivity
-	$: lSvg = getSvgList2(pDef.partName);
+	run(() => {
+		lSvg = getSvgList2(pDef.partName);
+	});
 	// modalImg
-	let modalImg = false;
-	let svgPath: string;
+	let modalImg = $state(false);
+	let svgPath: string = $state();
 	function showSvg(iSvgPath: string) {
 		svgPath = iSvgPath;
 		//console.log(`dbg231: svgPath: ${svgPath}`);
@@ -46,7 +54,7 @@
 <section>
 	<ModalImg bind:modalOpen={modalImg} {svgPath} />
 	{#each lSvg as iSvg}
-		<button on:click={() => showSvg(iSvg)}>
+		<button onclick={() => showSvg(iSvg)}>
 			<img src={iSvg} alt={iSvg} />
 		</button>
 	{/each}

@@ -1,13 +1,24 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
 	type tOkFunc = () => void;
 	export type { tOkFunc };
 </script>
 
 <script lang="ts">
-	export let okName = 'Ok';
-	export let okFunc: tOkFunc;
-	export let modalOpen: boolean;
-	export let sizeLarge = false;
+	interface Props {
+		okName?: string;
+		okFunc: tOkFunc;
+		modalOpen: boolean;
+		sizeLarge?: boolean;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		okName = 'Ok',
+		okFunc,
+		modalOpen = $bindable(),
+		sizeLarge = false,
+		children
+	}: Props = $props();
 
 	function mCancel() {
 		modalOpen = false;
@@ -22,11 +33,11 @@
 	<aside class="backdrop">
 		<div class="dialog" class:sizeLarge>
 			<article class="question">
-				<slot />
+				{@render children?.()}
 			</article>
 			<footer>
-				<button class="cancel" on:click={mCancel}>Cancel</button>
-				<button class="ok" on:click={mOk}>{okName}</button>
+				<button class="cancel" onclick={mCancel}>Cancel</button>
+				<button class="ok" onclick={mOk}>{okName}</button>
 			</footer>
 		</div>
 	</aside>

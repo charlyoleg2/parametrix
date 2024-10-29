@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	//import type { tParamDef, tGeomFunc, tSubDesign, tAllLink, tCanvasAdjust } from 'geometrix';
 	import type { tParamDef, tGeomFunc, tSubDesign, tAllLink } from 'geometrix';
 	import {
@@ -15,9 +17,13 @@
 	import SubDesign from './SubDesign.svelte';
 	import { storePV } from './storePVal';
 
-	export let pDef: tParamDef;
-	export let fgeom: tGeomFunc;
-	export let pLink: tAllLink;
+	interface Props {
+		pDef: tParamDef;
+		fgeom: tGeomFunc;
+		pLink: tAllLink;
+	}
+
+	let { pDef, fgeom, pLink }: Props = $props();
 
 	function checkWarn(txt: string) {
 		let rWarn = true;
@@ -27,16 +33,16 @@
 		}
 		return rWarn;
 	}
-	let optFaces: string[] = [];
-	let exportFace: string;
-	let selFace: string;
-	let simTime = 0;
-	let zAdjust = adjustZero();
+	let optFaces: string[] = $state([]);
+	let exportFace: string = $state();
+	let selFace: string = $state();
+	let simTime = $state(0);
+	let zAdjust = $state(adjustZero());
 	// log and paramChange
-	let logValue = 'Dummy initial\nWill be replaced during onMount\n';
-	let calcErr = false;
-	let calcWarn = false;
-	let subD: tSubDesign = {};
+	let logValue = $state('Dummy initial\nWill be replaced during onMount\n');
+	let calcErr = $state(false);
+	let calcWarn = $state(false);
+	let subD: tSubDesign = $state({});
 	function paramChange2(iPageName: string, iSimTime: number) {
 		const mydate = new Date().toLocaleTimeString();
 		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
@@ -52,7 +58,9 @@
 	function paramChange() {
 		paramChange2(pDef.partName, simTime);
 	}
-	$: paramChange2(pDef.partName, simTime); // for reactivity on page change and simTime
+	run(() => {
+		paramChange2(pDef.partName, simTime);
+	}); // for reactivity on page change and simTime
 	// export drawings
 	function download_binFile(fName: string, fContent: Blob) {
 		//create temporary an invisible element
@@ -181,7 +189,7 @@
 		<option value="freecad">all faces as Freecad.py</option>
 		<option value="zip">all faces and more as zip</option>
 	</select>
-	<button on:click={downloadExport2}>Save to File</button>
+	<button onclick={downloadExport2}>Save to File</button>
 	<SubDesign {subD} origPartName={pDef.partName} {pLink} />
 </section>
 

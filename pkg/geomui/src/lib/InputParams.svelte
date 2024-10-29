@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	//import type { tOkFunc } from './ModalDiag.svelte';
 	import ModalDiag from './ModalDiag.svelte';
 	import ModalImg from './ModalImg.svelte';
@@ -16,14 +18,24 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let pDef: tParamDef;
-	export let fgeom: tGeomFunc;
-	export let selFace: string;
-	export let zAdjust: tCanvasAdjust;
-	export let simTime = 0;
+	interface Props {
+		pDef: tParamDef;
+		fgeom: tGeomFunc;
+		selFace: string;
+		zAdjust: tCanvasAdjust;
+		simTime?: number;
+	}
+
+	let {
+		pDef,
+		fgeom,
+		selFace,
+		zAdjust,
+		simTime = 0
+	}: Props = $props();
 
 	const cAdjustZero = adjustZero();
-	let inputComment = '';
+	let inputComment = $state('');
 
 	// initialization
 	function paramChange() {
@@ -81,8 +93,8 @@
 	//	}
 	//}
 	// load parameters
-	let loadMsg = '';
-	let applyWarn = false;
+	let loadMsg = $state('');
+	let applyWarn = $state(false);
 	function initParams2() {
 		if (browser) {
 			const searchParams = new URLSearchParams($page.url.search);
@@ -154,10 +166,10 @@
 		downloadParams(pDef.partName, $storePV[pDef.partName], inputComment);
 	}
 	// modal
-	let modalLoadDefault = false;
-	let modalLoadLocal = false;
-	let modalSaveUrl = false;
-	let modalSaveLocal = false;
+	let modalLoadDefault = $state(false);
+	let modalLoadLocal = $state(false);
+	let modalSaveUrl = $state(false);
+	let modalSaveLocal = $state(false);
 	function loadDefaults() {
 		const pInit: tParamVal = {};
 		for (const p of pDef.params) {
@@ -166,7 +178,7 @@
 		[loadMsg, applyWarn] = tolerantApply(pDef.partName, pInit);
 	}
 	// load parameters from localStorage
-	let locStorRname: string;
+	let locStorRname: string = $state();
 	function loadLocStor() {
 		if (locStorRname !== undefined && locStorRname !== '') {
 			const storeKey = `${pDef.partName}_${locStorRname}`;
@@ -186,7 +198,7 @@
 		}
 	}
 	// save parameters into localStorage
-	let locStorWname: string;
+	let locStorWname: string = $state();
 	//$: console.log(`dbg888: ${locStorWname}`);
 	function saveInLocStor() {
 		if (locStorWname !== undefined && locStorWname !== '') {
@@ -208,7 +220,7 @@
 		}
 	}
 	// Save as URL
-	let pUrl = '';
+	let pUrl = $state('');
 	function generateUrl2(): string {
 		const url1 = generateUrl($page.url.href, $storePV[pDef.partName], false);
 		return url1.toString();
@@ -221,7 +233,7 @@
 		//console.log(`dbg244: voila`);
 	}
 	// parameter picture
-	let paramSvg = `${base}/pgdsvg/default_param_blank.svg`;
+	let paramSvg = $state(`${base}/pgdsvg/default_param_blank.svg`);
 	function paramPict(keyName: string) {
 		//console.log(`dbg783: ${keyName}`);
 		// convention for the file-names of the parameter description
@@ -232,7 +244,7 @@
 		}
 	}
 	// TODO: solve properly this workaround (avoiding weird re-trigger)
-	let prePartName = '';
+	let prePartName = $state('');
 	function paramPict2(idx: number, pDef_page: string) {
 		//console.log(`dbg283: ${pDef_page}`);
 		if (prePartName !== pDef.partName) {
@@ -243,8 +255,10 @@
 			}
 		}
 	}
-	$: paramPict2(0, pDef.partName);
-	let modalImg = false;
+	run(() => {
+		paramPict2(0, pDef.partName);
+	});
+	let modalImg = $state(false);
 	function showSvg() {
 		//console.log(`dbg231: svgPath: ${svgPath}`);
 		modalImg = true;
@@ -292,18 +306,18 @@
 		}
 		return rVis;
 	}
-	let htable: tHTableSection[];
-	let htableVis: tHTableVis;
+	let htable: tHTableSection[] = $state();
+	let htableVis: tHTableVis = $state();
 	// TODO: second workaround to be solved properly
 	//let prePartName = '';
-	$: {
+	run(() => {
 		htable = makeHTable(pDef.params);
 		if (prePartName !== pDef.partName) {
 			// workaround for avoiding weird re-trigger
 			prePartName = pDef.partName;
 			htableVis = makeHTableVis(htable);
 		}
-	}
+	});
 </script>
 
 <section>
@@ -314,15 +328,15 @@
 			id="loadFParams"
 			type="file"
 			accept="text/plain, application/json"
-			on:change={loadParamFromFile}
+			onchange={loadParamFromFile}
 		/>
 		<button
-			on:click={() => {
+			onclick={() => {
 				modalLoadDefault = true;
 			}}>Set Params Default</button
 		>
 		<button
-			on:click={() => {
+			onclick={() => {
 				modalLoadLocal = true;
 			}}>Load Params from localStorage</button
 		>
@@ -373,7 +387,7 @@
 						<tr class:changed={$storePV[pDef.partName][param.name] !== param.init}>
 							<td>{sidx + 1}.{pidx + 1}</td>
 							<td
-								><button on:click={() => paramPict(param.name)}>{param.name}</button
+								><button onclick={() => paramPict(param.name)}>{param.name}</button
 								></td
 							>
 							<td>
@@ -384,7 +398,7 @@
 										min={param.min}
 										max={param.max}
 										step={param.step}
-										on:change={paramChange}
+										onchange={paramChange}
 										class="input-number"
 									/>
 									<input
@@ -393,7 +407,7 @@
 										min={param.min}
 										max={param.max}
 										step={param.step}
-										on:change={paramChange}
+										onchange={paramChange}
 									/>
 								{:else if param.pType === PType.eCheckbox}
 									<select bind:value={$storePV[pDef.partName][param.name]}>
@@ -425,10 +439,10 @@
 			<label for="inComment">Comment:</label>
 			<input type="text" id="inComment" bind:value={inputComment} maxlength="150" size="70" />
 		</div>
-		<button on:click={downloadParams2}>Save Parameters to File</button>
-		<button on:click={openModalUrl}>Save Parameters as URL</button>
+		<button onclick={downloadParams2}>Save Parameters to File</button>
+		<button onclick={openModalUrl}>Save Parameters as URL</button>
 		<button
-			on:click={() => {
+			onclick={() => {
 				modalSaveLocal = true;
 			}}>Save Parameters to localStorage</button
 		>
@@ -444,7 +458,7 @@
 		>
 	</main>
 	<ModalImg bind:modalOpen={modalImg} svgPath={paramSvg} />
-	<button on:click={showSvg} class="side-img">
+	<button onclick={showSvg} class="side-img">
 		<img src={paramSvg} alt={paramSvg} />
 	</button>
 	<div class="mini-canvas">

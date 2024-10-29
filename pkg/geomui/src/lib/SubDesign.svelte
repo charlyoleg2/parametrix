@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import type { tPosiOrien, tSubDesign, tAllLink } from 'geometrix';
 	import { ffix, radToDeg, paramListToVal } from 'geometrix';
 	//import { downloadParams, generateUrl } from './downloadParams';
@@ -10,12 +12,18 @@
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 
-	export let subD: tSubDesign = {};
-	export let origPartName = '';
-	export let pLink: tAllLink;
+	interface Props {
+		subD?: tSubDesign;
+		origPartName?: string;
+		pLink: tAllLink;
+	}
 
-	let subInsts: string[] = [];
-	$: subInsts = Object.keys(subD);
+	let { subD = {}, origPartName = '', pLink }: Props = $props();
+
+	let subInsts: string[] = $state([]);
+	run(() => {
+		subInsts = Object.keys(subD);
+	});
 
 	async function goToUrl(subInstName: string) {
 		const subObj = subD[subInstName];
@@ -69,10 +77,10 @@
 					<div class="arrow"></div>
 					{subInst}
 				</label>
-				<button on:click={() => goToUrl(subInst)}
+				<button onclick={() => goToUrl(subInst)}
 					>Go to {pLink[subD[subInst].partName]}</button
 				>
-				<button on:click={() => dwnParams2(subInst)}>Export parameters</button>
+				<button onclick={() => dwnParams2(subInst)}>Export parameters</button>
 				<div class="nested">
 					<article>
 						{Object.keys(subD[subInst].dparam).length} parameters of

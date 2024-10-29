@@ -1,11 +1,16 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import LocStorTable from './LocStorTable.svelte';
-	//import { browser } from '$app/environment';
 
-	export let pageName: string;
-	export let storeName: string;
+	interface Props {
+		pageName: string;
+		storeName: string;
+	}
 
-	let localKeys: string[] = [];
+	let { pageName, storeName = $bindable() }: Props = $props();
+
+	let localKeys: string[] = $state([]);
 	// create a default key name
 	function defaultName(ilocalKeys: string[]) {
 		let rname = storeName;
@@ -19,7 +24,9 @@
 		}
 		return rname;
 	}
-	$: storeName = defaultName(localKeys);
+	run(() => {
+		storeName = defaultName(localKeys);
+	});
 	//$: console.log(`dbg994: ${storeName}`);
 </script>
 

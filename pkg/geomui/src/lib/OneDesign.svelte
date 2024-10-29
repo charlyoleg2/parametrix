@@ -1,14 +1,22 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import type { tPageDef, tAllLink } from 'geometrix';
 
 	import { incrStore } from './initStore';
 	import DrawingList from './DrawingList.svelte';
 	import ParamDrawExport from './ParamDrawExport.svelte';
 
-	export let pageDef: tPageDef;
-	export let pLink: tAllLink;
+	interface Props {
+		pageDef: tPageDef;
+		pLink: tAllLink;
+	}
 
-	$: incrStore(pageDef);
+	let { pageDef, pLink }: Props = $props();
+
+	run(() => {
+		incrStore(pageDef);
+	});
 </script>
 
 <h1>{pageDef.pTitle}</h1>

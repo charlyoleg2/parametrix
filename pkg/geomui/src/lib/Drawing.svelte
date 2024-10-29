@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run, preventDefault } from 'svelte/legacy';
+
 	import TimeControl from './TimeControl.svelte';
 	import ZoomControl from './ZoomControl.svelte';
 	import LabelCheckbox from './LabelCheckbox.svelte';
@@ -23,17 +25,28 @@
 	import { dLayers } from './drawingLayers';
 	import { onMount } from 'svelte';
 
-	export let pDef: tParamDef;
-	export let fgeom: tGeomFunc;
-	export let optFaces: string[];
-	export let selFace: string;
-	export let zAdjust: tCanvasAdjust;
-	export let simTime = 0;
+	interface Props {
+		pDef: tParamDef;
+		fgeom: tGeomFunc;
+		optFaces: string[];
+		selFace: string;
+		zAdjust: tCanvasAdjust;
+		simTime?: number;
+	}
+
+	let {
+		pDef,
+		fgeom,
+		optFaces,
+		selFace = $bindable(),
+		zAdjust = $bindable(),
+		simTime = $bindable(0)
+	}: Props = $props();
 
 	const c_ParametrixAll = 'ParametrixAll';
-	let windowWidth: number;
-	let canvasFull: HTMLCanvasElement;
-	let canvasZoom: HTMLCanvasElement;
+	let windowWidth: number = $state();
+	let canvasFull: HTMLCanvasElement = $state();
+	let canvasZoom: HTMLCanvasElement = $state();
 	const canvas_size_min = 400;
 
 	// Canavas Figures
@@ -80,7 +93,7 @@
 		canvasRedrawFull($dLayers);
 		canvasRedrawZoom($dLayers);
 	}
-	let domInit = 0;
+	let domInit = $state(0);
 	function checkFace(iFaces: string[], iFace: string): string {
 		let rFace = iFace;
 		if (iFaces.length === 0) {
@@ -122,11 +135,11 @@
 		domInit = 1;
 	});
 	// reactivity on simTime, $storePV and layers
-	$: {
+	run(() => {
 		if (domInit === 1) {
 			geomRedrawSub(simTime, $storePV[pDef.partName], selFace, $dLayers);
 		}
-	}
+	});
 	// Zoom stories
 	function zoomClick(event: CustomEvent<{ action: string }>) {
 		//console.log(`dbg094: ${event.detail.action}`);
@@ -281,7 +294,7 @@
 	}
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} on:resize={canvasResize} />
+<svelte:window bind:innerWidth={windowWidth} onresize={canvasResize} />
 <section>
 	<h2>
 		Drawing
@@ -299,9 +312,9 @@
 			width={canvas_size_min}
 			height={canvas_size_min}
 			bind:this={canvasFull}
-			on:mousedown={cFullMouseDn}
-			on:mouseup={cFullMouseUp}
-			on:mousemove={cFullMouseMove}
+			onmousedown={cFullMouseDn}
+			onmouseup={cFullMouseUp}
+			onmousemove={cFullMouseMove}
 		></canvas>
 		<TimeControl
 			tMax={pDef.sim.tMax}
@@ -316,9 +329,9 @@
 			width={canvas_size_min}
 			height={canvas_size_min}
 			bind:this={canvasZoom}
-			on:mousedown={cZoomMouseDn}
-			on:mousemove={cZoomMouseMove}
-			on:wheel|preventDefault={cZoomWheel}
+			onmousedown={cZoomMouseDn}
+			onmousemove={cZoomMouseMove}
+			onwheel={preventDefault(cZoomWheel)}
 		></canvas>
 		<ZoomControl on:myevent={zoomClick} />
 	</div>
