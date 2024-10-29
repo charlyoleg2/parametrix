@@ -155,7 +155,7 @@
 	}
 </script>
 
-<InputParams {pDef} on:paramChg={paramChange} {fgeom} {selFace} {zAdjust} {simTime} />
+<InputParams {pDef} {paramChange} {fgeom} {selFace} {zAdjust} {simTime} />
 <section>
 	<h2>Log</h2>
 	<textarea

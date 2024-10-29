@@ -9,30 +9,26 @@
 	import { PType, parseParamFile, createParamFile, adjustZero } from 'geometrix';
 	import { storePV } from './storePVal';
 	import { downloadParams, generateUrl } from './downloadParams';
-	import { onMount, createEventDispatcher } from 'svelte';
+	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
 
-	const dispatch = createEventDispatcher();
-
 	interface Props {
 		pDef: tParamDef;
+		paramChange: () => void;
 		fgeom: tGeomFunc;
 		selFace: string;
 		zAdjust: tCanvasAdjust;
 		simTime?: number;
 	}
 
-	let { pDef, fgeom, selFace, zAdjust, simTime = 0 }: Props = $props();
+	let { pDef, paramChange, fgeom, selFace, zAdjust, simTime = 0 }: Props = $props();
 
 	const cAdjustZero = adjustZero();
 	let inputComment = $state('');
 
 	// initialization
-	function paramChange() {
-		dispatch('paramChg', { foo: 'bla' });
-	}
 	// tolerant applyParamVal
 	function tolerantApply(iPartName: string, ipVal: tParamVal): [string, boolean] {
 		let rMsg = '';
