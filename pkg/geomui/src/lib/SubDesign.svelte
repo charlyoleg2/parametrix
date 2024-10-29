@@ -4,7 +4,7 @@
 	//import { downloadParams, generateUrl } from './downloadParams';
 	import { downloadParams } from './downloadParams';
 	import { updateStore } from './initStore';
-	//import { onMount, createEventDispatcher } from 'svelte';
+	//import { onMount } from 'svelte';
 	//import { browser } from '$app/environment';
 	//import { page } from '$app/stores';
 	import { base } from '$app/paths';

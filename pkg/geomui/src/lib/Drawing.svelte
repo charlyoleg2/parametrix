@@ -146,9 +146,9 @@
 		}
 	});
 	// Zoom stories
-	function zoomClick(event: CustomEvent<{ action: string }>) {
-		//console.log(`dbg094: ${event.detail.action}`);
-		switch (event.detail.action) {
+	function zoomClick(action: string) {
+		//console.log(`dbg094: ${action}`);
+		switch (action) {
 			case 'zoomInit':
 				zAdjust.init = 0;
 				break;
@@ -171,7 +171,7 @@
 				zAdjust.yMin += -0.2 * zAdjust.xyDiff;
 				break;
 			default:
-				console.log(`ERR423: ${event.detail.action} has no case!`);
+				console.log(`ERR423: ${action} has no case!`);
 		}
 		canvasRedrawZoom($dLayers);
 	}
@@ -341,7 +341,7 @@
 			onmousemove={cZoomMouseMove}
 			onwheel={cZoomWheel}
 		></canvas>
-		<ZoomControl on:myevent={zoomClick} />
+		<ZoomControl {zoomClick} />
 	</div>
 </section>
 
