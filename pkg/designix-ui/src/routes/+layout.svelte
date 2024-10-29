@@ -2,6 +2,11 @@
 	import { base } from '$app/paths';
 	import { version_details } from 'geometrix';
 	import appPackage from '../../package.json';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	const detailed_versions = version_details(appPackage);
 </script>
@@ -15,7 +20,7 @@
 	<a href={`${base}/`}>index: list of designs</a>
 </nav>
 <main>
-	<slot />
+	{@render children?.()}
 </main>
 <footer>
 	<article>
