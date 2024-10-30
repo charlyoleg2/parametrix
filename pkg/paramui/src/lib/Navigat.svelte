@@ -7,8 +7,8 @@
 
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
-	let pagePath: string;
-	$: pagePath = checkPath($page.url.pathname.replace(base, ''));
+	let pagePath: string = $derived(checkPath($page.url.pathname.replace(base, '')));
+	
 </script>
 
 <Navig menuList={listOneCategory(pagePath)} menuSelected={pagePath} />

@@ -1,6 +1,19 @@
 <script lang="ts">
-	export let checkboxId: string;
-	export let labelText: string;
+	interface Props {
+		checkboxId: string;
+		labelText: string;
+		top1?: import('svelte').Snippet;
+		top2?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+	}
+
+	let {
+		checkboxId,
+		labelText,
+		top1,
+		top2,
+		children
+	}: Props = $props();
 </script>
 
 <input type="checkbox" id={checkboxId} class="toggle" checked />
@@ -8,10 +21,10 @@
 	><div class="arrow"></div>
 	{labelText}</label
 >
-<slot name="top1" />
-<slot name="top2" />
+{@render top1?.()}
+{@render top2?.()}
 <ul class="nested">
-	<slot>dbg492</slot>
+	{#if children}{@render children()}{:else}dbg492{/if}
 </ul>
 
 <style lang="scss">

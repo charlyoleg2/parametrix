@@ -1,7 +1,17 @@
+<script>
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
+</script>
+
 <article>
-	<slot>
+	{#if children}{@render children()}{:else}
 		<!-- the mdsvex content will be slotted in here -->
-	</slot>
+	{/if}
 </article>
 
 <style lang="scss">

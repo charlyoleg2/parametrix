@@ -1,12 +1,17 @@
 <script lang="ts">
 	//import OneSlide from './OneSlide.svelte';
 	import { onMount, onDestroy } from 'svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-	let carousContent: HTMLElement;
-	let slideContent: HTMLElement;
-	let slideNb = 0;
-	let slideIdx = 0;
-	let prezActive = false;
+	let { children }: Props = $props();
+
+	let carousContent: HTMLElement = $state();
+	let slideContent: HTMLElement = $state();
+	let slideNb = $state(0);
+	let slideIdx = $state(0);
+	let prezActive = $state(false);
 
 	function getSlides(): HTMLCollection {
 		const elems = carousContent?.children;
@@ -115,13 +120,13 @@
 
 <aside class="backdrop" class:prezOn={prezActive}>
 	<div bind:this={slideContent}></div>
-	<button on:click={goPrev}>&#60;&#60;&#60;</button><button class="mid" on:click={stopPrez}
+	<button onclick={goPrev}>&#60;&#60;&#60;</button><button class="mid" onclick={stopPrez}
 		>[ {slideIdx + 1} / {slideNb} ] Stop</button
-	><button on:click={goNext}>&#62;&#62;&#62;</button>
+	><button onclick={goNext}>&#62;&#62;&#62;</button>
 </aside>
 
 <section class="carousel-container" bind:this={carousContent}>
-	<slot />
+	{@render children?.()}
 </section>
 
 <style lang="scss">

@@ -8,8 +8,12 @@
 	import { apidocPath } from '$lib/menuList';
 	import { base } from '$app/paths';
 
-	export let menuList: tCategoryOne;
-	export let menuSelected: string;
+	interface Props {
+		menuList: tCategoryOne;
+		menuSelected: string;
+	}
+
+	let { menuList, menuSelected }: Props = $props();
 </script>
 
 <nav>
