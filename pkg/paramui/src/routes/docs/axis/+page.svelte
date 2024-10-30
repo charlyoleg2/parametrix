@@ -1,64 +1,76 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	/* eslint-disable svelte/no-at-html-tags */
 	import { base } from '$app/paths';
 	import { math } from 'mathlifier';
 
 	// inputs
-	let load_mass = 600; // kg
-	let d1 = 0.5; //m
-	let securityFactor = 4;
-	let halfTurn = 120; // s
-	let ringNb = 2;
-	let wheelNb = 8;
-	let wheelModule = 10;
-	let wheelZ = 23;
-	let wheelMargin = 10; // %
-	let gearEffi = 80; // %
-	let planet1Nb = 8;
-	let epic1Module = 2;
-	let planet1Z = 23;
-	let stage1Nb = 3;
-	let planet2Nb = 8;
-	let epic2Module = 1;
-	let planet2Z = 23;
-	let stage2Nb = 6;
-	let shutFor = 0.3; //0.0003; // N
+	let load_mass = $state(600); // kg
+	let d1 = $state(0.5); //m
+	let securityFactor = $state(4);
+	let halfTurn = $state(120); // s
+	let ringNb = $state(2);
+	let wheelNb = $state(8);
+	let wheelModule = $state(10);
+	let wheelZ = $state(23);
+	let wheelMargin = $state(10); // %
+	let gearEffi = $state(80); // %
+	let planet1Nb = $state(8);
+	let epic1Module = $state(2);
+	let planet1Z = $state(23);
+	let stage1Nb = $state(3);
+	let planet2Nb = $state(8);
+	let epic2Module = $state(1);
+	let planet2Z = $state(23);
+	let stage2Nb = $state(6);
+	let shutFor = $state(0.3); //0.0003; // N
 	// outputs
-	let torque1 = 10;
-	let torque2 = 10;
-	let torque3 = 10;
-	let torque4 = 10;
-	let torque5 = 10;
-	let speed3 = 10;
-	let speed4 = 10;
-	let speed5 = 10;
-	let power2 = 10;
-	let power3 = 10;
-	let power4 = 10;
-	let power5 = 10;
-	let oneTurn = 10;
-	let wheelDiameter = 10;
-	let ringDiameter = 10;
-	let ringZ = 10;
-	let ratioRW = 10;
-	let planet1Diameter = 10;
-	let ring1Diameter = 10;
-	let ring1Z = 10;
-	let sun1Z = 10;
-	let ratio1One = 10;
-	let ratio1All = 10;
-	let planet2Diameter = 10;
-	let ring2Diameter = 10;
-	let ring2Z = 10;
-	let sun2Z = 10;
-	let ratio2One = 10;
-	let ratio2All = 10;
+	let torque1 = $state(10);
+	let torque2 = $state(10);
+	let torque3 = $state(10);
+	let torque4 = $state(10);
+	let torque5 = $state(10);
+	let speed3 = $state(10);
+	let speed4 = $state(10);
+	let speed5 = $state(10);
+	let power2 = $state(10);
+	let power3 = $state(10);
+	let power4 = $state(10);
+	let power5 = $state(10);
+	let oneTurn = $state(10);
+	let wheelDiameter = $state(10);
+	let ringDiameter = $state(10);
+	let ringZ = $state(10);
+	let ratioRW = $state(10);
+	let planet1Diameter = $state(10);
+	let ring1Diameter = $state(10);
+	let ring1Z = $state(10);
+	let sun1Z = $state(10);
+	let ratio1One = $state(10);
+	let ratio1All = $state(10);
+	let planet2Diameter = $state(10);
+	let ring2Diameter = $state(10);
+	let ring2Z = $state(10);
+	let sun2Z = $state(10);
+	let ratio2One = $state(10);
+	let ratio2All = $state(10);
 	// calculations
-	$: torque1 = d1 * load_mass * 9.81;
-	$: torque2 = torque1 * securityFactor;
-	$: oneTurn = 2 * halfTurn;
-	$: power2 = (torque2 * 2 * Math.PI) / oneTurn; // W
-	$: wheelDiameter = wheelModule * (wheelZ + 2);
+	run(() => {
+		torque1 = d1 * load_mass * 9.81;
+	});
+	run(() => {
+		torque2 = torque1 * securityFactor;
+	});
+	run(() => {
+		oneTurn = 2 * halfTurn;
+	});
+	run(() => {
+		power2 = (torque2 * 2 * Math.PI) / oneTurn;
+	}); // W
+	run(() => {
+		wheelDiameter = wheelModule * (wheelZ + 2);
+	});
 	function fRingZ(nb: number, wheelZ: number, margin: number): number {
 		const angle = Math.PI / nb; //2 * Math.PI / (2 * nb);
 		const tModule = 1; // not relevant for computing Zring
@@ -67,30 +79,78 @@
 		const ringZ = Math.ceil(2 * positionRadius + wheelZ);
 		return ringZ;
 	}
-	$: ringZ = fRingZ(wheelNb, wheelZ, wheelMargin);
-	$: ringDiameter = wheelModule * (ringZ + 4);
-	$: ratioRW = ringZ / wheelZ;
-	$: torque3 = torque2 / (ringNb * wheelNb * ratioRW * (gearEffi / 100));
-	$: speed3 = oneTurn / ratioRW; // s
-	$: power3 = (torque3 * 2 * Math.PI) / speed3; // W
-	$: planet1Diameter = epic1Module * (planet1Z + 2);
-	$: ring1Z = fRingZ(planet1Nb, planet1Z, wheelMargin);
-	$: sun1Z = ring1Z - 2 * planet1Z;
-	$: ring1Diameter = epic1Module * (ring1Z + 4);
-	$: ratio1One = (sun1Z + ring1Z) / sun1Z;
-	$: ratio1All = ratio1One ** stage1Nb;
-	$: torque4 = torque3 / (ratio1All * (gearEffi / 100) ** stage1Nb);
-	$: speed4 = ratio1All / speed3; // Hz
-	$: power4 = torque4 * 2 * Math.PI * speed4; // W
-	$: planet2Diameter = epic2Module * (planet2Z + 2);
-	$: ring2Z = fRingZ(planet2Nb, planet2Z, wheelMargin);
-	$: sun2Z = ring2Z - 2 * planet2Z;
-	$: ring2Diameter = epic2Module * (ring2Z + 4);
-	$: ratio2One = (sun2Z + ring2Z) / sun2Z;
-	$: ratio2All = ratio2One ** stage2Nb;
-	$: torque5 = torque4 / (ratio2All * (gearEffi / 100) ** stage2Nb);
-	$: speed5 = ratio2All * speed4; // Hz
-	$: power5 = torque5 * 2 * Math.PI * speed5; // W
+	run(() => {
+		ringZ = fRingZ(wheelNb, wheelZ, wheelMargin);
+	});
+	run(() => {
+		ringDiameter = wheelModule * (ringZ + 4);
+	});
+	run(() => {
+		ratioRW = ringZ / wheelZ;
+	});
+	run(() => {
+		torque3 = torque2 / (ringNb * wheelNb * ratioRW * (gearEffi / 100));
+	});
+	run(() => {
+		speed3 = oneTurn / ratioRW;
+	}); // s
+	run(() => {
+		power3 = (torque3 * 2 * Math.PI) / speed3;
+	}); // W
+	run(() => {
+		planet1Diameter = epic1Module * (planet1Z + 2);
+	});
+	run(() => {
+		ring1Z = fRingZ(planet1Nb, planet1Z, wheelMargin);
+	});
+	run(() => {
+		sun1Z = ring1Z - 2 * planet1Z;
+	});
+	run(() => {
+		ring1Diameter = epic1Module * (ring1Z + 4);
+	});
+	run(() => {
+		ratio1One = (sun1Z + ring1Z) / sun1Z;
+	});
+	run(() => {
+		ratio1All = ratio1One ** stage1Nb;
+	});
+	run(() => {
+		torque4 = torque3 / (ratio1All * (gearEffi / 100) ** stage1Nb);
+	});
+	run(() => {
+		speed4 = ratio1All / speed3;
+	}); // Hz
+	run(() => {
+		power4 = torque4 * 2 * Math.PI * speed4;
+	}); // W
+	run(() => {
+		planet2Diameter = epic2Module * (planet2Z + 2);
+	});
+	run(() => {
+		ring2Z = fRingZ(planet2Nb, planet2Z, wheelMargin);
+	});
+	run(() => {
+		sun2Z = ring2Z - 2 * planet2Z;
+	});
+	run(() => {
+		ring2Diameter = epic2Module * (ring2Z + 4);
+	});
+	run(() => {
+		ratio2One = (sun2Z + ring2Z) / sun2Z;
+	});
+	run(() => {
+		ratio2All = ratio2One ** stage2Nb;
+	});
+	run(() => {
+		torque5 = torque4 / (ratio2All * (gearEffi / 100) ** stage2Nb);
+	});
+	run(() => {
+		speed5 = ratio2All * speed4;
+	}); // Hz
+	run(() => {
+		power5 = torque5 * 2 * Math.PI * speed5;
+	}); // W
 </script>
 
 <h1>Motorized axis</h1>
