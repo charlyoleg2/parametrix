@@ -11,7 +11,7 @@
 	let loadMsg = $state('');
 	let objK: string[] = $state([]);
 	let impPages: tAllPageDef = $state({});
-	let dPageDef: tPageDef = $state();
+	let dPageDef: tPageDef | undefined = $state();
 
 	async function loadDesignFile2(eve: Event): Promise<string> {
 		let rMsg = '';
@@ -102,7 +102,9 @@
 <article class:step3>
 	<button class="higher" onclick={resetDesign}>Reset dynamic design</button>
 </article>
-<SvelteComponent pageDef={dPageDef} pLink={allLink} />
+{#if dPageDef}
+	<SvelteComponent pageDef={dPageDef} pLink={allLink} />
+{/if}
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';

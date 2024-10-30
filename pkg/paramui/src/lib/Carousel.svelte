@@ -7,8 +7,8 @@
 
 	let { children }: Props = $props();
 
-	let carousContent: HTMLElement = $state();
-	let slideContent: HTMLElement = $state();
+	let carousContent: HTMLElement | undefined = $state();
+	let slideContent: HTMLElement | undefined = $state();
 	let slideNb = $state(0);
 	let slideIdx = $state(0);
 	let prezActive = $state(false);
@@ -58,15 +58,17 @@
 			console.log(err);
 		}
 	}
-	function updateSlide(iElem: HTMLElement, idx: number) {
-		try {
-			// remove Old
-			removeSlide(iElem);
-			// add new Slide
-			const newSlide = cloneSlide(idx);
-			iElem.appendChild(newSlide);
-		} catch (err) {
-			console.log(err);
+	function updateSlide(iElem: HTMLElement | undefined, idx: number) {
+		if (iElem) {
+			try {
+				// remove Old
+				removeSlide(iElem);
+				// add new Slide
+				const newSlide = cloneSlide(idx);
+				iElem.appendChild(newSlide);
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 
