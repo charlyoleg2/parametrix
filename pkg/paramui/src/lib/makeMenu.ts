@@ -3,7 +3,6 @@
 import type { tAllPageDef, tAllLink } from 'geometrix';
 import type { tPageOne, tCategoryOne, tMenuList } from './menuListType';
 import { menuList } from './menuList';
-//import { get, writable } from 'svelte/store';
 //import { base } from '$app/paths';
 
 function pathToLabel(ipath: string): string {
