@@ -5,13 +5,13 @@
 	import { OneDesign } from 'geomui';
 	import { allLink } from '$lib/makeMenu';
 
-	let step1 = true;
-	let step2 = false;
-	let step3 = false;
-	let loadMsg = '';
-	let objK: string[] = [];
-	let impPages: tAllPageDef = {};
-	let dPageDef: tPageDef;
+	let step1 = $state(true);
+	let step2 = $state(false);
+	let step3 = $state(false);
+	let loadMsg = $state('');
+	let objK: string[] = $state([]);
+	let impPages: tAllPageDef = $state({});
+	let dPageDef: tPageDef = $state();
 
 	async function loadDesignFile2(eve: Event): Promise<string> {
 		let rMsg = '';
@@ -70,6 +70,8 @@
 		step2 = false;
 		step3 = false;
 	}
+
+	const SvelteComponent = $derived(step3 ? OneDesign : null);
 </script>
 
 <h1>Dynamic import of geometrix-design</h1>
@@ -81,7 +83,7 @@
 		>
 	</p>
 	<label for="loadDLib" class="fileUpload">Load design-file</label>
-	<input type="file" id="loadDLib" accept="text/javascript" on:change={loadDesignFile} />
+	<input type="file" id="loadDLib" accept="text/javascript" onchange={loadDesignFile} />
 	<textarea rows="3" cols="80" readonly wrap="soft" value={loadMsg}></textarea>
 </article>
 <article class:step2>
@@ -89,7 +91,7 @@
 	<ol>
 		{#each objK as iDesign}
 			<li>
-				<button on:click={() => startDesign(iDesign)}>{iDesign}</button>
+				<button onclick={() => startDesign(iDesign)}>{iDesign}</button>
 				- {impPages[iDesign].pDef.partName}
 				- {impPages[iDesign].pTitle}
 				- {impPages[iDesign].pDescription}
@@ -98,9 +100,9 @@
 	</ol>
 </article>
 <article class:step3>
-	<button class="higher" on:click={resetDesign}>Reset dynamic design</button>
+	<button class="higher" onclick={resetDesign}>Reset dynamic design</button>
 </article>
-<svelte:component this={step3 ? OneDesign : null} pageDef={dPageDef} pLink={allLink} />
+<SvelteComponent pageDef={dPageDef} pLink={allLink} />
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';

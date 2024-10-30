@@ -2,6 +2,11 @@
 	import MyHeader from './MyHeader.svelte';
 	import Navigat from '$lib/Navigat.svelte';
 	import MyFooter from './MyFooter.svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <MyHeader />
@@ -11,7 +16,7 @@
 -->
 <Navigat />
 <main>
-	<slot />
+	{@render children?.()}
 </main>
 
 <MyFooter />
