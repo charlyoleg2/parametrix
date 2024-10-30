@@ -18,10 +18,7 @@
 
 	let { subD = {}, origPartName = '', pLink }: Props = $props();
 
-	let subInsts: string[] = $state([]);
-	$effect(() => {
-		subInsts = Object.keys(subD);
-	});
+	const subInsts: string[] = Object.keys(subD); // TODO5 is $derived needed?
 
 	async function goToUrl(subInstName: string) {
 		const subObj = subD[subInstName];

@@ -244,6 +244,7 @@
 		}
 	}
 	$effect(() => {
+		// TODO5: to be revisited
 		paramPict2(0, pDef.partName);
 	});
 	let modalImg = $state(false);
@@ -299,6 +300,7 @@
 	// TODO: second workaround to be solved properly
 	//let prePartName = '';
 	$effect(() => {
+		// TODO5: to be revisited
 		htable = makeHTable(pDef.params);
 		if (prePartName !== pDef.partName) {
 			// workaround for avoiding weird re-trigger

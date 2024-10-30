@@ -34,11 +34,8 @@
 		return rList2;
 	}
 	// initialization
-	let lSvg: string[] = $state([]);
+	const lSvg: string[] = getSvgList2(pDef.partName); // TODO5: $derived?
 	// reactivity
-	$effect(() => {
-		lSvg = getSvgList2(pDef.partName);
-	});
 	// modalImg
 	let modalImg = $state(false);
 	let svgPath: string = $state('');
