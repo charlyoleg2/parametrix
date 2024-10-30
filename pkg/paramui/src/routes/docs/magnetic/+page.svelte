@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	/* eslint-disable svelte/no-at-html-tags */
 	import { base } from '$app/paths';
 	import { math } from 'mathlifier';
@@ -43,184 +41,7 @@
 	let airgapB = $state(10); // mm
 	let shuttleX = $state(50); // percentage
 	let airgapH = $state(0.2); // mm
-	// outputs
-	let sectionAreaM = $state(10); // m2
-	let torusLength = $state(10); // mm
-	let torusLengthM = $state(10); // m
-	let magnetomotive = $state(10);
-	let torusReluctance = $state(10);
-	let torusMagneticFlux = $state(10);
-	let torusMagneticField = $state(10);
-	let torusMagneticEnergy = $state(10);
-	let torusInductance = $state(10);
-	let swellingL1 = $state(10);
-	let swellingL1M = $state(10);
-	let swellingS1 = $state(10);
-	let swellingS1M = $state(10);
-	let swellingL2 = $state(10);
-	let swellingL2M = $state(10);
-	let swellingS2 = $state(10);
-	let swellingS2M = $state(10);
-	let swellingReluctance = $state(10);
-	let swellingMagneticFlux = $state(10);
-	let swellingMagneticField1 = $state(10);
-	let swellingMagneticField2 = $state(10);
-	let swellingMagneticEnergy = $state(10);
-	let swellingInductance = $state(10);
-	let airgapGM = $state(10);
-	let airgapReluctance = $state(10);
-	let airgapMagneticFlux = $state(10);
-	let airgapMagneticField = $state(10);
-	let airgapMagneticEnergy = $state(10);
-	let airgapInductance = $state(10);
-	let airgapAM = $state(10); // m
-	let airgapBM = $state(10); // m
-	let sectionAreaL = $state(10); // mm2
-	let sectionAreaLM = $state(10); // m2
-	let sectionAreaAir = $state(10); // mm2
-	let sectionAreaAirM = $state(10); // m2
-	let sectionAreaShuttle = $state(10); // mm2
-	let sectionAreaShuttleM = $state(10); // m2
-	let shuttleReluctance = $state(10);
-	let shuttleMagneticFlux = $state(10);
-	let shuttleMagneticFieldL = $state(10);
-	//let RG1 = 10;
-	//let RG2 = 10;
-	let shuttleMagneticFieldG1 = $state(10);
-	let shuttleMagneticFieldG2 = $state(10);
-	let shuttleMagneticEnergy = $state(10);
-	//let shuttleEm = 10;
-	let shuttleInductance = $state(10);
-	let shuttleForce = $state(10);
-	let airgapHM = $state(10); // m
-	let shuttlerReluctance = $state(10);
-	let shuttlerMagneticFlux = $state(10);
-	let shuttlerMagneticFieldL = $state(10);
-	let shuttlerEm = $state(10);
-	let shuttlerInductance = $state(10);
-	let shuttlerForce = $state(10);
-	// calculations
-	run(() => {
-		torusLength = 2 * Math.PI * torusRadius;
-	});
-	run(() => {
-		torusLengthM = torusLength / 1000;
-	});
-	run(() => {
-		sectionAreaM = sectionArea / 1000000;
-	});
-	run(() => {
-		magnetomotive = turnNb * current;
-	});
-	run(() => {
-		torusReluctance = torusLengthM / (permeability * mu0 * sectionAreaM);
-	});
-	run(() => {
-		torusMagneticFlux = magnetomotive / torusReluctance;
-	});
-	run(() => {
-		torusMagneticField = torusMagneticFlux / sectionAreaM;
-	});
-	run(() => {
-		torusMagneticEnergy =
-			(permeability * mu0 * sectionAreaM * turnNb ** 2 * current ** 2) / (2 * torusLengthM);
-	});
-	run(() => {
-		torusInductance = turnNb ** 2 / torusReluctance;
-	});
-	run(() => {
-		swellingL2 = (torusLength * percentL2) / 100;
-	});
-	run(() => {
-		swellingL1 = torusLength - swellingL2;
-	});
-	run(() => {
-		swellingS1 = sectionArea;
-	});
-	run(() => {
-		swellingS2 = (swellingS1 * percentS2) / 100;
-	});
-	run(() => {
-		swellingL1M = swellingL1 / 1000;
-	});
-	run(() => {
-		swellingS1M = swellingS1 / 1000000;
-	});
-	run(() => {
-		swellingL2M = swellingL2 / 1000;
-	});
-	run(() => {
-		swellingS2M = swellingS2 / 1000000;
-	});
-	run(() => {
-		swellingReluctance =
-			(swellingL1M * swellingS2M + swellingL2M * swellingS1M) /
-			(permeability * mu0 * swellingS1M * swellingS2M);
-	});
-	run(() => {
-		swellingMagneticFlux = magnetomotive / swellingReluctance;
-	});
-	run(() => {
-		swellingMagneticField1 = swellingMagneticFlux / swellingS1M;
-	});
-	run(() => {
-		swellingMagneticField2 = swellingMagneticFlux / swellingS2M;
-	});
-	run(() => {
-		swellingMagneticEnergy =
-			(swellingMagneticField1 ** 2 * swellingL1M * swellingS1M) / (2 * permeability * mu0) +
-			(swellingMagneticField2 ** 2 * swellingL2M * swellingS2M) / (2 * permeability * mu0);
-	});
-	run(() => {
-		swellingInductance =
-			(permeability * mu0 * turnNb ** 2 * swellingS1M * swellingS2M) /
-			(swellingL1M * swellingS2M + swellingL2M * swellingS1M);
-	});
-	run(() => {
-		airgapGM = airgapG / 1000;
-	});
-	run(() => {
-		airgapReluctance =
-			(torusLengthM + permeability * airgapGM) / (permeability * mu0 * sectionAreaM);
-	});
-	run(() => {
-		airgapMagneticFlux = magnetomotive / airgapReluctance;
-	});
-	run(() => {
-		airgapMagneticField = airgapMagneticFlux / sectionAreaM;
-	});
-	run(() => {
-		airgapMagneticEnergy =
-			(airgapMagneticField ** 2 * torusLengthM * sectionAreaM) / (2 * permeability * mu0) +
-			(airgapMagneticField ** 2 * airgapGM * sectionAreaM) / (2 * mu0);
-	});
-	run(() => {
-		airgapInductance = turnNb ** 2 / airgapReluctance;
-	});
-	run(() => {
-		airgapAM = airgapA / 1000;
-	}); // m
-	run(() => {
-		airgapBM = airgapB / 1000;
-	}); // m
-	run(() => {
-		sectionAreaLM = airgapAM * airgapBM;
-	});
-	run(() => {
-		sectionAreaL = sectionAreaLM * 1000000;
-	}); // mm2
-	run(() => {
-		sectionAreaAirM = (shuttleX * sectionAreaLM) / 100;
-	}); // m2
-	run(() => {
-		sectionAreaAir = sectionAreaAirM * 1000000;
-	}); // mm2
-	run(() => {
-		sectionAreaShuttleM = ((100 - shuttleX) * sectionAreaLM) / 100;
-	}); // m2
-	run(() => {
-		sectionAreaShuttle = sectionAreaShuttleM * 1000000;
-	}); // mm2
+	// calculation and outputs
 	function fShuttleReluctance(posX: number, pHM: number): number {
 		const areaLM = airgapAM * airgapBM; // m2
 		const areaAirM = (posX * areaLM) / 100; // m2
@@ -231,45 +52,15 @@
 			airgapGM / (mu0 * areaAirM + permeaG * mu0 * areaShuttleM);
 		return reluct;
 	}
-	//shuttleReluctance =
-	//	torusLengthM / (permeability * mu0 * airgapAM * airgapBM) +
-	//	airgapGM / (mu0 * sectionAreaAirM + permeaG * mu0 * sectionAreaShuttleM);
-	run(() => {
-		shuttleReluctance = fShuttleReluctance(shuttleX, 0);
-	});
 	function fShuttleMagFlux(posX: number, pHM: number): number {
 		const magFlux = magnetomotive / fShuttleReluctance(posX, pHM);
 		return magFlux;
 	}
-	//shuttleMagneticFlux = magnetomotive / shuttleReluctance;
-	run(() => {
-		shuttleMagneticFlux = fShuttleMagFlux(shuttleX, 0);
-	});
 	function fShuttleMagField(posX: number, pHM: number): number {
 		const areaLM = airgapAM * airgapBM; // m2
 		const magField = fShuttleMagFlux(posX, pHM) / areaLM;
 		return magField;
 	}
-	//shuttleMagneticFieldL = shuttleMagneticFlux / sectionAreaLM;
-	run(() => {
-		shuttleMagneticFieldL = fShuttleMagField(shuttleX, 0);
-	});
-	//$: RG1 = airgapGM / (mu0 * sectionAreaAirM);
-	//$: RG2 = airgapGM / (permeaG * mu0 * sectionAreaShuttleM);
-	//shuttleMagneticFieldG1 = ((shuttleMagneticFlux / sectionAreaAirM) * RG2) / (RG1 + RG2);
-	run(() => {
-		shuttleMagneticFieldG1 = shuttleMagneticFieldL;
-	});
-	//shuttleMagneticFieldG2 = ((shuttleMagneticFlux / sectionAreaShuttleM) * RG1) / (RG1 + RG2);
-	run(() => {
-		shuttleMagneticFieldG2 = shuttleMagneticFieldL;
-	});
-	//$: {
-	//	shuttleMagneticEnergy =
-	//		(shuttleMagneticFieldL ** 2 * torusLengthM * sectionAreaLM) / (2 * permeability * mu0) +
-	//		(shuttleMagneticFieldG1 ** 2 * airgapGM * sectionAreaAirM) / (2 * mu0) +
-	//		(shuttleMagneticFieldG2 ** 2 * airgapGM * sectionAreaShuttleM) / (2 * permeaG * mu0);
-	//}
 	function fShuttleEm(posX: number, pHM: number): number {
 		const areaLM = airgapAM * airgapBM; // m2
 		const areaAirM = (posX * areaLM) / 100; // m2
@@ -297,17 +88,10 @@
 			(magFieldG2 ** 2 * airgapGM * areaShuttleM) / (2 * permeaG * mu0);
 		return magEm;
 	}
-	run(() => {
-		shuttleMagneticEnergy = fShuttleEm(shuttleX, 0);
-	});
 	function fShuttleInductance(posX: number, pHM: number): number {
 		const induct = turnNb ** 2 / fShuttleReluctance(posX, pHM);
 		return induct;
 	}
-	//shuttleInductance = turnNb ** 2 / shuttleReluctance;
-	run(() => {
-		shuttleInductance = fShuttleInductance(shuttleX, 0);
-	});
 	function fShuttleForce(posX: number, pHM: number): number {
 		const step = 0.1;
 		let posX2 = posX;
@@ -320,31 +104,88 @@
 		const rF = (fShuttleEm(posX2 + step, pHM) - fShuttleEm(posX2 - step, pHM)) / (2 * step);
 		return rF;
 	}
-	run(() => {
-		permeaG = permeaG; // to force the reactivity
-		shuttleForce = fShuttleForce(shuttleX, 0);
-	});
-	run(() => {
-		airgapHM = airgapH / 1000;
-	});
-	run(() => {
-		shuttlerReluctance = fShuttleReluctance(shuttleX, airgapHM);
-	});
-	run(() => {
-		shuttlerMagneticFlux = fShuttleMagFlux(shuttleX, airgapHM);
-	});
-	run(() => {
-		shuttlerMagneticFieldL = fShuttleMagField(shuttleX, airgapHM);
-	});
-	run(() => {
-		shuttlerEm = fShuttleEm(shuttleX, airgapHM);
-	});
-	run(() => {
-		shuttlerInductance = (2 * shuttlerEm) / current ** 2;
-	});
-	run(() => {
-		shuttlerForce = fShuttleForce(shuttleX, airgapHM);
-	});
+	let sectionAreaM = $derived(sectionArea / 1000000); // m2
+	let torusLength = $derived(2 * Math.PI * torusRadius); // mm
+	let torusLengthM = $derived(torusLength / 1000); // m
+	let magnetomotive = $derived(turnNb * current);
+	let torusReluctance = $derived(torusLengthM / (permeability * mu0 * sectionAreaM));
+	let torusMagneticFlux = $derived(magnetomotive / torusReluctance);
+	let torusMagneticField = $derived(torusMagneticFlux / sectionAreaM);
+	let torusMagneticEnergy = $derived(
+		(permeability * mu0 * sectionAreaM * turnNb ** 2 * current ** 2) / (2 * torusLengthM)
+	);
+	let torusInductance = $derived(turnNb ** 2 / torusReluctance);
+	let swellingL2 = $derived((torusLength * percentL2) / 100);
+	let swellingL1 = $derived(torusLength - swellingL2);
+	let swellingL1M = $derived(swellingL1 / 1000);
+	let swellingS1 = $derived(sectionArea);
+	let swellingS1M = $derived(swellingS1 / 1000000);
+	let swellingL2M = $derived(swellingL2 / 1000);
+	let swellingS2 = $derived((swellingS1 * percentS2) / 100);
+	let swellingS2M = $derived(swellingS2 / 1000000);
+	let swellingReluctance = $derived(
+		(swellingL1M * swellingS2M + swellingL2M * swellingS1M) /
+			(permeability * mu0 * swellingS1M * swellingS2M)
+	);
+	let swellingMagneticFlux = $derived(magnetomotive / swellingReluctance);
+	let swellingMagneticField1 = $derived(swellingMagneticFlux / swellingS1M);
+	let swellingMagneticField2 = $derived(swellingMagneticFlux / swellingS2M);
+	let swellingMagneticEnergy = $derived(
+		(swellingMagneticField1 ** 2 * swellingL1M * swellingS1M) / (2 * permeability * mu0) +
+			(swellingMagneticField2 ** 2 * swellingL2M * swellingS2M) / (2 * permeability * mu0)
+	);
+	let swellingInductance = $derived(
+		(permeability * mu0 * turnNb ** 2 * swellingS1M * swellingS2M) /
+			(swellingL1M * swellingS2M + swellingL2M * swellingS1M)
+	);
+	let airgapGM = $derived(airgapG / 1000);
+	let airgapReluctance = $derived(
+		(torusLengthM + permeability * airgapGM) / (permeability * mu0 * sectionAreaM)
+	);
+	let airgapMagneticFlux = $derived(magnetomotive / airgapReluctance);
+	let airgapMagneticField = $derived(airgapMagneticFlux / sectionAreaM);
+	let airgapMagneticEnergy = $derived(
+		(airgapMagneticField ** 2 * torusLengthM * sectionAreaM) / (2 * permeability * mu0) +
+			(airgapMagneticField ** 2 * airgapGM * sectionAreaM) / (2 * mu0)
+	);
+	let airgapInductance = $derived(turnNb ** 2 / airgapReluctance);
+	let airgapAM = $derived(airgapA / 1000); // m
+	let airgapBM = $derived(airgapB / 1000); // m
+	let sectionAreaLM = $derived(airgapAM * airgapBM); // m2
+	let sectionAreaL = $derived(sectionAreaLM * 1000000); // mm2
+	let sectionAreaAirM = $derived((shuttleX * sectionAreaLM) / 100); // m2
+	let sectionAreaAir = $derived(sectionAreaAirM * 1000000); // mm2
+	let sectionAreaShuttleM = $derived(((100 - shuttleX) * sectionAreaLM) / 100); // m2
+	let sectionAreaShuttle = $derived(sectionAreaShuttleM * 1000000); // mm2
+	//shuttleReluctance =
+	//	torusLengthM / (permeability * mu0 * airgapAM * airgapBM) +
+	//	airgapGM / (mu0 * sectionAreaAirM + permeaG * mu0 * sectionAreaShuttleM);
+	let shuttleReluctance = $derived(fShuttleReluctance(shuttleX, 0));
+	//shuttleMagneticFlux = magnetomotive / shuttleReluctance;
+	let shuttleMagneticFlux = $derived(fShuttleMagFlux(shuttleX, 0));
+	//shuttleMagneticFieldL = shuttleMagneticFlux / sectionAreaLM;
+	let shuttleMagneticFieldL = $derived(fShuttleMagField(shuttleX, 0));
+	// RG1 = airgapGM / (mu0 * sectionAreaAirM);
+	// RG2 = airgapGM / (permeaG * mu0 * sectionAreaShuttleM);
+	//shuttleMagneticFieldG1 = ((shuttleMagneticFlux / sectionAreaAirM) * RG2) / (RG1 + RG2);
+	let shuttleMagneticFieldG1 = $derived(shuttleMagneticFieldL);
+	//shuttleMagneticFieldG2 = ((shuttleMagneticFlux / sectionAreaShuttleM) * RG1) / (RG1 + RG2);
+	let shuttleMagneticFieldG2 = $derived(shuttleMagneticFieldL);
+	//	shuttleMagneticEnergy =
+	//		(shuttleMagneticFieldL ** 2 * torusLengthM * sectionAreaLM) / (2 * permeability * mu0) +
+	//		(shuttleMagneticFieldG1 ** 2 * airgapGM * sectionAreaAirM) / (2 * mu0) +
+	//		(shuttleMagneticFieldG2 ** 2 * airgapGM * sectionAreaShuttleM) / (2 * permeaG * mu0);
+	let shuttleMagneticEnergy = $derived(fShuttleEm(shuttleX, 0));
+	//shuttleInductance = turnNb ** 2 / shuttleReluctance;
+	let shuttleInductance = $derived(fShuttleInductance(shuttleX, 0));
+	let shuttleForce = $derived(fShuttleForce(shuttleX, 0)); // TODO: force reactivity on permeaG?
+	let airgapHM = $derived(airgapH / 1000); // m
+	let shuttlerReluctance = $derived(fShuttleReluctance(shuttleX, airgapHM));
+	let shuttlerMagneticFlux = $derived(fShuttleMagFlux(shuttleX, airgapHM));
+	let shuttlerMagneticFieldL = $derived(fShuttleMagField(shuttleX, airgapHM));
+	let shuttlerEm = $derived(fShuttleEm(shuttleX, airgapHM));
+	let shuttlerInductance = $derived((2 * shuttlerEm) / current ** 2);
+	let shuttlerForce = $derived(fShuttleForce(shuttleX, airgapHM));
 	// charts
 	let chartReluctance: ChartJS | null = null;
 	let chartMagFlux: ChartJS | null = null;
