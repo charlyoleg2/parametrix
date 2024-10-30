@@ -7,13 +7,7 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		checkboxId,
-		labelText,
-		top1,
-		top2,
-		children
-	}: Props = $props();
+	let { checkboxId, labelText, top1, top2, children }: Props = $props();
 </script>
 
 <input type="checkbox" id={checkboxId} class="toggle" checked />

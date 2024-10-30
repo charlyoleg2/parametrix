@@ -26,8 +26,8 @@
 	let stage2Nb = $state(6);
 	let shutFor = $state(0.3); //0.0003; // N
 	// outputs
-	let torque1 = $state(10);
-	let torque2 = $state(10);
+	let torque1 = $derived(d1 * load_mass * 9.81);
+	let torque2 = $derived(torque1 * securityFactor);
 	let torque3 = $state(10);
 	let torque4 = $state(10);
 	let torque5 = $state(10);
@@ -56,12 +56,6 @@
 	let ratio2One = $state(10);
 	let ratio2All = $state(10);
 	// calculations
-	run(() => {
-		torque1 = d1 * load_mass * 9.81;
-	});
-	run(() => {
-		torque2 = torque1 * securityFactor;
-	});
 	run(() => {
 		oneTurn = 2 * halfTurn;
 	});
