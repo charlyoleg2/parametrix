@@ -19,8 +19,8 @@
 		adjustTranslate,
 		mergeFaces
 	} from 'geometrix';
-	import { storePV } from './storePVal';
-	import { dLayers } from './drawingLayers';
+	import { storePV } from './storePVal.svelte';
+	import { dLayers } from './drawingLayers.svelte';
 	import { onMount } from 'svelte';
 
 	interface Props {
@@ -95,8 +95,8 @@
 	}
 	function canvasResize() {
 		canvasSetSize();
-		canvasRedrawFull($dLayers);
-		canvasRedrawZoom($dLayers);
+		canvasRedrawFull(dLayers);
+		canvasRedrawZoom(dLayers);
 	}
 	let domInit = $state(0);
 	function checkFace(iFaces: string[], iFace: string): string {
@@ -130,7 +130,7 @@
 		canvasRedrawZoom(iLayers);
 	}
 	function geomRedraw(iSimTime: number, iFace: string) {
-		geomRedrawSub(iSimTime, $storePV[pDef.partName], iFace, $dLayers);
+		geomRedrawSub(iSimTime, storePV[pDef.partName], iFace, dLayers);
 	}
 	onMount(() => {
 		// initial drawing
@@ -139,10 +139,10 @@
 		//paramChange();
 		domInit = 1;
 	});
-	// reactivity on simTime, $storePV and layers
+	// reactivity on simTime, storePV and layers
 	$effect(() => {
 		if (domInit === 1) {
-			geomRedrawSub(simTime, $storePV[pDef.partName], selFace, $dLayers);
+			geomRedrawSub(simTime, storePV[pDef.partName], selFace, dLayers);
 		}
 	});
 	// Zoom stories
@@ -173,7 +173,7 @@
 			default:
 				console.log(`ERR423: ${action} has no case!`);
 		}
-		canvasRedrawZoom($dLayers);
+		canvasRedrawZoom(dLayers);
 	}
 	// zoom functions on the canvasFull
 	interface tMouse {
@@ -238,7 +238,7 @@
 			if (eve.buttons === 1) {
 				const diffX = eve.offsetX - mouseF.offsetX;
 				const diffY = eve.offsetY - mouseF.offsetY;
-				canvasRedrawFull($dLayers);
+				canvasRedrawFull(dLayers);
 				//const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 				ctx1.beginPath();
 				ctx1.rect(mouseF.offsetX, mouseF.offsetY, diffX, diffY);
@@ -246,7 +246,7 @@
 				ctx1.stroke();
 			}
 			// mouse position
-			if ($dLayers.ruler) {
+			if (dLayers.ruler) {
 				const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 				ctx1.clearRect(5, 5, 200, 25);
 				ctx1.font = '15px Arial';
@@ -278,10 +278,10 @@
 		if (eve.buttons === 1) {
 			const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, mouseZadjust);
 			zAdjust = adjustTranslate(mouseZx, mouseZy, p2x, p2y, mouseZadjust);
-			canvasRedrawZoom($dLayers);
+			canvasRedrawZoom(dLayers);
 		} else {
 			// mouse position
-			if ($dLayers.ruler && canvasZoom) {
+			if (dLayers.ruler && canvasZoom) {
 				const ctx2 = canvasZoom.getContext('2d')!;
 				const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, zAdjust);
 				ctx2.clearRect(5, 5, 200, 25);
@@ -298,7 +298,7 @@
 		} else {
 			zAdjust = adjustScale(1.3, zAdjust);
 		}
-		canvasRedrawZoom($dLayers);
+		canvasRedrawZoom(dLayers);
 	}
 </script>
 

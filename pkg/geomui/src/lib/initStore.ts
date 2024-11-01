@@ -2,12 +2,12 @@
 
 import type { tParamVal, tPageDef, tAllPageDef } from 'geometrix';
 //import { PType } from 'geometrix';
-import type { tStorePVal } from './storePVal';
-import { storePV } from './storePVal';
-import { get } from 'svelte/store';
+//import type { tStorePVal } from './storePVal.svelte';
+import { storePV } from './storePVal.svelte';
+//import { get } from 'svelte/store';
 
 function initStore(designDefs: tAllPageDef) {
-	const iniPV: tStorePVal = {};
+	//const iniPV: tStorePVal = {};
 	for (const design of Object.keys(designDefs)) {
 		const designParam: tParamVal = {};
 		for (const param of designDefs[design].pDef.params) {
@@ -15,16 +15,16 @@ function initStore(designDefs: tAllPageDef) {
 			designParam[param.name] = param.init;
 			//}
 		}
-		iniPV[design] = designParam;
+		storePV[design] = designParam;
 	}
-	storePV.set(iniPV);
+	//storePV = iniPV;
 }
 
 function updateStore(iPartName: string, dParams: tParamVal, overwrite: boolean) {
-	const iniPV = get(storePV);
-	const designNames = Object.keys(iniPV);
+	//const iniPV = storePV;
+	const designNames = Object.keys(storePV);
 	if (designNames.includes(iPartName)) {
-		const inidParams = iniPV[iPartName];
+		const inidParams = storePV[iPartName];
 		const inidParamNames = Object.keys(inidParams);
 		for (const pa of Object.keys(dParams)) {
 			if (!inidParamNames.includes(pa)) {
@@ -33,13 +33,13 @@ function updateStore(iPartName: string, dParams: tParamVal, overwrite: boolean) 
 				inidParams[pa] = dParams[pa];
 			}
 		}
-		iniPV[iPartName] = inidParams;
+		storePV[iPartName] = inidParams;
 		//console.log(`dbg781: updateStore of ${iPartName}`);
 	} else {
-		iniPV[iPartName] = dParams;
+		storePV[iPartName] = dParams;
 		//console.log(`dbg782: updateStore of new ${iPartName}`);
 	}
-	storePV.set(iniPV);
+	//storePV = iniPV;
 }
 
 function incrStore(oneDesignDef: tPageDef) {

@@ -2,8 +2,8 @@
 	//import { colors } from 'geometrix';
 	import type { tCanvasAdjust, tLayers, Figure, tParamVal, tGeomFunc } from 'geometrix';
 	import { copyLayers, mergeFaces } from 'geometrix';
-	import { storePV } from './storePVal';
-	import { dLayers } from './drawingLayers';
+	import { storePV } from './storePVal.svelte';
+	import { dLayers } from './drawingLayers.svelte';
 	import { onMount } from 'svelte';
 
 	interface Props {
@@ -57,14 +57,14 @@
 	}
 	onMount(() => {
 		// initial drawing
-		geomRedraw(simTime, $storePV[pageName], selFace, $dLayers);
+		geomRedraw(simTime, storePV[pageName], selFace, dLayers);
 		domInit = 1;
 		//paramChange();
 	});
-	// reactivity on simTime and $storePV
+	// reactivity on simTime and storePV
 	$effect(() => {
 		if (domInit === 1) {
-			geomRedraw(simTime, $storePV[pageName], selFace, $dLayers);
+			geomRedraw(simTime, storePV[pageName], selFace, dLayers);
 		}
 	});
 </script>

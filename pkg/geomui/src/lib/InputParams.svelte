@@ -7,7 +7,7 @@
 	import SimpleDrawing from './SimpleDrawing.svelte';
 	import type { tParam, tParamDef, tParamVal, tGeomFunc, tCanvasAdjust } from 'geometrix';
 	import { PType, parseParamFile, createParamFile, adjustZero } from 'geometrix';
-	import { storePV } from './storePVal';
+	import { storePV } from './storePVal.svelte';
 	import { downloadParams, generateUrl } from './downloadParams';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
@@ -47,10 +47,10 @@
 			pNameList.push(p.name);
 			if (Object.hasOwn(ipVal, p.name)) {
 				cover += 1;
-				if ($storePV[pDef.partName][p.name] === ipVal[p.name]) {
+				if (storePV[pDef.partName][p.name] === ipVal[p.name]) {
 					equal += 1;
 				} else {
-					$storePV[pDef.partName][p.name] = ipVal[p.name];
+					storePV[pDef.partName][p.name] = ipVal[p.name];
 				}
 			} else {
 				uncover += 1;
@@ -77,7 +77,7 @@
 	}
 	//function initParams1() {
 	//	for (const p of pDef.params) {
-	//		$storePV[pDef.partName][p.name] = p.init;
+	//		storePV[pDef.partName][p.name] = p.init;
 	//	}
 	//}
 	// load parameters
@@ -151,7 +151,7 @@
 	}
 	// download parameters
 	function downloadParams2() {
-		downloadParams(pDef.partName, $storePV[pDef.partName], inputComment);
+		downloadParams(pDef.partName, storePV[pDef.partName], inputComment);
 	}
 	// modal
 	let modalLoadDefault = $state(false);
@@ -196,7 +196,7 @@
 			const storeAllStr = createParamFile(
 				lastModif,
 				pDef.partName,
-				$storePV[pDef.partName],
+				storePV[pDef.partName],
 				inputComment
 			);
 			//console.log(`save in localStorage ${storeKey}`);
@@ -210,7 +210,7 @@
 	// Save as URL
 	let pUrl = $state('');
 	function generateUrl2(): string {
-		const url1 = generateUrl($page.url.href, $storePV[pDef.partName], false);
+		const url1 = generateUrl($page.url.href, storePV[pDef.partName], false);
 		return url1.toString();
 	}
 	function openModalUrl() {
@@ -237,9 +237,9 @@
 		//console.log(`dbg283: ${pDef_page}`);
 		if (prePartName !== pDef.partName) {
 			// workaround for avoiding weird re-trigger
-			const paramNb = Object.keys($storePV[pDef_page]).length;
+			const paramNb = Object.keys(storePV[pDef_page]).length;
 			if (idx < paramNb) {
-				paramPict(Object.keys($storePV[pDef_page])[idx]);
+				paramPict(Object.keys(storePV[pDef_page])[idx]);
 			}
 		}
 	}
@@ -374,7 +374,7 @@
 				</tbody>
 				<tbody class:collaps={htableVis[sect.sectionID]}>
 					{#each sect.params as param, pidx}
-						<tr class:changed={$storePV[pDef.partName][param.name] !== param.init}>
+						<tr class:changed={storePV[pDef.partName][param.name] !== param.init}>
 							<td>{sidx + 1}.{pidx + 1}</td>
 							<td
 								><button onclick={() => paramPict(param.name)}>{param.name}</button
@@ -384,7 +384,7 @@
 								{#if param.pType === PType.eNumber}
 									<input
 										type="number"
-										bind:value={$storePV[pDef.partName][param.name]}
+										bind:value={storePV[pDef.partName][param.name]}
 										min={param.min}
 										max={param.max}
 										step={param.step}
@@ -393,20 +393,20 @@
 									/>
 									<input
 										type="range"
-										bind:value={$storePV[pDef.partName][param.name]}
+										bind:value={storePV[pDef.partName][param.name]}
 										min={param.min}
 										max={param.max}
 										step={param.step}
 										onchange={paramChange}
 									/>
 								{:else if param.pType === PType.eCheckbox}
-									<select bind:value={$storePV[pDef.partName][param.name]}>
+									<select bind:value={storePV[pDef.partName][param.name]}>
 										{#each ['Off', 'On'] as one, idx}
 											<option value={idx}>{one}</option>
 										{/each}
 									</select>
 								{:else if param.pType === PType.eDropdown}
-									<select bind:value={$storePV[pDef.partName][param.name]}>
+									<select bind:value={storePV[pDef.partName][param.name]}>
 										{#each param.dropdown as one, idx}
 											<option value={idx}>{one}</option>
 										{/each}

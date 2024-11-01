@@ -13,7 +13,7 @@
 	import InputParams from './InputParams.svelte';
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
-	import { storePV } from './storePVal';
+	import { storePV } from './storePVal.svelte';
 
 	interface Props {
 		pDef: tParamDef;
@@ -44,7 +44,7 @@
 	function paramChange2(iPageName: string, iSimTime: number) {
 		const mydate = new Date().toLocaleTimeString();
 		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
-		const geome = fgeom(iSimTime, $storePV[pDef.partName]);
+		const geome = fgeom(iSimTime, storePV[pDef.partName]);
 		logValue += geome.logstr;
 		calcErr = geome.calcErr;
 		calcWarn = checkWarn(geome.logstr);
@@ -134,7 +134,7 @@
 			const fContent = await fileBinContent(
 				fgeom,
 				simTime,
-				$storePV[pDef.partName],
+				storePV[pDef.partName],
 				pDef,
 				exportFormat
 			);
@@ -142,7 +142,7 @@
 		} else {
 			const fContent = fileTextContent(
 				fgeom,
-				$storePV[pDef.partName],
+				storePV[pDef.partName],
 				pDef,
 				nFace,
 				exportFormat

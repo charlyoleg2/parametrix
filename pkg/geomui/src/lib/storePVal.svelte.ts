@@ -1,10 +1,10 @@
-// storePVal.ts
+// storePVal.svelte.ts
 
 import type { tParamVal } from 'geometrix';
-import { writable } from 'svelte/store';
+//import { writable } from 'svelte/store';
 
 type tStorePVal = Record<string, tParamVal>;
-const storePV = writable({} as tStorePVal);
+const storePV: tStorePVal = $state({});
 
 export type { tStorePVal };
 export { storePV };
