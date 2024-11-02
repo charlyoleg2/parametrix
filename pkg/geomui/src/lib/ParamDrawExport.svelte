@@ -1,28 +1,35 @@
 <script lang="ts">
 	//import type { tParamDef, tGeomFunc, tSubDesign, tAllLink, tCanvasAdjust } from 'geometrix';
-	import type { tParamDef, tGeomFunc, tSubDesign, tAllLink } from 'geometrix';
+	import type { tParamDef, tGeomFunc, tSubDesign, tAllLink, tGeom } from 'geometrix';
 	import {
 		EFormat,
 		fileBinContent,
 		fileTextContent,
 		fileSuffix,
 		fileMime,
-		fileBin,
-		adjustZero
+		fileBin
+		//adjustZero
 	} from 'geometrix';
-	import InputParams from './InputParams.svelte';
-	import Drawing from './Drawing.svelte';
+	//import InputParams from './InputParams.svelte';
+	//import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
 	import { storePV } from './storePVal.svelte';
 
+	// properties
 	interface Props {
 		pDef: tParamDef;
 		fgeom: tGeomFunc;
 		pLink: tAllLink;
 	}
-
 	let { pDef, fgeom, pLink }: Props = $props();
 
+	// state
+	let simTime: number = $state(0);
+	let exportFace: string = $state('zip');
+	//let selFace: string = $state('');
+	//let zAdjust = $state(adjustZero());
+
+	// derived
 	function checkWarn(txt: string) {
 		let rWarn = true;
 		const re = /warn/i;
@@ -31,34 +38,18 @@
 		}
 		return rWarn;
 	}
-	let optFaces: string[] = $state([]);
-	let exportFace: string = $state('');
-	let selFace: string = $state('');
-	let simTime = $state(0);
-	let zAdjust = $state(adjustZero());
-	// log and paramChange
-	let logValue = $state('Dummy initial\nWill be replaced during onMount\n');
-	let calcErr = $state(false);
-	let calcWarn = $state(false);
-	let subD: tSubDesign = $state({});
-	function paramChange2(iPageName: string, iSimTime: number) {
+	let geome: tGeom = $derived(fgeom(simTime, storePV[pDef.partName]));
+	let logValue: string = $derived.by(() => {
 		const mydate = new Date().toLocaleTimeString();
-		logValue = `Geometry ${iPageName} computed at ${mydate}\n`;
-		const geome = fgeom(iSimTime, storePV[pDef.partName]);
-		logValue += geome.logstr;
-		calcErr = geome.calcErr;
-		calcWarn = checkWarn(geome.logstr);
-		optFaces = Object.keys(geome.fig);
-		exportFace = 'zip';
-		//geomRedraw(iSimTime);
-		subD = geome.sub;
-	}
-	function paramChange() {
-		paramChange2(pDef.partName, simTime);
-	}
-	$effect(() => {
-		paramChange2(pDef.partName, simTime);
-	}); // for reactivity on page change and simTime
+		let rLogValue = `Geometry ${pDef.partName} computed at ${mydate}\n`;
+		rLogValue += geome.logstr;
+		return rLogValue;
+	});
+	let optFaces: string[] = $derived(Object.keys(geome.fig));
+	let calcErr: boolean = $derived(geome.calcErr);
+	let calcWarn: boolean = $derived(checkWarn(geome.logstr));
+	let subD: tSubDesign = $derived(geome.sub);
+
 	// export drawings
 	function download_binFile(fName: string, fContent: Blob) {
 		//create temporary an invisible element
@@ -155,7 +146,7 @@
 	}
 </script>
 
-<InputParams {pDef} {paramChange} {fgeom} {selFace} {zAdjust} {simTime} />
+<!--InputParams {pDef} {paramChange} {fgeom} {selFace} {zAdjust} {simTime} /-->
 <section>
 	<h2>Log</h2>
 	<textarea
@@ -168,7 +159,7 @@
 		class:colorWarn={calcWarn}
 	></textarea>
 </section>
-<Drawing {pDef} {fgeom} {optFaces} bind:selFace bind:zAdjust bind:simTime />
+<!--Drawing {pDef} {fgeom} {optFaces} bind:selFace bind:zAdjust bind:simTime /-->
 <section>
 	<h2>Export</h2>
 	<select bind:value={exportFace}>

@@ -15,10 +15,9 @@
 		origPartName?: string;
 		pLink: tAllLink;
 	}
-
 	let { subD = {}, origPartName = '', pLink }: Props = $props();
 
-	const subInsts: string[] = Object.keys(subD); // TODO5 is $derived needed?
+	const subInsts: string[] = $derived(Object.keys(subD)); // $derived is needed!
 
 	async function goToUrl(subInstName: string) {
 		const subObj = subD[subInstName];

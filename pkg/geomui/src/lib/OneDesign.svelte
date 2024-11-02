@@ -12,9 +12,7 @@
 
 	let { pageDef, pLink }: Props = $props();
 
-	$effect(() => {
-		incrStore(pageDef);
-	});
+	incrStore(pageDef); // TODO5 do we need $derived or $effect
 </script>
 
 <h1>{pageDef.pTitle}</h1>
