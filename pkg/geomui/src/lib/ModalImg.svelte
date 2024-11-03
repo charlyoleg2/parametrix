@@ -3,7 +3,6 @@
 		svgPath: string;
 		modalOpen: boolean;
 	}
-
 	let { svgPath, modalOpen = $bindable() }: Props = $props();
 
 	function mCancel() {
