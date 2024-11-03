@@ -5,6 +5,7 @@
 </script>
 
 <script lang="ts">
+	// props
 	interface Props {
 		okName?: string;
 		okFunc: tOkFunc;
@@ -20,6 +21,7 @@
 		children
 	}: Props = $props();
 
+	// actions
 	function mCancel() {
 		modalOpen = false;
 	}
