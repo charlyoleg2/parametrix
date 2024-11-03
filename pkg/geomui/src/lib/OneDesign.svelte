@@ -3,7 +3,7 @@
 	import { incrStore } from './initStore';
 	import DrawingList from './DrawingList.svelte';
 	import ParamDrawExport from './ParamDrawExport.svelte';
-	//import { untrack } from 'svelte';
+	import { untrack } from 'svelte';
 
 	interface Props {
 		pageDef: tPageDef;
@@ -13,11 +13,11 @@
 	let { pageDef, pLink }: Props = $props();
 
 	// TODO5 workaround waiting for onPropChange()
-	//$effect(() => {
-	//	console.log(`workaround for onPropChange: ${pageDef.pTitle} ${pageDef.pDef.partName}`);
-	//	untrack(() => incrStore(pageDef));
-	//});
-	incrStore(pageDef); // For now, no reactivity on props-change
+	$effect(() => {
+		console.log(`workaround for onPropChange: ${pageDef.pTitle} ${pageDef.pDef.partName}`);
+		untrack(() => incrStore(pageDef));
+	});
+	incrStore(pageDef); // For initialization before DOM-initialization
 </script>
 
 <h1>{pageDef.pTitle}</h1>
