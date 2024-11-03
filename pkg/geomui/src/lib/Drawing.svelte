@@ -41,11 +41,15 @@
 		simTime = $bindable(0)
 	}: Props = $props();
 
+	// const
 	const c_ParametrixAll = 'ParametrixAll';
-	let windowWidth: number | undefined = $state();
-	let canvasFull: HTMLCanvasElement | undefined = $state();
-	let canvasZoom: HTMLCanvasElement | undefined = $state();
 	const canvas_size_min = 400;
+
+	// state
+	let windowWidth: number = $state(canvas_size_min);
+	// those internal states are bound: no need of $state
+	let canvasFull: HTMLCanvasElement;
+	let canvasZoom: HTMLCanvasElement;
 
 	// Canavas Figures
 	let aFigure: Figure;
