@@ -4,21 +4,22 @@
 	//import { downloadParams, generateUrl } from './downloadParams';
 	import { downloadParams } from './downloadParams';
 	import { updateStore } from './initStore';
-	//import { onMount } from 'svelte';
-	//import { browser } from '$app/environment';
 	//import { page } from '$app/stores';
 	import { base } from '$app/paths';
 	import { goto } from '$app/navigation';
 
+	// props
 	interface Props {
-		subD?: tSubDesign;
-		origPartName?: string;
+		subD: tSubDesign;
+		origPartName: string;
 		pLink: tAllLink;
 	}
-	let { subD = {}, origPartName = '', pLink }: Props = $props();
+	let { subD, origPartName, pLink }: Props = $props();
 
-	const subInsts: string[] = $derived(Object.keys(subD)); // $derived is needed!
+	// derived
+	const dSubInstList: string[] = $derived(Object.keys(subD));
 
+	// actions
 	async function goToUrl(subInstName: string) {
 		const subObj = subD[subInstName];
 		// modify the global store storePV
@@ -61,10 +62,10 @@
 <section>
 	<h2>
 		Sub-designs
-		<span>(Number of sub-instances: {subInsts.length})</span>
+		<span>(Number of sub-instances: {dSubInstList.length})</span>
 	</h2>
 	<ol>
-		{#each subInsts as subInst}
+		{#each dSubInstList as subInst}
 			<li>
 				<input type="checkbox" id="cb_{subInst}" class="toggle" checked={false} />
 				<label for="cb_{subInst}" class="label">
