@@ -1,19 +1,22 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
 
+	// props
 	interface Props {
 		tMax?: number;
 		tStep?: number;
 		tUpdate?: number;
 		simTime?: number;
 	}
-
 	let { tMax = 10, tStep = 0.1, tUpdate = 500, simTime = $bindable(0) }: Props = $props();
 
+	// internal state: no need of $state() because no UI update
 	let intervalID: ReturnType<typeof setTimeout> | null = null;
 	let speed = 0;
 	let inc: number;
 	const speedMax = 4;
+
+	// actions
 	function clearInterval2() {
 		if (intervalID !== null) {
 			clearInterval(intervalID);
