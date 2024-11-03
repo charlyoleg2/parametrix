@@ -1,17 +1,23 @@
 <script lang="ts">
-	//import type { tParamDef, tGeomFunc, tSubDesign, tAllLink, tCanvasAdjust } from 'geometrix';
-	import type { tParamDef, tGeomFunc, tSubDesign, tAllLink, tGeom } from 'geometrix';
+	import type {
+		tParamDef,
+		tGeomFunc,
+		tSubDesign,
+		tAllLink,
+		tCanvasAdjust,
+		tGeom
+	} from 'geometrix';
 	import {
 		EFormat,
 		fileBinContent,
 		fileTextContent,
 		fileSuffix,
 		fileMime,
-		fileBin
-		//adjustZero
+		fileBin,
+		adjustZero
 	} from 'geometrix';
 	//import InputParams from './InputParams.svelte';
-	//import Drawing from './Drawing.svelte';
+	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
 	import { storePV } from './storePVal.svelte';
 
@@ -36,8 +42,8 @@
 	// state
 	let simTime: number = $state(0);
 	let exportFace: string = $state('zip');
-	//let selFace: string = $state('');
-	//let zAdjust = $state(adjustZero());
+	let selFace: string = $state('dummyInit');
+	let zAdjust: tCanvasAdjust = $state(adjustZero());
 
 	// derived
 	let geome: tGeom = $derived(fgeom(simTime, storePV[pDef.partName]));
@@ -161,7 +167,7 @@
 		class:colorWarn={calcWarn}
 	></textarea>
 </section>
-<!--Drawing {pDef} {fgeom} {optFaces} bind:selFace bind:zAdjust bind:simTime /-->
+<Drawing {pDef} {fgeom} {optFaces} bind:selFace bind:zAdjust bind:simTime />
 <section>
 	<h2>Export</h2>
 	<select bind:value={exportFace}>

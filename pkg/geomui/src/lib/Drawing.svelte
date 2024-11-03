@@ -23,6 +23,7 @@
 	import { dLayers } from './drawingLayers.svelte';
 	import { onMount } from 'svelte';
 
+	// props
 	interface Props {
 		pDef: tParamDef;
 		fgeom: tGeomFunc;
@@ -31,7 +32,6 @@
 		zAdjust: tCanvasAdjust;
 		simTime?: number;
 	}
-
 	let {
 		pDef,
 		fgeom,
