@@ -14,18 +14,20 @@
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
 
+	// props
 	interface Props {
 		pDef: tParamDef;
-		paramChange: () => void;
 		fgeom: tGeomFunc;
 		selFace: string;
 		zAdjust: tCanvasAdjust;
 		simTime?: number;
 	}
+	let { pDef, fgeom, selFace, zAdjust, simTime = 0 }: Props = $props();
 
-	let { pDef, paramChange, fgeom, selFace, zAdjust, simTime = 0 }: Props = $props();
-
+	// const
 	const cAdjustZero = adjustZero();
+
+	// state
 	let inputComment = $state('');
 
 	// initialization
@@ -104,7 +106,6 @@
 	//initParams1();
 	function forceInit() {
 		initParams2();
-		paramChange();
 	}
 	onMount(() => {
 		forceInit();
@@ -127,7 +128,6 @@
 			const [paramJson] = parseParamFile(iStr);
 			[loadMsg, applyWarn] = tolerantApply(paramJson.partName, paramJson.pVal);
 			inputComment = paramJson.comment;
-			paramChange();
 		} catch (emsg) {
 			let errMsg = 'err723: error by parsing parameter file\n';
 			errMsg += emsg as string;
@@ -388,7 +388,6 @@
 										min={param.min}
 										max={param.max}
 										step={param.step}
-										onchange={paramChange}
 										class="input-number"
 									/>
 									<input
@@ -397,7 +396,6 @@
 										min={param.min}
 										max={param.max}
 										step={param.step}
-										onchange={paramChange}
 									/>
 								{:else if param.pType === PType.eCheckbox}
 									<select bind:value={storePV[pDef.partName][param.name]}>

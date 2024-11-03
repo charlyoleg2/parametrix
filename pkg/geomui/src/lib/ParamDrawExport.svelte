@@ -16,7 +16,7 @@
 		fileBin,
 		adjustZero
 	} from 'geometrix';
-	//import InputParams from './InputParams.svelte';
+	import InputParams from './InputParams.svelte';
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
 	import { storePV } from './storePVal.svelte';
@@ -154,7 +154,7 @@
 	}
 </script>
 
-<!--InputParams {pDef} {paramChange} {fgeom} {selFace} {zAdjust} {simTime} /-->
+<InputParams {pDef} {fgeom} {selFace} {zAdjust} {simTime} />
 <section>
 	<h2>Log</h2>
 	<textarea
