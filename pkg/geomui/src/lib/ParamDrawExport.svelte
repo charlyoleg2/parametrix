@@ -23,13 +23,7 @@
 	}
 	let { pDef, fgeom, pLink }: Props = $props();
 
-	// state
-	let simTime: number = $state(0);
-	let exportFace: string = $state('zip');
-	//let selFace: string = $state('');
-	//let zAdjust = $state(adjustZero());
-
-	// derived
+	// helper function
 	function checkWarn(txt: string) {
 		let rWarn = true;
 		const re = /warn/i;
@@ -38,6 +32,14 @@
 		}
 		return rWarn;
 	}
+
+	// state
+	let simTime: number = $state(0);
+	let exportFace: string = $state('zip');
+	//let selFace: string = $state('');
+	//let zAdjust = $state(adjustZero());
+
+	// derived
 	let geome: tGeom = $derived(fgeom(simTime, storePV[pDef.partName]));
 	let logValue: string = $derived.by(() => {
 		const mydate = new Date().toLocaleTimeString();
@@ -50,7 +52,7 @@
 	let calcWarn: boolean = $derived(checkWarn(geome.logstr));
 	let subD: tSubDesign = $derived(geome.sub);
 
-	// export drawings
+	// actions: export drawings
 	function download_binFile(fName: string, fContent: Blob) {
 		//create temporary an invisible element
 		const elem_a_download = document.createElement('a');
