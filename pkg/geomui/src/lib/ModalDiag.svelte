@@ -1,4 +1,5 @@
 <script lang="ts" module>
+	import type { Snippet } from 'svelte';
 	type tOkFunc = () => void;
 	export type { tOkFunc };
 </script>
@@ -9,9 +10,8 @@
 		okFunc: tOkFunc;
 		modalOpen: boolean;
 		sizeLarge?: boolean;
-		children?: import('svelte').Snippet;
+		children: Snippet;
 	}
-
 	let {
 		okName = 'Ok',
 		okFunc,
@@ -33,7 +33,7 @@
 	<aside class="backdrop">
 		<div class="dialog" class:sizeLarge>
 			<article class="question">
-				{@render children?.()}
+				{@render children()}
 			</article>
 			<footer>
 				<button class="cancel" onclick={mCancel}>Cancel</button>
