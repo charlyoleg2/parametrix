@@ -5,10 +5,10 @@
 	//import { browser } from '$app/environment';
 	import { base } from '$app/paths';
 
+	// props
 	interface Props {
 		pDef: tParamDef;
 	}
-
 	let { pDef }: Props = $props();
 
 	// helper function
@@ -21,34 +21,25 @@
 		}
 		return rList;
 	}
-	function getSvgList2(partName: string): string[] {
-		// fake using partName. partName is needed for the reactivity
-		if (partName === 'impossible_part_name') {
-			//console.log(`dummy022: partName ${partName}`);
-		}
-		const lList = getSvgList(pDef);
-		const rList2: string[] = [];
-		for (const svg of lList) {
-			rList2.push(`${base}/pgdsvg/${svg}`);
-		}
-		return rList2;
-	}
-	// initialization
-	const lSvg: string[] = getSvgList2(pDef.partName); // TODO5: $derived?
-	// reactivity
-	// modalImg
-	let modalImg = $state(false);
-	let svgPath: string = $state('');
+
+	// state
+	let sModalImg: boolean = $state(false);
+	let sSvgPath: string = $state('');
+
+	// derived
+	let dSvgList: string[] = $derived(getSvgList(pDef).map((iSvg) => `${base}/pgdsvg/${iSvg}`));
+
+	// actions
 	function showSvg(iSvgPath: string) {
-		svgPath = iSvgPath;
-		//console.log(`dbg231: svgPath: ${svgPath}`);
-		modalImg = true;
+		sSvgPath = iSvgPath;
+		//console.log(`dbg231: sSvgPath: ${sSvgPath}`);
+		sModalImg = true;
 	}
 </script>
 
 <section>
-	<ModalImg bind:modalOpen={modalImg} {svgPath} />
-	{#each lSvg as iSvg}
+	<ModalImg bind:modalOpen={sModalImg} svgPath={sSvgPath} />
+	{#each dSvgList as iSvg}
 		<button onclick={() => showSvg(iSvg)}>
 			<img src={iSvg} alt={iSvg} />
 		</button>
