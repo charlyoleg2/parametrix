@@ -20,7 +20,7 @@
 	//import InputParams from './InputParams.svelte';
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
-	import { storePV } from './storePVal.svelte';
+	import { sParams } from './stateParams.svelte';
 
 	// properties
 	interface Props {
@@ -79,7 +79,7 @@
 	let selFace: string = $state('dummyInit');
 
 	// derived
-	let geome: tGeom = $derived(fgeom(simTime, storePV[pDef.partName]));
+	let geome: tGeom = $derived(fgeom(simTime, sParams[pDef.partName]));
 	let logValue: string = $derived.by(() => {
 		const mydate = new Date().toLocaleTimeString();
 		let rLogValue = `Geometry ${pDef.partName} computed at ${mydate}\n`;
@@ -167,7 +167,7 @@
 			const fContent = await fileBinContent(
 				fgeom,
 				simTime,
-				storePV[pDef.partName],
+				sParams[pDef.partName],
 				pDef,
 				exportFormat
 			);
@@ -175,7 +175,7 @@
 		} else {
 			const fContent = fileTextContent(
 				fgeom,
-				storePV[pDef.partName],
+				sParams[pDef.partName],
 				pDef,
 				nFace,
 				exportFormat
