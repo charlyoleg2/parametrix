@@ -2,66 +2,46 @@
 	import TimeControl from './TimeControl.svelte';
 	import ZoomControl from './ZoomControl.svelte';
 	import LabelCheckbox from './LabelCheckbox.svelte';
-	import type {
-		tCanvasAdjust,
-		tLayers,
-		Figure,
-		tParamDef,
-		tParamVal,
-		tGeomFunc
-	} from 'geometrix';
+	import type { tCanvasAdjust, tLayers, Figure, tSimTime } from 'geometrix';
 	import {
 		colors,
 		canvas2point,
 		adjustCenter,
 		adjustRect,
 		adjustScale,
-		adjustTranslate,
-		mergeFaces
+		adjustTranslate
 	} from 'geometrix';
-	import { storePV } from './storePVal.svelte';
 	import { dLayers } from './drawingLayers.svelte';
 	import { onMount } from 'svelte';
 
 	// props
 	interface Props {
-		pDef: tParamDef;
-		fgeom: tGeomFunc;
-		optFaces: string[];
-		selFace: string;
+		pDefSim: tSimTime;
+		pFig: Figure;
 		zAdjust: tCanvasAdjust;
 		simTime?: number;
 	}
-	let {
-		pDef,
-		fgeom,
-		optFaces,
-		selFace = $bindable(),
-		zAdjust = $bindable(),
-		simTime = $bindable(0)
-	}: Props = $props();
+	let { pDefSim, pFig, zAdjust = $bindable(), simTime = $bindable(0) }: Props = $props();
 
 	// const
-	const c_ParametrixAll = 'ParametrixAll';
 	const canvas_size_min = 400;
 
 	// state
-	let windowWidth: number = $state(canvas_size_min);
+	let windowWidth = $state(canvas_size_min); // TODO5: $state is not needed, but otherwise svelte complains
 	// those internal states are bound: no need of $state
+	let domInit = 0;
 	let canvasFull: HTMLCanvasElement;
 	let canvasZoom: HTMLCanvasElement;
 
 	// Canavas Figures
-	let aFigure: Figure;
 	let cAdjust: tCanvasAdjust;
-	//let zAdjust: tCanvasAdjust;
-	function canvasRedrawFull(iLayers: tLayers) {
+	function canvasRedrawFull(iFig: Figure, iLayers: tLayers) {
 		if (canvasFull) {
 			const ctx1 = canvasFull.getContext('2d')!;
 			ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 			try {
-				cAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
-				aFigure.draw(ctx1, cAdjust, iLayers);
+				cAdjust = iFig.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
+				iFig.draw(ctx1, cAdjust, iLayers);
 			} catch (emsg) {
 				//rGeome.logstr += emsg;
 				console.log(emsg);
@@ -71,16 +51,16 @@
 			//point(5, 15).draw(ctx1, cAdjust, 'blue', 'rectangle');
 		}
 	}
-	function canvasRedrawZoom(iLayers: tLayers) {
+	function canvasRedrawZoom(iFig: Figure, iZAdjust: tCanvasAdjust, iLayers: tLayers) {
 		if (canvasZoom) {
 			const ctx2 = canvasZoom.getContext('2d')!;
 			ctx2.clearRect(0, 0, ctx2.canvas.width, ctx2.canvas.height);
 			try {
-				if (zAdjust === undefined || zAdjust.init === 0) {
-					zAdjust = aFigure.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
-					//console.log(`dbg047: init zAdjust: ${zAdjust.xMin} ${zAdjust.yMin}`);
+				if (iZAdjust === undefined || iZAdjust.init === 0) {
+					iZAdjust = iFig.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
+					//console.log(`dbg047: init iZAdjust: ${iZAdjust.xMin} ${iZAdjust.yMin}`);
 				}
-				aFigure.draw(ctx2, zAdjust, iLayers);
+				iFig.draw(ctx2, iZAdjust, iLayers);
 			} catch (emsg) {
 				//rGeome.logstr += emsg;
 				console.log(emsg);
@@ -99,54 +79,24 @@
 	}
 	function canvasResize() {
 		canvasSetSize();
-		canvasRedrawFull(dLayers);
-		canvasRedrawZoom(dLayers);
+		canvasRedrawFull(pFig, dLayers);
+		canvasRedrawZoom(pFig, zAdjust, dLayers);
 	}
-	let domInit = $state(0);
-	function checkFace(iFaces: string[], iFace: string): string {
-		let rFace = iFace;
-		if (iFaces.length === 0) {
-			console.log(`warn404: Drawing has an empty face list`);
-		} else {
-			//rFace = iFaces[0];
-			const FaceList2 = iFaces.slice();
-			FaceList2.push(c_ParametrixAll);
-			if (!FaceList2.includes(rFace)) {
-				//console.log(`warn403: Drawing has an invalid face ${rFace}`);
-				rFace = iFaces[0];
-			}
-		}
-		//console.log(iFaces);
-		//console.log(`dbg097: rFace ${rFace}`);
-		return rFace;
-	}
-	function geomRedrawSub(iSimTime: number, pVal: tParamVal, iFace: string, iLayers: tLayers) {
-		const FigList = fgeom(iSimTime, pVal).fig;
-		const FigListKeys = Object.keys(FigList);
-		const sFace = checkFace(FigListKeys, iFace);
-		selFace = sFace; // update input select
-		if (FigListKeys.includes(sFace)) {
-			aFigure = FigList[sFace];
-		} else {
-			aFigure = mergeFaces(FigList);
-		}
-		canvasRedrawFull(iLayers);
-		canvasRedrawZoom(iLayers);
-	}
-	function geomRedraw(iSimTime: number, iFace: string) {
-		geomRedrawSub(iSimTime, storePV[pDef.partName], iFace, dLayers);
+	function geomRedraw(iFig: Figure, iZAdjust: tCanvasAdjust, iLayers: tLayers) {
+		canvasRedrawFull(iFig, iLayers);
+		canvasRedrawZoom(iFig, iZAdjust, iLayers);
 	}
 	onMount(() => {
 		// initial drawing
 		canvasSetSize();
-		geomRedraw(simTime, selFace);
+		geomRedraw(pFig, zAdjust, dLayers);
 		//paramChange();
 		domInit = 1;
 	});
-	// reactivity on simTime, storePV and layers
+	// reactivity on pFig, zAdjust and dLayers
 	$effect(() => {
 		if (domInit === 1) {
-			geomRedrawSub(simTime, storePV[pDef.partName], selFace, dLayers);
+			geomRedraw(pFig, zAdjust, dLayers);
 		}
 	});
 	// Zoom stories
@@ -177,7 +127,7 @@
 			default:
 				console.log(`ERR423: ${action} has no case!`);
 		}
-		canvasRedrawZoom(dLayers);
+		canvasRedrawZoom(pFig, zAdjust, dLayers);
 	}
 	// zoom functions on the canvasFull
 	interface tMouse {
@@ -215,7 +165,7 @@
 					//console.log(`dbg160: a click at ${eve.offsetX} ${eve.offsetY}`);
 					const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 					zAdjust = adjustCenter(px, py, zAdjust);
-					geomRedraw(simTime, selFace);
+					geomRedraw(pFig, zAdjust, dLayers);
 				}
 				if (diffX > mouseDiffClick && diffY > mouseDiffClick) {
 					const diffRatio1 = diffX / diffY;
@@ -225,7 +175,7 @@
 						const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 						const [p2x, p2y] = canvas2point(mouseF.offsetX, mouseF.offsetY, cAdjust);
 						zAdjust = adjustRect(p1x, p1y, p2x, p2y, canvas_size_min, canvas_size_min);
-						geomRedraw(simTime, selFace);
+						geomRedraw(pFig, zAdjust, dLayers);
 					}
 				}
 			} else {
@@ -242,7 +192,7 @@
 			if (eve.buttons === 1) {
 				const diffX = eve.offsetX - mouseF.offsetX;
 				const diffY = eve.offsetY - mouseF.offsetY;
-				canvasRedrawFull(dLayers);
+				canvasRedrawFull(pFig, dLayers);
 				//const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 				ctx1.beginPath();
 				ctx1.rect(mouseF.offsetX, mouseF.offsetY, diffX, diffY);
@@ -282,7 +232,7 @@
 		if (eve.buttons === 1) {
 			const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, mouseZadjust);
 			zAdjust = adjustTranslate(mouseZx, mouseZy, p2x, p2y, mouseZadjust);
-			canvasRedrawZoom(dLayers);
+			canvasRedrawZoom(pFig, zAdjust, dLayers);
 		} else {
 			// mouse position
 			if (dLayers.ruler && canvasZoom) {
@@ -302,21 +252,12 @@
 		} else {
 			zAdjust = adjustScale(1.3, zAdjust);
 		}
-		canvasRedrawZoom(dLayers);
+		canvasRedrawZoom(pFig, zAdjust, dLayers);
 	}
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} onresize={canvasResize} />
 <section>
-	<h2>
-		Drawing
-		<select bind:value={selFace}>
-			{#each optFaces as optFace}
-				<option value={optFace}>{optFace}</option>
-			{/each}
-			<option value={c_ParametrixAll}>All faces merged</option>
-		</select>
-	</h2>
 	<LabelCheckbox />
 	<div class="rack">
 		<canvas
@@ -329,9 +270,9 @@
 			onmousemove={cFullMouseMove}
 		></canvas>
 		<TimeControl
-			tMax={pDef.sim.tMax}
-			tStep={pDef.sim.tStep}
-			tUpdate={pDef.sim.tUpdate}
+			tMax={pDefSim.tMax}
+			tStep={pDefSim.tStep}
+			tUpdate={pDefSim.tUpdate}
 			bind:simTime
 		/>
 	</div>
@@ -353,12 +294,6 @@
 	@use './style/colors.scss';
 	@use './style/styling.scss';
 
-	section > h2 {
-		@include styling.mix-h2;
-	}
-	section > h2 > select {
-		@include styling.mix-button;
-	}
 	section > div.rack {
 		display: inline-block;
 		margin: 0 1rem 0;

@@ -1,38 +1,35 @@
 <script lang="ts">
-	//import { colors } from 'geometrix';
-	import type { tCanvasAdjust, tLayers, Figure, tParamVal, tGeomFunc } from 'geometrix';
-	import { copyLayers, mergeFaces } from 'geometrix';
-	import { storePV } from './storePVal.svelte';
+	import type { tCanvasAdjust, tLayers, Figure } from 'geometrix';
+	import { copyLayers } from 'geometrix';
 	import { dLayers } from './drawingLayers.svelte';
-	import { onMount } from 'svelte';
 
+	// props
 	interface Props {
-		pageName: string;
-		fgeom: tGeomFunc;
-		selFace: string;
+		pFig: Figure;
 		zAdjust: tCanvasAdjust;
-		simTime?: number;
 	}
+	let { pFig, zAdjust }: Props = $props();
 
-	let { pageName, fgeom, selFace, zAdjust, simTime = 0 }: Props = $props();
-
-	let canvasMini: HTMLCanvasElement | undefined = $state();
+	// const
 	const canvas_size_mini = 200;
 
+	// internal state: no need of reactivity with $state()
+	let canvasMini: HTMLCanvasElement;
+
 	// Canavas Figures
-	let mAdjust: tCanvasAdjust;
-	function canvasRedrawMini(aFigure: Figure, iLayers: tLayers) {
+	function canvasRedrawMini(aFigure: Figure, iZAdjust: tCanvasAdjust, iLayers: tLayers) {
 		const sLayers = copyLayers(iLayers);
 		sLayers.ruler = false;
+		let mAdjust: tCanvasAdjust;
 		if (canvasMini) {
 			const ctx1 = canvasMini.getContext('2d')!;
 			ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 			try {
-				if (zAdjust.init === 0) {
+				if (iZAdjust.init === 0) {
 					// mini-full with zAdjust set to adjustZero()
 					mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
 				} else {
-					mAdjust = zAdjust;
+					mAdjust = iZAdjust;
 				}
 				aFigure.draw(ctx1, mAdjust, sLayers);
 			} catch (emsg) {
@@ -44,28 +41,9 @@
 			//point(5, 15).draw(ctx1, mAdjust, 'blue', 'rectangle');
 		}
 	}
-	let domInit = $state(0);
-	function geomRedraw(iSimTime: number, ipVal: tParamVal, iFace: string, iLayers: tLayers) {
-		const FigList = fgeom(iSimTime, ipVal).fig;
-		if (Object.keys(FigList).includes(iFace)) {
-			const aFigure = FigList[iFace];
-			canvasRedrawMini(aFigure, iLayers);
-		} else {
-			const aFigure = mergeFaces(FigList);
-			canvasRedrawMini(aFigure, iLayers);
-		}
-	}
-	onMount(() => {
-		// initial drawing
-		geomRedraw(simTime, storePV[pageName], selFace, dLayers);
-		domInit = 1;
-		//paramChange();
-	});
-	// reactivity on simTime and storePV
+	// reactivity
 	$effect(() => {
-		if (domInit === 1) {
-			geomRedraw(simTime, storePV[pageName], selFace, dLayers);
-		}
+		canvasRedrawMini(pFig, zAdjust, dLayers);
 	});
 </script>
 

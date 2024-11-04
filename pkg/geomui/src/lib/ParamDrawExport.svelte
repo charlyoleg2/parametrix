@@ -4,6 +4,8 @@
 		tGeomFunc,
 		tSubDesign,
 		tAllLink,
+		tFigures,
+		Figure,
 		tCanvasAdjust,
 		tGeom
 	} from 'geometrix';
@@ -14,9 +16,10 @@
 		fileSuffix,
 		fileMime,
 		fileBin,
-		adjustZero
+		adjustZero,
+		mergeFaces
 	} from 'geometrix';
-	import InputParams from './InputParams.svelte';
+	//import InputParams from './InputParams.svelte';
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
 	import { storePV } from './storePVal.svelte';
@@ -29,6 +32,9 @@
 	}
 	let { pDef, fgeom, pLink }: Props = $props();
 
+	// const
+	const c_ParametrixAll = 'ParametrixAll';
+
 	// helper function
 	function checkWarn(txt: string) {
 		let rWarn = true;
@@ -37,6 +43,36 @@
 			rWarn = false;
 		}
 		return rWarn;
+	}
+	// create pFig
+	function checkFace(iFaces: string[], iFace: string): string {
+		let rFace = iFace;
+		if (iFaces.length === 0) {
+			console.log(`warn404: Drawing has an empty face list`);
+		} else {
+			//rFace = iFaces[0];
+			const FaceList2 = iFaces.slice();
+			FaceList2.push(c_ParametrixAll);
+			if (!FaceList2.includes(rFace)) {
+				//console.log(`warn403: Drawing has an invalid face ${rFace}`);
+				rFace = iFaces[0];
+			}
+		}
+		//console.log(iFaces);
+		//console.log(`dbg097: rFace ${rFace}`);
+		return rFace;
+	}
+	function selectFig(iFigures: tFigures, iFace: string) {
+		let rFig: Figure;
+		const FigListKeys = Object.keys(iFigures);
+		const sFace = checkFace(FigListKeys, iFace);
+		//selFace = sFace; // update input select
+		if (FigListKeys.includes(sFace)) {
+			rFig = iFigures[sFace];
+		} else {
+			rFig = mergeFaces(iFigures);
+		}
+		return rFig;
 	}
 
 	// state
@@ -56,6 +92,7 @@
 	let optFaces: string[] = $derived(Object.keys(geome.fig));
 	let calcErr: boolean = $derived(geome.calcErr);
 	let calcWarn: boolean = $derived(checkWarn(geome.logstr));
+	let pFig: Figure = $derived(selectFig(geome.fig, selFace));
 	let subD: tSubDesign = $derived(geome.sub);
 
 	// actions: export drawings
@@ -154,7 +191,7 @@
 	}
 </script>
 
-<InputParams {pDef} {fgeom} {selFace} {zAdjust} {simTime} />
+<!--InputParams {pDef} {pFig} {zAdjust} /-->
 <section>
 	<h2>Log</h2>
 	<textarea
@@ -167,7 +204,18 @@
 		class:colorWarn={calcWarn}
 	></textarea>
 </section>
-<Drawing {pDef} {fgeom} {optFaces} bind:selFace bind:zAdjust bind:simTime />
+<section>
+	<h2>
+		Drawing
+		<select bind:value={selFace}>
+			{#each optFaces as optFace}
+				<option value={optFace}>{optFace}</option>
+			{/each}
+			<option value={c_ParametrixAll}>All faces merged</option>
+		</select>
+	</h2>
+</section>
+<Drawing pDefSim={pDef.sim} {pFig} bind:zAdjust bind:simTime />
 <section>
 	<h2>Export</h2>
 	<select bind:value={exportFace}>
@@ -196,6 +244,9 @@
 
 	section > h2 {
 		@include styling.mix-h2;
+	}
+	section > h2 > select {
+		@include styling.mix-button;
 	}
 	section > textarea {
 		/*resize: horizontal;*/

@@ -5,7 +5,7 @@
 	import LocStorWrite from './LocStorWrite.svelte';
 	import LocStorRead from './LocStorRead.svelte';
 	import SimpleDrawing from './SimpleDrawing.svelte';
-	import type { tParam, tParamDef, tParamVal, tGeomFunc, tCanvasAdjust } from 'geometrix';
+	import type { tParam, tParamDef, tParamVal, Figure, tCanvasAdjust } from 'geometrix';
 	import { PType, parseParamFile, createParamFile, adjustZero } from 'geometrix';
 	import { storePV } from './storePVal.svelte';
 	import { downloadParams, generateUrl } from './downloadParams';
@@ -17,18 +17,16 @@
 	// props
 	interface Props {
 		pDef: tParamDef;
-		fgeom: tGeomFunc;
-		selFace: string;
+		pFig: Figure;
 		zAdjust: tCanvasAdjust;
-		simTime?: number;
 	}
-	let { pDef, fgeom, selFace, zAdjust, simTime = 0 }: Props = $props();
+	let { pDef, pFig, zAdjust }: Props = $props();
 
 	// const
 	const cAdjustZero = adjustZero();
 
 	// state
-	let inputComment = $state('');
+	let inputComment: string = $state('');
 
 	// initialization
 	// tolerant applyParamVal
@@ -83,8 +81,8 @@
 	//	}
 	//}
 	// load parameters
-	let loadMsg = $state('');
-	let applyWarn = $state(false);
+	let loadMsg: string = $state('');
+	let applyWarn: boolean = $state(false);
 	function initParams2() {
 		if (browser) {
 			const searchParams = new URLSearchParams($page.url.search);
@@ -154,10 +152,10 @@
 		downloadParams(pDef.partName, storePV[pDef.partName], inputComment);
 	}
 	// modal
-	let modalLoadDefault = $state(false);
-	let modalLoadLocal = $state(false);
-	let modalSaveUrl = $state(false);
-	let modalSaveLocal = $state(false);
+	let modalLoadDefault: boolean = $state(false);
+	let modalLoadLocal: boolean = $state(false);
+	let modalSaveUrl: boolean = $state(false);
+	let modalSaveLocal: boolean = $state(false);
 	function loadDefaults() {
 		const pInit: tParamVal = {};
 		for (const p of pDef.params) {
@@ -208,7 +206,7 @@
 		}
 	}
 	// Save as URL
-	let pUrl = $state('');
+	let pUrl: string = $state('');
 	function generateUrl2(): string {
 		const url1 = generateUrl($page.url.href, storePV[pDef.partName], false);
 		return url1.toString();
@@ -221,7 +219,7 @@
 		//console.log(`dbg244: voila`);
 	}
 	// parameter picture
-	let paramSvg = $state(`${base}/pgdsvg/default_param_blank.svg`);
+	let paramSvg: string = $state(`${base}/pgdsvg/default_param_blank.svg`);
 	function paramPict(keyName: string) {
 		//console.log(`dbg783: ${keyName}`);
 		// convention for the file-names of the parameter description
@@ -232,7 +230,7 @@
 		}
 	}
 	// TODO: solve properly this workaround (avoiding weird re-trigger)
-	let prePartName = $state('');
+	let prePartName: string = $state('');
 	function paramPict2(idx: number, pDef_page: string) {
 		//console.log(`dbg283: ${pDef_page}`);
 		if (prePartName !== pDef.partName) {
@@ -247,7 +245,7 @@
 		// TODO5: to be revisited
 		paramPict2(0, pDef.partName);
 	});
-	let modalImg = $state(false);
+	let modalImg: boolean = $state(false);
 	function showSvg() {
 		//console.log(`dbg231: svgPath: ${svgPath}`);
 		modalImg = true;
@@ -450,10 +448,10 @@
 		<img src={paramSvg} alt={paramSvg} />
 	</button>
 	<div class="mini-canvas">
-		<SimpleDrawing pageName={pDef.partName} {fgeom} {selFace} zAdjust={cAdjustZero} {simTime} />
+		<SimpleDrawing {pFig} zAdjust={cAdjustZero} />
 	</div>
 	<div class="mini-canvas">
-		<SimpleDrawing pageName={pDef.partName} {fgeom} {selFace} {zAdjust} {simTime} />
+		<SimpleDrawing {pFig} {zAdjust} />
 	</div>
 </section>
 
