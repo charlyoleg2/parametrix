@@ -6,7 +6,6 @@
 		tAllLink,
 		tFigures,
 		Figure,
-		tCanvasAdjust,
 		tGeom
 	} from 'geometrix';
 	import {
@@ -16,7 +15,6 @@
 		fileSuffix,
 		fileMime,
 		fileBin,
-		adjustZero,
 		mergeFaces
 	} from 'geometrix';
 	//import InputParams from './InputParams.svelte';
@@ -79,7 +77,6 @@
 	let simTime: number = $state(0);
 	let exportFace: string = $state('zip');
 	let selFace: string = $state('dummyInit');
-	let zAdjust: tCanvasAdjust = $state(adjustZero());
 
 	// derived
 	let geome: tGeom = $derived(fgeom(simTime, storePV[pDef.partName]));
@@ -215,7 +212,7 @@
 		</select>
 	</h2>
 </section>
-<Drawing pDefSim={pDef.sim} {pFig} bind:zAdjust bind:simTime />
+<Drawing pDefSim={pDef.sim} {pFig} bind:simTime />
 <section>
 	<h2>Export</h2>
 	<select bind:value={exportFace}>

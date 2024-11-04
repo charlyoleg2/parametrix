@@ -11,17 +11,16 @@
 		adjustScale,
 		adjustTranslate
 	} from 'geometrix';
-	import { dLayers } from './drawingLayers.svelte';
+	import { sDraw } from './stateDrawing.svelte';
 	import { onMount } from 'svelte';
 
 	// props
 	interface Props {
 		pDefSim: tSimTime;
 		pFig: Figure;
-		zAdjust: tCanvasAdjust;
 		simTime?: number;
 	}
-	let { pDefSim, pFig, zAdjust = $bindable(), simTime = $bindable(0) }: Props = $props();
+	let { pDefSim, pFig, simTime = $bindable(0) }: Props = $props();
 
 	// const
 	const canvas_size_min = 400;
@@ -79,8 +78,8 @@
 	}
 	function canvasResize() {
 		canvasSetSize();
-		canvasRedrawFull(pFig, dLayers);
-		canvasRedrawZoom(pFig, zAdjust, dLayers);
+		canvasRedrawFull(pFig, sDraw.dLayers);
+		canvasRedrawZoom(pFig, sDraw.zAdjust, sDraw.dLayers);
 	}
 	function geomRedraw(iFig: Figure, iZAdjust: tCanvasAdjust, iLayers: tLayers) {
 		canvasRedrawFull(iFig, iLayers);
@@ -89,14 +88,14 @@
 	onMount(() => {
 		// initial drawing
 		canvasSetSize();
-		geomRedraw(pFig, zAdjust, dLayers);
+		geomRedraw(pFig, sDraw.zAdjust, sDraw.dLayers);
 		//paramChange();
 		domInit = 1;
 	});
 	// reactivity on pFig, zAdjust and dLayers
 	$effect(() => {
 		if (domInit === 1) {
-			geomRedraw(pFig, zAdjust, dLayers);
+			geomRedraw(pFig, sDraw.zAdjust, sDraw.dLayers);
 		}
 	});
 	// Zoom stories
@@ -104,30 +103,30 @@
 		//console.log(`dbg094: ${action}`);
 		switch (action) {
 			case 'zoomInit':
-				zAdjust.init = 0;
+				sDraw.zAdjust.init = 0;
 				break;
 			case 'zoomIn':
-				zAdjust = adjustScale(0.7, zAdjust);
+				sDraw.zAdjust = adjustScale(0.7, sDraw.zAdjust);
 				break;
 			case 'zoomOut':
-				zAdjust = adjustScale(1.3, zAdjust);
+				sDraw.zAdjust = adjustScale(1.3, sDraw.zAdjust);
 				break;
 			case 'moveLeft':
-				zAdjust.xMin += -0.2 * zAdjust.xyDiff;
+				sDraw.zAdjust.xMin += -0.2 * sDraw.zAdjust.xyDiff;
 				break;
 			case 'moveRight':
-				zAdjust.xMin += 0.2 * zAdjust.xyDiff;
+				sDraw.zAdjust.xMin += 0.2 * sDraw.zAdjust.xyDiff;
 				break;
 			case 'moveUp':
-				zAdjust.yMin += 0.2 * zAdjust.xyDiff;
+				sDraw.zAdjust.yMin += 0.2 * sDraw.zAdjust.xyDiff;
 				break;
 			case 'moveDown':
-				zAdjust.yMin += -0.2 * zAdjust.xyDiff;
+				sDraw.zAdjust.yMin += -0.2 * sDraw.zAdjust.xyDiff;
 				break;
 			default:
 				console.log(`ERR423: ${action} has no case!`);
 		}
-		canvasRedrawZoom(pFig, zAdjust, dLayers);
+		canvasRedrawZoom(pFig, sDraw.zAdjust, sDraw.dLayers);
 	}
 	// zoom functions on the canvasFull
 	interface tMouse {
@@ -164,8 +163,8 @@
 				if (diffX < mouseDiffClick && diffY < mouseDiffClick) {
 					//console.log(`dbg160: a click at ${eve.offsetX} ${eve.offsetY}`);
 					const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
-					zAdjust = adjustCenter(px, py, zAdjust);
-					geomRedraw(pFig, zAdjust, dLayers);
+					sDraw.zAdjust = adjustCenter(px, py, sDraw.zAdjust);
+					geomRedraw(pFig, sDraw.zAdjust, sDraw.dLayers);
 				}
 				if (diffX > mouseDiffClick && diffY > mouseDiffClick) {
 					const diffRatio1 = diffX / diffY;
@@ -174,8 +173,15 @@
 						//console.log(`dbg160: a selection at ${eve.offsetX} ${eve.offsetY}`);
 						const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 						const [p2x, p2y] = canvas2point(mouseF.offsetX, mouseF.offsetY, cAdjust);
-						zAdjust = adjustRect(p1x, p1y, p2x, p2y, canvas_size_min, canvas_size_min);
-						geomRedraw(pFig, zAdjust, dLayers);
+						sDraw.zAdjust = adjustRect(
+							p1x,
+							p1y,
+							p2x,
+							p2y,
+							canvas_size_min,
+							canvas_size_min
+						);
+						geomRedraw(pFig, sDraw.zAdjust, sDraw.dLayers);
 					}
 				}
 			} else {
@@ -192,7 +198,7 @@
 			if (eve.buttons === 1) {
 				const diffX = eve.offsetX - mouseF.offsetX;
 				const diffY = eve.offsetY - mouseF.offsetY;
-				canvasRedrawFull(pFig, dLayers);
+				canvasRedrawFull(pFig, sDraw.dLayers);
 				//const ctx1 = canvasFull.getContext('2d') as CanvasRenderingContext2D;
 				ctx1.beginPath();
 				ctx1.rect(mouseF.offsetX, mouseF.offsetY, diffX, diffY);
@@ -200,7 +206,7 @@
 				ctx1.stroke();
 			}
 			// mouse position
-			if (dLayers.ruler) {
+			if (sDraw.dLayers.ruler) {
 				const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 				ctx1.clearRect(5, 5, 200, 25);
 				ctx1.font = '15px Arial';
@@ -217,10 +223,10 @@
 		//console.log(`dbg231: cZoomMouseDn ${eve.offsetX} ${eve.offsetY} ${eve.button}`);
 		// left click
 		if (eve.button === 0) {
-			const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, zAdjust);
+			const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, sDraw.zAdjust);
 			mouseZx = p1x; // point
 			mouseZy = p1y;
-			mouseZadjust = structuredClone(zAdjust); // deepCopy
+			mouseZadjust = structuredClone(sDraw.zAdjust); // deepCopy
 			//const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
 			//const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 			//point(px, py).draw(ctx2, cAdjust, colors.mouse, 'rectangle');
@@ -231,13 +237,13 @@
 		// left click
 		if (eve.buttons === 1) {
 			const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, mouseZadjust);
-			zAdjust = adjustTranslate(mouseZx, mouseZy, p2x, p2y, mouseZadjust);
-			canvasRedrawZoom(pFig, zAdjust, dLayers);
+			sDraw.zAdjust = adjustTranslate(mouseZx, mouseZy, p2x, p2y, mouseZadjust);
+			canvasRedrawZoom(pFig, sDraw.zAdjust, sDraw.dLayers);
 		} else {
 			// mouse position
-			if (dLayers.ruler && canvasZoom) {
+			if (sDraw.dLayers.ruler && canvasZoom) {
 				const ctx2 = canvasZoom.getContext('2d')!;
-				const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, zAdjust);
+				const [p2x, p2y] = canvas2point(eve.offsetX, eve.offsetY, sDraw.zAdjust);
 				ctx2.clearRect(5, 5, 200, 25);
 				ctx2.font = '15px Arial';
 				ctx2.fillStyle = colors.ruler;
@@ -248,11 +254,11 @@
 	function cZoomWheel(eve: WheelEvent) {
 		eve.preventDefault();
 		if (eve.deltaY > 0) {
-			zAdjust = adjustScale(0.7, zAdjust);
+			sDraw.zAdjust = adjustScale(0.7, sDraw.zAdjust);
 		} else {
-			zAdjust = adjustScale(1.3, zAdjust);
+			sDraw.zAdjust = adjustScale(1.3, sDraw.zAdjust);
 		}
-		canvasRedrawZoom(pFig, zAdjust, dLayers);
+		canvasRedrawZoom(pFig, sDraw.zAdjust, sDraw.dLayers);
 	}
 </script>
 

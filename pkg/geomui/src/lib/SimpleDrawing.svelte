@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { tCanvasAdjust, tLayers, Figure } from 'geometrix';
 	import { copyLayers } from 'geometrix';
-	import { dLayers } from './drawingLayers.svelte';
+	import { sDraw } from './stateDrawing.svelte';
 
 	// props
 	interface Props {
@@ -43,7 +43,7 @@
 	}
 	// reactivity
 	$effect(() => {
-		canvasRedrawMini(pFig, zAdjust, dLayers);
+		canvasRedrawMini(pFig, zAdjust, sDraw.dLayers);
 	});
 </script>
 
