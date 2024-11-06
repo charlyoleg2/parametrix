@@ -12,6 +12,7 @@
 
 	// const
 	const canvas_size_mini = 200;
+	const scaleFactor = 0.6;
 
 	// internal state: no need of reactivity with $state()
 	let canvasMini: HTMLCanvasElement;
@@ -45,9 +46,35 @@
 	$effect(() => {
 		canvasRedrawMini(pFig, zAdjust, sDraw.dLayers);
 	});
+	// actions
+	function clickQuater(eve: MouseEvent) {
+		const mouseX = eve.offsetX;
+		const mouseY = eve.offsetY;
+		const ctx1 = canvasMini.getContext('2d')!;
+		const quaterX = ctx1.canvas.width / 2;
+		const quaterY = ctx1.canvas.height / 2;
+		if (eve.button === 0) {
+			// pressing the main button
+			let quaterID = 1;
+			if (mouseX > quaterX) {
+				quaterID += 1 * scaleFactor;
+			}
+			if (mouseY > quaterY) {
+				quaterID += 2 * scaleFactor;
+			}
+			ctx1.canvas.width = quaterID * canvas_size_mini;
+			ctx1.canvas.height = quaterID * canvas_size_mini;
+			canvasRedrawMini(pFig, zAdjust, sDraw.dLayers);
+		}
+	}
 </script>
 
-<canvas class="mini" width={canvas_size_mini} height={canvas_size_mini} bind:this={canvasMini}
+<canvas
+	class="mini"
+	width={canvas_size_mini}
+	height={canvas_size_mini}
+	bind:this={canvasMini}
+	onclick={clickQuater}
 ></canvas>
 
 <style lang="scss">
