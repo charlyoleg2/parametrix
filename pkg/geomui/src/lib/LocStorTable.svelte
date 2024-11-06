@@ -2,12 +2,12 @@
 	import ModalDiag from './ModalDiag.svelte';
 	import { browser } from '$app/environment';
 
+	// props
 	interface Props {
 		pageName: string;
 		storeName: string;
 		localKeys: string[];
 	}
-
 	let { pageName, storeName = $bindable(), localKeys = $bindable() }: Props = $props();
 
 	// get the list of localStorage keys

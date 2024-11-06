@@ -75,8 +75,9 @@
 
 	// state
 	let simTime: number = $state(0);
-	let exportFace: string = $state('zip');
 	let selFace: string = $state('dummyInit');
+	// internal state that should not need state
+	let exportFace: string = $state('zip'); // TODO5 keep state otherwise svelte complains
 
 	// derived
 	let geome: tGeom = $derived(fgeom(simTime, sParams[pDef.partName]));

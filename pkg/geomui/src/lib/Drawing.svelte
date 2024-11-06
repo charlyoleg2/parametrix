@@ -26,7 +26,7 @@
 	const canvas_size_min = 400;
 
 	// state
-	let windowWidth = $state(canvas_size_min); // TODO5: $state is not needed, but otherwise svelte complains
+	let windowWidth: number = $state(canvas_size_min); // TODO5: $state is not needed, but otherwise svelte complains
 	// those internal states are bound: no need of $state
 	let domInit = 0;
 	let canvasFull: HTMLCanvasElement;
