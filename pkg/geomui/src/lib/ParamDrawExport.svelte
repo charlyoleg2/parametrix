@@ -17,7 +17,7 @@
 		fileBin,
 		mergeFaces
 	} from 'geometrix';
-	//import InputParams from './InputParams.svelte';
+	import InputParams from './InputParams.svelte';
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
 	import { sParams } from './stateParams.svelte';
@@ -189,7 +189,7 @@
 	}
 </script>
 
-<!--InputParams {pDef} {pFig} {zAdjust} /-->
+<InputParams {pDef} {pFig} />
 <section>
 	<h2>Log</h2>
 	<textarea

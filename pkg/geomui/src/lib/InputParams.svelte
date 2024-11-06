@@ -5,9 +5,10 @@
 	import LocStorWrite from './LocStorWrite.svelte';
 	import LocStorRead from './LocStorRead.svelte';
 	import SimpleDrawing from './SimpleDrawing.svelte';
-	import type { tParam, tParamDef, tParamVal, Figure, tCanvasAdjust } from 'geometrix';
+	import type { tParam, tParamDef, tParamVal, Figure } from 'geometrix';
 	import { PType, parseParamFile, createParamFile, adjustZero } from 'geometrix';
 	import { sParams } from './stateParams.svelte';
+	import { sDraw } from './stateDrawing.svelte';
 	import { downloadParams, generateUrl } from './downloadParams';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
@@ -18,9 +19,8 @@
 	interface Props {
 		pDef: tParamDef;
 		pFig: Figure;
-		zAdjust: tCanvasAdjust;
 	}
-	let { pDef, pFig, zAdjust }: Props = $props();
+	let { pDef, pFig }: Props = $props();
 
 	// const
 	const cAdjustZero = adjustZero();
@@ -451,7 +451,7 @@
 		<SimpleDrawing {pFig} zAdjust={cAdjustZero} />
 	</div>
 	<div class="mini-canvas">
-		<SimpleDrawing {pFig} {zAdjust} />
+		<SimpleDrawing {pFig} zAdjust={sDraw.zAdjust} />
 	</div>
 </section>
 
