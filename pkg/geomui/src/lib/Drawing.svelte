@@ -24,6 +24,7 @@
 
 	// const
 	const canvas_size_min = 400;
+	const canvas_size_max = 1200;
 
 	// state
 	let windowWidth: number = $state(canvas_size_min); // TODO5: $state is not needed, but otherwise svelte complains
@@ -68,13 +69,13 @@
 	}
 	function canvasSetSize() {
 		//console.log(`windowWidth: ${windowWidth}`);
-		if (canvasFull && windowWidth) {
-			// canvasFull and windowWidth must be defined
-			const ctx1 = canvasFull.getContext('2d')!;
-			const canvas_size = Math.max(0.4 * windowWidth, canvas_size_min);
-			ctx1.canvas.width = canvas_size;
-			ctx1.canvas.height = canvas_size;
-		}
+		const ctxF = canvasFull.getContext('2d')!;
+		const ctxZ = canvasZoom.getContext('2d')!;
+		const canvas_size = Math.min(Math.max(0.4 * windowWidth, canvas_size_min), canvas_size_max);
+		ctxF.canvas.width = canvas_size;
+		ctxF.canvas.height = canvas_size;
+		ctxZ.canvas.width = canvas_size;
+		ctxZ.canvas.height = canvas_size;
 	}
 	function canvasResize() {
 		canvasSetSize();
