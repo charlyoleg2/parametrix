@@ -27,6 +27,7 @@
 
 	// state
 	let inputComment: string = $state('');
+	let hideColumn: boolean = $state(false);
 
 	// initialization
 	// tolerant applyParamVal
@@ -306,6 +307,13 @@
 			htableVis = makeHTableVis(htable);
 		}
 	});
+	// actions
+	function sizeSmall() {
+		hideColumn = true;
+	}
+	function sizeBig() {
+		hideColumn = false;
+	}
 </script>
 
 <section>
@@ -349,12 +357,16 @@
 				<tr>
 					<td>&#35;</td>
 					<td>Parameter name</td>
-					<td>Value</td>
+					<td
+						>Value<button onclick={sizeSmall}>&minus;</button><button onclick={sizeBig}
+							>+</button
+						></td
+					>
 					<td>Unit</td>
 					<td>Default</td>
 					<td>Min</td>
 					<td>Max</td>
-					<td>Step</td>
+					<td class:hideColumn>Step</td>
 				</tr>
 			</thead>
 			{#each htable as sect, sidx}
@@ -415,7 +427,7 @@
 							<td>{param.init}</td>
 							<td>{param.min}</td>
 							<td>{param.max}</td>
-							<td>{param.step}</td>
+							<td class:hideColumn>{param.step}</td>
 						</tr>
 					{/each}
 				</tbody>
@@ -562,6 +574,10 @@
 	}
 	section > main > table > tbody > tr > td > input.input-number {
 		width: 5rem;
+	}
+	section > main > table > thead > tr > td.hideColumn,
+	section > main > table > tbody > tr > td.hideColumn {
+		visibility: collapse;
 	}
 	section > main > div.comment {
 		font-size: 0.8rem;
