@@ -10,6 +10,11 @@
 	}
 	let { pageName, storeName = $bindable(), localKeys = $bindable() }: Props = $props();
 
+	// state
+	let localDel: tLocalDel = $state({});
+	let globalDel = $state(false);
+	let modalDelConfirm = $state(false);
+
 	// get the list of localStorage keys
 	function getLocalKey() {
 		let rKeyList: string[] = [];
@@ -28,7 +33,6 @@
 	}
 	// last modification date
 	type tLocalDate = Record<string, string>;
-	let localDate: tLocalDate = $state({});
 	function getLocalDate(iKeys: string[]): tLocalDate {
 		let rLocalDate: tLocalDate = {};
 		if (browser) {
@@ -46,10 +50,9 @@
 		}
 		return rLocalDate;
 	}
-	localDate = getLocalDate(localKeys);
+	let localDate: tLocalDate = $derived(getLocalDate(localKeys));
 	// delete checkbox
 	type tLocalDel = Record<string, boolean>;
-	let localDel: tLocalDel = $state({});
 	function getInitDel(iKeys: string[]): tLocalDel {
 		let rLocalDel: tLocalDel = {};
 		for (const k of iKeys) {
@@ -59,15 +62,11 @@
 	}
 	localDel = getInitDel(localKeys);
 	// global delete
-	let globalDel = $state(false);
-	function setGlobalDel(iGlobalDel: boolean) {
+	function setGlobalDel() {
 		for (const k of localKeys) {
-			localDel[k] = iGlobalDel;
+			localDel[k] = globalDel;
 		}
 	}
-	$effect(() => {
-		setGlobalDel(globalDel);
-	});
 	// delete action
 	function actionDel() {
 		if (browser) {
@@ -79,9 +78,9 @@
 				}
 			}
 		}
+		globalDel = false; // reset global delete checkbox
 		localKeys = getLocalKey();
 	}
-	let modalDelConfirm = $state(false);
 </script>
 
 <div class="deleteKeys">
@@ -106,7 +105,7 @@
 				<td>Last modification</td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" bind:checked={globalDel} /></td>
+				<td><input type="checkbox" bind:checked={globalDel} onchange={setGlobalDel} /></td>
 				<td class="instruction">delete all</td>
 				<td></td>
 			</tr>
