@@ -314,6 +314,9 @@
 	function sizeBig() {
 		hideColumn = false;
 	}
+	let dColspanHide1: number = $derived(hideColumn ? 2 : 4);
+	let dColspanHide2: number = $derived(hideColumn ? 2 : 3);
+	let dCommentSize: number = $derived(hideColumn ? 50 : 70);
 </script>
 
 <section>
@@ -358,12 +361,14 @@
 					<td>&#35;</td>
 					<td>Parameter name</td>
 					<td
-						>Value<button onclick={sizeSmall}>&minus;</button><button onclick={sizeBig}
-							>+</button
+						>Value<span
+							><button onclick={sizeSmall}>&minus;</button><button onclick={sizeBig}
+								>+</button
+							></span
 						></td
 					>
-					<td>Unit</td>
-					<td>Default</td>
+					<td class:hideColumn>Unit</td>
+					<td class:hideColumn>Default</td>
 					<td>Min</td>
 					<td>Max</td>
 					<td class:hideColumn>Step</td>
@@ -373,8 +378,8 @@
 				<tbody>
 					<tr class="separator">
 						<td>{sidx + 1}</td>
-						<td colspan="4">{sect.sectionName}</td>
-						<td colspan="3">
+						<td colspan={dColspanHide1}>{sect.sectionName}</td>
+						<td colspan={dColspanHide2}>
 							<label>
 								<input type="checkbox" bind:checked={htableVis[sect.sectionID]} />
 								<span> </span></label
@@ -423,8 +428,8 @@
 									unknown
 								{/if}
 							</td>
-							<td>{param.unit}</td>
-							<td>{param.init}</td>
+							<td class:hideColumn>{param.unit}</td>
+							<td class:hideColumn>{param.init}</td>
 							<td>{param.min}</td>
 							<td>{param.max}</td>
 							<td class:hideColumn>{param.step}</td>
@@ -435,7 +440,13 @@
 		</table>
 		<div class="comment">
 			<label for="inComment">Comment:</label>
-			<input type="text" id="inComment" bind:value={inputComment} maxlength="150" size="70" />
+			<input
+				type="text"
+				id="inComment"
+				bind:value={inputComment}
+				maxlength="150"
+				size={dCommentSize}
+			/>
 		</div>
 		<button onclick={downloadParams2}>Save Parameters to File</button>
 		<button onclick={openModalUrl}>Save Parameters as URL</button>
@@ -514,6 +525,18 @@
 	section > main > table > thead {
 		background-color: colors.$table-head;
 	}
+	section > main > table > thead > tr > td > span {
+		margin-left: 5rem;
+	}
+	section > main > table > thead > tr > td > span > button {
+		border: 0;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		border-radius: 30%;
+		font-weight: 700;
+		color: Blue;
+		background-color: LightBlue;
+	}
 	section > main > table > tbody {
 		background-color: colors.$table-body;
 	}
@@ -577,7 +600,8 @@
 	}
 	section > main > table > thead > tr > td.hideColumn,
 	section > main > table > tbody > tr > td.hideColumn {
-		visibility: collapse;
+		//visibility: collapse;
+		display: none;
 	}
 	section > main > div.comment {
 		font-size: 0.8rem;
