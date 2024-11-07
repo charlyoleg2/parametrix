@@ -24,6 +24,7 @@
 			//console.log(keyList);
 			rKeyList = keyList.map((k) => k.replace(re, ''));
 		}
+		rKeyList.sort(); // order the list for consistent UX
 		//console.log(rKeyList);
 		return rKeyList;
 	}
