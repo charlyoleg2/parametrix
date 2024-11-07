@@ -107,26 +107,13 @@
 			}
 		}
 	}
-	// Bug? No initialization when loading page! Keep the previous values!
+	// TODO5: Bug? No initialization when loading page! Keep the previous values!
 	function forceInit() {
 		initParams2();
 	}
 	onMount(() => {
 		forceInit();
 	});
-	// workaround because $page.url.searchParams contains the new value with some delay
-	//function delay(milliseconds: number) {
-	//	return new Promise((resolve) => {
-	//		setTimeout(resolve, milliseconds);
-	//	});
-	//}
-	//async function forceInit2(partName: string) {
-	//	await delay(1000);
-	//	console.log(`dbg081: forceInit: partName ${partName} url ${$page.url}`);
-	//	forceInit(partName);
-	//}
-	//$: forceInit2(pDef.partName);
-	// end of the workaround
 	function loadParams(iStr: string) {
 		try {
 			const [paramJson] = parseParamFile(iStr);
