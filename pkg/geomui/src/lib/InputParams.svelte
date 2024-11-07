@@ -24,10 +24,24 @@
 
 	// const
 	const cAdjustZero = adjustZero();
+	// type
+	type tHTableVis = Record<string, boolean>;
 
 	// state
 	let inputComment: string = $state('');
 	let hideColumn: boolean = $state(false);
+	let loadMsg: string = $state('');
+	let applyWarn: boolean = $state(false);
+	let modalLoadDefault: boolean = $state(false);
+	let modalLoadLocal: boolean = $state(false);
+	let modalSaveUrl: boolean = $state(false);
+	let modalSaveLocal: boolean = $state(false);
+	let locStorRname: string = $state('');
+	let locStorWname: string = $state('');
+	let pUrl: string = $state('');
+	let paramSvg: string = $state(`${base}/pgdsvg/default_param_blank.svg`);
+	let modalImg: boolean = $state(false);
+	let htableVis: tHTableVis = $state({});
 
 	// initialization
 	// tolerant applyParamVal
@@ -76,14 +90,6 @@
 		const rApplyWarn = applyWarn1 || applyWarn2;
 		return [rMsg, rApplyWarn];
 	}
-	//function initParams1() {
-	//	for (const p of pDef.params) {
-	//		sParams[pDef.partName][p.name] = p.init;
-	//	}
-	//}
-	// load parameters
-	let loadMsg: string = $state('');
-	let applyWarn: boolean = $state(false);
 	function initParams2() {
 		if (browser) {
 			const searchParams = new URLSearchParams($page.url.search);
@@ -102,7 +108,6 @@
 		}
 	}
 	// Bug? No initialization when loading page! Keep the previous values!
-	//initParams1();
 	function forceInit() {
 		initParams2();
 	}
@@ -153,10 +158,6 @@
 		downloadParams(pDef.partName, sParams[pDef.partName], inputComment);
 	}
 	// modal
-	let modalLoadDefault: boolean = $state(false);
-	let modalLoadLocal: boolean = $state(false);
-	let modalSaveUrl: boolean = $state(false);
-	let modalSaveLocal: boolean = $state(false);
 	function loadDefaults() {
 		const pInit: tParamVal = {};
 		for (const p of pDef.params) {
@@ -165,7 +166,6 @@
 		[loadMsg, applyWarn] = tolerantApply(pDef.partName, pInit);
 	}
 	// load parameters from localStorage
-	let locStorRname: string = $state('');
 	function loadLocStor() {
 		if (locStorRname !== undefined && locStorRname !== '') {
 			const storeKey = `${pDef.partName}_${locStorRname}`;
@@ -185,7 +185,6 @@
 		}
 	}
 	// save parameters into localStorage
-	let locStorWname: string = $state('');
 	//$: console.log(`dbg888: ${locStorWname}`);
 	function saveInLocStor() {
 		if (locStorWname !== undefined && locStorWname !== '') {
@@ -207,7 +206,6 @@
 		}
 	}
 	// Save as URL
-	let pUrl: string = $state('');
 	function generateUrl2(): string {
 		const url1 = generateUrl($page.url.href, sParams[pDef.partName], false);
 		return url1.toString();
@@ -220,33 +218,19 @@
 		//console.log(`dbg244: voila`);
 	}
 	// parameter picture
-	let paramSvg: string = $state(`${base}/pgdsvg/default_param_blank.svg`);
 	function paramPict(keyName: string) {
 		//console.log(`dbg783: ${keyName}`);
 		// convention for the file-names of the parameter description
 		//paramSvg = `${base}/pgdsvg/${pDef.partName}_${keyName}.svg`;
-		paramSvg = `${base}/pgdsvg/default_param_blank.svg`;
 		if (Object.keys(pDef.paramSvg).includes(keyName)) {
 			paramSvg = `${base}/pgdsvg/${pDef.paramSvg[keyName]}`;
-		}
-	}
-	// TODO: solve properly this workaround (avoiding weird re-trigger)
-	let prePartName: string = $state('');
-	function paramPict2(idx: number, pDef_page: string) {
-		//console.log(`dbg283: ${pDef_page}`);
-		if (prePartName !== pDef.partName) {
-			// workaround for avoiding weird re-trigger
-			const paramNb = Object.keys(sParams[pDef_page]).length;
-			if (idx < paramNb) {
-				paramPict(Object.keys(sParams[pDef_page])[idx]);
-			}
+		} else {
+			paramSvg = `${base}/pgdsvg/default_param_blank.svg`;
 		}
 	}
 	$effect(() => {
-		// TODO5: to be revisited
-		paramPict2(0, pDef.partName);
+		paramPict(pDef.params[0].name);
 	});
-	let modalImg: boolean = $state(false);
 	function showSvg() {
 		//console.log(`dbg231: svgPath: ${svgPath}`);
 		modalImg = true;
@@ -258,7 +242,6 @@
 		sectionVisible: boolean;
 		params: tParam[];
 	}
-	type tHTableVis = Record<string, boolean>;
 	function makeHTable(iParams: tParam[]): tHTableSection[] {
 		const rHTable: tHTableSection[] = [];
 		const sectionMain: tHTableSection = {
@@ -294,18 +277,10 @@
 		}
 		return rVis;
 	}
-	let htable: tHTableSection[] = $state([]);
-	let htableVis: tHTableVis = $state({});
-	// TODO: second workaround to be solved properly
-	//let prePartName = '';
+	let htable: tHTableSection[] = $derived(makeHTable(pDef.params));
+	// update htableVis when pDef change
 	$effect(() => {
-		// TODO5: to be revisited
-		htable = makeHTable(pDef.params);
-		if (prePartName !== pDef.partName) {
-			// workaround for avoiding weird re-trigger
-			prePartName = pDef.partName;
-			htableVis = makeHTableVis(htable);
-		}
+		htableVis = makeHTableVis(htable);
 	});
 	// actions
 	function sizeSmall() {
