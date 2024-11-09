@@ -6,6 +6,7 @@
 	import {
 		colors,
 		canvas2point,
+		adjustCopy,
 		adjustCenter,
 		adjustRect,
 		adjustScale,
@@ -96,15 +97,27 @@
 	// Zoom stories
 	function zoomClick(action: string) {
 		//console.log(`dbg094: ${action}`);
+		const tAdjustZIn = adjustScale(0.7, sDraw.zAdjust);
+		const tAdjustZOut = adjustScale(1.3, sDraw.zAdjust);
 		switch (action) {
 			case 'zoomInit':
 				sDraw.zAdjust.init = 0;
 				break;
 			case 'zoomIn':
-				sDraw.zAdjust = adjustScale(0.7, sDraw.zAdjust);
+				//sDraw.zAdjust = adjustScale(0.7, sDraw.zAdjust);
+				sDraw.zAdjust.xMin = tAdjustZIn.xMin;
+				sDraw.zAdjust.yMin = tAdjustZIn.yMin;
+				sDraw.zAdjust.xyDiff = tAdjustZIn.xyDiff;
+				sDraw.zAdjust.scaleX = tAdjustZIn.scaleX;
+				sDraw.zAdjust.scaleY = tAdjustZIn.scaleY;
 				break;
 			case 'zoomOut':
-				sDraw.zAdjust = adjustScale(1.3, sDraw.zAdjust);
+				//sDraw.zAdjust = adjustScale(1.3, sDraw.zAdjust);
+				sDraw.zAdjust.xMin = tAdjustZOut.xMin;
+				sDraw.zAdjust.yMin = tAdjustZOut.yMin;
+				sDraw.zAdjust.xyDiff = tAdjustZOut.xyDiff;
+				sDraw.zAdjust.scaleX = tAdjustZOut.scaleX;
+				sDraw.zAdjust.scaleY = tAdjustZOut.scaleY;
 				break;
 			case 'moveLeft':
 				sDraw.zAdjust.xMin += -0.2 * sDraw.zAdjust.xyDiff;
@@ -221,7 +234,7 @@
 			const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, sDraw.zAdjust);
 			mouseZx = p1x; // point
 			mouseZy = p1y;
-			mouseZadjust = structuredClone(sDraw.zAdjust); // deepCopy
+			mouseZadjust = adjustCopy(sDraw.zAdjust); // deepCopy
 			//const ctx2 = canvasZoom.getContext('2d') as CanvasRenderingContext2D;
 			//const [px, py] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 			//point(px, py).draw(ctx2, cAdjust, colors.mouse, 'rectangle');

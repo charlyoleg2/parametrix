@@ -74,6 +74,19 @@ function adjustZero(): tCanvasAdjust {
 	};
 	return rAdjustZero;
 }
+function adjustCopy(iAdjust: tCanvasAdjust): tCanvasAdjust {
+	const rAdjustZero = {
+		init: iAdjust.init,
+		xMin: iAdjust.xMin,
+		yMin: iAdjust.yMin,
+		xyDiff: iAdjust.xyDiff,
+		shiftX: iAdjust.shiftX,
+		shiftY: iAdjust.shiftY,
+		scaleX: iAdjust.scaleX,
+		scaleY: iAdjust.scaleY
+	};
+	return rAdjustZero;
+}
 function adjustInit(
 	xMin: number,
 	xMax: number,
@@ -104,7 +117,7 @@ function adjustInit(
 	return rAdjust;
 }
 function adjustCenter(px: number, py: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
-	const rAdjust: tCanvasAdjust = structuredClone(iAdjust);
+	const rAdjust = adjustCopy(iAdjust);
 	rAdjust.xMin = px - rAdjust.xyDiff / 2;
 	rAdjust.yMin = py - rAdjust.xyDiff / 2;
 	return rAdjust;
@@ -125,7 +138,7 @@ function adjustRect(
 	return rAdjust;
 }
 function adjustScale(iFactor: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
-	const rAdjust: tCanvasAdjust = structuredClone(iAdjust);
+	const rAdjust = adjustCopy(iAdjust);
 	const shift = (1 - iFactor) / 2;
 	rAdjust.xMin += shift * iAdjust.xyDiff;
 	rAdjust.yMin += shift * iAdjust.xyDiff;
@@ -141,7 +154,7 @@ function adjustTranslate(
 	p2y: number,
 	iAdjust: tCanvasAdjust
 ): tCanvasAdjust {
-	const rAdjust: tCanvasAdjust = structuredClone(iAdjust);
+	const rAdjust = adjustCopy(iAdjust);
 	const xDiff = p2x - p1x;
 	const yDiff = p2y - p1y;
 	//console.log(`dbg118: ${xDiff} ${yDiff}`);
@@ -158,6 +171,7 @@ export {
 	canvasTranslatePolar,
 	radius2canvas,
 	adjustZero,
+	adjustCopy,
 	adjustInit,
 	adjustCenter,
 	adjustRect,
