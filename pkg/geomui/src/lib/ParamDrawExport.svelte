@@ -75,7 +75,8 @@
 
 	// state
 	let simTime: number = $state(0);
-	let selFace: string = $state('dummyInit');
+	let selFace: string = $state(''); // dummyInit, will be initialized later in the code
+	let init: boolean = $state(true);
 	// internal state that should not need state
 	let exportFace: string = $state('zip'); // TODO5 keep state otherwise svelte complains
 
@@ -92,6 +93,15 @@
 	let calcWarn: boolean = $derived(checkWarn(geome.logstr));
 	let pFig: Figure = $derived(selectFig(geome.fig, selFace));
 	let subD: tSubDesign = $derived(geome.sub);
+
+	// initialization
+	$effect(() => {
+		if (init) {
+			const FigListKeys = Object.keys(geome.fig);
+			selFace = checkFace(FigListKeys, '');
+			init = false;
+		}
+	});
 
 	// actions: export drawings
 	function download_binFile(fName: string, fContent: Blob) {
