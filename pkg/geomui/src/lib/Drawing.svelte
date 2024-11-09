@@ -94,6 +94,8 @@
 	$effect(() => {
 		geomRedraw(pFig, sDraw.zAdjust, sDraw.dLayers);
 	});
+
+	// actions
 	// Zoom stories
 	function zoomClick(action: string) {
 		//console.log(`dbg094: ${action}`);

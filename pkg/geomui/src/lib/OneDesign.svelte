@@ -3,7 +3,6 @@
 	import { incrStore } from './initStore';
 	import DrawingList from './DrawingList.svelte';
 	import ParamDrawExport from './ParamDrawExport.svelte';
-	//import { onMount } from 'svelte';
 
 	// props
 	interface Props {

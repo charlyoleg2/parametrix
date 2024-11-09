@@ -10,7 +10,6 @@
 	import { sParams } from './stateParams.svelte';
 	import { sDraw } from './stateDrawing.svelte';
 	import { downloadParams, generateUrl } from './downloadParams';
-	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
@@ -107,9 +106,10 @@
 			}
 		}
 	}
-	onMount(() => {
-		initParams2();
-	});
+	// initiatlization
+	initParams2();
+
+	// actions
 	function loadParams(iStr: string) {
 		try {
 			const [paramJson] = parseParamFile(iStr);
