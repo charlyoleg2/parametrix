@@ -13,6 +13,7 @@
 		adjustTranslate
 	} from 'geometrix';
 	import { sDraw } from './stateDrawing.svelte';
+	import { onMount } from 'svelte';
 
 	// props
 	interface Props {
@@ -29,7 +30,6 @@
 	// state
 	let windowWidth: number = $state(canvas_size_min); // TODO5: $state is not needed, but otherwise svelte complains
 	// those internal states are bound: no need of $state
-	let initPhase = true;
 	let canvasFull: HTMLCanvasElement;
 	let canvasZoom: HTMLCanvasElement;
 
@@ -86,12 +86,12 @@
 		canvasRedrawFull(iFig, iLayers);
 		canvasRedrawZoom(iFig, iZAdjust, iLayers);
 	}
+	// initialization
+	onMount(() => {
+		canvasSetSize();
+	});
 	// reactivity on pFig, zAdjust and dLayers
 	$effect(() => {
-		if (initPhase) {
-			canvasSetSize();
-			initPhase = false;
-		}
 		geomRedraw(pFig, sDraw.zAdjust, sDraw.dLayers);
 	});
 	// Zoom stories

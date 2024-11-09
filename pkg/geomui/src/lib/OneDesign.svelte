@@ -3,31 +3,17 @@
 	import { incrStore } from './initStore';
 	import DrawingList from './DrawingList.svelte';
 	import ParamDrawExport from './ParamDrawExport.svelte';
-	//import { untrack } from 'svelte';
+	//import { onMount } from 'svelte';
 
+	// props
 	interface Props {
 		pageDef: tPageDef;
 		pLink: tAllLink;
 	}
-
 	let { pageDef, pLink }: Props = $props();
 
-	// TODO5 workaround waiting for onPropChange()
-	$effect(() => {
-		//console.log(`workaround for onPropChange: ${pageDef.pTitle} ${pageDef.pDef.partName}`);
-		//untrack(() => incrStore(pageDef));
-		incrStore(pageDef); // works properly with 1500 retriggerings
-	});
-	incrStore(pageDef); // For initialization before DOM-initialization
-
-	// understanding svelte5
-	//let initPhase: boolean = $state(true);
-	//$effect(() => {
-	//	if (initPhase) {
-	//		console.log('dbg027: OneDesign initPhase');
-	//		initPhase = false;
-	//	}
-	//});
+	// initialization
+	incrStore(pageDef);
 </script>
 
 <h1>{pageDef.pTitle}</h1>

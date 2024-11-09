@@ -1,8 +1,6 @@
 <script lang="ts">
 	import type { tParamDef } from 'geometrix';
 	import ModalImg from './ModalImg.svelte';
-	//import { onMount } from 'svelte';
-	//import { browser } from '$app/environment';
 	import { base } from '$app/paths';
 
 	// props

@@ -10,6 +10,7 @@
 	import { sParams } from './stateParams.svelte';
 	import { sDraw } from './stateDrawing.svelte';
 	import { downloadParams, generateUrl } from './downloadParams';
+	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
@@ -41,7 +42,6 @@
 	let paramSvg: string = $state(checkPict(pDef.params[0].name));
 	let modalImg: boolean = $state(false);
 	let htableVis: tHTableVis = $state(makeHTableVis(makeHTable(pDef.params)));
-	let initPhase: boolean = $state(true);
 
 	// initialization
 	// tolerant applyParamVal
@@ -107,11 +107,8 @@
 			}
 		}
 	}
-	$effect(() => {
-		if (initPhase) {
-			initParams2();
-			initPhase = false;
-		}
+	onMount(() => {
+		initParams2();
 	});
 	function loadParams(iStr: string) {
 		try {

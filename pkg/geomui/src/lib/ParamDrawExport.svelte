@@ -21,6 +21,7 @@
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
 	import { sParams } from './stateParams.svelte';
+	import { onMount } from 'svelte';
 
 	// properties
 	interface Props {
@@ -76,7 +77,6 @@
 	// state
 	let simTime: number = $state(0);
 	let selFace: string = $state(''); // dummyInit, will be initialized later in the code
-	let initPhase: boolean = $state(true);
 	// internal state that should not need state
 	let exportFace: string = $state('zip'); // TODO5 keep state otherwise svelte complains
 
@@ -95,13 +95,10 @@
 	let subD: tSubDesign = $derived(geome.sub);
 
 	// initialization
-	$effect(() => {
-		if (initPhase) {
-			//console.log('dbg100: initialize selFace');
-			const FigListKeys = Object.keys(geome.fig);
-			selFace = checkFace(FigListKeys, '');
-			initPhase = false;
-		}
+	onMount(() => {
+		//console.log('dbg100: initialize selFace');
+		const FigListKeys = Object.keys(geome.fig);
+		selFace = checkFace(FigListKeys, '');
 	});
 
 	// actions: export drawings
