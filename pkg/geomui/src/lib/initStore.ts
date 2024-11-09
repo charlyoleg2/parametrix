@@ -4,7 +4,6 @@ import type { tParamVal, tPageDef, tAllPageDef } from 'geometrix';
 //import { PType } from 'geometrix';
 //import type { tStateParams } from './stateParams.svelte';
 import { sParams } from './stateParams.svelte';
-//import { get } from 'svelte/store';
 
 function initStore(designDefs: tAllPageDef) {
 	//const iniPV: tStateParams = {};

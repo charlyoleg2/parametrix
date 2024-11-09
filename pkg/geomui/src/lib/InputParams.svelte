@@ -10,7 +10,6 @@
 	import { sParams } from './stateParams.svelte';
 	import { sDraw } from './stateDrawing.svelte';
 	import { downloadParams, generateUrl } from './downloadParams';
-	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { base } from '$app/paths';
@@ -39,9 +38,10 @@
 	let locStorRname: string = $state('');
 	let locStorWname: string = $state('');
 	let pUrl: string = $state('');
-	let paramSvg: string = $state(`${base}/pgdsvg/default_param_blank.svg`);
+	let paramSvg: string = $state(checkPict(pDef.params[0].name));
 	let modalImg: boolean = $state(false);
-	let htableVis: tHTableVis = $state({});
+	let htableVis: tHTableVis = $state(makeHTableVis(makeHTable(pDef.params)));
+	let initPhase: boolean = $state(true);
 
 	// initialization
 	// tolerant applyParamVal
@@ -107,12 +107,11 @@
 			}
 		}
 	}
-	// TODO5: Bug? No initialization when loading page! Keep the previous values!
-	function forceInit() {
-		initParams2();
-	}
-	onMount(() => {
-		forceInit();
+	$effect(() => {
+		if (initPhase) {
+			initParams2();
+			initPhase = false;
+		}
 	});
 	function loadParams(iStr: string) {
 		try {
@@ -205,19 +204,18 @@
 		//console.log(`dbg244: voila`);
 	}
 	// parameter picture
-	function paramPict(keyName: string) {
-		//console.log(`dbg783: ${keyName}`);
+	function checkPict(keyName: string): string {
+		let rSvgPath = `${base}/pgdsvg/default_param_blank.svg`;
 		// convention for the file-names of the parameter description
 		//paramSvg = `${base}/pgdsvg/${pDef.partName}_${keyName}.svg`;
 		if (Object.keys(pDef.paramSvg).includes(keyName)) {
-			paramSvg = `${base}/pgdsvg/${pDef.paramSvg[keyName]}`;
-		} else {
-			paramSvg = `${base}/pgdsvg/default_param_blank.svg`;
+			rSvgPath = `${base}/pgdsvg/${pDef.paramSvg[keyName]}`;
 		}
+		return rSvgPath;
 	}
-	$effect(() => {
-		paramPict(pDef.params[0].name);
-	});
+	function paramPict(keyName: string) {
+		paramSvg = checkPict(keyName);
+	}
 	function showSvg() {
 		//console.log(`dbg231: svgPath: ${svgPath}`);
 		modalImg = true;
@@ -265,10 +263,6 @@
 		return rVis;
 	}
 	let htable: tHTableSection[] = $derived(makeHTable(pDef.params));
-	// update htableVis when pDef change
-	$effect(() => {
-		htableVis = makeHTableVis(htable);
-	});
 	// actions
 	function sizeSmall() {
 		hideColumn = true;

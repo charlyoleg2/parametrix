@@ -19,6 +19,15 @@
 		incrStore(pageDef); // works properly with 1500 retriggerings
 	});
 	incrStore(pageDef); // For initialization before DOM-initialization
+
+	// understanding svelte5
+	//let initPhase: boolean = $state(true);
+	//$effect(() => {
+	//	if (initPhase) {
+	//		console.log('dbg027: OneDesign initPhase');
+	//		initPhase = false;
+	//	}
+	//});
 </script>
 
 <h1>{pageDef.pTitle}</h1>

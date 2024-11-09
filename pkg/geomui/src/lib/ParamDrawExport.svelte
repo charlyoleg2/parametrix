@@ -76,7 +76,7 @@
 	// state
 	let simTime: number = $state(0);
 	let selFace: string = $state(''); // dummyInit, will be initialized later in the code
-	let init: boolean = $state(true);
+	let initPhase: boolean = $state(true);
 	// internal state that should not need state
 	let exportFace: string = $state('zip'); // TODO5 keep state otherwise svelte complains
 
@@ -96,10 +96,11 @@
 
 	// initialization
 	$effect(() => {
-		if (init) {
+		if (initPhase) {
+			//console.log('dbg100: initialize selFace');
 			const FigListKeys = Object.keys(geome.fig);
 			selFace = checkFace(FigListKeys, '');
-			init = false;
+			initPhase = false;
 		}
 	});
 
