@@ -178,7 +178,7 @@
 	let shuttleMagneticEnergy = $derived(fShuttleEm(shuttleX, 0));
 	//shuttleInductance = turnNb ** 2 / shuttleReluctance;
 	let shuttleInductance = $derived(fShuttleInductance(shuttleX, 0));
-	let shuttleForce = $derived(fShuttleForce(shuttleX, 0)); // TODO5: force reactivity on permeaG?
+	let shuttleForce = $derived(fShuttleForce(shuttleX, 0));
 	let airgapHM = $derived(airgapH / 1000); // m
 	let shuttlerReluctance = $derived(fShuttleReluctance(shuttleX, airgapHM));
 	let shuttlerMagneticFlux = $derived(fShuttleMagFlux(shuttleX, airgapHM));
