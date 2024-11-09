@@ -183,14 +183,9 @@
 						//console.log(`dbg160: a selection at ${eve.offsetX} ${eve.offsetY}`);
 						const [p1x, p1y] = canvas2point(eve.offsetX, eve.offsetY, cAdjust);
 						const [p2x, p2y] = canvas2point(mouseF.offsetX, mouseF.offsetY, cAdjust);
-						sDraw.zAdjust = adjustRect(
-							p1x,
-							p1y,
-							p2x,
-							p2y,
-							canvas_size_min,
-							canvas_size_min
-						);
+						const ctx2 = canvasZoom.getContext('2d')!;
+						const w2 = ctx2.canvas.width;
+						sDraw.zAdjust = adjustRect(p1x, p1y, p2x, p2y, w2, w2);
 						geomRedraw(pFig, sDraw.zAdjust, sDraw.dLayers);
 					}
 				}
