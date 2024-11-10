@@ -10,8 +10,8 @@
 	let { children }: Props = $props();
 
 	// connection to html-element
-	let carousContent: HTMLElement | undefined = $state();
-	let slideContent: HTMLElement | undefined = $state();
+	let carousContent: HTMLElement;
+	let slideContent: HTMLElement;
 	// $state
 	let slideNb = $state(0);
 	let slideIdx = $state(0);
