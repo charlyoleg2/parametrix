@@ -1,11 +1,13 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { base } from '$app/paths';
 	import { version_details } from 'geometrix';
 	import appPackage from '../../package.json';
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
 
+	// props
+	interface Props {
+		children?: Snippet;
+	}
 	let { children }: Props = $props();
 
 	const detailed_versions = version_details(appPackage);
