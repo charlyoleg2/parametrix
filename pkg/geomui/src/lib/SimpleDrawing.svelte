@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { tCanvasAdjust, tLayers, Figure } from 'geometrix';
-	import { copyLayers } from 'geometrix';
+	import { adjustMini, copyLayers } from 'geometrix';
 	import { sDraw } from './stateDrawing.svelte';
 
 	// props
@@ -18,19 +18,25 @@
 	let canvasMini: HTMLCanvasElement;
 
 	// Canavas Figures
-	function canvasRedrawMini(aFigure: Figure, iZAdjust: tCanvasAdjust, iLayers: tLayers) {
+	function canvasRedrawMini(
+		aFigure: Figure,
+		iZAdjust: tCanvasAdjust,
+		iCZwidth: number,
+		iLayers: tLayers
+	) {
 		const sLayers = copyLayers(iLayers);
 		sLayers.ruler = false;
 		let mAdjust: tCanvasAdjust;
 		if (canvasMini) {
 			const ctx1 = canvasMini.getContext('2d')!;
 			ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
+			const c1w = ctx1.canvas.width;
 			try {
 				if (full) {
 					// mini-full with zAdjust set to adjustZero()
 					mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
 				} else {
-					mAdjust = iZAdjust;
+					mAdjust = adjustMini(iCZwidth, c1w, iZAdjust);
 				}
 				aFigure.draw(ctx1, mAdjust, sLayers);
 			} catch (emsg) {
@@ -44,7 +50,7 @@
 	}
 	// reactivity
 	$effect(() => {
-		canvasRedrawMini(pFig, sDraw.zAdjust, sDraw.dLayers);
+		canvasRedrawMini(pFig, sDraw.zAdjust, sDraw.canvasZWidth, sDraw.dLayers);
 	});
 	// actions
 	function clickQuater(eve: MouseEvent) {
@@ -64,7 +70,7 @@
 			}
 			ctx1.canvas.width = quaterID * canvas_size_mini;
 			ctx1.canvas.height = quaterID * canvas_size_mini;
-			canvasRedrawMini(pFig, sDraw.zAdjust, sDraw.dLayers);
+			canvasRedrawMini(pFig, sDraw.zAdjust, sDraw.canvasZWidth, sDraw.dLayers);
 		}
 	}
 </script>

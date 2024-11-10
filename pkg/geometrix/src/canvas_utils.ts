@@ -20,6 +20,7 @@ const colors = {
 	reference: 'blue',
 	mouse: 'yellow'
 };
+const c_margin = 0.05;
 
 interface tCanvasAdjust {
 	init: number;
@@ -110,9 +111,9 @@ function adjustInit(
 	rAdjust.xMin = xMin;
 	rAdjust.yMin = yMin;
 	rAdjust.xyDiff = xyDiff;
-	rAdjust.shiftX = 0.05 * cWidth;
+	rAdjust.shiftX = c_margin * cWidth;
 	rAdjust.scaleX = xyScale;
-	rAdjust.shiftY = cHeight - 0.05 * cHeight;
+	rAdjust.shiftY = cHeight - c_margin * cHeight;
 	rAdjust.scaleY = -1 * xyScale;
 	return rAdjust;
 }
@@ -162,6 +163,18 @@ function adjustTranslate(
 	rAdjust.yMin += -yDiff;
 	return rAdjust;
 }
+function adjustMini(widthOrig: number, widthTarget: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
+	const rAdjust = adjustCopy(iAdjust);
+	if (widthOrig > 0 && widthTarget > 0) {
+		const mf = widthOrig / widthTarget;
+		rAdjust.xyDiff *= mf;
+		rAdjust.scaleX *= 1.0 / mf;
+		rAdjust.scaleY *= 1.0 / mf;
+		rAdjust.shiftX += c_margin * widthTarget - c_margin * widthOrig;
+		rAdjust.shiftY += (1 - c_margin) * widthTarget - (1 - c_margin) * widthOrig;
+	}
+	return rAdjust;
+}
 
 export type { tCanvasAdjust };
 export {
@@ -176,5 +189,6 @@ export {
 	adjustCenter,
 	adjustRect,
 	adjustScale,
-	adjustTranslate
+	adjustTranslate,
+	adjustMini
 };
