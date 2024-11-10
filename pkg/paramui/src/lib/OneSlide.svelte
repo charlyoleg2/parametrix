@@ -1,11 +1,11 @@
-<script>
-	/**
-	 * @typedef {Object} Props
-	 * @property {import('svelte').Snippet} [children]
-	 */
+<script lang="ts">
+	import type { Snippet } from 'svelte';
 
-	/** @type {Props} */
-	let { children } = $props();
+	// props
+	interface Props {
+		children: Snippet;
+	}
+	let { children }: Props = $props();
 </script>
 
 <div>

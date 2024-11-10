@@ -1,10 +1,11 @@
 <script lang="ts" module>
-	import type { Snippet } from 'svelte';
 	type tOkFunc = () => void;
 	export type { tOkFunc };
 </script>
 
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
 	// props
 	interface Props {
 		okName?: string;

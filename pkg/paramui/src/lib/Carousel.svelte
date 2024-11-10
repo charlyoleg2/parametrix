@@ -1,14 +1,18 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	//import OneSlide from './OneSlide.svelte';
 	import { onMount, onDestroy } from 'svelte';
-	interface Props {
-		children?: import('svelte').Snippet;
-	}
 
+	// props
+	interface Props {
+		children?: Snippet;
+	}
 	let { children }: Props = $props();
 
+	// connection to html-element
 	let carousContent: HTMLElement | undefined = $state();
 	let slideContent: HTMLElement | undefined = $state();
+	// $state
 	let slideNb = $state(0);
 	let slideIdx = $state(0);
 	let prezActive = $state(false);

@@ -1,12 +1,14 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
+	// props
 	interface Props {
 		checkboxId: string;
 		labelText: string;
 		top1?: import('svelte').Snippet;
 		top2?: import('svelte').Snippet;
-		children?: import('svelte').Snippet;
+		children?: Snippet;
 	}
-
 	let { checkboxId, labelText, top1, top2, children }: Props = $props();
 </script>
 
