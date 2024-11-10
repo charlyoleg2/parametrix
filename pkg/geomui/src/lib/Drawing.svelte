@@ -76,6 +76,10 @@
 		ctxF.canvas.height = canvas_size;
 		ctxZ.canvas.width = canvas_size;
 		ctxZ.canvas.height = canvas_size;
+		// initialize zAdjust
+		if (sDraw.zAdjust.init === 0) {
+			sDraw.zAdjust = pFig.getAdjustZoom(ctxZ.canvas.width, ctxZ.canvas.height);
+		}
 	}
 	function canvasResize() {
 		canvasSetSize();
@@ -99,27 +103,16 @@
 	// Zoom stories
 	function zoomClick(action: string) {
 		//console.log(`dbg094: ${action}`);
-		const tAdjustZIn = adjustScale(0.7, sDraw.zAdjust);
-		const tAdjustZOut = adjustScale(1.3, sDraw.zAdjust);
+		const ctx2 = canvasZoom.getContext('2d')!;
 		switch (action) {
 			case 'zoomInit':
-				sDraw.zAdjust.init = 0;
+				sDraw.zAdjust = pFig.getAdjustZoom(ctx2.canvas.width, ctx2.canvas.height);
 				break;
 			case 'zoomIn':
-				//sDraw.zAdjust = adjustScale(0.7, sDraw.zAdjust);
-				sDraw.zAdjust.xMin = tAdjustZIn.xMin;
-				sDraw.zAdjust.yMin = tAdjustZIn.yMin;
-				sDraw.zAdjust.xyDiff = tAdjustZIn.xyDiff;
-				sDraw.zAdjust.scaleX = tAdjustZIn.scaleX;
-				sDraw.zAdjust.scaleY = tAdjustZIn.scaleY;
+				sDraw.zAdjust = adjustScale(0.7, sDraw.zAdjust);
 				break;
 			case 'zoomOut':
-				//sDraw.zAdjust = adjustScale(1.3, sDraw.zAdjust);
-				sDraw.zAdjust.xMin = tAdjustZOut.xMin;
-				sDraw.zAdjust.yMin = tAdjustZOut.yMin;
-				sDraw.zAdjust.xyDiff = tAdjustZOut.xyDiff;
-				sDraw.zAdjust.scaleX = tAdjustZOut.scaleX;
-				sDraw.zAdjust.scaleY = tAdjustZOut.scaleY;
+				sDraw.zAdjust = adjustScale(1.3, sDraw.zAdjust);
 				break;
 			case 'moveLeft':
 				sDraw.zAdjust.xMin += -0.2 * sDraw.zAdjust.xyDiff;
@@ -267,6 +260,7 @@
 	}
 </script>
 
+// TODO: onresize is not triggered when the window is maximized
 <svelte:window bind:innerWidth={windowWidth} onresize={canvasResize} />
 <section>
 	<LabelCheckbox />
