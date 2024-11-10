@@ -6,9 +6,8 @@
 	import LocStorRead from './LocStorRead.svelte';
 	import SimpleDrawing from './SimpleDrawing.svelte';
 	import type { tParam, tParamDef, tParamVal, Figure } from 'geometrix';
-	import { PType, parseParamFile, createParamFile, adjustZero } from 'geometrix';
+	import { PType, parseParamFile, createParamFile } from 'geometrix';
 	import { sParams } from './stateParams.svelte';
-	import { sDraw } from './stateDrawing.svelte';
 	import { downloadParams, generateUrl } from './downloadParams';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
@@ -21,8 +20,6 @@
 	}
 	let { pDef, pFig }: Props = $props();
 
-	// const
-	const cAdjustZero = adjustZero();
 	// type
 	type tHTableVis = Record<string, boolean>;
 
@@ -424,10 +421,10 @@
 		<img src={paramSvg} alt={paramSvg} />
 	</button>
 	<div class="mini-canvas">
-		<SimpleDrawing {pFig} zAdjust={cAdjustZero} />
+		<SimpleDrawing {pFig} full={true} />
 	</div>
 	<div class="mini-canvas">
-		<SimpleDrawing {pFig} zAdjust={sDraw.zAdjust} />
+		<SimpleDrawing {pFig} full={false} />
 	</div>
 </section>
 

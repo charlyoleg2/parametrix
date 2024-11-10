@@ -77,6 +77,7 @@
 		ctxZ.canvas.width = canvas_size;
 		ctxZ.canvas.height = canvas_size;
 		// initialize zAdjust
+		sDraw.canvasZWidth = canvas_size;
 		if (sDraw.zAdjust.init === 0) {
 			sDraw.zAdjust = pFig.getAdjustZoom(ctxZ.canvas.width, ctxZ.canvas.height);
 		}

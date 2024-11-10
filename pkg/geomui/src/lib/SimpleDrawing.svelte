@@ -6,9 +6,9 @@
 	// props
 	interface Props {
 		pFig: Figure;
-		zAdjust: tCanvasAdjust;
+		full: boolean;
 	}
-	let { pFig, zAdjust }: Props = $props();
+	let { pFig, full }: Props = $props();
 
 	// const
 	const canvas_size_mini = 200;
@@ -26,7 +26,7 @@
 			const ctx1 = canvasMini.getContext('2d')!;
 			ctx1.clearRect(0, 0, ctx1.canvas.width, ctx1.canvas.height);
 			try {
-				if (iZAdjust.init === 0) {
+				if (full) {
 					// mini-full with zAdjust set to adjustZero()
 					mAdjust = aFigure.getAdjustFull(ctx1.canvas.width, ctx1.canvas.height);
 				} else {
@@ -44,7 +44,7 @@
 	}
 	// reactivity
 	$effect(() => {
-		canvasRedrawMini(pFig, zAdjust, sDraw.dLayers);
+		canvasRedrawMini(pFig, sDraw.zAdjust, sDraw.dLayers);
 	});
 	// actions
 	function clickQuater(eve: MouseEvent) {
@@ -64,7 +64,7 @@
 			}
 			ctx1.canvas.width = quaterID * canvas_size_mini;
 			ctx1.canvas.height = quaterID * canvas_size_mini;
-			canvasRedrawMini(pFig, zAdjust, sDraw.dLayers);
+			canvasRedrawMini(pFig, sDraw.zAdjust, sDraw.dLayers);
 		}
 	}
 </script>
