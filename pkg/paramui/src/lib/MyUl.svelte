@@ -5,8 +5,8 @@
 	interface Props {
 		checkboxId: string;
 		labelText: string;
-		top1?: import('svelte').Snippet;
-		top2?: import('svelte').Snippet;
+		top1?: Snippet;
+		top2?: Snippet;
 		children?: Snippet;
 	}
 	let { checkboxId, labelText, top1, top2, children }: Props = $props();
