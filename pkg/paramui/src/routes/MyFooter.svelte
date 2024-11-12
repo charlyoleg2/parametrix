@@ -17,6 +17,7 @@
 		<li><a href="https://github.com/sgenoud/replicad">Replicad</a></li>
 		<li><a href="https://github.com/zalo/CascadeStudio">CascadeStudio</a></li>
 		<li><a href="https://github.com/jscad/OpenJSCAD.org">OpenJsCAD</a></li>
+		<li><a href="https://manifoldcad.org/">ManifoldCAD</a></li>
 	</ul>
 	<Garland />
 	<ul>
