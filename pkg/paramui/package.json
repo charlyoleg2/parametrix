@@ -64,9 +64,9 @@
 		"clean": "rimraf .svelte-kit build node_modules static/pgdsvg static/puisvg"
 	},
 	"dependencies": {
-		"designix": "^0.5.55",
-		"geometrix": "^0.5.54",
-		"geomui": "^0.5.56"
+		"designix": "^0.5.56",
+		"geometrix": "^0.5.55",
+		"geomui": "^0.5.57"
 	},
 	"devDependencies": {
 		"@atao60/fse-cli": "^0.1.9",
@@ -87,7 +87,7 @@
 		"prettier-plugin-svelte": "^3.2.8",
 		"rimraf": "^6.0.1",
 		"sass": "^1.80.7",
-		"svelte": "^5.1.16",
+		"svelte": "^5.2.0",
 		"svelte-check": "^4.0.7",
 		"svgo": "^3.3.2",
 		"typescript": "^5.6.3",

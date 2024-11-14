@@ -70,7 +70,7 @@
 		"svelte": "^5.1.0"
 	},
 	"dependencies": {
-		"geometrix": "^0.5.54"
+		"geometrix": "^0.5.55"
 	},
 	"devDependencies": {
 		"@atao60/fse-cli": "^0.1.9",
@@ -80,7 +80,7 @@
 		"@sveltejs/package": "^2.3.7",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
 		"@types/eslint": "^9.6.1",
-		"designix": "^0.5.55",
+		"designix": "^0.5.56",
 		"eslint": "^9.14.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.46.0",
@@ -91,7 +91,7 @@
 		"publint": "^0.2.12",
 		"rimraf": "^6.0.1",
 		"sass": "^1.80.7",
-		"svelte": "^5.1.16",
+		"svelte": "^5.2.0",
 		"svelte-check": "^4.0.7",
 		"typescript": "^5.6.3",
 		"typescript-eslint": "^8.14.0",
