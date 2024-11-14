@@ -261,7 +261,7 @@
 	}
 </script>
 
-// TODO: onresize is not triggered when the window is maximized
+<!-- TODO: onresize is not triggered when the window is maximized -->
 <svelte:window bind:innerWidth={windowWidth} onresize={canvasResize} />
 <section>
 	<LabelCheckbox />
