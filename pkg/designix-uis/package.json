@@ -89,7 +89,7 @@
 		"@types/fs-extra": "^11.0.4",
 		"@types/node": "^22.10.1",
 		"@types/yargs": "^17.0.33",
-		"eslint": "^9.15.0",
+		"eslint": "^9.16.0",
 		"eslint-config-prettier": "^9.1.0",
 		"npm-run-all2": "^7.0.1",
 		"prettier": "^3.4.1",
