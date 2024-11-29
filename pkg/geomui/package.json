@@ -78,7 +78,7 @@
 		"@sveltejs/adapter-static": "^3.0.6",
 		"@sveltejs/kit": "^2.9.0",
 		"@sveltejs/package": "^2.3.7",
-		"@sveltejs/vite-plugin-svelte": "^4.0.2",
+		"@sveltejs/vite-plugin-svelte": "^5.0.1",
 		"@types/eslint": "^9.6.1",
 		"designix": "^0.5.57",
 		"eslint": "^9.15.0",
@@ -95,7 +95,7 @@
 		"svelte-check": "^4.1.0",
 		"typescript": "^5.7.2",
 		"typescript-eslint": "^8.16.0",
-		"vite": "^5.4.11",
+		"vite": "^6.0.1",
 		"vitest": "^2.1.6"
 	}
 }
