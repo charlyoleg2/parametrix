@@ -3,6 +3,7 @@
 import { designDefs, allLink } from '$lib/makeMenu';
 import { error } from '@sveltejs/kit';
 
+/** @type {import('./$types').PageLoad} */
 export function load({ params }) {
 	//console.log(params);
 	const re = /^.*\//g;
