@@ -86,7 +86,7 @@
 		"svgo": "^3.3.2",
 		"tsup": "^8.3.5",
 		"typescript": "^5.7.2",
-		"typescript-eslint": "^8.16.0",
-		"vitest": "^2.1.6"
+		"typescript-eslint": "^8.17.0",
+		"vitest": "^2.1.8"
 	}
 }
