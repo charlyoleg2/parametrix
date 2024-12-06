@@ -72,7 +72,7 @@
 		"prettier-plugin-svelte": "^3.3.2",
 		"rimraf": "^6.0.1",
 		"sass": "^1.82.0",
-		"svelte": "^5.7.1",
+		"svelte": "^5.8.0",
 		"svelte-check": "^4.1.1",
 		"typescript": "^5.7.2",
 		"typescript-eslint": "^8.17.0",
