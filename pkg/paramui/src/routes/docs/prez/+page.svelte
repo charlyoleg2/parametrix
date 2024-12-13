@@ -80,20 +80,24 @@ Simplistic approach:
 		<pre style="margin:0;">&gt; a generator of WebUI for parametrizing your designs</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre>
-Parametrix main characteristics:
+		<pre class="smaller">
+Parametrix main advantages:
 
-1. free and open-source
-    (like Freecad or SolveSpace)
+1. Durability of your 3D modeling
+    1.1. Parametrix is small (10k LoC)
+    1.2. Parametrix is open-source
+    1.3. An abstraction of several/many API of CAD-tools
+        Keep your design agnostic to CAD vendors (no lock-in)
 
-2. JavaScript
-    for designing 3D shapes (similar to OpenSCAD)
+2. Guide your design for cost efficient digital manufacturing
+    Generate contours made out of lines and arcs of circles
+        as supported by G-code
 
-3. CAD tool abstraction
-    for keeping your 3D-shapes agnostic to CAD vendors
+3. Clear and structured interface between designer and manufacturer
+    one HTML page with parametrization, 2D preview and 3D export
 
-4. HTML page
-    for parametrization and generating the 3D scripts
+4. A javacript API
+    Creating your 3D modelling recipes with javascript
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -317,5 +321,8 @@ npm create parametrix@latest tom07
 
 	h1 {
 		margin: 1rem;
+	}
+	pre.smaller {
+		font-size: 0.8em;
 	}
 </style>

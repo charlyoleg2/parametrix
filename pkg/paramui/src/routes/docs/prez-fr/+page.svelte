@@ -80,20 +80,24 @@ Approche simplifi&eacute;e:
 		<pre style="margin:0;">&gt; Un générateur de siteweb pour paramétriser les designs</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre>
-Les caractéristiques principales de Parametrix:
+		<pre class="smaller">
+Les principaux avantages de Parametrix:
 
-1. Logiciel libre
-    (comme Freecad ou SolveSpace)
+1. Pérennité de vos modeles 3D
+    1.1. Parametrix est petit (10k LoC)
+    1.2. Parametrix est open-source
+    1.3. Une abstraction de plusieurs API d'outils CAO
+        Eviter les lock-in de vos designs 3D
 
-2. JavaScript
-    pour designer les formes 3D (comme avec OpenSCAD)
+2. Facilité la compatibilité avec les machines de fabrication digitales
+    Des contours faits de segments et d'arcs de cercles
+        comme le G-code
 
-3. Une abstraction des outil de CAD
-    Pour assurer la pérénité de ses designs 3D
+3. Une interface claire et structurée entre Designer et Maker
+    Une page HTML pour paramétriser, visualiser en 2D et exporter en 3D
 
-4. Génère des pages HTML
-    pour paramétriser et générer des scripts 3D
+4. Une API javascript
+    Votre mod&egrave;le 3D est une recette écrite dans un fichier javacript
 		</pre>
 	</OneSlide>
 	<OneSlide>
@@ -323,5 +327,8 @@ npm create parametrix@latest tom07
 
 	h1 {
 		margin: 1rem;
+	}
+	pre.smaller {
+		font-size: 0.8em;
 	}
 </style>
