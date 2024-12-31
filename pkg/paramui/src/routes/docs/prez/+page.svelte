@@ -101,6 +101,15 @@ Parametrix main advantages:
 		</pre>
 	</OneSlide>
 	<OneSlide>
+		<img
+			src="{base}/puisvg/prez_parametrix_condensed.svg"
+			style="width: 28em;"
+			alt="Parametrix described in condensed"
+		/>
+		<p style="text-align:center; margin: 0.5rem">Parametrix in condensed</p>
+	</OneSlide>
+	<OneSlide
+		>/
 		<pre>
 framework / eco-system : Parametrix
 
