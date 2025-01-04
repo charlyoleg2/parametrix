@@ -79,6 +79,12 @@ If you want to get your *geometrix design library* in this list, please, create 
 4. [heliostat_model_50cm](https://github.com/charlyoleg2/heliostat_model_50cm)
 
 
+#### List of catalogs of 3D models
+
+1. [Catalos Github-pages](https://charlyoleg2.github.io/catalos/) : The dev version of Catalos
+2. [Calatos Vercel](https://catalos-catalui.vercel.app/) : The complete version of Catalos
+
+
 #### Todo-list
 
 1. Create your own design-library (like *param78* or *param82*)

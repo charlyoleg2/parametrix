@@ -46,6 +46,14 @@ Packages details
 [designix-uis]: https://www.npmjs.com/package/designix-uis
 
 
+Outcome of Parametrix
+---------------------
+
+3D models created with *Parametrix* can be viewed and downloaded on the following websites:
+- [Catalos Github-pages](https://charlyoleg2.github.io/catalos/) : The dev version of Catalos
+- [Calatos Vercel](https://catalos-catalui.vercel.app/) : The complete version of Catalos
+
+
 Prerequisite
 ------------
 
