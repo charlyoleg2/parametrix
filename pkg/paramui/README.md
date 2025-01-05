@@ -14,7 +14,7 @@ The sources are available on [github](https://github.com/charlyoleg2/parametrix)
 Prerequisite
 ------------
 
-- [node](https://nodejs.org) version 22.12.0 or higher
+- [node](https://nodejs.org) version 22.0.0 or higher
 - [npm](https://docs.npmjs.com/cli/v7/commands/npm) version 11.0.0 or higher
 
 
