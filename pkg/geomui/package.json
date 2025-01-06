@@ -88,7 +88,7 @@
 		"npm-run-all2": "^7.0.2",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.2",
-		"publint": "^0.2.12",
+		"publint": "^0.3.0",
 		"rimraf": "^6.0.1",
 		"sass": "^1.83.1",
 		"svelte": "^5.16.2",
