@@ -16,7 +16,7 @@
 <h1>Welcome to designix-ui</h1>
 <h6>
 	Showcasing the usage of the <a href="https://svelte.dev/">svelte</a> library
-	<a href="https://www.npmjs.com/">geomui</a>.
+	<a href="https://www.npmjs.com/package/geomui">geomui</a>.
 </h6>
 <nav>
 	<a href={`${base}/`}>index: list of designs</a>
@@ -28,7 +28,7 @@
 	<article>
 		<a href="https://github.com/charlyoleg2/parametrix">designix-ui</a>, a minimalist showcase
 		of
-		<a href="https://www.npmjs.com/">geomui</a>.
+		<a href="https://www.npmjs.com/package/geomui">geomui</a>.
 	</article>
 	<article>
 		<h3>Designix-ui version</h3>
@@ -37,6 +37,13 @@
 				{dversion}<br />
 			{/each}
 		</code>
+	</article>
+	<article>
+		<ol>
+			<li><a href="https://github.com/charlyoleg2/parametrix">Parametrix repo</a></li>
+			<li><a href="https://charlyoleg2.github.io/parametrix/">Parametrix page</a></li>
+			<li><a href="https://catalos-catalui.vercel.app/">Catalos</a></li>
+		</ol>
 	</article>
 </footer>
 
