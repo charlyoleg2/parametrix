@@ -40,6 +40,7 @@
 		</code>
 	</article>
 	<article>
+		<h3>Parametrix</h3>
 		<ol>
 			<li><a href="https://github.com/charlyoleg2/parametrix">Parametrix repo</a></li>
 			<li><a href="https://charlyoleg2.github.io/parametrix/">Parametrix page</a></li>
