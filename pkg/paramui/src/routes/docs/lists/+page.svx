@@ -26,18 +26,26 @@ Below a list of libraries of 3D-part-designs based on *Geometrix*:
 2. desi51 : [src](https://github.com/charlyoleg2/parame51) -
 	[ui](https://charlyoleg2.github.io/parame51/) -
 	[pkg](https://www.npmjs.com/package/desi51) :
+	[pkg-cli](https://www.npmjs.com/package/desi51-cli) -
+	[pkg-uis](https://www.npmjs.com/package/desi51-uis) :
 	First batch of geometrix design examples for the tutorial
 3. desi52 : [src](https://github.com/charlyoleg2/parame52) -
 	[ui](https://charlyoleg2.github.io/parame52/) -
 	[pkg](https://www.npmjs.com/package/desi52) :
+	[pkg-cli](https://www.npmjs.com/package/desi52-cli) -
+	[pkg-uis](https://www.npmjs.com/package/desi52-uis) :
 	Second batch of geometrix design examples for the tutorial
 4. desi53 : [src](https://github.com/charlyoleg2/parame53) -
 	[ui](https://charlyoleg2.github.io/parame53/) -
 	[pkg](https://www.npmjs.com/package/desi53) :
+	[pkg-cli](https://www.npmjs.com/package/desi53-cli) -
+	[pkg-uis](https://www.npmjs.com/package/desi53-uis) :
 	Third batch of geometrix design examples for the tutorial
 5. desi53b : [src](https://github.com/charlyoleg2/parame53) -
 	[ui](https://charlyoleg2.github.io/parame53/) -
 	[pkg](https://www.npmjs.com/package/desi53b) :
+	[pkg-cli](https://www.npmjs.com/package/desi53-cli) -
+	[pkg-uis](https://www.npmjs.com/package/desi53-uis) :
 	Fourth batch of geometrix design examples for the tutorial
 6. desi78 : [src](https://github.com/charlyoleg2/parame78) -
 	[ui](https://charlyoleg2.github.io/parame78/) -
@@ -54,6 +62,8 @@ Below a list of libraries of 3D-part-designs based on *Geometrix*:
 8. desi15L : [src](https://github.com/charlyoleg2/parame15L) -
 	[ui](https://charlyoleg2.github.io/parame15L/) -
 	[pkg](https://www.npmjs.com/package/desi15L) :
+	[pkg-cli](https://www.npmjs.com/package/desi15L-cli) -
+	[pkg-uis](https://www.npmjs.com/package/desi15L-uis) :
 	The designs of a junior developer
 
 
