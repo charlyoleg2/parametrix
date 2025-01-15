@@ -76,7 +76,7 @@
 	},
 	"dependencies": {
 		"express": "^4.21.2",
-		"fs-extra": "^11.2.0",
+		"fs-extra": "^11.3.0",
 		"get-port": "^7.1.0",
 		"open": "^10.1.0",
 		"yargs": "^17.7.2"
