@@ -116,6 +116,7 @@ const menuList: tMenuList = [
 			{ path: '/docs/geom-tutorial', page: null, svg: 'page_geom.svg' },
 			{ path: '/docs/ui', page: null, svg: 'page_ui.svg' },
 			{ path: '/docs/lists', page: null, svg: 'page_geom.svg' },
+			{ path: '/docs/intro', page: null, svg: 'page_concept.svg' },
 			{ path: '/docs/prez', page: null, svg: 'page_concept.svg' },
 			{ path: '/docs/prez-fr', page: null, svg: 'page_concept.svg' },
 			{ path: '/docs/js-app', page: null, svg: 'page_jsapp.svg' },
