@@ -18,6 +18,7 @@
 			style="width: 28em;"
 			alt="repositories and packages eco-system"
 		/>
+		<pre style="font-size:1.2em; margin:0;">Repo, packages, websites and more ...</pre>
 	</OneSlide>
 </Carousel>
 
