@@ -27,7 +27,7 @@
 		<pre style="font-size:1.2em; color:Orange;">Yes, but all CAD tools have an API!</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre style="font-size:1em; color:Green;">Indeed, but 3 main advantages with Parametrix</pre>
+		<pre class="minititle">Indeed, but 3 main advantages with Parametrix</pre>
 		<pre class="point">1- Written in Modern Javascript</pre>
 		<pre class="blabla">Run in CLI and Browser</pre>
 		<pre class="blabla">Design easy to share via websites and packages</pre>
@@ -38,13 +38,14 @@
 		<pre class="blabla">Model first then choose your CAD tool</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre style="font-size:1em; color:Green;">Plus other benefits</pre>
-		<pre class="point">4- Documented parameters</pre>
-		<pre class="point">5- Make easily your Web-UI and CLI</pre>
+		<pre class="minititle">Plus other benefits</pre>
+		<pre class="pointb">4- Documented parameters</pre>
+		<pre class="pointb">5- Make easily your Web-UI and CLI</pre>
 		<pre class="blabla">Just in few lines of code</pre>
-		<pre class="point">6- 2D simulations</pre>
+		<pre class="pointb">6- 2D simulations</pre>
 		<pre class="blabla">Examples for kinetic and optic simulations</pre>
-		<pre class="point">7- Extendable API via npm-package</pre>
+		<pre class="pointb">7- API optimized for manufacturing</pre>
+		<pre class="pointb">8- Extendable API via npm-package</pre>
 		<pre class="blabla">API for metal sheet, API for architecture</pre>
 	</OneSlide>
 	<OneSlide>
@@ -66,9 +67,18 @@
 	pre.nomar {
 		margin: 0;
 	}
+	pre.minititle {
+		font-size: 1em;
+		color: Green;
+		margin: 0;
+	}
 	pre.point {
 		font-size: 1.4em;
 		margin: 1em 0 0.2em;
+	}
+	pre.pointb {
+		font-size: 1.2em;
+		margin: 0.6em 0 0.2em;
 	}
 	pre.blabla {
 		font-size: 1em;
