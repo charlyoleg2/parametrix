@@ -38,7 +38,7 @@
 		<pre class="blabla">Model first then choose your CAD tool</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre class="minititle">Plus other benefits</pre>
+		<pre class="minititle">And other benefits</pre>
 		<pre class="pointb">4- Documented parameters</pre>
 		<pre class="pointb">5- Make easily your Web-UI and CLI</pre>
 		<pre class="blabla">Just in few lines of code</pre>
@@ -47,6 +47,22 @@
 		<pre class="pointb">7- API optimized for manufacturing</pre>
 		<pre class="pointb">8- Extendable API via npm-package</pre>
 		<pre class="blabla">API for metal sheet, API for architecture</pre>
+	</OneSlide>
+	<OneSlide>
+		<img
+			src="{base}/puisvg/intro_workflow.svg"
+			style="width: 28em;"
+			alt="The parametrix workflow"
+		/>
+		<!--pre style="font-size:1.2em; margin:0;">The Parametrix workflow</pre-->
+	</OneSlide>
+	<OneSlide>
+		<img
+			src="{base}/puisvg/prez_parametrix_condensed.svg"
+			style="width: 28em;"
+			alt="Parametrix described in condensed"
+		/>
+		<p style="text-align:center; margin: 0.5rem">Parametrix in condensed</p>
 	</OneSlide>
 	<OneSlide>
 		<img
