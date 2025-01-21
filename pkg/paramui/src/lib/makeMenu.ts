@@ -3,6 +3,7 @@
 import type { tAllPageDef, tAllLink } from 'geometrix';
 import type { tPageOne, tCategoryOne, tMenuList } from './menuListType';
 import { menuList } from './menuList';
+import { initStore } from 'geomui';
 //import { base } from '$app/paths';
 
 function pathToLabel(ipath: string): string {
@@ -136,5 +137,6 @@ function listOneCategory(ipath: string): tCategoryOne {
 const menuList2 = makeMenuList2(menuList);
 const designDefs = makeDesignDefs(menuList);
 const allLink = makeAllLink(menuList);
+initStore(designDefs);
 
 export { checkPath, listOneCategory, menuList2, designDefs, allLink };
