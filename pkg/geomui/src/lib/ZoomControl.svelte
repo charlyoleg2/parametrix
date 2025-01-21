@@ -34,6 +34,7 @@
 		border-width: 0.1rem;
 		border-radius: 0.2rem;
 		border-color: colors.$zoom-sign;
+		padding: 0;
 		margin: 0.1rem;
 		background-color: colors.$zoom-bg;
 	}

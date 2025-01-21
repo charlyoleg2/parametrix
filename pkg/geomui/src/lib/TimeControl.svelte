@@ -102,6 +102,7 @@
 		border-width: 0.1rem;
 		border-radius: 0.2rem;
 		border-color: colors.$timectrl-sign;
+		padding: 0;
 		margin: 0;
 		background-color: colors.$timectrl-bg;
 	}
