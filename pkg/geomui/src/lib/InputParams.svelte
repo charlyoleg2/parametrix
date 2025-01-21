@@ -86,9 +86,37 @@
 		const rApplyWarn = applyWarn1 || applyWarn2;
 		return [rMsg, rApplyWarn];
 	}
-	function initParams2() {
+	async function fetchAndLoad(fUrl: string) {
+		try {
+			const res = await fetch(fUrl);
+			if (!res.ok) {
+				throw `err627: error while fetching ${fUrl}`;
+			}
+			const txt = await res.text();
+			const [paramJson] = parseParamFile(txt);
+			[loadMsg, applyWarn] = tolerantApply(paramJson.partName, paramJson.pVal);
+			inputComment = paramJson.comment;
+		} catch (emsg) {
+			let errMsg = 'err223: error by fetching px file\n';
+			errMsg += emsg as string;
+			loadMsg = errMsg;
+			applyWarn = true;
+		}
+	}
+	async function initParams2() {
 		if (browser) {
 			const searchParams = new URLSearchParams(page.url.search);
+			const cPxUrl = 'pxUrl';
+			if (searchParams.has(cPxUrl)) {
+				const fUrl = searchParams.get(cPxUrl);
+				searchParams.delete(cPxUrl);
+				if (fUrl) {
+					await fetchAndLoad(fUrl);
+				} else {
+					loadMsg = 'err123: error by parsing URL-search-params\n';
+					applyWarn = true;
+				}
+			}
 			const pVal2: tParamVal = {};
 			for (const [kk, vv] of searchParams) {
 				//console.log(`dbg638: ${kk} ${vv}`);
