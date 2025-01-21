@@ -10,7 +10,7 @@
 	import { sParams } from './stateParams.svelte';
 	import { downloadParams, generateUrl } from './downloadParams';
 	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { base } from '$app/paths';
 
 	// props
@@ -88,7 +88,7 @@
 	}
 	function initParams2() {
 		if (browser) {
-			const searchParams = new URLSearchParams($page.url.search);
+			const searchParams = new URLSearchParams(page.url.search);
 			const pVal2: tParamVal = {};
 			for (const [kk, vv] of searchParams) {
 				//console.log(`dbg638: ${kk} ${vv}`);
@@ -187,7 +187,7 @@
 	}
 	// Save as URL
 	function generateUrl2(): string {
-		const url1 = generateUrl($page.url.href, sParams[pDef.partName], false);
+		const url1 = generateUrl(page.url.href, sParams[pDef.partName], false);
 		return url1.toString();
 	}
 	function openModalUrl() {
