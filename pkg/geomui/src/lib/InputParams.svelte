@@ -12,6 +12,7 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import { base } from '$app/paths';
+	import { afterNavigate } from '$app/navigation';
 
 	// props
 	interface Props {
@@ -40,6 +41,10 @@
 	let htableVis: tHTableVis = $state(makeHTableVis(makeHTable(pDef.params)));
 
 	// initialization
+	afterNavigate(() => {
+		paramSvg = checkPict(pDef.params[0].name);
+		htableVis = makeHTableVis(makeHTable(pDef.params));
+	});
 	// tolerant applyParamVal
 	function tolerantApply(iPartName: string, ipVal: tParamVal): [string, boolean] {
 		let rMsg = '';
