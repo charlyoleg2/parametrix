@@ -4,7 +4,7 @@
 	import OneSlide from '$lib/OneSlide.svelte';
 </script>
 
-<h1>Intro of Parametrix</h1>
+<h1>Presentation of Parametrix</h1>
 <Carousel>
 	<OneSlide>
 		<center><img src="{base}/favicon.svg" style="width: 9em;" alt="Parametrix logo" /></center>
