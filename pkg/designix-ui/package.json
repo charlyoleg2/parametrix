@@ -39,6 +39,7 @@
 	},
 	"scripts": {
 		"cp_pgdsvg": "fse copy ../../node_modules/designix/dist/pgdsvg static/pgdsvg",
+		"prebuild": "svelte-kit sync",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",

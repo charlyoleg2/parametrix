@@ -52,7 +52,7 @@
 	"scripts": {
 		"cp_pgdsvg": "fse copy ../../node_modules/designix/dist/pgdsvg static/pgdsvg",
 		"dev": "vite dev",
-		"build": "vite build && npm run package",
+		"build": "svelte-kit sync && vite build && npm run package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
