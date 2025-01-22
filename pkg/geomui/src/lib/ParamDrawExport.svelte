@@ -21,6 +21,7 @@
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
 	import { sParams } from './stateParams.svelte';
+	import { afterNavigate } from '$app/navigation';
 
 	// properties
 	interface Props {
@@ -74,7 +75,10 @@
 
 	// state
 	let simTime: number = $state(0);
-	let selFace: string = $state(checkFace(Object.keys(fgeom(0, sParams[pDef.partName]).fig), ''));
+	let selFace: string = $state(c_ParametrixAll);
+	afterNavigate(() => {
+		selFace = checkFace(Object.keys(fgeom(0, sParams[pDef.partName]).fig), '');
+	});
 	// internal state that should not need state
 	let exportFace: string = $state('zip'); // TODO5 keep state otherwise svelte complains
 
