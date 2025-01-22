@@ -60,9 +60,9 @@
 		"clean": "rimraf build dist node_modules output"
 	},
 	"dependencies": {
-		"designix": "^0.5.60",
-		"geomcli": "^0.5.62",
-		"geometrix": "^0.5.59"
+		"designix": "^1.0.0",
+		"geomcli": "^1.0.0",
+		"geometrix": "^1.0.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
