@@ -1,6 +1,6 @@
 {
 	"name": "designix-script-ts",
-	"version": "0.5.6",
+	"version": "1.0.0",
 	"description": "A sample code showcasing the usage of geometrix and designix",
 	"private": true,
 	"repository": {
