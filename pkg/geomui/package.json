@@ -66,8 +66,8 @@
 		"clean": "rimraf .svelte-kit build node_modules dist static/pgdsvg"
 	},
 	"peerDependencies": {
-		"@sveltejs/kit": "^2.7.0",
-		"svelte": "^5.1.0"
+		"@sveltejs/kit": "^2.16.0",
+		"svelte": "^5.19.0"
 	},
 	"dependencies": {
 		"geometrix": "^0.5.59"
