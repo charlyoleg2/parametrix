@@ -251,7 +251,7 @@
 	interface tHTableSection {
 		sectionName: string;
 		sectionID: string;
-		sectionVisible: boolean;
+		sectionVisCollapse: boolean;
 		params: tParam[];
 	}
 	function makeHTable(iParams: tParam[]): tHTableSection[] {
@@ -259,7 +259,7 @@
 		const sectionMain: tHTableSection = {
 			sectionName: 'main',
 			sectionID: 'g0main',
-			sectionVisible: false,
+			sectionVisCollapse: false,
 			params: []
 		};
 		let section = sectionMain;
@@ -271,7 +271,7 @@
 				const sectionNew: tHTableSection = {
 					sectionName: param.name,
 					sectionID: `g${sectionID}${param.name}`,
-					sectionVisible: true,
+					sectionVisCollapse: true,
 					params: []
 				};
 				section = sectionNew;
@@ -285,7 +285,7 @@
 	function makeHTableVis(iHTable: tHTableSection[]): tHTableVis {
 		const rVis: tHTableVis = {};
 		for (const section of iHTable) {
-			rVis[section.sectionID] = section.sectionVisible;
+			rVis[section.sectionID] = section.sectionVisCollapse;
 		}
 		return rVis;
 	}
