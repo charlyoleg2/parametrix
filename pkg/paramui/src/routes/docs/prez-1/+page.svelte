@@ -72,6 +72,12 @@
 		/>
 		<pre style="font-size:1.2em; margin:0;">Repo, packages, websites and more ...</pre>
 	</OneSlide>
+	<OneSlide>
+		<pre class="minititle">Parametrix</pre>
+		<pre style="font-size:1.2em;">A&gt; Look at the generated UI</pre>
+		<pre style="font-size:1.2em;">B&gt; Presentation of the API of Geometrix</pre>
+		<pre style="font-size:1.2em;">C&gt; Sample code of a design</pre>
+	</OneSlide>
 </Carousel>
 
 <style lang="scss">
