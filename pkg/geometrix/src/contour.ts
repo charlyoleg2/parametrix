@@ -105,37 +105,37 @@ class Contour extends AContour {
 		const rpfirst = point(this.segments[0].px, this.segments[0].py);
 		return rpfirst;
 	}
-	addPointA(ax: number, ay: number): Contour {
+	addPointA(ax: number, ay: number): this {
 		if (this.points.length > 2) {
 			throw `err311: contour add too much point ${ax} ${ay}`;
 		}
 		this.points.push(point(ax, ay));
 		return this;
 	}
-	addPointAP(aa: number, al: number): Contour {
+	addPointAP(aa: number, al: number): this {
 		const p1 = point(0, 0).translatePolar(aa, al);
 		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
-	addPointR(rx: number, ry: number): Contour {
+	addPointR(rx: number, ry: number): this {
 		const plast = this.getLastPoint();
 		const p1 = plast.translate(rx, ry);
 		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
-	addPointRP(ra: number, rl: number): Contour {
+	addPointRP(ra: number, rl: number): this {
 		const plast = this.getLastPoint();
 		const p1 = plast.translatePolar(ra, rl);
 		this.addPointA(p1.cx, p1.cy);
 		return this;
 	}
 	/** @internal */
-	addSeg(iSeg: segLib.Segment1): Contour {
+	addSeg(iSeg: segLib.Segment1): this {
 		this.segments.push(iSeg);
 		return this;
 	}
 	/** @internal */
-	addSegStroke(): Contour {
+	addSegStroke(): this {
 		if (this.points.length !== 1) {
 			throw `err554: contour addSegStroke with unexpected points.length ${this.points.length}`;
 		}
@@ -153,23 +153,23 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	addSegStrokeA(ax: number, ay: number): Contour {
+	addSegStrokeA(ax: number, ay: number): this {
 		this.addPointA(ax, ay).addSegStroke();
 		return this;
 	}
-	addSegStrokeAP(aa: number, al: number): Contour {
+	addSegStrokeAP(aa: number, al: number): this {
 		this.addPointAP(aa, al).addSegStroke();
 		return this;
 	}
-	addSegStrokeR(rx: number, ry: number): Contour {
+	addSegStrokeR(rx: number, ry: number): this {
 		this.addPointR(rx, ry).addSegStroke();
 		return this;
 	}
-	addSegStrokeRP(ra: number, rl: number): Contour {
+	addSegStrokeRP(ra: number, rl: number): this {
 		this.addPointRP(ra, rl).addSegStroke();
 		return this;
 	}
-	addSegArc(iRadius: number, iLarge: boolean, iCcw: boolean): Contour {
+	addSegArc(iRadius: number, iLarge: boolean, iCcw: boolean): this {
 		if (this.points.length !== 1) {
 			throw `err954: contour addSegArc with unexpected points.length ${this.points.length}`;
 		}
@@ -197,7 +197,7 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	addSegArc2(): Contour {
+	addSegArc2(): this {
 		if (this.points.length !== 2) {
 			throw `err958: contour addSegArc2 with unexpected points.length ${this.points.length}`;
 		}
@@ -232,7 +232,7 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	addSegArc3(iTangentAngle1: number, firstNlast: boolean): Contour {
+	addSegArc3(iTangentAngle1: number, firstNlast: boolean): this {
 		if (this.points.length !== 1) {
 			throw `err914: contour addSegArc3 with unexpected points.length ${this.points.length}`;
 		}
@@ -269,7 +269,7 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	addSeg2Arcs(ita1: number, ita2: number): Contour {
+	addSeg2Arcs(ita1: number, ita2: number): this {
 		if (this.points.length !== 1) {
 			throw `err214: contour addSeg2Arcs with unexpected points.length ${this.points.length}`;
 		}
@@ -337,33 +337,33 @@ class Contour extends AContour {
 		}
 		return this;
 	}
-	addCornerPointed(): Contour {
+	addCornerPointed(): this {
 		const seg = new segLib.Segment1(segLib.SegEnum.ePointed, 0, 0, 0);
 		this.addSeg(seg);
 		return this;
 	}
-	addCornerRounded(iRadius: number): Contour {
+	addCornerRounded(iRadius: number): this {
 		const seg = new segLib.Segment1(segLib.SegEnum.eRounded, 0, 0, iRadius);
 		this.addSeg(seg);
 		return this;
 	}
-	addCornerWidened(iRadius: number): Contour {
+	addCornerWidened(iRadius: number): this {
 		const seg = new segLib.Segment1(segLib.SegEnum.eWidened, 0, 0, iRadius);
 		this.addSeg(seg);
 		return this;
 	}
-	addCornerWideAcc(iRadius: number): Contour {
+	addCornerWideAcc(iRadius: number): this {
 		const seg = new segLib.Segment1(segLib.SegEnum.eWideAcc, 0, 0, iRadius);
 		this.addSeg(seg);
 		return this;
 	}
-	closeSegStroke(): Contour {
+	closeSegStroke(): this {
 		const px = this.segments[0].px;
 		const py = this.segments[0].py;
 		this.addSegStrokeA(px, py);
 		return this;
 	}
-	closeSegArc(iRadius: number, iLarge: boolean, iCcw: boolean): Contour {
+	closeSegArc(iRadius: number, iLarge: boolean, iCcw: boolean): this {
 		const px = this.segments[0].px;
 		const py = this.segments[0].py;
 		this.addPointA(px, py).addSegArc(iRadius, iLarge, iCcw);
@@ -455,7 +455,7 @@ class Contour extends AContour {
 		}
 		return rctr;
 	}
-	addPartial(iContour: Contour): Contour {
+	addPartial(iContour: Contour): this {
 		if (this.points.length > 0) {
 			throw `err911: addPartial, points should be used ${this.points.length}`;
 		}
