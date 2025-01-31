@@ -153,12 +153,12 @@ class Transform3d {
 	constructor(iMat: tT3dMatrix) {
 		this.mmat = t3dCopyMatrix(iMat);
 	}
-	addRotation(ax: number, ay: number, az: number): Transform3d {
+	addRotation(ax: number, ay: number, az: number): this {
 		const mR = t3dRotate(ax, ay, az);
 		this.mmat = t3dCombine([this.mmat, mR]);
 		return this;
 	}
-	addTranslation(ax: number, ay: number, az: number): Transform3d {
+	addTranslation(ax: number, ay: number, az: number): this {
 		const mT = t3dTranslate(ax, ay, az);
 		this.mmat = t3dCombine([this.mmat, mT]);
 		return this;

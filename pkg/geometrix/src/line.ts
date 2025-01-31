@@ -63,7 +63,7 @@ class Line {
 		ctx.strokeStyle = color;
 		ctx.stroke();
 	}
-	setFromPoints(p1: Point, p2: Point) {
+	setFromPoints(p1: Point, p2: Point): this {
 		this.cx = p1.cx;
 		this.cy = p1.cy;
 		this.ca = p1.angleToPoint(p2);
