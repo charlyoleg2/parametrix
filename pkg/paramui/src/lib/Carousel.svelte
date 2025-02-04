@@ -122,6 +122,20 @@
 			console.log(err);
 		}
 	});
+	function handleKeydown(event: KeyboardEvent) {
+		//console.log(`dbg612: key event: ${event.key}`);
+		switch (event.key) {
+			case 'Escape':
+				stopPrez();
+				break;
+			case 'ArrowLeft':
+				goPrev();
+				break;
+			case 'ArrowRight':
+				goNext();
+				break;
+		}
+	}
 </script>
 
 <aside class="backdrop" class:prezOn={prezActive}>
@@ -134,6 +148,8 @@
 <section class="carousel-container" bind:this={carousContent}>
 	{@render children?.()}
 </section>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
