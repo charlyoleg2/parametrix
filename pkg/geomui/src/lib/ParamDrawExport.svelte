@@ -225,6 +225,89 @@
 <Drawing pDefSim={pDef.sim} {pFig} bind:simTime />
 <section>
 	<h2>Export</h2>
+	<table>
+		<caption>Output files</caption>
+		<thead>
+			<tr>
+				<th>Filename</th>
+				<th>Type</th>
+				<th></th>
+				<th>download</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>px_{pDef.partName}.json</td>
+				<td>0-params- pxJson</td>
+				<td>preview</td>
+				<td>download</td>
+			</tr>
+			<tr>
+				<td>{pDef.partName}_all.log</td>
+				<td>1-log- txtLog</td>
+				<td>preview</td>
+				<td>download</td>
+			</tr>
+			{#each optFaces as optFace}
+				<tr>
+					<td>{pDef.partName}_{optFace}.svg</td>
+					<td>2d- svg</td>
+					<td>preview</td>
+					<td>download</td>
+				</tr>
+			{/each}
+			<tr>
+				<td>{pDef.partName}_all.svg</td>
+				<td>2d- svg</td>
+				<td>preview</td>
+				<td>download</td>
+			</tr>
+			{#each optFaces as optFace}
+				<tr>
+					<td>{pDef.partName}_{optFace}.dxf</td>
+					<td>2d- dxf</td>
+					<td>preview</td>
+					<td>download</td>
+				</tr>
+			{/each}
+			<tr>
+				<td>{pDef.partName}_all.dxf</td>
+				<td>2d- dxf</td>
+				<td>preview</td>
+				<td>download</td>
+			</tr>
+			<tr>
+				<td>{pDef.partName}_all.pax.json</td>
+				<td>4-pax- paxJson</td>
+				<td>preview</td>
+				<td>download</td>
+			</tr>
+			<tr>
+				<td>{pDef.partName}_all_noarc_openscad.scad</td>
+				<td>5-script- scad</td>
+				<td>preview</td>
+				<td>download</td>
+			</tr>
+			<tr>
+				<td>{pDef.partName}_all_noarc_jscad.js</td>
+				<td>5-script- jsCad</td>
+				<td>preview</td>
+				<td>download</td>
+			</tr>
+			<tr>
+				<td>{pDef.partName}_all_freecad.py</td>
+				<td>5-script- pyFreecad</td>
+				<td>preview</td>
+				<td>download</td>
+			</tr>
+			<tr>
+				<td>{pDef.partName}_all.zip</td>
+				<td>6-zip- zip</td>
+				<td>preview</td>
+				<td>download</td>
+			</tr>
+		</tbody>
+	</table>
 	<select bind:value={exportFace}>
 		{#each optFaces as optFace}
 			<option value="svg_{optFace}">face {optFace} as svg</option>
