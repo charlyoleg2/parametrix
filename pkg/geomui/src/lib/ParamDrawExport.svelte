@@ -207,13 +207,15 @@
 			<button
 				onclick={() => {
 					selFace = optFace;
-				}}>{optFace}</button
+				}}
+				class={{ theFace: selFace === optFace }}>{optFace}</button
 			>
 		{/each}
 		<button
 			onclick={() => {
 				selFace = c_ParametrixAll;
-			}}>All faces merged</button
+			}}
+			class={{ theFace: selFace === c_ParametrixAll }}>All faces merged</button
 		>
 	</h2>
 </section>
@@ -388,6 +390,10 @@
 	section > h2 > button {
 		@include styling.mix-button;
 	}
+	section > h2 > button.theFace {
+		border-color: Blue;
+		border-width: 0.2rem;
+	}
 	section > textarea {
 		/*resize: horizontal;*/
 		margin-left: 0.5rem;
@@ -399,6 +405,6 @@
 		background-color: colors.$warn-calc-error;
 	}
 	section > table > tbody > tr > td > button {
-		@include styling.mix-button;
+		color: Blue;
 	}
 </style>
