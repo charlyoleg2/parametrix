@@ -79,8 +79,6 @@
 	afterNavigate(() => {
 		selFace = checkFace(Object.keys(fgeom(0, sParams[pDef.partName]).fig), '');
 	});
-	// internal state that should not need state
-	let exportFace: string = $state('zip'); // TODO5 keep state otherwise svelte complains
 
 	// derived
 	let geome: tGeom = $derived(fgeom(simTime, sParams[pDef.partName]));
@@ -186,9 +184,6 @@
 			);
 			download_textFile(fName, fContent, fMime);
 		}
-	}
-	async function downloadExport2() {
-		await downloadExport(exportFace);
 	}
 </script>
 
@@ -380,23 +375,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<select bind:value={exportFace}>
-		{#each optFaces as optFace}
-			<option value="svg_{optFace}">face {optFace} as svg</option>
-		{/each}
-		<option value="allsvg">all faces merged as svg</option>
-		{#each optFaces as optFace}
-			<option value="dxf_{optFace}">face {optFace} as dxf</option>
-		{/each}
-		<option value="alldxf">all faces merged as dxf</option>
-		<option value="compute_log">compute.log as log-file</option>
-		<option value="pax">all faces as pax.json</option>
-		<option value="oscad">all faces as openscad.scad</option>
-		<option value="ojscad">all faces as OpenJScad.js</option>
-		<option value="freecad">all faces as Freecad.py</option>
-		<option value="zip">all faces and more as zip</option>
-	</select>
-	<button onclick={downloadExport2}>Save to File</button>
 	<SubDesign {subD} origPartName={pDef.partName} {pLink} />
 </section>
 
@@ -420,8 +398,7 @@
 	section > textarea.colorErr {
 		background-color: colors.$warn-calc-error;
 	}
-	section > button,
-	section > select {
+	section > table > tbody > tr > td > button {
 		@include styling.mix-button;
 	}
 </style>
