@@ -229,6 +229,7 @@
 		<caption>Output files</caption>
 		<thead>
 			<tr>
+				<th>#</th>
 				<th>Filename</th>
 				<th>Type</th>
 				<th></th>
@@ -237,12 +238,14 @@
 		</thead>
 		<tbody>
 			<tr>
+				<td>1</td>
 				<td>px_{pDef.partName}.json</td>
 				<td>0-params- pxJson</td>
 				<td>preview</td>
 				<td>download</td>
 			</tr>
 			<tr>
+				<td>2</td>
 				<td>{pDef.partName}_all.log</td>
 				<td>1-log- txtLog</td>
 				<td>preview</td>
@@ -254,63 +257,126 @@
 					></td
 				>
 			</tr>
-			{#each optFaces as optFace}
+			{#each optFaces as optFace, idx}
 				<tr>
+					<td>{3 + idx}</td>
 					<td>{pDef.partName}_{optFace}.svg</td>
 					<td>2d- svg</td>
 					<td>preview</td>
-					<td>download</td>
+					<td
+						><button
+							onclick={async () => {
+								await downloadExport(`svg_${optFace}`);
+							}}>download</button
+						></td
+					>
 				</tr>
 			{/each}
 			<tr>
+				<td>{3 + optFaces.length}</td>
 				<td>{pDef.partName}_all.svg</td>
 				<td>2d- svg</td>
 				<td>preview</td>
-				<td>download</td>
+				<td
+					><button
+						onclick={async () => {
+							await downloadExport('allsvg');
+						}}>download</button
+					></td
+				>
 			</tr>
-			{#each optFaces as optFace}
+			{#each optFaces as optFace, idx}
 				<tr>
+					<td>{4 + optFaces.length + idx}</td>
 					<td>{pDef.partName}_{optFace}.dxf</td>
 					<td>2d- dxf</td>
 					<td>preview</td>
-					<td>download</td>
+					<td
+						><button
+							onclick={async () => {
+								await downloadExport(`dxf_${optFace}`);
+							}}>download</button
+						></td
+					>
 				</tr>
 			{/each}
 			<tr>
+				<td>{4 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.dxf</td>
 				<td>2d- dxf</td>
 				<td>preview</td>
-				<td>download</td>
+				<td
+					><button
+						onclick={async () => {
+							await downloadExport('alldxf');
+						}}>download</button
+					></td
+				>
 			</tr>
 			<tr>
+				<td>{5 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.pax.json</td>
 				<td>4-pax- paxJson</td>
 				<td>preview</td>
-				<td>download</td>
+				<td
+					><button
+						onclick={async () => {
+							await downloadExport('pax');
+						}}>download</button
+					></td
+				>
 			</tr>
 			<tr>
+				<td>{6 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_noarc_openscad.scad</td>
 				<td>5-script- scad</td>
 				<td>preview</td>
-				<td>download</td>
+				<td
+					><button
+						onclick={async () => {
+							await downloadExport('oscad');
+						}}>download</button
+					></td
+				>
 			</tr>
 			<tr>
+				<td>{7 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_noarc_jscad.js</td>
 				<td>5-script- jsCad</td>
 				<td>preview</td>
-				<td>download</td>
+				<td
+					><button
+						onclick={async () => {
+							await downloadExport('ojscad');
+						}}>download</button
+					></td
+				>
 			</tr>
 			<tr>
+				<td>{8 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_freecad.py</td>
 				<td>5-script- pyFreecad</td>
 				<td>preview</td>
-				<td>download</td>
+				<td
+					><button
+						onclick={async () => {
+							await downloadExport('freecad');
+						}}>download</button
+					></td
+				>
 			</tr>
 			<tr>
+				<td>{9 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.zip</td>
 				<td>6-zip- zip</td>
 				<td>preview</td>
-				<td>download</td>
+				<td
+					><button
+						onclick={async () => {
+							await downloadExport('zip');
+						}}>download</button
+					></td
+				>
 			</tr>
 		</tbody>
 	</table>
