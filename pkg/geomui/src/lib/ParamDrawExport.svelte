@@ -207,13 +207,19 @@
 </section>
 <section>
 	<h2>
-		Drawing
-		<select bind:value={selFace}>
-			{#each optFaces as optFace}
-				<option value={optFace}>{optFace}</option>
-			{/each}
-			<option value={c_ParametrixAll}>All faces merged</option>
-		</select>
+		2D Drawings :
+		{#each optFaces as optFace}
+			<button
+				onclick={() => {
+					selFace = optFace;
+				}}>{optFace}</button
+			>
+		{/each}
+		<button
+			onclick={() => {
+				selFace = c_ParametrixAll;
+			}}>All faces merged</button
+		>
 	</h2>
 </section>
 <Drawing pDefSim={pDef.sim} {pFig} bind:simTime />
@@ -246,7 +252,7 @@
 	section > h2 {
 		@include styling.mix-h2;
 	}
-	section > h2 > select {
+	section > h2 > button {
 		@include styling.mix-button;
 	}
 	section > textarea {
