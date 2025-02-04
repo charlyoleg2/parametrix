@@ -232,7 +232,7 @@
 				<th>Filename</th>
 				<th>Type</th>
 				<th></th>
-				<th>download</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -246,7 +246,13 @@
 				<td>{pDef.partName}_all.log</td>
 				<td>1-log- txtLog</td>
 				<td>preview</td>
-				<td>download</td>
+				<td
+					><button
+						onclick={async () => {
+							await downloadExport('compute_log');
+						}}>download</button
+					></td
+				>
 			</tr>
 			{#each optFaces as optFace}
 				<tr>
