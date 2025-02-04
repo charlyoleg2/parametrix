@@ -14,6 +14,13 @@
 	</OneSlide>
 	<OneSlide>
 		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
+		<pre style="font-size:2em; margin:1em;">For modeling 3D shapes</pre>
+		<pre class="nomar">Run in the browser</pre>
+		<pre class="nomar">One web-page per design</pre>
+		<pre class="nomar">The 3D model is embedded in the Javascript of the page</pre>
+	</OneSlide>
+	<OneSlide>
+		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
 		<pre style="font-size:2em; margin:1em;">CAD as code</pre>
 		<pre class="nomar">&gt; Git friendly</pre>
 		<pre class="nomar">&gt;&gt; traceability, history, versioning</pre>
