@@ -20,6 +20,7 @@
 	import InputParams from './InputParams.svelte';
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
+	import { downloadParams } from './downloadParams';
 	import { sParams } from './stateParams.svelte';
 	import { afterNavigate } from '$app/navigation';
 
@@ -185,6 +186,10 @@
 			download_textFile(fName, fContent, fMime);
 		}
 	}
+	async function downloadExportPxParams() {
+		//console.log('dbg621: downloadExportPxParams');
+		downloadParams(pDef.partName, sParams[pDef.partName], '');
+	}
 </script>
 
 <InputParams {pDef} {pFig} />
@@ -239,7 +244,7 @@
 				<td>px_{pDef.partName}.json</td>
 				<td>0-params- pxJson</td>
 				<td><button>preview</button></td>
-				<td><button>download</button></td>
+				<td><button onclick={downloadExportPxParams}>download</button></td>
 			</tr>
 			<tr>
 				<td>2</td>
