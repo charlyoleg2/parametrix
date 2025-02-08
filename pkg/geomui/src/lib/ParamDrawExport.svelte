@@ -229,8 +229,8 @@
 				<th>#</th>
 				<th>Filename</th>
 				<th>Type</th>
-				<th></th>
-				<th></th>
+				<th>Preview</th>
+				<th>Download</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -238,14 +238,14 @@
 				<td>1</td>
 				<td>px_{pDef.partName}.json</td>
 				<td>0-params- pxJson</td>
-				<td>preview</td>
-				<td>download</td>
+				<td><button>preview</button></td>
+				<td><button>download</button></td>
 			</tr>
 			<tr>
 				<td>2</td>
 				<td>{pDef.partName}_all.log</td>
 				<td>1-log- txtLog</td>
-				<td>preview</td>
+				<td><button>preview</button></td>
 				<td
 					><button
 						onclick={async () => {
@@ -259,7 +259,7 @@
 					<td>{3 + idx}</td>
 					<td>{pDef.partName}_{optFace}.svg</td>
 					<td>2d- svg</td>
-					<td>preview</td>
+					<td><button>preview</button></td>
 					<td
 						><button
 							onclick={async () => {
@@ -273,7 +273,7 @@
 				<td>{3 + optFaces.length}</td>
 				<td>{pDef.partName}_all.svg</td>
 				<td>2d- svg</td>
-				<td>preview</td>
+				<td><button>preview</button></td>
 				<td
 					><button
 						onclick={async () => {
@@ -287,7 +287,7 @@
 					<td>{4 + optFaces.length + idx}</td>
 					<td>{pDef.partName}_{optFace}.dxf</td>
 					<td>2d- dxf</td>
-					<td>preview</td>
+					<td><button>preview</button></td>
 					<td
 						><button
 							onclick={async () => {
@@ -301,7 +301,7 @@
 				<td>{4 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.dxf</td>
 				<td>2d- dxf</td>
-				<td>preview</td>
+				<td><button>preview</button></td>
 				<td
 					><button
 						onclick={async () => {
@@ -314,7 +314,7 @@
 				<td>{5 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.pax.json</td>
 				<td>4-pax- paxJson</td>
-				<td>preview</td>
+				<td><button>preview</button></td>
 				<td
 					><button
 						onclick={async () => {
@@ -327,7 +327,7 @@
 				<td>{6 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_noarc_openscad.scad</td>
 				<td>5-script- scad</td>
-				<td>preview</td>
+				<td><button>preview</button></td>
 				<td
 					><button
 						onclick={async () => {
@@ -340,7 +340,7 @@
 				<td>{7 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_noarc_jscad.js</td>
 				<td>5-script- jsCad</td>
-				<td>preview</td>
+				<td><button>preview</button></td>
 				<td
 					><button
 						onclick={async () => {
@@ -353,7 +353,7 @@
 				<td>{8 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_freecad.py</td>
 				<td>5-script- pyFreecad</td>
-				<td>preview</td>
+				<td><button>preview</button></td>
 				<td
 					><button
 						onclick={async () => {
@@ -366,7 +366,7 @@
 				<td>{9 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.zip</td>
 				<td>6-zip- zip</td>
-				<td>preview</td>
+				<td><button>preview</button></td>
 				<td
 					><button
 						onclick={async () => {
@@ -404,7 +404,40 @@
 	section > textarea.colorErr {
 		background-color: colors.$warn-calc-error;
 	}
+	table {
+		border-collapse: collapse;
+		/*border: 1px solid red;*/
+		margin: 0.2rem 1rem 2rem;
+	}
+	table > caption {
+		color: colors.$timectrl-sign;
+		background-color: colors.$timectrl-bg;
+		font-weight: 700;
+	}
+	table > thead > tr > th,
+	table > tbody > tr > td {
+		border: 1px solid red;
+		padding: 0.2rem 1rem 0.2rem;
+	}
+	table > tbody > tr:nth-child(odd) {
+		background-color: lightYellow;
+	}
+	table > tbody > tr:nth-child(even) {
+		background-color: colors.$timectrl-bg;
+	}
 	section > table > tbody > tr > td > button {
-		color: Blue;
+		/*display: inline-block;*/
+		/*Height: 1.6rem;*/
+		/*width: 1.6rem;*/
+		color: colors.$timectrl-sign;
+		font-size: 1rem;
+		font-weight: 700;
+		padding: 0.1rem 0.4rem 0.1rem;
+		border-style: none;
+		/*Border-width: 0.1rem;*/
+		/*Border-radius: 0.2rem;*/
+		/*Border-color: colors.$timectrl-sign;*/
+		margin: 0;
+		background-color: inherit;
 	}
 </style>
