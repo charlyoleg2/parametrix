@@ -196,6 +196,9 @@
 		myPreview = txt;
 		myDiag.showModal();
 	}
+	function openDiag2(nFace: string, fmt: EFormat) {
+		openDiag(fileTextContent(fgeom, sParams[pDef.partName], pDef, nFace, fmt));
+	}
 	function closeDiag() {
 		myDiag.close();
 	}
@@ -267,7 +270,13 @@
 				<td>2</td>
 				<td>{pDef.partName}_all.log</td>
 				<td>1-log- txtLog</td>
-				<td><button>preview</button></td>
+				<td
+					><button
+						onclick={() => {
+							openDiag2('all', EFormat.eTXTLOG);
+						}}>preview</button
+					></td
+				>
 				<td
 					><button
 						onclick={async () => {
@@ -281,7 +290,13 @@
 					<td>{3 + idx}</td>
 					<td>{pDef.partName}_{optFace}.svg</td>
 					<td>2d- svg</td>
-					<td><button>preview</button></td>
+					<td
+						><button
+							onclick={() => {
+								openDiag2(optFace, EFormat.eSVG);
+							}}>preview</button
+						></td
+					>
 					<td
 						><button
 							onclick={async () => {
@@ -295,7 +310,13 @@
 				<td>{3 + optFaces.length}</td>
 				<td>{pDef.partName}_all.svg</td>
 				<td>2d- svg</td>
-				<td><button>preview</button></td>
+				<td
+					><button
+						onclick={() => {
+							openDiag2('all', EFormat.eSVGALL);
+						}}>preview</button
+					></td
+				>
 				<td
 					><button
 						onclick={async () => {
@@ -309,7 +330,13 @@
 					<td>{4 + optFaces.length + idx}</td>
 					<td>{pDef.partName}_{optFace}.dxf</td>
 					<td>2d- dxf</td>
-					<td><button>preview</button></td>
+					<td
+						><button
+							onclick={() => {
+								openDiag2(optFace, EFormat.eDXF);
+							}}>preview</button
+						></td
+					>
 					<td
 						><button
 							onclick={async () => {
@@ -323,7 +350,13 @@
 				<td>{4 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.dxf</td>
 				<td>2d- dxf</td>
-				<td><button>preview</button></td>
+				<td
+					><button
+						onclick={() => {
+							openDiag2('all', EFormat.eDXFALL);
+						}}>preview</button
+					></td
+				>
 				<td
 					><button
 						onclick={async () => {
@@ -336,7 +369,13 @@
 				<td>{5 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.pax.json</td>
 				<td>4-pax- paxJson</td>
-				<td><button>preview</button></td>
+				<td
+					><button
+						onclick={() => {
+							openDiag2('all', EFormat.ePAX);
+						}}>preview</button
+					></td
+				>
 				<td
 					><button
 						onclick={async () => {
@@ -349,7 +388,13 @@
 				<td>{6 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_noarc_openscad.scad</td>
 				<td>5-script- scad</td>
-				<td><button>preview</button></td>
+				<td
+					><button
+						onclick={() => {
+							openDiag2('all', EFormat.eOPENSCAD);
+						}}>preview</button
+					></td
+				>
 				<td
 					><button
 						onclick={async () => {
@@ -362,7 +407,13 @@
 				<td>{7 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_noarc_jscad.js</td>
 				<td>5-script- jsCad</td>
-				<td><button>preview</button></td>
+				<td
+					><button
+						onclick={() => {
+							openDiag2('all', EFormat.eJSCAD);
+						}}>preview</button
+					></td
+				>
 				<td
 					><button
 						onclick={async () => {
@@ -375,7 +426,13 @@
 				<td>{8 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_freecad.py</td>
 				<td>5-script- pyFreecad</td>
-				<td><button>preview</button></td>
+				<td
+					><button
+						onclick={() => {
+							openDiag2('all', EFormat.eFREECAD);
+						}}>preview</button
+					></td
+				>
 				<td
 					><button
 						onclick={async () => {
@@ -388,7 +445,7 @@
 				<td>{9 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.zip</td>
 				<td>6-zip- zip</td>
-				<td><button>preview</button></td>
+				<td></td>
 				<td
 					><button
 						onclick={async () => {
