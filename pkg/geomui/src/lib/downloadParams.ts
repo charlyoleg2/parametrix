@@ -17,6 +17,18 @@ function download_file(file_name: string, file_content: string) {
 	elem_a_download.remove(); // Is this really required?
 }
 
+function getContentDownloadParams(
+	iPartName: string,
+	idparams: tParamVal,
+	iComment: string
+): string {
+	const re1 = /[-:]/g;
+	const re2 = /\..*$/;
+	const datestr = new Date().toISOString().replace(re1, '').replace(re2, '').replace('T', '_');
+	const file_content = createParamFile(datestr, iPartName, idparams, iComment);
+	return file_content;
+}
+
 function downloadParams(iPartName: string, idparams: tParamVal, iComment: string) {
 	const re1 = /[-:]/g;
 	const re2 = /\..*$/;
@@ -50,4 +62,4 @@ function generateUrl(ihref: string, idparams: tParamVal, iLenghtLimit: boolean):
 	return url1.toString();
 }
 
-export { downloadParams, generateUrl };
+export { getContentDownloadParams, downloadParams, generateUrl };

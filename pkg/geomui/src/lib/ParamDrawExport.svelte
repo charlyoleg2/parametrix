@@ -20,7 +20,7 @@
 	import InputParams from './InputParams.svelte';
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
-	import { downloadParams } from './downloadParams';
+	import { getContentDownloadParams, downloadParams } from './downloadParams';
 	import { sParams } from './stateParams.svelte';
 	import { afterNavigate } from '$app/navigation';
 
@@ -190,6 +190,15 @@
 		//console.log('dbg621: downloadExportPxParams');
 		downloadParams(pDef.partName, sParams[pDef.partName], '');
 	}
+	let myDiag: HTMLDialogElement;
+	let myPreview = $state('');
+	function openDiag(txt: string) {
+		myPreview = txt;
+		myDiag.showModal();
+	}
+	function closeDiag() {
+		myDiag.close();
+	}
 </script>
 
 <InputParams {pDef} {pFig} />
@@ -243,7 +252,15 @@
 				<td>1</td>
 				<td>px_{pDef.partName}.json</td>
 				<td>0-params- pxJson</td>
-				<td><button>preview</button></td>
+				<td
+					><button
+						onclick={() => {
+							openDiag(
+								getContentDownloadParams(pDef.partName, sParams[pDef.partName], '')
+							);
+						}}>preview</button
+					></td
+				>
 				<td><button onclick={downloadExportPxParams}>download</button></td>
 			</tr>
 			<tr>
@@ -382,6 +399,10 @@
 			</tr>
 		</tbody>
 	</table>
+	<dialog id="dBview" bind:this={myDiag}>
+		<textarea readonly wrap="soft" value={myPreview}></textarea>
+		<button class="bback" onclick={closeDiag}>close - back - escape</button>
+	</dialog>
 	<SubDesign {subD} origPartName={pDef.partName} {pLink} />
 </section>
 
@@ -444,5 +465,32 @@
 		/*Border-color: colors.$timectrl-sign;*/
 		margin: 0;
 		background-color: inherit;
+	}
+	dialog#dBview {
+		display: none;
+	}
+	dialog#dBview[open] {
+		display: block;
+	}
+	dialog#dBview::backdrop {
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+	dialog#dBview > textarea {
+		display: block;
+		resize: none;
+		background-color: lightYellow;
+		width: 80vw;
+		height: 70vh;
+		margin: 0;
+	}
+	dialog#dBview > button.bback {
+		display: block;
+		color: white;
+		background-color: black;
+		border: none;
+		outline: none;
+		width: 100%;
+		height: 2rem;
+		margin: 1rem 0 0 0;
 	}
 </style>
