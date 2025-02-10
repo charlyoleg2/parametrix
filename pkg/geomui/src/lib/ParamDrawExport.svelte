@@ -489,7 +489,7 @@
 	}
 	table {
 		border-collapse: collapse;
-		/*border: 1px solid red;*/
+		/*border: 1px solid colors.$timectrl-sign;*/
 		margin: 0.2rem 1rem 2rem;
 	}
 	table > caption {
@@ -499,7 +499,7 @@
 	}
 	table > thead > tr > th,
 	table > tbody > tr > td {
-		border: 1px solid red;
+		border: 1px solid colors.$timectrl-sign;
 		padding: 0.2rem 1rem 0.2rem;
 	}
 	table > tbody > tr:nth-child(odd) {
@@ -522,6 +522,9 @@
 		/*Border-color: colors.$timectrl-sign;*/
 		margin: 0;
 		background-color: inherit;
+	}
+	section > table > tbody > tr > td > button:hover {
+		background-color: white;
 	}
 	dialog#dBview {
 		display: none;
