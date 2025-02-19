@@ -8,11 +8,11 @@ describe('Contour suit', () => {
 	ctr1.addPointA(20, 0).addSegStroke();
 	ctr1.closeSegStroke();
 	it('extractPoints', () => {
-		expect(ctr1.generatePoints()[0].isEqual(point(10, 10))).toBeTruthy();
+		expect(ctr1.generatePoints(2)[0].isEqual(point(10, 10))).toBeTruthy();
 	});
 	it('generateContour', () => {
 		const ctr2 = ctr1.generateContour();
-		expect(ctr2.generatePoints()[0].isEqual(point(10, 10))).toBeTruthy();
+		expect(ctr2.generatePoints(2)[0].isEqual(point(10, 10))).toBeTruthy();
 	});
 });
 
@@ -81,8 +81,8 @@ describe('Contour suit 3', () => {
 describe('ContourCircle suit', () => {
 	const ctr3 = contourCircle(50, 50, 20);
 	it('extractPoints', () => {
-		expect(ctr3.generatePoints()[0].isEqual(point(50, 50))).toBeTruthy();
-		expect(ctr3.generatePoints()[1].isEqual(point(70, 50))).toBeTruthy();
+		expect(ctr3.generatePoints(2)[0].isEqual(point(50, 50))).toBeTruthy();
+		expect(ctr3.generatePoints(2)[1].isEqual(point(70, 50))).toBeTruthy();
 	});
 	it('getPerimeter', () => {
 		expect(ctr3.getPerimeter()).toBeCloseTo(2 * Math.PI * 20);

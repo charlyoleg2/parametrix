@@ -44,7 +44,7 @@ abstract class AContour {
 	abstract draw(ctx: CanvasRenderingContext2D, cAdjust: tCanvasAdjust, color: string): void;
 	abstract extractSkeleton(): AContour;
 	abstract generateContour(): AContour;
-	abstract generatePoints(): Point[];
+	abstract generatePoints(dnb: number): Point[];
 	abstract generateLines(): Line[];
 	abstract check(): string;
 	abstract toSvg(yCeiling: number, color?: string): string;
@@ -53,16 +53,16 @@ abstract class AContour {
 	abstract getPerimeter(): number;
 }
 
-function midArcPoint(px1: number, py1: number, seg: segLib.Segment1): Point {
+function midArcPoint(px1: number, py1: number, seg: segLib.Segment1, dnb: number): Point[] {
 	const seg2 = segLib.arcSeg1To2(px1, py1, seg);
 	const p3 = point(seg2.pc.cx, seg2.pc.cy);
-	const a12h = withinPiPi((seg2.a2 - seg2.a1) / 2);
-	let a3 = seg2.a1 + a12h;
-	if ((Math.sign(a12h) > 0 && !seg.arcCcw) || (Math.sign(a12h) < 0 && seg.arcCcw)) {
-		a3 += Math.PI;
+	const k2pi = seg.arcCcw ? 8 * Math.PI : -8 * Math.PI;
+	const a12h = withinPiPi(seg2.a2 - seg2.a1 + k2pi) / dnb;
+	const rPts: Point[] = [];
+	for (let idx = 1; idx < dnb; idx++) {
+		rPts.push(p3.translatePolar(seg2.a1 + idx * a12h, seg.radius));
 	}
-	const p4 = p3.translatePolar(a3, seg.radius);
-	return p4;
+	return rPts;
 }
 
 /**
@@ -627,7 +627,7 @@ class Contour extends AContour {
 		}
 		return rContour;
 	}
-	generatePoints(): Point[] {
+	generatePoints(dnb: number): Point[] {
 		const rPoints = [];
 		rPoints.push(...this.debugPoints);
 		const seg0 = this.segments[0];
@@ -637,8 +637,8 @@ class Contour extends AContour {
 		for (const seg of this.segments) {
 			if (seg.sType === segLib.SegEnum.eArc) {
 				try {
-					const p4 = midArcPoint(px1, py1, seg);
-					rPoints.push(p4);
+					const pts = midArcPoint(px1, py1, seg, dnb);
+					rPoints.push(...pts);
 				} catch (emsg) {
 					console.log('err453: ' + (emsg as string));
 				}
@@ -831,12 +831,13 @@ class ContourCircle extends AContour {
 		const rContour = new ContourCircle(this.px, this.py, this.radius, this.imposedColor);
 		return rContour;
 	}
-	generatePoints(): Point[] {
+	generatePoints(dnb: number): Point[] {
 		const rPoints = [];
 		const p1 = point(this.px, this.py);
+		const kp = dnb * 2;
 		rPoints.push(p1);
-		for (let i = 0; i < 4; i++) {
-			const p2 = p1.translatePolar((i * Math.PI) / 2, this.radius);
+		for (let i = 0; i < kp; i++) {
+			const p2 = p1.translatePolar((i * 2 * Math.PI) / kp, this.radius);
 			rPoints.push(p2);
 		}
 		return rPoints;

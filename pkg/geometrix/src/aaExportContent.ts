@@ -39,7 +39,7 @@ class MinMaxPoint {
 				pts.push(point(this.xMax, this.yMax));
 			}
 			for (const ctr of aCtr) {
-				pts.push(...ctr.generatePoints());
+				pts.push(...ctr.generatePoints(2));
 			}
 			const [Xmin, Xmax, Ymin, Ymax] = pointMinMax(pts);
 			this.xMin = Xmin;

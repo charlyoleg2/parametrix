@@ -87,8 +87,8 @@ class Figure {
 		const oneFace: tOuterInner = [];
 		for (const oneCtr of iFace) {
 			const roundedContour = oneCtr.generateContour();
-			this.addPoints(roundedContour.generatePoints());
-			//this.addPoints(oneCtr.generatePoints()); // points of the skeleton
+			this.addPoints(roundedContour.generatePoints(2));
+			//this.addPoints(oneCtr.generatePoints(2)); // points of the skeleton
 			this.addLines(roundedContour.generateLines());
 			oneFace.push(roundedContour);
 			this.mainBList.push(oneCtr.extractSkeleton());
@@ -105,14 +105,14 @@ class Figure {
 	}
 	addSecond(icontour: tContour) {
 		const roundedContour = icontour.generateContour();
-		this.addPoints(roundedContour.generatePoints());
-		//this.addPoints(icontour.generatePoints()); // points of the skeleton
+		this.addPoints(roundedContour.generatePoints(2));
+		//this.addPoints(icontour.generatePoints(2)); // points of the skeleton
 		this.addLines(roundedContour.generateLines());
 		this.secondList.push(roundedContour);
 		this.secondBList.push(icontour.extractSkeleton());
 	}
 	addDynamics(icontour: tContour) {
-		this.addPoints(icontour.generatePoints());
+		this.addPoints(icontour.generatePoints(2));
 		this.addLines(icontour.generateLines());
 		this.dynamicsList.push(icontour);
 	}

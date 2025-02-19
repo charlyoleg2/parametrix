@@ -68,7 +68,7 @@ function fcFaceContour(paxCtr: tPaxSeg[], outName: string): string {
 		} else if (seg.typ === PSeg.eArc) {
 			try {
 				const seg1 = convPaxToSeg1(seg as tPaxSegArc);
-				const p4 = midArcPoint(px1, py1, seg1);
+				const p4 = midArcPoint(px1, py1, seg1, 2)[0];
 				rStr += `	P${fid(pIdx)} = App.Vector(${ff(p4.cx)}, ${ff(p4.cy)}, 0)\n`;
 				pIdx += 1;
 			} catch (emsg) {
