@@ -56,11 +56,12 @@ abstract class AContour {
 function midArcPoint(px1: number, py1: number, seg: segLib.Segment1, dnb: number): Point[] {
 	const seg2 = segLib.arcSeg1To2(px1, py1, seg);
 	const p3 = point(seg2.pc.cx, seg2.pc.cy);
-	const k2pi = seg.arcCcw ? 8 * Math.PI : -8 * Math.PI;
-	const a12h = withinPiPi(seg2.a2 - seg2.a1 + k2pi) / dnb;
+	const a12h = withinZero2Pi(seg2.a2 - seg2.a1);
+	const a12g = seg.arcCcw ? a12h : a12h - 2 * Math.PI;
+	const a12f = a12g / dnb;
 	const rPts: Point[] = [];
 	for (let idx = 1; idx < dnb; idx++) {
-		rPts.push(p3.translatePolar(seg2.a1 + idx * a12h, seg.radius));
+		rPts.push(p3.translatePolar(seg2.a1 + idx * a12f, seg.radius));
 	}
 	return rPts;
 }
@@ -629,9 +630,9 @@ class Contour extends AContour {
 	}
 	generatePoints(dnb: number): Point[] {
 		const rPoints = [];
-		rPoints.push(...this.debugPoints);
-		const seg0 = this.segments[0];
-		rPoints.push(point(seg0.px, seg0.py));
+		//rPoints.push(...this.debugPoints);
+		//const seg0 = this.segments[0];
+		//rPoints.push(point(seg0.px, seg0.py));
 		let px1 = 0;
 		let py1 = 0;
 		for (const seg of this.segments) {
@@ -650,6 +651,53 @@ class Contour extends AContour {
 			}
 		}
 		return rPoints;
+	}
+	getOrientation(iPts: Point[], extremX: number): boolean {
+		//console.log(`dbg392: extremX ${extremX}`);
+		const pts = iPts.slice(1);
+		let sign = 0;
+		let pt1 = pts.at(-3) as Point;
+		let pt2 = pts.at(-2) as Point;
+		let pt3 = pts.at(-1) as Point;
+		for (const pt of pts) {
+			pt1 = pt2;
+			pt2 = pt3;
+			pt3 = pt;
+			//console.log(`dbg393: pt2.cx.cy ${pt2.cx} ${pt2.cy} extremX ${extremX}`);
+			if (pt2.cx === extremX) {
+				const vx = pt1.cx - pt2.cx;
+				const vy = pt1.cy - pt2.cy;
+				const ux = pt3.cx - pt2.cx;
+				const uy = pt3.cy - pt2.cy;
+				const pv = ux * vy - uy * vx;
+				sign = Math.sign(pv);
+			}
+		}
+		if (0 === sign) {
+			throw `err299: Orientation hasn't been found with point number ${pts.length}`;
+		}
+		const rOrientation = sign > 0 ? true : false;
+		return rOrientation;
+	}
+	getEnvelop(): [number, number, number, number, boolean] {
+		const pts = this.generatePoints(24);
+		const lx: number[] = [];
+		const ly: number[] = [];
+		for (const pt of pts) {
+			lx.push(pt.cx);
+			ly.push(pt.cy);
+		}
+		const rXmin = Math.min(...lx);
+		const rXmax = Math.max(...lx);
+		const rYmin = Math.min(...ly);
+		const rYmax = Math.max(...ly);
+		const rOrientation = this.getOrientation(pts, rXmin);
+		const orient2 = this.getOrientation(pts, rXmax);
+		if (orient2 !== rOrientation) {
+			throw `err390: orientation unstable ${rOrientation} ${orient2} with ${pts.length} points`;
+		}
+		//console.log(`dbg698: rXmin ${rXmin} ${rXmax} ${rYmin} ${rYmax} ${rOrientation}`);
+		return [rXmin, rXmax, rYmin, rYmax, rOrientation];
 	}
 	generateLines(): Line[] {
 		const rLines = [];

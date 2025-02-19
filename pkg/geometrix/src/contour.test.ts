@@ -14,6 +14,14 @@ describe('Contour suit', () => {
 		const ctr2 = ctr1.generateContour();
 		expect(ctr2.generatePoints(2)[0].isEqual(point(10, 10))).toBeTruthy();
 	});
+	it('getEnvelop', () => {
+		const ke = ctr1.getEnvelop();
+		expect(ke[0]).toBeCloseTo(10);
+		expect(ke[1]).toBeCloseTo(20);
+		expect(ke[2]).toBeCloseTo(0);
+		expect(ke[3]).toBeCloseTo(20);
+		expect(ke[4]).toBeFalsy();
+	});
 });
 
 describe('Contour suit 2', () => {
@@ -75,6 +83,36 @@ describe('Contour suit 3', () => {
 	});
 	it('getPerimeter8', () => {
 		expect(ctr8.getPerimeter()).toBeCloseTo(14.56414);
+	});
+});
+
+describe('Contour suit 4', () => {
+	const ctr1 = contour(-10, -20);
+	ctr1.addPointA(-30, 0).addPointA(0, 20).addSegArc2();
+	ctr1.addPointA(-20, 0).addSegStroke();
+	ctr1.closeSegStroke();
+	it('getEnvelop', () => {
+		const ke = ctr1.getEnvelop();
+		expect(ke[0]).toBeCloseTo(-30);
+		expect(ke[1]).toBeCloseTo(0);
+		expect(ke[2]).toBeCloseTo(-20);
+		expect(ke[3]).toBeCloseTo(22.023794922743047);
+		expect(ke[4]).toBeFalsy();
+	});
+});
+
+describe('Contour suit 5', () => {
+	const ctr1 = contour(-10, -20);
+	ctr1.addPointA(-20, 0).addSegStroke();
+	ctr1.addPointA(0, 20).addSegStroke();
+	ctr1.addPointA(-30, 0).addPointA(-10, -20).addSegArc2();
+	it('getEnvelop', () => {
+		const ke = ctr1.getEnvelop();
+		expect(ke[0]).toBeCloseTo(-30);
+		expect(ke[1]).toBeCloseTo(0);
+		expect(ke[2]).toBeCloseTo(-20);
+		expect(ke[3]).toBeCloseTo(22.023794922743047);
+		expect(ke[4]).toBeTruthy();
 	});
 });
 
