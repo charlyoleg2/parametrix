@@ -1,6 +1,6 @@
 {
 	"name": "geometrix",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "The 2D geometry engine of the parametrix",
 	"private": false,
 	"repository": {
