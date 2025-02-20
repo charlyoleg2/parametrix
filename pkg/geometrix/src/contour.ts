@@ -45,6 +45,7 @@ abstract class AContour {
 	abstract extractSkeleton(): AContour;
 	abstract generateContour(): AContour;
 	abstract generatePoints(dnb: number): Point[];
+	abstract getEnvelop(): [number, number, number, number, boolean];
 	abstract generateLines(): Line[];
 	abstract check(): string;
 	abstract toSvg(yCeiling: number, color?: string): string;
@@ -889,6 +890,15 @@ class ContourCircle extends AContour {
 			rPoints.push(p2);
 		}
 		return rPoints;
+	}
+	getEnvelop(): [number, number, number, number, boolean] {
+		return [
+			this.px - this.radius,
+			this.px + this.radius,
+			this.py - this.radius,
+			this.py + this.radius,
+			true
+		];
 	}
 	generateLines(): Line[] {
 		return [];
