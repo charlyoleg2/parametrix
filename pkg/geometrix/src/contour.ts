@@ -52,6 +52,7 @@ abstract class AContour {
 	abstract toDxfSeg(): DxfSeg[];
 	abstract toPax(): tPaxContour;
 	abstract getPerimeter(): number;
+	abstract generateRevertOrientation(): AContour;
 }
 
 function midArcPoint(px1: number, py1: number, seg: segLib.Segment1, dnb: number): Point[] {
@@ -822,6 +823,17 @@ class Contour extends AContour {
 		}
 		return rPerimeter;
 	}
+	generateRevertOrientation(): AContour {
+		// TODO : implement really the revert-orientation
+		const seg0 = this.segments[0];
+		const rContour = new Contour(seg0.px, seg0.py);
+		for (const seg of this.segments) {
+			if (segLib.isSeg(seg.sType)) {
+				rContour.addSeg(seg);
+			}
+		}
+		return rContour;
+	}
 }
 
 /**
@@ -922,6 +934,10 @@ class ContourCircle extends AContour {
 	getPerimeter(): number {
 		const rPerimeter = 2 * Math.PI * this.radius;
 		return rPerimeter;
+	}
+	generateRevertOrientation(): AContour {
+		const rContour = new ContourCircle(this.px, this.py, this.radius, this.imposedColor);
+		return rContour;
 	}
 }
 
