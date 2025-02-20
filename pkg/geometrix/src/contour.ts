@@ -823,7 +823,7 @@ class Contour extends AContour {
 		}
 		return rPerimeter;
 	}
-	generateRevertOrientation(): AContour {
+	generateRevertOrientation(): Contour {
 		// TODO : implement really the revert-orientation
 		const seg0 = this.segments[0];
 		const rContour = new Contour(seg0.px, seg0.py);
@@ -935,7 +935,7 @@ class ContourCircle extends AContour {
 		const rPerimeter = 2 * Math.PI * this.radius;
 		return rPerimeter;
 	}
-	generateRevertOrientation(): AContour {
+	generateRevertOrientation(): ContourCircle {
 		const rContour = new ContourCircle(this.px, this.py, this.radius, this.imposedColor);
 		return rContour;
 	}
