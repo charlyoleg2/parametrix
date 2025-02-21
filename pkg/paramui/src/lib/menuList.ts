@@ -36,6 +36,7 @@ import {
 	verifyContour2Def,
 	verifyContour3Def,
 	verifyContour4Def,
+	verifyContour5Def,
 	verifyExports1Def
 } from 'designix';
 
@@ -98,6 +99,7 @@ const menuList: tMenuList = [
 			{ path: '/dev/verify_contour_2', page: verifyContour2Def, svg: 'page_verify_line.svg' },
 			{ path: '/dev/verify_contour_3', page: verifyContour3Def, svg: 'page_verify_line.svg' },
 			{ path: '/dev/verify_contour_4', page: verifyContour4Def, svg: 'page_verify_line.svg' },
+			{ path: '/dev/verify_contour_5', page: verifyContour5Def, svg: 'page_verify_line.svg' },
 			{ path: '/dev/verify_exports_1', page: verifyExports1Def, svg: 'page_verify_line.svg' }
 		]
 	},
