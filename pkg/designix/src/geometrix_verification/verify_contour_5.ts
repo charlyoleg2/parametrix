@@ -41,6 +41,52 @@ function pGeom(t: number, param: tParamVal, suffix = ''): tGeom {
 		const ctr1b = ctr1a.generateRevertOrientation().translate(300, 0);
 		rGeome.logstr += ctr1b.check();
 		figOne.addMainO(ctr1b);
+		const ctr2a = contour(0, 300)
+			.addSegStrokeR(param.L1, 0)
+			.addCornerRounded(param.R1)
+			.addSegStrokeR(0, param.L2)
+			.closeSegStroke()
+			.addCornerRounded(param.R2);
+		rGeome.logstr += ctr2a.check();
+		figOne.addMainO(ctr2a);
+		const ctr2b = ctr2a.generateRevertOrientation().translate(300, 0);
+		rGeome.logstr += ctr2b.check();
+		figOne.addMainO(ctr2b);
+		const ctr3a = contour(0, 600)
+			.addCornerRounded(param.R2)
+			.addSegStrokeR(param.L1, 0)
+			.addCornerRounded(param.R1)
+			.addSegStrokeR(0, param.L2)
+			.closeSegStroke();
+		rGeome.logstr += ctr3a.check();
+		figOne.addMainO(ctr3a);
+		const ctr3b = ctr3a.generateRevertOrientation().translate(300, 0);
+		rGeome.logstr += ctr3b.check();
+		figOne.addMainO(ctr3b);
+		const ctr4a = contour(0, 900)
+			.addSegStrokeR(param.L1, 0)
+			.addCornerRounded(param.R1)
+			.addPointR(0, param.L2)
+			.addSegArc(param.L2, false, false)
+			.addCornerRounded(param.R2)
+			.closeSegStroke();
+		rGeome.logstr += ctr4a.check();
+		figOne.addMainO(ctr4a);
+		const ctr4b = ctr4a.generateRevertOrientation().translate(300, 0);
+		rGeome.logstr += ctr4b.check();
+		figOne.addMainO(ctr4b);
+		const ctr5a = contour(0, 1200)
+			.addSegStrokeR(param.L1, 0)
+			.addCornerRounded(param.R1)
+			.addPointR(0, param.L2)
+			.addSegArc(param.L2, false, false)
+			.closeSegArc(param.L1 + param.L2, false, true)
+			.addCornerRounded(param.R2);
+		rGeome.logstr += ctr5a.check();
+		figOne.addMainO(ctr5a);
+		const ctr5b = ctr5a.generateRevertOrientation().translate(300, 0);
+		rGeome.logstr += ctr5b.check();
+		figOne.addMainO(ctr5b);
 		rGeome.fig = { one: figOne };
 		rGeome.logstr += 'verify_contour_5 drawn successfully!\n';
 		rGeome.calcErr = false;

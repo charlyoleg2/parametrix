@@ -825,25 +825,31 @@ class Contour extends AContour {
 		return rPerimeter;
 	}
 	generateRevertOrientation(): Contour {
-		const seg0 = this.segments[0];
+		let seg0 = this.segments[0];
 		const rContour = new Contour(seg0.px, seg0.py);
-		let segType = segLib.SegEnum.eStart;
+		let seg1 = this.segments[0];
+		let corner = false;
 		for (const seg of this.segments.slice().reverse()) {
 			if (segLib.isCorner(seg.sType)) {
-				rContour.addSeg(seg);
+				corner = true;
+				seg0 = seg;
 			} else {
-				if (segType !== segLib.SegEnum.eStart) {
+				if (seg1.sType !== segLib.SegEnum.eStart) {
 					const seg2 = new segLib.Segment1(
-						segType,
+						seg1.sType,
 						seg.px,
 						seg.py,
-						seg.radius,
-						seg.arcLarge,
-						!seg.arcCcw
+						seg1.radius,
+						seg1.arcLarge,
+						!seg1.arcCcw
 					);
 					rContour.addSeg(seg2);
 				}
-				segType = seg.sType;
+				seg1 = seg;
+				if (corner) {
+					rContour.addSeg(seg0);
+					corner = false;
+				}
 			}
 		}
 		return rContour;
