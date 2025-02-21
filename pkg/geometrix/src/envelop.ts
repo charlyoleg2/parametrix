@@ -55,5 +55,5 @@ function envelop(iEnvelop: tEnvelop): Envelop {
 	return new Envelop(iEnvelop);
 }
 
-export type { tEnvelop };
+export type { tEnvelop, Envelop };
 export { envelop };

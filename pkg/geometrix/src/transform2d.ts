@@ -2,8 +2,8 @@
 // A minimalist 2D-transform library
 
 type tVec2 = [number, number];
-type tVec3 = [number, number, number];
-type tT2dMatrix = [tVec3, tVec3, tVec3];
+type tVec3b = [number, number, number];
+type tT2dMatrix = [tVec3b, tVec3b, tVec3b];
 
 function t2dInitNull(): tT2dMatrix {
 	const rM: tT2dMatrix = [
@@ -75,7 +75,7 @@ function t2dCopyMatrix(tm: tT2dMatrix): tT2dMatrix {
 }
 
 function t2dApply(ma: tT2dMatrix, va: tVec2): tVec2 {
-	const vb: tVec3 = [va[0], va[1], 1];
+	const vb: tVec3b = [va[0], va[1], 1];
 	const rV: tVec2 = [0, 0];
 	for (let i = 0; i < 2; i++) {
 		let t = 0;
@@ -134,5 +134,5 @@ function transform2d(initM = initMid): Transform2d {
 	return new Transform2d(initM);
 }
 
-export type { tT2dMatrix, tVec2 };
+export type { tT2dMatrix, tVec2, tVec3b };
 export { Transform2d, transform2d };
