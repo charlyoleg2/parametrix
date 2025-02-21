@@ -53,9 +53,9 @@
 		"clean": "rimraf .svelte-kit build node_modules static/pgdsvg"
 	},
 	"dependencies": {
-		"designix": "^1.0.6",
-		"geometrix": "^1.0.6",
-		"geomui": "^1.0.6"
+		"designix": "^1.0.9",
+		"geometrix": "^1.0.9",
+		"geomui": "^1.0.9"
 	},
 	"devDependencies": {
 		"@atao60/fse-cli": "^0.1.9",
