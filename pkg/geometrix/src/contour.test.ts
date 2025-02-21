@@ -16,11 +16,11 @@ describe('Contour suit', () => {
 	});
 	it('getEnvelop', () => {
 		const ke = ctr1.getEnvelop();
-		expect(ke[0]).toBeCloseTo(10);
-		expect(ke[1]).toBeCloseTo(20);
-		expect(ke[2]).toBeCloseTo(0);
-		expect(ke[3]).toBeCloseTo(20);
-		expect(ke[4]).toBeFalsy();
+		expect(ke.xMin).toBeCloseTo(10);
+		expect(ke.xMax).toBeCloseTo(20);
+		expect(ke.yMin).toBeCloseTo(0);
+		expect(ke.yMax).toBeCloseTo(20);
+		expect(ke.orientation).toBeFalsy();
 	});
 });
 
@@ -93,11 +93,11 @@ describe('Contour suit 4', () => {
 	ctr1.closeSegStroke();
 	it('getEnvelop', () => {
 		const ke = ctr1.getEnvelop();
-		expect(ke[0]).toBeCloseTo(-30);
-		expect(ke[1]).toBeCloseTo(0);
-		expect(ke[2]).toBeCloseTo(-20);
-		expect(ke[3]).toBeCloseTo(22.023794922743047);
-		expect(ke[4]).toBeFalsy();
+		expect(ke.xMin).toBeCloseTo(-30);
+		expect(ke.xMax).toBeCloseTo(0);
+		expect(ke.yMin).toBeCloseTo(-20);
+		expect(ke.yMax).toBeCloseTo(22.023794922743047);
+		expect(ke.orientation).toBeFalsy();
 	});
 });
 
@@ -108,11 +108,11 @@ describe('Contour suit 5', () => {
 	ctr1.addPointA(-30, 0).addPointA(-10, -20).addSegArc2();
 	it('getEnvelop', () => {
 		const ke = ctr1.getEnvelop();
-		expect(ke[0]).toBeCloseTo(-30);
-		expect(ke[1]).toBeCloseTo(0);
-		expect(ke[2]).toBeCloseTo(-20);
-		expect(ke[3]).toBeCloseTo(22.023794922743047);
-		expect(ke[4]).toBeTruthy();
+		expect(ke.xMin).toBeCloseTo(-30);
+		expect(ke.xMax).toBeCloseTo(0);
+		expect(ke.yMin).toBeCloseTo(-20);
+		expect(ke.yMax).toBeCloseTo(22.023794922743047);
+		expect(ke.orientation).toBeTruthy();
 	});
 });
 

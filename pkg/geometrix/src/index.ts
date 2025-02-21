@@ -24,6 +24,8 @@ export * from './write_dxf';
 export * from './aaExportFile';
 export * from './paramFile';
 
+export * from './envelop';
+export * from './transform2d';
 export * from './transform3d';
 export * from './common_contours';
 

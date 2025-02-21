@@ -35,6 +35,7 @@ import type { DxfSeg } from './write_dxf';
 import { dxfSegLine, dxfSegArc, dxfSegCircle } from './write_dxf';
 import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './prepare_pax';
 import { paxPath, paxCircle } from './prepare_pax';
+import type { tEnvelop } from './envelop';
 
 /* AContour abstract class */
 
@@ -45,7 +46,7 @@ abstract class AContour {
 	abstract extractSkeleton(): AContour;
 	abstract generateContour(): AContour;
 	abstract generatePoints(dnb: number): Point[];
-	abstract getEnvelop(): [number, number, number, number, boolean];
+	abstract getEnvelop(): tEnvelop;
 	abstract generateLines(): Line[];
 	abstract check(): string;
 	abstract toSvg(yCeiling: number, color?: string): string;
@@ -681,7 +682,7 @@ class Contour extends AContour {
 		const rOrientation = sign > 0 ? true : false;
 		return rOrientation;
 	}
-	getEnvelop(): [number, number, number, number, boolean] {
+	getEnvelop(): tEnvelop {
 		const pts = this.generatePoints(24);
 		const lx: number[] = [];
 		const ly: number[] = [];
@@ -699,7 +700,7 @@ class Contour extends AContour {
 			throw `err390: orientation unstable ${rOrientation} ${orient2} with ${pts.length} points`;
 		}
 		//console.log(`dbg698: rXmin ${rXmin} ${rXmax} ${rYmin} ${rYmax} ${rOrientation}`);
-		return [rXmin, rXmax, rYmin, rYmax, rOrientation];
+		return { xMin: rXmin, xMax: rXmax, yMin: rYmin, yMax: rYmax, orientation: rOrientation };
 	}
 	generateLines(): Line[] {
 		const rLines = [];
@@ -903,14 +904,14 @@ class ContourCircle extends AContour {
 		}
 		return rPoints;
 	}
-	getEnvelop(): [number, number, number, number, boolean] {
-		return [
-			this.px - this.radius,
-			this.px + this.radius,
-			this.py - this.radius,
-			this.py + this.radius,
-			true
-		];
+	getEnvelop(): tEnvelop {
+		return {
+			xMin: this.px - this.radius,
+			xMax: this.px + this.radius,
+			yMin: this.py - this.radius,
+			yMax: this.py + this.radius,
+			orientation: true
+		};
 	}
 	generateLines(): Line[] {
 		return [];
