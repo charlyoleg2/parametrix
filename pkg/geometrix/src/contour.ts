@@ -655,29 +655,33 @@ class Contour extends AContour {
 		}
 		return rPoints;
 	}
-	getOrientation(iPts: Point[], extremX: number): boolean {
+	getOrientation(iPts: Point[], extremX: number, theMax: boolean): boolean {
 		//console.log(`dbg392: extremX ${extremX}`);
+		const epsilon = 10 ** -3;
 		const pts = iPts.slice(1);
 		let sign = 0;
 		let pt1 = pts.at(-3) as Point;
 		let pt2 = pts.at(-2) as Point;
 		let pt3 = pts.at(-1) as Point;
-		for (const pt of pts) {
+		let foundIdx = -1;
+		for (const [idx, pt] of pts.entries()) {
 			pt1 = pt2;
 			pt2 = pt3;
 			pt3 = pt;
 			//console.log(`dbg393: pt2.cx.cy ${pt2.cx} ${pt2.cy} extremX ${extremX}`);
-			if (pt2.cx === extremX) {
+			const extrem = theMax ? pt2.cx > extremX - epsilon : pt2.cx < extremX + epsilon;
+			if (extrem) {
 				const vx = pt1.cx - pt2.cx;
 				const vy = pt1.cy - pt2.cy;
 				const ux = pt3.cx - pt2.cx;
 				const uy = pt3.cy - pt2.cy;
 				const pv = ux * vy - uy * vx;
 				sign = Math.sign(pv);
+				foundIdx = idx;
 			}
 		}
 		if (0 === sign) {
-			throw `err299: Orientation not found at point ${pts.length} ${ffix(pt1.cx)} ${ffix(pt1.cy)} ${ffix(pt2.cx)} ${ffix(pt2.cy)} ${ffix(pt3.cx)} ${ffix(pt3.cy)}`;
+			throw `err299: Orientation not found with ${pts.length} points and foundIdx ${foundIdx}`;
 		}
 		const rOrientation = sign > 0 ? true : false;
 		return rOrientation;
@@ -694,8 +698,8 @@ class Contour extends AContour {
 		const rXmax = Math.max(...lx);
 		const rYmin = Math.min(...ly);
 		const rYmax = Math.max(...ly);
-		const rOrientation = this.getOrientation(pts, rXmin);
-		const orient2 = this.getOrientation(pts, rXmax);
+		const rOrientation = this.getOrientation(pts, rXmin, false);
+		const orient2 = this.getOrientation(pts, rXmax, true);
 		if (orient2 !== rOrientation) {
 			throw `err390: orientation unstable ${rOrientation} ${orient2} with ${pts.length} points`;
 		}
