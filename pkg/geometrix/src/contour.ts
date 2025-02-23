@@ -677,7 +677,7 @@ class Contour extends AContour {
 			}
 		}
 		if (0 === sign) {
-			throw `err299: Orientation hasn't been found with point number ${pts.length}`;
+			throw `err299: Orientation not found at point ${pts.length} ${ffix(pt1.cx)} ${ffix(pt1.cy)} ${ffix(pt2.cx)} ${ffix(pt2.cy)} ${ffix(pt3.cx)} ${ffix(pt3.cy)}`;
 		}
 		const rOrientation = sign > 0 ? true : false;
 		return rOrientation;
