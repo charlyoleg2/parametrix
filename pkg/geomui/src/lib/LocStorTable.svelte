@@ -92,7 +92,7 @@
 	>
 	<ModalDiag bind:modalOpen={modalDelConfirm} okName="Confirm" okFunc={actionDel}>
 		<p class="diagTitle">Do you really want to delete the following localStorage keys?</p>
-		{#each localKeys as kname}
+		{#each localKeys as kname (kname)}
 			{#if localDel[kname]}
 				<p class="diagItem">{kname}</p>
 			{/if}
@@ -112,7 +112,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each localKeys as kname}
+			{#each localKeys as kname (kname)}
 				<tr>
 					<td><input type="checkbox" bind:checked={localDel[kname]} /></td>
 					<td><button onclick={() => modifInput(kname)}>{kname}</button></td>

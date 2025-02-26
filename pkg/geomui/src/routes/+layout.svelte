@@ -34,7 +34,7 @@
 	<article>
 		<h3>Geomui version</h3>
 		<code>
-			{#each detailed_versions as dversion}
+			{#each detailed_versions as dversion, idx (idx)}
 				{dversion}<br />
 			{/each}
 		</code>

@@ -220,7 +220,7 @@
 <section>
 	<h2>
 		2D Drawings :
-		{#each optFaces as optFace}
+		{#each optFaces as optFace (optFace)}
 			<button
 				onclick={() => {
 					selFace = optFace;
@@ -285,7 +285,7 @@
 					></td
 				>
 			</tr>
-			{#each optFaces as optFace, idx}
+			{#each optFaces as optFace, idx (optFace)}
 				<tr>
 					<td>{3 + idx}</td>
 					<td>{pDef.partName}_{optFace}.svg</td>
@@ -325,7 +325,7 @@
 					></td
 				>
 			</tr>
-			{#each optFaces as optFace, idx}
+			{#each optFaces as optFace, idx (optFace)}
 				<tr>
 					<td>{4 + optFaces.length + idx}</td>
 					<td>{pDef.partName}_{optFace}.dxf</td>

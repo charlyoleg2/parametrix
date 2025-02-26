@@ -65,7 +65,7 @@
 		<span>(Number of sub-instances: {dSubInstList.length})</span>
 	</h2>
 	<ol>
-		{#each dSubInstList as subInst}
+		{#each dSubInstList as subInst (subInst)}
 			<li>
 				<input type="checkbox" id="cb_{subInst}" class="toggle" checked={false} />
 				<label for="cb_{subInst}" class="label">
@@ -94,7 +94,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							{#each Object.keys(subD[subInst].dparam) as param, pIdx}
+							{#each Object.keys(subD[subInst].dparam) as param, pIdx (param)}
 								<tr class:changed={subD[subInst].dparam[param].chg}>
 									<td>{pIdx + 1}</td>
 									<td>{param}</td>

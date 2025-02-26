@@ -357,7 +357,7 @@
 					<td class:hideColumn>Step</td>
 				</tr>
 			</thead>
-			{#each htable as sect, sidx}
+			{#each htable as sect, sidx (sect.sectionName)}
 				<tbody>
 					<tr class="separator">
 						<td>{sidx + 1}</td>
@@ -371,7 +371,7 @@
 					</tr>
 				</tbody>
 				<tbody class:collaps={htableVis[sect.sectionID]}>
-					{#each sect.params as param, pidx}
+					{#each sect.params as param, pidx (param.name)}
 						<tr class:changed={sParams[pDef.partName][param.name] !== param.init}>
 							<td>{sidx + 1}.{pidx + 1}</td>
 							<td
@@ -397,13 +397,13 @@
 									/>
 								{:else if param.pType === PType.eCheckbox}
 									<select bind:value={sParams[pDef.partName][param.name]}>
-										{#each ['Off', 'On'] as one, idx}
+										{#each ['Off', 'On'] as one, idx (one)}
 											<option value={idx}>{one}</option>
 										{/each}
 									</select>
 								{:else if param.pType === PType.eDropdown}
 									<select bind:value={sParams[pDef.partName][param.name]}>
-										{#each param.dropdown as one, idx}
+										{#each param.dropdown as one, idx (one)}
 											<option value={idx}>{one}</option>
 										{/each}
 									</select>

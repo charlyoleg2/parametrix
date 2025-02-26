@@ -37,7 +37,7 @@
 
 <section>
 	<ModalImg bind:modalOpen={sModalImg} svgPath={sSvgPath} />
-	{#each dSvgList as iSvg}
+	{#each dSvgList as iSvg (iSvg)}
 		<button onclick={() => showSvg(iSvg)}>
 			<img src={iSvg} alt={iSvg} />
 		</button>
