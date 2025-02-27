@@ -33,7 +33,7 @@
 	<article>
 		<h3>Designix-ui version</h3>
 		<code>
-			{#each detailed_versions as dversion}
+			{#each detailed_versions as dversion (dversion)}
 				{dversion}<br />
 			{/each}
 		</code>
