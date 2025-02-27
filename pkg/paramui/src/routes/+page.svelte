@@ -6,13 +6,13 @@
 
 <h1>Parametrix index</h1>
 <article>
-	{#each menuList2 as menuCategory, listIdx}
+	{#each menuList2 as menuCategory, listIdx (listIdx)}
 		<div class="separation"></div>
 		{#if menuCategory.category !== ''}
 			<h2>{listIdx} - {menuCategory.category}</h2>
 		{/if}
 		<ul>
-			{#each menuCategory.pages as menuItem, itemIdx}
+			{#each menuCategory.pages as menuItem, itemIdx (menuItem.path)}
 				<li>
 					<img
 						class:alter={(listIdx + itemIdx) % 2 === 1}

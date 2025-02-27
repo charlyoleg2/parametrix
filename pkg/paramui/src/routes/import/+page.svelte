@@ -89,7 +89,7 @@
 <article class:step2>
 	<h3>Select a design-page</h3>
 	<ol>
-		{#each objK as iDesign}
+		{#each objK as iDesign (iDesign)}
 			<li>
 				<button onclick={() => startDesign(iDesign)}>{iDesign}</button>
 				- {impPages[iDesign].pDef.partName}

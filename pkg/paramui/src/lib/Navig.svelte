@@ -17,7 +17,7 @@
 </script>
 
 <nav>
-	{#each menuList.pages as menuItem}
+	{#each menuList.pages as menuItem (menuItem.path)}
 		<div class="oneMenu">
 			{#if menuItem.path !== apidocPath}
 				<a href="{base}{menuItem.path}" class:page-active={menuSelected === menuItem.path}

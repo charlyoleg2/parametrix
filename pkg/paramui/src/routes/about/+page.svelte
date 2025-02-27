@@ -52,7 +52,7 @@
 <article>
 	<h3>Parametrix version</h3>
 	<code>
-		{#each detailed_versions as dversion}
+		{#each detailed_versions as dversion (dversion)}
 			{dversion}<br />
 		{/each}
 	</code>
