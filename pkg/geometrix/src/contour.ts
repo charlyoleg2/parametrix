@@ -670,7 +670,8 @@ class Contour extends AContour {
 			pt3 = pt;
 			//console.log(`dbg393: pt2.cx.cy ${pt2.cx} ${pt2.cy} extremX ${extremX}`);
 			const extrem = theMax ? pt2.cx > extremX - epsilon : pt2.cx < extremX + epsilon;
-			if (extrem) {
+			const lastExtrem = theMax ? pt1.cx > extremX - epsilon : pt1.cx < extremX + epsilon;
+			if (extrem && !lastExtrem) {
 				const vx = pt1.cx - pt2.cx;
 				const vy = pt1.cy - pt2.cy;
 				const ux = pt3.cx - pt2.cx;

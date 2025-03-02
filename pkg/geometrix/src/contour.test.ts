@@ -129,6 +129,21 @@ describe('Contour suit 6', () => {
 	});
 });
 
+describe('Contour suit 7', () => {
+	const ctr1 = contour(0, 0);
+	ctr1.addSegStrokeA(200, 0);
+	ctr1.addSegStrokeA(200, 50);
+	ctr1.addSegStrokeA(200, 100);
+	ctr1.addSegStrokeA(0, 100);
+	ctr1.addSegStrokeA(0, 50);
+	ctr1.closeSegStroke();
+	it('getEnvelop', () => {
+		const ke = ctr1.getEnvelop();
+		expect(ke.xMin).toBeCloseTo(0);
+		expect(ke.orientation).toBeTruthy();
+	});
+});
+
 describe('ContourCircle suit', () => {
 	const ctr3 = contourCircle(50, 50, 20);
 	it('extractPoints', () => {
