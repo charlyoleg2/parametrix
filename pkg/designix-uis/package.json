@@ -1,6 +1,6 @@
 {
 	"name": "designix-uis",
-	"version": "1.0.15",
+	"version": "1.0.16",
 	"description": "mini-server for static content of designix-ui",
 	"private": false,
 	"repository": {
