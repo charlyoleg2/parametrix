@@ -144,6 +144,40 @@ describe('Contour suit 7', () => {
 	});
 });
 
+describe('Contour suit 8a', () => {
+	const ctr1 = contour(0, 0);
+	ctr1.addSegStrokeA(200, 0);
+	ctr1.addSegStrokeAifBig(200, 0.1, 0.5, false);
+	ctr1.addSegStrokeA(200, 50);
+	ctr1.closeSegStroke();
+	it('addSegStrokeAifBig', () => {
+		expect(ctr1.segments.length).toBeCloseTo(4);
+	});
+});
+
+describe('Contour suit 8b', () => {
+	const ctr1 = contour(0, 0);
+	ctr1.addSegStrokeA(200, 0);
+	ctr1.addCornerRounded(10);
+	//ctr1.addSegStrokeAifBig(200, 0.1, 0.5, true);
+	//ctr1.addSegStrokeA(200, 50);
+	//ctr1.closeSegStroke();
+	it('addSegStrokeAifBig error', () => {
+		expect(() => ctr1.addSegStrokeAifBig(200, 0.1, 0.5, true)).toThrowError(/err186/);
+	});
+});
+
+describe('Contour suit 8c', () => {
+	const ctr1 = contour(0, 0);
+	ctr1.addSegStrokeA(200, 0);
+	ctr1.addSegStrokeAifBig(220, 20, 0.5, true);
+	ctr1.addSegStrokeA(200, 50);
+	ctr1.closeSegStroke();
+	it('addSegStrokeAifBig', () => {
+		expect(ctr1.segments.length).toBeCloseTo(5);
+	});
+});
+
 describe('ContourCircle suit', () => {
 	const ctr3 = contourCircle(50, 50, 20);
 	it('extractPoints', () => {
