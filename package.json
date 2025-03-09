@@ -1,6 +1,6 @@
 {
 	"name": "parametrix",
-	"version": "1.0.16",
+	"version": "1.0.17",
 	"description": "The root directory of the parametrix packages",
 	"private": true,
 	"repository": {
