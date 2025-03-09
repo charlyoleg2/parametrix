@@ -82,6 +82,7 @@ class Contour extends AContour {
 	debugPoints: Point[];
 	debugLines: Line[];
 	lastPoint: Point;
+	lastPoint2: Point;
 	imposedColor: string;
 	/**
 	 *	@param ix - the X absolute coordinate of the first point of the contour
@@ -95,10 +96,12 @@ class Contour extends AContour {
 		this.debugPoints = [];
 		this.debugLines = [];
 		this.lastPoint = point(ix, iy);
+		this.lastPoint2 = point(ix, iy); // for cancelling last segment
 		this.imposedColor = icolor;
 	}
 	/** @internal */
 	setLastPoint(ix: number, iy: number) {
+		this.lastPoint2 = this.lastPoint;
 		this.lastPoint = point(ix, iy);
 	}
 	/** @internal */
@@ -348,6 +351,8 @@ class Contour extends AContour {
 			this.addPointA(ax, ay).addSegStroke();
 		} else if (secondNfirst) {
 			const preSeg = this.segments[this.segments.length - 1];
+			const lastP = this.lastPoint2;
+			this.setLastPoint(lastP.cx, lastP.cy);
 			if (preSeg.sType === segLib.SegEnum.eStroke) {
 				this.segments.pop();
 				this.addPointA(ax, ay).addSegStroke();
