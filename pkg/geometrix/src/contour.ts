@@ -173,22 +173,6 @@ class Contour extends AContour {
 		this.addPointRP(ra, rl).addSegStroke();
 		return this;
 	}
-	addSegStrokeAifBig(ax: number, ay: number, minLength: number, secondNfirst: boolean): this {
-		const p0 = this.getLastPoint();
-		const ppLength = Math.sqrt((ax - p0.cx) ** 2 + (ay - p0.cy) ** 2);
-		if (ppLength > minLength) {
-			this.addPointA(ax, ay).addSegStroke();
-		} else if (secondNfirst) {
-			const preType = this.segments[this.segments.length - 1].sType;
-			if (preType === segLib.SegEnum.eStroke) {
-				this.segments.pop();
-				this.addPointA(ax, ay).addSegStroke();
-			} else {
-				throw `err186: addSegStrokeA-ifBig used after a not eStroke ${preType} at segment ${this.segments.length}`;
-			}
-		}
-		return this;
-	}
 	addSegArc(iRadius: number, iLarge: boolean, iCcw: boolean): this {
 		if (this.points.length !== 1) {
 			throw `err954: contour addSegArc with unexpected points.length ${this.points.length}`;
@@ -354,6 +338,25 @@ class Contour extends AContour {
 			this.debugPoints.push(p1.translatePolar(a10 - av + (Math.sign(au) * Math.PI) / 2, lIC)); // I
 		} else {
 			throw `err182: contour p1 is undefined`;
+		}
+		return this;
+	}
+	addSegStrokeAifBig(ax: number, ay: number, minLength: number, secondNfirst: boolean): this {
+		const p0 = this.getLastPoint();
+		const ppLength = Math.sqrt((ax - p0.cx) ** 2 + (ay - p0.cy) ** 2);
+		if (ppLength > minLength) {
+			this.addPointA(ax, ay).addSegStroke();
+		} else if (secondNfirst) {
+			const preSeg = this.segments[this.segments.length - 1];
+			if (preSeg.sType === segLib.SegEnum.eStroke) {
+				this.segments.pop();
+				this.addPointA(ax, ay).addSegStroke();
+			} else if (preSeg.sType === segLib.SegEnum.eArc) {
+				this.segments.pop();
+				this.addPointA(ax, ay).addSegArc(preSeg.radius, preSeg.arcLarge, preSeg.arcCcw);
+			} else {
+				throw `err186: addSegStrokeA-ifBig used after eStart or eCorner ${preSeg.sType} at segment ${this.segments.length}`;
+			}
 		}
 		return this;
 	}

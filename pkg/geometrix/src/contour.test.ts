@@ -178,6 +178,18 @@ describe('Contour suit 8c', () => {
 	});
 });
 
+describe('Contour suit 8d', () => {
+	const ctr1 = contour(0, 0);
+	ctr1.addPointA(100, -30).addPointA(200, 0).addSegArc2();
+	ctr1.addSegStrokeAifBig(200, 0.1, 0.5, true);
+	ctr1.addSegStrokeA(200, 50);
+	ctr1.closeSegStroke();
+	it('addSegStrokeAifBig', () => {
+		expect(ctr1.segments.length).toBeCloseTo(4);
+		expect(ctr1.segments[1].py).toBeCloseTo(0.1);
+	});
+});
+
 describe('ContourCircle suit', () => {
 	const ctr3 = contourCircle(50, 50, 20);
 	it('extractPoints', () => {
