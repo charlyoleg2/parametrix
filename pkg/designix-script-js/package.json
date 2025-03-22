@@ -53,7 +53,7 @@
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
 		"bats": "^1.11.1",
-		"eslint": "^9.22.0",
+		"eslint": "^9.23.0",
 		"eslint-config-prettier": "^10.1.1",
 		"globals": "^16.0.0",
 		"npm-run-all2": "^7.0.2",
