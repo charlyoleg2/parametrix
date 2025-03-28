@@ -87,7 +87,7 @@
 		"@types/eslint__js": "^8.42.3",
 		"@types/express": "^5.0.1",
 		"@types/fs-extra": "^11.0.4",
-		"@types/node": "^22.13.11",
+		"@types/node": "^22.13.14",
 		"@types/yargs": "^17.0.33",
 		"eslint": "^9.23.0",
 		"eslint-config-prettier": "^10.1.1",
@@ -96,7 +96,7 @@
 		"rimraf": "^6.0.1",
 		"tsup": "^8.4.0",
 		"typescript": "^5.8.2",
-		"typescript-eslint": "^8.27.0",
+		"typescript-eslint": "^8.28.0",
 		"vitest": "^3.0.9"
 	}
 }
