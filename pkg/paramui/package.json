@@ -79,7 +79,7 @@
 		"chart.js": "^4.4.8",
 		"eslint": "^9.23.0",
 		"eslint-config-prettier": "^10.1.1",
-		"eslint-plugin-svelte": "^3.3.3",
+		"eslint-plugin-svelte": "^3.4.1",
 		"globals": "^16.0.0",
 		"mathlifier": "^2.0.3",
 		"mdsvex": "^0.12.3",
@@ -88,12 +88,12 @@
 		"prettier-plugin-svelte": "^3.3.3",
 		"rimraf": "^6.0.1",
 		"sass": "^1.86.0",
-		"svelte": "^5.25.3",
+		"svelte": "^5.25.4",
 		"svelte-check": "^4.1.5",
 		"svgo": "^3.3.2",
 		"typescript": "^5.8.2",
-		"typescript-eslint": "^8.28.0",
-		"vite": "^6.2.3",
-		"vitest": "^3.0.9"
+		"typescript-eslint": "^8.29.0",
+		"vite": "^6.2.4",
+		"vitest": "^3.1.1"
 	}
 }
