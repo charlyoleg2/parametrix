@@ -87,7 +87,7 @@
 		"@types/eslint__js": "^8.42.3",
 		"@types/express": "^5.0.1",
 		"@types/fs-extra": "^11.0.4",
-		"@types/node": "^22.13.17",
+		"@types/node": "^22.14.0",
 		"@types/yargs": "^17.0.33",
 		"eslint": "^9.23.0",
 		"eslint-config-prettier": "^10.1.1",
