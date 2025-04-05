@@ -76,13 +76,13 @@
 		"@eslint/js": "^9.10.0",
 		"@types/eslint__js": "^8.42.3",
 		"bats": "^1.11.1",
-		"eslint": "^9.23.0",
+		"eslint": "^9.24.0",
 		"eslint-config-prettier": "^10.1.1",
 		"npm-run-all2": "^7.0.2",
 		"prettier": "^3.5.3",
 		"rimraf": "^6.0.1",
 		"tsup": "^8.4.0",
-		"typescript": "^5.8.2",
+		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.29.0",
 		"vitest": "^3.1.1"
 	}
