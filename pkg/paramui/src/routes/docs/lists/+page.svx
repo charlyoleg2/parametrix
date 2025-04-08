@@ -93,6 +93,10 @@ If you want to get your *geometrix design library* in this list, please, create 
 2. [gears_and_springs](https://github.com/charlyoleg2/gears_and_springs)
 3. [cabane](https://github.com/charlyoleg2/cabane)
 4. [heliostat_model_50cm](https://github.com/charlyoleg2/heliostat_model_50cm)
+5. [maker_parame51](https://github.com/charlyoleg2/maker_parame51)
+6. [maker_parame77](https://github.com/charlyoleg2/maker_parame77)
+7. [maker_parame78](https://github.com/charlyoleg2/maker_parame78)
+8. [maker_ustensile](https://github.com/charlyoleg2/maker_ustensile)
 
 
 #### List of catalogs of 3D models
