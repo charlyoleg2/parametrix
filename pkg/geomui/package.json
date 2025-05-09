@@ -82,7 +82,7 @@
 		"@types/eslint": "^9.6.1",
 		"designix": "^1.0.18",
 		"eslint": "^9.26.0",
-		"eslint-config-prettier": "^10.1.3",
+		"eslint-config-prettier": "^10.1.5",
 		"eslint-plugin-svelte": "^3.5.1",
 		"globals": "^16.1.0",
 		"npm-run-all2": "^8.0.1",
