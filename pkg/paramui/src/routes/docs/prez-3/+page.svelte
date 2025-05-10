@@ -60,7 +60,7 @@
 		<pre class="nomar">API, CLI and UI</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre class="point">Parametrix is an overlay over 3D and 2D API</pre>
+		<pre class="point">Parametrix = overlay over 3D and 2D API</pre>
 		<pre class="nomar">1- [2D] web canvas</pre>
 		<pre class="nomar">2- [2D] svg</pre>
 		<pre class="nomar">3- [2D] dxf</pre>
