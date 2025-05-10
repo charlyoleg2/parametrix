@@ -22,7 +22,7 @@
 		<pre class="nomar">The 3D design is encoded in the <i>javascript</i> of the page</pre>
 		<pre class="nomar">Easy to share 3D design</pre>
 		<pre class="nomar">No installation</pre>
-		<pre class="nomar">Parametrisable</pre>
+		<pre class="nomar">No processing on server (i.e. green IT)</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">3D as 2D extrapolation</pre>
@@ -73,6 +73,15 @@
 		<pre class="nomar">Use 3D files</pre>
 		<pre class="nomar">Parametrize existing designs and generate the 3D</pre>
 		<pre class="nomar">Create new design</pre>
+	</OneSlide>
+	<OneSlide>
+		<pre class="point">3D design in JS with parameters</pre>
+		<pre class="nomar">Parametrisable</pre>
+		<pre class="nomar">Reduce the number 3D designs</pre>
+		<pre class="nomar">Less 3D modeling error</pre>
+		<pre class="nomar">Easing scaling</pre>
+		<pre class="nomar">More autonomy for the makers</pre>
+		<pre class="nomar">Better interaction between designer and maker</pre>
 	</OneSlide>
 </Carousel>
 
