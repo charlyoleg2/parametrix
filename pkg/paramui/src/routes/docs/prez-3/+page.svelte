@@ -18,6 +18,48 @@
 		<pre class="nomar">Run in the browser</pre>
 	</OneSlide>
 	<OneSlide>
+		<img
+			src="{base}/puisvg/prez3_3d_modelling_approaches.svg"
+			style="height: 18em;"
+			alt="prez3_3d_modelling_approaches.svg"
+		/>
+		<!--pre style="font-size:1.2em; margin:0;">The Parametrix workflow</pre-->
+	</OneSlide>
+	<OneSlide>
+		<img
+			src="{base}/puisvg/prez3_parametrix_support.svg"
+			style="height: 18em;"
+			alt="prez3_parametrix_support.svg"
+		/>
+		<!--pre style="font-size:1.2em; margin:0;">The Parametrix workflow</pre-->
+	</OneSlide>
+	<OneSlide>
+		<img
+			src="{base}/puisvg/prez3_unified_api.svg"
+			style="height: 18em;"
+			alt="prez3_unified_api.svg"
+		/>
+		<!--pre style="font-size:1.2em; margin:0;">The Parametrix workflow</pre-->
+	</OneSlide>
+	<OneSlide>
+		<img
+			src="{base}/puisvg/prez3_debug_workflow.svg"
+			style="height: 18em;"
+			alt="prez3_debug_workflow.svg"
+		/>
+		<!--pre style="font-size:1.2em; margin:0;">The Parametrix workflow</pre-->
+	</OneSlide>
+	<OneSlide>
+		<img
+			src="{base}/puisvg/prez3_generate_gcode.svg"
+			style="height: 12em;"
+			alt="prez3_generate_gcode.svg"
+		/>
+		<pre style="font-size:1.2em; margin:0;">&lt;&gt; Less processing</pre>
+		<pre style="font-size:1.2em; margin:0;">&lt;&gt; More accurate outputs</pre>
+		<pre style="font-size:1.2em; margin:0;">&lt;&gt; Responsive 2D UI</pre>
+	</OneSlide>
+	<OneSlide>
 		<pre class="point">One HTML page = one 3D design</pre>
 		<pre class="nomar">The 3D design is encoded in the <i>javascript</i> of the page</pre>
 		<pre class="nomar">Easy to share 3D design</pre>
