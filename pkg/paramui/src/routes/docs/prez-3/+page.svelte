@@ -20,7 +20,7 @@
 	<OneSlide>
 		<img
 			src="{base}/puisvg/prez3_3d_modelling_approaches.svg"
-			style="height: 18em;"
+			style="height: 17em;"
 			alt="prez3_3d_modelling_approaches.svg"
 		/>
 		<!--pre style="font-size:1.2em; margin:0;">The Parametrix workflow</pre-->
@@ -28,7 +28,7 @@
 	<OneSlide>
 		<img
 			src="{base}/puisvg/prez3_parametrix_support.svg"
-			style="height: 18em;"
+			style="height: 17em;"
 			alt="prez3_parametrix_support.svg"
 		/>
 		<!--pre style="font-size:1.2em; margin:0;">The Parametrix workflow</pre-->
@@ -36,7 +36,7 @@
 	<OneSlide>
 		<img
 			src="{base}/puisvg/prez3_unified_api.svg"
-			style="height: 18em;"
+			style="height: 17em;"
 			alt="prez3_unified_api.svg"
 		/>
 		<!--pre style="font-size:1.2em; margin:0;">The Parametrix workflow</pre-->
@@ -44,7 +44,7 @@
 	<OneSlide>
 		<img
 			src="{base}/puisvg/prez3_debug_workflow.svg"
-			style="height: 18em;"
+			style="height: 17em;"
 			alt="prez3_debug_workflow.svg"
 		/>
 		<!--pre style="font-size:1.2em; margin:0;">The Parametrix workflow</pre-->
@@ -73,9 +73,9 @@
 		<pre class="nomar">&lt;2&gt; Generate CLI and UI</pre>
 		<pre class="nomar">&lt;3&gt; Deploy via <i>npm</i> or <i>static website</i></pre>
 		<pre class="nomar">&lt;4&gt; Powerfull Javascript-API</pre>
-		<pre class="blabla">     (typically one 500-line-file per design)</pre>
+		<pre class="blabla">  (typically one file of 500 lines per design)</pre>
 		<pre class="nomar">&lt;5&gt; Extendable API</pre>
-		<pre class="blabla">     (e.g. sheetFold)</pre>
+		<pre class="blabla">  (e.g. sheetFold)</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">One HTML page = one 3D design</pre>
