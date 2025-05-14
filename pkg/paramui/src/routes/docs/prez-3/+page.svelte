@@ -60,6 +60,24 @@
 		<pre style="font-size:1.2em; margin:0;">&lt;&gt; Responsive 2D UI</pre>
 	</OneSlide>
 	<OneSlide>
+		<pre class="point">Parametrix, a 3D tool for makers</pre>
+		<pre class="nomar">&lt;1&gt; Predefined designs</pre>
+		<pre class="nomar">&lt;2&gt; Easy parametrization</pre>
+		<pre class="nomar">&lt;3&gt; Responsive UI</pre>
+		<pre class="nomar">&lt;4&gt; High quality CAM with arcs</pre>
+		<pre class="nomar">&lt;5&gt; No installation</pre>
+	</OneSlide>
+	<OneSlide>
+		<pre class="point">Parametrix, a 3D tool for designer-coder</pre>
+		<pre class="nomar">&lt;1&gt; CAD as code : software defined CAD</pre>
+		<pre class="nomar">&lt;2&gt; Generate CLI and UI</pre>
+		<pre class="nomar">&lt;3&gt; Deploy via <i>npm</i> or <i>static website</i></pre>
+		<pre class="nomar">&lt;4&gt; Powerfull Javascript-API</pre>
+		<pre class="blabla">     (typically one 500-line-file per design)</pre>
+		<pre class="nomar">&lt;5&gt; Extendable API</pre>
+		<pre class="blabla">     (e.g. sheetFold)</pre>
+	</OneSlide>
+	<OneSlide>
 		<pre class="point">One HTML page = one 3D design</pre>
 		<pre class="nomar">The 3D design is encoded in the <i>javascript</i> of the page</pre>
 		<pre class="nomar">Easy to share 3D design</pre>
@@ -149,8 +167,9 @@
 	//	font-size: 1.2em;
 	//	margin: 0.6em 0 0.2em;
 	//}
-	//pre.blabla {
-	//	font-size: 1em;
-	//	margin: 0 3em 0;
-	//}
+	pre.blabla {
+		color: grey;
+		font-size: 1em;
+		margin: 0 3em 0;
+	}
 </style>
