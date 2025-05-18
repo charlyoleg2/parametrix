@@ -76,7 +76,7 @@
 		"@atao60/fse-cli": "^0.1.9",
 		"@sveltejs/adapter-auto": "^6.0.1",
 		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.21.0",
+		"@sveltejs/kit": "^2.21.1",
 		"@sveltejs/package": "^2.3.11",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@types/eslint": "^9.6.1",
