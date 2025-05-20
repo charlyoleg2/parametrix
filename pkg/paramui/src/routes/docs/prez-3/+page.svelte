@@ -78,6 +78,22 @@
 		<pre class="blabla">  (e.g. sheetFold)</pre>
 	</OneSlide>
 	<OneSlide>
+		<pre class="point">Parametrix, for distributing 3D shapes</pre>
+		<pre class="nomar">&lt;1&gt; lightweight encoding of 3D shapes</pre>
+		<pre class="nomar">&lt;2&gt; UI for maker</pre>
+		<pre class="blabla">&lt;2.1&gt;   Parametrization of the 3D shapes</pre>
+		<pre class="blabla">&lt;2.2&gt;   Visualization of the 2D figures</pre>
+		<pre class="blabla">&lt;2.3&gt;   Generation of the CAD files</pre>
+		<pre class="nomar">&lt;3&gt; Distribution via multi channels</pre>
+		<pre class="blabla">&lt;3.1&gt;   HTML page</pre>
+		<pre class="blabla">&lt;3.2&gt;   CLI</pre>
+		<pre class="blabla">&lt;3.3&gt;   NPM package</pre>
+		<pre class="blabla">&lt;3.4&gt;   source code</pre>
+		<pre class="nomar">&lt;4&gt; High quality CAM files with arcs</pre>
+		<pre class="nomar">&lt;5&gt; No processing on server</pre>
+		<pre class="nomar">&lt;6&gt; Ideal for Open-hardware</pre>
+	</OneSlide>
+	<OneSlide>
 		<pre class="point">One HTML page = one 3D design</pre>
 		<pre class="nomar">The 3D design is encoded in the <i>javascript</i> of the page</pre>
 		<pre class="nomar">Easy to share 3D design</pre>
