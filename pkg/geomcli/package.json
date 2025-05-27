@@ -64,7 +64,7 @@
 	},
 	"dependencies": {
 		"geometrix": "^1.0.19",
-		"yargs": "^17.7.2"
+		"yargs": "^18.0.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
@@ -72,12 +72,12 @@
 		"@types/yargs": "^17.0.33",
 		"eslint": "^9.27.0",
 		"eslint-config-prettier": "^10.1.5",
-		"npm-run-all2": "^8.0.3",
+		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.5.3",
 		"rimraf": "^6.0.1",
 		"tsup": "^8.5.0",
 		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.32.1",
+		"typescript-eslint": "^8.33.0",
 		"vitest": "^3.1.4"
 	}
 }
