@@ -78,6 +78,23 @@
 		<pre class="blabla">  (e.g. sheetFold)</pre>
 	</OneSlide>
 	<OneSlide>
+		<pre class="point">Parametrix for system engineering</pre>
+		<pre class="nomar2">&lt;F1&gt; Illustration of requirements</pre>
+		<pre class="nomar2">&lt;F2&gt; Exploration of system parameters</pre>
+		<pre class="nomar2">&lt;F3&gt; Verification of formula</pre>
+		<pre class="nomar2">&lt;F4&gt; Simplified 3D model</pre>
+		<pre class="blabla2">  Enable the verification of detailed 3D models</pre>
+		<img
+			src="{base}/puisvg/prez3_V_cycle.svg"
+			style="height: 10em; margin: 0.5em 6em 0;"
+			alt="prez3_V_cycle.svg"
+		/>
+		<pre class="nomar2">&lt;R1&gt; CAD as code for traceability</pre>
+		<pre class="nomar2">&lt;R2&gt; Light weight / auditable solution</pre>
+		<pre class="nomar2">&lt;R3&gt; Simple usage for viewers</pre>
+		<pre class="nomar2">&lt;R4&gt; Easy sharing of work products across the origanization</pre>
+	</OneSlide>
+	<OneSlide>
 		<pre class="point">Parametrix, for distributing 3D shapes</pre>
 		<pre class="nomar">&lt;1&gt; lightweight encoding of 3D shapes</pre>
 		<pre class="nomar">&lt;2&gt; UI for maker</pre>
@@ -186,6 +203,15 @@
 	pre.blabla {
 		color: grey;
 		font-size: 1em;
+		margin: 0 3em 0;
+	}
+	pre.nomar2 {
+		font-size: 0.5em;
+		margin: 0;
+	}
+	pre.blabla2 {
+		color: grey;
+		font-size: 0.4em;
 		margin: 0 3em 0;
 	}
 </style>
