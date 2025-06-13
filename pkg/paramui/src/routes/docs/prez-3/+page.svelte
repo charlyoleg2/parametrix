@@ -60,6 +60,19 @@
 		<pre style="font-size:1.2em; margin:0;">&lt;&gt; Responsive 2D UI</pre>
 	</OneSlide>
 	<OneSlide>
+		<pre class="point">3D models for makers</pre>
+		<pre class="point2">1- 3D modeling tools</pre>
+		<pre class="nomar2">1.1- Open-source: Blender, FreeCAD, OpenSCAD, JsCAD</pre>
+		<pre class="nomar2">1.2- Professional: Catia, SolidWorks, OnShape</pre>
+		<pre class="nomar2">1.3- Online: Fusion360, SketchUp, TinkerCAD</pre>
+		<pre class="point2">2- Predefined &amp; parametrizable 3D shapes</pre>
+		<pre class="nomar2">2.1- Parametrix</pre>
+		<pre class="point2">3- Sharing platform for 3D models</pre>
+		<pre class="nomar2">3.1- makerworld.com</pre>
+		<pre class="nomar2">3.2- thingiverse.com</pre>
+		<pre class="nomar2">3.3- printables.com</pre>
+	</OneSlide>
+	<OneSlide>
 		<pre class="point">Parametrix, a 3D tool for makers</pre>
 		<pre class="nomar">&lt;1&gt; Predefined designs</pre>
 		<pre class="nomar">&lt;2&gt; Easy parametrization</pre>
@@ -196,10 +209,10 @@
 		font-size: 1.4em;
 		margin: 1em 0 0.2em;
 	}
-	//pre.pointb {
-	//	font-size: 1.2em;
-	//	margin: 0.6em 0 0.2em;
-	//}
+	pre.point2 {
+		font-size: 0.9em;
+		margin: 0.6em 0 0.2em;
+	}
 	pre.blabla {
 		color: grey;
 		font-size: 1em;
