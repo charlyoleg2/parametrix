@@ -83,7 +83,7 @@
 		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.5.3",
 		"rimraf": "^6.0.1",
-		"svgo": "^3.3.2",
+		"svgo": "^4.0.0",
 		"tsup": "^8.5.0",
 		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.34.1",
