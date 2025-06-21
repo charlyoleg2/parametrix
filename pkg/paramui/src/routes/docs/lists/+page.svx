@@ -102,7 +102,8 @@ If you want to get your *geometrix design library* in this list, please, create 
 #### List of catalogs of 3D models
 
 1. [Catalos Github-pages](https://charlyoleg2.github.io/catalos/) : The dev version of Catalos
-2. [Calatos Vercel](https://catalos-catalui.vercel.app/) : The complete version of Catalos
+2. [Calatos Official](https://catalos.fr/) : The production version of Catalos
+3. [Calatos Vercel](https://catalos-catalui.vercel.app/) : A second production instance of Catalos
 
 
 #### Todo-list
