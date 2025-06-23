@@ -43,8 +43,8 @@
 		<ol>
 			<li><a href="https://github.com/charlyoleg2/parametrix">Parametrix repo</a></li>
 			<li><a href="https://charlyoleg2.github.io/parametrix/">Parametrix page</a></li>
-			<li><a href="https://parametrix.fr/">Parametrix catalog [Official]</a></li>
-			<li><a href="https://catalos-catalui.vercel.app/">Parametric catalog [Vercel]</a></li>
+			<li><a href="https://parametrix.fr/">Catalog [Official]</a></li>
+			<li><a href="https://catalos-catalui.vercel.app/">Catalog [Vercel]</a></li>
 		</ol>
 	</article>
 </footer>
