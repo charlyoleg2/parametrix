@@ -84,7 +84,7 @@
 		"mathlifier": "^3.2.2",
 		"mdsvex": "^0.12.6",
 		"npm-run-all2": "^8.0.4",
-		"prettier": "^3.5.3",
+		"prettier": "^3.6.0",
 		"prettier-plugin-svelte": "^3.4.0",
 		"rimraf": "^6.0.1",
 		"sass": "^1.89.2",
