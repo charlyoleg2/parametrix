@@ -101,9 +101,9 @@ If you want to get your *geometrix design library* in this list, please, create 
 
 #### List of catalogs of 3D models
 
-1. [Catalos Github-pages](https://charlyoleg2.github.io/catalos/) : The dev version of Catalos
-2. [Calatos Official](https://catalos.fr/) : The production version of Catalos
-3. [Calatos Vercel](https://catalos-catalui.vercel.app/) : A second production instance of Catalos
+1. [Catalos Github-pages](https://charlyoleg2.github.io/catalos/) : The dev version of catalog of Parametrix
+2. [Parametrix Official](https://parametrix.fr/) : The Parametrix catalog
+3. [Parametrix Vercel](https://catalos-catalui.vercel.app/) : A second instance of the Parametrix catalog running on Vercel
 
 
 #### Todo-list
