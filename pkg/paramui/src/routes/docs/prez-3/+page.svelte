@@ -61,6 +61,11 @@
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">3D models for makers</pre>
+		<img
+			src="{base}/puisvg/prez3_parametrix_versus.svg"
+			style="height: 5em;"
+			alt="prez3_parametrix_versus.svg"
+		/>
 		<pre class="point2">1- 3D modeling tools</pre>
 		<pre class="nomar2">1.1- Open-source: Blender, FreeCAD, OpenSCAD, JsCAD</pre>
 		<pre class="nomar2">1.2- Professional: Catia, SolidWorks, OnShape</pre>
