@@ -215,7 +215,7 @@
 		margin: 1em 0 0.2em;
 	}
 	pre.point2 {
-		font-size: 0.9em;
+		font-size: 0.7em;
 		margin: 0.6em 0 0.2em;
 	}
 	pre.blabla {
