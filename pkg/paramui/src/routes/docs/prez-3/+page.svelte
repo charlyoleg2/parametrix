@@ -84,8 +84,8 @@
 		<pre class="nomar">&lt;2&gt; Easy parametrization in few clicks</pre>
 		<pre class="nomar">&lt;3&gt; Modifying without starting from scratch</pre>
 		<pre class="nomar">&lt;4&gt; Responsive UI</pre>
-		<pre class="nomar">&lt;5&gt; High quality CAM with arcs</pre>
-		<pre class="nomar">&lt;6&gt; Coherent design without bug</pre>
+		<pre class="nomar">&lt;5&gt; Output coherent design files without bug</pre>
+		<pre class="nomar">&lt;6&gt; High quality CAM with arcs</pre>
 		<pre class="nomar">&lt;7&gt; No installation</pre>
 		<pre class="nomar">&lt;8&gt; No programming skill required</pre>
 	</OneSlide>
