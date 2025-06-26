@@ -1,0 +1,1 @@
+import{h as r,b as c,m as s,E as i,o as h,q as m,g as p}from"./CoadBeFj.js";function u(o,t,f){r&&c();var n=o,a,e;s(()=>{a!==(a=t())&&(e&&(m(e),e=null),a&&(e=h(()=>f(n,a))))},i),r&&(n=p)}export{u as c};
