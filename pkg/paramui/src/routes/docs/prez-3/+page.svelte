@@ -79,11 +79,15 @@
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">Parametrix, a 3D tool for makers</pre>
-		<pre class="nomar">&lt;1&gt; Predefined designs</pre>
-		<pre class="nomar">&lt;2&gt; Easy parametrization</pre>
-		<pre class="nomar">&lt;3&gt; Responsive UI</pre>
-		<pre class="nomar">&lt;4&gt; High quality CAM with arcs</pre>
-		<pre class="nomar">&lt;5&gt; No installation</pre>
+		<pre class="nomar">&lt;1&gt; Predefined designs, visit the catalog <i>parametrix.fr</i
+			></pre>
+		<pre class="nomar">&lt;2&gt; Easy parametrization in few clicks</pre>
+		<pre class="nomar">&lt;3&gt; Modifying without starting from scratch</pre>
+		<pre class="nomar">&lt;4&gt; Responsive UI</pre>
+		<pre class="nomar">&lt;5&gt; High quality CAM with arcs</pre>
+		<pre class="nomar">&lt;6&gt; Coherent design without bug</pre>
+		<pre class="nomar">&lt;7&gt; No installation</pre>
+		<pre class="nomar">&lt;8&gt; No programming skill required</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">Parametrix, a 3D tool for designer-coder</pre>
