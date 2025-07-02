@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!--link rel="stylesheet" href="../temml/Temml-Latin-Modern.css" /-->
+		<link rel="stylesheet" href="../temml/Temml-Local.css" />
+		<link rel="icon" href="../favicon.png" />
+		<meta name="viewport" content="width=device-width" />
+		
+		<link href="../_app/immutable/assets/makeMenu.DKegludn.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/0.EBa8zCKs.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/DocsLayout.C8QkDwwu.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.BgLRFz-2.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CcX3InYX.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Cy-C0FpA.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/mUDW59OZ.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CSIEqmgl.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Btft0C1y.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/BBg5Ntne.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.DZ2PLcW8.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CWj6FrbW.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/ClfGPGt2.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/xxF9SlcA.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/5OhZjHf3.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/BYMySfrz.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.jIxpoUbN.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Drf26DBX.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CIuBYEsQ.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Brx_xsc3.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/DvgBqpxw.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/tGvvnwJd.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/DTGOClSN.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Blke0NSY.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CaSNbP48.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/11.BAW2gi0m.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/DGoTGnHG.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CAfZksZ1.js">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[--><!----><header class="svelte-xmcq9j"><section class="svelte-xmcq9j"><img class="img1 svelte-xmcq9j" src="../favicon.svg" alt="Parametrix's logo"/> <h1 class="svelte-xmcq9j">Parametrix</h1> <img class="img2 img-suite svelte-xmcq9j" src="../favicon.svg" alt="Parametrix's logo"/> <img class="img3 img-suite svelte-xmcq9j" src="../favicon.svg" alt="Parametrix's logo"/> <img class="img4 img-suite svelte-xmcq9j" src="../favicon.svg" alt="Parametrix's logo"/> <img class="img5 img-suite svelte-xmcq9j" src="../favicon.svg" alt="Parametrix's logo"/></section> <article class="svelte-xmcq9j">Technical drawing --- Dessin industriel --- 2D parametric designs --- Software defined
+		modelling</article></header><!----> <nav class="svelte-8uq97j"><!--[--><div class="oneMenu svelte-8uq97j"><!--[--><a href="../" class="svelte-8uq97j">index</a><!--]--> <div class="arrow svelte-8uq97j"></div></div><div class="oneMenu svelte-8uq97j"><!--[--><a href="../about" class="svelte-8uq97j">about</a><!--]--> <div class="arrow svelte-8uq97j"></div></div><!--]--> <!--[!--><!--]--></nav><!----> <main class="svelte-1jpnce5"><!----><article class="svelte-m0s5fj"><h1>Geom's user docs</h1> <h2>Starting a Parametrix project</h2> <p>The helper script <em>create-parametrix</em> generates the boilerplate for bootstraping a <em>Parametrix</em> project. The boilerplate is functional. It uses the <em>Parametrix</em> libraries <em>geometrix</em>, <em>geomcli</em> and <em>geomui</em>.</p> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">npm</span> create parametrix@latest
+<span class="token comment"># or</span>
+<span class="token comment"># npm create parametrix@latest Sam08</span>
+<span class="token builtin class-name">cd</span> parameBlabla
+<span class="token function">npm</span> <span class="token function">install</span>
+<span class="token function">git</span> init <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> <span class="token function">add</span> <span class="token parameter variable">-A</span> <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Initial commit"</span> <span class="token comment"># optional</span>
+inkscape pkg/desiBlabla/src/myGroup1/svg/src_myBox.svg <span class="token comment"># optional</span>
+<span class="token function">vim</span> pkg/desiBlabla/src/myGroup1/myBox.ts <span class="token comment"># optional</span>
+<span class="token function">npm</span> run ci
+<span class="token function">npm</span> run preview
+<span class="token function">npm</span> run clean <span class="token comment"># optional</span></code><!----></pre> <h2>Workflow</h2> <p>The creation of a 3D part with <em>Parametrix</em> is composed by the following steps:</p> <ol><li><strong>Idea:</strong> brainstorming of the general ideas on a white-board</li> <li><strong>Concept:</strong> With <a href="https://inkscape.org/" rel="nofollow">Inkscape</a> draw all relevant faces and sections of the parts and define the parameters</li> <li><strong>Architecture:</strong> Using the <em>Geometrix</em> library, describe in <em>javascrit</em> the 3D parts from the parameters</li> <li><strong>Sizing:</strong> Compute the optimal values of the parameters for your use-case</li> <li><strong>Export:</strong> Apply the parameter values and export the 3D parts</li></ol> <p>In the traditional approach, the steps 2, 3 and 4 might be merged together. The <em>Parametrix</em> workflow forces addressing those phases separately.</p> <h2>Javascript description</h2> <h3><a id="main_steps">main steps of a Geometrix script</a></h3> <ol><li>import <em>Geometrix</em></li> <li>[Optionally] import other parts</li> <li>define the list of parameters</li> <li>create the figures</li> <li>describe the contruction of the 3D parts</li> <li>[Optionally] define the links to the parameters of the sub-parts</li></ol> <h3>hierarchy of the description</h3> <ol><li>a 3D part is an assembly of one or several extrusions of figures</li> <li>a figures consists of one or several contours</li> <li>a contour is either a circle or a closed path made of lines and arcs</li></ol> <h2>Arrangement of contours</h2> <p>A figure is collection of faces.
+A face is a collection of contours.
+The first contour of a face is the outer contour.
+The remaining contours of the face are the inner contours.
+Finally the figure is a list of lists of contours.
+A contour should never cross itself or an other contour.
+Two contours are either side-by-side or one-include-the-other.</p> <p><img src="../puisvg/figure_face_contour.svg" alt="figure_face_contour.svg"/></p> <p>The 4 types of figures:</p> <p><img src="../puisvg/types_of_contour_arrangements.svg" alt="types_of_contour_arrangements.svg"/></p> <ul><li><a href="../docs/apidoc/classes/geometrix.Figure.html#addMainOI" rel="external">.addMainOI()</a> : method to add a face to a figure.</li> <li><a href="../docs/apidoc/classes/geometrix.Figure.html#addMainO" rel="external">.addMainO()</a> : method to add an outer contour (without holes) to a figure.</li></ul> <pre class="language-javascript"><!----><code class="language-javascript">faceA <span class="token operator">=</span> <span class="token punctuation">[</span>ctrOuter<span class="token punctuation">,</span> ctrInner1<span class="token punctuation">,</span> ctrInner2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+myFigure<span class="token punctuation">.</span><span class="token function">addMainOI</span><span class="token punctuation">(</span>faceA<span class="token punctuation">)</span><span class="token punctuation">;</span>
+myFigure<span class="token punctuation">.</span><span class="token function">addMainOI</span><span class="token punctuation">(</span><span class="token punctuation">[</span>fBctrO<span class="token punctuation">,</span> fBctrI1<span class="token punctuation">,</span> fBctrI2<span class="token punctuation">,</span> fBctrI3<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myFigure<span class="token punctuation">.</span><span class="token function">addMainOI</span><span class="token punctuation">(</span><span class="token punctuation">[</span>fCctrO<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myFigure<span class="token punctuation">.</span><span class="token function">addMainO</span><span class="token punctuation">(</span>fDctrO<span class="token punctuation">)</span><span class="token punctuation">;</span></code><!----></pre> <h2>Corners</h2> <p>For each contour, <em>geometrix</em> lets you modify the shape of each corner individually as following:</p> <ul><li>pointed (a.k.a.  unchanged corner) [default]</li> <li>rounded with radius R (a.k.a. smoothed corner)</li> <li>widened with radius R (a.k.a. enlarged corner)</li> <li>wideAcc with radius R (a.k.a. enlarged corner for complete accessibility)</li></ul> <p><img src="../puisvg/corner_options.svg" alt="corner_options.svg"/> <img src="../puisvg/contour_skeleton_final.svg" alt="contour_skeleton_final.svg"/></p> <h2>Export options</h2> <h3>SVG</h3> <p>A 2D drawing of one of the figures. It can be visualized and edited by <a href="https://inkscape.org/" rel="nofollow">inkscape</a>.</p> <pre class="language-bash"><!----><code class="language-bash">inkscape path/to/my/exported/file.svg</code><!----></pre> <h3>DXF</h3> <p>A 2D drawing of one of the figures. It can be visualized and edited by <a href="https://librecad.org/" rel="nofollow">librecad</a>.</p> <pre class="language-bash"><!----><code class="language-bash">librecad path/to/my/exported/file.dxf</code><!----></pre> <h3>OpenSCAD</h3> <ol><li>install <a href="https://openscad.org/" rel="nofollow">OpenSCAD</a></li> <li>run the exported script: <code>openscad path/to/exported-script.scad</code></li> <li>press <em>F6</em> or click on the menu <em>design>render</em></li></ol> <pre class="language-bash"><!----><code class="language-bash">openscad path/to/my/exported/file.scad
+openscad <span class="token parameter variable">-o</span> path/to/my3Dfile.stl path/to/my/exported/file.scad
+meshlab path/to/my3Dfile.stl
+f3d path/to/my3Dfile.stl</code><!----></pre> <h3>OpenJSCAD</h3> <p>Open the exported script with <a href="https://openjscad.xyz/" rel="nofollow">OpenJSCAD</a> or use the CLI.</p> <pre class="language-bash"><!----><code class="language-bash"><span class="token function">mkdir</span> work_with_jscad
+<span class="token builtin class-name">cd</span> work_with_jscad
+<span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-D</span> @jscad/cli
+npx jscad <span class="token parameter variable">-v</span>
+npx jscad
+npx jscad path/to/my/exported/file.js
+npx jscad path/to/my/exported/file.js <span class="token parameter variable">-o</span> path/to/my3Dfile.stl
+meshlab path/to/my3Dfile.stl
+f3d path/to/my3Dfile.stl</code><!----></pre> <p>OpenJSCAD doesn’t support <em>parallel contours</em>. If a figure contains several <em>outer contours</em>, they must be extruded one by one independently and then combined together with <em>union</em>.</p> <h3>FreeCAD</h3> <pre class="language-bash"><!----><code class="language-bash">freecad
+freecad.cmd path/to/my/exported/file.py
+freecad.cmd path/to/my/exported/file.py my3Dfile
+f3d path/to/my3Dfile.stl</code><!----></pre> <h3>glTF</h3> <ol><li>Install <a href="https://gltf-transform.dev/" rel="nofollow">gltf-transform</a></li> <li>Execute the exported script</li> <li>Visualize the generated <em>gltf-file</em> with this <a href="https://gltf-viewer.donmccurdy.com/" rel="nofollow">gltf-viewer</a></li></ol> <h2>Technical details</h2> <h3>Notes on Part-name</h3> <p>Two design-definition could have the same partName. This is not recommended but possible. In this case if they have parameters with identical name, their values will be shared.
+Also the map (partName: link) will allow you defining a single link per partName. So one of your design-definition can not be pointed by the link.</p> <h3>SVG files</h3> <p>The svg-files that describe a design and its parameters must be embedded in the <em>design</em> library. Per convention, those SVG-files are stored in the sub-directory <em>pgdsvg</em> alongside the code <em>index.js</em>.</p> <p>Here the key-elements of the <em>package.json</em> of a design-library:</p> <pre class="language-json"><!----><code class="language-json"><span class="token punctuation">&#123;</span>
+	<span class="token property">"exports"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+		<span class="token property">"."</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+			<span class="token property">"types"</span><span class="token operator">:</span> <span class="token string">"./dist/index.d.ts"</span><span class="token punctuation">,</span>
+			<span class="token property">"default"</span><span class="token operator">:</span> <span class="token string">"./dist/index.js"</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+	<span class="token property">"files"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token string">"dist"</span><span class="token punctuation">,</span>
+		<span class="token string">"!dist/**/*.map"</span><span class="token punctuation">,</span>
+		<span class="token string">"!dist/**/*.test.*"</span><span class="token punctuation">,</span>
+		<span class="token string">"!dist/**/*.spec.*"</span>
+	<span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+		<span class="token property">"svgo1"</span><span class="token operator">:</span> <span class="token string">"svgo -f src/facade/svg -o dist/pgdsvg/"</span><span class="token punctuation">,</span>
+		<span class="token property">"svgo2"</span><span class="token operator">:</span> <span class="token string">"svgo -f src/menuiserie/svg -o dist/pgdsvg/"</span><span class="token punctuation">,</span>
+		<span class="token property">"svgo3"</span><span class="token operator">:</span> <span class="token string">"svgo -f src/chaudronnerie/svg -o dist/pgdsvg/"</span><span class="token punctuation">,</span>
+		<span class="token property">"svgo"</span><span class="token operator">:</span> <span class="token string">"run-s svgo1 svgo2 svgo3"</span><span class="token punctuation">,</span>
+		<span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf dist dist2 node_modules"</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+	<span class="token property">"dependencies"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+		<span class="token property">"geometrix"</span><span class="token operator">:</span> <span class="token string">"^0.5.49"</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+	<span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+		<span class="token property">"rimraf"</span><span class="token operator">:</span> <span class="token string">"^6.0.1"</span><span class="token punctuation">,</span>
+		<span class="token property">"svgo"</span><span class="token operator">:</span> <span class="token string">"^4.0.0"</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <p>Here the key-elements of the <em>package.json</em> of the associated UI-library:</p> <pre class="language-json"><!----><code class="language-json"><span class="token punctuation">&#123;</span>
+	<span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+		<span class="token property">"cp_pgdsvg"</span><span class="token operator">:</span> <span class="token string">"fse copy ../../node_modules/desi78/dist/pgdsvg static/pgdsvg"</span><span class="token punctuation">,</span>
+		<span class="token property">"ci"</span><span class="token operator">:</span> <span class="token string">"run-s cp_pgdsvg build lint check test:unit:once"</span><span class="token punctuation">,</span>
+		<span class="token property">"clean"</span><span class="token operator">:</span> <span class="token string">"rimraf .svelte-kit build node_modules static/pgdsvg"</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+	<span class="token property">"devDependencies"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+		<span class="token property">"@ata060/fse-cli"</span><span class="token operator">:</span> <span class="token string">"^0.1.9"</span><span class="token punctuation">,</span>
+		<span class="token property">"rimraf"</span><span class="token operator">:</span> <span class="token string">"^6.0.1"</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code><!----></pre> <h2>design-library organisation</h2> <p>The npm-package of a design-library is stored in mono-repo even if we have a single library. This is because we also store in the repo the associated npm-packages (desiAbc-cli, desiAbc-ui and desiAbc-uis).</p> <p>In a design library, you can create sub-folders. Each folder has its own <em>svg</em> folder.</p> <p><img src="../puisvg/file_structure_single.svg" alt="file_structure_single.svg"/></p> <p>If you have many designs and you want to distribute them in several packages, then you can create several design-libraries in your <em>mono-repo</em>.</p> <p><img src="../puisvg/file_structure_several.svg" alt="file_structure_several.svg"/></p><!----></article><!----><!----></main> <footer class="svelte-1nxem0w"><img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----> <ul class="svelte-1nxem0w"><li class="footer-title svelte-1nxem0w">Parametrix</li> <li class="svelte-1nxem0w"><a href="https://github.com/charlyoleg2/parametrix" class="svelte-1nxem0w">Github repo</a></li> <li class="svelte-1nxem0w"><a href="https://charlyoleg2.github.io/parametrix/" class="svelte-1nxem0w">Github page</a></li> <li class="svelte-1nxem0w"><a href="https://parametrix.fr/" class="svelte-1nxem0w">Catalog [Official]</a></li> <li class="svelte-1nxem0w"><a href="https://catalos-catalui.vercel.app/" class="svelte-1nxem0w">Catalog [Vercel]</a></li></ul> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----> <ul class="svelte-1nxem0w"><li class="footer-title svelte-1nxem0w">Js Partners</li> <li class="svelte-1nxem0w"><a href="https://ocjs.org/" class="svelte-1nxem0w">OpenCascade.js</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/ArchiyouApp/archiyou-core" class="svelte-1nxem0w">Archiyou-core</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/sgenoud/replicad" class="svelte-1nxem0w">Replicad</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/zalo/CascadeStudio" class="svelte-1nxem0w">CascadeStudio</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/jscad/OpenJSCAD.org" class="svelte-1nxem0w">OpenJsCAD</a></li> <li class="svelte-1nxem0w"><a href="https://manifoldcad.org/" class="svelte-1nxem0w">ManifoldCAD</a></li></ul> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----> <ul class="svelte-1nxem0w"><li class="footer-title svelte-1nxem0w">Py Partners</li> <li class="svelte-1nxem0w"><a href="https://cadquery.readthedocs.io" class="svelte-1nxem0w">CadQuery</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/tpaviot/pythonocc-core" class="svelte-1nxem0w">PythonOCC</a></li> <li class="svelte-1nxem0w"><a href="https://mirmik.github.io/zencad/en/index.html" class="svelte-1nxem0w">ZenCAD</a></li></ul> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----> <ul class="svelte-1nxem0w"><li class="footer-title svelte-1nxem0w">Other Partners</li> <li class="svelte-1nxem0w"><a href="https://openscad.org/" class="svelte-1nxem0w">OpenSCAD</a></li></ul> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----> <ul class="svelte-1nxem0w"><li class="footer-title svelte-1nxem0w">Friends</li> <li class="svelte-1nxem0w"><a href="https://www.freecad.org/" class="svelte-1nxem0w">FreeCAD</a></li> <li class="svelte-1nxem0w"><a href="https://solvespace.com/" class="svelte-1nxem0w">SolveSpace</a></li> <li class="svelte-1nxem0w"><a href="https://librecad.org/" class="svelte-1nxem0w">LibreCAD</a></li> <li class="svelte-1nxem0w"><a href="https://inkscape.org/" class="svelte-1nxem0w">Inkscape</a></li></ul> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----> <ul class="svelte-1nxem0w"><li class="footer-title svelte-1nxem0w">2D CAD Libraries</li> <li class="svelte-1nxem0w"><a href="https://maker.js.org/docs/" class="svelte-1nxem0w">Maker.js</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/sgenoud/pantograph" class="svelte-1nxem0w">Pantograph.js</a></li></ul> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----> <ul class="svelte-1nxem0w"><li class="footer-title svelte-1nxem0w">Inspirations</li> <li class="svelte-1nxem0w"><a href="https://pythonhosted.org/Cnc25D/" class="svelte-1nxem0w">cnc25D</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/meadiode/cq_gears" class="svelte-1nxem0w">CadQuery Gear</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/e-dub/pygear" class="svelte-1nxem0w">PythonOCC Gear</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/janssen86/OpenSCAD-Getriebebibliothek" class="svelte-1nxem0w">OpenSCAD Gear</a></li></ul> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----> <ul class="svelte-1nxem0w"><li class="footer-title svelte-1nxem0w">Reminder</li> <li class="svelte-1nxem0w"><a href="https://www.akselipalen.com/2021/06/10/2d-geometry-libraries-for-javascript/" class="svelte-1nxem0w">2D js libs</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/michaelgale/cq-kit" class="svelte-1nxem0w">CadQuery Kit</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/CadQuery/awesome-cadquery" class="svelte-1nxem0w">CadQuery Awesome</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/occi-cad" class="svelte-1nxem0w">Open CAD Component Interface</a></li></ul> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----> <ul class="svelte-1nxem0w"><li class="footer-title svelte-1nxem0w">Miscellaneous</li> <li class="svelte-1nxem0w"><a href="https://github.com/devbisme/skidl" class="svelte-1nxem0w">SKiDL</a></li> <li class="svelte-1nxem0w"><a href="https://www.myhdl.org/" class="svelte-1nxem0w">MyHDL</a></li> <li class="svelte-1nxem0w"><a href="https://phydemo.app/ray-optics/" class="svelte-1nxem0w">Ray Optics Simulation</a></li> <li class="svelte-1nxem0w"><a href="https://sonic-pi.net/" class="svelte-1nxem0w">Sonic Pi</a></li> <li class="svelte-1nxem0w"><a href="https://supercollider.github.io/" class="svelte-1nxem0w">SuperCollider</a></li> <li class="svelte-1nxem0w"><a href="https://mermaid.js.org/" class="svelte-1nxem0w">Mermaid.js</a></li> <li class="svelte-1nxem0w"><a href="https://opentoolchain.org/tools/" class="svelte-1nxem0w">OpenToolchain.org</a></li> <li class="svelte-1nxem0w"><a href="http://docs.ros.org/" class="svelte-1nxem0w">ROS</a></li> <li class="svelte-1nxem0w"><a href="https://micro.ros.org/" class="svelte-1nxem0w">micro-ROS</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/mROS-base/mros2" class="svelte-1nxem0w">mROS</a></li> <li class="svelte-1nxem0w"><a href="https://github.com/simplefoc" class="svelte-1nxem0w">Field Oriented Control</a></li></ul> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/> <img src="../favicon.svg" alt="Parametrix's logo" class="svelte-18cs633"/><!----></footer><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_1ecagkf = {
+						base: new URL("..", location).pathname.slice(0, -1),
+						assets: "/parametrix"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../_app/immutable/entry/start.BgLRFz-2.js"),
+						import("../_app/immutable/entry/app.DZ2PLcW8.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 11],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
