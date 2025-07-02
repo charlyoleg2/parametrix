@@ -77,7 +77,7 @@
 		"clean": "rimraf node_modules build dist tmp"
 	},
 	"dependencies": {
-		"feli": "^0.5.3"
+		"feli": "^1.0.0"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
