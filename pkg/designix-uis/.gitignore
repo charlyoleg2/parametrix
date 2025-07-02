@@ -1,4 +1,4 @@
-# .gitignore of designix-uis
+# .gitignore of the package designix-uis
 dist/
 dist2/
 # vitest creates node_modules for the results.json

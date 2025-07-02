@@ -1,18 +1,20 @@
-README of designix-uis
-======================
+Designix-uis
+============
 
 
 Presentation
 ------------
 
-*designix-uis* is the static server of *designix-ui*. It is a *nodejs* package for distribution the static website *designix-ui*. On top of the web content, it provides a mini static-web-server.
+*designix-uis* is the mini-server package for enabling the local installation of the web-ui *designix-ui*.
+
+Usually, this mini-server package designix-uis is part of a mono-repo containing an other package for the web-ui and potentially an *universal* library backing the web-ui.
 
 
 Requirements
 ------------
 
-- [node](https://nodejs.org) > 20.10.0
-- [npm](https://docs.npmjs.com/cli) > 10.1.0
+- [node](https://nodejs.org) > 22.0.0
+- [npm](https://docs.npmjs.com/cli) > 11.0.0
 
 
 Installation
@@ -40,3 +42,4 @@ npx designix-uis
 npx --package=designix-uis designix-uis
 npx --package=designix-uis designix-uis --help
 ```
+

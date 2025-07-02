@@ -6,8 +6,8 @@
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"moduleResolution": "bundler",
-		"declaration": true,
 		"skipLibCheck": true,
+		"declaration": true,
 		"sourceMap": true,
 		"strict": true
 	},

@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-//import { serve } from './designix-uis';
+//import * from './designix-uis'
 
-describe('designix-uis suit', () => {
-	it('designix-uis execution', () => {
-		expect(2 + 2).toBe(4);
+describe('sum test', () => {
+	it('adds 1 + 2 to equal 3', () => {
+		expect(1 + 2).toBe(3);
 	});
 });
