@@ -13,6 +13,7 @@
 	import { page } from '$app/state';
 	import { base } from '$app/paths';
 	import { afterNavigate } from '$app/navigation';
+	import { SvelteURLSearchParams } from 'svelte/reactivity';
 
 	// props
 	interface Props {
@@ -110,7 +111,7 @@
 	}
 	async function initParams2() {
 		if (browser) {
-			const searchParams = new URLSearchParams(page.url.search);
+			const searchParams = new SvelteURLSearchParams(page.url.search);
 			const cPxUrl = 'pxUrl';
 			if (searchParams.has(cPxUrl)) {
 				const fUrl = searchParams.get(cPxUrl);
