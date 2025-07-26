@@ -1,0 +1,1 @@
+import"./DsnmJJEf.js";import{f as o,b as e,d as i,r as c}from"./DDEMFpgR.js";import{s as l}from"./D3sJ-qen.js";var m=o('<article class="svelte-m0s5fj"><!></article>');function d(a,s){var r=m(),t=i(r);l(t,()=>s.children),c(r),e(a,r)}export{d as D};
