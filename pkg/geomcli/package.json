@@ -63,7 +63,7 @@
 		"clean": "rimraf build dist node_modules"
 	},
 	"dependencies": {
-		"geometrix": "^1.0.23",
+		"geometrix": "^1.0.24",
 		"yargs": "^18.0.0"
 	},
 	"devDependencies": {

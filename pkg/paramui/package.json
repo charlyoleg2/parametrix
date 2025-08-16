@@ -65,15 +65,15 @@
 		"clean": "rimraf .svelte-kit build node_modules static/pgdsvg static/puisvg"
 	},
 	"dependencies": {
-		"designix": "^1.0.23",
-		"geometrix": "^1.0.23",
-		"geomui": "^1.0.23"
+		"designix": "^1.0.24",
+		"geometrix": "^1.0.24",
+		"geomui": "^1.0.24"
 	},
 	"devDependencies": {
 		"@atao60/fse-cli": "^0.1.9",
 		"@sveltejs/adapter-auto": "^6.1.0",
 		"@sveltejs/adapter-static": "^3.0.9",
-		"@sveltejs/kit": "^2.28.0",
+		"@sveltejs/kit": "^2.31.0",
 		"@sveltejs/vite-plugin-svelte": "^6.1.2",
 		"@types/eslint": "^9.6.1",
 		"chart.js": "^4.5.0",
