@@ -144,7 +144,7 @@ class Contour extends AContour {
 	/** @internal */
 	addSegStroke(): this {
 		if (this.points.length !== 1) {
-			throw `err554: contour addSegStroke with unexpected points.length ${this.points.length}`;
+			throw `err554: contour addSegStroke at segment ${this.segments.length} with unexpected points.length ${this.points.length}`;
 		}
 		const p1 = this.points.pop();
 		if (p1 !== undefined) {
@@ -178,7 +178,7 @@ class Contour extends AContour {
 	}
 	addSegArc(iRadius: number, iLarge: boolean, iCcw: boolean): this {
 		if (this.points.length !== 1) {
-			throw `err954: contour addSegArc with unexpected points.length ${this.points.length}`;
+			throw `err954: contour addSegArc at segment ${this.segments.length} with unexpected points.length ${this.points.length}`;
 		}
 		const p1 = this.points.pop();
 		if (p1 !== undefined) {
@@ -206,7 +206,7 @@ class Contour extends AContour {
 	}
 	addSegArc2(): this {
 		if (this.points.length !== 2) {
-			throw `err958: contour addSegArc2 with unexpected points.length ${this.points.length}`;
+			throw `err958: contour addSegArc2 at segment ${this.segments.length} with unexpected points.length ${this.points.length}`;
 		}
 		const p2 = this.points.pop();
 		const p1 = this.points.pop();
@@ -241,7 +241,7 @@ class Contour extends AContour {
 	}
 	addSegArc3(iTangentAngle1: number, firstNlast: boolean): this {
 		if (this.points.length !== 1) {
-			throw `err914: contour addSegArc3 with unexpected points.length ${this.points.length}`;
+			throw `err914: contour addSegArc3 at segment ${this.segments.length} with unexpected points.length ${this.points.length}`;
 		}
 		const p1 = this.points.pop();
 		if (p1 !== undefined) {
@@ -278,7 +278,7 @@ class Contour extends AContour {
 	}
 	addSeg2Arcs(ita1: number, ita2: number): this {
 		if (this.points.length !== 1) {
-			throw `err214: contour addSeg2Arcs with unexpected points.length ${this.points.length}`;
+			throw `err214: contour addSeg2Arcs at segment ${this.segments.length} with unexpected points.length ${this.points.length}`;
 		}
 		const p1 = this.points.pop();
 		if (p1 !== undefined) {
