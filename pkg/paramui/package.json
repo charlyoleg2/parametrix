@@ -65,35 +65,35 @@
 		"clean": "rimraf .svelte-kit build node_modules static/pgdsvg static/puisvg"
 	},
 	"dependencies": {
-		"designix": "^1.0.25",
-		"geometrix": "^1.0.25",
-		"geomui": "^1.0.25"
+		"designix": "^1.0.26",
+		"geometrix": "^1.0.26",
+		"geomui": "^1.0.26"
 	},
 	"devDependencies": {
 		"@atao60/fse-cli": "^0.1.9",
 		"@sveltejs/adapter-auto": "^7.0.0",
 		"@sveltejs/adapter-static": "^3.0.10",
-		"@sveltejs/kit": "^2.48.3",
+		"@sveltejs/kit": "^2.48.4",
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
 		"@types/eslint": "^9.6.1",
 		"chart.js": "^4.5.1",
-		"eslint": "^9.38.0",
+		"eslint": "^9.39.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "=3.11.0",
-		"globals": "^16.4.0",
+		"globals": "^16.5.0",
 		"mathlifier": "^3.2.2",
 		"mdsvex": "^0.12.6",
 		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.6.2",
 		"prettier-plugin-svelte": "^3.4.0",
-		"rimraf": "^6.0.1",
-		"sass": "^1.93.2",
-		"svelte": "^5.43.0",
+		"rimraf": "^6.1.0",
+		"sass": "^1.93.3",
+		"svelte": "^5.43.5",
 		"svelte-check": "^4.3.3",
 		"svgo": "^4.0.0",
 		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.46.2",
-		"vite": "^7.1.12",
-		"vitest": "^4.0.5"
+		"typescript-eslint": "^8.46.3",
+		"vite": "^7.2.2",
+		"vitest": "^4.0.8"
 	}
 }
