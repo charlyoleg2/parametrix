@@ -90,11 +90,11 @@
 		"prettier-plugin-svelte": "^3.4.1",
 		"publint": "^0.3.16",
 		"rimraf": "^6.1.2",
-		"sass": "^1.97.0",
-		"svelte": "^5.46.0",
-		"svelte-check": "^4.3.4",
+		"sass": "^1.97.1",
+		"svelte": "^5.46.1",
+		"svelte-check": "^4.3.5",
 		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.50.0",
+		"typescript-eslint": "^8.50.1",
 		"vite": "^7.3.0",
 		"vitest": "^4.0.16"
 	}

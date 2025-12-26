@@ -77,7 +77,7 @@
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
 		"@types/eslint__js": "^8.42.3",
-		"esbuild": "^0.27.1",
+		"esbuild": "^0.27.2",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
 		"npm-run-all2": "^8.0.4",
@@ -86,7 +86,7 @@
 		"svgo": "^4.0.0",
 		"tsup": "^8.5.1",
 		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.50.0",
+		"typescript-eslint": "^8.50.1",
 		"vitest": "^4.0.16"
 	}
 }
