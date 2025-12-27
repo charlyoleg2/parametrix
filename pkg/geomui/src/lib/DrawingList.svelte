@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { tParamDef } from 'geometrix';
 	import ModalImg from './ModalImg.svelte';
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 
 	// props
 	interface Props {
@@ -25,7 +25,7 @@
 	let sSvgPath: string = $state('');
 
 	// derived
-	let dSvgList: string[] = $derived(getSvgList(pDef).map((iSvg) => `${base}/pgdsvg/${iSvg}`));
+	let dSvgList: string[] = $derived(getSvgList(pDef).map((iSvg) => asset(`/pgdsvg/${iSvg}`)));
 
 	// actions
 	function showSvg(iSvgPath: string) {

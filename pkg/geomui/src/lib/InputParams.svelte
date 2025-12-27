@@ -11,7 +11,7 @@
 	import { downloadParams, generateUrl } from './downloadParams';
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 	import { afterNavigate } from '$app/navigation';
 	import { SvelteURLSearchParams } from 'svelte/reactivity';
 
@@ -233,11 +233,11 @@
 	}
 	// parameter picture
 	function checkPict(keyName: string): string {
-		let rSvgPath = `${base}/pgdsvg/default_param_blank.svg`;
+		let rSvgPath = asset('/pgdsvg/default_param_blank.svg');
 		// convention for the file-names of the parameter description
-		//paramSvg = `${base}/pgdsvg/${pDef.partName}_${keyName}.svg`;
+		//paramSvg = asset(`/pgdsvg/${pDef.partName}_${keyName}.svg`);
 		if (Object.keys(pDef.paramSvg).includes(keyName)) {
-			rSvgPath = `${base}/pgdsvg/${pDef.paramSvg[keyName]}`;
+			rSvgPath = asset(`/pgdsvg/${pDef.paramSvg[keyName]}`);
 		}
 		return rSvgPath;
 	}
