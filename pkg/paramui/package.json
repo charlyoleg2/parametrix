@@ -79,7 +79,7 @@
 		"chart.js": "^4.5.1",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "=3.11.0",
+		"eslint-plugin-svelte": "^3.13.1",
 		"globals": "^16.5.0",
 		"mathlifier": "^3.4.0",
 		"mdsvex": "^0.12.6",
