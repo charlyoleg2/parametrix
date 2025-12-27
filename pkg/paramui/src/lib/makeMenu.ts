@@ -94,7 +94,7 @@ function checkPath(iPath: string): string {
 }
 
 // create contextual-top-menu
-const pageIndex: tPageOne = { path: '/', page: null, svg: 'page_index.svg', label: 'index' };
+const pageIndex: tPageOne = { path: '', page: null, svg: 'page_index.svg', label: 'index' };
 const pageAbout: tPageOne = { path: '/about', page: null, svg: 'page_about.svg', label: 'about' };
 const categ0: tCategoryOne = { category: '', pages: [pageIndex, pageAbout] };
 function listOneCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
