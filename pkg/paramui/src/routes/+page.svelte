@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { apidocPath } from '$lib/menuList';
 	import { menuList2 } from '$lib/makeMenu';
-	import { base } from '$app/paths';
+	import { resolve, asset } from '$app/paths';
 </script>
 
 <h1>Parametrix index</h1>
@@ -16,21 +16,21 @@
 				<li>
 					<img
 						class:alter={(listIdx + itemIdx) % 2 === 1}
-						src="{base}/puisvg/{menuItem.svg}"
+						src={asset(`/puisvg/${menuItem.svg}`)}
 						alt={menuItem.label}
 					/>
 					{#if menuCategory.category !== ''}
 						{#if menuItem.path === apidocPath}
-							<a href="{base}{menuItem.path}" rel="external"
+							<a href={resolve(`/${menuItem.path}`)} rel="external"
 								>{listIdx}.{itemIdx + 1} - API docs</a
 							>
 						{:else}
-							<a href="{base}{menuItem.path}"
+							<a href={resolve(`/${menuItem.path}`)}
 								>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
 							>
 						{/if}
 					{:else}
-						<a href="{base}{menuItem.path}" class="noindex">{menuItem.label}</a>
+						<a href={resolve(`/${menuItem.path}`)} class="noindex">{menuItem.label}</a>
 					{/if}
 				</li>
 			{/each}
