@@ -4,7 +4,7 @@ category: documentation
 ---
 
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 </script>
 
 
@@ -13,7 +13,7 @@ category: documentation
 
 ## Types of electrical motors
 
-![classification_of_electrical_motors.svg]({base}/puisvg/classification_of_electrical_motors.svg)
+![classification_of_electrical_motors.svg]({asset('/puisvg/classification_of_electrical_motors.svg')})
 
 
 ## Brushed motor classification (a.k.a. Universal motor)
@@ -91,7 +91,7 @@ Enable motor synchronization for:
 
 ## multi-motor joint
 
-![multi_motor_joint.svg]({base}/puisvg/multi_motor_joint.svg)
+![multi_motor_joint.svg]({asset('/puisvg/multi_motor_joint.svg')})
 
 advantages of mechanical join with multi-motors
 - [+] distributed efforts

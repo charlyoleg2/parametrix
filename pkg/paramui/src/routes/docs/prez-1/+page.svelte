@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 	import Carousel from '$lib/Carousel.svelte';
 	import OneSlide from '$lib/OneSlide.svelte';
 </script>
@@ -7,7 +7,9 @@
 <h1>Presentation of Parametrix</h1>
 <Carousel>
 	<OneSlide>
-		<center><img src="{base}/favicon.svg" style="width: 9em;" alt="Parametrix logo" /></center>
+		<center
+			><img src={asset('/favicon.svg')} style="width: 9em;" alt="Parametrix logo" /></center
+		>
 		<div>
 			<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
 		</div>
@@ -57,7 +59,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/intro_workflow.svg"
+			src={asset('/puisvg/intro_workflow.svg')}
 			style="width: 28em;"
 			alt="The parametrix workflow"
 		/>
@@ -65,7 +67,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/prez_parametrix_condensed.svg"
+			src={asset('/puisvg/prez_parametrix_condensed.svg')}
 			style="width: 28em;"
 			alt="Parametrix described in condensed"
 		/>
@@ -73,7 +75,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/intro_ecosystem.svg"
+			src={asset('/puisvg/intro_ecosystem.svg')}
 			style="width: 28em;"
 			alt="repositories and packages eco-system"
 		/>

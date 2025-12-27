@@ -4,7 +4,7 @@ category: documentation
 ---
 
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 </script>
 
 
@@ -33,13 +33,13 @@ Parametrix is programmatic CAD tool. It provides an API (called *geometrix*) for
 
 #### Traditional CAD Flow
 
-![cad_flow_traditional.svg]({base}/puisvg/cad_flow_traditional.svg)
+![cad_flow_traditional.svg]({asset('/puisvg/cad_flow_traditional.svg')})
 
 When you design your 3D-shape within a CAD tool, your work-product depends on this tool. If this tool becomes unavailable because technical, legal or commercial raison, you lose your work.
 
 #### CAD Flow with Parametrix
 
-![cad_flow_with_parametrix.svg]({base}/puisvg/cad_flow_with_parametrix.svg)
+![cad_flow_with_parametrix.svg]({asset('/puisvg/cad_flow_with_parametrix.svg')})
 
 The 3 main advantages of the *parametrix* flow:
 - *Parametrix* helps keeping your work persistent because it is agnostic to any CAD solution. Your 3D-shape is described in *Javascript* with a dependency on the small library *geometrix*.
@@ -48,17 +48,17 @@ The 3 main advantages of the *parametrix* flow:
 
 ### Parametrix workflow
 
-![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
+![parametrix_workflow.svg]({asset('/puisvg/parametrix_workflow.svg')})
 
 
 ### Designers and makers
 
-![designer_maker_interfaces.svg]({base}/puisvg/designer_maker_interfaces.svg)
+![designer_maker_interfaces.svg]({asset('/puisvg/designer_maker_interfaces.svg')})
 
 
 ### Parametrix scope
 
-![parametrix_3D_shape_subset.svg]({base}/puisvg/parametrix_3D_shape_subset.svg)
+![parametrix_3D_shape_subset.svg]({asset('/puisvg/parametrix_3D_shape_subset.svg')})
 
 
 ### More explanations
@@ -77,7 +77,7 @@ The programmer of Parametrix design (a.k.a. Designix) gets an API with:
 - compatible with FreeCAD
 - lines and arcs ready for CAM tools ;)
 
-![corner_options.svg]({base}/puisvg/corner_options.svg)
+![corner_options.svg]({asset('/puisvg/corner_options.svg')})
 
 The API provides options for rounding or widening corners of outlines. It's useful for:
 - good looking parts
@@ -98,7 +98,7 @@ Instead of using *graphical tools* like [FreeCAD](https://www.freecad.org/), *Pr
 
 ### CAD flow comparsion
 
-![comparison_of_cad_flows.svg]({base}/puisvg/comparison_of_cad_flows.svg)
+![comparison_of_cad_flows.svg]({asset('/puisvg/comparison_of_cad_flows.svg')})
 
 Low-tech CAD
 pros:
@@ -108,9 +108,9 @@ cons:
 - restricted to subset of 3D shapes
 - complex 2D programmatic design
 
-![low_tech_path.svg]({base}/puisvg/low_tech_path.svg)
+![low_tech_path.svg]({asset('/puisvg/low_tech_path.svg')})
 
-![high_tech_path.svg]({base}/puisvg/high_tech_path.svg)
+![high_tech_path.svg]({asset('/puisvg/high_tech_path.svg')})
 
 
 The constraints of part manufacturing and low-tech CAD shaping concept are similar. As consequences:
@@ -119,7 +119,7 @@ The constraints of part manufacturing and low-tech CAD shaping concept are simil
 
 Extruded-2D-design is good enough for 90% of technical parts
 
-![gui_vs_programmatic.svg]({base}/puisvg/gui_vs_programmatic.svg)
+![gui_vs_programmatic.svg]({asset('/puisvg/gui_vs_programmatic.svg')})
 
 
 ### Parametrix versus traditional CAD tools
@@ -149,23 +149,23 @@ Extruded-2D-design is good enough for 90% of technical parts
 
 ### Shape description
 
-![geometry_descriptive.svg]({base}/puisvg/geometry_descriptive.svg)
+![geometry_descriptive.svg]({asset('/puisvg/geometry_descriptive.svg')})
 
 In *Parametrix*, a 2D-figure is a collection of 2D-contours. A 2D-contour is a close-path made out of a *straight strokes* and *arcs of circle*. A 2D-contour might describe the outer shape or inner holes of the final part. Each 2D-figure describes the final part from a specific direction according to the *technical drawing* methodology. The 3D-shape is the recipe of how to extrude the 2D-figures and how to combine (boolean operations: union, intersection, substration) them to create the final part.
 
-![shape_description_tree.svg]({base}/puisvg/shape_description_tree.svg)
+![shape_description_tree.svg]({asset('/puisvg/shape_description_tree.svg')})
 
 In *Parametrix*, a *design* is a 3D-shape. This 3D-shape is defined by a recipe and a collection of 2D-figures. Each 2D-figure consists of the following layers: *main*, *second*, *dynamics*, *points*, *lines* and *vectors*. Only the layer *main* is used in the final 3D-shape. The other layers are only helpers for debugging and simulation. The layers *main*, *second* and *dynamics* are collections of *Contours*. A *Contour* can be either a *circle* or a *close-path*. A close-path is made out of *straight strokes* and *arcs-of-circle*.
 
 
 ### Future tools around Parametrix
 
-![parametrix_galaxi.svg]({base}/puisvg/parametrix_galaxi.svg)
+![parametrix_galaxi.svg]({asset('/puisvg/parametrix_galaxi.svg')})
 
 
 ## Web app
 
-![software_stack.svg]({base}/puisvg/software_stack.svg)
+![software_stack.svg]({asset('/puisvg/software_stack.svg')})
 
 web app characteristics
 - [+] security
@@ -191,7 +191,7 @@ native app characteristics
 - [+] access to hardware
 
 
-![javascript_timeline.svg]({base}/puisvg/javascript_timeline.svg)
+![javascript_timeline.svg]({asset('/puisvg/javascript_timeline.svg')})
 
 In 2023 the eco-system for developing web-apps is mature.
 - [nodejs](https://nodejs.org) V18 is the first LTS with official support for [ESM][ESM-link].
@@ -204,12 +204,12 @@ In 2023 the eco-system for developing web-apps is mature.
 
 ### actors
 
-![users_around_parametrix.svg]({base}/puisvg/users_around_parametrix.svg)
+![users_around_parametrix.svg]({asset('/puisvg/users_around_parametrix.svg')})
 
 
 ### repos and packages overview
 
-![repos_and_packages.svg]({base}/puisvg/repos_and_packages.svg)
+![repos_and_packages.svg]({asset('/puisvg/repos_and_packages.svg')})
 
 
 ### npm-packages of parametrix
@@ -239,11 +239,11 @@ The concept of *Parametrix* for generating webapp can be extended to other disci
 - simple-software state-machine
 - music
 
-![concept_of_webapp_generator.svg]({base}/puisvg/concept_of_webapp_generator.svg)
+![concept_of_webapp_generator.svg]({asset('/puisvg/concept_of_webapp_generator.svg')})
 
 For each of those domains, an *author* creates designs in *javascript*. From there the framework generates a webapp. Finally the end-user parametrises a design and gets his customized instance of the design.
 
-![helper_apps_for_design_webapp.svg]({base}/puisvg/helper_apps_for_design_webapp.svg)
+![helper_apps_for_design_webapp.svg]({asset('/puisvg/helper_apps_for_design_webapp.svg')})
 
 The *authors* generate many independant webapp for exposing there designs. 3 helper-apps could complete the offer:
 
@@ -251,7 +251,7 @@ The *authors* generate many independant webapp for exposing there designs. 3 hel
 - A visualizer for displaying a parametrized design
 - An assembler for managing the parameters and the combination of several designs
 
-![distribution_of_design_apps.svg]({base}/puisvg/distribution_of_design_apps.svg)
+![distribution_of_design_apps.svg]({asset('/puisvg/distribution_of_design_apps.svg')})
 
 A *javascript* design library can be distributed in several ways:
 
