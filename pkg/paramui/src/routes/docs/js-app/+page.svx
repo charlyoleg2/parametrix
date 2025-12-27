@@ -4,7 +4,7 @@ category: documentation
 ---
 
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 </script>
 
 
@@ -15,8 +15,8 @@ This page explains several concepts of *javascript* applications.
 
 ## Javascript environments
 
-![jsapp_environments.svg]({base}/puisvg/jsapp_environments.svg)
-![jsapp_libraries.svg]({base}/puisvg/jsapp_libraries.svg)
+![jsapp_environments.svg]({asset('/puisvg/jsapp_environments.svg')})
+![jsapp_libraries.svg]({asset('/puisvg/jsapp_libraries.svg')})
 
 *Javascript* can run in the browser when called from *html* or run in an interpreter like [nodejs](https://nodejs.org), [deno](https://deno.com/) or [bun](https://bun.sh/).
 
@@ -28,49 +28,49 @@ This page explains several concepts of *javascript* applications.
 
 ### 1.1 - static web app
 
-![jsapp_static_web_app.svg]({base}/puisvg/jsapp_static_web_app.svg)
+![jsapp_static_web_app.svg]({asset('/puisvg/jsapp_static_web_app.svg')})
 
 The easiest app to distribute/install.
 
 
 ### 1.2 - web-ui with a local server
 
-![jsapp_webui_with_local_server.svg]({base}/puisvg/jsapp_webui_with_local_server.svg)
+![jsapp_webui_with_local_server.svg]({asset('/puisvg/jsapp_webui_with_local_server.svg')})
 
 It runs only locally. It can be used for controlling local system (like robot or admin-tasks).
 
 
 ### 1.2b - web-ui with a local server as proxy
 
-![jsapp_webui_with_local_server_as_proxy.svg]({base}/puisvg/jsapp_webui_with_local_server_as_proxy.svg)
+![jsapp_webui_with_local_server_as_proxy.svg]({asset('/puisvg/jsapp_webui_with_local_server_as_proxy.svg')})
 
 The local server is used as proxy for communicating with a remote/public server. We fall into the remote/public server concept!
 
 
 ### 1.3 - web-ui that writes files
 
-![jsapp_webui_to_text_files.svg]({base}/puisvg/jsapp_webui_to_text_files.svg)
+![jsapp_webui_to_text_files.svg]({asset('/puisvg/jsapp_webui_to_text_files.svg')})
 
 Via the local server, the web-ui can read/write local files and therefore store data locally.
 
 
 ### 1.4 - web-ui communicates via git
 
-![jsapp_webui_to_git.svg]({base}/puisvg/jsapp_webui_to_git.svg)
+![jsapp_webui_to_git.svg]({asset('/puisvg/jsapp_webui_to_git.svg')})
 
 The local server manages a *git-client* and exchanges data with a remote/public *git-server*. This enables a slow communication with several peers.
 
 
 ### 1.5 - web-ui with a remote server and git-backend
 
-![jsapp_webui_git_backend.svg]({base}/puisvg/jsapp_webui_git_backend.svg)
+![jsapp_webui_git_backend.svg]({asset('/puisvg/jsapp_webui_git_backend.svg')})
 
 Classic approach but with a git-backend for more reliability but lower performances.
 
 
 ### 1.6 - web-ui with a remote server and DB-backend
 
-![jsapp_webui_db_backend.svg]({base}/puisvg/jsapp_webui_db_backend.svg)
+![jsapp_webui_db_backend.svg]({asset('/puisvg/jsapp_webui_db_backend.svg')})
 
 Classic approach but with a database-backend for more performances.
 
@@ -82,21 +82,21 @@ NodeJS lets javascript run as *servers*, *CLI*, *interactive-shell*, *scripts* a
 
 ### 2.1 - node-app using its own embedded data
 
-![jsapp_node_with_embedded_data.svg]({base}/puisvg/jsapp_node_with_embedded_data.svg)
+![jsapp_node_with_embedded_data.svg]({asset('/puisvg/jsapp_node_with_embedded_data.svg')})
 
 NodeJS-app can be distributed with companion data. Use *npx* for such apps.
 
 
 ### 2.2 - node-app using local data
 
-![jsapp_node_with_local_data.svg]({base}/puisvg/jsapp_node_with_local_data.svg)
+![jsapp_node_with_local_data.svg]({asset('/puisvg/jsapp_node_with_local_data.svg')})
 
 NodeJS-app reads/writes local data that can then be managed with git. Use *npm* for such apps to find the file structure easily.
 
 
 ### 2.3 - node-app using current data
 
-![jsapp_node_with_current_data.svg]({base}/puisvg/jsapp_node_with_current_data.svg)
+![jsapp_node_with_current_data.svg]({asset('/puisvg/jsapp_node_with_current_data.svg')})
 
 NodeJS-app reads/writes any file-path on the local machine. Use *npx* for such apps.
 

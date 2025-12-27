@@ -4,7 +4,7 @@ category: documentation
 ---
 
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 </script>
 
 
@@ -31,7 +31,7 @@ Programmatically, defining a 3D-part-design consists of creating a [const](https
 
 API:
 
-- <a href="{base}/docs/apidoc/interfaces/geometrix.tPageDef.html" rel="external">tPageDef</a>
+- <a href={asset('/docs/apidoc/interfaces/geometrix.tPageDef.html')} rel="external">tPageDef</a>
 
 
 ### Parameter types
@@ -49,10 +49,10 @@ API:
 
 API:
 
-- <a href="{base}/docs/apidoc/functions/geometrix.pNumber.html" rel="external">pNumber()</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.pDropdown.html" rel="external">pDropdown()</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.pCheckbox.html" rel="external">pCheckbox()</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.pSectionSeparator.html" rel="external">pSectionSeparator()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.pNumber.html')} rel="external">pNumber()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.pDropdown.html')} rel="external">pDropdown()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.pCheckbox.html')} rel="external">pCheckbox()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.pSectionSeparator.html')} rel="external">pSectionSeparator()</a>
 
 
 ### Extrusion and 3D construction
@@ -74,8 +74,8 @@ And the usage of the 4 types of boolean operations:
 
 API:
 
-- <a href="{base}/docs/apidoc/enums/geometrix.EExtrude.html" rel="external">EExtrude</a>
-- <a href="{base}/docs/apidoc/enums/geometrix.EBVolume.html" rel="external">EBVolume</a>
+- <a href={asset('/docs/apidoc/enums/geometrix.EExtrude.html')} rel="external">EExtrude</a>
+- <a href={asset('/docs/apidoc/enums/geometrix.EBVolume.html')} rel="external">EBVolume</a>
 
 
 ### Evidences of the power of 2D technical drawings
@@ -102,10 +102,10 @@ The first point of a *contour* is always in *cartesian absolute*.
 
 API:
 
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeA" rel="external">.addSegStrokeA()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeR" rel="external">.addSegStrokeR()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeAP" rel="external">.addSegStrokeAP()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeRP" rel="external">.addSegStrokeRP()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeA')} rel="external">.addSegStrokeA()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeR')} rel="external">.addSegStrokeR()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeAP')} rel="external">.addSegStrokeAP()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addSegStrokeRP')} rel="external">.addSegStrokeRP()</a>
 
 
 ### Contour corner options
@@ -126,10 +126,10 @@ In the UI, click on the checkboc *main skeleton* and *points* to activate the co
 
 API:
 
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerPointed" rel="external">.addCornerPointed()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerRounded" rel="external">.addCornerRounded()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWidened" rel="external">.addCornerWidened()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWideAcc" rel="external">.addCornerWideAcc()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addCornerPointed')} rel="external">.addCornerPointed()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addCornerRounded')} rel="external">.addCornerRounded()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addCornerWidened')} rel="external">.addCornerWidened()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addCornerWideAcc')} rel="external">.addCornerWideAcc()</a>
 
 
 ### Contour transformations
@@ -146,10 +146,10 @@ API:
 
 API:
 
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#rotate" rel="external">.rotate()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#scale" rel="external">.scale()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#translate" rel="external">.translate()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#translatePolar" rel="external">.translatePolar()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#rotate')} rel="external">.rotate()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#scale')} rel="external">.scale()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#translate')} rel="external">.translate()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#translatePolar')} rel="external">.translatePolar()</a>
 
 
 ### Partial contour
@@ -163,7 +163,7 @@ The method *.addPartial()* automatic translate the new piece of contour, so the 
 
 API:
 
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addPartial" rel="external">.addPartial()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addPartial')} rel="external">.addPartial()</a>
 
 
 ### Figure transformations
@@ -183,10 +183,10 @@ This design is using the *time parameter t*. Play with the time control to see t
 
 API:
 
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#rotate" rel="external">.rotate()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#translate" rel="external">.translate()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#translatePolar" rel="external">.translatePolar()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#mergeFigure" rel="external">.mergeFigure()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#rotate')} rel="external">.rotate()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#translate')} rel="external">.translate()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#translatePolar')} rel="external">.translatePolar()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#mergeFigure')} rel="external">.mergeFigure()</a>
 
 
 ### Re-using figures of other designs
@@ -200,13 +200,13 @@ The optional sub-design section is populated. In the UI, links to the sub-design
 
 API:
 
-- <a href="{base}/docs/apidoc/functions/geometrix.designParam-1.html" rel="external">designParam()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#setVal" rel="external">.setVal()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getParamVal" rel="external">.getParamVal()</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.checkGeom.html" rel="external">checkGeom()</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.prefixLog.html" rel="external">prefixLog()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#mergeFigure" rel="external">.mergeFigure()</a>
-- <a href="{base}/docs/apidoc/types/geometrix.tSubDesign.html" rel="external">tSubDesign</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.designParam-1.html')} rel="external">designParam()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#setVal')} rel="external">.setVal()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#getParamVal')} rel="external">.getParamVal()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.checkGeom.html')} rel="external">checkGeom()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.prefixLog.html')} rel="external">prefixLog()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#mergeFigure')} rel="external">.mergeFigure()</a>
+- <a href={asset('/docs/apidoc/types/geometrix.tSubDesign.html')} rel="external">tSubDesign</a>
 
 Those functions are alternatives to *normal* javascript libraries that could also be used for sharing figures among several designs.
 
@@ -220,13 +220,13 @@ Those functions are alternatives to *normal* javascript libraries that could als
 
 API:
 
-- <a href="{base}/docs/apidoc/interfaces/geometrix.tInherit.html" rel="external">tInherit</a>
-- <a href="{base}/docs/apidoc/types/geometrix.tSubDesign.html" rel="external">tSubDesign</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.designParam-1.html" rel="external">designParam()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getSuffix" rel="external">.getSuffix()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartNameSuffix" rel="external">.getPartNameSuffix()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartName" rel="external">.getPartName()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getDesignParamList" rel="external">.getDesignParamList()</a>
+- <a href={asset('/docs/apidoc/interfaces/geometrix.tInherit.html')} rel="external">tInherit</a>
+- <a href={asset('/docs/apidoc/types/geometrix.tSubDesign.html')} rel="external">tSubDesign</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.designParam-1.html')} rel="external">designParam()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#getSuffix')} rel="external">.getSuffix()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#getPartNameSuffix')} rel="external">.getPartNameSuffix()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#getPartName')} rel="external">.getPartName()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#getDesignParamList')} rel="external">.getDesignParamList()</a>
 
 
 ### Generic UI-app and CLI-app
@@ -273,14 +273,14 @@ Alternatively, you can use [parame51](https://github.com/charlyoleg2/parame51) a
 
 API:
 
-- <a href="{base}/docs/apidoc/functions/geometrix.point-1.html" rel="external">point()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#middlePoint" rel="external">.middlePoint()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translatePolar" rel="external">.translatePolar()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addPointA" rel="external">.addPointA()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc" rel="external">.addSegArc()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc2" rel="external">.addSegArc2()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSegArc3" rel="external">.addSegArc3()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#closeSegArc" rel="external">.closeSegArc()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.point-1.html')} rel="external">point()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Point.html#middlePoint')} rel="external">.middlePoint()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Point.html#translatePolar')} rel="external">.translatePolar()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addPointA')} rel="external">.addPointA()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addSegArc')} rel="external">.addSegArc()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addSegArc2')} rel="external">.addSegArc2()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addSegArc3')} rel="external">.addSegArc3()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#closeSegArc')} rel="external">.closeSegArc()</a>
 
 
 ### Contour with arcs and modified corners
@@ -292,10 +292,10 @@ API:
 
 API:
 
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerPointed" rel="external">.addCornerPointed()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerRounded" rel="external">.addCornerRounded()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWidened" rel="external">.addCornerWidened()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addCornerWideAcc" rel="external">.addCornerWideAcc()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addCornerPointed')} rel="external">.addCornerPointed()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addCornerRounded')} rel="external">.addCornerRounded()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addCornerWidened')} rel="external">.addCornerWidened()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addCornerWideAcc')} rel="external">.addCornerWideAcc()</a>
 
 
 ### Contour with double-arcs
@@ -307,10 +307,10 @@ API:
 
 API:
 
-- <a href="{base}/docs/apidoc/functions/geometrix.point-1.html" rel="external">point()</a>
-- <a href="{base}/docs/apidoc/enums/geometrix.ShapePoint.html" rel="external">ShapePoint</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addPointA" rel="external">.addPointA()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#addSeg2Arcs" rel="external">.addSeg2Arcs()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.point-1.html')} rel="external">point()</a>
+- <a href={asset('/docs/apidoc/enums/geometrix.ShapePoint.html')} rel="external">ShapePoint</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addPointA')} rel="external">.addPointA()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#addSeg2Arcs')} rel="external">.addSeg2Arcs()</a>
 
 
 ### Functions defining a Contour
@@ -322,8 +322,8 @@ API:
 
 API:
 
-- <a href="{base}/docs/apidoc/types/geometrix.tContour.html" rel="external">tContour</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#translate" rel="external">.translate()</a>
+- <a href={asset('/docs/apidoc/types/geometrix.tContour.html')} rel="external">tContour</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#translate')} rel="external">.translate()</a>
 
 
 ### Add points, lines, vectors and dynamics decorations
@@ -341,16 +341,16 @@ Notice that the color of a contour can be overwritten when it is instanciated wi
 
 API:
 
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#constructor" rel="external">Contour()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addSecond" rel="external">.addSecond()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addDynamics" rel="external">.addDynamics()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Point.html" rel="external">Point()</a>
-- <a href="{base}/docs/apidoc/enums/geometrix.ShapePoint.html" rel="external">ShapePoint</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addPoint" rel="external">.addPoint()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Line.html" rel="external">Line()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addLine" rel="external">.addLine()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Vector.html" rel="external">Vector()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addVector" rel="external">.addVector()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#constructor')} rel="external">Contour()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#addSecond')} rel="external">.addSecond()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#addDynamics')} rel="external">.addDynamics()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Point.html')} rel="external">Point()</a>
+- <a href={asset('/docs/apidoc/enums/geometrix.ShapePoint.html')} rel="external">ShapePoint</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#addPoint')} rel="external">.addPoint()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Line.html')} rel="external">Line()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#addLine')} rel="external">.addLine()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Vector.html')} rel="external">Vector()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#addVector')} rel="external">.addVector()</a>
 
 
 ### Just 2D drawings
@@ -362,10 +362,10 @@ API:
 
 API:
 
-- <a href="{base}/docs/apidoc/functions/geometrix.point-1.html" rel="external">point()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Point.html" rel="external">Point()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translate" rel="external">.translate()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translatePolar" rel="external">.translatePolar()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.point-1.html')} rel="external">point()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Point.html')} rel="external">Point()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Point.html#translate')} rel="external">.translate()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Point.html#translatePolar')} rel="external">.translatePolar()</a>
 
 
 ### A serie of blade profiles
@@ -377,11 +377,11 @@ API:
 
 API:
 
-- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#rotate" rel="external">.rotate()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translate" rel="external">.translate()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Point.html#translatePolar" rel="external">.translatePolar()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Contour.html#rotate" rel="external">.rotate()</a>
-- <a href="{base}/docs/apidoc/interfaces/geometrix.tExtrude.html" rel="external">tExtrude</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Point.html#rotate')} rel="external">.rotate()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Point.html#translate')} rel="external">.translate()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Point.html#translatePolar')} rel="external">.translatePolar()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Contour.html#rotate')} rel="external">.rotate()</a>
+- <a href={asset('/docs/apidoc/interfaces/geometrix.tExtrude.html')} rel="external">tExtrude</a>
 
 
 ### Expose external design
@@ -398,8 +398,8 @@ For this re-export, two modifications are required:
 
 API:
 
-- <a href="{base}/docs/apidoc/interfaces/geometrix.tPageDef.html" rel="external">tPageDef</a>
-- <a href="{base}/docs/apidoc/interfaces/geometrix.tParamDef.html" rel="external">tParamDef</a>
+- <a href={asset('/docs/apidoc/interfaces/geometrix.tPageDef.html')} rel="external">tPageDef</a>
+- <a href={asset('/docs/apidoc/interfaces/geometrix.tParamDef.html')} rel="external">tParamDef</a>
 
 
 ### Assembly using external design
@@ -413,14 +413,14 @@ As the module *myPartT* overwrites the *partName*, the new name *myPartT* must b
 
 API:
 
-- <a href="{base}/docs/apidoc/functions/geometrix.designParam-1.html" rel="external">designParam()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getSuffix" rel="external">.getSuffix()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartNameSuffix" rel="external">.getPartNameSuffix()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#getPartName" rel="external">.getPartName()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.DesignParam.html#setVal" rel="external">.setVal()</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.checkGeom.html" rel="external">checkGeom()</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.prefixLog.html" rel="external">prefixLog()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#mergeFigure" rel="external">.mergeFigure()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.designParam-1.html')} rel="external">designParam()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#getSuffix')} rel="external">.getSuffix()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#getPartNameSuffix')} rel="external">.getPartNameSuffix()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#getPartName')} rel="external">.getPartName()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.DesignParam.html#setVal')} rel="external">.setVal()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.checkGeom.html')} rel="external">checkGeom()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.prefixLog.html')} rel="external">prefixLog()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#mergeFigure')} rel="external">.mergeFigure()</a>
 
 
 ### Transitive reuse of designs
@@ -442,13 +442,13 @@ API:
 
 API:
 
-- <a href="{base}/docs/apidoc/functions/geometrix.transform3d-1.html" rel="external">transform3d()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#addRotation" rel="external">.addRotation()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#addTranslation" rel="external">.addTranslation()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#getRotation" rel="external">.getRotation()</a>
-- <a href="{base}/docs/apidoc/classes/geometrix.Transform3d.html#getTranslation" rel="external">.getTranslation()</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.ctrRectangle.html" rel="external">ctrRectangle()</a>
-- <a href="{base}/docs/apidoc/functions/geometrix.ctrRectRot.html" rel="external">ctrRectRot()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.transform3d-1.html')} rel="external">transform3d()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Transform3d.html#addRotation')} rel="external">.addRotation()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Transform3d.html#addTranslation')} rel="external">.addTranslation()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Transform3d.html#getRotation')} rel="external">.getRotation()</a>
+- <a href={asset('/docs/apidoc/classes/geometrix.Transform3d.html#getTranslation')} rel="external">.getTranslation()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.ctrRectangle.html')} rel="external">ctrRectangle()</a>
+- <a href={asset('/docs/apidoc/functions/geometrix.ctrRectRot.html')} rel="external">ctrRectRot()</a>
 
 
 <style lang="scss">
