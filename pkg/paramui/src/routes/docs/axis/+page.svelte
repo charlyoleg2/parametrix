@@ -1,6 +1,6 @@
 <script lang="ts">
 	/* eslint-disable svelte/no-at-html-tags */
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 	import { math } from 'mathlifier';
 
 	// inputs
@@ -69,11 +69,11 @@
 </article>
 <h2>Parameter description</h2>
 <article>
-	<img src="{base}/puisvg/torque_requirements.svg" alt="torque requirements" />
-	<img src="{base}/puisvg/axis_param_1.svg" alt="top-level axis parameters" />
-	<img src="{base}/puisvg/gear_ring_overview.svg" alt="gear-ring overview" />
-	<img src="{base}/puisvg/gear_module.svg" alt="gear module" />
-	<img src="{base}/puisvg/epicyclic_gearing.svg" alt="epicyclic gearing" />
+	<img src={asset('/puisvg/torque_requirements.svg')} alt="torque requirements" />
+	<img src={asset('/puisvg/axis_param_1.svg')} alt="top-level axis parameters" />
+	<img src={asset('/puisvg/gear_ring_overview.svg')} alt="gear-ring overview" />
+	<img src={asset('/puisvg/gear_module.svg')} alt="gear module" />
+	<img src={asset('/puisvg/epicyclic_gearing.svg')} alt="epicyclic gearing" />
 </article>
 <h2>Numerical application</h2>
 <article>

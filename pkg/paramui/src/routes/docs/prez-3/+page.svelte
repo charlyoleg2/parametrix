@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 	import Carousel from '$lib/Carousel.svelte';
 	import OneSlide from '$lib/OneSlide.svelte';
 </script>
@@ -7,7 +7,9 @@
 <h1>Presentation of Parametrix</h1>
 <Carousel>
 	<OneSlide>
-		<center><img src="{base}/favicon.svg" style="width: 9em;" alt="Parametrix logo" /></center>
+		<center
+			><img src={asset('/favicon.svg')} style="width: 9em;" alt="Parametrix logo" /></center
+		>
 		<div>
 			<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
 		</div>
@@ -19,7 +21,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/prez3_3d_modelling_approaches.svg"
+			src={asset('/puisvg/prez3_3d_modelling_approaches.svg')}
 			style="height: 17em;"
 			alt="prez3_3d_modelling_approaches.svg"
 		/>
@@ -27,7 +29,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/prez3_parametrix_support.svg"
+			src={asset('/puisvg/prez3_parametrix_support.svg')}
 			style="height: 17em;"
 			alt="prez3_parametrix_support.svg"
 		/>
@@ -35,7 +37,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/prez3_unified_api.svg"
+			src={asset('/puisvg/prez3_unified_api.svg')}
 			style="height: 17em;"
 			alt="prez3_unified_api.svg"
 		/>
@@ -43,7 +45,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/prez3_debug_workflow.svg"
+			src={asset('/puisvg/prez3_debug_workflow.svg')}
 			style="height: 17em;"
 			alt="prez3_debug_workflow.svg"
 		/>
@@ -51,7 +53,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/prez3_generate_gcode.svg"
+			src={asset('/puisvg/prez3_generate_gcode.svg')}
 			style="height: 12em;"
 			alt="prez3_generate_gcode.svg"
 		/>
@@ -62,7 +64,7 @@
 	<OneSlide>
 		<pre class="point">3D models for makers</pre>
 		<img
-			src="{base}/puisvg/prez3_parametrix_versus.svg"
+			src={asset('/puisvg/prez3_parametrix_versus.svg')}
 			style="height: 5em;"
 			alt="prez3_parametrix_versus.svg"
 		/>
@@ -107,7 +109,7 @@
 		<pre class="nomar2">&lt;F4&gt; Simplified 3D model</pre>
 		<pre class="blabla2">  Enable the verification of detailed 3D models</pre>
 		<img
-			src="{base}/puisvg/prez3_V_cycle.svg"
+			src={asset('/puisvg/prez3_V_cycle.svg')}
 			style="height: 10em; margin: 0.5em 6em 0;"
 			alt="prez3_V_cycle.svg"
 		/>
