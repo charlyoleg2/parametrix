@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { base } from '$app/paths';
+	import { resolve } from '$app/paths';
 	import { version_details } from 'geometrix';
 	import appPackage from '../../package.json';
 
@@ -20,7 +20,7 @@
 	<a href="https://www.npmjs.com/package/geomui">geomui</a>.
 </h6>
 <nav>
-	<a href={`${base}/`}>index: list of designs</a>
+	<a href={resolve('/')}>index: list of designs</a>
 </nav>
 <main>
 	{@render children?.()}
