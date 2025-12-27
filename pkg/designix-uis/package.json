@@ -1,7 +1,7 @@
 {
 	"name": "designix-uis",
 	"description": "feli-package designix-uis for installing locally the web-ui designix-ui",
-	"version": "1.0.26",
+	"version": "1.0.27",
 	"private": false,
 	"repository": {
 		"type": "git",
