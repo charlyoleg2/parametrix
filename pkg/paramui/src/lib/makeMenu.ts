@@ -4,7 +4,7 @@ import type { tAllPageDef, tAllLink } from 'geometrix';
 import type { tPageOne, tCategoryOne, tMenuList } from './menuListType';
 import { menuList } from './menuList';
 import { initStore } from 'geomui';
-//import { base } from '$app/paths';
+//import { resolve } from '$app/paths';
 
 function pathToLabel(ipath: string): string {
 	const re = /^.*\//g;
@@ -53,7 +53,7 @@ function makeAllLink(iMenu: tMenuList): tAllLink {
 		for (const pag of categ.pages) {
 			if (pag.page != null) {
 				const label = pathToLabel(pag.path);
-				//rLink[label] = `${base}${pag.path}`;
+				//rLink[label] = resolve(`/${pag.path}`);
 				rLink[label] = pag.path;
 			}
 		}

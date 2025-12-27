@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 </script>
 
 <header>
 	<section>
-		<img class="img1" src="{base}/favicon.svg" alt="Parametrix's logo" />
+		<img class="img1" src={asset('/favicon.svg')} alt="Parametrix's logo" />
 		<h1>Parametrix</h1>
-		<img class="img2 img-suite" src="{base}/favicon.svg" alt="Parametrix's logo" />
-		<img class="img3 img-suite" src="{base}/favicon.svg" alt="Parametrix's logo" />
-		<img class="img4 img-suite" src="{base}/favicon.svg" alt="Parametrix's logo" />
-		<img class="img5 img-suite" src="{base}/favicon.svg" alt="Parametrix's logo" />
+		<img class="img2 img-suite" src={asset('/favicon.svg')} alt="Parametrix's logo" />
+		<img class="img3 img-suite" src={asset('/favicon.svg')} alt="Parametrix's logo" />
+		<img class="img4 img-suite" src={asset('/favicon.svg')} alt="Parametrix's logo" />
+		<img class="img5 img-suite" src={asset('/favicon.svg')} alt="Parametrix's logo" />
 	</section>
 	<article>
 		Technical drawing --- Dessin industriel --- 2D parametric designs --- Software defined

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 	import Carousel from '$lib/Carousel.svelte';
 	import OneSlide from '$lib/OneSlide.svelte';
 </script>
@@ -7,7 +7,9 @@
 <h1>La prèz de Paramétrix</h1>
 <Carousel>
 	<OneSlide>
-		<center><img src="{base}/favicon.svg" style="width: 9em;" alt="Parametrix logo" /></center>
+		<center
+			><img src={asset('/favicon.svg')} style="width: 9em;" alt="Parametrix logo" /></center
+		>
 		<div>
 			<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
 			<center
@@ -23,30 +25,34 @@
 		<pre style="margin:0;">Une solution JavaScript pour cr&eacute;er des formes 3D</pre>
 	</OneSlide>
 	<OneSlide>
-		<img src="{base}/screen_gear.png" style="width: 16em;" alt="screenshot of a gear" />
+		<img src={asset('/screen_gear.png')} style="width: 16em;" alt="screenshot of a gear" />
 		<img
-			src="{base}/screen_helio_rake.png"
+			src={asset('/screen_helio_rake.png')}
 			style="width: 16em;"
 			alt="screenshot of the heliostat rake"
 		/>
 	</OneSlide>
 	<OneSlide>
 		<p>
-			<img src="{base}/screen_cabane.png" style="height: 9em;" alt="screenshot of a cabane" />
 			<img
-				src="{base}/screen_doorstop.png"
+				src={asset('/screen_cabane.png')}
+				style="height: 9em;"
+				alt="screenshot of a cabane"
+			/>
+			<img
+				src={asset('/screen_doorstop.png')}
 				style="width: 9em;"
 				alt="screenshot of a doorstop"
 			/>
 		</p>
 		<p>
 			<img
-				src="{base}/screen_trapeze.png"
+				src={asset('/screen_trapeze.png')}
 				style="width: 9em;"
 				alt="screenshot of a trapeze"
 			/>
 			<img
-				src="{base}/screen_reinforced_tube.png"
+				src={asset('/screen_reinforced_tube.png')}
 				style="width: 9em;"
 				alt="screenshot of a reinforced tube"
 			/>
@@ -56,7 +62,7 @@
 	<OneSlide>
 		<pre style="font-size:1.5em; margin:0;">Parametrix workflow</pre>
 		<img
-			src="{base}/puisvg/prez_parametrix_vs_classic_workflow.svg"
+			src={asset('/puisvg/prez_parametrix_vs_classic_workflow.svg')}
 			style="height: 9em;"
 			alt="prez_parametrix_vs_classic_workflow"
 		/>
@@ -71,7 +77,7 @@ Approche simplifi&eacute;e:
 	<OneSlide>
 		<pre style="font-size:2em; margin:0;">G&eacute;n&eacute;ration de fichiers 3D </pre>
 		<img
-			src="{base}/puisvg/cad_flow_with_parametrix.svg"
+			src={asset('/puisvg/cad_flow_with_parametrix.svg')}
 			style="height: 9em;"
 			alt="cad_flow_with_parametrix.svg"
 		/>
@@ -102,7 +108,7 @@ Les principaux avantages de Parametrix:
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/prez_parametrix_condensed.svg"
+			src={asset('/puisvg/prez_parametrix_condensed.svg')}
 			style="width: 28em;"
 			alt="Parametrix described in condensed"
 		/>
@@ -124,7 +130,7 @@ Passage en revue de l'interface graphique
 	</OneSlide>
 	<OneSlide>
 		<img
-			src="{base}/puisvg/concept_of_webapp_generator.svg"
+			src={asset('/puisvg/concept_of_webapp_generator.svg')}
 			style="width: 28em;"
 			alt="designer and maker"
 		/>
@@ -132,7 +138,7 @@ Passage en revue de l'interface graphique
 	<OneSlide>
 		<center
 			><img
-				src="{base}/puisvg/parametrix_3D_shape_subset.svg"
+				src={asset('/puisvg/parametrix_3D_shape_subset.svg')}
 				style="width: 14em;"
 				alt="3D shape subsets"
 			/></center
@@ -150,7 +156,7 @@ L'API de Geometrix en bref
 		<p>
 			<span style="font-size:2em">Example de code</span>
 			<img
-				src="{base}/puisvg/codeExample1_contour.svg"
+				src={asset('/puisvg/codeExample1_contour.svg')}
 				style="height: 7em; vertical-align: middle"
 				alt="codeExample1_contour.svg"
 			/>
@@ -178,7 +184,7 @@ const ctr1 = contour(0, 0)
 	<OneSlide>
 		<center
 			><img
-				src="{base}/puisvg/prez_stroke_and_arc.svg"
+				src={asset('/puisvg/prez_stroke_and_arc.svg')}
 				style="width: 9em;"
 				alt="stroke and arcs"
 			/></center
@@ -194,7 +200,7 @@ Idéal pour générer le G-code
 	<OneSlide>
 		<center
 			><img
-				src="{base}/puisvg/prez_absolute_relative.svg"
+				src={asset('/puisvg/prez_absolute_relative.svg')}
 				style="width: 22em;"
 				alt="absolute relative cartesian polar"
 			/></center
@@ -209,7 +215,7 @@ Options possibles pour définir le prochain point
 	<OneSlide>
 		<center
 			><img
-				src="{base}/puisvg/prez_arcs.svg"
+				src={asset('/puisvg/prez_arcs.svg')}
 				style="width: 22em;"
 				alt="three ways for defining arcs"
 			/></center
@@ -224,7 +230,7 @@ Options possibles pour définir le prochain point
 	<OneSlide>
 		<center
 			><img
-				src="{base}/puisvg/prez_curve_approximation.svg"
+				src={asset('/puisvg/prez_curve_approximation.svg')}
 				style="width: 22em;"
 				alt="curve approximation"
 			/></center
@@ -240,7 +246,7 @@ double arcs de cercles définis avec
 	<OneSlide>
 		<center
 			><img
-				src="{base}/puisvg/prez_corner_modifications.svg"
+				src={asset('/puisvg/prez_corner_modifications.svg')}
 				style="width: 15em;"
 				alt="corner modifications"
 			/></center
@@ -255,11 +261,11 @@ Modifications des angles d'un contour:
 	<OneSlide>
 		<center
 			><img
-				src="{base}/puisvg/prez_design_structure.svg"
+				src={asset('/puisvg/prez_design_structure.svg')}
 				style="width: 14em;"
 				alt="design structure"
 			/>&nbsp;<img
-				src="{base}/puisvg/prez_figure_layers.svg"
+				src={asset('/puisvg/prez_figure_layers.svg')}
 				style="width: 10em;"
 				alt="figure layers"
 			/></center
@@ -275,7 +281,7 @@ Modifications des angles d'un contour:
 	<OneSlide>
 		<center
 			><img
-				src="{base}/puisvg/prez_extrudes.svg"
+				src={asset('/puisvg/prez_extrudes.svg')}
 				style="width: 12em;"
 				alt="extrudes"
 			/></center
@@ -289,7 +295,7 @@ Définition  d'une forme 3D
     - Soustraction</pre>
 		<center
 			><img
-				src="{base}/puisvg/prez_boolean_operations.svg"
+				src={asset('/puisvg/prez_boolean_operations.svg')}
 				style="width: 16em;"
 				alt="boolean operations"
 			/></center
