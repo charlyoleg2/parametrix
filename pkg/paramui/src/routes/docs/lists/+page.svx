@@ -4,7 +4,7 @@ category: documentation
 ---
 
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 </script>
 
 
@@ -122,12 +122,12 @@ If you want to get your *geometrix design library* in this list, please, create 
 
 #### Designers and makers
 
-![designer_maker_interfaces.svg]({base}/puisvg/designer_maker_interfaces.svg)
+![designer_maker_interfaces.svg]({asset('/puisvg/designer_maker_interfaces.svg')})
 
 
 #### Parametrix workflow
 
-![parametrix_workflow.svg]({base}/puisvg/parametrix_workflow.svg)
+![parametrix_workflow.svg]({asset('/puisvg/parametrix_workflow.svg')})
 
 
 <style lang="scss">

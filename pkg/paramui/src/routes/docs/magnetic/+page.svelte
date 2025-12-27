@@ -1,6 +1,6 @@
 <script lang="ts">
 	/* eslint-disable svelte/no-at-html-tags */
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 	import { math } from 'mathlifier';
 	import { onMount, onDestroy } from 'svelte';
 	//import type { ChartTypeRegistry } from 'chart.js';
@@ -453,7 +453,7 @@
 </article>
 <h3>Regular torus</h3>
 <article class="splitable">
-	<img src="{base}/puisvg/regular_torus.svg" alt="regular torus" />
+	<img src={asset('/puisvg/regular_torus.svg')} alt="regular torus" />
 	<ul class="formula">
 		<li>{@html math('L = 2 \\pi R')} (length of the torus)</li>
 		<li>{@html math('\\mathcal{F} = N i')}</li>
@@ -638,7 +638,7 @@
 </article>
 <h3>Torus with swelling</h3>
 <article class="splitable">
-	<img src="{base}/puisvg/torus_with_swelling.svg" alt="torus with swelling" />
+	<img src={asset('/puisvg/torus_with_swelling.svg')} alt="torus with swelling" />
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
@@ -755,7 +755,7 @@
 </article>
 <h3>Torus with air gap</h3>
 <article class="splitable">
-	<img src="{base}/puisvg/torus_with_air_gap.svg" alt="torus with air gap" />
+	<img src={asset('/puisvg/torus_with_air_gap.svg')} alt="torus with air gap" />
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
@@ -836,9 +836,9 @@
 </article>
 <h3>Torus with shuttle</h3>
 <article class="splitable">
-	<img src="{base}/puisvg/torus_with_shuttle.svg" alt="torus with shuttle" />
+	<img src={asset('/puisvg/torus_with_shuttle.svg')} alt="torus with shuttle" />
 	<img
-		src="{base}/puisvg/top_view_of_air_gap_and_shuttle.svg"
+		src={asset('/puisvg/top_view_of_air_gap_and_shuttle.svg')}
 		alt="top view of air gap and shuttle"
 	/>
 	<ul class="formula">
@@ -1013,7 +1013,7 @@
 <h3>Torus with realistic shuttle</h3>
 <article class="splitable">
 	<img
-		src="{base}/puisvg/torus_with_realistic_shuttle.svg"
+		src={asset('/puisvg/torus_with_realistic_shuttle.svg')}
 		alt="torus with a realistic shuttle"
 	/>
 	<ul class="formula">

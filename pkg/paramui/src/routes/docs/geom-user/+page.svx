@@ -4,7 +4,7 @@ category: documentation
 ---
 
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { asset } from '$app/paths';
 </script>
 
 
@@ -68,15 +68,15 @@ The remaining contours of the face are the inner contours.
 Finally the figure is a list of lists of contours.
 A contour should never cross itself or an other contour.
 Two contours are either side-by-side or one-include-the-other.
-
-![figure_face_contour.svg]({base}/puisvg/figure_face_contour.svg)
+/
+![figure_face_contour.svg]({asset('/puisvg/figure_face_contour.svg')})
 
 The 4 types of figures:
 
-![types_of_contour_arrangements.svg]({base}/puisvg/types_of_contour_arrangements.svg)
+![types_of_contour_arrangements.svg]({asset('/puisvg/types_of_contour_arrangements.svg')})
 
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addMainOI" rel="external">.addMainOI()</a> : method to add a face to a figure.
-- <a href="{base}/docs/apidoc/classes/geometrix.Figure.html#addMainO" rel="external">.addMainO()</a> : method to add an outer contour (without holes) to a figure.
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#addMainOI')} rel="external">.addMainOI()</a> : method to add a face to a figure.
+- <a href={asset('/docs/apidoc/classes/geometrix.Figure.html#addMainO')} rel="external">.addMainO()</a> : method to add an outer contour (without holes) to a figure.
 
 ```javascript
 faceA = [ctrOuter, ctrInner1, ctrInner2];
@@ -94,8 +94,8 @@ For each contour, *geometrix* lets you modify the shape of each corner individua
 - widened with radius R (a.k.a. enlarged corner)
 - wideAcc with radius R (a.k.a. enlarged corner for complete accessibility)
 
-![corner_options.svg]({base}/puisvg/corner_options.svg)
-![contour_skeleton_final.svg]({base}/puisvg/contour_skeleton_final.svg)
+![corner_options.svg]({asset('/puisvg/corner_options.svg')})
+![contour_skeleton_final.svg]({asset('/puisvg/contour_skeleton_final.svg')})
 
 
 ## Export options
@@ -233,11 +233,11 @@ The npm-package of a design-library is stored in mono-repo even if we have a sin
 
 In a design library, you can create sub-folders. Each folder has its own *svg* folder.
 
-![file_structure_single.svg]({base}/puisvg/file_structure_single.svg)
+![file_structure_single.svg]({asset('/puisvg/file_structure_single.svg')})
 
 If you have many designs and you want to distribute them in several packages, then you can create several design-libraries in your *mono-repo*.
 
-![file_structure_several.svg]({base}/puisvg/file_structure_several.svg)
+![file_structure_several.svg]({asset('/puisvg/file_structure_several.svg')})
 
 
 <style lang="scss">
