@@ -47,25 +47,31 @@ Below a list of libraries of 3D-part-designs based on *Geometrix*:
 	[pkg-cli](https://www.npmjs.com/package/desi53-cli) -
 	[pkg-uis](https://www.npmjs.com/package/desi53-uis) :
 	Fourth batch of geometrix design examples for the tutorial
-6. desi77 : [src](https://github.com/charlyoleg2/parame77) -
+6. desi76 : [src](https://github.com/charlyoleg2/parame76) -
+	[ui](https://charlyoleg2.github.io/parame76/) -
+	[pkg](https://www.npmjs.com/package/desi76) :
+	[pkg-cli](https://www.npmjs.com/package/desi76-cli) -
+	[pkg-uis](https://www.npmjs.com/package/desi76-uis) :
+	The designs of Charlyoleg
+7. desi77 : [src](https://github.com/charlyoleg2/parame77) -
 	[ui](https://charlyoleg2.github.io/parame77/) -
 	[pkg](https://www.npmjs.com/package/desi77) :
 	[pkg-cli](https://www.npmjs.com/package/desi77-cli) -
 	[pkg-uis](https://www.npmjs.com/package/desi77-uis) :
 	The designs of Charlyoleg
-7. desi78 : [src](https://github.com/charlyoleg2/parame78) -
+8. desi78 : [src](https://github.com/charlyoleg2/parame78) -
 	[ui](https://charlyoleg2.github.io/parame78/) -
 	[pkg](https://www.npmjs.com/package/desi78) :
 	[pkg-cli](https://www.npmjs.com/package/desi78-cli) -
 	[pkg-uis](https://www.npmjs.com/package/desi78-uis) :
 	The designs of Charlyoleg
-8. desi82 : [src](https://github.com/charlyoleg2/parame82) -
+9. desi82 : [src](https://github.com/charlyoleg2/parame82) -
 	[ui](https://charlyoleg2.github.io/parame82/) -
 	[pkg](https://www.npmjs.com/package/desi82) :
 	[pkg-cli](https://www.npmjs.com/package/desi82-cli) -
 	[pkg-uis](https://www.npmjs.com/package/desi82-uis) :
 	The designs of a friend
-9. desi15L : [src](https://github.com/charlyoleg2/parame15L) -
+10. desi15L : [src](https://github.com/charlyoleg2/parame15L) -
 	[ui](https://charlyoleg2.github.io/parame15L/) -
 	[pkg](https://www.npmjs.com/package/desi15L) :
 	[pkg-cli](https://www.npmjs.com/package/desi15L-cli) -
@@ -94,9 +100,10 @@ If you want to get your *geometrix design library* in this list, please, create 
 3. [cabane](https://github.com/charlyoleg2/cabane)
 4. [heliostat_model_50cm](https://github.com/charlyoleg2/heliostat_model_50cm)
 5. [maker_parame51](https://github.com/charlyoleg2/maker_parame51)
-6. [maker_parame77](https://github.com/charlyoleg2/maker_parame77)
-7. [maker_parame78](https://github.com/charlyoleg2/maker_parame78)
-8. [maker_ustensile](https://github.com/charlyoleg2/maker_ustensile)
+6. [maker_parame76](https://github.com/charlyoleg2/maker_parame76)
+7. [maker_parame77](https://github.com/charlyoleg2/maker_parame77)
+8. [maker_parame78](https://github.com/charlyoleg2/maker_parame78)
+9. [maker_ustensile](https://github.com/charlyoleg2/maker_ustensile)
 
 
 #### List of catalogs of 3D models
