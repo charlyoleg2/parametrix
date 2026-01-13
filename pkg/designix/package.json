@@ -72,7 +72,7 @@
 		"clean": "rimraf dist dist2 node_modules"
 	},
 	"dependencies": {
-		"geometrix": "^1.0.26"
+		"geometrix": "^1.0.27"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
@@ -86,7 +86,7 @@
 		"svgo": "^4.0.0",
 		"tsup": "^8.5.1",
 		"typescript": "^5.9.3",
-		"typescript-eslint": "^8.50.1",
-		"vitest": "^4.0.16"
+		"typescript-eslint": "^8.53.0",
+		"vitest": "^4.0.17"
 	}
 }
