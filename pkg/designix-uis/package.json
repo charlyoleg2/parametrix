@@ -82,11 +82,11 @@
 	"devDependencies": {
 		"@eslint/js": "^9.10.0",
 		"@types/eslint__js": "^8.42.3",
-		"@types/node": "^25.0.8",
+		"@types/node": "^25.0.9",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
 		"npm-run-all2": "^8.0.4",
-		"prettier": "^3.7.4",
+		"prettier": "^3.8.0",
 		"rimraf": "^6.1.2",
 		"shx": "^0.4.0",
 		"tsup": "^8.5.1",

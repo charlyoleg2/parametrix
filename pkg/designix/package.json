@@ -81,7 +81,7 @@
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
 		"npm-run-all2": "^8.0.4",
-		"prettier": "^3.7.4",
+		"prettier": "^3.8.0",
 		"rimraf": "^6.1.2",
 		"svgo": "^4.0.0",
 		"tsup": "^8.5.1",
