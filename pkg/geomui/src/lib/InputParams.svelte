@@ -37,9 +37,10 @@
 	let locStorRname: string = $state('');
 	let locStorWname: string = $state('');
 	let pUrl: string = $state('');
-	let paramSvg: string = $state(checkPict(pDef.params[0].name));
+	const inIpDef = (() => pDef)();
+	let paramSvg: string = $state(checkPict(inIpDef.params[0].name));
 	let modalImg: boolean = $state(false);
-	let htableVis: tHTableVis = $state(makeHTableVis(makeHTable(pDef.params)));
+	let htableVis: tHTableVis = $state(makeHTableVis(makeHTable(inIpDef.params)));
 
 	// initialization
 	afterNavigate(() => {

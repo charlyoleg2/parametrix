@@ -23,7 +23,7 @@
 		const rname = `${prefix}_${datestr}`;
 		return rname;
 	}
-	storeName = defaultName(pageName);
+	storeName = defaultName((() => pageName)());
 	// check if the key already exist
 	let warn: boolean = $derived(localKeys.includes(storeName));
 </script>

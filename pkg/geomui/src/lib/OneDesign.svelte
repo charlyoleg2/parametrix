@@ -12,7 +12,7 @@
 	let { pageDef, pLink }: Props = $props();
 
 	// initialization
-	incrStore(pageDef);
+	incrStore((() => pageDef)());
 </script>
 
 <h1>{pageDef.pTitle}</h1>
