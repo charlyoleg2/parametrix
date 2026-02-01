@@ -55,7 +55,7 @@
 		"bats": "^1.13.0",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",
-		"globals": "^17.1.0",
+		"globals": "^17.3.0",
 		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.8.1",
 		"rimraf": "^6.1.2",
