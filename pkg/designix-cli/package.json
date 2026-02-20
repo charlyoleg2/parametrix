@@ -76,7 +76,7 @@
 		"@eslint/js": "^10.0.1",
 		"@types/eslint__js": "^8.42.3",
 		"bats": "^1.13.0",
-		"eslint": "^10.0.0",
+		"eslint": "^10.0.1",
 		"eslint-config-prettier": "^10.1.8",
 		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.8.1",
