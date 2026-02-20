@@ -3,9 +3,9 @@ title: Docs of Parametrix'UI
 category: documentation
 ---
 
-<script lang="ts">
+<!--script lang="ts">
 	//import { asset } from '$app/paths';
-</script>
+</script-->
 
 
 # {title}
