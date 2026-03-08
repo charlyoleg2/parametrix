@@ -63,14 +63,14 @@
 		"clean": "rimraf dist node_modules"
 	},
 	"dependencies": {
-		"@zip.js/zip.js": "^2.8.21",
+		"@zip.js/zip.js": "^2.8.23",
 		"json5": "^2.2.3"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@types/eslint__js": "^8.42.3",
-		"@types/node": "^25.3.2",
-		"eslint": "^10.0.2",
+		"@types/node": "^25.3.5",
+		"eslint": "^10.0.3",
 		"eslint-config-prettier": "^10.1.8",
 		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.8.1",
