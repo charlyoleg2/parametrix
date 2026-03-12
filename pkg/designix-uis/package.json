@@ -82,7 +82,7 @@
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@types/eslint__js": "^8.42.3",
-		"@types/node": "^25.4.0",
+		"@types/node": "^25.5.0",
 		"eslint": "^10.0.3",
 		"eslint-config-prettier": "^10.1.8",
 		"npm-run-all2": "^8.0.4",
@@ -92,6 +92,6 @@
 		"tsup": "^8.5.1",
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.57.0",
-		"vitest": "^4.0.18"
+		"vitest": "^4.1.0"
 	}
 }
