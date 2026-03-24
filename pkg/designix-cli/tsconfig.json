@@ -8,7 +8,8 @@
 		"declaration": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		"types": ["node"]
 	},
 	"include": ["./src"]
 }
