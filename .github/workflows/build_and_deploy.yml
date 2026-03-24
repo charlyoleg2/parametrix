@@ -11,7 +11,7 @@ jobs:
             id-token: write
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: Automatic update of the github release
               if: github.ref_type == 'tag'
@@ -24,9 +24,9 @@ jobs:
                     --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
                     --generate-notes
 
-            - uses: actions/setup-node@v4
+            - uses: actions/setup-node@v6
               with:
-                  node-version: '22'
+                  node-version: '24'
                   registry-url: 'https://registry.npmjs.org/'
 
             - name: clean and install
@@ -40,7 +40,7 @@ jobs:
                   npm -w paramui run github-pages-fix
 
             - name: Deploy to GitHub pages
-              uses: crazy-max/ghaction-github-pages@v4
+              uses: crazy-max/ghaction-github-pages@v5
               with:
                   target_branch: gh-pages
                   build_dir: pkg/paramui/build
