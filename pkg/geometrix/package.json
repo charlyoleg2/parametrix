@@ -72,6 +72,7 @@
 		"@types/node": "^25.5.0",
 		"eslint": "^10.1.0",
 		"eslint-config-prettier": "^10.1.8",
+		"jsr": "^0.14.3",
 		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.8.1",
 		"rimraf": "^6.1.3",
