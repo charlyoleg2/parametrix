@@ -129,7 +129,7 @@ class Transform2d {
 	}
 }
 
-const initMid = t2dInitIdentity();
+const initMid: tT2dMatrix = t2dInitIdentity();
 function transform2d(initM = initMid): Transform2d {
 	return new Transform2d(initM);
 }

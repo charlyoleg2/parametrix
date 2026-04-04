@@ -112,7 +112,7 @@ class Vector {
 	}
 }
 
-function vector(ia: number, il: number, iDrawPoint: Point) {
+function vector(ia: number, il: number, iDrawPoint: Point): Vector {
 	return new Vector(ia, il, iDrawPoint);
 }
 

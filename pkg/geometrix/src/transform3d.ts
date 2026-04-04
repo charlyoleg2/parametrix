@@ -180,7 +180,7 @@ class Transform3d {
 	}
 }
 
-const initMid = t3dInitIdentity();
+const initMid: tT3dMatrix = t3dInitIdentity();
 function transform3d(initM = initMid): Transform3d {
 	return new Transform3d(initM);
 }

@@ -91,7 +91,7 @@ class DxfWrite {
 	}
 }
 
-function dxfWriter() {
+function dxfWriter(): DxfWrite {
 	const rDxfWrite = new DxfWrite();
 	return rDxfWrite;
 }

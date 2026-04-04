@@ -198,7 +198,7 @@ class Point {
 	}
 }
 
-function point(ix: number, iy: number, ishape = ShapePoint.eDefault) {
+function point(ix: number, iy: number, ishape = ShapePoint.eDefault): Point {
 	return new Point(ix, iy, ishape);
 }
 

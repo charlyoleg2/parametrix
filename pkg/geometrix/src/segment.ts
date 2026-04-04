@@ -43,21 +43,21 @@ enum SegEnum {
 	eStart
 }
 
-function isSeg(iSegEnum: SegEnum) {
+function isSeg(iSegEnum: SegEnum): boolean {
 	let rIsSeg = false;
 	if (iSegEnum === SegEnum.eStroke || iSegEnum === SegEnum.eArc) {
 		rIsSeg = true;
 	}
 	return rIsSeg;
 }
-function isAddPoint(iSegEnum: SegEnum) {
+function isAddPoint(iSegEnum: SegEnum): boolean {
 	let rIsOther = false;
 	if (isSeg(iSegEnum) || iSegEnum === SegEnum.eStart) {
 		rIsOther = true;
 	}
 	return rIsOther;
 }
-function isActiveCorner(iSegEnum: SegEnum) {
+function isActiveCorner(iSegEnum: SegEnum): boolean {
 	let rIsActiveCorner = false;
 	if (
 		iSegEnum === SegEnum.eRounded ||
@@ -68,7 +68,7 @@ function isActiveCorner(iSegEnum: SegEnum) {
 	}
 	return rIsActiveCorner;
 }
-function isCorner(iSegEnum: SegEnum) {
+function isCorner(iSegEnum: SegEnum): boolean {
 	let rIsCorner = false;
 	if (iSegEnum === SegEnum.ePointed || isActiveCorner(iSegEnum)) {
 		rIsCorner = true;
@@ -179,7 +179,7 @@ class SegDbg {
 		this.logMessage = '';
 	}
 }
-const gSegDbg = new SegDbg();
+const gSegDbg: SegDbg = new SegDbg();
 
 function arcSeg1To2(px1: number, py1: number, iSeg1: Segment1): Segment2 {
 	if (iSeg1.sType !== SegEnum.eArc) {

@@ -263,7 +263,7 @@ class Figure {
 		return rCanvasAdjust;
 	}
 	/** @internal */
-	quantifyRuler(canvasWidth: number, adjust: tCanvasAdjust) {
+	quantifyRuler(canvasWidth: number, adjust: tCanvasAdjust): [number, number] {
 		const minWidth = canvasWidth / 10;
 		const lsizep = minWidth / adjust.scaleX;
 		let lref = 0.0001;
@@ -354,7 +354,7 @@ class Figure {
 	}
 }
 
-function figure() {
+function figure(): Figure {
 	return new Figure();
 }
 

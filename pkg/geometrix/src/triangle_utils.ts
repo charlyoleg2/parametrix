@@ -29,12 +29,12 @@ function rightTriLbFromLaLc(ila: number, ilc: number): number {
  * angles: aA, aB, aC
  * */
 
-function lcFromLaLbAc(la: number, lb: number, ac: number) {
+function lcFromLaLbAc(la: number, lb: number, ac: number): number {
 	const rlc = Math.sqrt(la ** 2 + lb ** 2 - 2 * la * lb * Math.cos(ac));
 	return rlc;
 }
 
-function aCFromLaLbLc(la: number, lb: number, lc: number) {
+function aCFromLaLbLc(la: number, lb: number, lc: number): number {
 	let rac = 0;
 	const l3 = [la, lb, lc];
 	for (let i = 0; i < l3.length; i++) {
@@ -54,7 +54,7 @@ function aCFromLaLbLc(la: number, lb: number, lc: number) {
 	return rac;
 }
 
-function aCFromAaAb(iaA: number, iaB: number) {
+function aCFromAaAb(iaA: number, iaB: number): number {
 	let rac = 0;
 	const aA = Math.abs(withinPiPi(iaA));
 	const aB = Math.abs(withinPiPi(iaB));
@@ -67,7 +67,7 @@ function aCFromAaAb(iaA: number, iaB: number) {
 	return rac;
 }
 
-function lbFromLaAaAb(ila: number, iaA: number, iaB: number) {
+function lbFromLaAaAb(ila: number, iaA: number, iaB: number): number {
 	let rlb = 0;
 	const args = [ila, iaA, iaB];
 	for (let i = 0; i < args.length; i++) {
@@ -87,7 +87,7 @@ function lbFromLaAaAb(ila: number, iaA: number, iaB: number) {
 }
 
 // it works only with angle within -PI/2 and PI/2 because arcsinus()
-function aBFromLaLbAa(ila: number, ilb: number, iaA: number) {
+function aBFromLaLbAa(ila: number, ilb: number, iaA: number): number {
 	let rab = 0;
 	const args = [ila, ilb, iaA];
 	for (let i = 0; i < args.length; i++) {
