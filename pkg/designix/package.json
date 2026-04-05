@@ -34,7 +34,7 @@
 	],
 	"tsup": {
 		"entry": [
-			"src/index.ts"
+			"./src/index.ts"
 		],
 		"format": "esm",
 		"splitting": false,

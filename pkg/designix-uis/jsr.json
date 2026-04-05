@@ -2,5 +2,5 @@
 	"name": "@parametrix/designix-uis",
 	"version": "1.0.28",
 	"license": "ISC",
-	"exports": "./src/index.ts"
+	"exports": "./src/designix-uis.ts"
 }

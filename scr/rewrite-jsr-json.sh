@@ -16,12 +16,12 @@ cnt=0
 for iPkg in ${pkgList[@]}; do
 	cnt=$((cnt+1))
 	echo "${cnt} : Package: ${iPkg}"
-	jq --tab \
-		'{name: ("@parametrix/" + .name),
+	jq --tab '{
+		name: ("@parametrix/" + .name),
 		version: .version,
 		license: "ISC",
-		exports: "./src/index.ts"}' \
-		pkg/${iPkg}/package.json > pkg/${iPkg}/jsr.json
+		exports: .tsup.entry[0]
+	}' pkg/${iPkg}/package.json > pkg/${iPkg}/jsr.json
 done
 # Finalization
 echo "rewrite-jsr-json.sh says Bye!"

@@ -42,7 +42,7 @@
 	},
 	"tsup": {
 		"entry": [
-			"src/designix-uis.ts"
+			"./src/designix-uis.ts"
 		],
 		"format": "esm",
 		"splitting": false,
