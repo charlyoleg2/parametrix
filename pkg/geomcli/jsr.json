@@ -1,0 +1,6 @@
+{
+	"name": "@parametrix/geomcli",
+	"version": "1.0.28",
+	"license": "ISC",
+	"exports": "./src/index.ts"
+}
