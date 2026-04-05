@@ -79,7 +79,7 @@
 		"preview": "run-s paramui:preview",
 		"regen-jsr": "scr/rewrite-jsr-json.sh",
 		"versions": "run-s geometrix:version designix:version geomui:version geomcli:version designix-cli:version designix-uis:version regen-jsr",
-		"gh-publish": "run-s geometrix:publish designix:publish geomui:publish geomcli:publish designix-cli:publish designix-uis:publish",
+		"gh-publish": "run-s geometrix:publish designix:publish geomcli:publish designix-cli:publish designix-uis:publish",
 		"gen_apidoc": "typedoc",
 		"cp_apidoc": "fse copy build/apidoc pkg/paramui/build/docs/apidoc",
 		"apidoc": "run-s gen_apidoc cp_apidoc",
