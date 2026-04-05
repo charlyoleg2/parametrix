@@ -4,6 +4,9 @@
 
 import { roundZero } from './angle_utils';
 
+/**
+ * This object defines the colors to be used in the UI
+ */
 const colors = {
 	point: 'grey',
 	line: 'grey',
@@ -22,6 +25,9 @@ const colors = {
 };
 const c_margin = 0.05;
 
+/**
+ * This type-definition is used for the zoom and pan features
+ */
 interface tCanvasAdjust {
 	init: number;
 	xMin: number;
@@ -33,21 +39,37 @@ interface tCanvasAdjust {
 	scaleY: number;
 }
 
+/**
+ * This function converts from abstract coordinates to html-canvas coordinates
+ */
 function point2canvas(px: number, py: number, iAdjust: tCanvasAdjust): [number, number] {
 	const cx2 = iAdjust.shiftX + (px - iAdjust.xMin) * iAdjust.scaleX;
 	const cy2 = iAdjust.shiftY + (py - iAdjust.yMin) * iAdjust.scaleY;
 	return [cx2, cy2];
 }
+
+/**
+ * This function converts from html-canvas coordinates to abstract coordinates
+ */
 function canvas2point(cx: number, cy: number, iAdjust: tCanvasAdjust): [number, number] {
 	const px2 = (cx - iAdjust.shiftX) / iAdjust.scaleX + iAdjust.xMin;
 	const py2 = (cy - iAdjust.shiftY) / iAdjust.scaleY + iAdjust.yMin;
 	return [px2, py2];
 }
+
+
+/**
+ * This function applies to one-point coordinates a translation defined with polar-coordinates
+ */
 function canvasTranslatePolar(cx: number, cy: number, ia: number, il: number): [number, number] {
 	const cx2 = cx + il * Math.cos(ia);
 	const cy2 = cy - il * Math.sin(ia);
 	return [cx2, cy2];
 }
+
+/**
+ * This function applies a transform on one radius
+ */
 function radius2canvas(iRadius: number, iAdjust: tCanvasAdjust): number {
 	if (roundZero(iAdjust.scaleX - Math.abs(iAdjust.scaleY)) !== 0) {
 		throw `err683: iAdjust.scaleX and scaleY differ ${iAdjust.scaleX} ${iAdjust.scaleY}`;
@@ -62,6 +84,9 @@ function radius2canvas(iRadius: number, iAdjust: tCanvasAdjust): number {
 	return rRadius;
 }
 
+/**
+ * This function initializes a transform-object with an identity-transform
+ */
 function adjustZero(): tCanvasAdjust {
 	const rAdjustZero = {
 		init: 0,
@@ -75,6 +100,10 @@ function adjustZero(): tCanvasAdjust {
 	};
 	return rAdjustZero;
 }
+
+/**
+ * This function copies a transform-object
+ */
 function adjustCopy(iAdjust: tCanvasAdjust): tCanvasAdjust {
 	const rAdjustZero = {
 		init: iAdjust.init,
@@ -88,6 +117,10 @@ function adjustCopy(iAdjust: tCanvasAdjust): tCanvasAdjust {
 	};
 	return rAdjustZero;
 }
+
+/**
+ * This function initializes a transform-object
+ */
 function adjustInit(
 	xMin: number,
 	xMax: number,
@@ -117,12 +150,20 @@ function adjustInit(
 	rAdjust.scaleY = -1 * xyScale;
 	return rAdjust;
 }
+
+/**
+ * This function calculates the transform for pan
+ */
 function adjustCenter(px: number, py: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
 	const rAdjust = adjustCopy(iAdjust);
 	rAdjust.xMin = px - rAdjust.xyDiff / 2;
 	rAdjust.yMin = py - rAdjust.xyDiff / 2;
 	return rAdjust;
 }
+
+/**
+ * This function calculates the transform for zoom
+ */
 function adjustRect(
 	p1x: number,
 	p1y: number,
@@ -138,6 +179,10 @@ function adjustRect(
 	const rAdjust = adjustInit(xMin, xMax, yMin, yMax, cWidth, cHeight);
 	return rAdjust;
 }
+
+/**
+ * This function calculates the transform for scale
+ */
 function adjustScale(iFactor: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
 	const rAdjust = adjustCopy(iAdjust);
 	const shift = (1 - iFactor) / 2;
@@ -148,6 +193,10 @@ function adjustScale(iFactor: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
 	rAdjust.scaleY *= 1.0 / iFactor;
 	return rAdjust;
 }
+
+/**
+ * This function calculates the transform for pan-translation
+ */
 function adjustTranslate(
 	p1x: number,
 	p1y: number,
@@ -163,6 +212,10 @@ function adjustTranslate(
 	rAdjust.yMin += -yDiff;
 	return rAdjust;
 }
+
+/**
+ * This function calculates the transform for vignet
+ */
 function adjustMini(widthOrig: number, widthTarget: number, iAdjust: tCanvasAdjust): tCanvasAdjust {
 	const rAdjust = adjustCopy(iAdjust);
 	if (widthOrig > 0 && widthTarget > 0) {
