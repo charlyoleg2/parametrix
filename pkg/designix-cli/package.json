@@ -64,6 +64,7 @@
 		"test:unit:once": "vitest --run",
 		"test:bats": "bats test/test1.bats",
 		"ci": "run-s check build pretty lint test:unit:once test:bats",
+		"jsrpub": "npx jsr publish",
 		"run": "dist/designix-cli.js",
 		"clean": "rimraf build dist node_modules output"
 	},

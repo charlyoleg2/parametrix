@@ -72,6 +72,7 @@
 		"checkCopy": "ls -l dist/public/index.html",
 		"copy_public": "run-s clean_public copy_ui checkCopy",
 		"ci": "run-s check build pretty lint test:unit:once copy_public",
+		"jsrpub": "npx jsr publish",
 		"run": "node dist/designix-uis.js",
 		"run-help": "node dist/designix-uis.js --help",
 		"clean": "rimraf node_modules build dist tmp"
