@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // designix-uis.ts
 
-import { feli_cli } from 'feli';
+import { feli_cli } from '@parametrix/feli';
 import process from 'node:process';
 import path from 'node:path';
 
