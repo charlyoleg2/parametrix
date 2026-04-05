@@ -4,7 +4,7 @@
 import type { tAllPageDef } from 'geometrix';
 //import type { tPackage } from 'geomcli';
 import { geom_cli } from 'geomcli';
-import packag from '../package.json';
+import packag from '../package.json' with { type: "json" };
 import {
 	gearWheelDef,
 	gearBarDef,
