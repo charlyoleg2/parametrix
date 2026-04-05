@@ -86,6 +86,7 @@
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.16.0",
 		"globals": "^17.4.0",
+		"jsr": "^0.14.3",
 		"npm-run-all2": "^8.0.4",
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
