@@ -57,7 +57,6 @@ function canvas2point(cx: number, cy: number, iAdjust: tCanvasAdjust): [number, 
 	return [px2, py2];
 }
 
-
 /**
  * This function applies to one-point coordinates a translation defined with polar-coordinates
  */
