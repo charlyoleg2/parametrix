@@ -49,6 +49,6 @@ jobs:
 
             - name: Publish
               if: github.ref_type == 'tag'
-              run: npm run gh-publish
+              run: npm run gh-jsrpub
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
