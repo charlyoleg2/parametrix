@@ -7,6 +7,10 @@
 	Below a list of open-source CAD software sorted by family of technologies.
 	<CadEcosystem />
 </article>
+<h1>Other interesting CAD solutions</h1>
+<ol>
+	<li><a href="https://github.com/patrickiel/VariantCAD">VariantCAD</a></li>
+</ol>
 
 <style lang="scss">
 	@use '$lib/style/colors.scss';
