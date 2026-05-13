@@ -63,7 +63,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"ci": "run-s cp_pgdsvg build lint check test:unit:once",
-		"jsrpub": "npx jsr publish",
+		"subjsrpub": "npx jsr publish",
+		"jsrpub": "run-s prepublishOnly subjsrpub",
 		"clean": "rimraf .svelte-kit build node_modules dist static/pgdsvg"
 	},
 	"peerDependencies": {
