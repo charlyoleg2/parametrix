@@ -2,5 +2,8 @@
 	"name": "@parametrix/geomui",
 	"version": "1.0.33",
 	"license": "ISC",
-	"exports": null
+	"exports": "./dist/index.js",
+	"publish": {
+		"exclude": ["!dist"]
+	}
 }
