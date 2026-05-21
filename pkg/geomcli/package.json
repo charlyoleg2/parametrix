@@ -64,7 +64,7 @@
 		"clean": "rimraf build dist node_modules"
 	},
 	"dependencies": {
-		"geometrix": "^1.0.33",
+		"geometrix": "^1.0.34",
 		"yargs": "^18.0.0"
 	},
 	"devDependencies": {
@@ -81,6 +81,6 @@
 		"tsup": "^8.5.1",
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.59.4",
-		"vitest": "^4.1.6"
+		"vitest": "^4.1.7"
 	}
 }
