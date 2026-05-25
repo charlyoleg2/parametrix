@@ -96,7 +96,7 @@
 	},
 	"devDependencies": {
 		"@atao60/fse-cli": "^0.1.9",
-		"npm-run-all2": "^9.0.0",
+		"npm-run-all2": "^9.0.1",
 		"rimraf": "^6.1.3",
 		"serve": "^14.2.6",
 		"typedoc": "^0.28.19"
