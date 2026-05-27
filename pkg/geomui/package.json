@@ -85,7 +85,7 @@
 		"designix": "^1.0.34",
 		"eslint": "^10.4.0",
 		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.17.1",
+		"eslint-plugin-svelte": "^3.18.0",
 		"globals": "^17.6.0",
 		"jsr": "^0.14.3",
 		"npm-run-all2": "^9.0.1",
