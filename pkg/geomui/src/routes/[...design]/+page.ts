@@ -1,6 +1,6 @@
 // [design]/+page.js
 
-import { designList, allLink } from '../makeList';
+import { designList, allLink } from '../makeList.ts';
 import { error } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageLoad} */

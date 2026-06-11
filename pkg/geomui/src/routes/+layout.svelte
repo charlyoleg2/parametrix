@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import { resolve } from '$app/paths';
 	import { version_details } from 'geometrix';
-	import appPackage from '../../package.json';
+	import appPackage from '../../package.json' with { type: 'json' };
 
 	// props
 	interface Props {

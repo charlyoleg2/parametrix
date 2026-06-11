@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { tCategoryOne } from './menuListType';
+	import type { tCategoryOne } from './menuListType.ts';
 	//import type { HTMLAttributes } from 'svelte/elements';
 	//interface $$Props extends HTMLAttributes<HTMLElement> {
 	//	menuList: tMenu;
 	//}
 
-	import { apidocPath } from '$lib/menuList';
+	import { apidocPath } from './menuList.ts';
 	import { resolve } from '$app/paths';
 
 	interface Props {

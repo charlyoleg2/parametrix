@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { apidocPath } from '$lib/menuList';
-	import { menuList2 } from '$lib/makeMenu';
+	import { apidocPath } from '$lib/menuList.js';
+	import { menuList2 } from '$lib/makeMenu.js';
 	import { resolve, asset } from '$app/paths';
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { OneDesign } from '$lib/index';
+	import { OneDesign } from '$lib/index.js';
 
 	/** @type {{ data: import('./$types').PageData }} */
 	let { data } = $props();

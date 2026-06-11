@@ -1,6 +1,6 @@
 // menuList.ts
 
-import type { tMenuList } from './menuListType';
+import type { tMenuList } from './menuListType.ts';
 import {
 	gearWheelDef,
 	gearBarDef,

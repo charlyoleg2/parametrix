@@ -2,7 +2,7 @@
 	//import type { HTMLAttributes } from 'svelte/elements';
 	//type $$Props = HTMLAttributes<HTMLElement>;
 
-	import { checkPath, listOneCategory } from './makeMenu';
+	import { checkPath, listOneCategory } from './makeMenu.ts';
 	import Navig from './Navig.svelte';
 
 	import { page } from '$app/state';

@@ -1,6 +1,6 @@
 // [design]/+page.js
 
-import { designDefs, allLink } from '$lib/makeMenu';
+import { designDefs, allLink } from '$lib/makeMenu.js';
 import { error } from '@sveltejs/kit';
 
 /** @type {import('./$types').PageLoad} */

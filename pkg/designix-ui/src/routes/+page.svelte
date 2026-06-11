@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { designNameList } from '$lib/makeList';
+	import { designNameList } from '$lib/makeList.js';
 	import { resolve } from '$app/paths';
 </script>
 

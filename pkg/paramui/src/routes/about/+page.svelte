@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { version_details } from 'geometrix';
-	import appPackage from '../../../package.json';
+	import appPackage from '../../../package.json' with { type: 'json' };
 
 	const detailed_versions = version_details(appPackage);
 </script>

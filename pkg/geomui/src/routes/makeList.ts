@@ -1,7 +1,7 @@
 // makeList.ts
 
 import type { tAllPageDef, tAllLink } from 'geometrix';
-import { designList } from './designList';
+import { designList } from './designList.ts';
 
 function pathToLabel(ipath: string): string {
 	const re = /^.*\//g;

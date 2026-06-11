@@ -1,8 +1,8 @@
 // makeMenu.ts
 
 import type { tAllPageDef, tAllLink } from 'geometrix';
-import type { tPageOne, tCategoryOne, tMenuList } from './menuListType';
-import { menuList } from './menuList';
+import type { tPageOne, tCategoryOne, tMenuList } from './menuListType.ts';
+import { menuList } from './menuList.ts';
 import { initStore } from 'geomui';
 //import { resolve } from '$app/paths';
 

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { tPosiOrien, tSubDesign, tAllLink } from 'geometrix';
 	import { ffix, radToDeg, paramListToVal } from 'geometrix';
-	//import { downloadParams, generateUrl } from './downloadParams';
-	import { downloadParams } from './downloadParams';
-	import { updateStore } from './initStore';
+	//import { downloadParams, generateUrl } from './downloadParams.ts';
+	import { downloadParams } from './downloadParams.ts';
+	import { updateStore } from './initStore.ts';
 	//import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';

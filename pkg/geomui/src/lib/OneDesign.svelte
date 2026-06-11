@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { tPageDef, tAllLink } from 'geometrix';
-	import { incrStore } from './initStore';
+	import { incrStore } from './initStore.ts';
 	import DrawingList from './DrawingList.svelte';
 	import ParamDrawExport from './ParamDrawExport.svelte';
 

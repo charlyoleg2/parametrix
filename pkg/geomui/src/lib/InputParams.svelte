@@ -8,7 +8,7 @@
 	import type { tParam, tParamDef, tParamVal, Figure } from 'geometrix';
 	import { PType, parseParamFile, createParamFile } from 'geometrix';
 	import { sParams } from './stateParams.svelte';
-	import { downloadParams, generateUrl } from './downloadParams';
+	import { downloadParams, generateUrl } from './downloadParams.ts';
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import { asset } from '$app/paths';

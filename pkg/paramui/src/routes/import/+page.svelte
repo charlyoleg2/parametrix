@@ -3,7 +3,7 @@
 	import { checkImpPages } from 'geometrix';
 	//import type { ComponentType } from 'svelte';
 	import { OneDesign } from 'geomui';
-	import { allLink } from '$lib/makeMenu';
+	import { allLink } from '$lib/makeMenu.js';
 
 	let step1 = $state(true);
 	let step2 = $state(false);

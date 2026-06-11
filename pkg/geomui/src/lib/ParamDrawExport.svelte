@@ -20,7 +20,7 @@
 	import InputParams from './InputParams.svelte';
 	import Drawing from './Drawing.svelte';
 	import SubDesign from './SubDesign.svelte';
-	import { getContentDownloadParams, downloadParams } from './downloadParams';
+	import { getContentDownloadParams, downloadParams } from './downloadParams.ts';
 	import { sParams } from './stateParams.svelte';
 	import { afterNavigate } from '$app/navigation';
 
