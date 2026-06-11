@@ -18,10 +18,10 @@ import {
 	version_details,
 	checkImpPages
 } from 'geometrix';
-import { geom_write, writeParams, readParams } from './geom_write';
+import { geom_write, writeParams, readParams } from './geom_write.ts';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
-//import { version } from '../package.json';
+//import { version } from '../package.json' with { type: "json" };
 
 function print_version_details(appPackage: tPackage) {
 	const strList = version_details(appPackage);

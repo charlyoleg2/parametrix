@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { geom_cli } from './index';
+import { geom_cli } from './index.ts';
 import type { tAllPageDef } from 'geometrix';
 
 import { heliostatDef, swingDef } from 'designix';

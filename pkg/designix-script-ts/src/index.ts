@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 // designix-script-ts index.ts
 
-import { make_heliostat_2 } from './make_heliostat_2';
-import { make_pole_static } from './make_pole_static';
-import { make_rake_stopper } from './make_rake_stopper';
-import { make_swing } from './make_swing';
-import { make_surface } from './make_surface';
+import { make_heliostat_2 } from './make_heliostat_2.ts';
+import { make_pole_static } from './make_pole_static.ts';
+import { make_rake_stopper } from './make_rake_stopper.ts';
+import { make_swing } from './make_swing.ts';
+import { make_surface } from './make_surface.ts';
 
 //const outDir = ''; // empty outDir means don't write file
 const outDir = 'output';

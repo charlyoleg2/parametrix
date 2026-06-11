@@ -4,7 +4,7 @@ import type { tGeom } from 'geometrix';
 import { EFormat, designParam, checkGeom, prefixLog } from 'geometrix';
 import { geom_write } from 'geomcli';
 import { poleStaticDef } from 'designix';
-import { make_heliostat_2 } from './make_heliostat_2';
+import { make_heliostat_2 } from './make_heliostat_2.ts';
 
 const simtime = 0;
 
