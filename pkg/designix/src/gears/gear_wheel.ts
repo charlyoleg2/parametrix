@@ -15,8 +15,8 @@ import {
 	EExtrude,
 	EBVolume
 } from 'geometrix';
-import * as gwHelper from './gearWheelProfile';
-import * as welem from './wheelElements';
+import * as gwHelper from './gearWheelProfile.ts';
+import * as welem from './wheelElements.ts';
 
 const pDef: tParamDef = {
 	partName: 'gear_wheel',

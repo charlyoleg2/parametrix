@@ -1,6 +1,6 @@
 import { describe, it, expect, expectTypeOf } from 'vitest';
 //import type { tContour } from 'geometrix';
-import * as welem from './wheelElements';
+import * as welem from './wheelElements.ts';
 
 describe('wheelElements module', () => {
 	it('axisTorque', () => {

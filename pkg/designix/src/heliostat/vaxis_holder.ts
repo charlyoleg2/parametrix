@@ -30,7 +30,7 @@ import {
 	EBVolume
 } from 'geometrix';
 
-import { ctrHolderPetal } from './common_spring_and_petal'; // externalized contour
+import { ctrHolderPetal } from './common_spring_and_petal.ts'; // externalized contour
 
 const pDef: tParamDef = {
 	// partName is used in URL. Choose a name without slash, backslash and space.

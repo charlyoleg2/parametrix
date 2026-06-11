@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { involute } from './involute';
+import { involute } from './involute.ts';
 
 function degToRad(deg: number): number {
 	return (deg / 180) * Math.PI;

@@ -29,10 +29,10 @@ import {
 } from 'geometrix';
 
 // design import
-import { poleStaticDef } from './pole_static';
-import { rakeDef } from './rake';
-import { spiderDef } from './spider';
-import { swingDef } from './swing';
+import { poleStaticDef } from './pole_static.ts';
+import { rakeDef } from './rake.ts';
+import { spiderDef } from './spider.ts';
+import { swingDef } from './swing.ts';
 
 const pDef: tParamDef = {
 	// partName is used in URL. Choose a name without slash, backslash and space.

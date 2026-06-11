@@ -35,7 +35,7 @@ import {
 	EBVolume
 } from 'geometrix';
 
-import { ctrGuidanceOuter, ctrGuidanceInner } from './common_spring_and_petal'; // externalized contour
+import { ctrGuidanceOuter, ctrGuidanceInner } from './common_spring_and_petal.ts'; // externalized contour
 
 // step-2 : definition of the parameters and more (part-name, svg associated to each parameter, simulation parameters)
 const pDef: tParamDef = {

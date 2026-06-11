@@ -15,8 +15,8 @@ import {
 	roundZero,
 	ffix
 } from 'geometrix';
-import type { Involute } from './involute';
-import { involute } from './involute';
+import type { Involute } from './involute.ts';
+import { involute } from './involute.ts';
 
 class GearWheelProfile {
 	mod = 1;

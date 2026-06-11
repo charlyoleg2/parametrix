@@ -33,7 +33,7 @@ import {
 } from 'geometrix';
 
 // design import
-import { vaxisHolderDef } from './vaxis_holder';
+import { vaxisHolderDef } from './vaxis_holder.ts';
 
 const pDef: tParamDef = {
 	// partName is used in URL. Choose a name without slash, backslash and space.

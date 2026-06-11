@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import * as gwHelper from './gearWheelProfile';
+import * as gwHelper from './gearWheelProfile.ts';
 
 function degToRad(deg: number): number {
 	return (deg / 180) * Math.PI;
