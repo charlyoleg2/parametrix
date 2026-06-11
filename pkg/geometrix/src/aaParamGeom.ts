@@ -1,9 +1,9 @@
 // aaParamGeom.ts
 
-import type { tParamDef, tParamVal } from './designParams';
-import type { tFigures } from './figure';
-import type { tVolume } from './volume';
-import type { tSubDesign } from './sub_design';
+import type { tParamDef, tParamVal } from './designParams.ts';
+import type { tFigures } from './figure.ts';
+import type { tVolume } from './volume.ts';
+import type { tSubDesign } from './sub_design.ts';
 
 interface tGeom {
 	partName: string;

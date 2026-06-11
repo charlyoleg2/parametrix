@@ -3,8 +3,8 @@
 // contour.ts depends on point.ts, line.ts, vector.ts and segment.ts
 // contour.ts is used by figure.ts
 
-import type { tCanvasAdjust } from './canvas_utils';
-//import type { tPolar } from './point';
+import type { tCanvasAdjust } from './canvas_utils.ts';
+//import type { tPolar } from './point.ts';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import {
 	//degToRad,
@@ -15,8 +15,8 @@ import {
 	//withinZeroPi,
 	//withinHPiHPi,
 	ffix
-} from './angle_utils';
-import { colors, point2canvas, radius2canvas } from './canvas_utils';
+} from './angle_utils.ts';
+import { colors, point2canvas, radius2canvas } from './canvas_utils.ts';
 //import {
 //	//rightTriLaFromLbLc,
 //	rightTriLbFromLaLc
@@ -25,17 +25,17 @@ import { colors, point2canvas, radius2canvas } from './canvas_utils';
 //	//aCFromAaAb,
 //	//lbFromLaAaAb,
 //	//aBFromLaLbAa
-//} from './triangle_utils';
-import { point, Point } from './point';
-import { line, Line, bisector, circleCenter } from './line';
-//import { vector, Vector } from './vector';
-import * as segLib from './segment';
-import { svgPath, svgCircleString } from './write_svg';
-import type { DxfSeg } from './write_dxf';
-import { dxfSegLine, dxfSegArc, dxfSegCircle } from './write_dxf';
-import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './prepare_pax';
-import { paxPath, paxCircle } from './prepare_pax';
-import type { tEnvelop } from './envelop';
+//} from './triangle_utils.ts';
+import { point, Point } from './point.ts';
+import { line, Line, bisector, circleCenter } from './line.ts';
+//import { vector, Vector } from './vector.ts';
+import * as segLib from './segment.ts';
+import { svgPath, svgCircleString } from './write_svg.ts';
+import type { DxfSeg } from './write_dxf.ts';
+import { dxfSegLine, dxfSegArc, dxfSegCircle } from './write_dxf.ts';
+import type { tPaxContourPath, tPaxContourCircle, tPaxContour } from './prepare_pax.ts';
+import { paxPath, paxCircle } from './prepare_pax.ts';
+import type { tEnvelop } from './envelop.ts';
 
 /* AContour abstract class */
 

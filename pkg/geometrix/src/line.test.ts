@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { Line, line, bisector, circleCenter } from './line';
-import { point } from './point';
-import { degToRad } from './angle_utils';
+import { Line, line, bisector, circleCenter } from './line.ts';
+import { point } from './point.ts';
+import { degToRad } from './angle_utils.ts';
 
 describe('line module', () => {
 	const l1 = new Line(10, 10, Math.PI / 4);

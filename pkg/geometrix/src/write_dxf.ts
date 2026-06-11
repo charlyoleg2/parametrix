@@ -1,6 +1,6 @@
 // write_dxf.ts
 
-import { radToDeg, withinZero2Pi } from './angle_utils';
+import { radToDeg, withinZero2Pi } from './angle_utils.ts';
 
 // floating precision for dxf export
 function ff(ifloat: number): string {

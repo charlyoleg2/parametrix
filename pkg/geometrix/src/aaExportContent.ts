@@ -1,20 +1,20 @@
 // aaExportContent.ts
 
-import type { tParamDef, tParamVal } from './designParams';
-import type { tGeom } from './aaParamGeom';
-import { colors } from './canvas_utils';
-import { Point, point, pointMinMax } from './point';
-import type { tContour } from './contour';
-import type { Figure } from './figure';
-import { mergeFaces } from './figure';
-import type { SvgWriter } from './write_svg';
-import { zeroPDef } from './designParams';
-import { svgWriter } from './write_svg';
-import { dxfWriter } from './write_dxf';
-import { paxWrite } from './write_pax';
-import { oscadWrite } from './write_openscad';
-import { ojscadWrite } from './write_openjscad';
-import { freecadWrite } from './write_freecad';
+import type { tParamDef, tParamVal } from './designParams.ts';
+import type { tGeom } from './aaParamGeom.ts';
+import { colors } from './canvas_utils.ts';
+import { Point, point, pointMinMax } from './point.ts';
+import type { tContour } from './contour.ts';
+import type { Figure } from './figure.ts';
+import { mergeFaces } from './figure.ts';
+import type { SvgWriter } from './write_svg.ts';
+import { zeroPDef } from './designParams.ts';
+import { svgWriter } from './write_svg.ts';
+import { dxfWriter } from './write_dxf.ts';
+import { paxWrite } from './write_pax.ts';
+import { oscadWrite } from './write_openscad.ts';
+import { ojscadWrite } from './write_openjscad.ts';
+import { freecadWrite } from './write_freecad.ts';
 import * as zip from '@zip.js/zip.js';
 
 // SVG

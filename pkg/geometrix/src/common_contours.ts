@@ -1,8 +1,8 @@
 // common_contours.ts
 // Some common contour functions that are needed in many designs
 
-import type { tContour } from './contour';
-import { contour } from './contour';
+import type { tContour } from './contour.ts';
+import { contour } from './contour.ts';
 
 /**
  * The rectangle-origin is bottom-left.

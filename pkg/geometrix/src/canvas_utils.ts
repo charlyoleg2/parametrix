@@ -2,7 +2,7 @@
 // helper interfaces and functions to work with HtmlCanvas
 // used by point.ts, line.ts, vector.ts, contour.ts and figure.ts
 
-import { roundZero } from './angle_utils';
+import { roundZero } from './angle_utils.ts';
 
 /**
  * This object defines the colors to be used in the UI

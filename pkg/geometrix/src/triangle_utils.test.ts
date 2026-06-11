@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-//import { roundZero } from './angle_utils';
+//import { roundZero } from './angle_utils.ts';
 import {
 	rightTriLaFromLbLc,
 	rightTriLbFromLaLc,
@@ -8,7 +8,7 @@ import {
 	aCFromAaAb,
 	lbFromLaAaAb,
 	aBFromLaLbAa
-} from './triangle_utils';
+} from './triangle_utils.ts';
 
 describe('triangle suit', () => {
 	it('right triangle hypothenuse 1', () => {

@@ -1,6 +1,6 @@
 // dynamicImport.ts
 
-import type { tAllPageDef } from './aaParamGeom';
+import type { tAllPageDef } from './aaParamGeom.ts';
 
 function checkImpPages(pages: tAllPageDef): [boolean, string] {
 	let rMsg = '';

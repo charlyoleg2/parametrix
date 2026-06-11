@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { point } from './point';
-import { contour, contourCircle } from './contour';
+import { point } from './point.ts';
+import { contour, contourCircle } from './contour.ts';
 
 describe('Contour suit', () => {
 	const ctr1 = contour(10, 10);

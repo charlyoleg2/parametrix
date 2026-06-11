@@ -1,6 +1,6 @@
 // volume.ts
 
-import type { tGeom } from './aaParamGeom';
+import type { tGeom } from './aaParamGeom.ts';
 
 interface tInherit {
 	outName: string;

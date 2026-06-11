@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-//import type { tPolar } from './point';
-import { Point, point } from './point';
+//import type { tPolar } from './point.ts';
+import { Point, point } from './point.ts';
 
 describe('point module', () => {
 	const p1 = new Point(5, 5);

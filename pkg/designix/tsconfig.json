@@ -1,15 +1,14 @@
 {
 	"compilerOptions": {
 		"ignoreDeprecations": "6.0",
-		"target": "esnext",
-		"module": "esnext",
-		"outDir": "./dist",
-		"esModuleInterop": true,
-		"moduleResolution": "bundler",
+		"rewriteRelativeImportExtensions": true,
 		"declaration": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		"outDir": "./dist",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext"
 	},
 	"include": ["./src"]
 }

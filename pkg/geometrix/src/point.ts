@@ -2,10 +2,10 @@
 // point.ts deals with points
 // point.ts depends on canvas_utils.ts
 
-import type { tCanvasAdjust } from './canvas_utils';
+import type { tCanvasAdjust } from './canvas_utils.ts';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colors, point2canvas } from './canvas_utils';
-import { roundZero, withinPiPi } from './angle_utils';
+import { colors, point2canvas } from './canvas_utils.ts';
+import { roundZero, withinPiPi } from './angle_utils.ts';
 
 type tPolar = [number, number]; // angle, distance
 enum ShapePoint {

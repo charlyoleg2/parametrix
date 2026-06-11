@@ -1,6 +1,6 @@
 // sub_design.ts
 
-import type { tDesignParamList } from './designParams';
+import type { tDesignParamList } from './designParams.ts';
 
 type tPosiOrien = [number, number, number];
 

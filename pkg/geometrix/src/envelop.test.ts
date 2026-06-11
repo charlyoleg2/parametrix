@@ -1,7 +1,7 @@
 // envelop.test.ts
 import { describe, it, expect } from 'vitest';
-import type { tEnvelop } from './envelop';
-import { envelop } from './envelop';
+import type { tEnvelop } from './envelop.ts';
+import { envelop } from './envelop.ts';
 
 describe('Envelop suit 1', () => {
 	const e1: tEnvelop = { xMin: -10, xMax: 30, yMin: 5, yMax: 25, orientation: true };

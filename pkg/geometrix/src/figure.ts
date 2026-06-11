@@ -3,16 +3,16 @@
 // figure.ts deals with points, lines, vectors, contours
 // figure.ts gather all other modules of geom
 
-import type { tCanvasAdjust } from './canvas_utils';
+import type { tCanvasAdjust } from './canvas_utils.ts';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colors, adjustZero, adjustInit } from './canvas_utils';
-//import { withinZero2Pi, withinPiPi, degToRad, radToDeg, roundZero, ffix } from './angle_utils';
-//import { lcFromLaLbAc, aCFromLaLbLc, lbFromLaAaAb, aBFromLaLbAa } from './triangle_utils';
-import { ShapePoint, Point, point, pointMinMax } from './point';
-import { Line } from './line';
-import { Vector } from './vector';
-import type { tContour } from './contour';
-//import { contour, contourCircle } from './contour';
+import { colors, adjustZero, adjustInit } from './canvas_utils.ts';
+//import { withinZero2Pi, withinPiPi, degToRad, radToDeg, roundZero, ffix } from './angle_utils.ts';
+//import { lcFromLaLbAc, aCFromLaLbLc, lbFromLaAaAb, aBFromLaLbAa } from './triangle_utils.ts';
+import { ShapePoint, Point, point, pointMinMax } from './point.ts';
+import { Line } from './line.ts';
+import { Vector } from './vector.ts';
+import type { tContour } from './contour.ts';
+//import { contour, contourCircle } from './contour.ts';
 
 interface tLayers {
 	points: boolean;

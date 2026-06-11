@@ -1,9 +1,9 @@
 // write_freecad.ts
 
-//import type { tContour } from './contour';
-//import type { tOuterInner } from './figure';
-//import * as segLib from './segment';
-import { midArcPoint } from './contour';
+//import type { tContour } from './contour.ts';
+//import type { tOuterInner } from './figure.ts';
+//import * as segLib from './segment.ts';
+import { midArcPoint } from './contour.ts';
 import type {
 	//tPaxContour,
 	tPaxFace,
@@ -11,18 +11,18 @@ import type {
 	tPaxContourPath,
 	tPaxSeg,
 	tPaxSegArc
-} from './prepare_pax';
-import { PSeg } from './prepare_pax';
-import type { tPaxFigures, tPaxJson } from './write_pax';
-import { convPaxToSeg1, paxWrite } from './write_pax';
-import { zeroPDef } from './designParams';
-import type { tGeom } from './aaParamGeom';
-import type { tVolume, tInherit, tExtrude, tBVolume } from './volume';
-import { EExtrude, EBVolume } from './volume';
-//import { withinZero2Pi, radToDeg } from './angle_utils';
-import { radToDeg } from './angle_utils';
-//import type { tAtsPoints } from './arc_to_stroke';
-//import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke';
+} from './prepare_pax.ts';
+import { PSeg } from './prepare_pax.ts';
+import type { tPaxFigures, tPaxJson } from './write_pax.ts';
+import { convPaxToSeg1, paxWrite } from './write_pax.ts';
+import { zeroPDef } from './designParams.ts';
+import type { tGeom } from './aaParamGeom.ts';
+import type { tVolume, tInherit, tExtrude, tBVolume } from './volume.ts';
+import { EExtrude, EBVolume } from './volume.ts';
+//import { withinZero2Pi, radToDeg } from './angle_utils.ts';
+import { radToDeg } from './angle_utils.ts';
+//import type { tAtsPoints } from './arc_to_stroke.ts';
+//import { circle_to_stroke, arc_to_stroke } from './arc_to_stroke.ts';
 
 // format floating for export precision
 function ff(ifloat: number): string {

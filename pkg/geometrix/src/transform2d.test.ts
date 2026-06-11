@@ -1,8 +1,8 @@
 // transform2d.test.ts
 
 import { describe, it, expect } from 'vitest';
-import type { tVec2 } from './transform2d';
-import { transform2d } from './transform2d';
+import type { tVec2 } from './transform2d.ts';
+import { transform2d } from './transform2d.ts';
 
 describe('Transform-2D suit', () => {
 	it('simple transform', () => {

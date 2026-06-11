@@ -3,8 +3,8 @@
 // segment.ts depends on point.ts, line.ts and vector.ts
 // segment.ts is used by contour.ts
 
-//import type { tCanvasAdjust } from './canvas_utils';
-//import type { tPolar } from './point';
+//import type { tCanvasAdjust } from './canvas_utils.ts';
+//import type { tPolar } from './point.ts';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
 import {
 	tolerance,
@@ -17,8 +17,8 @@ import {
 	//withinHPiHPi,
 	isWithin,
 	ffix
-} from './angle_utils';
-//import { colors, point2canvas, radius2canvas } from './canvas_utils';
+} from './angle_utils.ts';
+//import { colors, point2canvas, radius2canvas } from './canvas_utils.ts';
 import {
 	//rightTriLaFromLbLc,
 	rightTriLbFromLaLc,
@@ -27,11 +27,11 @@ import {
 	//aCFromAaAb,
 	//lbFromLaAaAb,
 	//aBFromLaLbAa
-} from './triangle_utils';
-import { ShapePoint, point, Point } from './point';
-//import { line, linePP, bisector, circleCenter } from './line';
-import { line, linePP, Line } from './line';
-//import { vector, Vector } from './vector';
+} from './triangle_utils.ts';
+import { ShapePoint, point, Point } from './point.ts';
+//import { line, linePP, bisector, circleCenter } from './line.ts';
+import { line, linePP, Line } from './line.ts';
+//import { vector, Vector } from './vector.ts';
 
 enum SegEnum {
 	eStroke,

@@ -8,7 +8,7 @@ import {
 	withinZeroPi,
 	withinHPiHPi,
 	pointCoord
-} from './angle_utils';
+} from './angle_utils.ts';
 
 describe('angle suit', () => {
 	it('radian to degree', () => {

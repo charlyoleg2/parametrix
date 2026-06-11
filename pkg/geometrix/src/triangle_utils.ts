@@ -2,8 +2,8 @@
 // some functions around triangle
 // triangle_utils.ts dependences on angle_utils.ts
 
-//import { degToRad, radToDeg, roundZero, withinZero2Pi, withinPiPi, withinZeroPi, withinHPiHPi } from './angle_utils';
-import { roundZero, withinZeroPi, withinPiPi } from './angle_utils';
+//import { degToRad, radToDeg, roundZero, withinZero2Pi, withinPiPi, withinZeroPi, withinHPiHPi } from './angle_utils.ts';
+import { roundZero, withinZeroPi, withinPiPi } from './angle_utils.ts';
 
 /* right triangle
  *	sides: la [hypothenuse], lb, lc

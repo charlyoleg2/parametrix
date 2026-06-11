@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-//import type { tPolar } from './point';
-import { point } from './point';
-//import type { tCartesian } from './vector';
-import { vector } from './vector';
-import { degToRad } from './angle_utils';
+//import type { tPolar } from './point.ts';
+import { point } from './point.ts';
+//import type { tCartesian } from './vector.ts';
+import { vector } from './vector.ts';
+import { degToRad } from './angle_utils.ts';
 
 describe('vector module', () => {
 	const p1 = point(50, 50);

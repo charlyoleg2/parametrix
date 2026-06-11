@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { degToRad, radToDeg, roundZero } from './angle_utils';
-import { point } from './point';
+import { degToRad, radToDeg, roundZero } from './angle_utils.ts';
+import { point } from './point.ts';
 
 describe('angle suit', () => {
 	it('radian to degree', () => {

@@ -3,9 +3,9 @@
 // vector.ts depends on canvas_utils.ts, angle_utils.ts, points.ts and line.ts
 // vector.ts id used by figure.ts
 
-import type { tCanvasAdjust } from './canvas_utils';
+import type { tCanvasAdjust } from './canvas_utils.ts';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colors, point2canvas, canvasTranslatePolar } from './canvas_utils';
+import { colors, point2canvas, canvasTranslatePolar } from './canvas_utils.ts';
 import {
 	//degToRad,
 	//radToDeg,
@@ -14,7 +14,7 @@ import {
 	withinPiPi
 	//withinZeroPi,
 	//withinHPiHPi
-} from './angle_utils';
+} from './angle_utils.ts';
 //import {
 //rightTriLaFromLbLc,
 //rightTriLbFromLaLc,
@@ -23,9 +23,9 @@ import {
 //aCFromAaAb,
 //lbFromLaAaAb,
 //aBFromLaLbAa
-//} from './triangle_utils';
-//import type { tPolar } from './point';
-import type { Point } from './point';
+//} from './triangle_utils.ts';
+//import type { tPolar } from './point.ts';
+import type { Point } from './point.ts';
 
 type tCartesian = [number, number]; // angle, distance
 

@@ -1,14 +1,14 @@
 // write_pax.ts
 
-import * as segLib from './segment';
-import type { tOuterInner, tFigures } from './figure';
-import type { tVolume } from './volume';
-import type { tSubDesign } from './sub_design';
-import type { tParamDef, tParamVal } from './designParams';
-import type { tGeom } from './aaParamGeom';
-import type { tPaxFace, tPaxSegArc } from './prepare_pax';
-import { PSeg } from './prepare_pax';
-//import type { tContour } from './contour';
+import * as segLib from './segment.ts';
+import type { tOuterInner, tFigures } from './figure.ts';
+import type { tVolume } from './volume.ts';
+import type { tSubDesign } from './sub_design.ts';
+import type { tParamDef, tParamVal } from './designParams.ts';
+import type { tGeom } from './aaParamGeom.ts';
+import type { tPaxFace, tPaxSegArc } from './prepare_pax.ts';
+import { PSeg } from './prepare_pax.ts';
+//import type { tContour } from './contour.ts';
 
 type tPaxFigures = Record<string, tPaxFace[]>;
 interface tPaxJson {

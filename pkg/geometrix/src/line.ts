@@ -2,10 +2,10 @@
 // line.ts deals with lines
 // line.ts depends on angle_utils.ts, triangle_utils.ts and point.ts
 
-import type { tCanvasAdjust } from './canvas_utils';
-//import type { tPolar } from './point';
+import type { tCanvasAdjust } from './canvas_utils.ts';
+//import type { tPolar } from './point.ts';
 //import { colorCanvasPoint } from '$lib/style/colors.scss';
-import { colors, point2canvas } from './canvas_utils';
+import { colors, point2canvas } from './canvas_utils.ts';
 import {
 	//degToRad,
 	//radToDeg,
@@ -14,7 +14,7 @@ import {
 	withinPiPi,
 	withinZeroPi,
 	withinHPiHPi
-} from './angle_utils';
+} from './angle_utils.ts';
 import {
 	//rightTriLaFromLbLc,
 	//rightTriLbFromLaLc,
@@ -23,8 +23,8 @@ import {
 	//aCFromAaAb
 	lbFromLaAaAb
 	//aBFromLaLbAa
-} from './triangle_utils';
-import { point, Point } from './point';
+} from './triangle_utils.ts';
+import { point, Point } from './point.ts';
 
 interface tAffine {
 	quasiVertical: boolean;

@@ -1,6 +1,6 @@
 // arc_to_stroke.ts
 
-import { orientedArc } from './angle_utils';
+import { orientedArc } from './angle_utils.ts';
 
 type tAtsPoints = [number, number][];
 

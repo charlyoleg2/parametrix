@@ -1,6 +1,6 @@
 // paramFile.ts
 
-import type { tParamVal } from './designParams';
+import type { tParamVal } from './designParams.ts';
 import JSON5 from 'json5';
 
 interface tParamValInFile {

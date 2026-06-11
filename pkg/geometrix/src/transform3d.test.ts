@@ -1,8 +1,8 @@
 // transform3d.test.ts
 
 import { describe, it, expect } from 'vitest';
-import type { tVec3 } from './transform3d';
-import { transform3d } from './transform3d';
+import type { tVec3 } from './transform3d.ts';
+import { transform3d } from './transform3d.ts';
 
 describe('Transform-3D suit', () => {
 	it('simple transform', () => {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-//import { point } from './point';
-import * as segLib from './segment';
+//import { point } from './point.ts';
+import * as segLib from './segment.ts';
 
 describe('Segment type suit', () => {
 	it('isSeg', () => {

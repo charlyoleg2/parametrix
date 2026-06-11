@@ -1,7 +1,7 @@
 // aaExportFile.ts
 
-import type { tParamDef, tParamVal } from './designParams';
-import type { tGeomFunc } from './aaParamGeom';
+import type { tParamDef, tParamVal } from './designParams.ts';
+import type { tGeomFunc } from './aaParamGeom.ts';
 import {
 	figureToSvg,
 	figureToDxf,
@@ -11,8 +11,8 @@ import {
 	makeOpenjscad,
 	makeFreecad,
 	makeZip
-} from './aaExportContent';
-import { mergeFaces } from './figure';
+} from './aaExportContent.ts';
+import { mergeFaces } from './figure.ts';
 
 enum EFormat {
 	eSVG,

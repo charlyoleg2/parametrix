@@ -10,7 +10,7 @@ import {
 	//adjustRect,
 	//adjustScale,
 	//adjustTranslate
-} from './canvas_utils';
+} from './canvas_utils.ts';
 
 const cAdjust = adjustInit(0, 200, 0, 200, 200, 200);
 
