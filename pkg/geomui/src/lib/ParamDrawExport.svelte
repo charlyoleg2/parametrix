@@ -214,8 +214,7 @@
 		wrap="soft"
 		value={logValue}
 		class:colorErr={calcErr}
-		class:colorWarn={calcWarn}
-	></textarea>
+		class:colorWarn={calcWarn}></textarea>
 </section>
 <section>
 	<h2>

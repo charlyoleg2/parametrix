@@ -338,8 +338,7 @@
 			readonly
 			wrap="soft"
 			value={loadMsg}
-			class:colorWarn={applyWarn}
-		></textarea>
+			class:colorWarn={applyWarn}></textarea>
 		<table>
 			<thead>
 				<tr>
