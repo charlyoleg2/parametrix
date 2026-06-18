@@ -72,33 +72,33 @@
 		"svelte": "^5.19.0"
 	},
 	"dependencies": {
-		"geometrix": "^1.0.34"
+		"geometrix": "^1.0.36"
 	},
 	"devDependencies": {
 		"@atao60/fse-cli": "^0.1.9",
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/adapter-static": "^3.0.10",
-		"@sveltejs/kit": "^2.65.0",
+		"@sveltejs/kit": "^2.66.0",
 		"@sveltejs/package": "^2.5.8",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@types/eslint": "^9.6.1",
-		"designix": "^1.0.34",
-		"eslint": "^10.4.1",
+		"designix": "^1.0.36",
+		"eslint": "^10.5.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.19.0",
 		"globals": "^17.6.0",
 		"jsr": "^0.14.3",
-		"npm-run-all2": "^9.0.1",
+		"npm-run-all2": "^9.0.2",
 		"prettier": "^3.8.4",
-		"prettier-plugin-svelte": "^4.1.0",
+		"prettier-plugin-svelte": "^4.1.1",
 		"publint": "^0.3.21",
 		"rimraf": "^6.1.3",
-		"sass": "^1.100.0",
+		"sass": "^1.101.0",
 		"svelte": "^5.56.3",
 		"svelte-check": "^4.6.0",
 		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.61.0",
+		"typescript-eslint": "^8.61.1",
 		"vite": "^8.0.16",
-		"vitest": "^4.1.8"
+		"vitest": "^4.1.9"
 	}
 }
