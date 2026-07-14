@@ -73,7 +73,7 @@
 		"@atao60/fse-cli": "^0.1.9",
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/adapter-static": "^3.0.10",
-		"@sveltejs/kit": "^2.69.2",
+		"@sveltejs/kit": "^2.69.3",
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@types/eslint": "^9.6.1",
 		"chart.js": "^4.5.1",
@@ -88,11 +88,11 @@
 		"prettier-plugin-svelte": "^4.1.1",
 		"rimraf": "^6.1.3",
 		"sass": "^1.101.0",
-		"svelte": "^5.56.4",
+		"svelte": "^5.56.5",
 		"svelte-check": "^4.7.2",
 		"svgo": "^4.0.2",
 		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.63.0",
+		"typescript-eslint": "^8.64.0",
 		"vite": "^8.1.4",
 		"vitest": "^4.1.10"
 	}
