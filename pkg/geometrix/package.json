@@ -64,7 +64,7 @@
 		"clean": "rimraf dist node_modules"
 	},
 	"dependencies": {
-		"@zip.js/zip.js": "^2.8.30",
+		"@zip.js/zip.js": "^2.8.31",
 		"json5": "^2.2.3"
 	},
 	"devDependencies": {
