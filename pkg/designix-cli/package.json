@@ -76,9 +76,9 @@
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@types/eslint__js": "^8.42.3",
-		"@types/node": "^26.1.2",
+		"@types/node": "^26.2.0",
 		"bats": "^1.13.0",
-		"eslint": "^10.8.0",
+		"eslint": "^10.8.1",
 		"eslint-config-prettier": "^10.1.8",
 		"jsr": "^0.14.3",
 		"npm-run-all2": "^9.0.3",
