@@ -64,13 +64,13 @@
 		"clean": "rimraf dist node_modules"
 	},
 	"dependencies": {
-		"@zip.js/zip.js": "^2.13.1",
+		"@zip.js/zip.js": "^2.14.0",
 		"json5": "^2.2.3"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@types/eslint__js": "^8.42.3",
-		"@types/node": "^26.5.0",
+		"@types/node": "^26.5.1",
 		"eslint": "^10.10.0",
 		"eslint-config-prettier": "^10.1.8",
 		"jsr": "^0.14.3",
