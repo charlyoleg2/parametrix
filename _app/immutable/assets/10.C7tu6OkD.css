@@ -1,0 +1,1 @@
+h2.svelte-1jd350e{counter-reset:h3count}h3.svelte-1jd350e:before{counter-increment:h3count;content:counter(h3count) "- "}
