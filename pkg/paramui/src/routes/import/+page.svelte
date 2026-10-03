@@ -79,7 +79,7 @@
 	<h3>Load a javascript-geometrix-design-library-file</h3>
 	<p>
 		To generate the javascript embedding its dependencies, use:<br /><code
-			>npx esbuild src/myGroup1/myPartA.ts --bundle --format=esm --outfile=dist2/myPartA.js</code
+			>npx rolldown src/myGroup1/myPartA.ts -f esm -o dist2/myPartA.js</code
 		>
 	</p>
 	<label for="loadDLib" class="fileUpload">Load design-file</label>
