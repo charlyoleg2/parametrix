@@ -2,9 +2,9 @@
 	import { asset } from '$app/paths';
 </script>
 
-<img src={asset('/favicon.svg')} alt="Parametrix's logo" />
-<img src={asset('/favicon.svg')} alt="Parametrix's logo" />
-<img src={asset('/favicon.svg')} alt="Parametrix's logo" />
+<img src={asset('favicon.svg')} alt="Parametrix's logo" />
+<img src={asset('favicon.svg')} alt="Parametrix's logo" />
+<img src={asset('favicon.svg')} alt="Parametrix's logo" />
 
 <style lang="scss">
 	img {

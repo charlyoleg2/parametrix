@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Garland from '$lib/Garland.svelte';
+	import Garland from '#lib/Garland.svelte';
 </script>
 
 <footer>
@@ -88,7 +88,7 @@
 </footer>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../lib/style/colors.scss';
 
 	footer {
 		background-color: colors.$footer-bg;

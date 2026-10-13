@@ -50,6 +50,7 @@
 			torusLengthM / (permeability * mu0 * areaLM) +
 			pHM / (mu0 * areaLM) +
 			airgapGM / (mu0 * areaAirM + permeaG * mu0 * areaShuttleM);
+
 		return reluct;
 	}
 	function fShuttleMagFlux(posX: number, pHM: number): number {
@@ -86,6 +87,7 @@
 			(magFieldL ** 2 * pHM * areaLM) / (2 * mu0) +
 			(magFieldG1 ** 2 * airgapGM * areaAirM) / (2 * mu0) +
 			(magFieldG2 ** 2 * airgapGM * areaShuttleM) / (2 * permeaG * mu0);
+
 		return magEm;
 	}
 	function fShuttleInductance(posX: number, pHM: number): number {
@@ -344,40 +346,71 @@
 <article class="splitable">
 	<h4>Definitions:</h4>
 	<ul>
-		<li>{@html math('\\mathcal{F}')} : magnetomotive force (unit: {@html math('A')})</li>
 		<li>
-			{@html math('\\varPhi')} : magnetic flux (unit: {@html math('Wb')} or {@html math(
-				'H.A'
-			)} or {@html math('kg.m^2.s^{-2}.A^{-1}')})
+			{@html math('\\mathcal{F}')}
+			: magnetomotive force (unit:
+			{@html math('A')})
 		</li>
 		<li>
-			{@html math('\\mathcal{R}')} : reluctance (unit: {@html math('H^{-1}')} or {@html math(
-				'kg^{-1}.m^{-2}.s^2.A^2'
-			)})
+			{@html math('\\varPhi')}
+			: magnetic flux (unit:
+			{@html math('Wb')}
+			or
+			{@html math('H.A')}
+			or
+			{@html math('kg.m^2.s^{-2}.A^{-1}')})
 		</li>
-		<li>{@html math('N')} : number of wire loops</li>
-		<li>{@html math('i')} : electric current in one wire loops (unit: {@html math('A')})</li>
-		<li>{@html math('L')} : length of the magnetic circuit (unit: {@html math('m')})</li>
+
 		<li>
-			{@html math('S')} : area of a section of the magnetic circuit (unit: {@html math(
-				'm^2'
-			)})
+			{@html math('\\mathcal{R}')}
+			: reluctance (unit:
+			{@html math('H^{-1}')}
+			or
+			{@html math('kg^{-1}.m^{-2}.s^2.A^2')})
 		</li>
-		<li>{@html math('H')} : magnetizing field (unit: {@html math('A.m^{-1}')})</li>
+		<li>{@html math('N')}: number of wire loops</li>
 		<li>
-			{@html math('B')} : magnetic flux density (unit: {@html math('T')} or {@html math(
-				'kg.s^{-2}.A^{-1}'
-			)})
-		</li>
-		<li>
-			{@html math('\\mu')} : magnetic permeability (unit: {@html math('H.m^{-1}')} or {@html math(
-				'kg.m.s^{-2}.A^{-2}'
-			)})
+			{@html math('i')}
+			: electric current in one wire loops (unit:
+			{@html math('A')})
 		</li>
 		<li>
-			{@html math('\\mu_0')} : vacuum magnetic permeability : {@html math(
-				'\\mu_0 = 1.256 \\times 10^{-6} H.m^{-1}'
-			)}
+			{@html math('L')}
+			: length of the magnetic circuit (unit:
+			{@html math('m')})
+		</li>
+		<li>
+			{@html math('S')}
+			: area of a section of the magnetic circuit (unit:
+			{@html math('m^2')})
+		</li>
+
+		<li>
+			{@html math('H')}
+			: magnetizing field (unit:
+			{@html math('A.m^{-1}')})
+		</li>
+
+		<li>
+			{@html math('B')}
+			: magnetic flux density (unit:
+			{@html math('T')}
+			or
+			{@html math('kg.s^{-2}.A^{-1}')})
+		</li>
+
+		<li>
+			{@html math('\\mu')}
+			: magnetic permeability (unit:
+			{@html math('H.m^{-1}')}
+			or
+			{@html math('kg.m.s^{-2}.A^{-2}')})
+		</li>
+
+		<li>
+			{@html math('\\mu_0')}
+			: vacuum magnetic permeability :
+			{@html math('\\mu_0 = 1.256 \\times 10^{-6} H.m^{-1}')}
 		</li>
 	</ul>
 	<h4>Laws at macroscopic scale (from integral equations):</h4>
@@ -399,16 +432,21 @@
 				'kg.m^{-1}.s^{-2}'
 			)})
 		</li>
+
 		<li>
 			{@html math(
 				'u_m = \\frac{B H}{2} = \\frac{B^2}{2 \\mu} = \\frac{B^2}{2 \\mu_r \\mu_0}'
 			)}
 		</li>
+
 		<li>
-			{@html math('E_m')} : energy of a magnetic circuit (unit: {@html math('J')} or {@html math(
-				'kg.m^2.s^{-2}'
-			)})
+			{@html math('E_m')}
+			: energy of a magnetic circuit (unit:
+			{@html math('J')}
+			or
+			{@html math('kg.m^2.s^{-2}')})
 		</li>
+
 		<li>{@html math('E_m = \\int_V u_m')}</li>
 	</ul>
 	<h4>Electrical circuit:</h4>
@@ -434,12 +472,18 @@
 			if {@html math('\\mathcal{R}')} constant over time
 			<ul class="formula">
 				<li>{@html math('u = -\\frac{N^2}{\\mathcal{R}} \\frac{d i}{d t}')}</li>
-				<li>Let's define {@html math('\\mathcal{L} = \\frac{N^2}{\\mathcal{R}}')}</li>
+
+				<li>
+					Let's define
+					{@html math('\\mathcal{L} = \\frac{N^2}{\\mathcal{R}}')}
+				</li>
+
 				<li>
 					{@html math(
 						'\\mathcal{L} = \\frac{N^2}{\\mathcal{R}} = \\frac{N \\varPhi}{i} = \\frac{\\mu N^2 S}{L}'
 					)}
 				</li>
+
 				<li>{@html math('u = -\\mathcal{L} \\frac{d i}{d t}')}</li>
 				<li>{@html math('N \\varPhi = \\mathcal{L} i')}</li>
 				<li>
@@ -453,7 +497,8 @@
 </article>
 <h3>Regular torus</h3>
 <article class="splitable">
-	<img src={asset('/puisvg/regular_torus.svg')} alt="regular torus" />
+	<img src={asset('puisvg/regular_torus.svg')} alt="regular torus" />
+
 	<ul class="formula">
 		<li>{@html math('L = 2 \\pi R')} (length of the torus)</li>
 		<li>{@html math('\\mathcal{F} = N i')}</li>
@@ -638,7 +683,8 @@
 </article>
 <h3>Torus with swelling</h3>
 <article class="splitable">
-	<img src={asset('/puisvg/torus_with_swelling.svg')} alt="torus with swelling" />
+	<img src={asset('puisvg/torus_with_swelling.svg')} alt="torus with swelling" />
+
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
@@ -755,7 +801,8 @@
 </article>
 <h3>Torus with air gap</h3>
 <article class="splitable">
-	<img src={asset('/puisvg/torus_with_air_gap.svg')} alt="torus with air gap" />
+	<img src={asset('puisvg/torus_with_air_gap.svg')} alt="torus with air gap" />
+
 	<ul class="formula">
 		<li>{@html math('\\mathcal{F} = N i')}</li>
 		<li>
@@ -836,9 +883,10 @@
 </article>
 <h3>Torus with shuttle</h3>
 <article class="splitable">
-	<img src={asset('/puisvg/torus_with_shuttle.svg')} alt="torus with shuttle" />
+	<img src={asset('puisvg/torus_with_shuttle.svg')} alt="torus with shuttle" />
+
 	<img
-		src={asset('/puisvg/top_view_of_air_gap_and_shuttle.svg')}
+		src={asset('puisvg/top_view_of_air_gap_and_shuttle.svg')}
 		alt="top view of air gap and shuttle"
 	/>
 	<ul class="formula">
@@ -1013,7 +1061,7 @@
 <h3>Torus with realistic shuttle</h3>
 <article class="splitable">
 	<img
-		src={asset('/puisvg/torus_with_realistic_shuttle.svg')}
+		src={asset('puisvg/torus_with_realistic_shuttle.svg')}
 		alt="torus with a realistic shuttle"
 	/>
 	<ul class="formula">
@@ -1031,14 +1079,13 @@
 				<li>{@html math('\\mathcal{R}_H = \\frac{H}{ \\mu_0 A B}')}</li>
 			</ul>
 		</li>
-		<li>
-			{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}}')}
-		</li>
+
+		<li>{@html math('\\varPhi = \\frac{\\mathcal{F}}{\\mathcal{R}}')}</li>
+
 		<li>
 			<ul class="formula">
-				<li>
-					{@html math('B_L = B_H = \\frac{\\varPhi}{A B}')}
-				</li>
+				<li>{@html math('B_L = B_H = \\frac{\\varPhi}{A B}')}</li>
+
 				<li>
 					<!--
 					{@html math('B_{G1} = \\frac{\\varPhi}{x B}')}
@@ -1147,7 +1194,7 @@
 </article>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 	h1 {
 		margin: 1rem;

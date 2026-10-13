@@ -13,7 +13,7 @@
 </article>
 
 <style lang="scss">
-	/*@use '$lib/style/colors.scss';*/
+	/*@use './/style/colors.scss';*/
 	article {
 		margin: 1rem;
 	}

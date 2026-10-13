@@ -200,7 +200,7 @@ Internally, *Geom* consists of several modules organised with the following depe
 
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 	table {
 		border-collapse: collapse;

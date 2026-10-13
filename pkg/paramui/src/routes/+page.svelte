@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { apidocPath } from '$lib/menuList.js';
-	import { menuList2 } from '$lib/makeMenu.js';
+	import { apidocPath } from '#lib/menuList.js';
+	import { menuList2 } from '#lib/makeMenu.js';
 	import { resolve, asset } from '$app/paths';
 </script>
 
@@ -16,7 +16,7 @@
 				<li>
 					<img
 						class:alter={(listIdx + itemIdx) % 2 === 1}
-						src={asset(`/puisvg/${menuItem.svg}`)}
+						src={asset(`puisvg/${menuItem.svg}`)}
 						alt={menuItem.label}
 					/>
 					{#if menuCategory.category !== ''}
@@ -40,7 +40,7 @@
 </article>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../lib/style/colors.scss';
 
 	h1 {
 		margin: 1rem;

@@ -102,7 +102,7 @@ NodeJS-app reads/writes any file-path on the local machine. Use *npx* for such a
 
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 	h2, h3 {
 		margin-top: 5rem;

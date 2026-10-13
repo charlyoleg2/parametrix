@@ -267,6 +267,6 @@ A *javascript* design library can be distributed in several ways:
 
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 </style>

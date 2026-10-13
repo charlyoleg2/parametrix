@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MyHeader from './MyHeader.svelte';
-	import Navigat from '$lib/Navigat.svelte';
+	import Navigat from '#lib/Navigat.svelte';
 	import MyFooter from './MyFooter.svelte';
 	import type { Snippet } from 'svelte';
 
@@ -24,7 +24,7 @@
 <MyFooter />
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../lib/style/colors.scss';
 
 	:global(body) {
 		font-family: 'Courier New', 'Helvetica', 'Arial', 'Verdana';

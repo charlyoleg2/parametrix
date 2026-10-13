@@ -1,18 +1,17 @@
 <script lang="ts">
 	import { asset } from '$app/paths';
-	import Carousel from '$lib/Carousel.svelte';
-	import OneSlide from '$lib/OneSlide.svelte';
+	import Carousel from '#lib/Carousel.svelte';
+	import OneSlide from '#lib/OneSlide.svelte';
 </script>
 
 <h1>Presentation of Parametrix</h1>
 <Carousel>
 	<OneSlide>
-		<center
-			><img src={asset('/favicon.svg')} style="width: 9em;" alt="Parametrix logo" /></center
-		>
-		<div>
-			<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
-		</div>
+		<center>
+			<img src={asset('favicon.svg')} style="width: 9em;" alt="Parametrix logo" />
+		</center>
+
+		<div><pre style="font-size:2.5em; margin:0;">Parametrix</pre></div>
 	</OneSlide>
 	<OneSlide>
 		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
@@ -24,11 +23,11 @@
 	<OneSlide>
 		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
 		<pre style="font-size:2em; margin:1em;">CAD as code</pre>
-		<pre class="nomar">&gt; Git friendly</pre>
-		<pre class="nomar">&gt;&gt; traceability, history, versioning</pre>
-		<pre class="nomar">&gt;&gt; collaboration, sharing, backup</pre>
-		<pre class="nomar">&gt; CAD developed like software</pre>
-		<pre class="nomar">&gt;&gt; CI/CD</pre>
+		<pre class="nomar">> Git friendly</pre>
+		<pre class="nomar">>> traceability, history, versioning</pre>
+		<pre class="nomar">>> collaboration, sharing, backup</pre>
+		<pre class="nomar">> CAD developed like software</pre>
+		<pre class="nomar">>> CI/CD</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
@@ -59,7 +58,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src={asset('/puisvg/intro_workflow.svg')}
+			src={asset('puisvg/intro_workflow.svg')}
 			style="width: 28em;"
 			alt="The parametrix workflow"
 		/>
@@ -67,7 +66,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src={asset('/puisvg/prez_parametrix_condensed.svg')}
+			src={asset('puisvg/prez_parametrix_condensed.svg')}
 			style="width: 28em;"
 			alt="Parametrix described in condensed"
 		/>
@@ -75,7 +74,7 @@
 	</OneSlide>
 	<OneSlide>
 		<img
-			src={asset('/puisvg/intro_ecosystem.svg')}
+			src={asset('puisvg/intro_ecosystem.svg')}
 			style="width: 28em;"
 			alt="repositories and packages eco-system"
 		/>
@@ -83,14 +82,14 @@
 	</OneSlide>
 	<OneSlide>
 		<pre class="minititle">Parametrix</pre>
-		<pre style="font-size:1.2em;">A&gt; Look at the generated UI</pre>
-		<pre style="font-size:1.2em;">B&gt; Presentation of the API of Geometrix</pre>
-		<pre style="font-size:1.2em;">C&gt; Sample code of a design</pre>
+		<pre style="font-size:1.2em;">A> Look at the generated UI</pre>
+		<pre style="font-size:1.2em;">B> Presentation of the API of Geometrix</pre>
+		<pre style="font-size:1.2em;">C> Sample code of a design</pre>
 	</OneSlide>
 </Carousel>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 	h1 {
 		margin: 1rem;

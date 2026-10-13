@@ -3,7 +3,7 @@
 	import { checkImpPages } from 'geometrix';
 	//import type { ComponentType } from 'svelte';
 	import { OneDesign } from 'geomui';
-	import { allLink } from '$lib/makeMenu.js';
+	import { allLink } from '#lib/makeMenu.js';
 
 	let step1 = $state(true);
 	let step2 = $state(false);
@@ -107,7 +107,7 @@
 {/if}
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../lib/style/colors.scss';
 
 	h1 {
 		margin: 1rem;

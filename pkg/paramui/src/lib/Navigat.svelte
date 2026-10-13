@@ -6,8 +6,8 @@
 	import Navig from './Navig.svelte';
 
 	import { page } from '$app/state';
-	import { base } from '$app/paths';
-	let pagePath: string = $derived(checkPath(page.url.pathname.replace(base, '')));
+	import { resolve } from '$app/paths';
+	let pagePath: string = $derived(checkPath(page.url.pathname.replace(resolve(''), '')));
 </script>
 
 <Navig menuList={listOneCategory(pagePath)} menuSelected={pagePath} />

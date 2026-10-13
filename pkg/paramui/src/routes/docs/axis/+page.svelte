@@ -69,11 +69,15 @@
 </article>
 <h2>Parameter description</h2>
 <article>
-	<img src={asset('/puisvg/torque_requirements.svg')} alt="torque requirements" />
-	<img src={asset('/puisvg/axis_param_1.svg')} alt="top-level axis parameters" />
-	<img src={asset('/puisvg/gear_ring_overview.svg')} alt="gear-ring overview" />
-	<img src={asset('/puisvg/gear_module.svg')} alt="gear module" />
-	<img src={asset('/puisvg/epicyclic_gearing.svg')} alt="epicyclic gearing" />
+	<img src={asset('puisvg/torque_requirements.svg')} alt="torque requirements" />
+
+	<img src={asset('puisvg/axis_param_1.svg')} alt="top-level axis parameters" />
+
+	<img src={asset('puisvg/gear_ring_overview.svg')} alt="gear-ring overview" />
+
+	<img src={asset('puisvg/gear_module.svg')} alt="gear module" />
+
+	<img src={asset('puisvg/epicyclic_gearing.svg')} alt="epicyclic gearing" />
 </article>
 <h2>Numerical application</h2>
 <article>
@@ -546,7 +550,7 @@
 </article>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 	h1 {
 		margin: 1rem;

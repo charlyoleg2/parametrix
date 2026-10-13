@@ -1,33 +1,35 @@
 <script lang="ts">
 	import { asset } from '$app/paths';
-	import Carousel from '$lib/Carousel.svelte';
-	import OneSlide from '$lib/OneSlide.svelte';
+	import Carousel from '#lib/Carousel.svelte';
+	import OneSlide from '#lib/OneSlide.svelte';
 </script>
 
 <h1>La prèz de Paramétrix</h1>
 <Carousel>
 	<OneSlide>
-		<center
-			><img src={asset('/favicon.svg')} style="width: 9em;" alt="Parametrix logo" /></center
-		>
+		<center>
+			<img src={asset('favicon.svg')} style="width: 9em;" alt="Parametrix logo" />
+		</center>
+
 		<div>
 			<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
-			<center
-				><i style="color: lightSkyBlue;">Geometrix</i>&nbsp;<i style="color: pink;"
-					>Designix</i
-				></center
-			>
+
+			<center>
+				<i style="color: lightSkyBlue;">Geometrix</i>
+				<i style="color: pink;">Designix</i>
+			</center>
 		</div>
 	</OneSlide>
 	<OneSlide>
 		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
 		<pre style="margin:0;">CAO en code pour l'open-hardware</pre>
-		<pre style="margin:0;">Une solution JavaScript pour cr&eacute;er des formes 3D</pre>
+		<pre style="margin:0;">Une solution JavaScript pour créer des formes 3D</pre>
 	</OneSlide>
 	<OneSlide>
-		<img src={asset('/screen_gear.png')} style="width: 16em;" alt="screenshot of a gear" />
+		<img src={asset('screen_gear.png')} style="width: 16em;" alt="screenshot of a gear" />
+
 		<img
-			src={asset('/screen_helio_rake.png')}
+			src={asset('screen_helio_rake.png')}
 			style="width: 16em;"
 			alt="screenshot of the heliostat rake"
 		/>
@@ -35,24 +37,24 @@
 	<OneSlide>
 		<p>
 			<img
-				src={asset('/screen_cabane.png')}
+				src={asset('screen_cabane.png')}
 				style="height: 9em;"
 				alt="screenshot of a cabane"
 			/>
 			<img
-				src={asset('/screen_doorstop.png')}
+				src={asset('screen_doorstop.png')}
 				style="width: 9em;"
 				alt="screenshot of a doorstop"
 			/>
 		</p>
 		<p>
 			<img
-				src={asset('/screen_trapeze.png')}
+				src={asset('screen_trapeze.png')}
 				style="width: 9em;"
 				alt="screenshot of a trapeze"
 			/>
 			<img
-				src={asset('/screen_reinforced_tube.png')}
+				src={asset('screen_reinforced_tube.png')}
 				style="width: 9em;"
 				alt="screenshot of a reinforced tube"
 			/>
@@ -62,28 +64,28 @@
 	<OneSlide>
 		<pre style="font-size:1.5em; margin:0;">Parametrix workflow</pre>
 		<img
-			src={asset('/puisvg/prez_parametrix_vs_classic_workflow.svg')}
+			src={asset('puisvg/prez_parametrix_vs_classic_workflow.svg')}
 			style="height: 9em;"
 			alt="prez_parametrix_vs_classic_workflow"
 		/>
 		<pre>
-Approche simplifi&eacute;e:
-- centr&eacute;e sur la notion de contour (c.a.d 2.5D)
-  - les proc&eacute;d&eacute;s de fabrication efficaces sont 2D
-  - les m&eacute;canismes robustes sont 2D
-- chaine d'outils CAO/FAO mieux controll&eacute;e
+Approche simplifiée:
+- centrée sur la notion de contour (c.a.d 2.5D)
+  - les procédés de fabrication efficaces sont 2D
+  - les mécanismes robustes sont 2D
+- chaine d'outils CAO/FAO mieux controllée
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<pre style="font-size:2em; margin:0;">G&eacute;n&eacute;ration de fichiers 3D </pre>
+		<pre style="font-size:2em; margin:0;">Génération de fichiers 3D </pre>
 		<img
-			src={asset('/puisvg/cad_flow_with_parametrix.svg')}
+			src={asset('puisvg/cad_flow_with_parametrix.svg')}
 			style="height: 9em;"
 			alt="cad_flow_with_parametrix.svg"
 		/>
-		<pre style="margin:0;">&gt; Des formes 3D décrites en JavaScript</pre>
-		<pre style="margin:0;">&gt; Un frontend qui abstrait les outils de CAD</pre>
-		<pre style="margin:0;">&gt; Un générateur de siteweb pour paramétriser les designs</pre>
+		<pre style="margin:0;">> Des formes 3D décrites en JavaScript</pre>
+		<pre style="margin:0;">> Un frontend qui abstrait les outils de CAD</pre>
+		<pre style="margin:0;">> Un générateur de siteweb pour paramétriser les designs</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre class="smaller">
@@ -103,16 +105,16 @@ Les principaux avantages de Parametrix:
     Une page HTML pour paramétriser, visualiser en 2D et exporter en 3D
 
 4. Une API javascript
-    Votre mod&egrave;le 3D est une recette écrite dans un fichier javacript
+    Votre modèle 3D est une recette écrite dans un fichier javacript
 		</pre>
 	</OneSlide>
 	<OneSlide>
 		<img
-			src={asset('/puisvg/prez_parametrix_condensed.svg')}
+			src={asset('puisvg/prez_parametrix_condensed.svg')}
 			style="width: 28em;"
 			alt="Parametrix described in condensed"
 		/>
-		<p style="text-align:center; margin: 0.5rem">Parametrix en condens&eacute;</p>
+		<p style="text-align:center; margin: 0.5rem">Parametrix en condensé</p>
 	</OneSlide>
 	<OneSlide>
 		<pre>
@@ -130,15 +132,15 @@ Passage en revue de l'interface graphique
 	</OneSlide>
 	<OneSlide>
 		<img
-			src={asset('/puisvg/concept_of_webapp_generator.svg')}
+			src={asset('puisvg/concept_of_webapp_generator.svg')}
 			style="width: 28em;"
 			alt="designer and maker"
 		/>
 	</OneSlide>
 	<OneSlide>
-		<center
-			><img
-				src={asset('/puisvg/parametrix_3D_shape_subset.svg')}
+		<center>
+			<img
+				src={asset('puisvg/parametrix_3D_shape_subset.svg')}
 				style="width: 14em;"
 				alt="3D shape subsets"
 			/></center
@@ -156,7 +158,7 @@ L'API de Geometrix en bref
 		<p>
 			<span style="font-size:2em">Example de code</span>
 			<img
-				src={asset('/puisvg/codeExample1_contour.svg')}
+				src={asset('puisvg/codeExample1_contour.svg')}
 				style="height: 7em; vertical-align: middle"
 				alt="codeExample1_contour.svg"
 			/>
@@ -182,9 +184,9 @@ const ctr1 = contour(0, 0)
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<center
-			><img
-				src={asset('/puisvg/prez_stroke_and_arc.svg')}
+		<center>
+			<img
+				src={asset('puisvg/prez_stroke_and_arc.svg')}
 				style="width: 9em;"
 				alt="stroke and arcs"
 			/></center
@@ -198,9 +200,9 @@ Idéal pour générer le G-code
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<center
-			><img
-				src={asset('/puisvg/prez_absolute_relative.svg')}
+		<center>
+			<img
+				src={asset('puisvg/prez_absolute_relative.svg')}
 				style="width: 22em;"
 				alt="absolute relative cartesian polar"
 			/></center
@@ -213,9 +215,9 @@ Options possibles pour définir le prochain point
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<center
-			><img
-				src={asset('/puisvg/prez_arcs.svg')}
+		<center>
+			<img
+				src={asset('puisvg/prez_arcs.svg')}
 				style="width: 22em;"
 				alt="three ways for defining arcs"
 			/></center
@@ -228,9 +230,9 @@ Options possibles pour définir le prochain point
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<center
-			><img
-				src={asset('/puisvg/prez_curve_approximation.svg')}
+		<center>
+			<img
+				src={asset('puisvg/prez_curve_approximation.svg')}
 				style="width: 22em;"
 				alt="curve approximation"
 			/></center
@@ -244,9 +246,9 @@ double arcs de cercles définis avec
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<center
-			><img
-				src={asset('/puisvg/prez_corner_modifications.svg')}
+		<center>
+			<img
+				src={asset('puisvg/prez_corner_modifications.svg')}
 				style="width: 15em;"
 				alt="corner modifications"
 			/></center
@@ -259,13 +261,15 @@ Modifications des angles d'un contour:
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<center
-			><img
-				src={asset('/puisvg/prez_design_structure.svg')}
+		<center>
+			<img
+				src={asset('puisvg/prez_design_structure.svg')}
 				style="width: 14em;"
 				alt="design structure"
-			/>&nbsp;<img
-				src={asset('/puisvg/prez_figure_layers.svg')}
+			/>
+
+			<img
+				src={asset('puisvg/prez_figure_layers.svg')}
 				style="width: 10em;"
 				alt="figure layers"
 			/></center
@@ -279,9 +283,9 @@ Modifications des angles d'un contour:
 		</pre>
 	</OneSlide>
 	<OneSlide>
-		<center
-			><img
-				src={asset('/puisvg/prez_extrudes.svg')}
+		<center>
+			<img
+				src={asset('puisvg/prez_extrudes.svg')}
 				style="width: 12em;"
 				alt="extrudes"
 			/></center
@@ -293,9 +297,9 @@ Définition  d'une forme 3D
     - Union
     - Intersection
     - Soustraction</pre>
-		<center
-			><img
-				src={asset('/puisvg/prez_boolean_operations.svg')}
+		<center>
+			<img
+				src={asset('puisvg/prez_boolean_operations.svg')}
 				style="width: 16em;"
 				alt="boolean operations"
 			/></center
@@ -304,9 +308,9 @@ Définition  d'une forme 3D
 	<OneSlide>
 		<pre>
 Parametrix génère des scripts 3D pour:
-- OpenSCAD <span style="color: green;">&#10004;</span>
-- OpenJsCad <span style="color: green;">&#10004;</span>
-- Freecad <span style="color: green;">&#10004;</span>
+- OpenSCAD <span style="color: green;">✔</span>
+- OpenJsCad <span style="color: green;">✔</span>
+- Freecad <span style="color: green;">✔</span>
 - SolveSpace
 - pythonOCC
 - CadQuery
@@ -337,7 +341,7 @@ npm create parametrix@latest tom07
 </Carousel>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 	h1 {
 		margin: 1rem;

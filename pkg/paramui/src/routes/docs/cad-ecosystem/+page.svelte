@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CadEcosystem from '$lib/CadEcosystem.svelte';
+	import CadEcosystem from '#lib/CadEcosystem.svelte';
 </script>
 
 <h1>CAD ecosystem</h1>
@@ -13,7 +13,7 @@
 </ol>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 	h1 {
 		margin: 1rem;

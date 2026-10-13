@@ -15,6 +15,6 @@ Right click on canvas to export the drawing as png.
 
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 </style>

@@ -59,7 +59,7 @@
 </article>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../lib/style/colors.scss';
 
 	h1,
 	h3 {

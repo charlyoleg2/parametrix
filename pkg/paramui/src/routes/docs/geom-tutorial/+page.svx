@@ -452,7 +452,7 @@ API:
 
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 	h2 {
 		counter-reset: h3count;

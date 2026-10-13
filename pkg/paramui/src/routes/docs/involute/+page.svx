@@ -100,6 +100,6 @@ Recipe to calculate the initAngle2 for the right side:
 
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 </style>

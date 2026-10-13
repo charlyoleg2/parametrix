@@ -241,6 +241,6 @@ If you have many designs and you want to distribute them in several packages, th
 
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use '../../../lib/style/colors.scss';
 
 </style>

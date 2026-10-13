@@ -1,10 +1,41 @@
+import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { mdsvex } from 'mdsvex';
+import { join } from 'path';
 import { defineConfig } from 'vitest/config';
 import { sveltekit } from '@sveltejs/kit/vite';
 
-export default defineConfig({
-	plugins: [sveltekit()],
+//import { fileURLToPath } from 'url';
+const basePath = process.env.BASE_PATH;
 
-	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}']
-	}
+const dev = process.argv.includes('dev') || basePath === undefined;
+const pathToDocsLayout = join(import.meta.dirname, './src/lib/DocsLayout.svelte'); // works with node V20.11.0 and higher
+
+export default defineConfig({
+	plugins: [
+		sveltekit({
+			extensions: ['.svelte', '.svx', '.md'],
+			// Consult https://kit.svelte.dev/docs/integrations#preprocessors
+			// for more information about preprocessors
+			preprocess: [
+				vitePreprocess(),
+				mdsvex({ extensions: ['.svx', '.md'], layout: pathToDocsLayout })
+			],
+
+			adapter: adapter({
+				pages: 'build',
+				assets: 'build',
+				fallback: undefined,
+				precompress: false,
+				strict: true
+			}),
+
+			//appDir: 'app_',
+			paths: {
+				base: dev ? '' : `/${basePath}`,
+				relative: true /* true and false works for paramui */
+			}
+		})
+	],
+	test: { include: ['src/**/*.{test,spec}.{js,ts}'] }
 });

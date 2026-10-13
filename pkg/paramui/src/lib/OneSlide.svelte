@@ -15,7 +15,7 @@
 </div>
 
 <style lang="scss">
-	@use '$lib/style/colors.scss';
+	@use './/style/colors.scss';
 	div {
 		display: flex;
 		align-items: center;
