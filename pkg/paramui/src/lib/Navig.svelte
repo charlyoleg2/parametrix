@@ -20,9 +20,8 @@
 	{#each menuList.pages as menuItem (menuItem.path)}
 		<div class="oneMenu">
 			{#if menuItem.path !== apidocPath}
-				<a
-					href={resolve(`/${menuItem.path}`)}
-					class:page-active={menuSelected === menuItem.path}>{menuItem.label}</a
+				<a href={resolve(menuItem.path)} class:page-active={menuSelected === menuItem.path}
+					>{menuItem.label}</a
 				>
 			{/if}
 			<div class="arrow" class:arrow-active={menuSelected === menuItem.path}></div>

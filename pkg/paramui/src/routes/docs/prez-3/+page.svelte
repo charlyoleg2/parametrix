@@ -7,15 +7,11 @@
 <h1>Presentation of Parametrix</h1>
 <Carousel>
 	<OneSlide>
-		<center>
-			<img
-				src={asset('favicon.svg')}
-				style="width: 9em;"
-				alt="Parametrix logo"
-			/>
-		</center>
-
-		<div><pre style="font-size:2.5em; margin:0;">Parametrix</pre></div>
+		<center><img src={asset('favicon.svg')} style="width: 9em;" alt="Parametrix logo" /></center
+		>
+		<div>
+			<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
+		</div>
 	</OneSlide>
 	<OneSlide>
 		<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
@@ -60,9 +56,9 @@
 			style="height: 12em;"
 			alt="prez3_generate_gcode.svg"
 		/>
-		<pre style="font-size:1.2em; margin:0;"><> Less processing</pre>
-		<pre style="font-size:1.2em; margin:0;"><> More accurate outputs</pre>
-		<pre style="font-size:1.2em; margin:0;"><> Responsive 2D UI</pre>
+		<pre style="font-size:1.2em; margin:0;">&lt;&gt; Less processing</pre>
+		<pre style="font-size:1.2em; margin:0;">&lt;&gt; More accurate outputs</pre>
+		<pre style="font-size:1.2em; margin:0;">&lt;&gt; Responsive 2D UI</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">3D models for makers</pre>
@@ -75,7 +71,7 @@
 		<pre class="nomar2">1.1- Open-source: Blender, FreeCAD, OpenSCAD, JsCAD</pre>
 		<pre class="nomar2">1.2- Professional: Catia, SolidWorks, OnShape</pre>
 		<pre class="nomar2">1.3- Online: Fusion360, SketchUp, TinkerCAD</pre>
-		<pre class="point2">2- Predefined & parametrizable 3D shapes</pre>
+		<pre class="point2">2- Predefined &amp; parametrizable 3D shapes</pre>
 		<pre class="nomar2">2.1- Parametrix</pre>
 		<pre class="point2">3- Sharing platform for 3D models</pre>
 		<pre class="nomar2">3.1- makerworld.com</pre>
@@ -84,57 +80,58 @@
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">Parametrix, a 3D tool for makers</pre>
-		<pre class="nomar"><1> Predefined designs, visit the catalog <i>parametrix.fr</i></pre>
-		<pre class="nomar"><2> Easy parametrization in few clicks</pre>
-		<pre class="nomar"><3> Modifying without starting from scratch</pre>
-		<pre class="nomar"><4> Responsive UI</pre>
-		<pre class="nomar"><5> Output coherent design files without bug</pre>
-		<pre class="nomar"><6> High quality CAM with arcs</pre>
-		<pre class="nomar"><7> No installation</pre>
-		<pre class="nomar"><8> No programming skill required</pre>
+		<pre class="nomar">&lt;1&gt; Predefined designs, visit the catalog <i>parametrix.fr</i
+			></pre>
+		<pre class="nomar">&lt;2&gt; Easy parametrization in few clicks</pre>
+		<pre class="nomar">&lt;3&gt; Modifying without starting from scratch</pre>
+		<pre class="nomar">&lt;4&gt; Responsive UI</pre>
+		<pre class="nomar">&lt;5&gt; Output coherent design files without bug</pre>
+		<pre class="nomar">&lt;6&gt; High quality CAM with arcs</pre>
+		<pre class="nomar">&lt;7&gt; No installation</pre>
+		<pre class="nomar">&lt;8&gt; No programming skill required</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">Parametrix, a 3D tool for designer-coder</pre>
-		<pre class="nomar"><1> CAD as code : software defined CAD</pre>
-		<pre class="nomar"><2> Generate CLI and UI</pre>
-		<pre class="nomar"><3> Deploy via <i>npm</i> or <i>static website</i></pre>
-		<pre class="nomar"><4> Powerfull Javascript-API</pre>
+		<pre class="nomar">&lt;1&gt; CAD as code : software defined CAD</pre>
+		<pre class="nomar">&lt;2&gt; Generate CLI and UI</pre>
+		<pre class="nomar">&lt;3&gt; Deploy via <i>npm</i> or <i>static website</i></pre>
+		<pre class="nomar">&lt;4&gt; Powerfull Javascript-API</pre>
 		<pre class="blabla">  (typically one file of 500 lines per design)</pre>
-		<pre class="nomar"><5> Extendable API</pre>
+		<pre class="nomar">&lt;5&gt; Extendable API</pre>
 		<pre class="blabla">  (e.g. sheetFold)</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">Parametrix for system engineering</pre>
-		<pre class="nomar2"><F1> Illustration of requirements</pre>
-		<pre class="nomar2"><F2> Exploration of system parameters</pre>
-		<pre class="nomar2"><F3> Verification of formula</pre>
-		<pre class="nomar2"><F4> Simplified 3D model</pre>
+		<pre class="nomar2">&lt;F1&gt; Illustration of requirements</pre>
+		<pre class="nomar2">&lt;F2&gt; Exploration of system parameters</pre>
+		<pre class="nomar2">&lt;F3&gt; Verification of formula</pre>
+		<pre class="nomar2">&lt;F4&gt; Simplified 3D model</pre>
 		<pre class="blabla2">  Enable the verification of detailed 3D models</pre>
 		<img
 			src={asset('puisvg/prez3_V_cycle.svg')}
 			style="height: 10em; margin: 0.5em 6em 0;"
 			alt="prez3_V_cycle.svg"
 		/>
-		<pre class="nomar2"><R1> CAD as code for traceability</pre>
-		<pre class="nomar2"><R2> Light weight / auditable solution</pre>
-		<pre class="nomar2"><R3> Simple usage for viewers</pre>
-		<pre class="nomar2"><R4> Easy sharing of work products across the origanization</pre>
+		<pre class="nomar2">&lt;R1&gt; CAD as code for traceability</pre>
+		<pre class="nomar2">&lt;R2&gt; Light weight / auditable solution</pre>
+		<pre class="nomar2">&lt;R3&gt; Simple usage for viewers</pre>
+		<pre class="nomar2">&lt;R4&gt; Easy sharing of work products across the origanization</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">Parametrix, for distributing 3D shapes</pre>
-		<pre class="nomar"><1> lightweight encoding of 3D shapes</pre>
-		<pre class="nomar"><2> UI for maker</pre>
-		<pre class="blabla"><2.1>   Parametrization of the 3D shapes</pre>
-		<pre class="blabla"><2.2>   Visualization of the 2D figures</pre>
-		<pre class="blabla"><2.3>   Generation of the CAD files</pre>
-		<pre class="nomar"><3> Distribution via multi channels</pre>
-		<pre class="blabla"><3.1>   HTML page</pre>
-		<pre class="blabla"><3.2>   CLI</pre>
-		<pre class="blabla"><3.3>   NPM package</pre>
-		<pre class="blabla"><3.4>   source code</pre>
-		<pre class="nomar"><4> High quality CAM files with arcs</pre>
-		<pre class="nomar"><5> No processing on server</pre>
-		<pre class="nomar"><6> Ideal for Open-hardware</pre>
+		<pre class="nomar">&lt;1&gt; lightweight encoding of 3D shapes</pre>
+		<pre class="nomar">&lt;2&gt; UI for maker</pre>
+		<pre class="blabla">&lt;2.1&gt;   Parametrization of the 3D shapes</pre>
+		<pre class="blabla">&lt;2.2&gt;   Visualization of the 2D figures</pre>
+		<pre class="blabla">&lt;2.3&gt;   Generation of the CAD files</pre>
+		<pre class="nomar">&lt;3&gt; Distribution via multi channels</pre>
+		<pre class="blabla">&lt;3.1&gt;   HTML page</pre>
+		<pre class="blabla">&lt;3.2&gt;   CLI</pre>
+		<pre class="blabla">&lt;3.3&gt;   NPM package</pre>
+		<pre class="blabla">&lt;3.4&gt;   source code</pre>
+		<pre class="nomar">&lt;4&gt; High quality CAM files with arcs</pre>
+		<pre class="nomar">&lt;5&gt; No processing on server</pre>
+		<pre class="nomar">&lt;6&gt; Ideal for Open-hardware</pre>
 	</OneSlide>
 	<OneSlide>
 		<pre class="point">One HTML page = one 3D design</pre>

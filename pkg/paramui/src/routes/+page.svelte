@@ -16,21 +16,21 @@
 				<li>
 					<img
 						class:alter={(listIdx + itemIdx) % 2 === 1}
-						src={asset(`puisvg/${menuItem.svg}`)}
+						src={asset(`puisvg/${menuItem.svg}` as Parameters<typeof asset>[0])}
 						alt={menuItem.label}
 					/>
 					{#if menuCategory.category !== ''}
 						{#if menuItem.path === apidocPath}
-							<a href={resolve(`/${menuItem.path}`)} rel="external"
+							<a href={resolve(menuItem.path)} rel="external"
 								>{listIdx}.{itemIdx + 1} - API docs</a
 							>
 						{:else}
-							<a href={resolve(`/${menuItem.path}`)}
+							<a href={resolve(menuItem.path)}
 								>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
 							>
 						{/if}
 					{:else}
-						<a href={resolve(`/${menuItem.path}`)} class="noindex">{menuItem.label}</a>
+						<a href={resolve(menuItem.path)} class="noindex">{menuItem.label}</a>
 					{/if}
 				</li>
 			{/each}
