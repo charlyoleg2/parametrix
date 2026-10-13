@@ -25,7 +25,7 @@
 	let sSvgPath: string = $state('');
 
 	// derived
-	let dSvgList: string[] = $derived(getSvgList(pDef).map((iSvg) => asset(`/pgdsvg/${iSvg}`)));
+	let dSvgList: string[] = $derived(getSvgList(pDef).map((iSvg) => asset(`pgdsvg/${iSvg}`)));
 
 	// actions
 	function showSvg(iSvgPath: string) {

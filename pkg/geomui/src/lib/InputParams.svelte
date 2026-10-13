@@ -9,7 +9,7 @@
 	import { PType, parseParamFile, createParamFile } from 'geometrix';
 	import { sParams } from './stateParams.svelte';
 	import { downloadParams, generateUrl } from './downloadParams.ts';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import { page } from '$app/state';
 	import { asset } from '$app/paths';
 	import { afterNavigate } from '$app/navigation';
@@ -234,11 +234,11 @@
 	}
 	// parameter picture
 	function checkPict(keyName: string): string {
-		let rSvgPath = asset('/pgdsvg/default_param_blank.svg');
+		let rSvgPath = asset('pgdsvg/default_param_blank.svg');
 		// convention for the file-names of the parameter description
 		//paramSvg = asset(`/pgdsvg/${pDef.partName}_${keyName}.svg`);
 		if (Object.keys(pDef.paramSvg).includes(keyName)) {
-			rSvgPath = asset(`/pgdsvg/${pDef.paramSvg[keyName]}`);
+			rSvgPath = asset(`pgdsvg/${pDef.paramSvg[keyName]}`);
 		}
 		return rSvgPath;
 	}
@@ -329,9 +329,11 @@
 			okName="Overwrite Parameters"
 			okFunc={loadDefaults}>Load the default parameters ?</ModalDiag
 		>
-		<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}
-			><LocStorRead pageName={pDef.partName} bind:storeName={locStorRname} /></ModalDiag
-		>
+
+		<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}>
+			<LocStorRead pageName={pDef.partName} bind:storeName={locStorRname} />
+		</ModalDiag>
+
 		<textarea
 			rows="3"
 			cols="80"
@@ -342,15 +344,15 @@
 		<table>
 			<thead>
 				<tr>
-					<td>&#35;</td>
+					<td>#</td>
 					<td>Parameter name</td>
-					<td
-						>Value<span
-							><button onclick={sizeSmall}>&minus;</button><button onclick={sizeBig}
-								>+</button
-							></span
-						></td
-					>
+					<td>
+						Value
+						<span>
+							<button onclick={sizeSmall}>−</button>
+							<button onclick={sizeBig}>+</button>
+						</span>
+					</td>
 					<td class:hideColumn>Unit</td>
 					<td class:hideColumn>Default</td>
 					<td>Min</td>
@@ -439,27 +441,24 @@
 				modalSaveLocal = true;
 			}}>Save Parameters to localStorage</button
 		>
-		<ModalDiag bind:modalOpen={modalSaveUrl} okName="Done" okFunc={saveAsUrl} sizeLarge={true}
-			><p>Copy this URL and send it to your friends!</p>
-			<p class="cUrl">{pUrl}</p></ModalDiag
-		>
+
+		<ModalDiag bind:modalOpen={modalSaveUrl} okName="Done" okFunc={saveAsUrl} sizeLarge={true}>
+			<p>Copy this URL and send it to your friends!</p>
+			<p class="cUrl">{pUrl}</p>
+		</ModalDiag>
+
 		<ModalDiag
 			bind:modalOpen={modalSaveLocal}
 			okName="Save into localStorage"
 			okFunc={saveInLocStor}
-			><LocStorWrite pageName={pDef.partName} bind:storeName={locStorWname} /></ModalDiag
 		>
+			<LocStorWrite pageName={pDef.partName} bind:storeName={locStorWname} />
+		</ModalDiag>
 	</main>
 	<ModalImg bind:modalOpen={modalImg} svgPath={paramSvg} />
-	<button onclick={showSvg} class="side-img">
-		<img src={paramSvg} alt={paramSvg} />
-	</button>
-	<div class="mini-canvas">
-		<SimpleDrawing {pFig} full={true} />
-	</div>
-	<div class="mini-canvas">
-		<SimpleDrawing {pFig} full={false} />
-	</div>
+	<button onclick={showSvg} class="side-img"><img src={paramSvg} alt={paramSvg} /></button>
+	<div class="mini-canvas"><SimpleDrawing {pFig} full={true} /></div>
+	<div class="mini-canvas"><SimpleDrawing {pFig} full={false} /></div>
 </section>
 
 <style lang="scss">

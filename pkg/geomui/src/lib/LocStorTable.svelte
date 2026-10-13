@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ModalDiag from './ModalDiag.svelte';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 
 	// props
 	interface Props {
@@ -90,6 +90,7 @@
 			modalDelConfirm = true;
 		}}>Delete</button
 	>
+
 	<ModalDiag bind:modalOpen={modalDelConfirm} okName="Confirm" okFunc={actionDel}>
 		<p class="diagTitle">Do you really want to delete the following localStorage keys?</p>
 		{#each localKeys as kname (kname)}
