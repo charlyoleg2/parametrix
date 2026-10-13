@@ -26,7 +26,7 @@
 		updateStore(subObj.partName, paramListToVal(subObj.dparam), true);
 		//const rUrl = generateUrl(`${page.url.origin}${base}/${subObj.link}`, paramListToVal(subObj.dparam), true);
 		//const rUrl = generateUrl(`${page.url.origin}${base}/${subObj.link}`, {}, true);
-		const rUrl = resolve(`/${pLink[subObj.partName]}`);
+		const rUrl = resolve(pLink[subObj.partName]);
 		//const rUrl = pLink[subObj.partName];
 		//console.log(`dbg505: ${rUrl}`);
 		//window.location.assign(rUrl);
