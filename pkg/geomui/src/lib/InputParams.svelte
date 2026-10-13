@@ -238,7 +238,7 @@
 		// convention for the file-names of the parameter description
 		//paramSvg = asset(`/pgdsvg/${pDef.partName}_${keyName}.svg`);
 		if (Object.keys(pDef.paramSvg).includes(keyName)) {
-			rSvgPath = asset(`pgdsvg/${pDef.paramSvg[keyName]}`);
+			rSvgPath = asset(`pgdsvg/${pDef.paramSvg[keyName]}` as Parameters<typeof asset>[0]);
 		}
 		return rSvgPath;
 	}
