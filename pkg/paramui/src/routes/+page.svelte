@@ -21,7 +21,7 @@
 					/>
 					{#if menuCategory.category !== ''}
 						{#if menuItem.path === apidocPath}
-							<a href={resolve(menuItem.path)} rel="external"
+							< a href={asset(menuItem.path)} rel="external"
 								>{listIdx}.{itemIdx + 1} - API docs</a
 							>
 						{:else}
