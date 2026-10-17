@@ -20,7 +20,7 @@ for iPkg in ${pkgList[@]}; do
 		name: ("@parametrix/" + .name),
 		version: .version,
 		license: "ISC",
-		exports: .tsup.entry[0]
+		exports: .tsdown.entry[0]
 	}' pkg/${iPkg}/package.json > pkg/${iPkg}/jsr.json
 done
 # Finalization
