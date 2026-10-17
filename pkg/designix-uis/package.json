@@ -78,13 +78,13 @@
 		"clean": "rimraf node_modules build dist tmp"
 	},
 	"dependencies": {
-		"feli": "^1.0.20"
+		"feli": "^1.0.21"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@types/eslint__js": "^8.42.3",
 		"@types/node": "^26.6.5",
-		"eslint": "^10.12.0",
+		"eslint": "^10.13.0",
 		"eslint-config-prettier": "^10.1.8",
 		"jsr": "^0.14.3",
 		"npm-run-all2": "^9.0.3",
@@ -94,6 +94,6 @@
 		"tsup": "^9.0.0",
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.71.2",
-		"vitest": "^5.0.4"
+		"vitest": "^5.0.5"
 	}
 }
