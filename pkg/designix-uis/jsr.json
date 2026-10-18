@@ -1,6 +1,6 @@
 {
 	"name": "@parametrix/designix-uis",
-	"version": "1.0.41",
+	"version": "1.0.42",
 	"license": "ISC",
 	"exports": "./src/designix-uis.ts"
 }
