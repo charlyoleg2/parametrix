@@ -1,15 +1,16 @@
 {
 	"compilerOptions": {
-		"rewriteRelativeImportExtensions": true,
+		"target": "esnext",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
 		"types": ["node"],
+		"rewriteRelativeImportExtensions": true,
 		"declaration": true,
 		"sourceMap": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"rootDir": "./src",
-		"outDir": "./build",
-		"module": "NodeNext",
-		"moduleResolution": "NodeNext"
+		"outDir": "./build"
 	},
 	"include": ["./src"]
 }
