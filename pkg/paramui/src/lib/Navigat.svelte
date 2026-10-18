@@ -7,7 +7,7 @@
 
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	let pagePath: string = $derived(checkPath(page.url.pathname.replace(resolve(''), '')));
+	let pagePath: string = $derived(checkPath(page.url.pathname.replace(resolve('/'), '')));
 </script>
 
 <Navig menuList={listOneCategory(pagePath)} menuSelected={pagePath} />

@@ -70,7 +70,12 @@ function removeTrailingSlash(iPath: string): string {
 function checkIndexPath(iPath: string): string {
 	//console.log(`dbg518: ${iPath}`);
 	let rpath = iPath;
-	if (rpath === '/index' || rpath === '/index.html') {
+	if (
+		rpath === '/index' ||
+		rpath === '/index.html' ||
+		rpath === 'index' ||
+		rpath === 'index.html'
+	) {
 		rpath = '/';
 		//console.log(`dbg565: ${rpath}`);
 	}
@@ -95,7 +100,7 @@ function checkPath(iPath: string): string {
 
 // create contextual-top-menu
 const pageIndex: tPageOne = { path: '', page: null, svg: 'page_index.svg', label: 'index' };
-const pageAbout: tPageOne = { path: '/about', page: null, svg: 'page_about.svg', label: 'about' };
+const pageAbout: tPageOne = { path: 'about', page: null, svg: 'page_about.svg', label: 'about' };
 const categ0: tCategoryOne = { category: '', pages: [pageIndex, pageAbout] };
 function listOneCategorySub(iMenu: tMenuList, ipath: string): tCategoryOne {
 	//console.log(`dbg572: ${ipath}`);

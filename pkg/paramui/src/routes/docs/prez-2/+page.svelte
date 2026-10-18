@@ -116,8 +116,7 @@ Parametrix main advantages:
 		/>
 		<p style="text-align:center; margin: 0.5rem">Parametrix in condensed</p>
 	</OneSlide>
-	<OneSlide
-		>/
+	<OneSlide>
 		<pre>
 framework / eco-system : Parametrix
 
