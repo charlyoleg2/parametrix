@@ -8,7 +8,7 @@ category: documentation
 </script>
 
 
-# {title}
+# {metadata.title}
 
 In this page, you find a couple of lists related to *Parametrix*.
 

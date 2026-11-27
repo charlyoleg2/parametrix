@@ -8,7 +8,7 @@ category: documentation
 </script>
 
 
-# {title}
+# {metadata.title}
 
 ## Design examples
 

@@ -8,7 +8,7 @@ category: documentation
 </script>
 
 
-# {title}
+# {metadata.title}
 
 ## Definition of an involute of circle
 

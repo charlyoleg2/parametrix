@@ -8,7 +8,7 @@ category: documentation
 </script>
 
 
-# {title}
+# {metadata.title}
 
 This page explains several concepts of *javascript* applications.
 
