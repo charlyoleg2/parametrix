@@ -574,61 +574,32 @@
 			<tr>
 				<td>{@html math('\\mu_r')}</td>
 				<td>Relative permeability</td>
-				<td
-					><input
-						type="number"
-						bind:value={permeability}
-						min="1"
-						max="1000000"
-						step="1"
-					/></td
-				>
-				<td
-					><input
-						type="range"
-						bind:value={permeability}
-						min="1"
-						max="1000000"
-						step="1"
-					/></td
-				>
+				<td>
+					<input type="number" bind:value={permeability} min="1" max="1000000" step="1" />
+				</td>
+				<td>
+					<input type="range" bind:value={permeability} min="1" max="1000000" step="1" />
+				</td>
 			</tr>
 			<tr>
 				<td>R</td>
 				<td>Torus radius (mm)</td>
-				<td
-					><input
-						type="number"
-						bind:value={torusRadius}
-						min="3"
-						max="100"
-						step="0.5"
-					/></td
-				>
-				<td><input type="range" bind:value={torusRadius} min="3" max="100" step="0.5" /></td
-				>
+				<td>
+					<input type="number" bind:value={torusRadius} min="3" max="100" step="0.5" />
+				</td>
+				<td>
+					<input type="range" bind:value={torusRadius} min="3" max="100" step="0.5" />
+				</td>
 			</tr>
 			<tr>
 				<td>{@html math('S')}</td>
 				<td>Torus section area ({@html math('mm^2')})</td>
-				<td
-					><input
-						type="number"
-						bind:value={sectionArea}
-						min="1"
-						max="1000"
-						step="0.1"
-					/></td
-				>
-				<td
-					><input
-						type="range"
-						bind:value={sectionArea}
-						min="1"
-						max="1000"
-						step="0.1"
-					/></td
-				>
+				<td>
+					<input type="number" bind:value={sectionArea} min="1" max="1000" step="0.1" />
+				</td>
+				<td>
+					<input type="range" bind:value={sectionArea} min="1" max="1000" step="0.1" />
+				</td>
 			</tr>
 			<tr>
 				<td>{@html math('N')}</td>
@@ -639,8 +610,9 @@
 			<tr>
 				<td>{@html math('i')}</td>
 				<td>Current in the winding (A)</td>
-				<td><input type="number" bind:value={current} min="0.01" max="20" step="0.01" /></td
-				>
+				<td>
+					<input type="number" bind:value={current} min="0.01" max="20" step="0.01" />
+				</td>
 				<td><input type="range" bind:value={current} min="0.01" max="20" step="0.01" /></td>
 			</tr>
 			<tr>

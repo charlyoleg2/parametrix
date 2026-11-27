@@ -88,8 +88,10 @@
 	<button
 		onclick={() => {
 			modalDelConfirm = true;
-		}}>Delete</button
+		}}
 	>
+		Delete
+	</button>
 
 	<ModalDiag bind:modalOpen={modalDelConfirm} okName="Confirm" okFunc={actionDel}>
 		<p class="diagTitle">Do you really want to delete the following localStorage keys?</p>

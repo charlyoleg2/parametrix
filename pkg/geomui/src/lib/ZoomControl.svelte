@@ -7,21 +7,21 @@
 </script>
 
 <nav>
-	<button aria-labelledby="zoomInit" onclick={() => zoomClick('zoomInit')}
-		><div class="zero"></div></button
-	><button aria-labelledby="zoomIn" onclick={() => zoomClick('zoomIn')}
-		><div class="zoomin"></div></button
-	><button aria-labelledby="zoomOut" onclick={() => zoomClick('zoomOut')}
-		><div class="zoomout"></div></button
-	><button aria-labelledby="moveLeft" onclick={() => zoomClick('moveLeft')}
-		><div class="arrowleft"></div></button
-	><button aria-labelledby="moveRight" onclick={() => zoomClick('moveRight')}
-		><div class="arrowright"></div></button
-	><button aria-labelledby="moveUp" onclick={() => zoomClick('moveUp')}
-		><div class="arrowup"></div></button
-	><button aria-labelledby="moveDown" onclick={() => zoomClick('moveDown')}
-		><div class="arrowdown"></div></button
-	>
+	<button aria-labelledby="zoomInit" onclick={() => zoomClick('zoomInit')}>
+		<div class="zero"></div>
+	</button><button aria-labelledby="zoomIn" onclick={() => zoomClick('zoomIn')}>
+		<div class="zoomin"></div>
+	</button><button aria-labelledby="zoomOut" onclick={() => zoomClick('zoomOut')}>
+		<div class="zoomout"></div>
+	</button><button aria-labelledby="moveLeft" onclick={() => zoomClick('moveLeft')}>
+		<div class="arrowleft"></div>
+	</button><button aria-labelledby="moveRight" onclick={() => zoomClick('moveRight')}>
+		<div class="arrowright"></div>
+	</button><button aria-labelledby="moveUp" onclick={() => zoomClick('moveUp')}>
+		<div class="arrowup"></div>
+	</button><button aria-labelledby="moveDown" onclick={() => zoomClick('moveDown')}>
+		<div class="arrowdown"></div>
+	</button>
 </nav>
 
 <style lang="scss">

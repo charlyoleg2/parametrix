@@ -7,8 +7,9 @@
 <h1>Presentation of Parametrix</h1>
 <Carousel>
 	<OneSlide>
-		<center><img src={asset('favicon.svg')} style="width: 9em;" alt="Parametrix logo" /></center
-		>
+		<center>
+			<img src={asset('favicon.svg')} style="width: 9em;" alt="Parametrix logo" />
+		</center>
 		<div>
 			<pre style="font-size:2.5em; margin:0;">Parametrix</pre>
 		</div>

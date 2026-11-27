@@ -21,13 +21,13 @@
 					/>
 					{#if menuCategory.category !== ''}
 						{#if menuItem.path === apidocPath}
-							<a href={asset('docs/apidoc/index.html')} rel="external"
-								>{listIdx}.{itemIdx + 1} - API docs</a
-							>
+							<a href={asset('docs/apidoc/index.html')} rel="external">
+								{listIdx}.{itemIdx + 1} - API docs
+							</a>
 						{:else}
-							<a href={resolve(menuItem.path)}
-								>{listIdx}.{itemIdx + 1} - {menuItem.label}</a
-							>
+							<a href={resolve(menuItem.path)}>
+								{listIdx}.{itemIdx + 1} - {menuItem.label}
+							</a>
 						{/if}
 					{:else}
 						<a href={resolve(menuItem.path)} class="noindex">{menuItem.label}</a>

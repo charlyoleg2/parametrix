@@ -317,18 +317,24 @@
 		<button
 			onclick={() => {
 				modalLoadDefault = true;
-			}}>Set Params Default</button
+			}}
 		>
+			Set Params Default
+		</button>
 		<button
 			onclick={() => {
 				modalLoadLocal = true;
-			}}>Load Params from localStorage</button
+			}}
 		>
+			Load Params from localStorage
+		</button>
 		<ModalDiag
 			bind:modalOpen={modalLoadDefault}
 			okName="Overwrite Parameters"
-			okFunc={loadDefaults}>Load the default parameters ?</ModalDiag
+			okFunc={loadDefaults}
 		>
+			Load the default parameters ?
+		</ModalDiag>
 
 		<ModalDiag bind:modalOpen={modalLoadLocal} okName="Load Parameters" okFunc={loadLocStor}>
 			<LocStorRead pageName={pDef.partName} bind:storeName={locStorRname} />
@@ -368,8 +374,8 @@
 						<td colspan={dColspanHide2}>
 							<label>
 								<input type="checkbox" bind:checked={htableVis[sect.sectionID]} />
-								<span> </span></label
-							>
+								<span> </span>
+							</label>
 						</td>
 					</tr>
 				</tbody>
@@ -377,10 +383,9 @@
 					{#each sect.params as param, pidx (param.name)}
 						<tr class:changed={sParams[pDef.partName][param.name] !== param.init}>
 							<td>{sidx + 1}.{pidx + 1}</td>
-							<td
-								><button onclick={() => paramPict(param.name)}>{param.name}</button
-								></td
-							>
+							<td>
+								<button onclick={() => paramPict(param.name)}>{param.name}</button>
+							</td>
 							<td>
 								{#if param.pType === PType.eNumber}
 									<input
@@ -439,8 +444,10 @@
 		<button
 			onclick={() => {
 				modalSaveLocal = true;
-			}}>Save Parameters to localStorage</button
+			}}
 		>
+			Save Parameters to localStorage
+		</button>
 
 		<ModalDiag bind:modalOpen={modalSaveUrl} okName="Done" okFunc={saveAsUrl} sizeLarge={true}>
 			<p>Copy this URL and send it to your friends!</p>

@@ -39,10 +39,10 @@
 					</li>
 					<li>
 						<a href="https://github.com/BRL-CAD/brlcad">BRL-CAD</a>
-						<small
-							>An open source cross-platform solid modeling system. Originated from
-							American defense industry</small
-						>
+						<small>
+							An open source cross-platform solid modeling system. Originated from
+							American defense industry
+						</small>
 					</li>
 					<li>
 						<a href="https://github.com/Haskell-Things/ImplicitCAD">ImplicitCAD</a>
@@ -60,10 +60,10 @@
 						<a href="https://www.cgal.org/">CGAL.org</a>
 					{/snippet}
 					{#snippet top2()}
-						<small
-							>The C++ Computational Geometry Algorithms Library founded by European
-							research instituts</small
-						>
+						<small>
+							The C++ Computational Geometry Algorithms Library founded by European
+							research instituts
+						</small>
 					{/snippet}
 					<li>
 						<MyUl checkboxId="toggle_openscad" labelText="OpenSCAD">
@@ -74,9 +74,9 @@
 								<small>A pioneer scripting tool for 3D modeling</small>
 							{/snippet}
 							<li>
-								<a href="https://github.com/janssen86/OpenSCAD-Getriebebibliothek"
-									>OpenSCAD Gear</a
-								>
+								<a href="https://github.com/janssen86/OpenSCAD-Getriebebibliothek">
+									OpenSCAD Gear
+								</a>
 								<small>Gear generator based on OpenSCAD</small>
 							</li>
 						</MyUl>
@@ -89,10 +89,10 @@
 						<a href="https://dev.opencascade.org/">OpenCascade.org</a>
 					{/snippet}
 					{#snippet top2()}
-						<small
-							>The world famous open source 3D modeling library. Originated from
-							France defense industry</small
-						>
+						<small>
+							The world famous open source 3D modeling library. Originated from France
+							defense industry
+						</small>
 					{/snippet}
 					<li>
 						<a href="https://www.freecad.org/">FreeCAD</a>
@@ -120,9 +120,9 @@
 							</li>
 							<li>
 								<a href="https://mirmik.github.io/zencad/en/index.html">ZenCAD</a>
-								<small
-									>A python library for parametric 3D modeling based on pythonOCC</small
-								>
+								<small>
+									A python library for parametric 3D modeling based on pythonOCC
+								</small>
 							</li>
 						</MyUl>
 					</li>
@@ -146,10 +146,10 @@
 								<a href="https://cadquery.readthedocs.io">CQ</a>
 							{/snippet}
 							{#snippet top2()}
-								<small
-									>Python module based on OpenCascade for building parametric 3D
-									CAD models</small
-								>
+								<small>
+									Python module based on OpenCascade for building parametric 3D
+									CAD models
+								</small>
 							{/snippet}
 							<li>
 								<a href="https://github.com/meadiode/cq_gears">CQ Gear</a>
@@ -171,10 +171,10 @@
 								<a href="https://ocjs.org/">OCJS</a>
 							{/snippet}
 							{#snippet top2()}
-								<small
-									>Port of the OpenCascade CAD library to JavaScript and
-									WebAssembly via Emscripten</small
-								>
+								<small>
+									Port of the OpenCascade CAD library to JavaScript and
+									WebAssembly via Emscripten
+								</small>
 							{/snippet}
 							<li>
 								<a href="https://github.com/sgenoud/replicad">Replicad</a>
@@ -185,9 +185,9 @@
 								<small>A web UI for 3D modeling</small>
 							</li>
 							<li>
-								<a href="https://github.com/ArchiyouApp/archiyou-core"
-									>Archiyou-core</a
-								>
+								<a href="https://github.com/ArchiyouApp/archiyou-core">
+									Archiyou-core
+								</a>
 								<small>An other js-scripting library for 3D modeling</small>
 							</li>
 						</MyUl>
@@ -195,9 +195,9 @@
 					<li>
 						<MyUl checkboxId="toggle_occt_import_js" labelText="occt-import-js">
 							{#snippet top1()}
-								<a href="https://github.com/kovacsv/occt-import-js"
-									>occt-import-js</a
-								>
+								<a href="https://github.com/kovacsv/occt-import-js">
+									occt-import-js
+								</a>
 							{/snippet}
 							{#snippet top2()}
 								<small>js-library for OpenCascade import functionalities</small>
@@ -247,14 +247,15 @@
 					{#snippet top1()}
 						<a
 							href="https://www.buildingsmart.org/standards/bsi-standards/industry-foundation-classes/"
-							>IFC</a
 						>
+							IFC
+						</a>
 					{/snippet}
 					{#snippet top2()}
-						<small
-							>Industry Foundation Classes (IFC), the open standard for Building
-							Information Modelling (BIM)</small
-						>
+						<small>
+							Industry Foundation Classes (IFC), the open standard for Building
+							Information Modelling (BIM)
+						</small>
 					{/snippet}
 					<li>
 						<a href="https://ifcjs.github.io/info/">IFC.js</a>

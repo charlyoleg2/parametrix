@@ -78,9 +78,9 @@
 <article class:step1>
 	<h3>Load a javascript-geometrix-design-library-file</h3>
 	<p>
-		To generate the javascript embedding its dependencies, use:<br /><code
-			>npx rolldown src/myGroup1/myPartA.ts -f esm -o dist2/myPartA.js</code
-		>
+		To generate the javascript embedding its dependencies, use:<br /><code>
+			npx rolldown src/myGroup1/myPartA.ts -f esm -o dist2/myPartA.js
+		</code>
 	</p>
 	<label for="loadDLib" class="fileUpload">Load design-file</label>
 	<input type="file" id="loadDLib" accept="text/javascript" onchange={loadDesignFile} />

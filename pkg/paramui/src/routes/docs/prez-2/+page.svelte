@@ -59,8 +59,8 @@
 				alt="screenshot of a reinforced tube"
 			/>
 		</p>
-		<p></p></OneSlide
-	>
+		<p></p>
+	</OneSlide>
 	<OneSlide>
 		<pre style="font-size:1.5em; margin:0;">Parametrix workflow</pre>
 		<img
@@ -143,8 +143,8 @@ Go through the design-UI
 				src={asset('puisvg/parametrix_3D_shape_subset.svg')}
 				style="width: 14em;"
 				alt="3D shape subsets"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 The Geometrix API for designing a 3D shape
 		</pre>
@@ -189,8 +189,8 @@ const ctr1 = contour(0, 0)
 				src={asset('puisvg/prez_stroke_and_arc.svg')}
 				style="width: 9em;"
 				alt="stroke and arcs"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 Create contour with:
 - strokes
@@ -205,8 +205,8 @@ Optimal for generating G-code
 				src={asset('puisvg/prez_absolute_relative.svg')}
 				style="width: 22em;"
 				alt="absolute relative cartesian polar"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 Next destination-point in contour-definition:
 - Cartesian or Polar
@@ -219,8 +219,8 @@ Next destination-point in contour-definition:
 				src={asset('puisvg/prez_arcs.svg')}
 				style="width: 22em;"
 				alt="three ways for defining arcs"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 3 options for defining an arc of circle:
 - radius with large/small and ccw/cw
@@ -234,8 +234,8 @@ Next destination-point in contour-definition:
 				src={asset('puisvg/prez_curve_approximation.svg')}
 				style="width: 22em;"
 				alt="curve approximation"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 Complex curve approximation:
 Double arcs defined with start and end tangents
@@ -247,8 +247,8 @@ Double arcs defined with start and end tangents
 				src={asset('puisvg/prez_corner_modifications.svg')}
 				style="width: 15em;"
 				alt="corner modifications"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 Corner rework:
 - Rounded
@@ -268,8 +268,8 @@ Corner rework:
 				src={asset('puisvg/prez_figure_layers.svg')}
 				style="width: 10em;"
 				alt="figure layers"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 - Define a list of figures
 - Attach the contours to figures
@@ -278,12 +278,8 @@ Corner rework:
 	</OneSlide>
 	<OneSlide>
 		<center>
-			<img
-				src={asset('puisvg/prez_extrudes.svg')}
-				style="width: 12em;"
-				alt="extrudes"
-			/></center
-		>
+			<img src={asset('puisvg/prez_extrudes.svg')} style="width: 12em;" alt="extrudes" />
+		</center>
 		<pre style="margin: 0.5em;">
 Define the 3D shape
 - Extrude figures as LinearOrtho or Rotate
@@ -296,8 +292,8 @@ Define the 3D shape
 				src={asset('puisvg/prez_boolean_operations.svg')}
 				style="width: 16em;"
 				alt="boolean operations"
-			/></center
-		>
+			/>
+		</center>
 	</OneSlide>
 	<OneSlide>
 		<pre>

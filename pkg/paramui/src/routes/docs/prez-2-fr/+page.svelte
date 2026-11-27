@@ -59,8 +59,8 @@
 				alt="screenshot of a reinforced tube"
 			/>
 		</p>
-		<p></p></OneSlide
-	>
+		<p></p>
+	</OneSlide>
 	<OneSlide>
 		<pre style="font-size:1.5em; margin:0;">Parametrix workflow</pre>
 		<img
@@ -143,8 +143,8 @@ Passage en revue de l'interface graphique
 				src={asset('puisvg/parametrix_3D_shape_subset.svg')}
 				style="width: 14em;"
 				alt="3D shape subsets"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 L'API de Geometrix pour designer des formes 3D
 		</pre>
@@ -189,8 +189,8 @@ const ctr1 = contour(0, 0)
 				src={asset('puisvg/prez_stroke_and_arc.svg')}
 				style="width: 9em;"
 				alt="stroke and arcs"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 Les contours sont composées exclusivement de:
 - segments de droite
@@ -205,8 +205,8 @@ Idéal pour générer le G-code
 				src={asset('puisvg/prez_absolute_relative.svg')}
 				style="width: 22em;"
 				alt="absolute relative cartesian polar"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 Options possibles pour définir le prochain point
                    dans la définition d'un contour:
@@ -220,8 +220,8 @@ Options possibles pour définir le prochain point
 				src={asset('puisvg/prez_arcs.svg')}
 				style="width: 22em;"
 				alt="three ways for defining arcs"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 3 possibilités pour définir un arc de cercle:
 - le rayon avec les booléens large/small et ccw/cw
@@ -235,8 +235,8 @@ Options possibles pour définir le prochain point
 				src={asset('puisvg/prez_curve_approximation.svg')}
 				style="width: 22em;"
 				alt="curve approximation"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 Approximation des courbes quelconques:
 
@@ -251,8 +251,8 @@ double arcs de cercles définis avec
 				src={asset('puisvg/prez_corner_modifications.svg')}
 				style="width: 15em;"
 				alt="corner modifications"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 Modifications des angles d'un contour:
 - Arrondi [Rounded]
@@ -272,8 +272,8 @@ Modifications des angles d'un contour:
 				src={asset('puisvg/prez_figure_layers.svg')}
 				style="width: 10em;"
 				alt="figure layers"
-			/></center
-		>
+			/>
+		</center>
 		<pre>
 - Définition d'une liste de figures
 - Attacher chaque contour à une figure en tant que:
@@ -284,12 +284,8 @@ Modifications des angles d'un contour:
 	</OneSlide>
 	<OneSlide>
 		<center>
-			<img
-				src={asset('puisvg/prez_extrudes.svg')}
-				style="width: 12em;"
-				alt="extrudes"
-			/></center
-		>
+			<img src={asset('puisvg/prez_extrudes.svg')} style="width: 12em;" alt="extrudes" />
+		</center>
 		<pre style="margin: 0.5em;">
 Définition  d'une forme 3D
 - Extrusion d'une figure orthogonalement ou en révolution
@@ -302,8 +298,8 @@ Définition  d'une forme 3D
 				src={asset('puisvg/prez_boolean_operations.svg')}
 				style="width: 16em;"
 				alt="boolean operations"
-			/></center
-		>
+			/>
+		</center>
 	</OneSlide>
 	<OneSlide>
 		<pre>

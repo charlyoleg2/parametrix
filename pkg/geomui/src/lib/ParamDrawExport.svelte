@@ -224,15 +224,19 @@
 				onclick={() => {
 					selFace = optFace;
 				}}
-				class={{ theFace: selFace === optFace }}>{optFace}</button
+				class={{ theFace: selFace === optFace }}
 			>
+				{optFace}
+			</button>
 		{/each}
 		<button
 			onclick={() => {
 				selFace = c_ParametrixAll;
 			}}
-			class={{ theFace: selFace === c_ParametrixAll }}>All faces merged</button
+			class={{ theFace: selFace === c_ParametrixAll }}
 		>
+			All faces merged
+		</button>
 	</h2>
 </section>
 <Drawing pDefSim={pDef.sim} {pFig} bind:simTime />
@@ -254,204 +258,244 @@
 				<td>1</td>
 				<td>px_{pDef.partName}.json</td>
 				<td>0-params- pxJson</td>
-				<td
-					><button
+				<td>
+					<button
 						onclick={() => {
 							openDiag(
 								getContentDownloadParams(pDef.partName, sParams[pDef.partName], '')
 							);
-						}}>preview</button
-					></td
-				>
+						}}
+					>
+						preview
+					</button>
+				</td>
 				<td><button onclick={downloadExportPxParams}>download</button></td>
 			</tr>
 			<tr>
 				<td>2</td>
 				<td>{pDef.partName}_all.log</td>
 				<td>1-log- txtLog</td>
-				<td
-					><button
+				<td>
+					<button
 						onclick={() => {
 							openDiag2('all', EFormat.eTXTLOG);
-						}}>preview</button
-					></td
-				>
-				<td
-					><button
+						}}
+					>
+						preview
+					</button>
+				</td>
+				<td>
+					<button
 						onclick={async () => {
 							await downloadExport('compute_log');
-						}}>download</button
-					></td
-				>
+						}}
+					>
+						download
+					</button>
+				</td>
 			</tr>
 			{#each optFaces as optFace, idx (optFace)}
 				<tr>
 					<td>{3 + idx}</td>
 					<td>{pDef.partName}_{optFace}.svg</td>
 					<td>2d- svg</td>
-					<td
-						><button
+					<td>
+						<button
 							onclick={() => {
 								openDiag2(optFace, EFormat.eSVG);
-							}}>preview</button
-						></td
-					>
-					<td
-						><button
+							}}
+						>
+							preview
+						</button>
+					</td>
+					<td>
+						<button
 							onclick={async () => {
 								await downloadExport(`svg_${optFace}`);
-							}}>download</button
-						></td
-					>
+							}}
+						>
+							download
+						</button>
+					</td>
 				</tr>
 			{/each}
 			<tr>
 				<td>{3 + optFaces.length}</td>
 				<td>{pDef.partName}_all.svg</td>
 				<td>2d- svg</td>
-				<td
-					><button
+				<td>
+					<button
 						onclick={() => {
 							openDiag2('all', EFormat.eSVGALL);
-						}}>preview</button
-					></td
-				>
-				<td
-					><button
+						}}
+					>
+						preview
+					</button>
+				</td>
+				<td>
+					<button
 						onclick={async () => {
 							await downloadExport('allsvg');
-						}}>download</button
-					></td
-				>
+						}}
+					>
+						download
+					</button>
+				</td>
 			</tr>
 			{#each optFaces as optFace, idx (optFace)}
 				<tr>
 					<td>{4 + optFaces.length + idx}</td>
 					<td>{pDef.partName}_{optFace}.dxf</td>
 					<td>2d- dxf</td>
-					<td
-						><button
+					<td>
+						<button
 							onclick={() => {
 								openDiag2(optFace, EFormat.eDXF);
-							}}>preview</button
-						></td
-					>
-					<td
-						><button
+							}}
+						>
+							preview
+						</button>
+					</td>
+					<td>
+						<button
 							onclick={async () => {
 								await downloadExport(`dxf_${optFace}`);
-							}}>download</button
-						></td
-					>
+							}}
+						>
+							download
+						</button>
+					</td>
 				</tr>
 			{/each}
 			<tr>
 				<td>{4 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.dxf</td>
 				<td>2d- dxf</td>
-				<td
-					><button
+				<td>
+					<button
 						onclick={() => {
 							openDiag2('all', EFormat.eDXFALL);
-						}}>preview</button
-					></td
-				>
-				<td
-					><button
+						}}
+					>
+						preview
+					</button>
+				</td>
+				<td>
+					<button
 						onclick={async () => {
 							await downloadExport('alldxf');
-						}}>download</button
-					></td
-				>
+						}}
+					>
+						download
+					</button>
+				</td>
 			</tr>
 			<tr>
 				<td>{5 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.pax.json</td>
 				<td>4-pax- paxJson</td>
-				<td
-					><button
+				<td>
+					<button
 						onclick={() => {
 							openDiag2('all', EFormat.ePAX);
-						}}>preview</button
-					></td
-				>
-				<td
-					><button
+						}}
+					>
+						preview
+					</button>
+				</td>
+				<td>
+					<button
 						onclick={async () => {
 							await downloadExport('pax');
-						}}>download</button
-					></td
-				>
+						}}
+					>
+						download
+					</button>
+				</td>
 			</tr>
 			<tr>
 				<td>{6 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_noarc_openscad.scad</td>
 				<td>5-script- scad</td>
-				<td
-					><button
+				<td>
+					<button
 						onclick={() => {
 							openDiag2('all', EFormat.eOPENSCAD);
-						}}>preview</button
-					></td
-				>
-				<td
-					><button
+						}}
+					>
+						preview
+					</button>
+				</td>
+				<td>
+					<button
 						onclick={async () => {
 							await downloadExport('oscad');
-						}}>download</button
-					></td
-				>
+						}}
+					>
+						download
+					</button>
+				</td>
 			</tr>
 			<tr>
 				<td>{7 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_noarc_jscad.js</td>
 				<td>5-script- jsCad</td>
-				<td
-					><button
+				<td>
+					<button
 						onclick={() => {
 							openDiag2('all', EFormat.eJSCAD);
-						}}>preview</button
-					></td
-				>
-				<td
-					><button
+						}}
+					>
+						preview
+					</button>
+				</td>
+				<td>
+					<button
 						onclick={async () => {
 							await downloadExport('ojscad');
-						}}>download</button
-					></td
-				>
+						}}
+					>
+						download
+					</button>
+				</td>
 			</tr>
 			<tr>
 				<td>{8 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all_freecad.py</td>
 				<td>5-script- pyFreecad</td>
-				<td
-					><button
+				<td>
+					<button
 						onclick={() => {
 							openDiag2('all', EFormat.eFREECAD);
-						}}>preview</button
-					></td
-				>
-				<td
-					><button
+						}}
+					>
+						preview
+					</button>
+				</td>
+				<td>
+					<button
 						onclick={async () => {
 							await downloadExport('freecad');
-						}}>download</button
-					></td
-				>
+						}}
+					>
+						download
+					</button>
+				</td>
 			</tr>
 			<tr>
 				<td>{9 + 2 * optFaces.length}</td>
 				<td>{pDef.partName}_all.zip</td>
 				<td>6-zip- zip</td>
 				<td></td>
-				<td
-					><button
+				<td>
+					<button
 						onclick={async () => {
 							await downloadExport('zip');
-						}}>download</button
-					></td
-				>
+						}}
+					>
+						download
+					</button>
+				</td>
 			</tr>
 		</tbody>
 	</table>

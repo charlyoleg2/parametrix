@@ -116,24 +116,12 @@
 			<tr>
 				<td>{@html math('F_s')}</td>
 				<td>Security factor</td>
-				<td
-					><input
-						type="number"
-						bind:value={securityFactor}
-						min="1"
-						max="10"
-						step="0.1"
-					/></td
-				>
-				<td
-					><input
-						type="range"
-						bind:value={securityFactor}
-						min="1"
-						max="10"
-						step="0.1"
-					/></td
-				>
+				<td>
+					<input type="number" bind:value={securityFactor} min="1" max="10" step="0.1" />
+				</td>
+				<td>
+					<input type="range" bind:value={securityFactor} min="1" max="10" step="0.1" />
+				</td>
 			</tr>
 			<tr>
 				<td>{@html math('T_2')}</td>
@@ -186,17 +174,12 @@
 			<tr>
 				<td>{@html math('m_w')}</td>
 				<td>Module of gear-wheel (mm)</td>
-				<td
-					><input
-						type="number"
-						bind:value={wheelModule}
-						min="1"
-						max="100"
-						step="0.1"
-					/></td
-				>
-				<td><input type="range" bind:value={wheelModule} min="1" max="100" step="0.1" /></td
-				>
+				<td>
+					<input type="number" bind:value={wheelModule} min="1" max="100" step="0.1" />
+				</td>
+				<td>
+					<input type="range" bind:value={wheelModule} min="1" max="100" step="0.1" />
+				</td>
 			</tr>
 			<tr>
 				<td>{@html math('Z_w')}</td>
@@ -213,24 +196,12 @@
 			<tr>
 				<td>{@html math('Margin_w')}</td>
 				<td>Margin between gear-wheels (%)</td>
-				<td
-					><input
-						type="number"
-						bind:value={wheelMargin}
-						min="0.1"
-						max="20"
-						step="0.1"
-					/></td
-				>
-				<td
-					><input
-						type="range"
-						bind:value={wheelMargin}
-						min="0.1"
-						max="20"
-						step="0.1"
-					/></td
-				>
+				<td>
+					<input type="number" bind:value={wheelMargin} min="0.1" max="20" step="0.1" />
+				</td>
+				<td>
+					<input type="range" bind:value={wheelMargin} min="0.1" max="20" step="0.1" />
+				</td>
 			</tr>
 			<tr>
 				<td>{@html math('D_r')}</td>
@@ -295,17 +266,12 @@
 			<tr>
 				<td>{@html math('m_{r1}')}</td>
 				<td>Module of epicyclic of reductor-1 (mm)</td>
-				<td
-					><input
-						type="number"
-						bind:value={epic1Module}
-						min="1"
-						max="100"
-						step="0.1"
-					/></td
-				>
-				<td><input type="range" bind:value={epic1Module} min="1" max="100" step="0.1" /></td
-				>
+				<td>
+					<input type="number" bind:value={epic1Module} min="1" max="100" step="0.1" />
+				</td>
+				<td>
+					<input type="range" bind:value={epic1Module} min="1" max="100" step="0.1" />
+				</td>
 			</tr>
 			<tr>
 				<td>{@html math('Z_{r1p}')}</td>
@@ -416,17 +382,12 @@
 			<tr>
 				<td>{@html math('m_{r2}')}</td>
 				<td>Module of epicyclic of reductor-2 (mm)</td>
-				<td
-					><input
-						type="number"
-						bind:value={epic2Module}
-						min="1"
-						max="100"
-						step="0.1"
-					/></td
-				>
-				<td><input type="range" bind:value={epic2Module} min="1" max="100" step="0.1" /></td
-				>
+				<td>
+					<input type="number" bind:value={epic2Module} min="1" max="100" step="0.1" />
+				</td>
+				<td>
+					<input type="range" bind:value={epic2Module} min="1" max="100" step="0.1" />
+				</td>
 			</tr>
 			<tr>
 				<td>{@html math('Z_{r2p}')}</td>
@@ -520,24 +481,12 @@
 			<tr>
 				<td>{@html math('F_s')}</td>
 				<td>Force on one shuttle (N)</td>
-				<td
-					><input
-						type="number"
-						bind:value={shutFor}
-						min="0.0001"
-						max="2"
-						step="0.0001"
-					/></td
-				>
-				<td
-					><input
-						type="range"
-						bind:value={shutFor}
-						min="0.0001"
-						max="2"
-						step="0.0001"
-					/></td
-				>
+				<td>
+					<input type="number" bind:value={shutFor} min="0.0001" max="2" step="0.0001" />
+				</td>
+				<td>
+					<input type="range" bind:value={shutFor} min="0.0001" max="2" step="0.0001" />
+				</td>
 			</tr>
 			<tr>
 				<td>{@html math('D_s')}</td>

@@ -42,9 +42,9 @@
 		<li><a href="https://github.com/charlyoleg2/parametrix">Source code</a></li>
 		<li><a href="https://charlyoleg2.github.io/parametrix/">Public instance</a></li>
 		<li>
-			<a href="https://charlyoleg2.github.io/parametrix/docs/readme"
-				>Installation instructions</a
-			>
+			<a href="https://charlyoleg2.github.io/parametrix/docs/readme">
+				Installation instructions
+			</a>
 		</li>
 		<li><a href="https://charlyoleg2.github.io/parametrix/docs/concept">Documentation</a></li>
 	</ul>

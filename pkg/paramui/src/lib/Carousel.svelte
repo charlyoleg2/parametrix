@@ -140,9 +140,9 @@
 
 <aside class="backdrop" class:prezOn={prezActive}>
 	<div bind:this={slideContent}></div>
-	<button onclick={goPrev}>&#60;&#60;&#60;</button><button class="mid" onclick={stopPrez}
-		>[ {slideIdx + 1} / {slideNb} ] Stop</button
-	><button onclick={goNext}>&#62;&#62;&#62;</button>
+	<button onclick={goPrev}>&#60;&#60;&#60;</button><button class="mid" onclick={stopPrez}>
+		[ {slideIdx + 1} / {slideNb} ] Stop
+	</button><button onclick={goNext}>&#62;&#62;&#62;</button>
 </aside>
 
 <section class="carousel-container" bind:this={carousContent}>

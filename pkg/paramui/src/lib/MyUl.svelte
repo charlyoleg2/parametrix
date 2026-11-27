@@ -13,10 +13,10 @@
 </script>
 
 <input type="checkbox" id={checkboxId} class="toggle" checked />
-<label for={checkboxId} class="label"
-	><div class="arrow"></div>
-	{labelText}</label
->
+<label for={checkboxId} class="label">
+	<div class="arrow"></div>
+	{labelText}
+</label>
 {@render top1?.()}
 {@render top2?.()}
 <ul class="nested">

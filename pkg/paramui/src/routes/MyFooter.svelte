@@ -61,9 +61,9 @@
 	<ul>
 		<li class="footer-title">Reminder</li>
 		<li>
-			<a href="https://www.akselipalen.com/2021/06/10/2d-geometry-libraries-for-javascript/"
-				>2D js libs</a
-			>
+			<a href="https://www.akselipalen.com/2021/06/10/2d-geometry-libraries-for-javascript/">
+				2D js libs
+			</a>
 		</li>
 		<li><a href="https://github.com/michaelgale/cq-kit">CadQuery Kit</a></li>
 		<li><a href="https://github.com/CadQuery/awesome-cadquery">CadQuery Awesome</a></li>

@@ -72,9 +72,9 @@
 					<div class="arrow"></div>
 					{subInst}
 				</label>
-				<button onclick={() => goToUrl(subInst)}
-					>Go to {pLink[subD[subInst].partName]}</button
-				>
+				<button onclick={() => goToUrl(subInst)}>
+					Go to {pLink[subD[subInst].partName]}
+				</button>
 				<button onclick={() => dwnParams2(subInst)}>Export parameters</button>
 				<div class="nested">
 					<article>
