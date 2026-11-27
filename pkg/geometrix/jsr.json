@@ -1,6 +1,6 @@
 {
 	"name": "@parametrix/geometrix",
-	"version": "1.0.42",
+	"version": "1.0.43",
 	"license": "ISC",
 	"exports": "./src/index.ts"
 }
